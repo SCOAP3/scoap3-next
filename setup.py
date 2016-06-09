@@ -13,7 +13,7 @@ with open(os.path.join('scoap3',
     exec(fp.read(), version)
 
 setup(
-    name='scoap3 repository',
+    name='SCOAP3 Repository',
     version=version['__version__'],
     description=__doc__,
     packages=find_packages(),
@@ -26,8 +26,7 @@ setup(
             'scoap3.cli:cli',
         ],
         'invenio_base.blueprints': [
-            'scoap3 = '
-            'scoap3.views:blueprint',
+            'scoap3_theme = scoap3.modules.theme.views:blueprint',
         ],
     },
     install_requires=[
@@ -43,6 +42,5 @@ setup(
         'invenio-search-ui>=1.0.0a2',
         'invenio-search>=1.0.0a5',
         'invenio-theme>=1.0.0a10',
-        #'invenio-collections>=1.0.0a2'
     ],
 )
