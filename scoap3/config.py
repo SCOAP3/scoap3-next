@@ -15,8 +15,8 @@ BABEL_DEFAULT_TIMEZONE = 'Europe/Zurich'
 I18N_LANGUAGES = [
 ]
 
-HEADER_TEMPLATE = "invenio_theme/header.html"
-BASE_TEMPLATE = "invenio_theme/page.html"
+HEADER_TEMPLATE = "scoap3_theme/header.html"
+BASE_TEMPLATE = "scoap3_theme/page.html"
 COVER_TEMPLATE = "invenio_theme/page_cover.html"
 SETTINGS_TEMPLATE = "invenio_theme/settings/content.html"
 
@@ -26,3 +26,5 @@ SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUU
 
 # Theme
 THEME_SITENAME = _("scoap3")
+ASSETS_DEBUG = True
+COLLECT_STORAGE = "flask_collect.storage.link"

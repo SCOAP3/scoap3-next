@@ -28,6 +28,9 @@ setup(
         'invenio_base.blueprints': [
             'scoap3_theme = scoap3.modules.theme.views:blueprint',
         ],
+        'invenio_assets.bundles': [
+            'scoap3_theme_css = scoap3.modules.theme.bundles:css',
+        ],
     },
     install_requires=[
         'invenio-assets>=1.0.0a4',
@@ -41,6 +44,6 @@ setup(
         'invenio-records-ui>=1.0.0a4',
         'invenio-search-ui>=1.0.0a2',
         'invenio-search>=1.0.0a5',
-        'invenio-theme>=1.0.0a10',
+        #'invenio-theme>=1.0.0a10',
     ],
 )

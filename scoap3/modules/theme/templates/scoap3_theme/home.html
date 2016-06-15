@@ -14,160 +14,73 @@
     <div class="site-wrapper">
 
         {% block page_body %}
-
-            <div class="home-top">
-                <div class="top-bar" id="home_top_bar">
-
-                    <div class="content">
-                        <div class="pull-right menu">
-                            <ul>
-                                {%- if current_user.is_authenticated %}
-                                    {% if user_is_coordinator_or_admin %}
-                                        <li>
-                                            <a href="/submit">
-                                                <span class="fa fa-arrow-up"></span>
-                                                Submit</a>
-                                        </li>
-                                    {% endif %}
-                                    <li><a href="/record/sandbox"><span
-                                            class="fa fa-cube"></span> Sandbox</a>
-                                    </li>
-                                {%- endif %}
-
-                                <li><a href="/about"><span
-                                        class="fa fa-info-circle"></span> About</a>
-                                </li>
-
-                                <li><a href="/submission"><span
-                                        class="fa fa-life-ring"></span> Help</a>
-                                </li>
-                                {%- if not current_user.is_authenticated %}
-                                    <li>
-                                        <a class=""
-                                           href="{{ url_for_security('login') }}">
-                                            <i class="fa fa-sign-in"></i> Sign in
-                                        </a>
-                                    </li>
-                                {%- else %}
-                                    <li>
-                                        <a href="{% if show_dashboard %}/dashboard{% else %}/account/settings/profile{% endif %}">
-                                            <i class="fa fa-dashboard"></i>
-                                            {% if show_dashboard %}
-                                                Dashboard
-                                            {% else %}
-                                                Your Account
-                                            {% endif %}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url_for_security('logout') }}"><span
-                                                class="fa fa-power-off"></span> Log
-                                            out</a>
-                                    </li>
-                                {%- endif %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hep_logo_home"></div>
-                <h4>High Energy Physics Data Repository</h4>
-
-            </div>
-
-            <div class="disclaimer-area">
-            <p class="disclaimer">This new site is still under development. In the meantime, please continue
-                    using the old site at <a href="http://hepdata.cedar.ac.uk" target="_blank">http://hepdata.cedar.ac.uk</a>.
-                </p>
-            </div>
-
-
-
-            <div class="search-area">
-
-                <div id="record_stats"></div>
-
-                <form class="main-search-form" action="/search">
-                    <input type="text" name="q" placeholder="Search for a paper, author, experiment, reaction">
-                    <button type="submit" class="submit">Search</button>
-                </form>
-
-                <p class="search-examples">example queries - <a href="/search?q=gamma gamma">gamma gamma</a>,
-                    <a href="/search?q=elastic scattering">elastic scattering</a>, <a href="/search?q=strangeness">strangeness</a>.
-
-                </p>
-
-            </div>
-
-            <div class="lhc_experiments">
-                <h4>Data from the LHC</h4>
-
-
-                <div class="row">
-
-                    {% set experiments = ["ATLAS", "ALICE", "CMS", "LHCb"] %}
-
-                    {% for experiment in experiments %}
-                        <div class="col-md-3 col-sm-3 col-xs-6 align-center experiment">
-                            <img src="/static/img/home/cern_lhc_icon_{{ experiment }}.svg"
-                                 width="90px">
-
-                            <h4>{{ experiment }}</h4>
-                            <a href="/search?q=&collaboration={{ experiment }}" class="btn btn-sm btn-primary">View
-                                Data</a>
-                        </div>
-                    {% endfor %}
-                </div>
-
-
-            </div>
-
-
-            <div id="latest_records_section">
-
-                <h4>Recently Updated Submissions - <a href="search/?q=&sort_order=&sort_by=latest">View all</a></h4>
-
-
-                <div id="latest_records" class="row scrollable">
-                    <!--populated automatically-->
-                </div>
-
-
-            </div>
-
-
-            <div id="footer" class="footer-home">
-                <div class="row">
-                    <div class="col-md-4" align="center"><a href="https://www.ippp.dur.ac.uk/"
-                                                            target="_blank"><img
-                            src="static/img/about/durham-logo.svg" width="180px"></a>
-                    </div>
-                    <div class="col-md-4" align="center"><a href="http://home.cern"
-                                                            target="_blank"> <img
-                            src="static/img/about/cern-logo.svg" width="90px"></a>
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                     </div>
 
-                    <div class="col-md-4" align="center"><a href="http://www.stfc.ac.uk/" target="_blank"><img
-                            src="static/img/about/stfc-logo.png" width="250px"></a>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="hidden">
+                                <a href="#page-top"></a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="#services">Home</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="#services">SCOAP<sup>3</sup></a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="#portfolio">About</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+
+            <!-- Header -->
+            <header>
+                <div class="container">
+                    <img src="/static/img/logo.png">
+                    <h1>
+                        Sponsoring Consortium for Open Access Publishing in Particle Physics<br>
+                        <small>Repository</small>
+                    </h1>
+                    <div class="search-area">
+                        <div id="record_stats">Search 11,190 records for:</div>
+                        <form class="row">
+                            <div class="col-md-6 col-md-offset-3" id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" class="form-control input-lg" placeholder="Your search query goes here" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info btn-lg" type="button">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="search-examples">example queries - <a href="/search?q=gamma gamma">gamma gamma</a>,
+                            <a href="/search?q=elastic scattering">elastic scattering</a>, <a href="/search?q=strangeness">strangeness</a>.
+                        </p>
+
                     </div>
                 </div>
-
-                <br/>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        Copyright ~1975-Present, HEPData | Powered by <a href="http://invenio-software.org/"
-                                                                         target="_blank" style="color:white">Invenio</a>,
-                        funded by <a href="http://www.stfc.ac.uk/" target="_blank" style="color:white">STFC, UK</a>,
-                        developed and hosted at <a href="https://home.cern" target="_blank" style="color:white">CERN</a>,
-                        supported by <a href="https://www.ippp.dur.ac.uk/" target="_blank" style="color:white">IPPP
-                        Durham</a>.
-
-                        <br/><br/>
-                        <p class="version">HEPData version: {{ ctx.version }}</p>
-                    </div>
-                </div>
-            </div>
+            </header>
 
             <div class="clearfix"></div>
 
@@ -175,64 +88,8 @@
 
 
     </div>
-    {%- block javascript %}
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script type="text/javascript"
-                src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
-        {%- assets "hepdata_bootstrap_js" %}
-            <script src="{{ ASSET_URL }}"></script>
-        {%- endassets %}
-
-        <script>
-            $.ajax({
-                url: '/record/latest?n=3',
-                method: 'GET',
-                success: function (data) {
-                    data = data['latest'];
-                    for (var record in data) {
-                        var record_html_block = '<div class="latest-record col-md-4 col-xs-12" id="ins' + data[record]['inspire_id'] + '">';
-                        if (data[record]['collaborations'].length > 0)
-                            for (var collaboration in data[record]['collaborations']) {
-                                record_html_block += ' <a href="/search?q=&collaboration=' + data[record]['collaborations'][collaboration] + '" class="collaboration">' + data[record]['collaborations'] + '</a> ';
-                            }
-                        record_html_block += '<a href="/record/ins' + data[record]['inspire_id'] + '" class="title">' + data[record]['title'] + '</a><br/>';
-                        if (data[record]['first_author']) {
-                            record_html_block += '<a href="/search/?q=&author=' + data[record]['first_author']['full_name'] + '" class="author">' + data[record]['first_author']['full_name'];
-                            if (data[record]['author_count'] > 1) {
-                                record_html_block += ' <i>et al</i>';
-                            }
-                            record_html_block += ' </a>';
-                        }
-                        record_html_block += "<br/>";
-                        if (data[record]['journal'])
-                            record_html_block += '<span class="journal"> ' + data[record]['journal'] + '</span><br/>';
-                        record_html_block += "<br/>";
-                        record_html_block += '<div class="date"><i class="fa fa-clock-o"></i>  Updated ' + data[record]['last_updated'] + '</div>';
-                        if (data[record]['creation_date'] != null) {
-                            record_html_block += '<div class="date"><i class="fa fa-bookmark-o"></i> Published on ' + data[record]['creation_date'] + '</div>';
-                        }
-                        record_html_block += '</div>';
-                        $("#latest_records").append(record_html_block);
-                    }
-                    MathJax.Hub.Config({
-                        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-                    });
-                    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-                }
-            });
-            $.ajax({
-                url: '/record/count',
-                method: 'GET',
-                success: function (data) {
-                    $("#record_stats").html('<a href="/search">Search on <span style="font-weight: bolder">' + data["publications"] + '</span> publications and <span style="font-weight: bolder">' + data["data"] + '</span> data tables.</a>')
-                }
-            });
-        </script>
-    {% endblock %}
-     {%- block trackingcode %}
+    {%- block trackingcode %}
         {% include "scoap3_theme/trackingcode.html" %}
     {% endblock %}
 {%- endblock body %}
