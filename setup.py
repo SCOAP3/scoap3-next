@@ -31,6 +31,9 @@ setup(
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
         ],
+        'dojson.cli.rule': [
+            'hep = scoap3.dojson.hep:hep',
+        ],
     },
     install_requires=[
         'invenio-assets>=1.0.0a4',
