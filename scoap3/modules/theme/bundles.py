@@ -40,3 +40,14 @@ css = NpmBundle(
         "toastr": "~2.1.2"
     }
 )
+
+search_css = NpmBundle(
+    'scss/search.scss',
+    filters='scss, cleancss',
+    depends=('scss/*.scss',),
+    output='gen/scoap3_search.%(version)s.css',
+    npm={
+        "bootstrap-sass": "~3.3.5",
+        "font-awesome": "~4.4.0"
+    }
+)
