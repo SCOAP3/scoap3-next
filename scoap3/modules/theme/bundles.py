@@ -26,6 +26,7 @@
 
 from __future__ import absolute_import, print_function
 
+from flask_assets import Bundle
 from invenio_assets import NpmBundle
 
 css = NpmBundle(
@@ -41,13 +42,46 @@ css = NpmBundle(
     }
 )
 
-search_css = NpmBundle(
-    'scss/search.scss',
-    filters='scss, cleancss',
-    depends=('scss/*.scss',),
-    output='gen/scoap3_search.%(version)s.css',
+js = NpmBundle(
+    Bundle(
+        'node_modules/almond/almond.js',
+        'js/modernizr-custom.js',
+        filters='uglifyjs',
+    ),
+    Bundle(
+        'js/scoap3.js',
+        filters='requirejs',
+    ),
+    depends=(
+        'js/scoap3.js',
+        'js/scoap3/*.js',
+        'js/scoap3/filters/*.js',
+        'node_modules/angular-loading-bar/build/*.js',
+        'node_modules/typeahead.js/dist/*.js',
+        'node_modules/invenio-csl-js/dist/*.js',
+    ),
+    filters='jsmin',
+    output="gen/scoap3.%(version)s.js",
     npm={
-        "bootstrap-sass": "~3.3.5",
-        "font-awesome": "~4.4.0"
+        'almond': '~0.3.1',
+        'angular': '~1.4.9',
+        'angular-sanitize': '~1.4.9',
+        'angular-loading-bar': '~0.9.0',
+        'invenio-csl-js': '~0.1.2',
+        'typeahead.js': '~0.11.1',
+    }
+)
+
+search_js = NpmBundle(
+    'js/scoap3.search.js',
+    depends=(
+        'node_modules/invenio-search-js/dist/*.js',
+        'js/invenio_communities/*.js',
+        'js/invenio_communities/directives/*.js',
+    ),
+    filters='requirejs, jsmin',
+    output="gen/scoap3.search.%(version)s.js",
+    npm={
+        'invenio-search-js': '~0.2.0',
     }
 )

@@ -1,5 +1,6 @@
+
 // This file is part of SCOAP3.
-// Copyright (C) 2016 CERN.
+// Copyright (C) 2015, 2016 CERN.
 //
 // SCOAP3 is free software; you can redistribute it
 // and/or modify it under the terms of the GNU General Public License as
@@ -19,4 +20,10 @@
 // In applying this license, CERN does not
 // waive the privileges and immunities granted to it by virtue of its status
 // as an Intergovernmental Organization or submit itself to any jurisdiction.
-
+require([
+  "node_modules/invenio-search-js/dist/invenio-search-js",
+  "js/invenio_communities/module",
+  ], function() {
+  // On document ready bootstrap angular
+  }
+);

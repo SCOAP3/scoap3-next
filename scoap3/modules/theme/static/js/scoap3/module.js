@@ -20,3 +20,7 @@
 // waive the privileges and immunities granted to it by virtue of its status
 // as an Intergovernmental Organization or submit itself to any jurisdiction.
 
+define(['js/scoap3/filters/module'], function(filters){
+  var app = angular.module('scoap3', ['scoap3.filters', ]);
+  return app;
+});

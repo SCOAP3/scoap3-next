@@ -254,3 +254,5 @@ INSPIRE_RANK_TYPES = {
         'abbreviations': ['UG', 'BS', 'BA', 'BSC']
     }
 }
+
+SEARCH_UI_SEARCH_TEMPLATE = "scoap3_search_ui/search.html"

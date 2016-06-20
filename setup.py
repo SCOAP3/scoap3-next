@@ -27,11 +27,12 @@ setup(
         ],
         'invenio_base.blueprints': [
             'scoap3_theme = scoap3.modules.theme.views:blueprint',
-            'scoap3_search = scoap3.modules.search.views:blueprint',
+            'scoap3_search_ui = scoap3.modules.search_ui.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
-            'scoap3_search_css = scoap3.modules.theme.bundles:search_css'
+            'scoap3_theme_js = scoap3.modules.theme.bundles:js',
+            'scoap3_search_js = scoap3.modules.theme.bundles:search_js',
         ],
         'dojson.cli.rule': [
             'hep = scoap3.dojson.hep:hep',
@@ -51,8 +52,8 @@ setup(
         'invenio-records',
         'invenio-records-rest>=1.0.0a11',
         'invenio-records-ui>=1.0.0a4',
-        'invenio-search>=1.0.0a5',
-        'invenio-search-ui>=1.0.0a2',
+        'invenio-search>=1.0.0a7',
+        'invenio-search-ui>=1.0.0a5',
         #'invenio-theme>=1.0.0a10',
     ],
 )
