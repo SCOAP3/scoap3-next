@@ -22,7 +22,6 @@
 // as an Intergovernmental Organization or submit itself to any jurisdiction.
 require([
   "node_modules/invenio-search-js/dist/invenio-search-js",
-  "js/invenio_communities/module",
   ], function() {
   // On document ready bootstrap angular
   }

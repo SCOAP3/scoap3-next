@@ -1,8 +1,7 @@
 {
     "$schema": "http://json-schema.org/schema#",
-    "uniqueItems": true,
     "items": {
-        "type": "object",
+        "type": ["object","null"],
         "properties": {
             "value": {
                 "title": "URL",
@@ -10,7 +9,7 @@
                 "format": "url"
             },
             "description": {
-                "type": "string",
+                "type": ["string","null"],
                 "title": "Description from 8564_y field"
             }
         },

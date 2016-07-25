@@ -64,5 +64,5 @@ class SCOAP3RecordIdProvider(BaseProvider):
     def schema_to_pid_type(schema):
         pid_type = os.path.splitext(os.path.basename(schema))[0]
         if pid_type == 'hep':
-            return 'hep'
+            return 'recid'
         return pid_type

@@ -61,17 +61,30 @@ def authors(self, key, value):
         person_record = get_record_ref(person_recid, 'authors')
         ret = {
             'full_name': value.get('a'),
-            'role': value.get('e'),
-            'alternative_name': value.get('q'),
-            'inspire_id': inspire_id,
-            'inspire_bai': value.get('w'),
-            'orcid': value.get('j'),
-            'record': person_record,
-            'email': value.get('m'),
-            'affiliations': affiliations,
+            # 'role': value.get('e'),
+            # 'alternative_name': value.get('q'),
+            # 'inspire_bai': value.get('w'),
+            # 'orcid': value.get('j'),
+            # 'record': person_record,
+            # 'email': value.get('m'),
+            # 'affiliations': affiliations,
             'profile': {"__url__": create_profile_url(value.get('x'))},
             'curated_relation': value.get('y', 0) == 1
         }
+        if inspire_id:
+            ret['inspire_id'] = inspire_id
+        if value.get('m'):
+            ret['email'] = value.get('m')
+        if value.get('e'):
+            ret['role'] = value.get('e')
+        if value.get('j'):
+            ret['orcid'] = value.get('j'),
+        if value.get('q'):
+            ret['alternative_name'] = value.get('q')
+        if person_record:
+            ret['person_record'] = person_record
+        if affiliations:
+            ret['affiliations'] = affiliations
         # HACK: This is to workaround broken records where multiple authors
         # got meshed up together.
         if isinstance(ret['full_name'], (list, tuple)):

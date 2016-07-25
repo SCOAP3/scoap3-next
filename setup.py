@@ -25,13 +25,17 @@ setup(
             'scoap3 = '
             'scoap3.cli:cli',
         ],
+        'invenio_base.apps': [
+            'scoap3_records = scoap3.modules.records:Scoap3Records',
+        ],
+        'invenio_base.api_apps': [
+            'scoap3_records = scoap3.modules.records:Scoap3Records',
+        ],
         'invenio_base.blueprints': [
-            'scoap3_theme = scoap3.modules.theme.views:blueprint',
-            'scoap3_search_ui = scoap3.modules.search_ui.views:blueprint',
+            'scoap3_search = scoap3.modules.search.views:blueprint',
+            'scoap3_theme = scoap3.modules.theme.views:blueprint'
         ],
         'invenio_assets.bundles': [
-            'scoap3_theme_css = scoap3.modules.theme.bundles:css',
-            'scoap3_theme_js = scoap3.modules.theme.bundles:js',
             'scoap3_search_js = scoap3.modules.theme.bundles:search_js',
         ],
         'dojson.cli.rule': [
@@ -39,6 +43,13 @@ setup(
         ],
         'invenio_pidstore.minters': [
             'scoap3_recid_minter = scoap3.modules.pidstore.minters:scoap3_recid_minter',
+        ],
+
+        'invenio_pidstore.fetchers': [
+            'scoap3_recid_fetcher = scoap3.modules.pidstore.fetchers:scoap3_recid_fetcher',
+        ],
+        'invenio_jsonschemas.schemas': [
+            'scoap3_records = scoap3.modules.records.jsonschemas',
         ],
     },
     install_requires=[
@@ -54,6 +65,5 @@ setup(
         'invenio-records-ui>=1.0.0a4',
         'invenio-search>=1.0.0a7',
         'invenio-search-ui>=1.0.0a5',
-        #'invenio-theme>=1.0.0a10',
     ],
 )

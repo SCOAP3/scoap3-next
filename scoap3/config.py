@@ -3,6 +3,7 @@
 """scoap3 base Invenio configuration."""
 
 from __future__ import absolute_import, print_function
+
 import os
 
 
@@ -16,10 +17,11 @@ BABEL_DEFAULT_TIMEZONE = 'Europe/Zurich'
 I18N_LANGUAGES = [
 ]
 
-HEADER_TEMPLATE = "scoap3_theme/header.html"
-BASE_TEMPLATE = "scoap3_theme/page.html"
-COVER_TEMPLATE = "invenio_theme/page_cover.html"
-SETTINGS_TEMPLATE = "invenio_theme/settings/content.html"
+# HEADER_TEMPLATE = "scoap3_theme/header.html"
+# BASE_TEMPLATE = "scoap3_theme/page.html"
+# COVER_TEMPLATE = "invenio_theme/page_cover.html"
+# SETTINGS_TEMPLATE = "invenio_theme/settings/content.html"
+# SEARCH_UI_SEARCH_TEMPLATE = "scoap3_search_ui/search.html"
 
 # WARNING: Do not share the secret key - especially do not commit it to
 # version control.
@@ -27,8 +29,60 @@ SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUU
 
 # Theme
 THEME_SITENAME = _("scoap3")
-ASSETS_DEBUG = True
+# ASSETS_DEBUG = True
 COLLECT_STORAGE = "flask_collect.storage.link"
+
+SERVER_NAME = "127.0.0.1:5000"
+
+SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
+SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
+
+# Elasticsearch
+SEARCH_ELASTIC_HOSTS='localhost'
+RECORDS_REST_ENDPOINTS = dict(
+    recid=dict(
+        pid_type='recid',
+        pid_minter='scoap3_recid_minter',
+        pid_fetcher='recid',
+        search_index='records',
+        search_type='record',
+        record_serializers={
+        'application/json': ('invenio_records_rest.serializers'
+                             ':json_v1_response'),
+        },
+        search_serializers={
+        'application/json': ('invenio_records_rest.serializers'
+                             ':json_v1_search'),
+        },
+        list_route='/records/',
+        item_route='/records/<pid_value>',
+        default_media_type='application/json',
+        max_result_window=10000,
+    ),
+)
+RECORDS_UI_ENDPOINTS = dict(
+    recid=dict(
+        pid_type='recid',
+        route='/records/<pid_value>',
+        template='invenio_marc21/detail.html',
+    ),
+)
+RECORDS_REST_SORT_OPTIONS = {
+    "recid": {
+        "mostrecent": {
+            "title": 'Most recent',
+            "fields": ['earliest_date'],
+            "default_order": 'desc',  # Used for invenio-search-js config
+            "order": 1,
+        },
+        "bestmatch": {
+            "title": 'Best match',
+            "fields": ['_score'],
+            "default_order": 'desc',
+            "order": 1,
+        },
+    },
+}
 
 # Inspire subject translation
 # ===========================
@@ -255,4 +309,3 @@ INSPIRE_RANK_TYPES = {
     }
 }
 
-SEARCH_UI_SEARCH_TEMPLATE = "scoap3_search_ui/search.html"

@@ -10,9 +10,11 @@ recs = [hep.do(create_record(data)) for data in split_stream(open('../data/scoap
 for i, obj in enumerate(recs, start=1):
     print("Creating record {}/{}".format(i,len(recs)))
     record = Record.create(data, id_=None)
+    print record
 
     # Create persistent identifier.
     pid = scoap3_recid_minter(str(record.id), record)
+    print(pid.object_uuid)
 
     # Commit any changes to record
     record.commit()

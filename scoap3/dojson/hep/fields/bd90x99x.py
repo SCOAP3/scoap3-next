@@ -24,7 +24,6 @@
 
 from __future__ import absolute_import, division, print_function
 
-from isbnlib._exceptions import NotValidISBNError
 
 from dojson import utils
 from idutils import normalize_isbn
@@ -62,7 +61,7 @@ def references(self, key, value):
 
         try:
             isbn = normalize_isbn(value['i'])
-        except (KeyError, NotValidISBNError):
+        except (KeyError, ):
             isbn = ''
 
         return {

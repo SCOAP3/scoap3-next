@@ -38,12 +38,6 @@ blueprint = Blueprint(
     static_folder='static',
 )
 
-
-@blueprint.route('/')
-def index():
-    return render_template('scoap3_theme/home.html', ctx={"version": __version__})
-
-
 @blueprint.route('/ping')
 def ping():
     return 'OK'
