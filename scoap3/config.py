@@ -28,7 +28,8 @@ I18N_LANGUAGES = [
 SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUUsVFWThN5YmJ023XzKHOMcMZIEblxgyoMSkyP5rcnlBCQ4yJOCBsXxmn13RxcK7yQ7U996ey59zce1i47VoVTyk1wwOKJocafnyOk4HfcE3Xx2IxKQYk8EXWtPVlndmVZZuba9kivA73QfWB9uxumFd8wtMhLm6quRa8KB9eqywNyCwcz6DHGYQzRKKvtgo"
 
 # Theme
-THEME_SITENAME = _("scoap3")
+THEME_SITENAME = _("SCOAP3 Repository")
+THEME_LOGO = 'img/logo.png'
 # ASSETS_DEBUG = True
 COLLECT_STORAGE = "flask_collect.storage.link"
 
@@ -36,6 +37,8 @@ SERVER_NAME = "127.0.0.1:5000"
 
 SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
+
+BASE_TEMPLATE = "scoap3_theme/page.html"
 
 # Elasticsearch
 SEARCH_ELASTIC_HOSTS='localhost'

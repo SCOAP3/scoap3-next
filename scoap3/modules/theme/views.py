@@ -26,9 +26,7 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, render_template
-
-from scoap3.version import __version__
+from flask import Blueprint
 
 blueprint = Blueprint(
     'scoap3_theme',

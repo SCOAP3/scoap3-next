@@ -1,17 +1,39 @@
-<div class="footer-bar">
-
-    <div id="footer-decor">
-        <ul>
-            <li class="bg-purple">&nbsp;</li>
-            <li class="bg-purple-lighter">&nbsp;</li>
-            <li class="bg-purple">Copyright ~1975-Present, HEPData | Powered by <a href="http://invenio-software.org/" target="_blank" style="color:white">Invenio</a>, funded by <a href="http://www.stfc.ac.uk/" target="_blank" style="color:white">STFC, UK</a>, developed and hosted at <a href="https://home.cern" target="_blank" style="color:white">CERN</a>, supported by <a href="https://www.ippp.dur.ac.uk/" target="_blank" style="color:white">IPPP Durham</a>.</li>
-        </ul>
+<!-- Footer -->
+<footer>
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col col-md-3">
+                    <h3></h3>
+                    <ul>
+                        <li>SCOAP3 website</li>
+                        <li>About the repository</li>
+                        <li>Search help</li>
+                        <li>MarcXML documentation</li>
+                        <li>Idea Board</li>
+                    </ul>
+                </div>
+                <div class="footer-col col-md-3">
+                    <h3>Repository contact</h3>
+                    <a>repo.admin@scoap3.org</a>
+                </div>
+                <div class="footer-col col-md-6">
+                    <h3>Licences</h3>
+                    {% trans ccby="http://creativecommons.org/licenses/by/3.0/", cc0="http://creativecommons.org/publicdomain/zero/1.0/" %}Articles in the SCOAP3 repository are released under a <a href="{{ccby}}">CC-BY</a> license. Metadata are provided by the corresponding publishers and released under the a <a href="{{cc0}}">CC0</a> waiver.{% endtrans %}
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div id="footer-buttons">
-        <ul>
-            <a href="mailto:info@hepdata.net" target="_new"><li class="bg-purple-lighter"><span class="fa fa-envelope"></span></li></a>
-            <a href="http://twitter.com/HEPData" target="_new"><li class="bg-purple"><span class="fa fa-twitter"></span></li></a>
-        </ul>
+    <div class="footer-below text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Copyright &copy; SCOAP3 2016
+                </div>
+                <div class="col-lg-12">
+                    {% trans link="http://inveniosoftware.org" %}Powered by <a href="{{link}}">Invenio</a>{% endtrans %}
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</footer>

@@ -24,43 +24,20 @@
 
 {%- extends "invenio_theme/page.html" %}
 
-{%- block css %}
-    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <meta name="theme-color" content="#894B9D">
-    <!-- Windows Phone -->
-    <meta name="msapplication-navbutton-color" content="#894B9D">
-    <!-- iOS Safari -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="#894B9D">
-    {%- assets "scoap3_theme_css" %}
-        <link href="{{ ASSET_URL }}" rel="stylesheet">
-    {%- endassets %}
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    {%- block additional_assets %}
-    {%- endblock additional_assets %}
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
-    <script type="text/javascript">
-        window.cookieconsent_options = {
-            "message": "This website uses cookies to ensure you get the best experience on our website",
-            "dismiss": "Got it!",
-            "learnMore": "More info",
-            "link": "/cookies",
-            "theme": "light-bottom"
-        };
-    </script>
-
-    <script type="text/javascript"
-            src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
-    <!-- End Cookie Consent plugin -->
-
-
-{%- endblock css %}
+        {%- if config['THEME_SEARCHBAR'] %}
+        {%- block navbar_search %}
+        <form class="navbar-form navbar-left" action="{{config.THEME_SEARCH_ENDPOINT}}" role="search">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" name="q" placeholder="{{_('Search')}}">
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
+        {%- endblock navbar_search %}
+        {%- endif %}
 
 {%- block page_header %}
     {% include "scoap3_theme/header.html" %}
@@ -72,10 +49,10 @@
 {%- endblock page_footer %}
 
 {%- block javascript %}
-    {% include "scoap3_theme/javascript.html" %}
+    {% include "invenio_theme/javascript.html" %}
 
 {%- endblock javascript %}
 
 {%- block trackingcode %}
-    {% include "scoap3_theme/trackingcode.html" %}
+    {% include "invenio_theme/trackingcode.html" %}
 {%- endblock %}
