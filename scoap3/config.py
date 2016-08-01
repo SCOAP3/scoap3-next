@@ -3,7 +3,7 @@
 """scoap3 base Invenio configuration."""
 
 from __future__ import absolute_import, print_function
-
+from invenio_records_rest.facets import terms_filter
 import os
 
 
@@ -47,8 +47,8 @@ RECORDS_REST_ENDPOINTS = dict(
         pid_type='recid',
         pid_minter='scoap3_recid_minter',
         pid_fetcher='recid',
-        search_index='records',
-        search_type='record',
+        search_index='records-record-v1.0.0',
+        search_type='record-v1.0.0',
         record_serializers={
         'application/json': ('invenio_records_rest.serializers'
                              ':json_v1_response'),
@@ -65,9 +65,9 @@ RECORDS_REST_ENDPOINTS = dict(
 )
 RECORDS_UI_ENDPOINTS = dict(
     recid=dict(
-        pid_type='recid',
+        pid_type='record',
         route='/records/<pid_value>',
-        template='invenio_marc21/detail.html',
+        template='scoap3_theme/records/detail.html',
     ),
 )
 RECORDS_REST_SORT_OPTIONS = {
@@ -87,6 +87,17 @@ RECORDS_REST_SORT_OPTIONS = {
     },
 }
 
+
+RECORDS_REST_FACETS = dict(
+    records=dict(
+        aggs=dict(
+            type=dict(terms=dict(field='type'))
+        ),
+        post_filters=dict(
+            type=terms_filter('type'),
+        )
+    )
+)
 # Inspire subject translation
 # ===========================
 ARXIV_TO_INSPIRE_CATEGORY_MAPPING = {
