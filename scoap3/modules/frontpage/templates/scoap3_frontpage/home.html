@@ -1,9 +1,16 @@
 {%- extends "scoap3_theme/page.html" %}
 {%- block page_body %}
+  <div class="jumbotron scoap3-jumbotron-img">
+  </div>
+  <div class="jumbotron scoap3-jumbotron-heading">
+    <div class="container text-white">
+      <h1 class="text-center">SCOAP<sup>3</sup> Repository</h1>
+      <h2 class="text-center">Open Access simplified</h2>
+    </div>
+  </div>
   <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="text-center">SCOAP<sup>3</sup> Repository</h2>
           <p class="text-center">Search <b>{{ articles_count }} Open Access</b> HEP articles:</p>
           <form action="{{ url_for('invenio_search_ui.search') }}">
             <div class="form-group">

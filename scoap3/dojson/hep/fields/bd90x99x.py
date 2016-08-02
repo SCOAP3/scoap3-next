@@ -141,3 +141,27 @@ def refextract2marc(self, key, value):
         'v': value.get('version'),
         's': value.get('source'),
     }
+
+
+@hep.over('collections', '^980..')
+@utils.for_each_value
+@utils.filter_values
+def collections(record, key, value):
+    """Parse custom MARC tag 980."""
+    return {
+        'primary': value.get('a'),
+        'secondary': value.get('b'),
+        'deleted': value.get('c'),
+    }
+
+
+@hep2marc.over('980', '^collections$')
+@utils.reverse_for_each_value
+@utils.filter_values
+def reverse_collections(self, key, value):
+    """Reverse colections field to custom MARC tag 980."""
+    return {
+        'a': value.get('primary'),
+        'b': value.get('secondary'),
+        'c': value.get('deleted'),
+    }
