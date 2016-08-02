@@ -19,8 +19,8 @@ I18N_LANGUAGES = [
 
 # HEADER_TEMPLATE = "scoap3_theme/header.html"
 # BASE_TEMPLATE = "scoap3_theme/page.html"
-# COVER_TEMPLATE = "invenio_theme/page_cover.html"
-# SETTINGS_TEMPLATE = "invenio_theme/settings/content.html"
+COVER_TEMPLATE = "invenio_theme/page_cover.html"
+SETTINGS_TEMPLATE = "invenio_theme/settings/content.html"
 # SEARCH_UI_SEARCH_TEMPLATE = "scoap3_search_ui/search.html"
 
 # WARNING: Do not share the secret key - especially do not commit it to
@@ -32,13 +32,13 @@ THEME_SITENAME = _("SCOAP3 Repository")
 THEME_LOGO = 'img/logo.png'
 # ASSETS_DEBUG = True
 COLLECT_STORAGE = "flask_collect.storage.link"
-
 SERVER_NAME = "127.0.0.1:5000"
 
 SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
+# COVER_TEMPLATE = 'scoap3_theme/home.html'
 
 # Elasticsearch
 SEARCH_ELASTIC_HOSTS='localhost'
@@ -323,3 +323,10 @@ INSPIRE_RANK_TYPES = {
     }
 }
 
+
+###############################################################################
+# Home page
+###############################################################################
+
+# Display a homepage.
+FRONTPAGE_ENDPOINT = "scoap3_frontpage.index"
