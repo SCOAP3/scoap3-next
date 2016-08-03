@@ -63,5 +63,18 @@
         </div>
       </div>
   </div>
+  <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-left">Grouped by collections:</p>
+          {%- for collection in collections %}
+            {{ collection }}
+            <a href="{{ url_for('invenio_search_ui.search', q='collections.secondary:'+collection.name) }}">{{ collection.name }}</a>
+          }
+          }
+          {%- endfor %}
+        </div>
+      </div>
+  </div>
 
 {%- endblock page_body %}

@@ -23,6 +23,7 @@ from __future__ import absolute_import, print_function
 
 from flask import Blueprint, render_template
 from invenio_search.api import current_search_client
+from invenio_collections.models import Collection
 
 blueprint = Blueprint(
     'scoap3_home',
@@ -36,9 +37,11 @@ def index():
     """SCOAP3 home page."""
 
     count = current_search_client.count(index="records-record-v1.0.0")
+    collections = Collection.query.filter(Collection.level == 2).all()
 
     return render_template(
         'scoap3_frontpage/home.html',
         title='SCOAP3 Repository',
-        articles_count=count['count']
+        articles_count=count['count'],
+        collections=collections
     )
