@@ -1,5 +1,5 @@
+{%- block navbar %}
 <header>
-  {%- block navbar %}
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
       {%- block navbar_header %}
@@ -36,12 +36,12 @@
       {%- endblock navbar_inner %}
     </div>
   </nav>
-  {%- endblock navbar %}
+</header>
+{%- endblock navbar %}
   {%- block flashmessages %}
-  {%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
-  {{ flashed_messages() }}
+    {%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
+    {{ flashed_messages() }}
   {%- endblock %}
   {%- block breadcrumbs %}
-{%- include "invenio_theme/breadcrumbs.html" %}
+    {%- include "invenio_theme/breadcrumbs.html" %}
   {%- endblock breadcrumbs %}
-</header>

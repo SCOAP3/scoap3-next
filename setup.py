@@ -25,6 +25,7 @@ install_requires = [
     'invenio-records-ui>=1.0.0a4',
     'invenio-search>=1.0.0a7',
     'invenio-search-ui>=1.0.0a5',
+    'invenio-collections'
 ],
 
 setup(
@@ -48,9 +49,10 @@ setup(
         'invenio_base.blueprints': [
             'scoap3_search = scoap3.modules.search.views:blueprint',
             'scoap3_theme = scoap3.modules.theme.views:blueprint',
-            'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint',
+            'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint'
         ],
         'invenio_assets.bundles': [
+            'scoap3_theme_css = scoap3.modules.theme.bundles:css',
             'scoap3_search_js = scoap3.modules.theme.bundles:search_js',
         ],
         'dojson.cli.rule': [

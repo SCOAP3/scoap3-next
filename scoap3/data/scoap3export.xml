@@ -572,7 +572,6 @@
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1602.04635</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1602.04635</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Bodek, Kazimierz</subfield>
@@ -2735,7 +2734,6 @@
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1411.6461</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1411.6461</subfield>
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">Wilson Loops with Arbitrary Charges</subfield>
@@ -4281,7 +4279,6 @@
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1406.2499</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1406.2499</subfield>
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">Bose--Einstein Correlations and Thermal Cluster Formation in High-energy Collisions</subfield>
@@ -4384,7 +4381,6 @@
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1402.3738</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1402.3738</subfield>
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">Higgs Inflation and the Cosmological Constant</subfield>
@@ -4481,7 +4477,6 @@
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1304.7813</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1304.7813</subfield>
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">The Standard Model as a Low-energy Effective Theory: What is Triggering the Higgs Mechanism?</subfield>
@@ -4690,7 +4685,6 @@
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1302.4511</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1302.4511</subfield>
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">Study on the Energy Dependence of the Source Size of Jets by the HBT Correlation Method in $e^+e^-$ Collisions</subfield>
@@ -4800,7 +4794,6 @@
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1305.0147</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1305.0147</subfield>
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">Constraints on Neutrino Mass Ordering and Degeneracy from Planck and Neutrino-less Double Beta Decay</subfield>
@@ -4893,7 +4886,6 @@
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1305.1769</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1305.1769</subfield>
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">The LHC Excess of Four-lepton Events Interpreted as Higgs-boson Signal: Background from Double Drell--Yan Process?</subfield>
@@ -11437,7 +11429,6 @@ Vacuum selection on axionic landscapes</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1601.06561</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1601.06561</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Nishi, Sakine</subfield>
@@ -11538,7 +11529,6 @@ Reheating and primordial gravitational waves in generalized Galilean genesis</su
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1509.01587</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1509.01587</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Blennow, Mattias</subfield>
@@ -11649,7 +11639,6 @@ Global constraints on vector-like WIMP effective interactions</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1512.00565</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1512.00565</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Chen, Pisin</subfield>
@@ -12873,7 +12862,6 @@ Derivative couplings in massive bigravity</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1511.06205</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1511.06205</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Cannoni, M.</subfield>
@@ -12983,7 +12971,6 @@ Supersymmetry searches in GUT models with non-universal scalar masses</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1601.04658</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1601.04658</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Crisostomi, Marco</subfield>
@@ -13086,7 +13073,6 @@ Horndeski: beyond, or not beyond?</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1512.05165</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1512.05165</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Tu, Huitzu</subfield>
@@ -13183,7 +13169,6 @@ Effects of Goldstone bosons on gamma-ray bursts</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1512.06357</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1512.06357</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Huber, Stephan J.</subfield>
@@ -14106,7 +14091,6 @@ On the importance of direct detection combined limits for spin independent and s
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1512.03332</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1512.03332</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Garcia-Cely, Camilo</subfield>
@@ -15007,7 +14991,6 @@ Disappearing inflaton potential via heavy field dynamics</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1511.05967</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1511.05967</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Queiroz, Farinaldo S.</subfield>
@@ -15104,7 +15087,6 @@ The CTA aims at the Inert Doublet Model</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1509.07339</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1509.07339</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Garriga, Jaume</subfield>
@@ -18013,7 +17995,6 @@ Matter coupling in partially constrained vielbein formulation of massive gravity
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.01000</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.01000</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Boucenna, Sofiane M.</subfield>
@@ -18138,7 +18119,6 @@ Decaying leptophilic dark matter at IceCube</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1506.04454</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1506.04454</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Gluscevic, Vera</subfield>
@@ -18251,7 +18231,6 @@ Identifying the theory of dark matter with direct detection</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1509.00039</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1509.00039</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Dubovsky, Sergei</subfield>
@@ -18345,7 +18324,6 @@ Heating up the Galaxy with hidden photons</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1509.07604</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1509.07604</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Bastero-Gil, Mar</subfield>
@@ -18442,7 +18420,6 @@ Exploring the parameter space of warm-inflation models</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1509.07748</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1509.07748</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Cicoli, Michele</subfield>
@@ -18550,7 +18527,6 @@ Microscopic origin of volume modulus inflation</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.07987</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.07987</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Bélanger, G.</subfield>
@@ -18660,7 +18636,6 @@ Limits on dark matter proton scattering from neutrino telescopes using micrOMEGA
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1509.04036</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1509.04036</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Rodejohann, Werner</subfield>
@@ -18756,7 +18731,6 @@ Limits on dark matter proton scattering from neutrino telescopes using micrOMEGA
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.05146</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.05146</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Blanchet, Luc</subfield>
@@ -18857,7 +18831,6 @@ Dipolar dark matter with massive bigravity</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1508.03293</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1508.03293</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Akhshik, Mohammad</subfield>
@@ -18955,7 +18928,6 @@ Cosmological perturbations and the Weinberg theorem</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.02722</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.02722</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Dell'Oro, S.</subfield>
@@ -19059,7 +19031,6 @@ The contribution of light Majorana neutrinos to neutrinoless double beta decay a
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1506.07532</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1506.07532</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Co, Raymond T.</subfield>
@@ -19169,7 +19140,6 @@ Freeze-In dark matter  with displaced signatures at colliders</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.04031</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.04031</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Chen, Jing</subfield>
@@ -19273,7 +19243,6 @@ Long-range Self-interacting Dark Matter in the Sun</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1509.08915</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1509.08915</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Kehayias, John</subfield>
@@ -19370,7 +19339,6 @@ Oscillating and static universes from a single barotropic fluid</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.04644</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.04644</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Achterberg, Abraham</subfield>
@@ -19484,7 +19452,6 @@ Comparing Galactic Center MSSM dark matter solutions to the Reticulum II gamma-r
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1506.08285</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1506.08285</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Allahverdi, Rouzbeh</subfield>
@@ -19592,7 +19559,6 @@ Distinguishing neutrino mass hierarchies using dark matter annihilation signals 
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1406.5490</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1406.5490</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Anninos, Dionysios</subfield>
@@ -19705,7 +19671,6 @@ Late-time structure of the Bunch-Davies de Sitter wavefunction</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.03556</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.03556</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Eshaghi, Mehdi</subfield>
@@ -19811,7 +19776,6 @@ A non-minimally coupled potential for inflation and dark energy after Planck 201
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.06215</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.06215</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Abada, Asmaa</subfield>
@@ -19925,7 +19889,6 @@ Lepton number violation as a key to low-scale leptogenesis</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.03902</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.03902</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Gelmini, Graciela B.</subfield>
@@ -20028,7 +19991,6 @@ Extended maximum likelihood halo-independent analysis of dark matter direct dete
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1510.00170</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1510.00170</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Rott, Carsten</subfield>
@@ -20140,7 +20102,6 @@ Dark matter searches for monoenergetic neutrinos arising from stopped meson deca
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1508.00891</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1508.00891</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Adshead, Peter</subfield>
@@ -20237,7 +20198,6 @@ Fermion production during and after axion inflation</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1506.03520</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1506.03520</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Farina, Marco</subfield>
@@ -20329,7 +20289,6 @@ Asymmetric twin Dark Matter</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1506.00580</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1506.00580</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Heisenberg, Lavinia</subfield>
@@ -20422,7 +20381,6 @@ Non-minimal derivative couplings of the composite metric</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.00119</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.00119</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Harigaya, Keisuke</subfield>
@@ -20532,7 +20490,6 @@ Dynamics of Peccei-Quinn breaking field after inflation and axion isocurvature p
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1506.02965</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1506.02965</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Kofinas, Georgios</subfield>
@@ -20630,7 +20587,6 @@ Avoidance of singularities in asymptotically safe Quantum Einstein Gravity</subf
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.05536</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.05536</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Garcia-Cely, Camilo </subfield>
@@ -20741,7 +20697,6 @@ Gamma-rays from Heavy Minimal Dark Matter</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.04007</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.04007</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Nobile, Eugenio Del</subfield>
@@ -20839,7 +20794,6 @@ Direct detection signatures of self-interacting dark matter with a light mediato
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.07113</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.07113</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Craig, Nathaniel</subfield>
@@ -20938,7 +20892,6 @@ The fraternal WIMP miracle</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1506.07521</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1506.07521</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Baldes, Iason</subfield>
@@ -21045,7 +20998,6 @@ Asymmetric dark matter and CP violating scatterings in a UV complete model</subf
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.07366</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.07366</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Heurtier, L.</subfield>
@@ -21152,7 +21104,6 @@ Asymmetric dark matter and CP violating scatterings in a UV complete model</subf
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1503.06998</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1503.06998</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Kadota, Kenji</subfield>
@@ -21255,7 +21206,6 @@ Gravitational waves from domain walls in the next-to-minimal supersymmetric stan
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.04789</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.04789</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Bai, Yang</subfield>
@@ -21362,7 +21312,6 @@ Cosmological constraints on the  gravitational interactions of matter and dark m
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.05096</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.05096</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Hektor, Andi</subfield>
@@ -21461,7 +21410,6 @@ Cosmological constraints on the  gravitational interactions of matter and dark m
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.05519</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.05519</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Cirelli, Marco</subfield>
@@ -21577,7 +21525,6 @@ Gamma ray tests of Minimal Dark Matter</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.01167</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.01167</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Kamada, Ayuki</subfield>
@@ -21682,7 +21629,6 @@ Gravitational wave signals from short-lived topological defects in the MSSM
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.06486</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.06486</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Esmaili, Arman</subfield>
@@ -21783,7 +21729,6 @@ Gamma-ray bounds from EAS detectors and heavy  decaying dark matter constraints<
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.06387</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.06387</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Takahashi, Fuminobu</subfield>
@@ -21886,7 +21831,6 @@ Strongly broken Peccei-Quinn symmetry in the early Universe</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1504.03333</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1504.03333</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Anderson, Adam J.</subfield>
@@ -21993,7 +21937,6 @@ Halo-independent direct detection analyses without mass assumptions</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.02795</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.02795</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Chu, Xiaoyong</subfield>
@@ -22095,7 +22038,6 @@ Sterile neutrinos with secret interactions—lasting friendship with cosmology</
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1410.0408</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1410.0408</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Aeikens, Elke</subfield>
@@ -22206,7 +22148,6 @@ Flavor ratios of extragalactic neutrinos and neutrino shortcuts in extra dimensi
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1507.06431</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1507.06431</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Bari, Pasquale Di</subfield>
@@ -22299,7 +22240,6 @@ Flavor ratios of extragalactic neutrinos and neutrino shortcuts in extra dimensi
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1503.08867</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1503.08867</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Ellis, John</subfield>
@@ -25072,7 +25012,6 @@ Asymmetric capture of Dirac dark matter by the Sun</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1502.05138</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1502.05138</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Liu, Junyu</subfield>
@@ -25803,7 +25742,6 @@ Breaking discrete symmetries in the effective field theory of inflation</subfiel
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.06986</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.06986</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Ellis, John</subfield>
@@ -25919,7 +25857,6 @@ Calculations of inflaton decays and reheating: with applications to no-scale inf
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1501.01099</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1501.01099</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Akhshik, Mohammad</subfield>
@@ -26018,7 +25955,6 @@ Effective field theory of non-attractor inflation</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1504.07917</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1504.07917</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Daido, Ryuji</subfield>
@@ -26125,7 +26061,6 @@ Axion domain wall baryogenesis</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1503.04935</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1503.04935</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Laine, M.</subfield>
@@ -26421,7 +26356,6 @@ Effect of VSR invariant Chern-Simons Lagrangian on photon polarization</subfield
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1504.05949</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1504.05949</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Blinov, Nikita</subfield>
@@ -26637,7 +26571,6 @@ The electroweak phase transition in the Inert Doublet Model</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1501.07292</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1501.07292</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Redondo, Javier</subfield>
@@ -26731,7 +26664,6 @@ Atlas of solar hidden photon emission</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1505.06441</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1505.06441</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Catena, Riccardo</subfield>
@@ -26819,7 +26751,6 @@ Dark matter directional detection in non-relativistic effective theories</subfie
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1504.02569</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1504.02569</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Ghiglieri, J.</subfield>
@@ -26916,7 +26847,6 @@ Gravitational wave background from Standard Model physics: qualitative features<
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1502.01855</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1502.01855</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Iofa, Mikhail Z.</subfield>
@@ -27004,7 +26934,6 @@ Energy-momentum tensor of bouncing gravitons</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1504.07023</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1504.07023</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Aoki, Shuntaro</subfield>
@@ -27101,7 +27030,6 @@ Impacts of supersymmetric higher derivative terms on inflation models in supergr
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1502.04224</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1502.04224</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Kavanagh, Bradley J.</subfield>
@@ -27195,7 +27123,6 @@ Discretising the velocity distribution for directional dark matter experiments</
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1504.05710</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1504.05710</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Kobayashi, Tsutomu</subfield>
@@ -27299,7 +27226,6 @@ Galilean creation of the inflationary universe</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1503.01101</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1503.01101</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Delahaye, Timur</subfield>
@@ -27392,7 +27318,6 @@ Antideuterons from decaying gravitino dark matter</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1502.02674</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1502.02674</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Bramante, Joseph</subfield>
@@ -27488,7 +27413,6 @@ Generically large nongaussianity in small multifield inflation</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1407.5361</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1407.5361</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Mithani, Audrey T.</subfield>
@@ -27672,7 +27596,6 @@ Searching for dark matter annihilation to monoenergetic neutrinos with liquid sc
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1502.01371</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1502.01371</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Artymowski, Michał</subfield>
@@ -27871,7 +27794,6 @@ Low reheating temperatures in monomial and binomial inflationary models</subfiel
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1412.8075</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1412.8075</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Artymowski, Michał</subfield>
@@ -27977,7 +27899,6 @@ Inflation and dark energy from the Brans-Dicke theory</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1503.03513</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1503.03513</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Drees, Manuel</subfield>
@@ -28075,7 +27996,6 @@ The effects of QCD equation of state on the relic density of WIMP dark matter</s
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1501.07427</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1501.07427</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Blanco-Pillado, Jose J.</subfield>
@@ -28171,7 +28091,6 @@ The Initial State of a Primordial Anisotropic Stage of Inflation</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1410.6267</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1410.6267</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Yamauchi, Daisuke</subfield>
@@ -28972,7 +28891,6 @@ Topological defects from the multiverse</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1402.5424</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1402.5424</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Goon, Garrett</subfield>
@@ -29082,7 +29000,6 @@ Galileons coupled to massive gravity: general analysis and cosmological solution
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1312.3579</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1312.3579</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Fornengo, N.</subfield>
@@ -29186,7 +29103,6 @@ Constraints on particle dark matter from cosmic-ray antiprotons</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1401.3252</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1401.3252</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Silva, J.M. Hoff da</subfield>
@@ -29803,7 +29719,6 @@ Gravitational effects on inflaton decay</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1503.00608</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1503.00608</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Dvornikov, Maxim</subfield>
@@ -29993,7 +29908,6 @@ A halo-independent lower bound on the dark matter capture rate in the Sun from  
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1412.5586</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1412.5586</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Monteux, Angelo</subfield>
@@ -30093,7 +30007,6 @@ Axino LSP baryogenesis and dark matter</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1410.5768</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1410.5768</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Basak, Abhishek</subfield>
@@ -30189,7 +30102,6 @@ Super-inflation and generation of first order vector perturbations in ELKO</subf
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1502.01378</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1502.01378</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Kodama, Hideo</subfield>
@@ -30286,7 +30198,6 @@ Inflation in maximal gauged supergravities</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1501.03604</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1501.03604</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Gong, Jinn-Ouk</subfield>
@@ -32112,7 +32023,6 @@ Cosmology in bimetric theory with an effective composite coupling to matter</sub
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1502.04324</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1502.04324</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Nikolić, Hrvoje</subfield>
@@ -34319,7 +34229,6 @@ A possible explanation of low energy γ-ray excess from galactic centre and Ferm
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1412.1475</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1412.1475</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Davis, Jonathan H.</subfield>
@@ -34416,7 +34325,7 @@ Dark matter vs. neutrinos: the effect of astrophysical uncertainties and timing 
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">
-Higher derivatives and power spectrum  
+Higher derivatives and power spectrum
 in effective single field inflation</subfield>
   </datafield>
   <datafield tag="260" ind1=" " ind2=" ">
@@ -36940,7 +36849,6 @@ The darkness of  spin-0 dark radiation</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1407.2621</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1407.2621</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Baumann, Daniel</subfield>
@@ -37042,7 +36950,6 @@ B-modes and the nature of inflation</subfield>
   </datafield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1409.6318</subfield>
     <subfield code="a">arXiv:1409.6318</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
@@ -37146,7 +37053,6 @@ B-modes and the nature of inflation</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1408.4929</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1408.4929</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Ghorbani, Karim</subfield>
@@ -37242,7 +37148,6 @@ Fermionic dark matter with pseudo-scalar Yukawa interaction</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1409.8197</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1409.8197</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Ellis, John</subfield>
@@ -37354,7 +37259,6 @@ Two-field analysis of no-scale supergravity inflation</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1406.5188</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1406.5188</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Kraljic, David</subfield>
@@ -37460,7 +37364,6 @@ ALP conversion and the soft X-ray excess in the outskirts of the Coma cluster</s
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1409.3167</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1409.3167</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Domcke, Valerie</subfield>
@@ -37559,7 +37462,6 @@ depends only on one free parameter in addition to mf. After reviewing the basic 
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1408.5131</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1408.5131</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Noller, Johannes</subfield>
@@ -37657,7 +37559,6 @@ The coupling to matter in massive, bi- and multi-gravity</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1409.5446</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1409.5446</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Feldstein, Brian</subfield>
@@ -37758,7 +37659,6 @@ Quantifying (dis)agreement between direct detection experiments in a halo-indepe
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1410.5979</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1410.5979</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Esmaili, Arman</subfield>
@@ -37970,7 +37870,7 @@ Antiproton constraints on the GeV gamma-ray excess: a comprehensive analysis</su
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
     <subfield code="a">
-A GeV gamma-ray excess has possibly been individuated in Fermi-LAT data from the Galactic Center and interpreted in terms of Dark Matter (DM) annihilations, either in hadronic (essentially bb̄) or leptonic channels. In order to test this tantalizing interpretation, we address two issues: (i) we improve the computation of secondary emission from DM (Inverse Compton and Bremsstrahlung) with respect to previous works, confirming it to be very relevant for determining the DM spectrum in the leptonic channels, so that any conclusion on the DM nature of the signal critically depends on this contribution; (ii) we consider the constraints from antiprotons on the DM hadronic channel, finding that the uncertainties on the propagation model, and in particular on the halo height, play a major role. Moreover, we discuss the role of solar modulation, taking into account possible charge dependent effects whose importance is estimated exploiting detailed numerical tools. 
+A GeV gamma-ray excess has possibly been individuated in Fermi-LAT data from the Galactic Center and interpreted in terms of Dark Matter (DM) annihilations, either in hadronic (essentially bb̄) or leptonic channels. In order to test this tantalizing interpretation, we address two issues: (i) we improve the computation of secondary emission from DM (Inverse Compton and Bremsstrahlung) with respect to previous works, confirming it to be very relevant for determining the DM spectrum in the leptonic channels, so that any conclusion on the DM nature of the signal critically depends on this contribution; (ii) we consider the constraints from antiprotons on the DM hadronic channel, finding that the uncertainties on the propagation model, and in particular on the halo height, play a major role. Moreover, we discuss the role of solar modulation, taking into account possible charge dependent effects whose importance is estimated exploiting detailed numerical tools.
 The limits that we obtain severely constrain the DM interpretation of the excess in the hadronic channel, for standard assumptions on the Galactic propagation parameters and solar modulation. However, they considerably relax if more conservative choices are adopted.</subfield>
   </datafield>
   <datafield tag="540" ind1=" " ind2=" ">
@@ -38172,7 +38072,6 @@ Cosmic strings in hidden sectors:  2. Cosmological and astrophysical signatures<
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1407.3736</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1407.3736</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Xu, Xun-Jie</subfield>
@@ -38377,7 +38276,6 @@ Bound-state formation  for thermal relic dark matter and unitarity</subfield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1411.1765</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1411.1765</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Ghisoiu, I.</subfield>
@@ -41201,7 +41099,6 @@ gauge bosons of spontaneously broken new U(1)V and U(1)V' gauge symmetries, resp
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="a">arXiv:1405.3101</subfield>
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1405.3101</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
     <subfield code="a">Busoni, Giorgio</subfield>
@@ -41814,7 +41711,7 @@ Excluding the light dark matter window of a 331 model using LHC and direct dark 
   </datafield>
   <datafield tag="245" ind1=" " ind2=" ">
     <subfield code="a">
-Coupled Boltzmann computation of mixed 
+Coupled Boltzmann computation of mixed
 axion neutralino dark matter in the SUSY DFSZ axion model</subfield>
   </datafield>
   <datafield tag="260" ind1=" " ind2=" ">
@@ -43149,7 +43046,6 @@ Notes on natural inflation</subfield>
   </datafield>
   <datafield tag="037" ind1=" " ind2=" ">
     <subfield code="9">arXiv</subfield>
-    <subfield code="a">arXiv:1407.7744</subfield>
     <subfield code="a">arXiv:1407.7744</subfield>
   </datafield>
   <datafield tag="100" ind1=" " ind2=" ">
@@ -50470,7 +50366,7 @@ Direct and indirect detection of dissipative dark matter</subfield>
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
     <subfield code="a">We study the constraints from direct detection and solar capture on dark matter  scenarios with a subdominant dissipative component.  This dissipative dark matter component in general has both a symmetric and asymmetric relic abundance.
-Dissipative dynamics allow this subdominant dark matter component to cool, resulting in its partial or total collapse  into a smaller volume inside the halo (e.g., a dark disk) as well as a reduced thermal velocity dispersion compared to that of normal cold dark matter. We first show that these features considerably relax the limits from direct detection experiments on the couplings between standard model (SM) particles and dissipative dark matter. On the other hand, indirect detection of the 
+Dissipative dynamics allow this subdominant dark matter component to cool, resulting in its partial or total collapse  into a smaller volume inside the halo (e.g., a dark disk) as well as a reduced thermal velocity dispersion compared to that of normal cold dark matter. We first show that these features considerably relax the limits from direct detection experiments on the couplings between standard model (SM) particles and dissipative dark matter. On the other hand, indirect detection of the
 annihilation of the symmetric dissipative dark matter component inside the Sun sets stringent and robust constraints on the properties of the dissipative dark matter. In particular, IceCube observations force dissipative dark matter particles with mass above 50 GeV to either have a small coupling to the SM or a low local density in the solar system, or to have a nearly asymmetric relic abundance. Possible helioseismology signals associated with purely asymmetric dissipative dark matter are discussed, with no present constraints.</subfield>
   </datafield>
   <datafield tag="540" ind1=" " ind2=" ">
@@ -50560,7 +50456,7 @@ annihilation of the symmetric dissipative dark matter component inside the Sun s
     <subfield code="c">2014-06-01</subfield>
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
-    <subfield code="a">Single-field perturbations satisfy an infinite number of consistency relations constraining the squeezed limit of  
+    <subfield code="a">Single-field perturbations satisfy an infinite number of consistency relations constraining the squeezed limit of
 correlation functions at each order in the soft momentum. These can be understood as Ward identities for an infinite set of residual global
 symmetries, or equivalently as Slavnov-Taylor identities for spatial diffeomorphisms. In this paper, we perform a number of novel, non-trivial
 checks of the identities in the context of single field inflationary models with arbitrary sound speed. We focus for concreteness on identities
@@ -51168,18 +51064,18 @@ and the techni-inflaton self-coupling in the minimal composite inflationary mode
     <subfield code="y">2014</subfield>
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
-    <subfield code="a">We investigate the indirect signatures  of the  Higgs portal U(1)X vector dark matter 
-(VDM) Xμ from both its pair annihilation and decay. 
-The VDM is stable at renormalizable level by Z2 symmetry, and  thermalized by 
-Higgs-portal interactions.  It can also decay by some nonrenormalizable operators with 
+    <subfield code="a">We investigate the indirect signatures  of the  Higgs portal U(1)X vector dark matter
+(VDM) Xμ from both its pair annihilation and decay.
+The VDM is stable at renormalizable level by Z2 symmetry, and  thermalized by
+Higgs-portal interactions.  It can also decay by some nonrenormalizable operators with
 very long lifetime at cosmological time scale.
-If dim-6 operators for VDM decays are suppressed by 1016 GeV scale, the lifetime 
-of VDM with mass  ∼  2 TeV  is just right for explaining the positron excess 
-in cosmic ray observed  by PAMELA and AMS02 Collaborations.  
-The VDM decaying into μ+μ− can fit the data, evading various constraints 
-on cosmic rays. We give one UV-complete model  as an example. 
-This scenario for Higgs portal decaying VDM with mass around  ∼ 2 TeV can be 
-tested by DM direct search at XENON1T, and also at the future colliders by measuring  
+If dim-6 operators for VDM decays are suppressed by 1016 GeV scale, the lifetime
+of VDM with mass  ∼  2 TeV  is just right for explaining the positron excess
+in cosmic ray observed  by PAMELA and AMS02 Collaborations.
+The VDM decaying into μ+μ− can fit the data, evading various constraints
+on cosmic rays. We give one UV-complete model  as an example.
+This scenario for Higgs portal decaying VDM with mass around  ∼ 2 TeV can be
+tested by DM direct search at XENON1T, and also at the future colliders by measuring
 the Higgs self-couplings.</subfield>
   </datafield>
   <datafield tag="540" ind1=" " ind2=" ">
@@ -51635,11 +51531,11 @@ Dark D-brane cosmology</subfield>
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
     <subfield code="a">
-Disformally coupled cosmologies arise  from Dirac-Born-Infeld actions  in Type II string theories, when matter resides on a moving hidden sector D-brane. 
-Since such matter interacts only very weakly with the standard model particles, this scenario can provide a natural origin for the dark sector of the universe with a clear geometrical interpretation: dark energy  is identified with the scalar field associated  to the D-brane's position  as it moves in the internal space, 
+Disformally coupled cosmologies arise  from Dirac-Born-Infeld actions  in Type II string theories, when matter resides on a moving hidden sector D-brane.
+Since such matter interacts only very weakly with the standard model particles, this scenario can provide a natural origin for the dark sector of the universe with a clear geometrical interpretation: dark energy  is identified with the scalar field associated  to the D-brane's position  as it moves in the internal space,
 acting as quintessence, while dark matter is identified with  the matter living on the D-brane,
-which can be modelled by a perfect fluid. 
-The coupling functions are determined by the (warped) extra-dimensional geometry, and are thus constrained by the theory.  The resulting cosmologies are studied using both dynamical system analysis and numerics. From the dynamical system point of view, one free parameter controls the cosmological dynamics, given by the ratio of the warp factor and the potential energy scales. The disformal coupling allows for new scaling solutions that can describe accelerating cosmologies alleviating the coincidence problem of dark energy. In addition, this scenario may ameliorate the fine-tuning problem of dark energy, whose small value 
+which can be modelled by a perfect fluid.
+The coupling functions are determined by the (warped) extra-dimensional geometry, and are thus constrained by the theory.  The resulting cosmologies are studied using both dynamical system analysis and numerics. From the dynamical system point of view, one free parameter controls the cosmological dynamics, given by the ratio of the warp factor and the potential energy scales. The disformal coupling allows for new scaling solutions that can describe accelerating cosmologies alleviating the coincidence problem of dark energy. In addition, this scenario may ameliorate the fine-tuning problem of dark energy, whose small value
 may be attained dynamically, without requiring the mass of the dark energy field to be unnaturally low.</subfield>
   </datafield>
   <datafield tag="540" ind1=" " ind2=" ">
@@ -53252,23 +53148,23 @@ Supermassive cosmic string compactifications</subfield>
     <subfield code="b">Institute of Physics Publishing/SISSA</subfield>
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
-    <subfield code="a">We construct a self-interacting scalar dark matter (DM) model with local discrete 
-Z3 symmetry that stabilizes  a weak scale scalar dark matter X.  
-The model assumes a hidden sector with a local U(1)X dark gauge symmetry, 
-which is broken spontaneously into Z3 subgroup by nonzero VEV of dark Higgs 
-field ϕX (⟨ϕX⟩≠0).  Compared with global Z3 DM models,  
-the local Z3 model has two new extra fields: a dark gauge field Z′ and a dark Higgs 
-field ϕ (a remnant of the U(1)X breaking).  After imposing various 
-constraints including  the upper bounds on the spin-independent direct detection cross 
-section and thermal relic density,   we find that the scalar DM  with mass less than 
-125 GeV is allowed in the local Z3  model, in contrary to the global Z3 model.  
-This is due to new channels in the DM pair annihilations open into Z′ and ϕ 
-in the local Z3 model.  
-Most parts of the newly open DM mass region can be probed by XENON1T and 
-other similar future experiments.  
-Also if ϕ is light enough  (a few MeV ≲mϕ≲ O(100) MeV), 
-it can generate a right size of DM self-interaction and explain the astrophysical 
-small scale structure anomalies. This would lead to exotic decays of 
+    <subfield code="a">We construct a self-interacting scalar dark matter (DM) model with local discrete
+Z3 symmetry that stabilizes  a weak scale scalar dark matter X.
+The model assumes a hidden sector with a local U(1)X dark gauge symmetry,
+which is broken spontaneously into Z3 subgroup by nonzero VEV of dark Higgs
+field ϕX (⟨ϕX⟩≠0).  Compared with global Z3 DM models,
+the local Z3 model has two new extra fields: a dark gauge field Z′ and a dark Higgs
+field ϕ (a remnant of the U(1)X breaking).  After imposing various
+constraints including  the upper bounds on the spin-independent direct detection cross
+section and thermal relic density,   we find that the scalar DM  with mass less than
+125 GeV is allowed in the local Z3  model, in contrary to the global Z3 model.
+This is due to new channels in the DM pair annihilations open into Z′ and ϕ
+in the local Z3 model.
+Most parts of the newly open DM mass region can be probed by XENON1T and
+other similar future experiments.
+Also if ϕ is light enough  (a few MeV ≲mϕ≲ O(100) MeV),
+it can generate a right size of DM self-interaction and explain the astrophysical
+small scale structure anomalies. This would lead to exotic decays of
 Higgs boson into a pair of dark Higgs bosons, which could be tested at LHC and ILC.</subfield>
   </datafield>
   <datafield tag="540" ind1=" " ind2=" ">
@@ -53871,7 +53767,7 @@ Cosmology in general massive gravity theories</subfield>
   <datafield tag="520" ind1=" " ind2=" ">
     <subfield code="a">We study  the   cosmological FRW flat solutions generated in general massive gravity theories.
   Such a model are obtained adding to the Einstein General Relativity action a  peculiar non derivative potentials, function  of the metric components, that induce the propagation of  five  gravitational degrees of freedom. This large class of  theories includes both the case with a residual
-Lorentz invariance 
+Lorentz invariance
 as well as   the case with rotational invariance only.     It turns out that the Lorentz-breaking case is
   selected as the only possibility.
   Moreover it turns out that that perturbations around strict Minkowski or dS space are strongly coupled.
@@ -54097,7 +53993,7 @@ X-ray lines from dark matter: the good, the bad, and the unlikely</subfield>
     <subfield code="b">Institute of Physics Publishing/SISSA</subfield>
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
-    <subfield code="a">We consider three classes of dark matter (DM) models to account for the recently observed 3.5 keV line: metastable excited state DM, annihilating DM, and decaying DM.  We study two examples of metastable excited state DM. The first, millicharged composite DM, has both inelasticity and photon emission built in, but with a very constrained parameter space.  In the second example, up-scattering and decay come from separate sectors and is thus less constrained. 
+    <subfield code="a">We consider three classes of dark matter (DM) models to account for the recently observed 3.5 keV line: metastable excited state DM, annihilating DM, and decaying DM.  We study two examples of metastable excited state DM. The first, millicharged composite DM, has both inelasticity and photon emission built in, but with a very constrained parameter space.  In the second example, up-scattering and decay come from separate sectors and is thus less constrained.
 The decay of the excited state can potentially be detectable at direct detection experiments. However we find that CMB constraints are at the border of excluding this as an interpretation of the DAMA signal.  The annihilating DM interpretation of the X-ray line is found to be in mild tension with CMB constraints. Lastly, a generalized version of decaying DM can account for the data with a lifetime exceeding the age of the Universe for masses ≲106 GeV.</subfield>
   </datafield>
   <datafield tag="540" ind1=" " ind2=" ">
@@ -55260,7 +55156,7 @@ Instability of magnetic fields in electroweak plasma driven by neutrino asymmetr
     <subfield code="b">Institute of Physics Publishing/SISSA</subfield>
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
-    <subfield code="a">The magnetohydrodynamics (MHD) is 
+    <subfield code="a">The magnetohydrodynamics (MHD) is
 modified to incorporate the parity violation in the Standard Model
 leading to a new instability of magnetic fields in the electroweak plasma in the presence of
 nonzero neutrino asymmetries. The main ingredient for such a modified MHD is the antisymmetric part of
@@ -56727,7 +56623,7 @@ Accidental inflation from Kähler uplifting</subfield>
     <subfield code="a">
 We provide ingredients and recipes for computing neutrino signals of TeV-scale Dark Matter (DM) annihilations in the Sun.
 For each annihilation channel and DM mass we present the energy spectra of neutrinos at production, including:  state-of-the-art energy losses of primary particles in solar matter, secondary neutrinos, electroweak radiation.
-We then present the spectra after propagation to the Earth, including (vacuum and matter) flavor oscillations and interactions in solar matter. 
+We then present the spectra after propagation to the Earth, including (vacuum and matter) flavor oscillations and interactions in solar matter.
 We also provide a numerical computation of the capture rate of DM particles in the Sun.
 These results are available in numerical form.</subfield>
   </datafield>
@@ -59872,8 +59768,8 @@ already been proved to be ghost-free. We outline a discussion about the
 possible matter couplings and we focus on the study of cosmological scenarios
 in the case
 of three and four interacting vierbeins. We find rich behavior, including de
-Sitter solutions 
-with an effective cosmological constant arising from the multi-vierbein 
+Sitter solutions
+with an effective cosmological constant arising from the multi-vierbein
 interaction,
 dark-energy solutions and nonsingular bouncing behavior.</subfield>
   </datafield>
@@ -62105,7 +62001,7 @@ Planck-suppressed operators</subfield>
   <datafield tag="520" ind1=" " ind2=" ">
     <subfield code="a">
 We show that the recent Planck limits on primordial non-Gaussianity impose strong constraints on light hidden sector fields coupled to the inflaton via operators suppressed by a high mass scale Λ.  We study a simple effective field theory in which a hidden sector field is coupled to a shift-symmetric inflaton via arbitrary operators up to dimension five.  Self-interactions in the hidden sector lead to non-Gaussianity in the curvature perturbations.
-To be consistent with the Planck limit on local non-Gaussianity, the coupling to any hidden sector with light fields and natural cubic couplings must be suppressed by a very high scale Λ > 105H.  
+To be consistent with the Planck limit on local non-Gaussianity, the coupling to any hidden sector with light fields and natural cubic couplings must be suppressed by a very high scale Λ > 105H.
 Even if the hidden sector has Gaussian correlations, nonlinearities in the mixing
 with the inflaton still lead to non-Gaussian curvature perturbations.  In this case, the non-Gaussianity is of the equilateral or orthogonal type, and the Planck data requires Λ > 102H.</subfield>
   </datafield>
@@ -63298,22 +63194,22 @@ Bounce cosmology from F(R) gravity and F(R) bigravity</subfield>
     <subfield code="b">Institute of Physics Publishing/SISSA</subfield>
   </datafield>
   <datafield tag="520" ind1=" " ind2=" ">
-    <subfield code="a">We reconstruct F(R) gravity models with exponential and power-law forms of the scale factor in which bounce cosmology can be realized. 
-We explore the stability of the reconstructed models with 
-analyzing the perturbations from the background solutions. 
-Furthermore, we study an F(R) gravity model with a sum of exponentials 
-form of the scale factor, where the bounce in the early universe as well as 
-the late-time cosmic acceleration can be realized in a unified manner. 
-As a result, we build a second order polynomial type model in terms of R 
-and show that it could be stable. 
-Moreover, when the scale factor is expressed by an exponential form, 
-we derive F(R) gravity models of a polynomial type 
-in case of the non-zero spatial curvature 
-and that of a generic type in that of the zero spatial curvature. 
-In addition, for an exponential form of the scale factor, 
-an F(R) bigravity model realizing the bouncing behavior 
-is reconstructed. It is found that in both the physical and reference metrics 
-the bouncing phenomenon can occur, although in general 
+    <subfield code="a">We reconstruct F(R) gravity models with exponential and power-law forms of the scale factor in which bounce cosmology can be realized.
+We explore the stability of the reconstructed models with
+analyzing the perturbations from the background solutions.
+Furthermore, we study an F(R) gravity model with a sum of exponentials
+form of the scale factor, where the bounce in the early universe as well as
+the late-time cosmic acceleration can be realized in a unified manner.
+As a result, we build a second order polynomial type model in terms of R
+and show that it could be stable.
+Moreover, when the scale factor is expressed by an exponential form,
+we derive F(R) gravity models of a polynomial type
+in case of the non-zero spatial curvature
+and that of a generic type in that of the zero spatial curvature.
+In addition, for an exponential form of the scale factor,
+an F(R) bigravity model realizing the bouncing behavior
+is reconstructed. It is found that in both the physical and reference metrics
+the bouncing phenomenon can occur, although in general
 the contraction and expansion rates are different each other.</subfield>
   </datafield>
   <datafield tag="540" ind1=" " ind2=" ">

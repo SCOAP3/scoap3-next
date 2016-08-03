@@ -4,7 +4,6 @@
 
 from __future__ import absolute_import, print_function
 from invenio_records_rest.facets import terms_filter
-import os
 
 
 # Identity function for string extraction
@@ -17,11 +16,8 @@ BABEL_DEFAULT_TIMEZONE = 'Europe/Zurich'
 I18N_LANGUAGES = [
 ]
 
-# HEADER_TEMPLATE = "scoap3_theme/header.html"
-# BASE_TEMPLATE = "scoap3_theme/page.html"
 COVER_TEMPLATE = "invenio_theme/page_cover.html"
 SETTINGS_TEMPLATE = "invenio_theme/settings/content.html"
-# SEARCH_UI_SEARCH_TEMPLATE = "scoap3_search_ui/search.html"
 
 # WARNING: Do not share the secret key - especially do not commit it to
 # version control.
@@ -38,10 +34,9 @@ SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
-# COVER_TEMPLATE = 'scoap3_theme/home.html'
 
 # Elasticsearch
-SEARCH_ELASTIC_HOSTS='localhost'
+SEARCH_ELASTIC_HOSTS = 'localhost'
 RECORDS_REST_ENDPOINTS = dict(
     recid=dict(
         pid_type='recid',
@@ -65,7 +60,7 @@ RECORDS_REST_ENDPOINTS = dict(
 )
 RECORDS_UI_ENDPOINTS = dict(
     recid=dict(
-        pid_type='record',
+        pid_type='recid',
         route='/records/<pid_value>',
         template='scoap3_theme/records/detail.html',
     ),
