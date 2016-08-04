@@ -50,3 +50,11 @@ css = NpmBundle(
         "font-awesome": "~4.4.0",
     }
 )
+
+js = NpmBundle(
+    filters='requirejs, jsmin',
+    output="gen/scoap3.%(version)s.js",
+    npm={
+        'mathjax': '~2.5'
+    }
+)

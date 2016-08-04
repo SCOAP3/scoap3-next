@@ -38,10 +38,12 @@ def index():
 
     count = current_search_client.count(index="records-record-v1.0.0")
     collections = Collection.query.filter(Collection.level == 2).all()
+    for collection in collections:
+        collection.count = current_search_client.count(q="_collections:'%s'" % (collection.name,))['count']
 
     return render_template(
         'scoap3_frontpage/home.html',
         title='SCOAP3 Repository',
         articles_count=count['count'],
-        collections=collections
+        collections=sorted(collections, key=lambda x: x.name)
     )

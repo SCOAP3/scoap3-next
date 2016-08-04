@@ -1,6 +1,7 @@
 // Homepage
 $violet: #7b5380;
 $light-gray: #f8f8f8;
+$dark-gray: #777;
 $font: 'PT Sans Narrow', sans-serif;
 
 html{
@@ -24,13 +25,10 @@ footer{
     height: 240px;
     background-color: #f8f8f8;
     padding:20px 0;
+    margin-top:20px;
 
     h3 {
         font-size: 1.5em;
-    }
-
-    ul{
-        list-style-type: none;
     }
 
     .footer-below{
@@ -55,4 +53,11 @@ footer{
 
 .frontpage{
     margin-bottom: 0;
+}
+
+.collections-list{
+    .badge{
+        background-color: $light-gray;
+        color: $dark-gray;
+    }
 }
