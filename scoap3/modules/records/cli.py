@@ -23,27 +23,28 @@ def loadrecords(source):
     """Load records migration dump."""
     click.echo('Loading dump...')
 
-    #recs = [hep.do(create_record(data)) for data in split_stream(source)]
+    for i, data in enumerate(split_stream(source),):
+        if i <= 10:
+            try:
+                obj = hep.do(create_record(data))
+                print("Creating record {} with recid: {}".format(i, create_record(data)['001']))
+                obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
+                del obj['self']
+                record = Record.create(obj, id_=None)
+                #print record
 
-    #import ipdb
-    for i, data in enumerate(split_stream(source)):
-        obj = hep.do(create_record(data))
-        print("Creating record {}".format(i,))
-        obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
-        del obj['self']
-        record = Record.create(obj, id_=None)
-        #print record
+                # Create persistent identifier.
+                pid = scoap3_recid_minter(str(record.id), record)
 
-        # Create persistent identifier.
-        pid = scoap3_recid_minter(str(record.id), record)
+                # Commit any changes to record
+                record.commit()
 
-        # Commit any changes to record
-        record.commit()
+                # Commit to DB before indexing
+                db.session.commit()
 
-        # Commit to DB before indexing
-        db.session.commit()
-
-        # Index record
-        indexer = RecordIndexer()
-        indexer.index_by_id(pid.object_uuid)
+                # Index record
+                indexer = RecordIndexer()
+                indexer.index_by_id(pid.object_uuid)
+            except:
+                pass
 

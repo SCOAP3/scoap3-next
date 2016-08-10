@@ -30,7 +30,7 @@
     {%- block record_body %}
     <div class="body col-sm-12 col-md-9">
       {%- block record_title %}
-        <h4 class="title">{{ record.get('titles', {})[0].get('title', _('No title')) }}</h4>
+        <h4 class="title">{{ record.get('titles', {})[0].get('title', _('No title'))|safe }}</h4>
       {%- endblock %}
       {%- block record_author %}
         <p class="record_authors">
@@ -41,7 +41,7 @@
       {%- endblock %}
       {%- block record_summary %}
         {%- for summary in record.get('abstracts', []) %}
-        <p class="summary">{{ summary['value'] }}</p>
+        <p class="summary">{{ summary['value']|safe }}</p>
         {% endfor %}
       {%- endblock %}
     </div><!-- /.body -->

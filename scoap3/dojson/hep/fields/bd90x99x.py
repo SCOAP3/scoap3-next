@@ -26,70 +26,57 @@ from __future__ import absolute_import, division, print_function
 
 
 from dojson import utils
-from idutils import normalize_isbn
-
-from scoap3.utils.dedupers import dedupe_list
 
 from ..model import hep, hep2marc
-from ...utils import get_recid_from_ref, get_record_ref, strip_empty_values
+from ...utils import get_recid_from_ref, get_record_ref, get_int_value
+from .processors import ReferenceBuilder
+from functools import partial
+from scoap3.utils.helpers import force_force_list
 
 
 @hep.over('references', '^999C5')
 def references(self, key, value):
     """Produce list of references."""
-    value = utils.force_list(value)
+    value = force_force_list(value)
 
     def get_value(value):
-        recid = None
-        number = ''
-        year = ''
+        # Retrieve fields as described here:
+        # https://twiki.cern.ch/twiki/bin/view/Inspire/DevelopmentRecordMarkup.
+        rb = ReferenceBuilder()
+        mapping = [
+            ('o', rb.set_number),
+            ('m', rb.add_misc),
+            ('x', partial(rb.add_raw_reference, source='dojson')),
+            ('1', rb.set_texkey),
+            ('u', rb.add_url),
+            ('r', rb.add_report_number),
+            ('s', rb.set_pubnote),
+            ('p', rb.set_publisher),
+            ('y', rb.set_year),
+            ('i', rb.add_uid),
+            ('b', rb.add_uid),
+            ('a', rb.add_uid),
+            ('c', rb.add_collaboration),
+            ('q', rb.add_title),
+            ('t', rb.add_title),
+            ('h', rb.add_refextract_authors_str),
+            ('e', partial(rb.add_author, role='ed.'))
+        ]
+
+        for field, method in mapping:
+            for element in force_force_list(value.get(field)):
+                if element:
+                    method(element)
+
         if '0' in value:
-            try:
-                recid = int(value.get('0'))
-            except:
-                pass
-        if 'o' in value:
-            try:
-                number = int(value.get('o'))
-            except:
-                pass
-        if 'y' in value:
-            try:
-                year = int(value.get('y'))
-            except:
-                pass
+            recid = get_int_value(value, '0')
+            rb.set_record(get_record_ref(recid, 'literature'))
 
-        try:
-            isbn = normalize_isbn(value['i'])
-        except (KeyError, ):
-            isbn = ''
+        return rb.obj
 
-        return {
-            'record': get_record_ref(recid, 'literature'),
-            'texkey': value.get('1'),
-            'doi': value.get('a'),
-            'collaboration': utils.force_list(value.get('c')),
-            'editors': value.get('e'),
-            'authors': utils.force_list(value.get('h')),
-            'misc': utils.force_list(value.get('m')),
-            'number': number,
-            'isbn': isbn,
-            'publisher': utils.force_list(value.get('p')),
-            'maintitle': value.get('q'),
-            'report_number': utils.force_list(value.get('r')),
-            'title': utils.force_list(value.get('t')),
-            'urls': utils.force_list(value.get('u')),
-            'journal_pubnote': utils.force_list(value.get('s')),
-            'raw_reference': utils.force_list(value.get('x')),
-            'year': year,
-        }
     references = self.get('references', [])
-
-    for val in value:
-        references.append(get_value(val))
-
-    return dedupe_list(strip_empty_values(references))
-
+    references.extend(get_value(v) for v in value)
+    return references
 
 @hep2marc.over('999C5', 'references')
 @utils.for_each_value
@@ -148,13 +135,20 @@ def refextract2marc(self, key, value):
 @utils.filter_values
 def collections(record, key, value):
     """Parse custom MARC tag 980."""
+    special = None
+    deleted = None
+    if value.get('c') in ['EDITORIAL','ERRATUM', 'ADDENDUM', 'CORRIGENDUM', 'LETTER_TO_THE_EDITOR']:
+        special = value.get('c')
+    else:
+        deleted = value.get('c')
     return {
         'primary': value.get('a'),
         'secondary': value.get('b'),
-        'deleted': value.get('c'),
+        'special': special,
+        'deleted': deleted,
     }
 
-
+## TODO - this needs to be updated to convert back 'special' collections to MARC
 @hep2marc.over('980', '^collections$')
 @utils.reverse_for_each_value
 @utils.filter_values

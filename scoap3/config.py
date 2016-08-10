@@ -32,6 +32,7 @@ SERVER_NAME = "127.0.0.1:5000"
 
 SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
+SEARCH_UI_JSTEMPLATE_FACETS = 'templates/scoap3_search/facets.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
 
@@ -43,7 +44,7 @@ RECORDS_REST_ENDPOINTS = dict(
         pid_minter='scoap3_recid_minter',
         pid_fetcher='recid',
         search_index='records-record-v1.0.0',
-        search_type='record-v1.0.0',
+        search_type=['record-v1.0.0'],
         record_serializers={
         'application/json': ('invenio_records_rest.serializers'
                              ':json_v1_response'),
@@ -82,17 +83,30 @@ RECORDS_REST_SORT_OPTIONS = {
     },
 }
 
+RECORDS_REST_FACETS = {
+    "records-record-v1.0.0": {
+        "filters": {
+            "journal": terms_filter("publication_info.journal_title")
+        },
+        "aggs": {
+            "journal":{
+                "terms": {
+                    "field": "publication_info.journal_title",
+                    "size": 20
+                }
+            },
+            "earliest_date": {
+                "date_histogram": {
+                    "field": "earliest_date",
+                    "interval": "year",
+                    "min_doc_count": 1,
+                    "order": {"_count": "desc"}
+                }
+            }
+        }
+    }
+}
 
-RECORDS_REST_FACETS = dict(
-    records=dict(
-        aggs=dict(
-            type=dict(terms=dict(field='type'))
-        ),
-        post_filters=dict(
-            type=terms_filter('type'),
-        )
-    )
-)
 # Inspire subject translation
 # ===========================
 ARXIV_TO_INSPIRE_CATEGORY_MAPPING = {

@@ -65,17 +65,36 @@
   </div>
   <div class="container collections-list">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
           <p class="text-left">Grouped by collections:</p>
           <ul class="list-unstyled">
           {%- for collection in collections %}
             <li>
-              <a href="{{ url_for('invenio_search_ui.search', q='collections.secondary:'+collection.name) }}">
+              <a href="{{ url_for('invenio_search_ui.search', q='_collections:'+collection.name) }}">
                 {{ collection.name }}
                 <span class="badge">{{ collection.count }}</span>
               </a>
             </li>
           {%- endfor %}
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <p class="text-left">Hidden collections</p>
+          <ul class="list-unstyled">
+          {%- for collection in hidden_collections %}
+            <li>
+              <a href="{{ url_for('invenio_search_ui.search', q='_collections:'+collection.name) }}">
+                {{ collection.name }}
+                <span class="badge">{{ collection.count }}</span>
+              </a>
+            </li>
+          {%- endfor %}
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <p class="text-left">Tools</p>
+          <ul class="list-unstyled">
+            <li><a href="#">Compliance</a></li>
           </ul>
         </div>
       </div>

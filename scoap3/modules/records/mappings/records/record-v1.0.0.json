@@ -1,0 +1,26 @@
+{
+    "mappings": {
+        "record-v1.0.0": {
+            "_all": {
+                "enabled": false
+            },
+            "date_detection": false,
+            "properties": {
+                "publication_info": {
+                    "properties": {
+                        "journal_title": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+
+                "earliest_date": {
+                    "format": "yyyy||yyyy-MM||yyyy-MM-dd",
+                    "type": "date"
+                }
+            }
+        }
+    }
+}

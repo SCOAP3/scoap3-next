@@ -184,8 +184,7 @@
                         "format": "date"
                     },
                     "publisher": {
-                        "type": "string",
-                        "description": "FIXME: an enum?"
+                        "type": "string"
                     },
                     "place": {
                         "type": "string"
@@ -585,7 +584,7 @@
                         "title": "The relation is curated?"
                     },
                     "orcid": {
-                        "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{4}",
+                        "pattern": "\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]",
                         "title": "ORCID ID",
                         "type": "string",
                         "description": "ORCID Id when available",

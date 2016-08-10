@@ -78,7 +78,7 @@ def authors(self, key, value):
         if value.get('e'):
             ret['role'] = value.get('e')
         if value.get('j'):
-            ret['orcid'] = value.get('j'),
+            ret['orcid'] = value.get('j')
         if value.get('q'):
             ret['alternative_name'] = value.get('q')
         if person_record:
