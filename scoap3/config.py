@@ -339,3 +339,6 @@ INSPIRE_RANK_TYPES = {
 
 # Display a homepage.
 FRONTPAGE_ENDPOINT = "scoap3_frontpage.index"
+
+# Static file
+COLLECT_STORAGE = 'flask_collect.storage.link'
