@@ -24,8 +24,6 @@ def loadrecords(source):
     click.echo('Loading dump...')
 
     for i, data in enumerate(split_stream(source),):
-        if i <= 10:
-            try:
                 obj = hep.do(create_record(data))
                 print("Creating record {} with recid: {}".format(i, create_record(data)['001']))
                 obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
@@ -45,6 +43,5 @@ def loadrecords(source):
                 # Index record
                 indexer = RecordIndexer()
                 indexer.index_by_id(pid.object_uuid)
-            except:
-                pass
+
 
