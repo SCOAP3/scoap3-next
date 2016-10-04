@@ -13,22 +13,26 @@ with open(os.path.join('scoap3',
     exec(fp.read(), version)
 
 install_requires = [
-    'invenio-assets>=1.0.0a4',
-    'invenio-db>=1.0.0a9',
-    'invenio-indexer>=1.0.0a2',
-    'invenio-jsonschemas>=1.0.0a2',
-    'invenio-oaiserver>=1.0.0a1',
-    'invenio-pidstore>=1.0.0a6',
+    'invenio-config',
+    'invenio-base',
+    'invenio-assets',
+    'invenio-db',
+    'invenio-indexer',
+    'invenio-jsonschemas',
+    'invenio-oaiserver',
+    'invenio-pidstore',
     'invenio-records',
-    'invenio-records-rest>=1.0.0a11',
-    'invenio-records-ui>=1.0.0a4',
-    'invenio-search>=1.0.0a7',
-    'invenio-search-ui>=1.0.0a5',
-    'invenio-collections>=1.0.0a3'
+    'invenio-records-rest',
+    'invenio-records-ui',
+    'invenio-search',
+    'invenio-search-ui',
+    'invenio-collections',
+    'invenio-theme',
+    'idutils'
 ],
 
 setup(
-    name='SCOAP3 Repository',
+    name='scoap3',
     version=version['__version__'],
     description=__doc__,
     packages=find_packages(),
@@ -59,11 +63,11 @@ setup(
             'hep = scoap3.dojson.hep:hep',
         ],
         'invenio_pidstore.minters': [
-            'scoap3_recid_minter = scoap3.modules.pidstore.minters:scoap3_recid_minter',
+            'scoap3_minter = scoap3.modules.pidstore.minters:scoap3_recid_minter',
         ],
 
         'invenio_pidstore.fetchers': [
-            'scoap3_recid_fetcher = scoap3.modules.pidstore.fetchers:scoap3_recid_fetcher',
+            'scoap3_fetcher = scoap3.modules.pidstore.fetchers:scoap3_recid_fetcher',
         ],
         'invenio_jsonschemas.schemas': [
             'scoap3_records = scoap3.modules.records.jsonschemas',

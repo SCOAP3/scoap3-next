@@ -27,8 +27,10 @@ SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUU
 THEME_SITENAME = _("SCOAP3 Repository")
 THEME_LOGO = 'img/logo.png'
 # ASSETS_DEBUG = True
-COLLECT_STORAGE = "flask_collect.storage.link"
-SERVER_NAME = "127.0.0.1:5000"
+#COLLECT_STORAGE = "flask_collect.storage.link"
+#SERVER_NAME = "127.0.0.1:5000"
+SITE_URL = "www.beta.scoap3.org"
+ELASTICSEARCH_HOST = "localhost"
 
 SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'

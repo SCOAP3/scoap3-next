@@ -33,7 +33,7 @@ search_js = NpmBundle(
     depends=(
         'node_modules/invenio-search-js/dist/*.js',
     ),
-    filters='requirejs, jsmin',
+    filters='jsmin',
     output="gen/scoap3.search.%(version)s.js",
     npm={
         'invenio-search-js': '~0.2.0',
@@ -42,7 +42,7 @@ search_js = NpmBundle(
 
 css = NpmBundle(
     "scss/styles.scss",
-    filters="scss, cleancss",
+    filters="node-scss",
     output="gen/scoap3.%(version)s.css",
     depends="scss/**/*.scss",
     npm={
@@ -52,7 +52,7 @@ css = NpmBundle(
 )
 
 js = NpmBundle(
-    filters='requirejs, jsmin',
+    filters='jsmin',
     output="gen/scoap3.%(version)s.js",
     npm={
         'mathjax': '~2.5'
