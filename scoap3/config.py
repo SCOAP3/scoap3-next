@@ -28,7 +28,6 @@ THEME_SITENAME = _("SCOAP3 Repository")
 THEME_LOGO = 'img/logo.png'
 # ASSETS_DEBUG = True
 #COLLECT_STORAGE = "flask_collect.storage.link"
-#SERVER_NAME = "127.0.0.1:5000"
 SITE_URL = "www.beta.scoap3.org"
 ELASTICSEARCH_HOST = "localhost"
 
@@ -43,7 +42,7 @@ SEARCH_ELASTIC_HOSTS = 'localhost'
 RECORDS_REST_ENDPOINTS = dict(
     recid=dict(
         pid_type='recid',
-        pid_minter='scoap3_recid_minter',
+        pid_minter='scoap3_minter',
         pid_fetcher='recid',
         search_index='records-record-v1.0.0',
         search_type=['record-v1.0.0'],
