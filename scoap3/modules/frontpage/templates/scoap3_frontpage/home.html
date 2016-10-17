@@ -70,7 +70,7 @@
           <ul class="list-unstyled">
           {%- for collection in collections %}
             <li>
-              <a href="{{ url_for('invenio_search_ui.search', q='_collections:'+collection.name) }}">
+              <a href="{{ url_for('invenio_search_ui.search', q='_collections:"'+collection.name+'"') }}">
                 {{ collection.name }}
                 <span class="badge">{{ collection.count }}</span>
               </a>
@@ -83,7 +83,7 @@
           <ul class="list-unstyled">
           {%- for collection in hidden_collections %}
             <li>
-              <a href="{{ url_for('invenio_search_ui.search', q='_collections:'+collection.name) }}">
+              <a href="{{ url_for('invenio_search_ui.search', q='_collections:"'+collection.name+'"') }}">
                 {{ collection.name }}
                 <span class="badge">{{ collection.count }}</span>
               </a>
