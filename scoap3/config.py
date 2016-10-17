@@ -27,7 +27,7 @@ SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUU
 THEME_SITENAME = _("SCOAP3 Repository")
 THEME_LOGO = 'img/logo.png'
 # ASSETS_DEBUG = True
-#COLLECT_STORAGE = "flask_collect.storage.link"
+# COLLECT_STORAGE = "flask_collect.storage.link"
 SITE_URL = "www.beta.scoap3.org"
 ELASTICSEARCH_HOST = "localhost"
 
@@ -47,17 +47,18 @@ RECORDS_REST_ENDPOINTS = dict(
         search_index='records-record-v1.0.0',
         search_type=['record-v1.0.0'],
         record_serializers={
-        'application/json': ('invenio_records_rest.serializers'
-                             ':json_v1_response'),
+            'application/json': ('invenio_records_rest.serializers'
+                                 ':json_v1_response'),
         },
         search_serializers={
-        'application/json': ('invenio_records_rest.serializers'
-                             ':json_v1_search'),
+            'application/json': ('invenio_records_rest.serializers'
+                                 ':json_v1_search'),
         },
         list_route='/records/',
         item_route='/records/<pid_value>',
         default_media_type='application/json',
         max_result_window=10000,
+        read_permission_factory_imp="scoap3.modules.records.permissions:record_read_permission_factory"
     ),
 )
 RECORDS_UI_ENDPOINTS = dict(

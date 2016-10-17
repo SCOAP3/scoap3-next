@@ -15,6 +15,7 @@ with open(os.path.join('scoap3',
 install_requires = [
     'invenio-config',
     'invenio-base',
+    'invenio-access',
     'invenio-assets',
     'invenio-db',
     'invenio-indexer',
