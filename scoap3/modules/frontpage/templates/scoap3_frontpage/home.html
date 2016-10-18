@@ -1,6 +1,10 @@
 {%- extends "scoap3_theme/page.html" %}
 
 {%- block page_header %}
+  <div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Heads up!</strong> This is only a preview of new SCOAP3 repository. It has limited functionality and no stability guarantee. Please continue to use the official repository at: <a href="http://repo.scoap3.org" class="alert-link">repo.scoap3.org</a>
+  </div>
   {%- block navbar %}
   <header>
     <nav class="navbar navbar-default navbar-static-top frontpage">
