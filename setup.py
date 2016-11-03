@@ -29,7 +29,10 @@ install_requires = [
     'invenio-search-ui',
     'invenio-collections',
     'invenio-theme',
-    'idutils'
+    'idutils',
+    'invenio-workflows',
+    'invenio-workflows-files',
+    'invenio-workflows-ui',
 ],
 
 setup(
@@ -74,7 +77,11 @@ setup(
             'scoap3_records = scoap3.modules.records.jsonschemas',
         ],
         'invenio_search.mappings': [
-            'records = scoap3.modules.records.mappings'
+            'records = scoap3.modules.records.mappings',
+            'holdingpen = scoap3.modules.workflows.mappings'
+        ],
+        'invenio_workflows.workflows': [
+            'sample = scoap3.modules.workflows.workflows:Sample1',
         ],
     },
     install_requires=install_requires,

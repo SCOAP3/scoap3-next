@@ -44,8 +44,8 @@ RECORDS_REST_ENDPOINTS = dict(
         pid_type='recid',
         pid_minter='scoap3_minter',
         pid_fetcher='recid',
-        search_index='records-record-v1.0.0',
-        search_type=['record-v1.0.0'],
+        search_index='records-record',
+        search_type=['record'],
         record_serializers={
             'application/json': ('invenio_records_rest.serializers'
                                  ':json_v1_response'),
@@ -86,7 +86,7 @@ RECORDS_REST_SORT_OPTIONS = {
 }
 
 RECORDS_REST_FACETS = {
-    "records-record-v1.0.0": {
+    "records-record": {
         "filters": {
             "journal": terms_filter("publication_info.journal_title"),
             "country": terms_filter("authors.affiliations.country")
@@ -351,3 +351,43 @@ FRONTPAGE_ENDPOINT = "scoap3_frontpage.index"
 
 # Static file
 COLLECT_STORAGE = 'flask_collect.storage.link'
+
+## Workflows
+WORKFLOWS_UI_URL = "/holdingpen"
+WORKFLOWS_UI_API_URL = "/api/holdingpen/"
+
+WORKFLOWS_UI_DATA_TYPES = dict(
+    record=dict(
+        search_index='holdingpen-record',
+        search_type='record',
+    ),
+)
+
+WORKFLOWS_UI_REST_ENDPOINT = dict(
+    workflow_object_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_serializer'),
+    },
+    search_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_search_serializer'),
+    },
+    action_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_action_serializer'),
+    },
+    bulk_action_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_action_serializer'),
+    },
+    file_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_file_serializer'),
+    },
+    list_route='/holdingpen/',
+    item_route='/holdingpen/<object_id>',
+    search_index="holdingpen",   # <- main search alias for all "incoming" indices
+    default_media_type='application/json',
+    max_result_window=10000,
+)
+
