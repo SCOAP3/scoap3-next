@@ -48,11 +48,13 @@
 {%- endblock page_header %}
 {%- block page_body %}
   <div class="jumbotron scoap3-jumbotron-img">
-  </div>
-  <div class="jumbotron scoap3-jumbotron-heading">
-    <div class="container text-white">
-      <h1 class="text-center">SCOAP<sup>3</sup> Repository</h1>
-      <h2 class="text-center">Open Access simplified</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <h1>SCOAP<sup>3</sup> Repository</h1>
+          <h2 class="text-center">Making HEP Open Access</h2>
+        </div>
+      </div>
     </div>
   </div>
   <div class="container">
@@ -70,7 +72,7 @@
   <div class="container collections-list">
       <div class="row">
         <div class="col-md-4">
-          <p class="text-left">Grouped by collections:</p>
+          <h3 class="text-left">Grouped by collections:</h3>
           <ul class="list-unstyled">
           {%- for collection in collections %}
             <li>
@@ -83,7 +85,7 @@
           </ul>
         </div>
         <div class="col-md-4">
-          <p class="text-left">Hidden collections</p>
+          <h3 class="text-left">Hidden collections</h3>
           <ul class="list-unstyled">
           {%- for collection in hidden_collections %}
             <li>
@@ -96,7 +98,7 @@
           </ul>
         </div>
         <div class="col-md-4">
-          <p class="text-left">Tools</p>
+          <h3 class="text-left">Tools</h3>
           <ul class="list-unstyled">
             <li><a href="#">Compliance</a></li>
           </ul>
