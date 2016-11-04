@@ -45,7 +45,7 @@ def authors(self, key, value):
                 recid = int(value.get('z'))
             except:
                 pass
-            affiliations = dedupe_list(utils.force_list(value.get('u')))
+            affiliations = dedupe_list(utils.force_list(value.get('v')))
             record = get_record_ref(recid, 'institutions')
             affiliations = [{'value': aff, 'record': record} for
                             aff in affiliations]
