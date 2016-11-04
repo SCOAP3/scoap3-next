@@ -2,33 +2,29 @@
   <li ng-repeat="record in vm.invenioSearchResults.hits.hits track by $index">
     <!-- FIXME find a better way to set the record url -->
     <h4><a target="_self" ng-href="/records/{{ record.id }}">{{ record.metadata.titles[0].title }}</a></h4>
-    <p ng-repeat='abstract in record.metadata.abstracts'>
-      {{ abstract.value }}
+    <p>
+        <i ng-repeat='author in record.metadata.authors | limitTo:5'>
+          {{ author.full_name }}{{$last ? '' : '; '}}
+          <span ng-if='$index === 4'>
+          ; et al
+          </span>
+        </i>
     </p>
-    <div class="text-right">
-      <ul class="list-inline">
-        <li ng-show="record.metadata.authors.length > 0">
-          <a ng-click="showAuthors=!showAuthors">
-            {{ showAuthors ? 'Hide authors' : 'Show authors' }}
-          </a>
-        </li>
-        <li>
-          <a ng-click="showSource=!showSource">
-            {{ showSource ? 'Hide source' : 'Show source' }}
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div ng-hide="!showAuthors">
-      <ul>
-        <li ng-repeat='author in record.metadata.authors'>
-          {{ author.full_name }}
-        </li>
-      </ul>
-    </div>
-    <div ng-hide="!showSource">
-      <pre>{{ record | json }}</pre>
-    </div>
+    <p ng-repeat='abstract in record.metadata.abstracts'>
+      {{ abstract.value | limitTo:600}}
+      <span ng-if='abstract.value.length > 600'>
+          ...
+      </span>
+    </p>
+    <small>
+        Published in: <b>{{ record.metadata.publication_info[0].journal_title }}</b> {{ record.metadata.publication_info[0].journal_issue }} ({{ record.metadata.publication_info[0].year }}) {{ record.metadata.publication_info[0].page_artid }} by <b>{{ record.metadata.imprints[0].publisher }}</b>
+    </small><br>
+    <small ng-if='record.metadata.dois[0]'>
+        DOI: <a href='http://dx.doi.org/{{ record.metadata.dois[0].value }}'>{{ record.metadata.dois[0].value }}</a>
+    </small>
+    <small ng-if='record.metadata.report_numbers[0]'>
+        arXiv: <a href='http://arxiv.org/abs/{{ record.metadata.report_numbers[0].value }}'>{{ record.metadata.report_numbers[0].value }}</a>
+    </small>
     <hr />
   </li>
 </ul>
