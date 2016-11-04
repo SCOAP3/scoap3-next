@@ -1,0 +1,21 @@
+.body{
+    h4{
+        .title{
+            font-size: 1.6em;
+        }
+    }
+}
+
+.extra-info{
+    dt{
+        font-weight: normal;
+        font-size: 0.8em;
+    }
+    dd{
+        font-size: 1.1em;
+    }
+    .btn-scoap3-download{
+        background-color: $violet;
+        color: white;
+    }
+}

@@ -35,7 +35,8 @@
       {%- block record_author %}
         <p class="record_authors">
           {%- for author in record.get('authors', []) %}
-          , <i>{{ author['full_name'] }}</i>
+            <i><a href="http://beta.scoap3.org/search?q=authors.full_name:'{{ author['full_name'] }}'">{{ author['full_name'] }}</a> ({{ author.get('affiliations', []) | join('; ', attribute='value') }}){% if not loop.last %}; {% endif %}
+            </i>
           {% endfor %}
         </p>
       {%- endblock %}
@@ -49,48 +50,42 @@
     {%- block record_extra_info %}
     <div class="extra-info col-sm-12 col-md-3">
       <dl>
-      {%- if pid %}
-        {%- block record_control_number %}
-        <dt>{{ _('Record ID') }}</dt>
-        <dd>{{ record.get('control_number', pid.value) }}</dd>
-        {%- endblock %}
-      {% endif %}
-      {%- if 'imprints' in record %}
-        {%- block record_publication_date %}
-        <dt>{{ _('Publication date') }}</dt>
-        <dd>{{ record['imprints'][0]['date'] }}</dd>
-        <dt>{{ _('Publisher') }}</dt>
+        <dt>Creation date</dt>
+        <dd>{{ record['earliest_date'] }}</dd>
+        <dt>Publisher</dt>
         <dd>{{ record['imprints'][0]['publisher'] }}</dd>
-        {%- endblock %}
-      {% endif %}
-      {%- if '$schema' in record %}
-        {%- block record_schema %}
-          <dt>{{ _('Schema') }}</dt>
-          <dd>
-            <a target="_blank" href="{{ record['$schema'] }}">
-              {{ record['$schema'] }}
-            </a>
-          </dd>
-        {%- endblock %}
-      {% endif %}
+        <dt>Published in</dt>
+        <dd>{{ record['publication_info'][0]['journal_title'] }} {{ record['publication_info'][0]['journal_issue'] }} ({{ record['publication_info'][0]['year'] }}) {{ record['publication_info'][0]['page_artid'] }}</dd>
+        <dt>DOI</dt>
+        <dd><a href="http://dx.doi.org/{{ record['dois'][0]['value'] }}">{{ record['dois'][0]['value'] }}</a></dd>
+        {% if record['report_numbers'][0]['value'] %}
+        <dt>arXiv</dt>
+        <dd><a href="http://arxiv.org/abs/{{ record['report_numbers'][0]['value'] }}">{{ record['report_numbers'][0]['value'] }}</a></dd>
+        {% endif %}
       </dl>
       <dl>
-        {%- if pid %}
-          {%- block urls %}
-            <dt>{{ _('Files') }}</dt>
+        <div class="dropdown">
+          <button class="btn btn-scoap3-download dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Download & export
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class="dropdown-header">Available files</li>
             {%- for file in record.get('urls', []) %}
-              <dd>
                 {%- if "pdfa" in file['value'] %}
-                  <a href="{{ file['value'] }}">PDF (PDFA)</a>
+                  <li><a href="{{ file['value'] }}">PDF (PDFA)</a></li>
                 {%- elif "pdf" in file['value'] %}
-                  <a href="{{ file['value'] }}">PDF</a>
+                  <li><a href="{{ file['value'] }}">PDF</a></li>
                 {%- elif "xml" in file['value'] %}
-                  <a href="{{ file['value'] }}">XML</a>
+                  <li><a href="{{ file['value'] }}">XML</a></li>
                 {% endif %}
-              </dd>
             {% endfor %}
-          {%- endblock %}
-        {% endif %}
+            <li class="dropdown-header">Metadata export</li>
+            <li><a href="#">MARC</a></li>
+            <li><a href="#">MARC XML</a></li>
+            <li><a href="#">Doublin Core</a></li>
+          </ul>
+        </div>
       </dl>
     </div><!-- /.extra-info -->
     {%- endblock %}
