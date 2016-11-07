@@ -30,6 +30,7 @@ from scoap3.utils.dedupers import dedupe_list
 
 from ..model import hep, hep2marc
 from ...utils import create_profile_url, get_recid_from_ref, get_record_ref
+from ...utils.nations import find_nation
 
 
 @hep.over('authors', '^[17]00[103_].')
@@ -39,15 +40,10 @@ def authors(self, key, value):
 
     def get_value(value):
         affiliations = []
-        if value.get('u'):
-            recid = None
-            try:
-                recid = int(value.get('z'))
-            except:
-                pass
+        if value.get('v'):
             affiliations = dedupe_list(utils.force_list(value.get('v')))
-            record = get_record_ref(recid, 'institutions')
-            affiliations = [{'value': aff, 'record': record} for
+            country = find_nation(value.get('v'))
+            affiliations = [{'value': aff, 'country': country} for
                             aff in affiliations]
         person_recid = None
         if value.get('x'):
