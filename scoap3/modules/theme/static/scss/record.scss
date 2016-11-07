@@ -1,8 +1,6 @@
-.body{
-    h4{
-        .title{
-            font-size: 1.6em;
-        }
+h4{
+    .title{
+        font-size: 1.6em;
     }
 }
 
@@ -10,6 +8,7 @@
     dt{
         font-weight: normal;
         font-size: 0.8em;
+        color:$dark-gray;
     }
     dd{
         font-size: 1.1em;
