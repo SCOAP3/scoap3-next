@@ -6,6 +6,20 @@
             },
             "date_detection": false,
             "properties": {
+                "authors":{
+                    "properties":{
+                        "affiliations":{
+                            "properties":{
+                                "country":{
+                                    "index": "not_analyzed",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
                 "publication_info": {
                     "properties": {
                         "journal_title": {
@@ -15,7 +29,6 @@
                     },
                     "type": "object"
                 },
-
                 "earliest_date": {
                     "format": "yyyy||yyyy-MM||yyyy-MM-dd",
                     "type": "date"

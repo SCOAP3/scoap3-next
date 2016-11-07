@@ -88,12 +88,19 @@ RECORDS_REST_SORT_OPTIONS = {
 RECORDS_REST_FACETS = {
     "records-record-v1.0.0": {
         "filters": {
-            "journal": terms_filter("publication_info.journal_title")
+            "journal": terms_filter("publication_info.journal_title"),
+            "country": terms_filter("authors.affiliations.country")
         },
         "aggs": {
             "journal":{
                 "terms": {
                     "field": "publication_info.journal_title",
+                    "size": 20
+                }
+            },
+            "country":{
+                "terms": {
+                    "field": "authors.affiliations.country",
                     "size": 20
                 }
             },

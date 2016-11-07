@@ -1,4 +1,4 @@
-<div ng-init="order={'journal': 'Journal', 'earliest_date': 'Year'}">
+<div ng-init="order={'journal': 'Journal', 'earliest_date': 'Year', 'country': 'Country'}">
   <div ng-init="tree=[];tree_more=[]" ng-repeat="(key, value) in vm.invenioSearchResults.aggregations track by $index">
     <div ng-if="value.buckets.length > 0" class="panel panel-default">
       <div class="panel-heading">
