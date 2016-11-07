@@ -172,9 +172,8 @@ def find_nation(affiliation):
 
     if "deceased" in affiliation.lower():
         return
-    values = set([y.lower().strip() for y in re.findall(ur"[\w']+", affiliation.replace('.','').decode("UTF-8"), re.UNICODE)])
+    values = set([y.lower().strip() for y in re.findall(ur"[\w']+", affiliation.replace('.',''), re.UNICODE)])
     for key, val in NATIONS_DEFAULT_MAP.iteritems():
-        key = unicode(key)
         key_parts = set(key.lower().decode('utf-8').split())
         if key_parts.issubset(values):
             possible_affs.append(val)

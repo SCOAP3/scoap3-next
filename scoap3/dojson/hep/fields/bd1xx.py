@@ -42,9 +42,13 @@ def authors(self, key, value):
         affiliations = []
         if value.get('v'):
             affiliations = dedupe_list(utils.force_list(value.get('v')))
-            country = find_nation(value.get('v'))
-            affiliations = [{'value': aff, 'country': country} for
-                            aff in affiliations]
+
+            tmp_affiliations = []
+            for aff in affiliations:
+                country = find_nation(aff)
+                tmp_affiliations.append({'value': aff, 'country': country})
+            affiliations = tmp_affiliations
+
         person_recid = None
         if value.get('x'):
             try:

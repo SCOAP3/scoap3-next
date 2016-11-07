@@ -554,6 +554,11 @@
                                     "description": "The affiliation as it appears on the paper",
                                     "title": "Name of institution"
                                 },
+                                "country": {
+                                    "type": "string",
+                                    "description": "Te country of affiliation",
+                                    "title": "Country"
+                                },
                                 "record": {
                                     "description": "URI for the Institution collection record",
                                     "title": "URI for the Institution collection record",
