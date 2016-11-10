@@ -20,7 +20,7 @@ install_requires = [
     'invenio-db',
     'invenio-indexer',
     'invenio-jsonschemas',
-    'invenio-oaiserver',
+    'invenio-oaiharvester',
     'invenio-pidstore',
     'invenio-records',
     'invenio-records-rest',
