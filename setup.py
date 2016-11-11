@@ -81,7 +81,7 @@ setup(
             'holdingpen = scoap3.modules.workflows.mappings'
         ],
         'invenio_workflows.workflows': [
-            'sample = scoap3.modules.workflows.workflows:Sample1',
+            'hindawi = scoap3.modules.workflows.workflows:Hindawi',
         ],
     },
     install_requires=install_requires,
