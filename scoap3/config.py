@@ -353,8 +353,8 @@ FRONTPAGE_ENDPOINT = "scoap3_frontpage.index"
 COLLECT_STORAGE = 'flask_collect.storage.link'
 
 ## Workflows
-WORKFLOWS_UI_URL = "/holdingpen"
-WORKFLOWS_UI_API_URL = "/api/holdingpen/"
+WORKFLOWS_UI_URL = "/workflows"
+WORKFLOWS_UI_API_URL = "/api/workflows/"
 
 WORKFLOWS_UI_DATA_TYPES = dict(
     record=dict(
@@ -384,9 +384,11 @@ WORKFLOWS_UI_REST_ENDPOINT = dict(
         'application/json': ('invenio_workflows_ui.serializers'
                              ':json_file_serializer'),
     },
-    list_route='/holdingpen/',
-    item_route='/holdingpen/<object_id>',
-    search_index="holdingpen",   # <- main search alias for all "incoming" indices
+    list_route='/workflows/',
+    item_route='/workflows/<object_id>',
+    file_list_route='/workflows/<object_id>/files',
+    file_item_route='/workflows/<object_id>/files/<path:key>',
+    search_index='holdingpen-record',
     default_media_type='application/json',
     max_result_window=10000,
 )
