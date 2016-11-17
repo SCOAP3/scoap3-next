@@ -36,7 +36,7 @@ blueprint = Blueprint(
 def index():
     """SCOAP3 home page."""
 
-    count = current_search_client.count(index='records-record-v1.0.0')
+    count = current_search_client.count(index='records-record')
     collections = Collection.query.filter(Collection.level == 2, Collection.parent_id == 1).all()
     for collection in collections:
         collection.count = current_search_client.count(q='_collections:"%s"' % (collection.name,))['count']

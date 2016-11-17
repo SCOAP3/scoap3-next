@@ -1,6 +1,6 @@
 {
     "mappings": {
-        "record": {
+        "harvesting": {
             "_all": {
                 "enabled": false
             },

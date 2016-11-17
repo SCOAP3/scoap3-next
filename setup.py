@@ -78,7 +78,7 @@ setup(
         ],
         'invenio_search.mappings': [
             'records = scoap3.modules.records.mappings',
-            'holdingpen = scoap3.modules.workflows.mappings'
+            'workflows = scoap3.modules.workflows.mappings'
         ],
         'invenio_workflows.workflows': [
             'hindawi = scoap3.modules.workflows.workflows:Hindawi',

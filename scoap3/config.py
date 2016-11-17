@@ -357,9 +357,9 @@ WORKFLOWS_UI_URL = "/workflows"
 WORKFLOWS_UI_API_URL = "/api/workflows/"
 
 WORKFLOWS_UI_DATA_TYPES = dict(
-    record=dict(
-        search_index='holdingpen-record',
-        search_type='record',
+    harvesting=dict(
+        search_index='workflows-harvesting',
+        search_type='harvesting',
     ),
 )
 
@@ -388,7 +388,7 @@ WORKFLOWS_UI_REST_ENDPOINT = dict(
     item_route='/workflows/<object_id>',
     file_list_route='/workflows/<object_id>/files',
     file_item_route='/workflows/<object_id>/files/<path:key>',
-    search_index='holdingpen-record',
+    search_index='workflows',
     default_media_type='application/json',
     max_result_window=10000,
 )
