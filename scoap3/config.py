@@ -38,6 +38,7 @@ SEARCH_UI_JSTEMPLATE_FACETS = 'templates/scoap3_search/facets.html'
 BASE_TEMPLATE = "scoap3_theme/page.html"
 
 # Elasticsearch
+INDEXER_DEFAULT_INDEX = "records-record"
 SEARCH_ELASTIC_HOSTS = 'localhost'
 RECORDS_REST_ENDPOINTS = dict(
     recid=dict(
@@ -45,7 +46,7 @@ RECORDS_REST_ENDPOINTS = dict(
         pid_minter='scoap3_minter',
         pid_fetcher='recid',
         search_index='records-record',
-        search_type=['record'],
+        search_type=['record-v1.0.0'],
         record_serializers={
             'application/json': ('invenio_records_rest.serializers'
                                  ':json_v1_response'),
