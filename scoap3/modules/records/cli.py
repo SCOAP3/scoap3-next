@@ -1,10 +1,12 @@
 from flask_cli import with_appcontext
 
 from dojson.contrib.marc21.utils import create_record, split_stream
+from jsonschema.exceptions import ValidationError
 from scoap3.dojson.hep.model import hep
 from invenio_records import Record
 from invenio_db import db
 from invenio_indexer.api import RecordIndexer
+from invenio_pidstore.errors import PIDAlreadyExists
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from flask import url_for
 
@@ -28,11 +30,18 @@ def loadrecords(source):
                 print("Creating record {} with recid: {}".format(i, create_record(data)['001']))
                 obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
                 del obj['self']
-                record = Record.create(obj, id_=None)
-                #print record
+                
+                try:
+                    record = Record.create(obj, id_=None)
+                except ValidationError as err:
+                    print("Validation error: %s. Skipping..." % (err,))
 
                 # Create persistent identifier.
-                pid = scoap3_recid_minter(str(record.id), record)
+                try:
+                    pid = scoap3_recid_minter(str(record.id), record)
+                except PIDAlreadyExists:
+                    print("Alredy in DB")
+                    continue
 
                 # Commit any changes to record
                 record.commit()
