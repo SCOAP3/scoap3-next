@@ -354,8 +354,8 @@ FRONTPAGE_ENDPOINT = "scoap3_frontpage.index"
 COLLECT_STORAGE = 'flask_collect.storage.link'
 
 ## Workflows
-WORKFLOWS_UI_URL = "/workflows"
-WORKFLOWS_UI_API_URL = "/api/workflows/"
+WORKFLOWS_UI_URL = "/harvesting"
+WORKFLOWS_UI_API_URL = "/api/harvesting/"
 
 WORKFLOWS_UI_DATA_TYPES = dict(
     harvesting=dict(
@@ -385,10 +385,10 @@ WORKFLOWS_UI_REST_ENDPOINT = dict(
         'application/json': ('invenio_workflows_ui.serializers'
                              ':json_file_serializer'),
     },
-    list_route='/workflows/',
-    item_route='/workflows/<object_id>',
-    file_list_route='/workflows/<object_id>/files',
-    file_item_route='/workflows/<object_id>/files/<path:key>',
+    list_route='/harvesting/',
+    item_route='/harvesting/<object_id>',
+    file_list_route='/harvesting/<object_id>/files',
+    file_item_route='/harvesting/<object_id>/files/<path:key>',
     search_index='workflows',
     default_media_type='application/json',
     max_result_window=10000,

@@ -55,7 +55,7 @@ def emit_record_signals(obj, eng):
 class Hindawi(object):
     """Article ingestion workflow for Records collection."""
     name = "HEP"
-    data_type = "record"
+    data_type = "harvesting"
 
     workflow = [
         # Make sure schema is set for proper indexing in Holding Pen
