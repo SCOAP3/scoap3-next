@@ -58,7 +58,7 @@
         <dd>{{ record['publication_info'][0]['journal_title'] }} {{ record['publication_info'][0]['journal_issue'] }} ({{ record['publication_info'][0]['year'] }}) {{ record['publication_info'][0]['page_artid'] }}</dd>
         <dt>DOI</dt>
         <dd><a href="http://dx.doi.org/{{ record['dois'][0]['value'] }}">{{ record['dois'][0]['value'] }}</a></dd>
-        {% if record['report_numbers'][0]['value'] %}
+        {% if record['report_numbers']%}
         <dt>arXiv</dt>
         <dd><a href="http://arxiv.org/abs/{{ record['report_numbers'][0]['value'] }}">{{ record['report_numbers'][0]['value'] }}</a></dd>
         {% endif %}
