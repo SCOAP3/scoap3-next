@@ -51,6 +51,17 @@ def publication_info(self, key, value):
     conference_record = get_record_ref(conference_recid, 'conferences')
     journal_record = get_record_ref(journal_recid, 'journals')
 
+    #Conversion to fullname of journals
+    journal_title = value.get('p')
+    if journal_title == "JHEP":
+        journal_title = "Journal of High Energy Physics"
+    if journal_title == "JCAP":
+        journal_title = "Journal of Cosmology and Astroparticle Physics"
+    if journal_title == "PTEP":
+        journal_title = "Progress of Theoretical and Experimental Physics"
+    if journal_title == "EPJC":
+        journal_title = "European Physical Journal C"
+
     res = {
         'parent_record': parent_record,
         'conference_record': conference_record,
@@ -58,7 +69,7 @@ def publication_info(self, key, value):
         'page_artid': value.get('c'),
         'journal_issue': value.get('n'),
         'conf_acronym': value.get('o'),
-        'journal_title': value.get('p'),
+        'journal_title': journal_title,
         'reportnumber': value.get('r'),
         'confpaper_info': value.get('t'),
         'journal_volume': value.get('v'),

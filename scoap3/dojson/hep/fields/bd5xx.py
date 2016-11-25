@@ -131,9 +131,12 @@ def abstracts(self, key, value):
         abstract = value.get('a')[0]
     else:
         abstract = value.get('a')
+    source = value.get('9')
+    if source == 'Oxford':
+        source = 'Oxford University Press'
     return {
         'value': abstract,
-        'source': value.get('9'),
+        'source': source,
     }
 
 
