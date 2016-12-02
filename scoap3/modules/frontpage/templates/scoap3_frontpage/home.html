@@ -62,8 +62,15 @@
         <div class="col-md-12">
           <p class="text-center">Search <b>{{ articles_count }} Open Access</b> HEP articles:</p>
           <form action="{{ url_for('invenio_search_ui.search') }}">
-            <div class="form-group">
+            <div class="input-group">
               <input type="text" name="q" class="input-lg form-control" placeholder="{{ _('Type and press enter to search') }}">
+              <span class="input-group-btn">
+                <button class="btn btn-default input-lg" type="submit">
+                    <span class="icon-search">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                </button>
+              </span>
             </div>
           </form>
         </div>
