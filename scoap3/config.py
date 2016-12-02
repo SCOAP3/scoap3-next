@@ -37,6 +37,9 @@ SEARCH_UI_JSTEMPLATE_FACETS = 'templates/scoap3_search/facets.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
 
+# Celery
+BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/celery"
+
 # Elasticsearch
 INDEXER_DEFAULT_INDEX = "records-record"
 SEARCH_ELASTIC_HOSTS = 'localhost'
@@ -102,7 +105,8 @@ RECORDS_REST_FACETS = {
             "country":{
                 "terms": {
                     "field": "authors.affiliations.country",
-                    "size": 20
+                    "size": 20,
+                    "order": {"_term": "asc"}
                 }
             },
             "earliest_date": {
