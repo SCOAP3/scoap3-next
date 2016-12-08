@@ -1,0 +1,32 @@
+<ul>
+  <li ng-repeat="record in vm.invenioSearchResults.hits.hits track by record._id">
+    <!-- FIXME find a better way to set the record url -->
+    <h4><a target="_self" ng-href="/workflows/{{ record._id }}">{{ record._source.metadata.title_statement.title }}</a></h4>
+    <p><a target="_self" ng-href="/workflows/{{ record._id }}">Go to record {{ record._id }}</a></p>
+    <div class="text-right">
+      <ul class="list-inline">
+        <li ng-show="record._source.metadata.added_entry_personal_name.length > 0">
+          <a ng-click="showAuthors=!showAuthors">
+            {{ showAuthors ? 'Hide authors' : 'Show authors' }}
+          </a>
+        </li>
+        <li>
+          <a ng-click="showSource=!showSource">
+            {{ showSource ? 'Hide source' : 'Show source' }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div ng-hide="!showAuthors">
+      <ul>
+        <div ng-repeat='author in record._source.metadata.added_entry_personal_name'>
+          <li>{{ author.personal_name }}</li>
+        </div>
+      </ul>
+    </div>
+    <div ng-hide="!showSource">
+      <pre>{{ record | json }}</pre>
+    </div>
+    <hr />
+  </li>
+</ul>

@@ -13,6 +13,7 @@ with open(os.path.join('scoap3',
     exec(fp.read(), version)
 
 install_requires = [
+    'celery<4.0',
     'invenio-config',
     'invenio-base',
     'invenio-access',
@@ -33,6 +34,7 @@ install_requires = [
     'invenio-workflows',
     'invenio-workflows-files',
     'invenio-workflows-ui',
+    'inspire-crawler'
 ],
 
 setup(
@@ -49,6 +51,7 @@ setup(
         ],
         'invenio_base.apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
+            'scoap3_workflows = scoap3.modules.workflows:SCOAP3Workflows',
         ],
         'invenio_base.api_apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
@@ -56,7 +59,8 @@ setup(
         'invenio_base.blueprints': [
             'scoap3_search = scoap3.modules.search.views:blueprint',
             'scoap3_theme = scoap3.modules.theme.views:blueprint',
-            'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint'
+            'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint',
+            'scoap3_workflows = scoap3.modules.workflows.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
