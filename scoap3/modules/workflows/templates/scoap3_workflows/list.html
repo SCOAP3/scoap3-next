@@ -22,6 +22,14 @@
 {%- block css %}
   {{ super() }}
   {% assets "invenio_search_ui_search_css" %}<link href="{{ ASSET_URL }}" rel="stylesheet">{% endassets %}
+  <style>
+    .label-hindawi {
+      background-color: #aebf8d;
+    }
+    .label-oxford {
+      background-color: #9ea3db;
+    }
+  </style>
 {%- endblock css %}
 
 {%- block javascript %}

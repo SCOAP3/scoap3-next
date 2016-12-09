@@ -368,6 +368,12 @@ WORKFLOWS_UI_DATA_TYPES = dict(
     ),
 )
 
+WORKFLOWS_UI_INDEX_TEMPLATE = "scoap3_workflows/index.html"
+WORKFLOWS_UI_LIST_TEMPLATE = "scoap3_workflows/list.html"
+WORKFLOWS_UI_DETAILS_TEMPLATE = "scoap3_workflows/details.html"
+
+WORKFLOWS_UI_JSTEMPLATE_RESULTS = "templates/scoap3_workflows_ui/results.html"
+
 WORKFLOWS_UI_REST_ENDPOINT = dict(
     workflow_object_serializers={
         'application/json': ('invenio_workflows_ui.serializers'
