@@ -24,6 +24,7 @@
 
 from __future__ import absolute_import, division, print_function
 from flask import url_for
+from datetime import datetime
 
 from workflow.patterns.controlflow import (
     IF,
@@ -44,11 +45,17 @@ def set_schema(obj, eng):
             schema_path="records/{0}".format(obj.data['$schema'])
         )
 
+def record_not_published_before_2014(obj, eng):
+    """Make sure record was published in 2014 and onwards."""
+    datetime_object = datetime.strptime(obj.data['imprints'][0]['date'], '%Y-%m-%d')
+    if not datetime_object.year >= 2014:
+        eng.halt("Record published before 2014")
+    return True
+
 
 def emit_record_signals(obj, eng):
     """Emit record signals to update record metadata."""
     from scoap3_records.signals import before_record_insert
-
     before_record_insert.send(obj.data)
 
 
@@ -60,15 +67,22 @@ class Hindawi(object):
     workflow = [
         # Make sure schema is set for proper indexing in Holding Pen
         set_schema,
-        # Query locally or via legacy search API to see if article
-        # is already ingested and this is an update
-        # arxiv_fulltext_download,
-        # arxiv_plot_extract,
-        # arxiv_refextract,
-        # arxiv_author_list("authorlist2marcxml.xsl"),
-        # extract_journal_info,
-        # IF(is_experimental_paper, [
-        #     guess_experiments,
-        # ]),
-        # store_record
+        IF(
+            record_not_published_before_2014,
+            [
+                # IF(
+                #   is_record_from_partial_journal,
+                #   check_arxiv_number
+                #   )
+                # add_collections,
+                # add_nations,
+                # check_compliance_24h
+                # check_compliance_files_not_corupted
+                # check_compliance_pdfa_validation
+                # check_compliance_funded_by_scoap3
+                # check_compliance_copyrights
+                # check_complaince_available_at_publishers_website
+                # store_record
+            ]
+        )
     ]
