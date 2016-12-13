@@ -404,3 +404,20 @@ WORKFLOWS_UI_REST_ENDPOINT = dict(
     max_result_window=10000,
 )
 
+WORKFLOWS_UI_REST_SORT_OPTIONS = {
+    "harvesting": {
+        "mostrecent": {
+            "title": 'Most recent',
+            "fields": ['_updated'],
+            "default_order": 'desc',
+            "order": 1,
+        },
+    },
+}
+
+WORKFLOWS_UI_REST_DEFAULT_SORT = {
+    "harvesting": {
+        "query": "mostrecent"
+    }
+}
+

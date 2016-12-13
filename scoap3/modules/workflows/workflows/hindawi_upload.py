@@ -34,16 +34,17 @@ from workflow.patterns.controlflow import (
 
 def set_schema(obj, eng):
     """Make sure schema is set properly and resolve it."""
-    if '$schema' not in obj.data:
-        obj.data['$schema'] = "{data_type}.json".format(
-            data_type=obj.data_type or eng.workflow_definition.data_type
-        )
+    obj.data['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
+    # if '$schema' not in obj.data:
+    #     obj.data['$schema'] = "{data_type}.json".format(
+    #         data_type=obj.data_type or eng.workflow_definition.data_type
+    #     )
 
-    if not obj.data['$schema'].startswith('http'):
-        obj.data['$schema'] = url_for(
-            'invenio_jsonschemas.get_schema',
-            schema_path="records/{0}".format(obj.data['$schema'])
-        )
+    # if not obj.data['$schema'].startswith('http'):
+    #     obj.data['$schema'] = url_for(
+    #         'invenio_jsonschemas.get_schema',
+    #         schema_path="records/{0}".format(obj.data['$schema'])
+    #     )
 
 def record_not_published_before_2014(obj, eng):
     """Make sure record was published in 2014 and onwards."""
@@ -52,11 +53,76 @@ def record_not_published_before_2014(obj, eng):
         eng.halt("Record published before 2014")
     return True
 
+def is_record_from_partial_journal(obj, eng):
+    """Check if record comes from journal partially funded by SCOAP3."""
+    partial_journals = ["Acta Physica Polonica B",
+                        "Chinese Physics C",
+                        "Journal of Cosmology and Astroparticle Physics",
+                        "New Journal of Physics",
+                        "Progress of Theoretical and Experimental Physics"]
+    if obj.data['publication_info'][0]['journal_title'] in partial_journals:
+        return True
+    else:
+        return False
+
+def add_arxiv_category(obj, eng):
+    """Add arXiv categories fetched from arXiv.org"""
+    from scoap3.utils.arxiv import get_arxiv_categories
+    if "arxiv_eprints" in obj.data:
+        for i, arxiv_id in enumerate(obj.data["arxiv_eprints"]):
+            if arxiv_id['value'].startswith("arXiv:"):
+                arxiv_id = arxiv_id['value'][6:].split('v')[0]
+            arxiv_id = arxiv_id.split('v')[0]
+            categories = get_arxiv_categories(arxiv_id)
+            obj.data["arxiv_eprints"][i]['categories'] = categories
+
+def check_arxiv_category(obj, eng):
+    """Check if at least one arXiv category is in SCOAP3_REQUIRED_ARXIV_CATEGORIES"""
+    # TODO move this list to config variable SCOAP3_REQUIRED_ARXIV_CATEGORIES
+    arxiv_hep_categories = set(["hep-ex","hep-lat","hep-ph","hep-th"])
+    if "arxiv_eprints" in obj.data:
+        for arxiv_id in obj.data["arxiv_eprints"]:
+            if not set(arxiv_id['categories']).intersection(arxiv_hep_categories):
+                eng.halt("It is a paper from partial journal, but it doesn't have correct arXiv category!")
+    else:
+        eng.halt("Missing arXiv id!")
+
+def add_nations(obj, eng):
+    """Add nations extracted from affiliations"""
+    from scoap3.dojson.utils.nations import find_nation
+    for author_index, author in enumerate(obj.data['authors']):
+        for affiliation_index, affiliation in enumerate(author['affiliations']):
+            obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(affiliation['value'])
 
 def emit_record_signals(obj, eng):
     """Emit record signals to update record metadata."""
     from scoap3_records.signals import before_record_insert
     before_record_insert.send(obj.data)
+
+def store_record(obj, eng):
+    from invenio_indexer.api import RecordIndexer
+    from invenio_pidstore.errors import PIDAlreadyExists
+    from scoap3.modules.pidstore.minters import scoap3_recid_minter
+    from invenio_records import Record
+    from invenio_db import db
+    from jsonschema.exceptions import ValidationError
+
+    try:
+        record = Record.create(obj.data, id_=None)
+    except ValidationError as err:
+        eng.halt("Validation error: %s. Skipping..." % (err,))
+    # Create persistent identifier.
+    try:
+        pid = scoap3_recid_minter(str(obj.id), record)
+    except PIDAlreadyExists:
+        eng.halt("Record with this id already in DB")
+    # Commit any changes to record
+    record.commit()
+    # Commit to DB before indexing
+    db.session.commit()
+    # Index record
+    indexer = RecordIndexer()
+    indexer.index_by_id(pid.object_uuid)
 
 
 class Hindawi(object):
@@ -65,24 +131,24 @@ class Hindawi(object):
     data_type = "harvesting"
 
     workflow = [
-        # Make sure schema is set for proper indexing in Holding Pen
         set_schema,
+        store_record,
+        add_arxiv_category,
         IF(
             record_not_published_before_2014,
             [
-                # IF(
-                #   is_record_from_partial_journal,
-                #   check_arxiv_number
-                #   )
-                # add_collections,
-                # add_nations,
+                IF(
+                    is_record_from_partial_journal,
+                    check_arxiv_category
+                )
                 # check_compliance_24h
                 # check_compliance_files_not_corupted
                 # check_compliance_pdfa_validation
                 # check_compliance_funded_by_scoap3
                 # check_compliance_copyrights
                 # check_complaince_available_at_publishers_website
-                # store_record
             ]
-        )
+        ),
+        add_nations,
+        store_record
     ]
