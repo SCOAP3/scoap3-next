@@ -405,19 +405,26 @@ WORKFLOWS_UI_REST_ENDPOINT = dict(
 )
 
 WORKFLOWS_UI_REST_SORT_OPTIONS = {
-    "harvesting": {
+    "workflows": {
         "mostrecent": {
             "title": 'Most recent',
             "fields": ['_updated'],
             "default_order": 'desc',
             "order": 1,
         },
+        "workflowid": {
+            "title": 'Workflow ID',
+            "fields": ['id'],
+            "default_order": 'desc',
+            "order": 2,
+        },
     },
 }
 
 WORKFLOWS_UI_REST_DEFAULT_SORT = {
-    "harvesting": {
-        "query": "mostrecent"
+    "workflows": {
+        "query": "mostrecent",
+        "noquery": "-workflowid"
     }
 }
 

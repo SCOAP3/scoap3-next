@@ -124,6 +124,9 @@ def store_record(obj, eng):
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
 
+def add_to_before_2014_collection(obj, eng):
+    obj.data['collections'].append({"primary":"before_2014"})
+
 
 class Hindawi(object):
     """Article ingestion workflow for Records collection."""
@@ -132,9 +135,9 @@ class Hindawi(object):
 
     workflow = [
         set_schema,
-        store_record,
+        #store_record,
         add_arxiv_category,
-        IF(
+        IF_ELSE(
             record_not_published_before_2014,
             [
                 IF(
@@ -147,7 +150,8 @@ class Hindawi(object):
                 # check_compliance_funded_by_scoap3
                 # check_compliance_copyrights
                 # check_complaince_available_at_publishers_website
-            ]
+            ],
+            add_to_before_2014_collection
         ),
         add_nations,
         store_record
