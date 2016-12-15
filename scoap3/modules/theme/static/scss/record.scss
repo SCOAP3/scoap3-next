@@ -18,3 +18,12 @@ h4{
         color: white;
     }
 }
+
+.author_orcid_image_link{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('/static/img/orcid_icon_24.png');
+    background-size: 16px 16px;
+    text-decoration: none;
+}

@@ -24,6 +24,8 @@
 -#}
 {%- extends config.BASE_TEMPLATE %}
 
+{% from "scoap3_theme/macros.html" import orcid_badge with context %}
+
 {%- block page_body %}
 <div class="container">
   <div class="row">
@@ -35,7 +37,11 @@
       {%- block record_author %}
         <p class="record_authors">
           {%- for author in record.get('authors', []) %}
-            <i><a href="http://beta.scoap3.org/search?q=authors.full_name:'{{ author['full_name'] }}'">{{ author['full_name'] }}</a> ({{ author.get('affiliations', []) | join('; ', attribute='value') }}){% if not loop.last %}; {% endif %}
+            <i><a href="http://beta.scoap3.org/search?q=authors.full_name:'{{ author['full_name'] }}'">{{ author['full_name'] }}</a>
+            {%- if 'orcid' in author %}
+              {{ orcid_badge(author['orcid']) }}
+            {%- endif %}
+             ({{ author.get('affiliations', []) | join('; ', attribute='value') }}){% if not loop.last %}; {% endif %}
             </i>
           {% endfor %}
         </p>
