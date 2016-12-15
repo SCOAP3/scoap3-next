@@ -113,7 +113,7 @@ def store_record(obj, eng):
         eng.halt("Validation error: %s. Skipping..." % (err,))
     # Create persistent identifier.
     try:
-        pid = scoap3_recid_minter(str(obj.id), record)
+        pid = scoap3_recid_minter(str(record.id), record)
     except PIDAlreadyExists:
         eng.halt("Record with this id already in DB")
     # Commit any changes to record
