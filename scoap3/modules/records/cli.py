@@ -30,7 +30,7 @@ def loadrecords(source):
                 print("Creating record {} with recid: {}".format(i, create_record(data)['001']))
                 obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
                 del obj['self']
-                
+
                 try:
                     record = Record.create(obj, id_=None)
                 except ValidationError as err:

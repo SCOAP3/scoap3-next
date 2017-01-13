@@ -99,6 +99,9 @@ def emit_record_signals(obj, eng):
     from scoap3_records.signals import before_record_insert
     before_record_insert.send(obj.data)
 
+# def is_record_in_db(obj, eng):
+#     pass
+
 def store_record(obj, eng):
     from invenio_indexer.api import RecordIndexer
     from invenio_pidstore.errors import PIDAlreadyExists
@@ -154,5 +157,9 @@ class Hindawi(object):
             add_to_before_2014_collection
         ),
         add_nations,
-        store_record
+        # IF_ELSE(
+        #     is_record_in_db,
+        #     store_record,
+        #     update_record
+        # )
     ]
