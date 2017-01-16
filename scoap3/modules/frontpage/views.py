@@ -46,6 +46,7 @@ def index():
                   {'name':'Jagiellonian University'},
                   {'name':'Hindawi'},
                   {'name':'Springer/SIF'},
+                  {'name':'Springer/SISSA'},
                   {'name':'Institute of Physics Publishing/SISSA'},
                   {'name':'Institute of Physics Publishing/DPG'},
                   {'name':'Institute of Physics Publishing/Chinese Academy of Sciences'},
