@@ -42,14 +42,21 @@ def index():
         collection.count = current_search_client.count(q='_collections:"%s"' % (collection.name,))['count']
 
     # TODO show only for administrators
-    hidden_collections = Collection.query.filter(Collection.level == 2, Collection.parent_id == 12).all()
-    for collection in hidden_collections:
-        collection.count = current_search_client.count(q='_collections:"%s"' % (collection.name,))['count']
+    publishers = [{'name':'Elsevier'},
+                  {'name':'Jagiellonian University'},
+                  {'name':'Hindawi'},
+                  {'name':'Springer/SIF'},
+                  {'name':'Institute of Physics Publishing/SISSA'},
+                  {'name':'Institute of Physics Publishing/DPG'},
+                  {'name':'Institute of Physics Publishing/Chinese Academy of Sciences'},
+                  {'name':'Oxford University Press/JPS'}]
+    for publisher in publishers:
+        publisher['count'] = current_search_client.count(q='imprints.publisher:"%s"' % (publisher['name'],))['count']
 
     return render_template(
         'scoap3_frontpage/home.html',
         title='SCOAP3 Repository',
         articles_count=count['count'],
         collections=sorted(collections, key=lambda x: x.name),
-        hidden_collections=sorted(hidden_collections, key=lambda x: x.name)
+        publishers=sorted(publishers, key=lambda x: x['name'])
     )

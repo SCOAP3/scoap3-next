@@ -52,7 +52,7 @@
       <div class="row">
         <div class="col-md-5">
           <h1>SCOAP<sup>3</sup> Repository</h1>
-          <h2 class="text-center">Making HEP Open Access</h2>
+          <h2 class="text-center">xxxxx</h2>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
   <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p class="text-center">Search <b>{{ articles_count }} Open Access</b> HEP articles:</p>
+          <p class="text-center">Search <b>{{ articles_count }} Open Access</b> articles:</p>
           <form action="{{ url_for('invenio_search_ui.search') }}">
             <div class="input-group">
               <input type="text" name="q" class="input-lg form-control" placeholder="{{ _('Type and press enter to search') }}">
@@ -92,13 +92,13 @@
           </ul>
         </div>
         <div class="col-md-4">
-          <h3 class="text-left">Hidden collections</h3>
+          <h3 class="text-left">Publishers</h3>
           <ul class="list-unstyled">
-          {%- for collection in hidden_collections %}
+          {%- for publisher in publishers %}
             <li>
-              <a href="{{ url_for('invenio_search_ui.search', q='_collections:"'+collection.name+'"') }}">
-                {{ collection.name }}
-                <span class="badge">{{ collection.count }}</span>
+              <a href="{{ url_for('invenio_search_ui.search', q='_collections:"'+publisher.name+'"') }}">
+                {{ publisher.name }}
+                <span class="badge">{{ publisher.count }}</span>
               </a>
             </li>
           {%- endfor %}
