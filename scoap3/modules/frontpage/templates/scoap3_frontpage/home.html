@@ -79,7 +79,7 @@
   <div class="container collections-list">
       <div class="row">
         <div class="col-md-4">
-          <h3 class="text-left">Grouped by collections:</h3>
+          <h3 class="text-left">By journal:</h3>
           <ul class="list-unstyled">
           {%- for collection in collections %}
             <li>
@@ -92,11 +92,11 @@
           </ul>
         </div>
         <div class="col-md-4">
-          <h3 class="text-left">Publishers</h3>
+          <h3 class="text-left">By publisher:</h3>
           <ul class="list-unstyled">
           {%- for publisher in publishers %}
             <li>
-              <a href="{{ url_for('invenio_search_ui.search', q='_collections:"'+publisher.name+'"') }}">
+              <a href="{{ url_for('invenio_search_ui.search', q='imprints.publisher:"'+publisher.name+'"') }}">
                 {{ publisher.name }}
                 <span class="badge">{{ publisher.count }}</span>
               </a>
