@@ -5,8 +5,7 @@
     <p>
         <i ng-repeat='author in record.metadata.authors | limitTo:5'>
           {{ author.full_name }}
-          <a ng-if='author.orcid' href="http://orcid.org/{{ author.orcid }}" target="_blank" class="author_orcid_image_link" title="{{ author.orcid }}"></a>
-          {{$last ? '' : '; '}}
+          <a ng-if='author.orcid' href="http://orcid.org/{{ author.orcid }}" target="_blank" class="author_orcid_image_link" title="{{ author.orcid }}"></a>{{$last ? '' : '; '}}
           <span ng-if='$index === 4'>
           ; et al
           </span>
