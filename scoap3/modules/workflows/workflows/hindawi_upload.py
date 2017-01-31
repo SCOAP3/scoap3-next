@@ -99,8 +99,13 @@ def emit_record_signals(obj, eng):
     from scoap3_records.signals import before_record_insert
     before_record_insert.send(obj.data)
 
-# def is_record_in_db(obj, eng):
-#     pass
+def is_record_in_db(obj, eng):
+    from invenio_search.api import current_search_client
+    doi_count = current_search_client.count(q='dois.value:"%s"' % (obj.data['dois'][0]['value'],))['count']
+    if doi_count:
+        return True
+    else:
+        return False
 
 def store_record(obj, eng):
     from invenio_indexer.api import RecordIndexer
@@ -126,6 +131,9 @@ def store_record(obj, eng):
     # Index record
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
+
+def update_record(obj, eng):
+    pass
 
 def add_to_before_2014_collection(obj, eng):
     obj.data['collections'].append({"primary":"before_2014"})
@@ -157,9 +165,9 @@ class Hindawi(object):
             add_to_before_2014_collection
         ),
         add_nations,
-        # IF_ELSE(
-        #     is_record_in_db,
-        #     store_record,
-        #     update_record
-        # )
+        IF_ELSE(
+            is_record_in_db,
+            update_record,
+            store_record
+        )
     ]
