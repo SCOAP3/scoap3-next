@@ -85,7 +85,7 @@ setup(
             'workflows = scoap3.modules.workflows.mappings'
         ],
         'invenio_workflows.workflows': [
-            'hindawi = scoap3.modules.workflows.workflows:Hindawi',
+            'upload = scoap3.modules.workflows.workflows:Upload',
         ],
     },
     install_requires=install_requires,

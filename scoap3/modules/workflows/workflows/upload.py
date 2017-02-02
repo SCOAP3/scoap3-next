@@ -20,7 +20,7 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 
-"""Workflow for processing single Hindawi records harvested."""
+"""Workflow for processing single records harvested"""
 
 from __future__ import absolute_import, division, print_function
 from flask import url_for
@@ -139,7 +139,7 @@ def add_to_before_2014_collection(obj, eng):
     obj.data['collections'].append({"primary":"before_2014"})
 
 
-class Hindawi(object):
+class Upload(object):
     """Article ingestion workflow for Records collection."""
     name = "HEP"
     data_type = "harvesting"

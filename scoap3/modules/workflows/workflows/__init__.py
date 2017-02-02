@@ -1,4 +1,4 @@
-from .hindawi_upload import Hindawi
+from .upload import Upload
 
 
-__all__ = ('Hindawi', )
+__all__ = ('Upload', )
