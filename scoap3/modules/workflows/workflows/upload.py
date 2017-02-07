@@ -85,7 +85,8 @@ def check_arxiv_category(obj, eng):
             if not set(arxiv_id['categories']).intersection(arxiv_hep_categories):
                 eng.halt("It is a paper from partial journal, but it doesn't have correct arXiv category!")
     else:
-        eng.halt("Missing arXiv id!")
+        eng.halt(action='add_arxiv',
+                 msg="Missing arXiv id - you need to ad it to proceed.")
 
 def add_nations(obj, eng):
     """Add nations extracted from affiliations"""
