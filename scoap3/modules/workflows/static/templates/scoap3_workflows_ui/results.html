@@ -4,8 +4,9 @@
     <!-- FIXME find a better way to set the record url -->
     <h4><a target="_self" ng-href="/harvesting/{{ record._id }}">{{ record._source.metadata.titles[0].title }}</a></h4>
     <small><a target="_self" ng-href="/harvesting/{{ record._id }}">Go to record {{ record._id }}</a></small>
-    <span ng-if="record._source.metadata.acquisition_source.source.includes('Hindawi')" class="label label-hindawi">Hindawi</span>
-    <span ng-if="record._source.metadata.acquisition_source.source.includes('Oxford')" class="label label-oxford">OUP</span>
+    <span ng-if="record._source.metadata.acquisition_source.source.includes('Hindawi')" class="label label-hindawi">Hindawi AHEP</span>
+    <span ng-if="record._source.metadata.acquisition_source.source.includes('OUP')" class="label label-oxford">OUP</span>
+    <span ng-if="record._source.metadata.publication_info.journal_title.includes('European Physical Journal C')" class="label label-springer-epjc">Springer EPJC</span>
     <div class="text-right">
       <ul class="list-inline">
         <li ng-show="record._source.metadata.authors.length > 0">
