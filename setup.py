@@ -52,6 +52,7 @@ setup(
         'invenio_base.apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
             'scoap3_workflows = scoap3.modules.workflows:SCOAP3Workflows',
+            'scoap3_robotupload = scoap3.modules.robotupload:SCOAP3Robotupload',
         ],
         'invenio_base.api_apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
@@ -61,6 +62,7 @@ setup(
             'scoap3_theme = scoap3.modules.theme.views:blueprint',
             'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint',
             'scoap3_workflows = scoap3.modules.workflows.views:blueprint',
+            'scoap3_robotupload = scoap3.modules.robotupload.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
@@ -86,6 +88,9 @@ setup(
         ],
         'invenio_workflows.workflows': [
             'upload = scoap3.modules.workflows.workflows:Upload',
+        ],
+        'invenio_celery.tasks': [
+            'robotupload = scoap3.modules.robotupload.tasks',
         ],
     },
     install_requires=install_requires,
