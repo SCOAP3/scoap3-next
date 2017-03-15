@@ -13,6 +13,7 @@ with open(os.path.join('scoap3',
     exec(fp.read(), version)
 
 install_requires = [
+    'celery<4.0',
     'invenio-config',
     'invenio-base',
     'invenio-access',
@@ -20,7 +21,7 @@ install_requires = [
     'invenio-db',
     'invenio-indexer',
     'invenio-jsonschemas',
-    'invenio-oaiserver',
+    'invenio-oaiharvester',
     'invenio-pidstore',
     'invenio-records',
     'invenio-records-rest',
@@ -29,7 +30,11 @@ install_requires = [
     'invenio-search-ui',
     'invenio-collections',
     'invenio-theme',
-    'idutils'
+    'idutils',
+    'invenio-workflows',
+    'invenio-workflows-files',
+    'invenio-workflows-ui',
+    'inspire-crawler'
 ],
 
 setup(
@@ -46,6 +51,8 @@ setup(
         ],
         'invenio_base.apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
+            'scoap3_workflows = scoap3.modules.workflows:SCOAP3Workflows',
+            'scoap3_robotupload = scoap3.modules.robotupload:SCOAP3Robotupload',
         ],
         'invenio_base.api_apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
@@ -53,7 +60,9 @@ setup(
         'invenio_base.blueprints': [
             'scoap3_search = scoap3.modules.search.views:blueprint',
             'scoap3_theme = scoap3.modules.theme.views:blueprint',
-            'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint'
+            'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint',
+            'scoap3_workflows = scoap3.modules.workflows.views:blueprint',
+            'scoap3_robotupload = scoap3.modules.robotupload.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
@@ -74,7 +83,14 @@ setup(
             'scoap3_records = scoap3.modules.records.jsonschemas',
         ],
         'invenio_search.mappings': [
-            'records = scoap3.modules.records.mappings'
+            'records = scoap3.modules.records.mappings',
+            'workflows = scoap3.modules.workflows.mappings'
+        ],
+        'invenio_workflows.workflows': [
+            'upload = scoap3.modules.workflows.workflows:Upload',
+        ],
+        'invenio_celery.tasks': [
+            'robotupload = scoap3.modules.robotupload.tasks',
         ],
     },
     install_requires=install_requires,

@@ -23,6 +23,8 @@
 """Helpers for arXiv.org."""
 
 from __future__ import absolute_import, division, print_function
+import urllib
+from xml.dom.minidom import parseString
 
 
 def get_clean_arXiv_id(record):
@@ -38,3 +40,19 @@ def get_clean_arXiv_id(record):
         return arxiv_id.split(':')[-1]
     else:
         return None
+
+def get_arxiv_categories(arxiv_id):
+    url = 'http://export.arxiv.org/api/query?search_query=id:{0}'
+    try:
+        data = urllib.urlopen(url.format(arxiv_id)).read()
+    except:
+        data = None
+    categories = []
+    if data:
+        xml = parseString(data)
+        for tag in xml.getElementsByTagName('category'):
+            try:
+                categories.append(tag.attributes['term'].value)
+            except KeyError:
+                pass
+    return categories

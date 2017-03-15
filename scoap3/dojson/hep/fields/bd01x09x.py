@@ -170,7 +170,7 @@ def report_numbers(self, key, value):
 
     def get_value_arxiv(value):
         return {
-            'value': value.get('a'),
+            'value': value.get('a')[0],
             'categories': utils.force_list(value.get('c')),
         }
 

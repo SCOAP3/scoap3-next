@@ -37,14 +37,18 @@ SEARCH_UI_JSTEMPLATE_FACETS = 'templates/scoap3_search/facets.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
 
+# Celery
+BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/scoap3"
+
 # Elasticsearch
+INDEXER_DEFAULT_INDEX = "records-record"
 SEARCH_ELASTIC_HOSTS = 'localhost'
 RECORDS_REST_ENDPOINTS = dict(
     recid=dict(
         pid_type='recid',
         pid_minter='scoap3_minter',
         pid_fetcher='recid',
-        search_index='records-record-v1.0.0',
+        search_index='records-record',
         search_type=['record-v1.0.0'],
         record_serializers={
             'application/json': ('invenio_records_rest.serializers'
@@ -86,7 +90,7 @@ RECORDS_REST_SORT_OPTIONS = {
 }
 
 RECORDS_REST_FACETS = {
-    "records-record-v1.0.0": {
+    "records-record": {
         "filters": {
             "journal": terms_filter("publication_info.journal_title"),
             "country": terms_filter("authors.affiliations.country")
@@ -101,7 +105,8 @@ RECORDS_REST_FACETS = {
             "country":{
                 "terms": {
                     "field": "authors.affiliations.country",
-                    "size": 20
+                    "size": 20,
+                    "order": {"_term": "asc"}
                 }
             },
             "earliest_date": {
@@ -351,3 +356,75 @@ FRONTPAGE_ENDPOINT = "scoap3_frontpage.index"
 
 # Static file
 COLLECT_STORAGE = 'flask_collect.storage.link'
+
+## Workflows
+WORKFLOWS_UI_URL = "/harvesting"
+WORKFLOWS_UI_API_URL = "/api/harvesting/"
+
+WORKFLOWS_UI_DATA_TYPES = dict(
+    harvesting=dict(
+        search_index='workflows-harvesting',
+        search_type='harvesting',
+    ),
+)
+
+WORKFLOWS_UI_INDEX_TEMPLATE = "scoap3_workflows/index.html"
+WORKFLOWS_UI_LIST_TEMPLATE = "scoap3_workflows/list.html"
+WORKFLOWS_UI_DETAILS_TEMPLATE = "scoap3_workflows/details.html"
+
+WORKFLOWS_UI_JSTEMPLATE_RESULTS = "templates/scoap3_workflows_ui/results.html"
+
+WORKFLOWS_UI_REST_ENDPOINT = dict(
+    workflow_object_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_serializer'),
+    },
+    search_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_search_serializer'),
+    },
+    action_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_action_serializer'),
+    },
+    bulk_action_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_action_serializer'),
+    },
+    file_serializers={
+        'application/json': ('invenio_workflows_ui.serializers'
+                             ':json_file_serializer'),
+    },
+    list_route='/harvesting/',
+    item_route='/harvesting/<object_id>',
+    file_list_route='/harvesting/<object_id>/files',
+    file_item_route='/harvesting/<object_id>/files/<path:key>',
+    search_index='workflows',
+    default_media_type='application/json',
+    max_result_window=10000,
+)
+
+WORKFLOWS_UI_REST_SORT_OPTIONS = {
+    "workflows": {
+        "mostrecent": {
+            "title": 'Most recent',
+            "fields": ['_updated'],
+            "default_order": 'desc',
+            "order": 1,
+        },
+        "workflowid": {
+            "title": 'Workflow ID',
+            "fields": ['id'],
+            "default_order": 'desc',
+            "order": 2,
+        },
+    },
+}
+
+WORKFLOWS_UI_REST_DEFAULT_SORT = {
+    "workflows": {
+        "query": "mostrecent",
+        "noquery": "-workflowid"
+    }
+}
+

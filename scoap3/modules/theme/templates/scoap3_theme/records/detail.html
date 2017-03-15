@@ -24,6 +24,8 @@
 -#}
 {%- extends config.BASE_TEMPLATE %}
 
+{% from "scoap3_theme/macros.html" import orcid_badge with context %}
+
 {%- block page_body %}
 <div class="container">
   <div class="row">
@@ -35,8 +37,12 @@
       {%- block record_author %}
         <p class="record_authors">
           {%- for author in record.get('authors', []) %}
-            <i><a href="http://beta.scoap3.org/search?q=authors.full_name:'{{ author['full_name'] }}'">{{ author['full_name'] }}</a> ({{ author.get('affiliations', []) | join('; ', attribute='value') }}){% if not loop.last %}; {% endif %}
-            </i>
+              <i><a href="http://beta.scoap3.org/search?q=authors.full_name:'{{ author['full_name'] }}'">{{ author['full_name'] }}</a>
+              {%- if 'orcid' in author %}
+                {{ orcid_badge(author['orcid']) }}
+              {%- endif %}
+               ({{ author.get('affiliations', []) | join('; ', attribute='value') }}){% if not loop.last %}; {% endif %}
+              </i>
           {% endfor %}
         </p>
       {%- endblock %}
@@ -44,23 +50,24 @@
         {%- for summary in record.get('abstracts', []) %}
         <p class="summary">{{ summary['value']|safe }}</p>
         {% endfor %}
+        <pre>{{ record | pprint }}</pre>
       {%- endblock %}
     </div><!-- /.body -->
     {%- endblock %}
     {%- block record_extra_info %}
     <div class="extra-info col-sm-12 col-md-3">
       <dl>
-        <dt>Creation date</dt>
+        <dt>Added on:</dt>
         <dd>{{ record['earliest_date'] }}</dd>
-        <dt>Publisher</dt>
+        <dt>Publisher:</dt>
         <dd>{{ record['imprints'][0]['publisher'] }}</dd>
-        <dt>Published in</dt>
+        <dt>Published in:</dt>
         <dd>{{ record['publication_info'][0]['journal_title'] }} {{ record['publication_info'][0]['journal_issue'] }} ({{ record['publication_info'][0]['year'] }}) {{ record['publication_info'][0]['page_artid'] }}</dd>
-        <dt>DOI</dt>
-        <dd><a href="http://dx.doi.org/{{ record['dois'][0]['value'] }}">{{ record['dois'][0]['value'] }}</a></dd>
-        {% if record['report_numbers'][0]['value'] %}
-        <dt>arXiv</dt>
-        <dd><a href="http://arxiv.org/abs/{{ record['report_numbers'][0]['value'] }}">{{ record['report_numbers'][0]['value'] }}</a></dd>
+        <dt>DOI:</dt>
+        <dd><a href="http://dx.doi.org/{{ record['dois'][0]['value'] }}">http://dx.doi.org/{{ record['dois'][0]['value'] }}</a></dd>
+        {% if record['arxiv_eprints']%}
+        <dt>arXiv:</dt>
+        <dd><a href="http://arxiv.org/abs/{{ record['arxiv_eprints'][0]['value'] }}">{{ record['arxiv_eprints'][0]['value'] }}</a></dd>
         {% endif %}
       </dl>
       <dl>
@@ -70,7 +77,7 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li class="dropdown-header">Available files</li>
+            <li class="dropdown-header">Fulltext files</li>
             {%- for file in record.get('urls', []) %}
                 {%- if "pdfa" in file['value'] %}
                   <li><a href="{{ file['value'] }}">PDF (PDFA)</a></li>
@@ -83,7 +90,7 @@
             <li class="dropdown-header">Metadata export</li>
             <li><a href="#">MARC</a></li>
             <li><a href="#">MARC XML</a></li>
-            <li><a href="#">Doublin Core</a></li>
+            <li><a href="#">Dublin Core</a></li>
           </ul>
         </div>
       </dl>

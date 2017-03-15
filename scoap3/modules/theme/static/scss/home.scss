@@ -33,17 +33,15 @@ footer{
     padding-bottom: 0;
     background-size: cover;
     background-position: center;
-    height:15em;
+    height:10em;
 
     .row{
-        height: 15em;
         text-align: center;
         color: white;
 
         div{
-            padding-top:2em;
             background-color:$violet;
-            height: 15em;
+            height: 10em;
         }
     }
 }
@@ -56,5 +54,11 @@ footer{
     .badge{
         background-color: $light-gray;
         color: $dark-gray;
+    }
+}
+
+#invenio-search{
+    header{
+        padding-bottom: 20px;
     }
 }

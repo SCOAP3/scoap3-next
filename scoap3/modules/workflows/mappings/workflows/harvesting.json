@@ -1,0 +1,69 @@
+{
+    "mappings": {
+        "harvesting": {
+            "_all": {
+                "enabled": false
+            },
+            "date_detection": false,
+            "properties": {
+                "_workflow": {
+                    "properties": {
+                        "created": {
+                            "type": "date"
+                        },
+                        "data_type": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "id_parent": {
+                            "index": "not_analyzed",
+                            "type": "integer"
+                        },
+                        "id_user": {
+                            "index": "not_analyzed",
+                            "type": "integer"
+                        },
+                        "id_workflow": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "modified": {
+                            "type": "date"
+                        },
+                        "status": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "workflow_class": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "workflow_name": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        },
+                        "workflow_position": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "publication_info": {
+                    "properties": {
+                        "journal_title": {
+                            "index": "not_analyzed",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+
+                "earliest_date": {
+                    "format": "yyyy||yyyy-MM||yyyy-MM-dd",
+                    "type": "date"
+                }
+            }
+        }
+    }
+}
