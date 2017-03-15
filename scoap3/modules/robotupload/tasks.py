@@ -12,7 +12,7 @@ from invenio_workflows.proxies import workflow_object_class
 
 
 @shared_task(ignore_results=True)
-def submit_results(results_data=None, errors=[]):
+def submit_results(results_data, errors=[]):
     """Receive the submission of the results of a crawl job.
     Then it spawns the appropiate workflow according to whichever workflow
     the crawl job specifies.

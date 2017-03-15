@@ -22,6 +22,9 @@ blueprint = Blueprint(
 UPLOAD_FOLDER = '/tmp/robotupload'
 ALLOWED_EXTENSIONS = ['xml']
 API_ENDPOINT_DEFAULT = "scoap3.modules.robotupload.tasks.submit_results"
+ALLOWED_IPS = {
+    '127.0.0.1':[]
+}
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -29,6 +32,8 @@ def allowed_file(filename):
 
 @blueprint.route('/robotupload', methods=['POST'])
 def robotupload():
+    if request.environ['REMOTE_ADDR'] not in ALLOWED_IPS:
+        return 'Unauthorised'
     if 'file' not in request.files:
         return 'No file attached'
     file = request.files['file']
@@ -71,7 +76,7 @@ def robotupload():
     ))
     celery.send_task(
         API_ENDPOINT_DEFAULT,
-        errors=[]
+        kwargs={'results_data':obj}
     )
 
     return "OK"
