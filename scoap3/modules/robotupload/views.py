@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 import os.path
 import os
 from werkzeug.utils import secure_filename
@@ -10,38 +10,49 @@ from scoap3.dojson.hep.model import hep
 from dojson.contrib.marc21.utils import create_record
 from flask import url_for
 from celery import Celery
+from .import InvalidUsage
+from . import config
 
 blueprint = Blueprint(
     'scoap3_robotupload',
     __name__,
-    url_prefix='/batchupload',
+    url_prefix='/batchuploader',
     template_folder='templates',
     static_folder='static',
 )
 
 UPLOAD_FOLDER = '/tmp/robotupload'
-ALLOWED_EXTENSIONS = ['xml']
 API_ENDPOINT_DEFAULT = "scoap3.modules.robotupload.tasks.submit_results"
-ALLOWED_IPS = {
-    '127.0.0.1':[]
-}
+
+
+@blueprint.InvalidUsage
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in config.ROBOTUPLOAD_ALLOWED_EXTENSIONS
 
 @blueprint.route('/robotupload', methods=['POST'])
 def robotupload():
-    if request.environ['REMOTE_ADDR'] not in ALLOWED_IPS:
-        return 'Unauthorised'
+    mode = None
+    nonce = None
+    callback_url = None
+
+    if request.environ['REMOTE_ADDR'] not in config.ROBOTUPLOAD_ALLOWED_USERS:
+        raise InvalidUsage("Sorry, client IP %s cannot use the service." % request.environ['REMOTE_ADDR'], status_code=403)
     if 'file' not in request.files:
-        return 'No file attached'
+        raise InvalidUsage("Please specify file body to input.")
     file = request.files['file']
     if file.filename == '':
-        return 'No file attached'
+        raise InvalidUsage("Please specify file body to input.")
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(UPLOAD_FOLDER, filename))
+    else:
+        raise InvalidUsage("File does not have an accepted file format.", status_code=415)
 
     for key in request.form:
         if key == 'mode':
@@ -51,10 +62,20 @@ def robotupload():
         if key == 'callback_url':
             callback_url = request.form[key]
 
+    if not mode:
+        raise InvalidUsage("Please specify upload mode to use.")
+    if mode == '-teapot':
+        raise InvalidUsage("I'm a teapot.", status_code=418, payload="The resulting entity may be short and stout.")
+    if mode not in config.ROBOTUPLOAD_UPLOAD_MODES:
+        raise InvalidUsage("Invalid upload mode.")
+
     import json
     import codecs
     with open(os.path.join(UPLOAD_FOLDER, filename)) as newfile:
-        obj = hep.do(create_record(newfile.read()))
+        try:
+            obj = hep.do(create_record(newfile.read()))
+        except:
+            raise InvalidUsage("MARCXML is not valid.")
         obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
         del obj['self']
         print(json.dumps(obj,ensure_ascii=False))
