@@ -427,4 +427,3 @@ WORKFLOWS_UI_REST_DEFAULT_SORT = {
         "noquery": "-workflowid"
     }
 }
-
