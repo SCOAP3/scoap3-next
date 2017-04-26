@@ -78,6 +78,12 @@ def robotupload():
             raise InvalidUsage("MARCXML is not valid.")
         obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
         del obj['self']
+
+        # TODO - change this ugly mess
+        tmp_allowed_journals = config.ROBOTUPLOAD_ALLOWED_USERS[request.environ['REMOTE_ADDR']]
+        if obj['metadata']['publication_info'][0]['journal_title'] not in tmp_allowed_journals or 'ALL' not in tmp_allowed_journals:
+            raise InvalidUsage("Cannot submit such a file from this IP. (Wrong journal.)")
+
         print(json.dumps(obj,ensure_ascii=False))
         json_filename = '.'.join([os.path.splitext(filename)[0], 'jl'])
         json_uri = os.path.join(UPLOAD_FOLDER, json_filename)
