@@ -427,3 +427,4 @@ WORKFLOWS_UI_REST_DEFAULT_SORT = {
         "noquery": "-workflowid"
     }
 }
+WORKFLOWS_STORAGEDIR = '/tmp/workflows-harvesting'

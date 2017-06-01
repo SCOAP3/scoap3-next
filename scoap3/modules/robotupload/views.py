@@ -10,7 +10,7 @@ from scoap3.dojson.hep.model import hep
 from dojson.contrib.marc21.utils import create_record
 from flask import url_for
 from celery import Celery
-from .import InvalidUsage
+from errorhandler import InvalidUsage
 from . import config
 
 blueprint = Blueprint(
