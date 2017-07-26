@@ -10,7 +10,7 @@ from scoap3.dojson.hep.model import hep
 from dojson.contrib.marc21.utils import create_record
 from flask import url_for
 from celery import Celery
-from .import InvalidUsage
+from .errorhandler import InvalidUsage
 from . import config
 
 blueprint = Blueprint(
@@ -25,7 +25,7 @@ UPLOAD_FOLDER = '/tmp/robotupload'
 API_ENDPOINT_DEFAULT = "scoap3.modules.robotupload.tasks.submit_results"
 
 
-@blueprint.InvalidUsage
+@blueprint.errorhandler(InvalidUsage)
 def handle_invalid_usage(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
