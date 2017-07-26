@@ -439,3 +439,5 @@ WORKFLOWS_UI_REST_DEFAULT_SORT = {
     }
 }
 WORKFLOWS_STORAGEDIR = '/tmp/workflows-harvesting'
+
+CRAWLER_DATA_TYPE = 'harvesting'
