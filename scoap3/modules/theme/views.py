@@ -39,3 +39,12 @@ blueprint = Blueprint(
 @blueprint.route('/ping')
 def ping():
     return 'OK'
+
+@blueprint.app_template_filter()
+def is_list(value):
+    """Checks if an object is a list."""
+    return isinstance(value, list) or None
+
+@blueprint.app_template_filter()
+def format_author_name(name):
+    return ' '.join(reversed(name.split(',')))

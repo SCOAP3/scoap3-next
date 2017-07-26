@@ -10,6 +10,7 @@
           ; et al
           </span>
         </i>
+        <small class="search-record-list-date"> - {{ record.metadata.earliest_date }}</small>
     </p>
     <p ng-repeat='abstract in record.metadata.abstracts'>
       {{ abstract.value | limitTo:600}}
