@@ -32,18 +32,11 @@
     {%- block record_body %}
     <div class="body col-sm-12 col-md-9">
       {%- block record_title %}
-        <h4 class="title">{{ record.get('titles', {})[0].get('title', _('No title'))|safe }}</h4>
+        <h3 class="title">{{ record.get('titles', {})[0].get('title', _('No title'))|safe }}</h3>
       {%- endblock %}
       {%- block record_author %}
         <p class="record_authors">
-          {%- for author in record.get('authors', []) %}
-              <i><a href="http://beta.scoap3.org/search?q=authors.full_name:'{{ author['full_name'] }}'">{{ author['full_name'] }}</a>
-              {%- if 'orcid' in author %}
-                {{ orcid_badge(author['orcid']) }}
-              {%- endif %}
-               ({{ author.get('affiliations', []) | join('; ', attribute='value') }}){% if not loop.last %}; {% endif %}
-              </i>
-          {% endfor %}
+          {{ render_record_authors(record, is_brief=false, number_of_displayed_authors=5) }}
         </p>
       {%- endblock %}
       {%- block record_summary %}

@@ -73,20 +73,31 @@ RECORDS_UI_ENDPOINTS = dict(
     ),
 )
 RECORDS_REST_SORT_OPTIONS = {
-    "recid": {
-        "mostrecent": {
+    "records-record": {
+        "earliest_date": {
             "title": 'Most recent',
             "fields": ['earliest_date'],
-            "default_order": 'desc',  # Used for invenio-search-js config
+            "default_order": 'desc',
             "order": 1,
+        },
+        "control_number": {
+            "title": 'By record identifier',
+            "fields": ['control_number'],
+            "default_order": 'asc',  # Used for invenio-search-js config
+            "order": 3,
         },
         "bestmatch": {
             "title": 'Best match',
             "fields": ['_score'],
             "default_order": 'desc',
-            "order": 1,
+            "order": 2,
         },
     },
+}
+
+#: Default sort for records REST API.
+RECORDS_REST_DEFAULT_SORT = {
+    "records-record":{'query':'bestmetch', 'noquery':'mostrecent'},
 }
 
 RECORDS_REST_FACETS = {
