@@ -47,7 +47,6 @@
       {%- endblock %}
     </div><!-- /.body -->
     {%- endblock %}
-    {%- block record_extra_info %}
     <div class="extra-info col-sm-12 col-md-3">
       <dl>
         <dt>Added on:</dt>
@@ -86,6 +85,10 @@
             <li><a href="#">Dublin Core</a></li>
           </ul>
         </div>
+      </dl>
+      <dl><!-- copyright & license -->
+        <dd>{{ record['copyright'][0]['statement'] }}</dd>
+        <dd><a href="{{ record['license'][0]['url'] }}">{{ record['license'][0]['license'] }}</a></dd>
       </dl>
     </div><!-- /.extra-info -->
     {%- endblock %}
