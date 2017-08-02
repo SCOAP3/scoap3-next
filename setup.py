@@ -59,7 +59,7 @@ setup(
         ],
         'invenio_base.blueprints': [
             'scoap3_search = scoap3.modules.search.views:blueprint',
-            'scoap3_theme = scoap3.modules.theme:SCOAP3Theme',
+            'scoap3_theme = scoap3.modules.theme.views:blueprint',
             'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint',
             'scoap3_workflows = scoap3.modules.workflows.views:blueprint',
             'scoap3_robotupload = scoap3.modules.robotupload.views:blueprint',
