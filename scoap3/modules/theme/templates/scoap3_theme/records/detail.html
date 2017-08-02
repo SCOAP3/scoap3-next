@@ -43,7 +43,6 @@
         {%- for summary in record.get('abstracts', []) %}
         <p class="summary">{{ summary['value']|safe }}</p>
         {% endfor %}
-        <pre>{{ record | pprint }}</pre>
       {%- endblock %}
     </div><!-- /.body -->
     {%- endblock %}
