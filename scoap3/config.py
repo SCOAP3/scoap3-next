@@ -3,7 +3,7 @@
 """scoap3 base Invenio configuration."""
 
 from __future__ import absolute_import, print_function
-from invenio_records_rest.facets import terms_filter
+from invenio_records_rest.facets import terms_filter, range_filter
 
 
 # Identity function for string extraction
@@ -104,7 +104,12 @@ RECORDS_REST_FACETS = {
     "records-record": {
         "filters": {
             "journal": terms_filter("publication_info.journal_title"),
-            "country": terms_filter("authors.affiliations.country")
+            "country": terms_filter("authors.affiliations.country"),
+            "collaboration": terms_filter("facet_collaboration"),
+            "earliest_date": range_filter(
+                'earliest_date',
+                format='yyyy',
+                end_date_math='/y')
         },
         "aggs": {
             "journal":{
@@ -120,10 +125,17 @@ RECORDS_REST_FACETS = {
                     "order": {"_term": "asc"}
                 }
             },
+            "collaboration": {
+                "terms": {
+                    "field": "facet_collaboration",
+                    "size": 20
+                }
+            },
             "earliest_date": {
                 "date_histogram": {
                     "field": "earliest_date",
                     "interval": "year",
+                    "format": "yyy",
                     "min_doc_count": 1,
                     "order": {"_count": "desc"}
                 }
