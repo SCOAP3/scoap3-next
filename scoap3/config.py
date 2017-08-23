@@ -453,3 +453,4 @@ WORKFLOWS_UI_REST_DEFAULT_SORT = {
 WORKFLOWS_STORAGEDIR = '/tmp/workflows-harvesting'
 
 CRAWLER_DATA_TYPE = 'harvesting'
+SCRAPY_FEED_URI = '/eos/project/s/scoap3repo/scrapy_feed.json'
