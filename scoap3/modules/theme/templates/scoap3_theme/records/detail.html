@@ -44,6 +44,9 @@
         <p class="summary">{{ summary['value']|safe }}</p>
         {% endfor %}
       {%- endblock %}
+      <div>
+          <pre>{{ record | pprint }}</pre>
+      </div>
     </div><!-- /.body -->
     {%- endblock %}
     {%- block record_extra_info %}
