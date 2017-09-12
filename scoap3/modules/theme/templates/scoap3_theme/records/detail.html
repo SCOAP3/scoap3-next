@@ -24,7 +24,7 @@
 -#}
 {%- extends config.BASE_TEMPLATE %}
 
-{% from "scoap3_theme/macros.html" import orcid_badge with context %}
+{% from "scoap3_theme/macros.html" import orcid_badge, render_record_authors with context %}
 
 {%- block page_body %}
 <div class="container">
@@ -43,8 +43,10 @@
         {%- for summary in record.get('abstracts', []) %}
         <p class="summary">{{ summary['value']|safe }}</p>
         {% endfor %}
-        <pre>{{ record | pprint }}</pre>
       {%- endblock %}
+      <div>
+          <pre>{{ record | pprint }}</pre>
+      </div>
     </div><!-- /.body -->
     {%- endblock %}
     {%- block record_extra_info %}
@@ -86,6 +88,10 @@
             <li><a href="#">Dublin Core</a></li>
           </ul>
         </div>
+      </dl>
+      <dl><!-- copyright & license -->
+        <dd>{{ record['copyright'][0]['statement'] }}</dd>
+        <dd><a href="{{ record['license'][0]['url'] }}">{{ record['license'][0]['license'] }}</a></dd>
       </dl>
     </div><!-- /.extra-info -->
     {%- endblock %}

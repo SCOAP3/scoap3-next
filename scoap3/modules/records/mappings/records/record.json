@@ -2,17 +2,28 @@
     "mappings": {
         "record-v1.0.0": {
             "_all": {
-                "enabled": false
+                "enabled": true
             },
             "date_detection": false,
             "properties": {
                 "authors":{
                     "properties":{
+                        "full_name":{
+                            "index": "analyzed",
+                            "type": "string",
+                            "copy_to": "author"
+                        },
                         "affiliations":{
                             "properties":{
                                 "country":{
                                     "index": "not_analyzed",
-                                    "type": "string"
+                                    "type": "string",
+                                    "copy_to": "country"
+                                },
+                                "value":{
+                                    "index": "analyzed",
+                                    "type": "string",
+                                    "copy_to": "affiliation"
                                 }
                             },
                             "type": "object"
@@ -29,9 +40,58 @@
                     },
                     "type": "object"
                 },
+                "titles":{
+                    "properties":{
+                        "title":{
+                            "index": "analyzed",
+                            "type": "string",
+                            "copy_to": "title"
+                        }
+                    },
+                    "type": "object"
+                },
+                "dois":{
+                    "properties":{
+                        "value":{
+                            "index": "analyzed",
+                            "type": "string",
+                            "copy_to": "doi"
+                        }
+                    },
+                    "type": "object"
+                },
                 "earliest_date": {
                     "format": "yyyy||yyyy-MM||yyyy-MM-dd",
+                    "type": "date",
+                    "copy_to": "date"
+                },
+                "facet_collaboration": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "country": {
+                    "index": "not_analyzed",
+                    "type": "string"
+                },
+                "affiliation": {
+                    "index": "analyzed",
+                    "type": "string"
+                },
+                "title": {
+                    "index": "analyzed",
+                    "type": "string"
+                },
+                "author": {
+                    "index": "analyzed",
+                    "type": "string"
+                },
+                "date": {
+                    "index": "analyzed",
                     "type": "date"
+                },
+                "doi":{
+                    "index": "analyzed",
+                    "type": "string"
                 }
             }
         }

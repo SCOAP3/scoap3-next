@@ -185,7 +185,7 @@ def report_numbers(self, key, value):
             report_number.append(get_value(element))
 
     self['arxiv_eprints'] = dedupe_list_of_dicts(arxiv_eprints)
-    return dedupe_list_of_dicts(report_number)
+    return dedupe_list_of_dicts(report_number[0:1])
 
 
 @hep2marc.over('037', '(arxiv_eprints|report_numbers)')

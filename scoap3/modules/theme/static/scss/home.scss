@@ -63,8 +63,12 @@ footer{
     }
 }
 
+.navbar-default {
+    background-color: #f8f8f8;
+    border-color: none;
+}
 
-##TODO - move to search.scss
+//TODO - move to search.scss
 .search-record-list-date {
     color: #ccc;
 }
