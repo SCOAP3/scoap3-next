@@ -6,6 +6,7 @@ h4{
 
 .extra-info{
     dt{
+        padding-top:20px;
         font-weight: normal;
         font-size: 0.8em;
         color:$dark-gray;
@@ -26,4 +27,13 @@ h4{
     background-image: url('/static/img/orcid_icon_24.png');
     background-size: 16px 16px;
     text-decoration: none;
+}
+
+p {
+    .summary{
+        padding-top: 20px;
+    }
+    .record_authors {
+        padding-top: 10px;
+    }
 }
