@@ -97,7 +97,7 @@ RECORDS_REST_SORT_OPTIONS = {
 
 #: Default sort for records REST API.
 RECORDS_REST_DEFAULT_SORT = {
-    "records-record":{'query':'bestmetch', 'noquery':'mostrecent'},
+    "records-record":{'query':'earliest_date', 'noquery':'earliest_date'},
 }
 
 RECORDS_REST_FACETS = {
@@ -135,9 +135,8 @@ RECORDS_REST_FACETS = {
                 "date_histogram": {
                     "field": "earliest_date",
                     "interval": "year",
-                    "format": "yyy",
-                    "min_doc_count": 1,
-                    "order": {"_count": "desc"}
+                    "format": "yyyy",
+                    "min_doc_count": 1
                 }
             }
         }
