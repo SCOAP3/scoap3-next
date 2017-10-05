@@ -65,6 +65,13 @@
         <dd><a href="http://arxiv.org/abs/{{ record['arxiv_eprints'][0]['value'] }}">{{ record['arxiv_eprints'][0]['value'] }}</a></dd>
         {% endif %}
       </dl>
+      <dl><!-- copyright & license -->
+        <dt>Copyrights:</dt>
+        <dd>{{ record['copyright'][0]['statement'] }}</dd>
+        <dt>Licence:</dt>
+        <dd><a href="{{ record['license'][0]['url'] }}">{{ record['license'][0]['license'] }}</a></dd>
+      </dl>
+      <hr>
       <dl>
         <div class="dropdown">
           <button class="btn btn-scoap3-download dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -88,10 +95,6 @@
             <li><a href="#">Dublin Core</a></li>
           </ul>
         </div>
-      </dl>
-      <dl><!-- copyright & license -->
-        <dd>{{ record['copyright'][0]['statement'] }}</dd>
-        <dd><a href="{{ record['license'][0]['url'] }}">{{ record['license'][0]['license'] }}</a></dd>
       </dl>
     </div><!-- /.extra-info -->
     {%- endblock %}

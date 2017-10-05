@@ -48,7 +48,10 @@ def set_schema(obj, eng):
 
 def record_not_published_before_2014(obj, eng):
     """Make sure record was published in 2014 and onwards."""
-    datetime_object = datetime.strptime(obj.data['imprints'][0]['date'], '%Y-%m-%d')
+    try:
+        datetime_object = datetime.strptime(obj.data['imprints'][0]['date'], '%Y-%m-%d')
+    except:
+        datetime_object = datetime.strptime(obj.data['imprints'][0]['date'], '%Y-%m')
     if not datetime_object.year >= 2014:
         eng.halt("Record published before 2014")
     return True
