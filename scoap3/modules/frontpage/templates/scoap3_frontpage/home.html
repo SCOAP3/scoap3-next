@@ -78,37 +78,30 @@
   </div>
   <div class="container collections-list">
       <div class="row">
-        <div class="col-md-4">
-          <h3 class="text-left">By journal:</h3>
-          <ul class="list-unstyled">
-          {%- for collection in collections %}
-            <li>
-              <a href="{{ url_for('invenio_search_ui.search', q='_collections:"'+collection.name+'"') }}">
-                {{ collection.name }}
-                <span class="badge">{{ collection.count }}</span>
-              </a>
-            </li>
-          {%- endfor %}
+        <div class="col-md-12">
+          <ul class="nav nav-tabs">
+            <li class="active"><a  href="#1" data-toggle="tab">Journals</a></li>
+            <li><a href="#2" data-toggle="tab">SCOAP3 partner countries</a></li>
           </ul>
-        </div>
-        <div class="col-md-4">
-          <h3 class="text-left">By publisher:</h3>
-          <ul class="list-unstyled">
-          {%- for publisher in publishers %}
-            <li>
-              <a href="{{ url_for('invenio_search_ui.search', q='imprints.publisher:"'+publisher.name+'"') }}">
-                {{ publisher.name }}
-                <span class="badge">{{ publisher.count }}</span>
-              </a>
-            </li>
-          {%- endfor %}
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h3 class="text-left">Tools</h3>
-          <ul class="list-unstyled">
-            <li><a href="#">Compliance</a></li>
-          </ul>
+
+          <div class="tab-content ">
+            <div class="tab-pane active" id="1">
+              <h3 class="text-left">Browse by journal:</h3>
+              <ul class="list-unstyled">
+              {%- for collection in collections %}
+                <li>
+                  <a href="{{ url_for('invenio_search_ui.search', q='_collections:"'+collection.name+'"') }}">
+                    {{ collection.name }}
+                    <span class="badge">{{ collection.count }}</span>
+                  </a>
+                </li>
+              {%- endfor %}
+              </ul>
+            </div>
+            <div class="tab-pane" id="2">
+              <h3>Notice the gap between the content and tab after applying a background color</h3>
+            </div>
+          </div>
         </div>
       </div>
   </div>
