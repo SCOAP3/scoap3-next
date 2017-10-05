@@ -34,6 +34,7 @@ ELASTICSEARCH_HOST = "localhost"
 SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
 SEARCH_UI_JSTEMPLATE_FACETS = 'templates/scoap3_search/facets.html'
+SEARCH_UI_SEARCH_INDEX = "records-record"
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
 
@@ -80,12 +81,6 @@ RECORDS_REST_SORT_OPTIONS = {
             "default_order": 'desc',
             "order": 1,
         },
-        "control_number": {
-            "title": 'By record identifier',
-            "fields": ['control_number'],
-            "default_order": 'asc',  # Used for invenio-search-js config
-            "order": 3,
-        },
         "bestmatch": {
             "title": 'Best match',
             "fields": ['_score'],
@@ -97,7 +92,7 @@ RECORDS_REST_SORT_OPTIONS = {
 
 #: Default sort for records REST API.
 RECORDS_REST_DEFAULT_SORT = {
-    "records-record":{'query':'earliest_date', 'noquery':'earliest_date'},
+    "records-record":{'query':'bestmatch', 'noquery':'earliest_date'},
 }
 
 RECORDS_REST_FACETS = {
