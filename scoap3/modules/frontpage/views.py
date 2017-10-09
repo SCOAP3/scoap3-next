@@ -41,23 +41,35 @@ def index():
     for collection in collections:
         collection.count = current_search_client.count(q='_collections:"%s"' % (collection.name,))['count']
 
-    # TODO show only for administrators
-    publishers = [{'name':'Elsevier'},
-                  {'name':'Jagiellonian University'},
-                  {'name':'Hindawi'},
-                  {'name':u'Springer/Società Italiana di Fisica'},
-                  {'name':'Springer/SISSA'},
-                  {'name':'Institute of Physics Publishing/SISSA'},
-                  {'name':'Institute of Physics Publishing/Deutsche Physikalische Gesellschaft'},
-                  {'name':'Institute of Physics Publishing/Chinese Academy of Sciences'},
-                  {'name':'Oxford University Press/Physical Society of Japan'}]
-    for publisher in publishers:
-        publisher['count'] = current_search_client.count(q=u'imprints.publisher:"{0}"'.format(publisher['name']))['count']
+    # # TODO show only for administrators
+    # publishers = [{'name':'Elsevier'},
+    #               {'name':'Jagiellonian University'},
+    #               {'name':'Hindawi'},
+    #               {'name':u'Springer/Società Italiana di Fisica'},
+    #               {'name':'Springer/SISSA'},
+    #               {'name':'Institute of Physics Publishing/SISSA'},
+    #               {'name':'Institute of Physics Publishing/Deutsche Physikalische Gesellschaft'},
+    #               {'name':'Institute of Physics Publishing/Chinese Academy of Sciences'},
+    #               {'name':'Oxford University Press/Physical Society of Japan'}]
+    # for publisher in publishers:
+    #     publisher['count'] = current_search_client.count(q=u'imprints.publisher:"{0}"'.format(publisher['name']))['count']
+    countries = {"Australia","Austria", "Belgium", "Canada", "China", "CERN",
+                 "Czech Republic", "Denmark", "Finland", "France", "Germany",
+                 "Greece", "Hong-Kong", "Hungary", "Iceland", "Israel",
+                 "Italy", "Japan", "JINR", "South Korea", "Mexico",
+                 "Netherlands", "Norway", "Poland", "Portugal",
+                 "Slovak Republic", "South Africa", "Spain", "Sweden",
+                 "Switzerland", "Taiwan", "Turkey", "United Kingdom",
+                 "United States"}
+
+    for country in countries:
+        country.count = current_search_client.count(q='_collections:"%s"' % (collection.name,))['count']
 
     return render_template(
         'scoap3_frontpage/home.html',
         title='SCOAP3 Repository',
         articles_count=count['count'],
         collections=sorted(collections, key=lambda x: x.name),
-        publishers=sorted(publishers, key=lambda x: x['name'])
+        countries=
+        #publishers=sorted(publishers, key=lambda x: x['name'])
     )

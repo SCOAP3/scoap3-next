@@ -99,7 +99,17 @@
               </ul>
             </div>
             <div class="tab-pane" id="2">
-              <h3>Notice the gap between the content and tab after applying a background color</h3>
+              <h3>Participation countries</h3>
+            <ul class="list-unstyled row">
+              {%- for country in countries|dictsort %}
+                <li class="col-md-4">
+                  <a href="{{ url_for('invenio_search_ui.search', q='country:"'+country[0]+'"') }}">
+                    {{ country[0] }}
+                    <span class="badge">{{ country[1]['count'] }}</span>
+                  </a>
+                </li>
+              {%- endfor %}
+            </ul>
             </div>
           </div>
         </div>
