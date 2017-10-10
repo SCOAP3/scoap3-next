@@ -99,17 +99,21 @@
               </ul>
             </div>
             <div class="tab-pane" id="2">
-              <h3>Participation countries</h3>
-            <ul class="list-unstyled row">
+              <h3>Participating countries:</h3>
               {%- for country in countries|dictsort %}
-                <li class="col-md-4">
-                  <a href="{{ url_for('invenio_search_ui.search', q='country:"'+country[0]+'"') }}">
-                    {{ country[0] }}
+                {% if loop.index is equalto 1 or loop.index is equalto 13 or loop.index is equalto 25%}
+                  <ul class="col-md-4 list-unstyled">
+                {% endif %}
+                  <li>
+                    <a style="display:inline-block; width:100px;" href="{{ url_for('invenio_search_ui.search', q='country:"'+country[0]+'"') }}">
+                      {{ country[0] }}
+                    </a>
                     <span class="badge">{{ country[1]['count'] }}</span>
-                  </a>
-                </li>
+                  </li>
+                {% if loop.index is equalto 12 or loop.index is equalto 24 or loop.index is equalto 34%}
+                  </ul>
+                {% endif %}
               {%- endfor %}
-            </ul>
             </div>
           </div>
         </div>
