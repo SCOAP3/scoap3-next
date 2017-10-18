@@ -36,7 +36,8 @@ search_js = NpmBundle(
     filters='jsmin',
     output="gen/scoap3.search.%(version)s.js",
     npm={
-        'invenio-search-js': '~0.2.0',
+        "invenio-search-js": "~0.2.0",
+        "d3": "~3.5.16",
     }
 )
 
@@ -61,6 +62,6 @@ js = NpmBundle(
         "flightjs": "~1.5.0",
         "angular": "~1.4.8",
         "readmore-js": "~2.1.0",
-        'mathjax': '~2.5'
+        "mathjax": "~2.5",
     }
 )
