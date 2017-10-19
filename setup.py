@@ -67,7 +67,6 @@ setup(
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
             'scoap3_search_js = scoap3.modules.theme.bundles:search_js',
-            'invenio_search_ui_search_js = scoap3.modules.search.bundles:js',
             'scoap3_js = scoap3.modules.theme.bundles:js',
         ],
         'dojson.cli.rule': [
