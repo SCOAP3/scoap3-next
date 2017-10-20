@@ -117,7 +117,7 @@ RECORDS_REST_FACETS = {
             "country":{
                 "terms": {
                     "field": "authors.affiliations.country",
-                    "size": 20,
+                    "size": 150,
                     "order": {"_term": "asc"}
                 }
             },
