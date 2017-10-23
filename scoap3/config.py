@@ -35,6 +35,7 @@ SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
 SEARCH_UI_JSTEMPLATE_FACETS = 'templates/scoap3_search/facets.html'
 SEARCH_UI_SEARCH_INDEX = "records-record"
+SEARCH_UI_JSTEMPLATE_RANGE_FACET = 'templates/scoap3_search/range.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
 
@@ -116,7 +117,7 @@ RECORDS_REST_FACETS = {
             "country":{
                 "terms": {
                     "field": "authors.affiliations.country",
-                    "size": 20,
+                    "size": 150,
                     "order": {"_term": "asc"}
                 }
             },
