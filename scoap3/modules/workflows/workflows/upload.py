@@ -94,8 +94,8 @@ def check_arxiv_category(obj, eng):
 def add_nations(obj, eng):
     """Add nations extracted from affiliations"""
     from scoap3.dojson.utils.nations import find_nation
-    for author_index, author in enumerate(obj.data['authors']):
-        for affiliation_index, affiliation in enumerate(author['affiliations']):
+    for author_index, author in enumerate(obj.data.get('authors', [])):
+        for affiliation_index, affiliation in enumerate(author.get('affiliations',[])):
             obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(affiliation['value'])
 
 def emit_record_signals(obj, eng):
@@ -137,7 +137,29 @@ def store_record(obj, eng):
     indexer.index_by_id(pid.object_uuid)
 
 def update_record(obj, eng):
-    pass
+    from invenio_db import db
+    from invenio_records import Record
+    from invenio_pidstore.models import PersistentIdentifier
+    from invenio_search import current_search_client as es
+
+    doi = obj.data.get('dois')[0]
+    doi = doi['value']
+
+    query = {'query': {'bool': {'must': [{'match': {'metadata.dois.value': doi}}],}}}
+    search_result = es.search(index='records-record', doc_type='record-v1.0.0', body=query)
+
+    recid = search_result['hits']['hits'][0]['source']['control_number']
+
+    obj = PersistentIdentifier.get('recid', recid)
+    existing_record = Record.api.get_record(obj.object_uuid)
+
+    existing_record.clear()
+    existing_record.update(obj)
+    existing_record.commit()
+
+    db.session.commit()
+    indexer = RecordIndexer()
+    indexer.index_by_id(pid.object_uuid)
 
 def add_to_before_2014_collection(obj, eng):
     obj.data['collections'].append({"primary":"before_2014"})
