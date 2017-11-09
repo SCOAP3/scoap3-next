@@ -53,7 +53,7 @@
                 "dois":{
                     "properties":{
                         "value":{
-                            "index": "analyzed",
+                            "index": "not_analyzed",
                             "type": "string",
                             "copy_to": "doi"
                         }
