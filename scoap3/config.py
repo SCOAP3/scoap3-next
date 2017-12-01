@@ -445,6 +445,37 @@ WORKFLOWS_UI_REST_DEFAULT_SORT = {
         "noquery": "-workflowid"
     }
 }
+
+WORKFLOWS_UI_REST_FACETS = {
+    "workflows": {
+        "filters": {
+            "status": terms_filter('_workflow.status'),
+            "publisher": terms_filter('metadata.publication_info.journal_title'),
+            "workflow_name": terms_filter('_workflow.workflow_name'),
+        },
+        "aggs": {
+            "status": {
+                "terms": {
+                    "field": "_workflow.status",
+                    "size": 20
+                }
+            },
+            "publisher": {
+                "terms": {
+                    "field": "metadata.publication_info.journal_title",
+                    "size": 20
+                }
+            },
+            "workflow_name": {
+                "terms": {
+                    "field": "_workflow.workflow_name",
+                    "size": 20
+                }
+            },
+        }
+    }
+}
+
 WORKFLOWS_STORAGEDIR = '/tmp/workflows-harvesting'
 
 CRAWLER_DATA_TYPE = 'harvesting'

@@ -49,6 +49,10 @@
                     },
                     "type": "object"
                 },
+                "_updated":{
+                    "format": "date-time",
+                    "type": "date"
+                },
                 "publication_info": {
                     "properties": {
                         "journal_title": {
@@ -58,7 +62,6 @@
                     },
                     "type": "object"
                 },
-
                 "earliest_date": {
                     "format": "yyyy||yyyy-MM||yyyy-MM-dd",
                     "type": "date"
