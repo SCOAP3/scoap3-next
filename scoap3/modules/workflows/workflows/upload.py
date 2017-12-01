@@ -141,18 +141,24 @@ def update_record(obj, eng):
     from invenio_records import Record
     from invenio_pidstore.models import PersistentIdentifier
     from invenio_search import current_search_client as es
+    from invenio_indexer.api import RecordIndexer
 
     doi = obj.data.get('dois')[0]
     doi = doi['value']
 
-    query = {'query': {'bool': {'must': [{'match': {'metadata.dois.value': doi}}],}}}
+    query = {'query': {'bool': {'must': [{'match': {'dois.value': doi}}],}}}
     search_result = es.search(index='records-record', doc_type='record-v1.0.0', body=query)
 
-    recid = search_result['hits']['hits'][0]['source']['control_number']
+    recid = search_result['hits']['hits'][0]['_source']['control_number']
 
-    obj = PersistentIdentifier.get('recid', recid)
-    existing_record = Record.api.get_record(obj.object_uuid)
+    obj.extra_data['recid'] = recid
 
+    pid = PersistentIdentifier.get('recid', recid)
+    existing_record = Record.get_record(pid.object_uuid)
+
+    obj.log.info('Updating existing record with recid: {}'.format(recid))
+
+    obj.data['control_number'] = recid
     existing_record.clear()
     existing_record.update(obj)
     existing_record.commit()
