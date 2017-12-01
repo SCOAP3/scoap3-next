@@ -53,7 +53,7 @@
     <div class="extra-info col-sm-12 col-md-3">
       <dl>
         <dt>Added on:</dt>
-        <dd>{{ record['earliest_date'] }}</dd>
+        <dd>{{ record['acquisition_source']['date'] }}</dd>
         <dt>Publisher:</dt>
         <dd>{{ record['imprints'][0]['publisher'] }}</dd>
         <dt>Published in:</dt>
@@ -66,9 +66,17 @@
         {% endif %}
         <!-- copyright & license -->
         <dt>Copyrights:</dt>
-        <dd>{{ record['copyright'][0]['statement'] }}</dd>
+        {%- if "copyright" record %}
+          <dd>{{ record['copyright'][0]['statement'] }}</dd>
+        {%- else %}
+          <dd>Not available yet</dd>
+        {% endif %}
         <dt>Licence:</dt>
-        <dd><a href="{{ record['license'][0]['url'] }}">{{ record['license'][0]['license'] }}</a></dd>
+        {%- if "copyright" record %}
+          <dd><a href="{{ record['license'][0]['url'] }}">{{ record['license'][0]['license'] }}</a></dd>
+        {%- else %}
+          <dd>Not available yet</dd>
+        {% endif %}
       </dl>
       <hr>
       <dl>
