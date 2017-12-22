@@ -87,7 +87,7 @@ setup(
             'workflows = scoap3.modules.workflows.mappings'
         ],
         'invenio_workflows.workflows': [
-            'upload = scoap3.modules.workflows.workflows:Upload',
+            'articles_upload = scoap3.modules.workflows.workflows:ArticlesUpload',
         ],
         'invenio_celery.tasks': [
             'robotupload = scoap3.modules.robotupload.tasks',
