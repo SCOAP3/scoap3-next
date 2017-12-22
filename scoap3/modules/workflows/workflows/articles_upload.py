@@ -42,9 +42,6 @@ from invenio_pidstore.errors import PIDAlreadyExists
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from jsonschema.exceptions import ValidationError
 
-
-
-
 def set_schema(obj, eng):
     """Make sure schema is set properly and resolve it."""
     obj.data['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
@@ -118,22 +115,14 @@ def emit_record_signals(obj, eng):
 
 def is_record_in_db(obj, eng):
     """Checks if record is in database"""
-    return True
-    #doi_count = es.count(q='dois.value:"%s"' % (obj.data['dois'][0]['value'],))['count']
-    #if doi_count:
-    #    return True
-    #else:
-    #    return False
+    doi_count = es.count(q='dois.value:"%s"' % (obj.data['dois'][0]['value'],))['count']
+    if doi_count:
+       return True
+    else:
+       return False
 
 def store_record(obj, eng):
     """Stores record in database"""
-    #from invenio_indexer.api import RecordIndexer
-    #from invenio_pidstore.errors import PIDAlreadyExists
-    #from scoap3.modules.pidstore.minters import scoap3_recid_minter
-    #from invenio_records import Record
-    #from invenio_db import db
-    #from jsonschema.exceptions import ValidationError
-
     try:
         record = Record.create(obj.data, id_=None)
     except ValidationError as err:
@@ -216,11 +205,6 @@ def add_oai_information(obj, eng):
     db.session.commit()
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
-
-def pass_task(obj, eng):
-
-    #indexer = RecordIndexer()
-    #indexer.index_by_id(pid.object_uuid)
 
 PART1 = [
         IF_ELSE(
