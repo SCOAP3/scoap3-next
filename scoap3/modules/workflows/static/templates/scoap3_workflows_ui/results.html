@@ -7,8 +7,13 @@
     <span ng-if="record._source.metadata.acquisition_source.source.includes('Hindawi')" class="label label-hindawi">Hindawi AHEP</span>
     <span ng-if="record._source.metadata.acquisition_source.source.includes('OUP')" class="label label-oxford">OUP</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('European Physical Journal C')" class="label label-springer-epjc">Springer EPJC</span>
-    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Physics Letters  B')" class="label label-elsevier-plb">Elsevier PLB</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Journal of High Energy Physics')" class="label label-springer-jhep">Springer JHEP</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Physics Letters B')" class="label label-elsevier-plb">Elsevier PLB</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Nuclear Physics B')" class="label label-elsevier-npb">Elsevier NPB</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Acta Physica Polonica B')" class="label label-elsevier-npb">UJ APPB</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. C')" class="label label-elsevier-npb">APS PRC</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. D')" class="label label-elsevier-npb">APS PRD</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. Lett.')" class="label label-elsevier-npb">APS PRL</span>
     <div class="text-right">
       <ul class="list-inline">
         <li ng-show="record._source.metadata.authors.length > 0">

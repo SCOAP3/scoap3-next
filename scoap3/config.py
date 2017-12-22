@@ -450,7 +450,7 @@ WORKFLOWS_UI_REST_FACETS = {
     "workflows": {
         "filters": {
             "status": terms_filter('_workflow.status'),
-            "publisher": terms_filter('metadata.publication_info.journal_title'),
+            "Journal": terms_filter('metadata.publication_info.journal_title'),
             "workflow_name": terms_filter('_workflow.workflow_name'),
         },
         "aggs": {
