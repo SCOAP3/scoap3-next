@@ -66,13 +66,13 @@
         {% endif %}
         <!-- copyright & license -->
         <dt>Copyrights:</dt>
-        {%- if "copyright" record %}
+        {%- if "copyright" in record %}
           <dd>{{ record['copyright'][0]['statement'] }}</dd>
         {%- else %}
           <dd>Not available yet</dd>
         {% endif %}
         <dt>Licence:</dt>
-        {%- if "copyright" record %}
+        {%- if "copyright" in record %}
           <dd><a href="{{ record['license'][0]['url'] }}">{{ record['license'][0]['license'] }}</a></dd>
         {%- else %}
           <dd>Not available yet</dd>

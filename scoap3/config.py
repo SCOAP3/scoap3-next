@@ -511,7 +511,7 @@ OAISERVER_METADATA_FORMATS = {
     'marc21': {
         'namespace': 'http://www.loc.gov/MARC21/slim',
         'serializer': (
-                'invenio_oaiserver.utils:dumps_etree', {
+                'scoap3.modules.records.oai_serializer:dumps_etree', {
                 'prefix': 'marc'}
         ),
         'schema': 'http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd'

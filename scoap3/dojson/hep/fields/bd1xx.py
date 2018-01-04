@@ -107,31 +107,26 @@ def authors(self, key, value):
 
 
 @hep2marc.over('100', '^authors$')
+@utils.filter_values
 def authors2marc(self, key, value):
     """Main Entry-Personal Name."""
-    value = utils.force_list(value)
+    field_map = {
+        'fullname': 'a',
+        'affiliation': 'u',
+        'orcid': 'j'
+    }
+    order = utils.map_order(field_map, value)
 
-    def get_value(value):
-        affiliations = [
-            aff.get('value') for aff in value.get('affiliations', [])
-        ]
-        return {
-            'a': value.get('full_name'),
-            'e': value.get('role'),
-            'q': value.get('alternative_name'),
-            'i': value.get('inspire_id'),
-            'j': value.get('orcid'),
-            'm': value.get('email'),
-            'u': affiliations,
-            'x': get_recid_from_ref(value.get('record')),
-            'y': value.get('curated_relation')
-        }
+    affiliations = []
+    for aff in value.get('affiliations', []):
+        affiliations.append(aff['value'])
 
-    if len(value) > 1:
-        self["700"] = []
-    for author in value[1:]:
-        self["700"].append(get_value(author))
-    return get_value(value[0])
+    return {
+        '__order__': tuple(order) if len(order) else None,
+        'a': value.get('full_name'),
+        'j': value.get('orcid'),
+        'u': affiliations
+    }
 
 
 @hep.over('corporate_author', '^110[10_2].')
