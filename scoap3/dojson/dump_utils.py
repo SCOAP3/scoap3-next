@@ -13,7 +13,7 @@ import pkg_resources
 from lxml import etree
 from lxml.builder import ElementMaker
 
-from dojson._compat import iteritems, string_types
+from .hep.compat import iteritems, string_types
 from dojson.utils import GroupableOrderedDict
 
 MARC21_DTD = pkg_resources.resource_filename(
