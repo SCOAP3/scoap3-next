@@ -483,7 +483,7 @@ SCRAPY_FEED_URI = '/eos/project/s/scoap3repo/scrapy_feed.json'
 
 OAISERVER_RECORD_INDEX = 'records-record'
 #: OAI identifier prefix
-OAISERVER_ID_PREFIX = 'oai:repo.scoap3.org:'
+OAISERVER_ID_PREFIX = 'oai:beta.scoap3.org:'
 #: Managed OAI identifier prefixes
 OAISERVER_MANAGED_ID_PREFIXES = [OAISERVER_ID_PREFIX]
 #: Number of records to return per page in OAI-PMH results.

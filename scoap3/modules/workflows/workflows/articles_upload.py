@@ -172,6 +172,10 @@ def add_to_before_2014_collection(obj, eng):
 def _get_oai_sets(record):
     if record['publication_info'][0]['journal_title'] == 'Phys. Rev. D':
         return ['PRD']
+    if record['publication_info'][0]['journal_title'] == 'Phys. Rev. C':
+        return ['PRC']
+    if record['publication_info'][0]['journal_title'] == 'Phys. Rev. Lett':
+        return ['PRL']
 
 def add_oai_information(obj, eng):
     """Adds OAI information like identifier"""
@@ -189,7 +193,7 @@ def add_oai_information(obj, eng):
             oaiid_minter(pid.object_uuid, existing_record)
         except PIDAlreadyExists:
             existing_record['_oai'] = {
-                'id': 'oai:repo.scoap3.org:' + recid,
+                'id': 'oai:beta.scoap3.org:' + recid,
                 'sets': _get_oai_sets(existing_record)
             }
 
