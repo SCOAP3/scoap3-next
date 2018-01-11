@@ -115,16 +115,7 @@ def persistent_identifiers(self, key, value):
 @utils.filter_values
 def dois2marc(self, key, value):
     """Other Standard Identifier."""
-    field_map = {
-        'value': 'a',
-        'source': '9',
-        'type': '2',
-    }
-
-    order = utils.map_order(field_map, value)
-    
     return {
-        '__order__': tuple(order) if len(order) else None,
        'a':value.get('value'),
        '9':'APS',
        '2':'DOI'
