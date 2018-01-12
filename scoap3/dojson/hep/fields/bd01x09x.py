@@ -111,22 +111,15 @@ def persistent_identifiers(self, key, value):
 
 
 @hep2marc.over('024', '^(dois|persistent_identifiers)$')
+@utils.reverse_for_each_value
+@utils.filter_values
 def dois2marc(self, key, value):
     """Other Standard Identifier."""
-    value = utils.force_list(value)
-
-    def get_value(val):
-        return {
-            'a': val.get('value'),
-            '9': val.get('source'),
-            '2': val.get('type') or "DOI"
-        }
-
-    self['024'] = self.get('024', [])
-    for val in value:
-        self['024'].append(get_value(val))
-    return self['024']
-
+    return {
+       'a':value.get('value'),
+       '9':'APS',
+       '2':'DOI'
+    }
 
 @hep.over('external_system_numbers', '^035..')
 def external_system_numbers(self, key, value):
@@ -206,10 +199,10 @@ def report_numbers2marc(self, key, value):
                 '9': "arXiv",
             }
 
-    self['037'] = self.get('037', [])
+    res = []
     for rn in value:
-        self['037'].append(get_value(rn))
-    return self['037']
+        res.append(get_value(rn))
+    return res
 
 
 @hep.over('languages', '^041[10_].')

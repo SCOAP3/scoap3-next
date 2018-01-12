@@ -1,4 +1,4 @@
-from .upload import Upload
+from .articles_upload import ArticlesUpload
 
 
-__all__ = ('Upload', )
+__all__ = ('ArticlesUpload', )

@@ -43,7 +43,7 @@ def publication_info(self, key, value):
                 return out
         return None
 
-    year = get_int_value(value.get('y'))
+    year = '%s' % get_int_value(value.get('y'))
     parent_recid = get_int_value(value.get('0'))
     journal_recid = get_int_value(value.get('1'))
     conference_recid = get_int_value(value.get('2'))
@@ -100,7 +100,7 @@ def publication_info2marc(self, key, value):
         'v': value.get('journal_volume'),
         'w': value.get('cnum'),
         'x': value.get('pubinfo_freetext'),
-        'y': value.get('year'),
+        'y': '%s' % value.get('year'),
         'z': value.get('isbn'),
         'm': value.get('note')
     }

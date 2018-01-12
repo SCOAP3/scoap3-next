@@ -450,7 +450,7 @@ WORKFLOWS_UI_REST_FACETS = {
     "workflows": {
         "filters": {
             "status": terms_filter('_workflow.status'),
-            "publisher": terms_filter('metadata.publication_info.journal_title'),
+            "Journal": terms_filter('metadata.publication_info.journal_title'),
             "workflow_name": terms_filter('_workflow.workflow_name'),
         },
         "aggs": {
@@ -480,3 +480,40 @@ WORKFLOWS_STORAGEDIR = '/tmp/workflows-harvesting'
 
 CRAWLER_DATA_TYPE = 'harvesting'
 SCRAPY_FEED_URI = '/eos/project/s/scoap3repo/scrapy_feed.json'
+
+OAISERVER_RECORD_INDEX = 'records-record'
+#: OAI identifier prefix
+OAISERVER_ID_PREFIX = 'oai:beta.scoap3.org:'
+#: Managed OAI identifier prefixes
+OAISERVER_MANAGED_ID_PREFIXES = [OAISERVER_ID_PREFIX]
+#: Number of records to return per page in OAI-PMH results.
+OAISERVER_PAGE_SIZE = 100
+#: Increase resumption token expire time.
+OAISERVER_RESUMPTION_TOKEN_EXPIRE_TIME = 60
+#: PIDStore fetcher for OAI ID control numbers
+OAISERVER_CONTROL_NUMBER_FETCHER = 'scoap3_recid_fetcher'
+#: Support email for OAI-PMH.
+OAISERVER_ADMIN_EMAILS = ['repo.admin@scoap3.org']
+#: Do not register signals to automatically update records on updates.
+OAISERVER_REGISTER_RECORD_SIGNALS = False
+#: Do not register signals to automatically update records on oaiset updates.
+OAISERVER_REGISTER_OAISET_SIGNALS = False
+
+OAISERVER_METADATA_FORMATS = {
+    'oai_dc': {
+        'namespace': 'http://www.openarchives.org/OAI/2.0/oai_dc/',
+        'serializer': (
+                'invenio_oaiserver.utils:dumps_etree',
+                {'xslt_filename': '/opt/scoap3/var/scoap3-instance/static/xsl/MARC21slim2OAIDC.xsl'}
+        ),
+        'schema': 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd'
+    },
+    'marc21': {
+        'namespace': 'http://www.loc.gov/MARC21/slim',
+        'serializer': (
+                'scoap3.modules.records.oai_serializer:dumps_etree', {
+                'prefix': 'marc'}
+        ),
+        'schema': 'http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd'
+    }
+}
