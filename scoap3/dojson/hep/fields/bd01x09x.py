@@ -199,10 +199,10 @@ def report_numbers2marc(self, key, value):
                 '9': "arXiv",
             }
 
-    self['037'] = self.get('037', [])
+    res = []
     for rn in value:
-        self['037'].append(get_value(rn))
-    return self['037']
+        res.append(get_value(rn))
+    return res
 
 
 @hep.over('languages', '^041[10_].')
