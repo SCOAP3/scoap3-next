@@ -25,6 +25,7 @@
 from __future__ import absolute_import, division, print_function
 from flask import url_for
 from datetime import datetime
+from urllib2 import urlopen
 
 from workflow.patterns.controlflow import (
     IF,
@@ -33,7 +34,9 @@ from workflow.patterns.controlflow import (
 )
 
 from invenio_db import db
-from invenio_records import Record
+from invenio_files_rest.models import Bucket
+from invenio_records_files.api import Record
+from invenio_records_files.models import RecordsBuckets  
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_search import current_search_client as es
 from invenio_indexer.api import RecordIndexer
@@ -179,8 +182,6 @@ def _get_oai_sets(record):
 
 def add_oai_information(obj, eng):
     """Adds OAI information like identifier"""
-    from invenio_pidstore.models import PersistentIdentifier
-    from invenio_records import Record
     from invenio_oaiserver.minters import oaiid_minter
 
     recid = obj.data['control_number']
@@ -209,6 +210,25 @@ def add_oai_information(obj, eng):
     db.session.commit()
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
+
+def attach_files(obj, eng):
+    if 'files' in obj.extra_data:
+        recid = obj.data['control_number']
+        pid = PersistentIdentifier.get('recid', recid)
+        existing_record = Record.get_record(pid.object_uuid)
+
+        bucket = Bucket.create()
+        record_buckets = RecordsBuckets.create(record=existing_record.model, bucket=bucket)
+
+        for file_ in obj.extra_data['files']:
+            request = urllib2.Request(file_['url'], headers=file_['headers'])
+            f = urllib2.urlopen(request).read()
+            existing_record.files[file_['name']] = f
+            existing_record.files[file_['name']]['filetype'] = file_['type']
+
+        obj.save()
+        existing_record.commit()
+        db.session.commit()
 
 PART1 = [
         IF_ELSE(
@@ -250,6 +270,7 @@ class ArticlesUpload(object):
         PART1,
         add_nations,
         STORE_REC,
+        attach_files,
         add_oai_information
     ]
 
