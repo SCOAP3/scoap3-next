@@ -6,6 +6,15 @@
             },
             "date_detection": false,
             "properties": {
+                "_oai": {
+                    "properties": {
+                        "updated": {
+                            "index": "analyzed",
+                            "type": "date"
+                        }
+                    },
+                    "type": "object"
+                },
                 "authors":{
                     "properties":{
                         "full_name":{
