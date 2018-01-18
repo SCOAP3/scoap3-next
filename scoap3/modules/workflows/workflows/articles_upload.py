@@ -26,6 +26,7 @@ from __future__ import absolute_import, division, print_function
 from flask import url_for
 from datetime import datetime
 from urllib2 import urlopen
+import urllib2
 
 from workflow.patterns.controlflow import (
     IF,
@@ -139,6 +140,7 @@ def store_record(obj, eng):
     record.commit()
     # Commit to DB before indexing
     db.session.commit()
+    obj.data['control_number'] = record['control_number']
     # Index record
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
@@ -159,6 +161,8 @@ def update_record(obj, eng):
     pid = PersistentIdentifier.get('recid', recid)
     existing_record = Record.get_record(pid.object_uuid)
 
+    if '_files' in existing_record:
+        obj.data['_files'] = existing_record['_files']
     existing_record.clear()
     existing_record.update(obj.data)
     print(obj.data)
@@ -173,11 +177,11 @@ def add_to_before_2014_collection(obj, eng):
     obj.data['collections'].append({"primary":"before_2014"})
 
 def _get_oai_sets(record):
-    if record['publication_info'][0]['journal_title'] == 'Phys. Rev. D':
+    if 'Phys. Rev. D' in record['publication_info'][0]['journal_title']
         return ['PRD']
-    if record['publication_info'][0]['journal_title'] == 'Phys. Rev. C':
+    if 'Phys. Rev. Lett' in record['publication_info'][0]['journal_title']:
         return ['PRC']
-    if record['publication_info'][0]['journal_title'] == 'Phys. Rev. Lett':
+    if 'Phys. Rev. Lett' in record['publication_info'][0]['journal_title']:
         return ['PRL']
 
 def add_oai_information(obj, eng):
@@ -202,6 +206,9 @@ def add_oai_information(obj, eng):
         oaiid_minter(pid.object_uuid, existing_record)
     if 'sets' not in existing_record['_oai']:
         existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
+    elif existing_record['_oai']['sets'] == None:
+        existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
+
     existing_record['_oai']['updated'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
     #existing_record['_oai']['updated'] = datetime.utcnow().isoformat()
 
@@ -222,13 +229,81 @@ def attach_files(obj, eng):
 
         for file_ in obj.extra_data['files']:
             request = urllib2.Request(file_['url'], headers=file_['headers'])
-            f = urllib2.urlopen(request).read()
+            f = urllib2.urlopen(request)
             existing_record.files[file_['name']] = f
             existing_record.files[file_['name']]['filetype'] = file_['type']
 
         obj.save()
         existing_record.commit()
         db.session.commit()
+
+def update_files(obj, eng):
+    pass
+    # recid = obj.data['control_number']
+    # pid = PersistentIdentifier.get('recid', recid)
+    # existing_record = Record.get_record(pid.object_uuid)
+
+
+def build_files_data(obj, eng):
+    doi = obj.data.get('dois')[0]['value']
+    if obj.data['acquisition_source']['source'] == 'APS':
+        obj.extra_data['files'] = [
+            {'url':'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
+             'headers':{'Accept':'application/pdf'},
+             'name':'{0}.pdf'.format(doi),
+             'type':'pdf'},
+            {'url':'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
+             'headers':{'Accept':'text/xml'},
+             'name':'{0}.xml'.format(doi),
+             'type':'xml'}
+        ]
+    if obj.data['acquisition_source']['source'] == 'Hindawi':
+        doi_part = doi.split('10.1155/')[1]
+        obj.extra_data['files'] = [
+            {'url':'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
+             'name':'{0}.pdf'.format(doi),
+             'type':'pdf'},
+            {'url':'http://downloads.hindawi.com/journals/ahep/{0}.xml'.format(doi_part),
+             'name':'{0}.xml'.format(doi),
+             'type':'xml'}
+        ]
+    obj.save()
+
+def are_files_attached(obj, eng):
+    recid = obj.data['control_number']
+    pid = PersistentIdentifier.get('recid', recid)
+    existing_record = Record.get_record(pid.object_uuid)
+    if '_files' in existing_record:
+        if existing_record['_files']:
+            return True
+    return False
+
+def are_files_new(obj, eng):
+    pass
+    # import urllib2
+    # from tempfile import mkstemp
+
+    # if 'files' in obj.extra_data:
+    #     for file_ in obj.extra_data['files']:
+    #         request = urllib2.Request(file_['url'], headers=file_['headers'])
+    #         tmp_file = mkstemp(suffix='_workflow_file_{0}'.format(file_['name']))
+    #         f = open(tmp_file[1],'w')
+    #         f.write(urllib2.urlopen(request).read())
+
+    #         obj.
+
+
+    #     request = urllib2.Request("http://harvest.aps.org/v2/journals/articles/{0}".format(doi), headers={"Accept" : "application/pdf"})
+    #         pdf = urllib2.urlopen(request).read()
+    #         try:
+    #             pdf_file = mkstemp(suffix='_aps_file')
+    #             f = open(pdf_file[1],'w')
+    #             f.write(pdf)
+    #             f.close()
+    #         except:
+    #             write_message(traceback.print_exc())
+
+
 
 PART1 = [
         IF_ELSE(
@@ -259,6 +334,24 @@ STORE_REC = [
         ),
 ]
 
+FILES = [
+        build_files_data,
+        IF_ELSE(
+            are_files_attached,
+            [
+                IF(
+                    are_files_new,
+                    [
+                        update_files,
+                    ]
+                )
+            ],
+            [
+                attach_files,
+            ]
+        )
+]
+
 class ArticlesUpload(object):
     """Article ingestion workflow for Records collection."""
     name = "HEP"
@@ -270,7 +363,7 @@ class ArticlesUpload(object):
         PART1,
         add_nations,
         STORE_REC,
-        attach_files,
+        FILES,
         add_oai_information
     ]
 

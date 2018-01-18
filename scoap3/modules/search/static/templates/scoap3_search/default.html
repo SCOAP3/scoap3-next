@@ -27,6 +27,10 @@
     <small ng-if='record.metadata.report_numbers[0]'>
         arXiv: <a href='http://arxiv.org/abs/{{ record.metadata.report_numbers[0].value }}'>{{ record.metadata.report_numbers[0].value }}</a>
     </small>
+    <small ng-repeat="file in record.metadata._files">
+        <a ng-if="file.key.includes('pdf')" href="https://beta.scoap3.org/api/files/{{ file.bucket }}/{{ file.key }}">PDF</a>
+        <a ng-if="file.key.includes('xml')" href="https://beta.scoap3.org/api/files/{{ file.bucket }}/{{ file.key }}">XML</a>
+    </small>
     <hr />
   </li>
 </ul>

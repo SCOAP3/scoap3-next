@@ -116,9 +116,10 @@ def persistent_identifiers(self, key, value):
 def dois2marc(self, key, value):
     """Other Standard Identifier."""
     return {
-       'a':value.get('value'),
-       '9':'APS',
-       '2':'DOI'
+        '$ind1':7,
+        'a':value.get('value'),
+        '9':'APS',
+        '2':'DOI'
     }
 
 @hep.over('external_system_numbers', '^035..')

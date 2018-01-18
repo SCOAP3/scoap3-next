@@ -495,7 +495,7 @@
             "type": "array"
         },
         "authors": {
-            "uniqueItems": true,
+            "uniqueItems": false,
             "items": {
                 "type": "object",
                 "properties": {
