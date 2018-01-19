@@ -228,10 +228,10 @@ def attach_files(obj, eng):
         record_buckets = RecordsBuckets.create(record=existing_record.model, bucket=bucket)
 
         for file_ in obj.extra_data['files']:
-            request = urllib2.Request(file_['url'], headers=file_['headers'])
+            request = urllib2.Request(file_['url'], headers=file_.get('headers',None))
             f = urllib2.urlopen(request)
             existing_record.files[file_['name']] = f
-            existing_record.files[file_['name']]['filetype'] = file_['type']
+            existing_record.files[file_['name']]['filetype'] = file_['filetype']
 
         obj.save()
         existing_record.commit()
@@ -251,11 +251,11 @@ def build_files_data(obj, eng):
             {'url':'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
              'headers':{'Accept':'application/pdf'},
              'name':'{0}.pdf'.format(doi),
-             'type':'pdf'},
+             'filetype':'pdf'},
             {'url':'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
              'headers':{'Accept':'text/xml'},
              'name':'{0}.xml'.format(doi),
-             'type':'xml'}
+             'filetype':'xml'}
         ]
     if obj.data['acquisition_source']['source'] == 'Hindawi':
         doi_part = doi.split('10.1155/')[1]
