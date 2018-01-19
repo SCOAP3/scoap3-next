@@ -177,7 +177,7 @@ def add_to_before_2014_collection(obj, eng):
     obj.data['collections'].append({"primary":"before_2014"})
 
 def _get_oai_sets(record):
-    if 'Phys. Rev. D' in record['publication_info'][0]['journal_title']
+    if 'Phys. Rev. D' in record['publication_info'][0]['journal_title']:
         return ['PRD']
     if 'Phys. Rev. Lett' in record['publication_info'][0]['journal_title']:
         return ['PRC']
