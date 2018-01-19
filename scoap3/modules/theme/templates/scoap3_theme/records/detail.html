@@ -45,6 +45,10 @@
         {% endfor %}
       {%- endblock %}
       <div>
+          <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <strong>Metadata preview.</strong> This is a preview of JSON metadata for this article. This box is going to be removed in final version of the repository.</a>
+          </div>
           <pre>{{ record | pprint }}</pre>
       </div>
     </div><!-- /.body -->
@@ -80,17 +84,27 @@
       </dl>
       <hr>
       <dl>
+        <dt>Fulltext files:</dt>
+        <div class="files">
+          {%- for file in record.get('_files', []) %}
+            <a href="https://beta.scoap3.org/api/files/{{ file['bucket'] }}/{{ file['key'] }}">
+              {%- if "pdf" in file['filetype'] %}
+                <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
+              {%- else %}
+                <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+              {% endif %}
+              </br>
+              {{ file['filetype'] | upper }}
+            </a>
+          {% endfor %}
+        </div>
         <div class="dropdown">
           <button class="btn btn-scoap3-download dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Download & export
+            Metadata E]export
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li class="dropdown-header">Fulltext files</li>
-            {%- for file in record.get('_files', []) %}
-                  <li><a href="https://beta.scoap3.org/api/files/{{ file['bucket'] }}/{{ file['key'] }}">{{ file['filetype'] | upper }}</a></li>
-            {% endfor %}
-            <li class="dropdown-header">Metadata export</li>
+            <li><a href="#">JSON</a></li>
             <li><a href="#">MARC</a></li>
             <li><a href="#">MARC XML</a></li>
             <li><a href="#">Dublin Core</a></li>

@@ -18,6 +18,13 @@ h4{
         background-color: $violet;
         color: white;
     }
+    .files{
+        margin-bottom: 20px;
+        a{
+            display: inline-block;
+            margin-right: 10px;
+        }
+    }
 }
 
 .author_orcid_image_link{
