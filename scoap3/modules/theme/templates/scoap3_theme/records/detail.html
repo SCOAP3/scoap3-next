@@ -87,14 +87,8 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li class="dropdown-header">Fulltext files</li>
-            {%- for file in record.get('urls', []) %}
-                {%- if "pdfa" in file['value'] %}
-                  <li><a href="{{ file['value'] }}">PDF (PDFA)</a></li>
-                {%- elif "pdf" in file['value'] %}
-                  <li><a href="{{ file['value'] }}">PDF</a></li>
-                {%- elif "xml" in file['value'] %}
-                  <li><a href="{{ file['value'] }}">XML</a></li>
-                {% endif %}
+            {%- for file in record.get('_files', []) %}
+                  <li><a href="https://beta.scoap3.org/api/files/{{ file['bucket'] }}/{{ file['key'] }}">{{ file['type'] | upper }}</a></li>
             {% endfor %}
             <li class="dropdown-header">Metadata export</li>
             <li><a href="#">MARC</a></li>
