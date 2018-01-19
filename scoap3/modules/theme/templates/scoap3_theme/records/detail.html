@@ -88,7 +88,7 @@
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li class="dropdown-header">Fulltext files</li>
             {%- for file in record.get('_files', []) %}
-                  <li><a href="https://beta.scoap3.org/api/files/{{ file['bucket'] }}/{{ file['key'] }}">{{ file['type'] | upper }}</a></li>
+                  <li><a href="https://beta.scoap3.org/api/files/{{ file['bucket'] }}/{{ file['key'] }}">{{ file['filetype'] | upper }}</a></li>
             {% endfor %}
             <li class="dropdown-header">Metadata export</li>
             <li><a href="#">MARC</a></li>
