@@ -450,7 +450,7 @@ WORKFLOWS_UI_REST_FACETS = {
     "workflows": {
         "filters": {
             "status": terms_filter('_workflow.status'),
-            "Journal": terms_filter('metadata.publication_info.journal_title'),
+            "journal": terms_filter('publication_info.journal_title'),
             "workflow_name": terms_filter('_workflow.workflow_name'),
         },
         "aggs": {
@@ -460,9 +460,9 @@ WORKFLOWS_UI_REST_FACETS = {
                     "size": 20
                 }
             },
-            "publisher": {
+            "journal": {
                 "terms": {
-                    "field": "metadata.publication_info.journal_title",
+                    "field": "publication_info.journal_title",
                     "size": 20
                 }
             },
