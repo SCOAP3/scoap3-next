@@ -37,7 +37,7 @@ from workflow.patterns.controlflow import (
 from invenio_db import db
 from invenio_files_rest.models import Bucket
 from invenio_records_files.api import Record
-from invenio_records_files.models import RecordsBuckets  
+from invenio_records_files.models import RecordsBuckets
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_search import current_search_client as es
 from invenio_indexer.api import RecordIndexer
@@ -130,6 +130,7 @@ def store_record(obj, eng):
     try:
         record = Record.create(obj.data, id_=None)
     except ValidationError as err:
+        selg.log("Validation error: %s. Skipping..." % (err,))
         eng.halt("Validation error: %s. Skipping..." % (err,))
     # Create persistent identifier.
     try:
@@ -137,10 +138,12 @@ def store_record(obj, eng):
     except PIDAlreadyExists:
         eng.halt("Record with this id already in DB")
     # Commit any changes to record
+    obj.save()
     record.commit()
     # Commit to DB before indexing
     db.session.commit()
     obj.data['control_number'] = record['control_number']
+    obj.save()
     # Index record
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
@@ -179,10 +182,13 @@ def add_to_before_2014_collection(obj, eng):
 def _get_oai_sets(record):
     if 'Phys. Rev. D' in record['publication_info'][0]['journal_title']:
         return ['PRD']
-    if 'Phys. Rev. Lett' in record['publication_info'][0]['journal_title']:
+    if 'Phys. Rev. C' in record['publication_info'][0]['journal_title']:
         return ['PRC']
     if 'Phys. Rev. Lett' in record['publication_info'][0]['journal_title']:
         return ['PRL']
+    if 'Advances in High Energy Physics' in record['publication_info'][0]['journal_title']:
+        return ['AHEP']
+
 
 def add_oai_information(obj, eng):
     """Adds OAI information like identifier"""
@@ -203,12 +209,12 @@ def add_oai_information(obj, eng):
             }
 
     if 'id' not in existing_record['_oai']:
+        print('adding new oai id')
         oaiid_minter(pid.object_uuid, existing_record)
     if 'sets' not in existing_record['_oai']:
         existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
     elif existing_record['_oai']['sets'] == None:
         existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
-
     existing_record['_oai']['updated'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
     #existing_record['_oai']['updated'] = datetime.utcnow().isoformat()
 
@@ -228,7 +234,7 @@ def attach_files(obj, eng):
         record_buckets = RecordsBuckets.create(record=existing_record.model, bucket=bucket)
 
         for file_ in obj.extra_data['files']:
-            request = urllib2.Request(file_['url'], headers=file_.get('headers',None))
+            request = urllib2.Request(file_['url'], headers=file_.get('headers',{}))
             f = urllib2.urlopen(request)
             existing_record.files[file_['name']] = f
             existing_record.files[file_['name']]['filetype'] = file_['filetype']
@@ -262,10 +268,10 @@ def build_files_data(obj, eng):
         obj.extra_data['files'] = [
             {'url':'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
              'name':'{0}.pdf'.format(doi),
-             'type':'pdf'},
+             'filetype':'pdf'},
             {'url':'http://downloads.hindawi.com/journals/ahep/{0}.xml'.format(doi_part),
              'name':'{0}.xml'.format(doi),
-             'type':'xml'}
+             'filetype':'xml'}
         ]
     obj.save()
 
@@ -302,7 +308,6 @@ def are_files_new(obj, eng):
     #             f.close()
     #         except:
     #             write_message(traceback.print_exc())
-
 
 
 PART1 = [
@@ -366,5 +371,3 @@ class ArticlesUpload(object):
         FILES,
         add_oai_information
     ]
-
-
