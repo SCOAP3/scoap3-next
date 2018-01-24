@@ -86,6 +86,9 @@
       <dl>
         <dt>Fulltext files:</dt>
         <div class="files">
+          {%- if record.get('_files', []) == [] %}
+            No files attached for this article yet.
+          {% endif %}
           {%- for file in record.get('_files', []) %}
             <a href="https://beta.scoap3.org/api/files/{{ file['bucket'] }}/{{ file['key'] }}">
               {%- if "pdf" in file['filetype'] %}
@@ -100,7 +103,7 @@
         </div>
         <div class="dropdown">
           <button class="btn btn-scoap3-download dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Metadata E]export
+            Metadata Export
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
