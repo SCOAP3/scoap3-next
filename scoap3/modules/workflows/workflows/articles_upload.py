@@ -22,11 +22,30 @@
 
 """Workflow for processing single records harvested"""
 
-from __future__ import absolute_import, division, print_function
-from flask import url_for
-from datetime import datetime
-from urllib2 import urlopen
+import requests
 import urllib2
+
+from __future__ import absolute_import, division, print_function
+
+from datetime import datetime
+from flask import url_for
+
+from invenio_db import db
+from invenio_files_rest.models import Bucket
+from invenio_indexer.api import RecordIndexer
+from invenio_oaiserver.minters import oaiid_minter
+from invenio_pidstore.errors import PIDAlreadyExists
+from invenio_pidstore.models import PersistentIdentifier
+from invenio_records_files.api import Record
+from invenio_records_files.models import RecordsBuckets
+from invenio_search import current_search_client as es
+
+from jsonschema.exceptions import ValidationError
+
+from scoap3.dojson.utils.nations import find_nation
+from scoap3.modules.pidstore.minters import scoap3_recid_minter
+from scoap3.utils.arxiv import get_arxiv_categories
+from scoap3_records.signals import before_record_insert
 
 from workflow.patterns.controlflow import (
     IF,
@@ -34,31 +53,30 @@ from workflow.patterns.controlflow import (
     IF_NOT,
 )
 
-from invenio_db import db
-from invenio_files_rest.models import Bucket
-from invenio_records_files.api import Record
-from invenio_records_files.models import RecordsBuckets
-from invenio_pidstore.models import PersistentIdentifier
-from invenio_search import current_search_client as es
-from invenio_indexer.api import RecordIndexer
+ARXIV_HEP_CATEGORIES = set(["hep-ex","hep-lat","hep-ph","hep-th"])
 
-from invenio_pidstore.errors import PIDAlreadyExists
-from scoap3.modules.pidstore.minters import scoap3_recid_minter
-from jsonschema.exceptions import ValidationError
+JOURNAL_TITLE_ABREVIATION = {
+    'Phys. Rev. D': 'PRD',
+    'Phys. Rev. C': 'PRC',
+    'Phys. Rev. Lett': 'PRL',
+    'Advances in High Energy Physics': 'AHEP',
+    'Progress of Theoretical and Experimental Physics': 'PTEP',
+    'Acta Physica Polonica B': 'APPB',
+    'Physics Letters B': 'PLB',
+    'Nuclear Physics B': 'NPB'
+    }
+
+PARTIAL_JOURNALS = ["Acta Physica Polonica B",
+                    "Chinese Physics C",
+                    "Journal of Cosmology and Astroparticle Physics",
+                    "New Journal of Physics",
+                    "Progress of Theoretical and Experimental Physics"]
+
 
 def set_schema(obj, eng):
     """Make sure schema is set properly and resolve it."""
     obj.data['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
-    # if '$schema' not in obj.data:
-    #     obj.data['$schema'] = "{data_type}.json".format(
-    #         data_type=obj.data_type or eng.workflow_definition.data_type
-    #     )
 
-    # if not obj.data['$schema'].startswith('http'):
-    #     obj.data['$schema'] = url_for(
-    #         'invenio_jsonschemas.get_schema',
-    #         schema_path="records/{0}".format(obj.data['$schema'])
-    #     )
 
 def record_not_published_before_2014(obj, eng):
     """Make sure record was published in 2014 and onwards."""
@@ -70,52 +88,88 @@ def record_not_published_before_2014(obj, eng):
         eng.halt("Record published before 2014")
     return True
 
+
 def is_record_from_partial_journal(obj, eng):
     """Check if record comes from journal partially funded by SCOAP3."""
-    partial_journals = ["Acta Physica Polonica B",
-                        "Chinese Physics C",
-                        "Journal of Cosmology and Astroparticle Physics",
-                        "New Journal of Physics",
-                        "Progress of Theoretical and Experimental Physics"]
-    if obj.data['publication_info'][0]['journal_title'] in partial_journals:
+    if obj.data['publication_info'][0]['journal_title'] in PARTIAL_JOURNALS:
         return True
     else:
         return False
 
+
 def add_arxiv_category(obj, eng):
     """Add arXiv categories fetched from arXiv.org"""
-    from scoap3.utils.arxiv import get_arxiv_categories
-    if "arxiv_eprints" in obj.data:
-        for i, arxiv_id in enumerate(obj.data["arxiv_eprints"]):
-            if arxiv_id['value'].startswith("arXiv:"):
+    if "report_numbers" in obj.data:
+        for i, arxiv_id in enumerate(obj.data["report_numbers"]):
+            if arxiv_id['value'].lower().startswith("arxiv:"):
                 arxiv_id = arxiv_id['value'][6:].split('v')[0]
             arxiv_id = arxiv_id.split('v')[0]
             categories = get_arxiv_categories(arxiv_id)
-            obj.data["arxiv_eprints"][i]['categories'] = categories
+            obj.data["report_numbers"][i]['categories'] = categories
+
 
 def check_arxiv_category(obj, eng):
-    """Check if at least one arXiv category is in SCOAP3_REQUIRED_ARXIV_CATEGORIES"""
-    # TODO move this list to config variable SCOAP3_REQUIRED_ARXIV_CATEGORIES
-    arxiv_hep_categories = set(["hep-ex","hep-lat","hep-ph","hep-th"])
-    if "arxiv_eprints" in obj.data:
-        for arxiv_id in obj.data["arxiv_eprints"]:
-            if not set(arxiv_id['categories']).intersection(arxiv_hep_categories):
-                eng.halt("It is a paper from partial journal, but it doesn't have correct arXiv category!")
+    """Check if at least one arXiv category is in ARXIV_HEP_CATEGORIES"""
+    if "report_numbers" in obj.data:
+        for report_number in obj.data["report_numbers"]:
+            if report_number['source'].lower() == 'arxiv':
+                if not set(report_number['categories']).intersection(ARXIV_HEP_CATEGORIES):
+                    eng.halt("It is a paper from partial journal, but it doesn't have correct arXiv category!")
     else:
         eng.halt(action='add_arxiv',
                  msg="Missing arXiv id - you need to ad it to proceed.")
 
+
 def add_nations(obj, eng):
-    """Add nations extracted from affiliations"""
-    from scoap3.dojson.utils.nations import find_nation
+"""Add nations extracted from affiliations"""
+    def _traverse_result(j):
+        if 'results' in j:
+            for address_component in j['results'][0]['address_components']:
+                if 'country' in address_component['types']:
+                    return address_component['long_name']
+        return None
+
     for author_index, author in enumerate(obj.data.get('authors', [])):
         for affiliation_index, affiliation in enumerate(author.get('affiliations',[])):
             obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(affiliation['value'])
+            try:
+                GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
+                params = {
+                        'address': affiliation['value'],
+                        'language': 'en',
+                        'key': 'AIzaSyBq0DeKzMJc-_ejCMPTmcADQ_WA8zpaQzc'
+                }
+                result = ''
+                new_aff = affiliation['value']
+                print(new_aff)
+                while(not result):
+                    req = requests.get(GOOGLE_MAPS_API_URL, params=params)
+                    j = req.json()
+                    if 'status' in j:
+                        if j['status'].lower() == 'ok' :
+                            result = _traverse_result(j)
+                        if j['status'].lower() == 'zero_results':
+                            add = new_aff.split(',')
+                            print(add)
+                            if len(add) <= 1:
+                                raise Exception
+                            new_aff = ','.join(add[1:])
+                            print(new_aff)
+                            params = {
+                                'address': new_aff,
+                                'language': 'en',
+                                'key': 'AIzaSyBq0DeKzMJc-_ejCMPTmcADQ_WA8zpaQzc'
+                            }
+
+                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country_google_api'] = result
+            except:
+                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country_google_api'] = 'error'
+
 
 def emit_record_signals(obj, eng):
     """Emit record signals to update record metadata."""
-    from scoap3_records.signals import before_record_insert
     before_record_insert.send(obj.data)
+
 
 def is_record_in_db(obj, eng):
     """Checks if record is in database"""
@@ -125,12 +179,12 @@ def is_record_in_db(obj, eng):
     else:
        return False
 
+
 def store_record(obj, eng):
     """Stores record in database"""
     try:
         record = Record.create(obj.data, id_=None)
     except ValidationError as err:
-        selg.log("Validation error: %s. Skipping..." % (err,))
         eng.halt("Validation error: %s. Skipping..." % (err,))
     # Create persistent identifier.
     try:
@@ -147,6 +201,7 @@ def store_record(obj, eng):
     # Index record
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
+
 
 def update_record(obj, eng):
     """Updates existing record"""
@@ -166,37 +221,31 @@ def update_record(obj, eng):
 
     if '_files' in existing_record:
         obj.data['_files'] = existing_record['_files']
+    if '_oai' in existing_record:
+        obj.data['_oai'] = existing_record['_oai']
     existing_record.clear()
     existing_record.update(obj.data)
-    print(obj.data)
-    print(existing_record)
     existing_record.commit()
     obj.save()
-
     db.session.commit()
+
 
 def add_to_before_2014_collection(obj, eng):
     """Adds record to collection of atricles published before 2014"""
     obj.data['collections'].append({"primary":"before_2014"})
 
+
 def _get_oai_sets(record):
-    if 'Phys. Rev. D' in record['publication_info'][0]['journal_title']:
-        return ['PRD']
-    if 'Phys. Rev. C' in record['publication_info'][0]['journal_title']:
-        return ['PRC']
-    if 'Phys. Rev. Lett' in record['publication_info'][0]['journal_title']:
-        return ['PRL']
-    if 'Advances in High Energy Physics' in record['publication_info'][0]['journal_title']:
-        return ['AHEP']
+    for phrase, set_name in iteritems(JOURNAL_TITLE_ABREVIATION):
+        if phrase in record['publication_info'][0]['journal_title']:
+            return [set_name]
+    return []
 
 
 def add_oai_information(obj, eng):
     """Adds OAI information like identifier"""
-    from invenio_oaiserver.minters import oaiid_minter
-
     recid = obj.data['control_number']
     pid = PersistentIdentifier.get('recid', recid)
-
     existing_record = Record.get_record(pid.object_uuid)
 
     if '_oai' not in existing_record:
@@ -207,7 +256,6 @@ def add_oai_information(obj, eng):
                 'id': 'oai:beta.scoap3.org:' + recid,
                 'sets': _get_oai_sets(existing_record)
             }
-
     if 'id' not in existing_record['_oai']:
         print('adding new oai id')
         oaiid_minter(pid.object_uuid, existing_record)
@@ -215,14 +263,14 @@ def add_oai_information(obj, eng):
         existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
     elif existing_record['_oai']['sets'] == None:
         existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
-    existing_record['_oai']['updated'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-    #existing_record['_oai']['updated'] = datetime.utcnow().isoformat()
 
+    existing_record['_oai']['updated'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
     existing_record.commit()
     obj.save()
     db.session.commit()
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
+
 
 def attach_files(obj, eng):
     if 'files' in obj.extra_data:
@@ -234,8 +282,11 @@ def attach_files(obj, eng):
         record_buckets = RecordsBuckets.create(record=existing_record.model, bucket=bucket)
 
         for file_ in obj.extra_data['files']:
-            request = urllib2.Request(file_['url'], headers=file_.get('headers',{}))
-            f = urllib2.urlopen(request)
+            if file_['url'].startswith('http'):
+                request = urllib2.Request(file_['url'], headers=file_.get('headers',{}))
+                f = urllib2.urlopen(request)
+            else:
+                f = open(file_['url'])
             existing_record.files[file_['name']] = f
             existing_record.files[file_['name']]['filetype'] = file_['filetype']
 
@@ -243,11 +294,9 @@ def attach_files(obj, eng):
         existing_record.commit()
         db.session.commit()
 
+
 def update_files(obj, eng):
     pass
-    # recid = obj.data['control_number']
-    # pid = PersistentIdentifier.get('recid', recid)
-    # existing_record = Record.get_record(pid.object_uuid)
 
 
 def build_files_data(obj, eng):
@@ -273,7 +322,12 @@ def build_files_data(obj, eng):
              'name':'{0}.xml'.format(doi),
              'filetype':'xml'}
         ]
+    if obj.data['acquisition_source']['source'] in ['Elsevier','Springer','Oxford University Press']:
+        obj.extra_data['files'] = _extract_local_files_info(obj, doi)
+        #remove local files from data
+        del(obj.data['local_files'])
     obj.save()
+
 
 def are_files_attached(obj, eng):
     recid = obj.data['control_number']
@@ -284,30 +338,29 @@ def are_files_attached(obj, eng):
             return True
     return False
 
+
 def are_files_new(obj, eng):
     pass
-    # import urllib2
-    # from tempfile import mkstemp
-
-    # if 'files' in obj.extra_data:
-    #     for file_ in obj.extra_data['files']:
-    #         request = urllib2.Request(file_['url'], headers=file_['headers'])
-    #         tmp_file = mkstemp(suffix='_workflow_file_{0}'.format(file_['name']))
-    #         f = open(tmp_file[1],'w')
-    #         f.write(urllib2.urlopen(request).read())
-
-    #         obj.
 
 
-    #     request = urllib2.Request("http://harvest.aps.org/v2/journals/articles/{0}".format(doi), headers={"Accept" : "application/pdf"})
-    #         pdf = urllib2.urlopen(request).read()
-    #         try:
-    #             pdf_file = mkstemp(suffix='_aps_file')
-    #             f = open(pdf_file[1],'w')
-    #             f.write(pdf)
-    #             f.close()
-    #         except:
-    #             write_message(traceback.print_exc())
+def _extract_local_files_info(obj, doi):
+    f = []
+    if 'local_files' in obj.data:
+        for local_file in obj.data['local_files']:
+           if local_file['value']['filetype'] == 'pdf/a':
+               f.append(
+                    {'url':local_file['value']['path'],
+                     'name':'{0}_a.{1}'.format(doi, 'pdf'),
+                     'filetype':'pdf/a'}
+                )
+           else:
+                f.append(
+                    {'url':local_file['value']['path'],
+                     'name':'{0}.{1}'.format(doi, local_file['value']['filetype']),
+                     'filetype':local_file['value']['filetype']}
+                )
+
+    return f
 
 
 PART1 = [
@@ -353,9 +406,10 @@ FILES = [
             ],
             [
                 attach_files,
-            ]
+           ]
         )
 ]
+
 
 class ArticlesUpload(object):
     """Article ingestion workflow for Records collection."""
