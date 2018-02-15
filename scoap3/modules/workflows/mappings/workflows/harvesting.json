@@ -2,7 +2,7 @@
     "mappings": {
         "harvesting": {
             "_all": {
-                "enabled": true,
+                "enabled": true
             },
             "date_detection": false,
             "properties": {
