@@ -93,7 +93,7 @@ RECORDS_REST_SORT_OPTIONS = {
 
 #: Default sort for records REST API.
 RECORDS_REST_DEFAULT_SORT = {
-    "records-record":{'query':'bestmatch', 'noquery':'earliest_date'},
+    "records-record":{'query':'earliest_date', 'noquery':'earliest_date'},
 }
 
 RECORDS_REST_FACETS = {
@@ -450,7 +450,7 @@ WORKFLOWS_UI_REST_FACETS = {
     "workflows": {
         "filters": {
             "status": terms_filter('_workflow.status'),
-            "Journal": terms_filter('metadata.publication_info.journal_title'),
+            "journal": terms_filter('journal_title_facet'),
             "workflow_name": terms_filter('_workflow.workflow_name'),
         },
         "aggs": {
@@ -460,9 +460,13 @@ WORKFLOWS_UI_REST_FACETS = {
                     "size": 20
                 }
             },
-            "publisher": {
+            "journal": {
                 "terms": {
-                    "field": "metadata.publication_info.journal_title",
+                    "field": 'journal_title_facet',
+                    "size": 20
+                }
+                "terms": {
+                    "field": "publication_info.journal_title",
                     "size": 20
                 }
             },

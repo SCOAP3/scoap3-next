@@ -3,7 +3,7 @@
 scoap3 collections create scoap3
 scoap3 collections create "Acta Physica Polonica B" -p scoap3 -q 'publication_info.journal_title:"Acta Physica Polonica B"'
 scoap3 collections create "Nuclear Physics B" -p scoap3 -q 'publication_info.journal_title:"Nuclear Physics B"'
-scoap3 collections create "Physics Letters B" -p scoap3 -q 'publication_info.journal_title:"Physics letters B"'
+scoap3 collections create "Physics Letters B" -p scoap3 -q 'publication_info.journal_title:"Physics Letters B" | publication_info.journal_title:"Physics letters B"'
 scoap3 collections create "Advances in High Energy Physics" -p scoap3 -q 'publication_info.journal_title:"Advances in High Energy Physics"'
 scoap3 collections create "Chinese Physics C" -p scoap3 -q 'publication_info.journal_title:"Chinese Phys. C"'
 scoap3 collections create "Journal of Cosmology and Astroparticle Physics" -p scoap3 -q 'publication_info.journal_title:"Journal of Cosmology and Astroparticle Physics"'

@@ -71,13 +71,18 @@ def index():
                                         'Cuba', 'North Korea', 'Georgia',
                                         'Kazakhstan', 'Moldova', 'Mongolia',
                                         'Ukraine', 'Uzbekistan', 'Vietnam']
+    countries['JINR']['search_affiliation'] = ['JINR']
 
     for country in countries:
         query = ''
         for name in countries[country]['search_names']:
             if query:
-                query += " or "
+                query += " | "
             query += 'country:"{0}"'.format(name)
+        for name in countries[country].get('search_affiliation', []):
+            if query:
+                query += " | "
+            query += 'affiliation:"{0}"'.format(name)
         countries[country]['query'] = query
         countries[country]['count'] = current_search_client.count(q=query)['count']
 

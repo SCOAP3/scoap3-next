@@ -2,7 +2,7 @@
     "mappings": {
         "harvesting": {
             "_all": {
-                "enabled": false
+                "enabled": true
             },
             "date_detection": false,
             "properties": {
@@ -50,22 +50,35 @@
                     "type": "object"
                 },
                 "_updated":{
-                    "format": "date-time",
                     "type": "date"
                 },
-                "publication_info": {
+                "id":{
+                    "type": "integer"
+                },
+                "metadata": {
                     "properties": {
-                        "journal_title": {
-                            "index": "not_analyzed",
-                            "type": "string"
+                        "publication_info": {
+                            "properties": {
+                                "journal_title": {
+                                    "index": "not_analyzed",
+                                    "type": "string",
+                                    "copy_to": "journal_title_facet"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "earliest_date": {
+                            "format": "yyyy||yyyy-MM||yyyy-MM-dd",
+                            "type": "date"
                         }
                     },
                     "type": "object"
                 },
-                "earliest_date": {
-                    "format": "yyyy||yyyy-MM||yyyy-MM-dd",
-                    "type": "date"
+                "journal_title_facet":{
+                    "index": "not_analyzed",
+                    "type": "string"
                 }
+
             }
         }
     }

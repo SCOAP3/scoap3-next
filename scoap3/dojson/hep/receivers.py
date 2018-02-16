@@ -34,34 +34,34 @@ def earliest_date(sender, *args, **kwargs):
     """Find and assign the earliest date to a HEP paper."""
     dates = []
 
-    if 'preprint_date' in sender:
-        dates.append(sender['preprint_date'])
+    if 'preprint_date' in kwargs['record']:
+        dates.append(kwargs['record']['preprint_date'])
 
-    if 'thesis' in sender:
-        for thesis_key in sender['thesis']:
+    if 'thesis' in kwargs['record']:
+        for thesis_key in kwargs['record']['thesis']:
             if 'date' in thesis_key:
                 dates.append(thesis_key['date'])
             if 'defense_date' in thesis_key:
                 dates.append(thesis_key['defense_date'])
 
-    if 'publication_info' in sender:
-        for publication_info_key in sender['publication_info']:
+    if 'publication_info' in kwargs['record']:
+        for publication_info_key in kwargs['record']['publication_info']:
             if 'year' in publication_info_key:
                 dates.append(publication_info_key['year'])
 
-    if 'creation_modification_date' in sender:
-        for date in sender['creation_modification_date']:
+    if 'creation_modification_date' in kwargs['record']:
+        for date in kwargs['record']['creation_modification_date']:
             if 'creation_date' in date:
                 dates.append(date['creation_date'])
 
-    if 'imprints' in sender:
-        for imprint in sender['imprints']:
+    if 'imprints' in kwargs['record']:
+        for imprint in kwargs['record']['imprints']:
             if 'date' in imprint:
                 dates.append(imprint['date'])
 
     earliest_date = create_earliest_date(dates)
     if earliest_date:
-        sender['earliest_date'] = earliest_date
+        kwargs['record']['earliest_date'] = earliest_date
 
 
 @before_record_insert.connect
@@ -71,7 +71,8 @@ def remove_duplicate_authors(sender, *args, **kwargs):
 
     Has to be done here rather than when importing the record
     for performance reasons."""
-    try:
-        sender['authors'] = dedupe_list_of_dicts(sender['authors'])
-    except KeyError:
-        pass
+    pass
+    # try:
+    #     record['authors'] = dedupe_list_of_dicts(record['authors'])
+    # except KeyError:
+    #     pass
