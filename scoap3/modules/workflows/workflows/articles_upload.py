@@ -40,7 +40,8 @@ from invenio_records_files.api import Record
 from invenio_records_files.models import RecordsBuckets
 from invenio_search import current_search_client as es
 
-from jsonschema.exceptions import ValidationError
+from jsonschema import validate
+from jsonschema.exceptions import ValidationError, SchemaError
 
 from scoap3.dojson.utils.nations import find_nation
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
@@ -71,6 +72,17 @@ PARTIAL_JOURNALS = ["Acta Physica Polonica B",
                     "Journal of Cosmology and Astroparticle Physics",
                     "New Journal of Physics",
                     "Progress of Theoretical and Experimental Physics"]
+
+
+def validate_data(obj, eng):
+    schema_url = urllib2.urlopen(obj.data['$schema'])
+    schema = json.loads(schema_url.read())
+    try:
+        validate(obj.data, schema)
+    except ValidationError as err:
+        eng.halt("{0}".format(err))
+    except SchemaError as err:
+        eng.halt("{0}".format(err))
 
 
 def set_schema(obj, eng):
@@ -418,6 +430,7 @@ class ArticlesUpload(object):
 
     workflow = [
         set_schema,
+        validate_data,
         add_arxiv_category,
         PART1,
         add_nations,
