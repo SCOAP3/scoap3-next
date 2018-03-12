@@ -22,7 +22,9 @@
 
 """Workflow for processing single records harvested"""
 
+import json
 import requests
+import sys
 import urllib2
 
 from __future__ import absolute_import, division, print_function
@@ -74,7 +76,7 @@ PARTIAL_JOURNALS = ["Acta Physica Polonica B",
                     "Progress of Theoretical and Experimental Physics"]
 
 
-def validate_data(obj, eng):
+def validate_schema(obj, eng):
     schema_url = urllib2.urlopen(obj.data['$schema'])
     schema = json.loads(schema_url.read())
     try:
@@ -133,7 +135,7 @@ def check_arxiv_category(obj, eng):
 
 
 def add_nations(obj, eng):
-"""Add nations extracted from affiliations"""
+    """Add nations extracted from affiliations"""
     def _traverse_result(j):
         if 'results' in j:
             for address_component in j['results'][0]['address_components']:
@@ -141,41 +143,56 @@ def add_nations(obj, eng):
                     return address_component['long_name']
         return None
 
+    def _get_google_maps_location(affiliation):
+        GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
+        params = {
+            'address': affiliation,
+            'language': 'en',
+            'key': 'AIzaSyBq0DeKzMJc-_ejCMPTmcADQ_WA8zpaQzc'
+        }
+        req = requests.get(GOOGLE_MAPS_API_URL, params=params, timeout=1)
+        return req.json()
+
+    def _prepare_shorter_affiliation(affiliation):
+        add = affiliation.split(',')
+        if len(add) <= 1:
+            raise AffiliationEndedException()
+        return ','.join(add[1:])
+
+    class AffiliationEndedException(Exception):
+        pass
+
+    class NotSupportetGoogleStatusException(Exception):
+        pass
+
+    class UndefinedException(Exception):
+        pass
+
     for author_index, author in enumerate(obj.data.get('authors', [])):
         for affiliation_index, affiliation in enumerate(author.get('affiliations',[])):
             obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(affiliation['value'])
             try:
-                GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
-                params = {
-                        'address': affiliation['value'],
-                        'language': 'en',
-                        'key': 'AIzaSyBq0DeKzMJc-_ejCMPTmcADQ_WA8zpaQzc'
-                }
                 result = ''
                 new_aff = affiliation['value']
-                print(new_aff)
                 while(not result):
-                    req = requests.get(GOOGLE_MAPS_API_URL, params=params)
-                    j = req.json()
+                    print("i'm in a loop: %s" % new_aff)
+                    j = _get_google_maps_location(new_aff)
+                    print(j)
                     if 'status' in j:
                         if j['status'].lower() == 'ok' :
                             result = _traverse_result(j)
-                        if j['status'].lower() == 'zero_results':
-                            add = new_aff.split(',')
-                            print(add)
-                            if len(add) <= 1:
-                                raise Exception
-                            new_aff = ','.join(add[1:])
-                            print(new_aff)
-                            params = {
-                                'address': new_aff,
-                                'language': 'en',
-                                'key': 'AIzaSyBq0DeKzMJc-_ejCMPTmcADQ_WA8zpaQzc'
-                            }
+                            if not result:
+                                new_aff = _prepare_shorter_affiliation(new_aff)
+                        elif j['status'].lower() in ['zero_results', 'invalid_request']:
+                            new_aff = _prepare_shorter_affiliation(new_aff)
+                        else:
+                           raise NotSupportetGoogleStatusException()
+                    else:
+                        raise UndefinedException()
 
                 obj.data['authors'][author_index]['affiliations'][affiliation_index]['country_google_api'] = result
             except:
-                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country_google_api'] = 'error'
+                eng.halt(sys.exc_info())
 
 
 def emit_record_signals(obj, eng):
@@ -313,7 +330,7 @@ def update_files(obj, eng):
 
 def build_files_data(obj, eng):
     doi = obj.data.get('dois')[0]['value']
-    if obj.data['acquisition_source']['source'] == 'APS':
+    if obj.data['acquisition_source']['method'] == 'APS':
         obj.extra_data['files'] = [
             {'url':'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
              'headers':{'Accept':'application/pdf'},
@@ -324,7 +341,7 @@ def build_files_data(obj, eng):
              'name':'{0}.xml'.format(doi),
              'filetype':'xml'}
         ]
-    if obj.data['acquisition_source']['source'] == 'Hindawi':
+    if obj.data['acquisition_source']['method'] == 'Hindawi':
         doi_part = doi.split('10.1155/')[1]
         obj.extra_data['files'] = [
             {'url':'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
@@ -334,7 +351,7 @@ def build_files_data(obj, eng):
              'name':'{0}.xml'.format(doi),
              'filetype':'xml'}
         ]
-    if obj.data['acquisition_source']['source'] in ['Elsevier','Springer','Oxford University Press']:
+    if obj.data['acquisition_source']['method'] in ['Elsevier','Springer','Oxford University Press', 'scoap3']:
         obj.extra_data['files'] = _extract_local_files_info(obj, doi)
         #remove local files from data
         del(obj.data['local_files'])
@@ -359,7 +376,7 @@ def _extract_local_files_info(obj, doi):
     f = []
     if 'local_files' in obj.data:
         for local_file in obj.data['local_files']:
-           if local_file['value']['filetype'] == 'pdf/a':
+           if local_file['value']['filetype'] in ['pdf/a','pdfa']:
                f.append(
                     {'url':local_file['value']['path'],
                      'name':'{0}_a.{1}'.format(doi, 'pdf'),
@@ -430,7 +447,7 @@ class ArticlesUpload(object):
 
     workflow = [
         set_schema,
-        validate_data,
+        #validate_schema,
         add_arxiv_category,
         PART1,
         add_nations,
