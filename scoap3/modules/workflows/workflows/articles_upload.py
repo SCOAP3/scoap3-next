@@ -22,12 +22,12 @@
 
 """Workflow for processing single records harvested"""
 
+from __future__ import absolute_import, division, print_function
+
 import json
 import requests
 import sys
 import urllib2
-
-from __future__ import absolute_import, division, print_function
 
 from datetime import datetime
 from flask import url_for
