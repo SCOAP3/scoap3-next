@@ -465,10 +465,6 @@ WORKFLOWS_UI_REST_FACETS = {
                     "field": 'journal_title_facet',
                     "size": 20
                 }
-                "terms": {
-                    "field": "publication_info.journal_title",
-                    "size": 20
-                }
             },
             "workflow_name": {
                 "terms": {
