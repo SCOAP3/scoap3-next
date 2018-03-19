@@ -48,7 +48,6 @@ from jsonschema.exceptions import ValidationError, SchemaError
 from scoap3.dojson.utils.nations import find_nation
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from scoap3.utils.arxiv import get_arxiv_categories
-from scoap3_records.signals import before_record_insert
 
 from workflow.patterns.controlflow import (
     IF,
@@ -193,11 +192,6 @@ def add_nations(obj, eng):
             #     obj.data['authors'][author_index]['affiliations'][affiliation_index]['country_google_api'] = result
             # except:
             #     eng.halt(sys.exc_info())
-
-
-def emit_record_signals(obj, eng):
-    """Emit record signals to update record metadata."""
-    before_record_insert.send(obj.data)
 
 
 def is_record_in_db(obj, eng):
