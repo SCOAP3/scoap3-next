@@ -171,28 +171,28 @@ def add_nations(obj, eng):
     for author_index, author in enumerate(obj.data.get('authors', [])):
         for affiliation_index, affiliation in enumerate(author.get('affiliations',[])):
             obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(affiliation['value'])
-            try:
-                result = ''
-                new_aff = affiliation['value']
-                while(not result):
-                    print("i'm in a loop: %s" % new_aff)
-                    j = _get_google_maps_location(new_aff)
-                    print(j)
-                    if 'status' in j:
-                        if j['status'].lower() == 'ok' :
-                            result = _traverse_result(j)
-                            if not result:
-                                new_aff = _prepare_shorter_affiliation(new_aff)
-                        elif j['status'].lower() in ['zero_results', 'invalid_request']:
-                            new_aff = _prepare_shorter_affiliation(new_aff)
-                        else:
-                           raise NotSupportetGoogleStatusException()
-                    else:
-                        raise UndefinedException()
+            # try:
+            #     result = ''
+            #     new_aff = affiliation['value']
+            #     while(not result):
+            #         print("i'm in a loop: %s" % new_aff)
+            #         j = _get_google_maps_location(new_aff)
+            #         print(j)
+            #         if 'status' in j:
+            #             if j['status'].lower() == 'ok' :
+            #                 result = _traverse_result(j)
+            #                 if not result:
+            #                     new_aff = _prepare_shorter_affiliation(new_aff)
+            #             elif j['status'].lower() in ['zero_results', 'invalid_request']:
+            #                 new_aff = _prepare_shorter_affiliation(new_aff)
+            #             else:
+            #                raise NotSupportetGoogleStatusException()
+            #         else:
+            #             raise UndefinedException()
 
-                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country_google_api'] = result
-            except:
-                eng.halt(sys.exc_info())
+            #     obj.data['authors'][author_index]['affiliations'][affiliation_index]['country_google_api'] = result
+            # except:
+            #     eng.halt(sys.exc_info())
 
 
 def emit_record_signals(obj, eng):
@@ -282,7 +282,7 @@ def add_oai_information(obj, eng):
             oaiid_minter(pid.object_uuid, existing_record)
         except PIDAlreadyExists:
             existing_record['_oai'] = {
-                'id': 'oai:beta.scoap3.org:' + recid,
+                'id': 'oai:beta.scoap3.org:%s' % recid,
                 'sets': _get_oai_sets(existing_record)
             }
     if 'id' not in existing_record['_oai']:
