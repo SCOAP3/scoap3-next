@@ -76,9 +76,9 @@ RECORDS_UI_ENDPOINTS = dict(
 )
 RECORDS_REST_SORT_OPTIONS = {
     "records-record": {
-        "earliest_date": {
+        "acquisition_date": {
             "title": 'Most recent',
-            "fields": ['earliest_date'],
+            "fields": ['acquisition_source.date'],
             "default_order": 'desc',
             "order": 1,
         },
@@ -102,9 +102,9 @@ RECORDS_REST_FACETS = {
             "journal": terms_filter("publication_info.journal_title"),
             "country": terms_filter("authors.affiliations.country"),
             "collaboration": terms_filter("facet_collaboration"),
-            "earliest_date": range_filter(
-                'earliest_date',
-                format='yyyy',
+            "acquisition_date": range_filter(
+                'acquisition_source.date',
+                format='yyyy-mm-dd',
                 end_date_math='/y')
         },
         "aggs": {
@@ -127,11 +127,11 @@ RECORDS_REST_FACETS = {
                     "size": 20
                 }
             },
-            "earliest_date": {
+            "acquisition_date": {
                 "date_histogram": {
-                    "field": "earliest_date",
+                    "field": "acquisition_source.date",
                     "interval": "year",
-                    "format": "yyyy",
+                    "format": "yyyy-mm-dd",
                     "min_doc_count": 1
                 }
             }
