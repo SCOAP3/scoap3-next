@@ -254,5 +254,5 @@ def copyright2marc(self, key, value):
 @hep.over('record_creation_date', '592')
 @utils.for_each_value
 @utils.filter_values
-def record_creation_date(self, key, value)
+def record_creation_date(self, key, value):
     return value.get('a')
