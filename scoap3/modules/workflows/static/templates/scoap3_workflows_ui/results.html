@@ -14,9 +14,9 @@
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. C')" class="label label-prc">APS PRC</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. D')" class="label label-prd">APS PRD</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. Lett.')" class="label label-letters">APS PRL</span>
-    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. Lett.')" class="label label-cpc">IOP CPC</span>
-    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. Lett.')" class="label label-jcap">IOP JCAP</span>
-    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. Lett.')" class="label label-njp">IOP NJP</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Chinese Phys. C')" class="label label-cpc">IOP CPC</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('JCAP')" class="label label-jcap">IOP JCAP</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('New J. Phys.')" class="label label-njp">IOP NJP</span>
 
     <!-- Prints current workflow status -->
     <span class="label label-info">{{ record._source._workflow.status }}</span>
