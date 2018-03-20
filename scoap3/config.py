@@ -102,9 +102,9 @@ RECORDS_REST_FACETS = {
             "journal": terms_filter("publication_info.journal_title"),
             "country": terms_filter("authors.affiliations.country"),
             "collaboration": terms_filter("facet_collaboration"),
-            "acquisition_date": range_filter(
-                'acquisition_source.date',
-                format='yyyy-mm-dd',
+            "earliest_date": range_filter(
+                'earliest_date',
+                format='yyyy',
                 end_date_math='/y')
         },
         "aggs": {
@@ -127,11 +127,11 @@ RECORDS_REST_FACETS = {
                     "size": 20
                 }
             },
-            "acquisition_date": {
+            "earliest_date": {
                 "date_histogram": {
-                    "field": "acquisition_source.date",
+                    "field": "earliest_date",
                     "interval": "year",
-                    "format": "yyyy-mm-dd",
+                    "format": "yyyy",
                     "min_doc_count": 1
                 }
             }
