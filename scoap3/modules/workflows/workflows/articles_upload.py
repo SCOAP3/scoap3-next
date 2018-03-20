@@ -259,7 +259,7 @@ def add_to_before_2014_collection(obj, eng):
 
 
 def _get_oai_sets(record):
-    for phrase, set_name in iteritems(JOURNAL_TITLE_ABREVIATION):
+    for phrase, set_name in JOURNAL_TITLE_ABREVIATION.iteritems():
         if phrase in record['publication_info'][0]['journal_title']:
             return [set_name]
     return []
