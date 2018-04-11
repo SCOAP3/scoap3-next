@@ -205,6 +205,10 @@ def is_record_in_db(obj, eng):
 
 def store_record(obj, eng):
     """Stores record in database"""
+    if 'Italiana di Fisica'.lower() in obj.data['abstracts'][0]['source'].lower():
+        obj.data['abstracts'][0]['source'] = 'Springer/SIF'
+    if 'Italiana di Fisica'.lower() in obj.data['acquisition_source']['source'].lower():
+        obj.data['acquisition_source']['source'] = 'Springer/SIF'
     try:
         record = Record.create(obj.data, id_=None)
     except ValidationError as err:
@@ -213,7 +217,10 @@ def store_record(obj, eng):
     try:
         pid = scoap3_recid_minter(str(record.id), record)
     except PIDAlreadyExists:
-        eng.halt("Record with this id already in DB")
+        #eng.halt("Record with this id already in DB")
+        # updating deleted record
+        pid = PersistentIdentifier.get('recid', record['control_number'])
+        pid.assign('rec', record.id, overwrite=True)
     # Commit any changes to record
     obj.save()
     record.commit()
@@ -246,6 +253,10 @@ def update_record(obj, eng):
         obj.data['_files'] = existing_record['_files']
     if '_oai' in existing_record:
         obj.data['_oai'] = existing_record['_oai']
+    if 'Italiana di Fisica'.lower() in obj.data['abstracts'][0]['source'].lower():
+        obj.data['abstracts'][0]['source'] = 'Springer/SIF'
+    if 'Italiana di Fisica'.lower() in obj.data['acquisition_source']['source'].lower():
+        obj.data['acquisition_source']['source'] = 'Springer/SIF'
     existing_record.clear()
     existing_record.update(obj.data)
     existing_record.commit()
