@@ -40,6 +40,9 @@
                     },
                     "type": "object"
                 },
+                "control_number":{
+                    "type": "integer"
+                },
                 "publication_info": {
                     "properties": {
                         "journal_title": {
@@ -49,7 +52,11 @@
                     },
                     "type": "object"
                 },
-                "titles":{
+                "record_creation_date": {
+                    "type": "date",
+                    "format": "yyyy||yyyy-MM||yyyy-MM-dd||yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+                }
+                "titles": {
                     "properties":{
                         "title":{
                             "index": "analyzed",

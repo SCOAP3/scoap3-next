@@ -76,9 +76,9 @@ RECORDS_UI_ENDPOINTS = dict(
 )
 RECORDS_REST_SORT_OPTIONS = {
     "records-record": {
-        "acquisition_date": {
+        "record_creation_date": {
             "title": 'Most recent',
-            "fields": ['acquisition_source.date'],
+            "fields": ['record_creation_date'],
             "default_order": 'desc',
             "order": 1,
         },
@@ -93,7 +93,10 @@ RECORDS_REST_SORT_OPTIONS = {
 
 #: Default sort for records REST API.
 RECORDS_REST_DEFAULT_SORT = {
-    "records-record":{'query':'earliest_date', 'noquery':'earliest_date'},
+    "records-record": {
+        'query': 'record_creation_date',
+        'noquery': 'record_creation_date'
+    },
 }
 
 RECORDS_REST_FACETS = {
@@ -108,13 +111,14 @@ RECORDS_REST_FACETS = {
                 end_date_math='/y')
         },
         "aggs": {
-            "journal":{
+            "journal": {
                 "terms": {
                     "field": "publication_info.journal_title",
-                    "size": 20
+                    "size": 20,
+                    "order": {"_term": "asc"}
                 }
             },
-            "country":{
+            "country": {
                 "terms": {
                     "field": "authors.affiliations.country",
                     "size": 150,
@@ -129,7 +133,7 @@ RECORDS_REST_FACETS = {
             },
             "earliest_date": {
                 "date_histogram": {
-                    "field": "earliest_date",
+                    "field": "record_creation_date",
                     "interval": "year",
                     "format": "yyyy",
                     "min_doc_count": 1
