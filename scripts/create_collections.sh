@@ -11,6 +11,9 @@ scoap3 collections create "New Journal of Physics" -p scoap3 -q 'publication_inf
 scoap3 collections create "Progress of Theoretical and Experimental Physics" -p scoap3 -q 'publication_info.journal_title:"Progress of Theoretical and Experimental Physics"'
 scoap3 collections create "Journal of High Energy Physics" -p scoap3 -q 'publication_info.journal_title:"Journal of High Energy Physics" | publication_info.journal_title:"JHEP"'
 scoap3 collections create "European Physical Journal C" -p scoap3 -q 'publication_info.journal_title:"European Physical Journal C"'
+scoap3 collections create "Physical Review C" -p scoap3 -q 'publication_info.journal_title:"Physical Review C"'
+scoap3 collections create "Physical Review D" -p scoap3 -q 'publication_info.journal_title:"Physical Review D"'
+scoap3 collections create "Physical Review Letters" -p scoap3 -q 'publication_info.journal_title:"Physical Review Letters"'
 
 ## Hidden collections
 scoap3 collections create scoap3_hidden
