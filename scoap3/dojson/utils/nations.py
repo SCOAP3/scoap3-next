@@ -170,8 +170,6 @@ def find_nation(affiliation):
     def _sublistExists(list1, list2):
         return ''.join(map(str, list2)) in ''.join(map(str, list1))
 
-    if "deceased" in affiliation.lower():
-        return
     values = set([y.lower().strip() for y in re.findall(ur"[\w']+", affiliation.replace('.',''), re.UNICODE)])
     for key, val in NATIONS_DEFAULT_MAP.iteritems():
         key_parts = set(key.lower().decode('utf-8').split())

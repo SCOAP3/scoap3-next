@@ -24,6 +24,8 @@
 
 from __future__ import absolute_import, division, print_function
 
+import os
+
 from dojson import utils
 
 from ..model import hep, hep2marc
@@ -38,3 +40,17 @@ def urls2marc(self, key, value):
         'u': value.get('value'),
         'y': value.get('description'),
     }
+
+@hep.over('files','8564')
+@utils.for_each_value
+@utils.filter_values
+def files(self, key, value):
+	if(value.get('x',None)):
+		file_extension = value.get('x').lower()
+	else:
+		tmp, file_extension = os.path.splitext(value.get('u'))
+	file_extension = file_extension.lower().strip('.')
+
+	return {
+		file_extension: value.get('u')
+	}

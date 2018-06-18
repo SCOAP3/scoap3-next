@@ -5,15 +5,26 @@
     <h4><a target="_self" ng-href="/harvesting/{{ record._id }}">{{ record._source.metadata.titles[0].title }}</a></h4>
     <small><a target="_self" ng-href="/harvesting/{{ record._id }}">Go to record {{ record._id }}</a></small>
     <span ng-if="record._source.metadata.acquisition_source.source.includes('Hindawi')" class="label label-hindawi">Hindawi AHEP</span>
-    <span ng-if="record._source.metadata.acquisition_source.source.includes('OUP')" class="label label-oxford">OUP</span>
+    <span ng-if="record._source.metadata.acquisition_source.source.includes('OUP')" class="label label-oxford">OUP JPS</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('European Physical Journal C')" class="label label-springer-epjc">Springer EPJC</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Journal of High Energy Physics')" class="label label-springer-jhep">Springer JHEP</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Physics Letters B')" class="label label-elsevier-plb">Elsevier PLB</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Nuclear Physics B')" class="label label-elsevier-npb">Elsevier NPB</span>
     <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Acta Physica Polonica B')" class="label label-elsevier-npb">UJ APPB</span>
-    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. C')" class="label label-elsevier-npb">APS PRC</span>
-    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. D')" class="label label-elsevier-npb">APS PRD</span>
-    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. Lett.')" class="label label-elsevier-npb">APS PRL</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. C')" class="label label-prc">APS PRC</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. D')" class="label label-prd">APS PRD</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Phys. Rev. Lett.')" class="label label-letters">APS PRL</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('Chinese Phys. C')" class="label label-cpc">IOP CPC</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('JCAP')" class="label label-jcap">IOP JCAP</span>
+    <span ng-if="record._source.metadata.publication_info[0].journal_title.includes('New J. Phys.')" class="label label-njp">IOP NJP</span>
+
+    <!-- Prints current workflow status -->
+    <span class="label label-info">{{ record._source._workflow.status }}</span>
+    <div class="text-left" ng-if="record._source._extra_data._message!==undefined">
+        <div class="alert alert-info" role="alert">
+          {{ record._source._extra_data._message }}
+        </div>
+    </div>
     <div class="text-right">
       <ul class="list-inline">
         <li ng-show="record._source.metadata.authors.length > 0">

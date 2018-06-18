@@ -26,7 +26,7 @@ install_requires = [
     'invenio-records-rest>=1.0.0b1',
     'invenio-records-ui>=1.0.0b1',
     'invenio-search==1.0.0a11',
-    'invenio-search-ui>=1.0.0a5',
+    'invenio-search-ui==1.0.1',
     'invenio-collections>=1.0.0a4',
     'invenio-theme',
     'idutils',

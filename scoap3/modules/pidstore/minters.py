@@ -37,7 +37,10 @@ def scoap3_recid_minter(record_uuid, data):
         pid_type=SCOAP3RecordIdProvider.schema_to_pid_type('hep')
     )
     if 'control_number' in data:
-        args['pid_value'] = data['control_number']
+        if type(data['control_number']) is list:
+            args['pid_value'] = data['control_number'][0]
+        else:
+            args['pid_value'] = data['control_number']
     provider = SCOAP3RecordIdProvider.create(**args)
     data['control_number'] = str(provider.pid.pid_value)
     return provider.pid
