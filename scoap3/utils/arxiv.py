@@ -41,12 +41,14 @@ def get_clean_arXiv_id(record):
     else:
         return None
 
+
 def get_arxiv_categories(arxiv_id):
     url = 'http://export.arxiv.org/api/query?search_query=id:{0}'
     try:
         data = urllib.urlopen(url.format(arxiv_id)).read()
-    except:
-        data = None
+    except Exception as e:
+        raise e
+        # data = None
     categories = []
     if data:
         xml = parseString(data)
@@ -55,4 +57,6 @@ def get_arxiv_categories(arxiv_id):
                 categories.append(tag.attributes['term'].value)
             except KeyError:
                 pass
+    if not categories:
+        raise Exception(data)
     return categories

@@ -26,7 +26,6 @@ from __future__ import absolute_import, division, print_function
 
 import json
 import requests
-import sys
 import urllib2
 
 from datetime import datetime
@@ -55,12 +54,12 @@ from workflow.patterns.controlflow import (
     IF_NOT,
 )
 
-ARXIV_HEP_CATEGORIES = set(["hep-ex","hep-lat","hep-ph","hep-th"])
+ARXIV_HEP_CATEGORIES = set(["hep-ex", "hep-lat", "hep-ph", "hep-th"])
 
 JOURNAL_TITLE_ABREVIATION = {
-    'Phys. Rev. D': 'PRD',
-    'Phys. Rev. C': 'PRC',
-    'Phys. Rev. Lett': 'PRL',
+    'Physical Review D': 'PRD',
+    'Physical Review C': 'PRC',
+    'Physical Review Letters': 'PRL',
     'Advances in High Energy Physics': 'AHEP',
     'Progress of Theoretical and Experimental Physics': 'PTEP',
     'Acta Physica Polonica B': 'APPB',
@@ -198,9 +197,9 @@ def is_record_in_db(obj, eng):
     """Checks if record is in database"""
     doi_count = es.count(q='dois.value:"%s"' % (obj.data['dois'][0]['value'],))['count']
     if doi_count:
-       return True
+        return True
     else:
-       return False
+        return False
 
 
 def store_record(obj, eng):
@@ -217,10 +216,10 @@ def store_record(obj, eng):
     try:
         pid = scoap3_recid_minter(str(record.id), record)
     except PIDAlreadyExists:
-        #eng.halt("Record with this id already in DB")
+        eng.halt("Record with this id already in DB")
         # updating deleted record
-        pid = PersistentIdentifier.get('recid', record['control_number'])
-        pid.assign('rec', record.id, overwrite=True)
+        # pid = PersistentIdentifier.get('recid', record['control_number'])
+        # pid.assign('rec', record.id, overwrite=True)
     # Commit any changes to record
     obj.save()
     record.commit()
@@ -244,7 +243,7 @@ def update_record(obj, eng):
     recid = search_result['hits']['hits'][0]['_source']['control_number']
 
     obj.extra_data['recid'] = recid
-    obj.data['control_number']= recid
+    obj.data['control_number'] = recid
 
     pid = PersistentIdentifier.get('recid', recid)
     existing_record = Record.get_record(pid.object_uuid)
@@ -257,6 +256,9 @@ def update_record(obj, eng):
         obj.data['abstracts'][0]['source'] = 'Springer/SIF'
     if 'Italiana di Fisica'.lower() in obj.data['acquisition_source']['source'].lower():
         obj.data['acquisition_source']['source'] = 'Springer/SIF'
+
+    # preserving oryginal creation date
+    obj.date['record_creation_date'] = existing_record['record_creation_date']
     existing_record.clear()
     existing_record.update(obj.data)
     existing_record.commit()
@@ -295,7 +297,7 @@ def add_oai_information(obj, eng):
         oaiid_minter(pid.object_uuid, existing_record)
     if 'sets' not in existing_record['_oai']:
         existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
-    elif existing_record['_oai']['sets'] == None:
+    elif not existing_record['_oai']['sets']:
         existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
 
     existing_record['_oai']['updated'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -307,13 +309,19 @@ def add_oai_information(obj, eng):
 
 
 def attach_files(obj, eng):
+    def are_files_attached(existing_record):
+        if '_files' in existing_record and existing_record['_files']:
+            return True
+        return False
+
     if 'files' in obj.extra_data:
         recid = obj.data['control_number']
         pid = PersistentIdentifier.get('recid', recid)
         existing_record = Record.get_record(pid.object_uuid)
 
-        bucket = Bucket.create()
-        record_buckets = RecordsBuckets.create(record=existing_record.model, bucket=bucket)
+        if not are_files_attached(existing_record):
+            bucket = Bucket.create()
+            record_buckets = RecordsBuckets.create(record=existing_record.model, bucket=bucket)
 
         for file_ in obj.extra_data['files']:
             if file_['url'].startswith('http'):
@@ -329,34 +337,30 @@ def attach_files(obj, eng):
         db.session.commit()
 
 
-def update_files(obj, eng):
-    pass
-
-
 def build_files_data(obj, eng):
     doi = obj.data.get('dois')[0]['value']
     if obj.data['acquisition_source']['method'] == 'APS':
         obj.extra_data['files'] = [
-            {'url':'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
-             'headers':{'Accept':'application/pdf'},
-             'name':'{0}.pdf'.format(doi),
-             'filetype':'pdf'},
-            {'url':'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
-             'headers':{'Accept':'text/xml'},
-             'name':'{0}.xml'.format(doi),
-             'filetype':'xml'}
+            {'url': 'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
+             'headers': {'Accept': 'application/pdf'},
+             'name': '{0}.pdf'.format(doi),
+             'filetype': 'pdf'},
+            {'url': 'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
+             'headers': {'Accept': 'text/xml'},
+             'name': '{0}.xml'.format(doi),
+             'filetype': 'xml'}
         ]
     if obj.data['acquisition_source']['method'] == 'Hindawi':
         doi_part = doi.split('10.1155/')[1]
         obj.extra_data['files'] = [
-            {'url':'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
-             'name':'{0}.pdf'.format(doi),
-             'filetype':'pdf'},
-            {'url':'http://downloads.hindawi.com/journals/ahep/{0}.xml'.format(doi_part),
-             'name':'{0}.xml'.format(doi),
-             'filetype':'xml'}
+            {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
+             'name': '{0}.pdf'.format(doi),
+             'filetype': 'pdf'},
+            {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.xml'.format(doi_part),
+             'name': '{0}.xml'.format(doi),
+             'filetype': 'xml'}
         ]
-    if obj.data['acquisition_source']['method'] in ['Elsevier','Springer','Oxford University Press', 'scoap3']:
+    if obj.data['acquisition_source']['method'] in ['Elsevier', 'Springer', 'Oxford University Press', 'scoap3']:
         obj.extra_data['files'] = _extract_local_files_info(obj, doi)
         #remove local files from data
         del(obj.data['local_files'])
@@ -373,29 +377,24 @@ def are_files_attached(obj, eng):
     return False
 
 
-def are_files_new(obj, eng):
-    pass
-
-
 def _extract_local_files_info(obj, doi):
     f = []
     if 'local_files' in obj.data:
         for local_file in obj.data['local_files']:
-           if local_file['value']['filetype'] in ['pdf/a','pdfa']:
-               f.append(
-                    {'url':local_file['value']['path'],
-                     'name':'{0}_a.{1}'.format(doi, 'pdf'),
-                     'filetype':'pdf/a'}
-                )
-           else:
+            if local_file['value']['filetype'] in ['pdf/a', 'pdfa']:
                 f.append(
-                    {'url':local_file['value']['path'],
-                     'name':'{0}.{1}'.format(doi, local_file['value']['filetype']),
-                     'filetype':local_file['value']['filetype']}
+                    {'url': local_file['value']['path'],
+                     'name': '{0}_a.{1}'.format(doi, 'pdf'),
+                     'filetype': 'pdf/a'}
+                )
+            else:
+                f.append(
+                    {'url': local_file['value']['path'],
+                     'name': '{0}.{1}'.format(doi, local_file['value']['filetype']),
+                     'filetype': local_file['value']['filetype']}
                 )
 
     return f
-
 
 PART1 = [
         IF_ELSE(
@@ -428,20 +427,16 @@ STORE_REC = [
 
 FILES = [
         build_files_data,
-        IF_ELSE(
-            are_files_attached,
-            [
-                IF(
-                    are_files_new,
-                    [
-                        update_files,
-                    ]
-                )
-            ],
-            [
-                attach_files,
-           ]
-        )
+        attach_files,
+        # IF_ELSE(
+        #     are_files_attached,
+        #     [
+        #         update_files,
+        #     ],
+        #     [
+        #         attach_files,
+        #     ]
+        # )
 ]
 
 
