@@ -10,6 +10,8 @@ from invenio_pidstore.errors import PIDAlreadyExists
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from flask import url_for
 
+from invenio_workflows.proxies import workflow_object_class
+
 import click
 import sys
 
@@ -26,31 +28,66 @@ def loadrecords(source):
     click.echo('Loading dump...')
 
     for i, data in enumerate(split_stream(source),):
-                obj = hep.do(create_record(data))
-                print("Creating record {} with recid: {}".format(i, create_record(data)['001']))
-                obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
-                del obj['self']
+        record = hep.do(create_record(data))
+        print("Creating record {} with recid: {}".format(i, create_record(data)['001']))
+        record['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
+        del record['self']
 
-                try:
-                    record = Record.create(obj, id_=None)
-                except ValidationError as err:
-                    print("Validation error: %s. Skipping..." % (err,))
+        obj = workflow_object_class.create(data=record)
+        extra_data = {
+            'recid': obj['recid']
+        }
+        record_extra = obj.pop('extra_data', {})
+        if record_extra:
+            extra_data['record_extra'] = record_extra
 
-                # Create persistent identifier.
-                try:
-                    pid = scoap3_recid_minter(str(record.id), record)
-                except PIDAlreadyExists:
-                    print("Alredy in DB")
-                    continue
+        obj.extra_data['source_data'] = {
+            'data': copy.deepcopy(obj),
+            'extra_data': copy.deepcopy(extra_data),
+        }
+        obj.extra_data.update(extra_data)
 
-                # Commit any changes to record
-                record.commit()
+        obj.data_type = current_app.config['CRAWLER_DATA_TYPE']
+        obj.save()
+        db.session.commit()
 
-                # Commit to DB before indexing
-                db.session.commit()
+        crawler_object = CrawlerWorkflowObject(
+            job_id=uuid, object_id=obj.id
+        )
+        db.session.add(crawler_object)
+        queue = current_app.config['CRAWLER_CELERY_QUEUE']
 
-                # Index record
-                indexer = RecordIndexer()
-                indexer.index_by_id(pid.object_uuid)
+        if record_error is None:
+            start.apply_async(
+                kwargs={
+                    'workflow_name': 'articles_upload',
+                    'object_id': obj.id,
+                },
+                queue=queue,
+            )
+
+        current_app.logger.info('Parsed {} records.'.format(len(results_data)))
+
+        # try:
+        #     record = Record.create(obj, id_=None)
+        # except ValidationError as err:
+        #     print("Validation error: %s. Skipping..." % (err,))
+
+        # # Create persistent identifier.
+        # try:
+        #     pid = scoap3_recid_minter(str(record.id), record)
+        # except PIDAlreadyExists:
+        #     print("Alredy in DB")
+        #     continue
+
+        # # Commit any changes to record
+        # record.commit()
+
+        # # Commit to DB before indexing
+        # db.session.commit()
+
+        # # Index record
+        # indexer = RecordIndexer()
+        # indexer.index_by_id(pid.object_uuid)
 
 
