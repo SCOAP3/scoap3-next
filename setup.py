@@ -58,6 +58,9 @@ setup(
         'invenio_base.api_apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
         ],
+        'invenio_base.api_blueprints': [
+            'scoap3_oauth2server = scoap3.modules.oauth2server.views:blueprint',
+        ],
         'invenio_base.blueprints': [
             'scoap3_search = scoap3.modules.search.views:blueprint',
             'scoap3_theme = scoap3.modules.theme.views:blueprint',
@@ -92,6 +95,9 @@ setup(
         ],
         'invenio_celery.tasks': [
             'robotupload = scoap3.modules.robotupload.tasks',
+        ],
+        'invenio_oauth2server.scopes': [
+            'harvesting_read = scoap3.modules.oauth2server.scopes:harvesting_read',
         ],
     },
     install_requires=install_requires,
