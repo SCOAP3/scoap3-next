@@ -67,6 +67,7 @@ setup(
             'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint',
             'scoap3_workflows = scoap3.modules.workflows.views:blueprint',
             'scoap3_robotupload = scoap3.modules.robotupload.views:blueprint',
+            'scoap3_api = scoap3.modules.api.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
