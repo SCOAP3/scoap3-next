@@ -1,7 +1,8 @@
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, render_template
-from flask import request
+from flask import Blueprint, render_template, request
+from .model import ApiRegistration
+
 
 blueprint = Blueprint(
     'scoap3_api',
@@ -46,21 +47,25 @@ def index():
 
 @blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-    error_message = ''
+    message = ''
     if request.method == 'POST':
         try:
             check_registration_parameters(request.args)
         except EmailRegisterdException():
-            error_message = "This email is already registered."
+            message = ('error', "User with this <b>email</b>: {} is already registered.".format(request.args.get('inputEmail')))
         except NameUsedException():
-            error_message = "User with this name: {} already registered".format(request.args.get('inputName'))
+            message = ('error', "User with this <b>name</b>: {} is already registered".format(request.args.get('inputName')))
         else:
             save_new_registration()
             uid = create_new_invenio_user()
             send_notification_email_to_new_user(uid)
+            message = ('success', "Registration succesful. We will confirm your registration shortly.")
 
     return render_template(
         'scoap3_api/register.html',
         title='SCOAP3 Repository - Tools registration',
-        error_message=error_message
+        message=message,
     )
+
+
+

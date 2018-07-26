@@ -50,6 +50,9 @@ setup(
         'console_scripts': [
             'scoap3 = scoap3.cli:cli',
         ],
+        'invenio_admin.views': [
+            'scoap3_api_registrations = scoap3.modules.api.admin:api_registrations_adminview',
+        ],
         'invenio_base.apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
             'scoap3_workflows = scoap3.modules.workflows:SCOAP3Workflows',

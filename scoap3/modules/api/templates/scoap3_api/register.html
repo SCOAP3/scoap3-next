@@ -6,26 +6,26 @@
         <div class="col-md-offset-1 col-md-10">
             <h1>Tools registration</h1>
             <p>The SCOAP3 API & tools offers a pilot service to the SCOAP3 partners. Usage of API and tools requires a registraion and login.</p>
-
-            {% if error_message }
-              <div class="alert alert-danger" role="alert">
-                Error: {{ error_message }}
-              </div>
-            {% endif %}
-
-              <div class="well col-md-10">
+              {% if message %}
+                {% if message[0] == 'error' %}
+                    <div class="alert alert-success" role="alert">{{ message[1] }}</div>
+                {% else %}
+                    <div class="alert alert-warning" role="alert">{{ message[1] }}</div>
+                {% endif %} 
+              {% endif %}
+              <div class="well col-md-offset-1 col-md-10">
                 <form class="form-horizontal" method="POST">
                   <div class="form-group">
                       <label for="inputAffiliation" class="col-sm-3 control-label">Are you affiliated to a SCOAP3 partner institution?</label>
                       <div class="col-sm-9">
                         <div class="radio-inline">
                           <label>
-                            <input type="radio" name="inputPartner" id="inputPartner1" value="yes" checked required>Yes, I am
+                            <input type="radio" name="inputPartner" id="inputPartner1" value="1" checked required>Yes, I am
                           </label>
                         </div>
                         <div class="radio-inline">
                           <label>
-                            <input type="radio" name="inputPartner" id="inputPartner2" value="no" required>No, I am not
+                            <input type="radio" name="inputPartner" id="inputPartner2" value="0" required>No, I am not
                           </label>
                         </div>
                       </div>
@@ -263,7 +263,7 @@
                   <div class="form-group">
                     <label for="inputDescription" class="col-sm-3 control-label">[NON-PARTNERS] Describe why do you need access?</label>
                     <div class="col-sm-9">
-                      <textarea rows="3"class="form-control" id="inputDescription" name="inputDescription" placeholder="Description"></textarea>
+                        <textarea rows="3"class="form-control" id="inputDescription" name="inputDescription" placeholder="Description"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
