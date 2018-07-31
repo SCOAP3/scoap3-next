@@ -51,15 +51,14 @@ def register():
     if request.method == 'POST':
         try:
             check_registration_parameters(request.args)
-        except EmailRegisterdException():
-            message = ('error', "User with this <b>email</b>: {} is already registered.".format(request.args.get('inputEmail')))
-        except NameUsedException():
-            message = ('error', "User with this <b>name</b>: {} is already registered".format(request.args.get('inputName')))
-        else:
             save_new_registration()
             uid = create_new_invenio_user()
             send_notification_email_to_new_user(uid)
             message = ('success', "Registration succesful. We will confirm your registration shortly.")
+        except EmailRegisterdException():
+            message = ('error', "User with this <b>email</b>: {} is already registered.".format(request.args.get('inputEmail')))
+        except NameUsedException():
+            message = ('error', "User with this <b>name</b>: {} is already registered".format(request.args.get('inputName')))
 
     return render_template(
         'scoap3_api/register.html',
