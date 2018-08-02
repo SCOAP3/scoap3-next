@@ -15,35 +15,35 @@ from wtforms import SelectField
 
 from .models import ApiRegistrations
 from .proxies import current_access
+from invenio_db import db
 
 _datastore = LocalProxy(lambda: current_app.extensions['security'].datastore)
 
 
-def _(x):
-    """Identity."""
-    return x
+# def _(x):
+#     Identity.
+#     return x
 
 
 class ApiRegistrationsView(ModelView):
     """View for managing access to actions by users."""
 
     can_view_details = True
-
+    can_edit = False
     list_all = ('id', 'creation_date', 'name', 'organization', 'email', 'role', 'country', 'description', 'accepted')
-
     column_list = list_all
 
     column_default_sort = ('id', True)
 
-    column_labels = {
-        'creation_date': _("Registration date"),
-        'name': _("Name"),
-        'email': _("E-mail"),
-    }
+    # column_labels = {
+    #     'creation_date': _("Registration date"),
+    #     'name': _("Name"),
+    #     'email': _("E-mail"),
+    # }
 
-    column_filters = list_all
+    #column_filters = list_all
 
-    form_columns = ('accepted')
+    #form_columns = ('accepted')
 
     # form_args = dict(
     #     action=dict(
@@ -57,8 +57,11 @@ class ApiRegistrationsView(ModelView):
     # )
 
 api_registrations_adminview = {
-    'model': ApiRegistrations,
-    'modelview': ApiRegistrationsView,
-    'category': _('User Management'),
-    'name': _('API: registrations')
+    'view_class': ApiRegistrations,
+    'args': [ApiRegistrationsView, db.session],
+    'kwargs': {'category': 'Api Registrations'},
 }
+
+__all__ = (
+    'api_registrations_adminview'
+)

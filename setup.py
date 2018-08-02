@@ -50,6 +50,9 @@ setup(
         'console_scripts': [
             'scoap3 = scoap3.cli:cli',
         ],
+        'dojson.cli.rule': [
+            'hep = scoap3.dojson.hep:hep',
+        ],
         'invenio_admin.views': [
             'scoap3_api_registrations = scoap3.modules.api.admin:api_registrations_adminview',
         ],
@@ -77,8 +80,11 @@ setup(
             'scoap3_search_js = scoap3.modules.theme.bundles:search_js',
             'scoap3_js = scoap3.modules.theme.bundles:js',
         ],
-        'dojson.cli.rule': [
-            'hep = scoap3.dojson.hep:hep',
+        'invenio_db.alembic': [
+            'scoap3_api = scoap3.modules.api:alembic',
+        ],
+        'invenio_db.models': [
+            'scoap3_api = scoap3.modules.api.models',
         ],
         'invenio_pidstore.minters': [
             'scoap3_minter = scoap3.modules.pidstore.minters:scoap3_recid_minter',

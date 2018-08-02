@@ -1,7 +1,7 @@
 from __future__ import absolute_import, print_function
 
 from flask import Blueprint, render_template, request
-from .model import ApiRegistration
+#from .models import ApiRegistration
 
 
 blueprint = Blueprint(
