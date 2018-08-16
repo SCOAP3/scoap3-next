@@ -11,53 +11,53 @@
                     <div class="alert alert-success" role="alert">{{ message[1] }}</div>
                 {% else %}
                     <div class="alert alert-warning" role="alert">{{ message[1] }}</div>
-                {% endif %} 
+                {% endif %}
               {% endif %}
               <div class="well col-md-offset-1 col-md-10">
                 <form class="form-horizontal" method="POST">
                   <div class="form-group">
-                      <label for="inputAffiliation" class="col-sm-3 control-label">Are you affiliated to a SCOAP3 partner institution?</label>
+                      <label for="partner" class="col-sm-3 control-label">Are you affiliated to a SCOAP3 partner institution?</label>
                       <div class="col-sm-9">
                         <div class="radio-inline">
                           <label>
-                            <input type="radio" name="inputPartner" id="inputPartner1" value="1" checked required>Yes, I am
+                            <input type="radio" name="partner" id="partner1" value="1" checked required>Yes, I am
                           </label>
                         </div>
                         <div class="radio-inline">
                           <label>
-                            <input type="radio" name="inputPartner" id="inputPartner2" value="0" required>No, I am not
+                            <input type="radio" name="partner" id="partner2" value="0" required>No, I am not
                           </label>
                         </div>
                       </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-3 control-label">Full name</label>
+                    <label for="name" class="col-sm-3 control-label">Full name</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="inputName" id="inputName" placeholder="John Doe" required>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="John Doe" required>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail" class="col-sm-3 control-label">E-mail</label>
+                    <label for="email" class="col-sm-3 control-label">E-mail</label>
                     <div class="col-sm-9">
-                      <input type="email" class="form-control" name="inputEmail" id="inputEmail3" placeholder="john.doe@example.com" required>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="john.doe@example.com" required>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputOrganization" class="col-sm-3 control-label">Organization you are affilaited to</label>
+                    <label for="organization" class="col-sm-3 control-label">Organization you are affilaited to</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="inputOrganization" name="inputOrganization" placeholder="Example University" required>
+                      <input type="text" class="form-control" id="organization" name="organization" placeholder="Example University" required>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputRole" class="col-sm-3 control-label">Your role in the organisation</label>
+                    <label for="role" class="col-sm-3 control-label">Your role in the organisation</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="inputRole" name="inputRole" placeholder="Librarian" required>
+                      <input type="text" class="form-control" id="role" name="role" placeholder="Librarian" required>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputCountry" class="col-sm-3 control-label">Country</label>
+                    <label for="country" class="col-sm-3 control-label">Country</label>
                     <div class="col-sm-9">
-                      <select id="inputCountry" name="inputCounty" class="input-medium" required>
+                      <select id="country" name="country" class="input-medium" required>
                             <option>Afghanistan</option>
                             <option>Albania</option>
                             <option>Algeria</option>
@@ -261,9 +261,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputDescription" class="col-sm-3 control-label">[NON-PARTNERS] Describe why do you need access?</label>
+                    <label for="description" class="col-sm-3 control-label">[NON-PARTNERS] Describe why do you need access?</label>
                     <div class="col-sm-9">
-                        <textarea rows="3"class="form-control" id="inputDescription" name="inputDescription" placeholder="Description"></textarea>
+                        <textarea rows="3"class="form-control" id="description" name="description" placeholder="Description"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
