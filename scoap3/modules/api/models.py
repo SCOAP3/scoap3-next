@@ -15,6 +15,7 @@ from invenio_db import db
 from sqlalchemy import UniqueConstraint
 from sqlalchemy.event import listen
 from sqlalchemy.orm import validates
+from sqlalchemy_utils import EmailType
 
 
 class ApiRegistrations(db.Model):
@@ -29,14 +30,15 @@ class ApiRegistrations(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     """Primary key. It allows the other fields to be nullable."""
 
-    creation_date = db.Column(db.DateTime, default=datetime.utcnow)
+    created = db.Column(db.DateTime, default=datetime.utcnow)
+    updated = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     partner = db.Column(db.Boolean(name='partner'), nullable=False,
                         default=False, server_default='0')
 
     name = db.Column(db.String(150), nullable=False)
 
-    email = db.Column(db.String(100), index=True)
+    email = db.Column(EmailType, index=True, nullable=False)
 
     organization = db.Column(db.String(255), nullable=False)
 
