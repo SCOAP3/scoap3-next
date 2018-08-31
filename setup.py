@@ -58,6 +58,7 @@ setup(
         ],
         'invenio_admin.views': [
             'scoap3_api_registrations = scoap3.modules.api.admin:api_registrations_adminview',
+            'scoap3_analysis = scoap3.modules.analysis.admin:gdp_adminview',
         ],
         'invenio_base.apps': [
             'scoap3_records = scoap3.modules.records:Scoap3Records',
@@ -85,9 +86,11 @@ setup(
         ],
         'invenio_db.alembic': [
             'scoap3_api = scoap3.modules.api:alembic',
+            'scoap3_analysis = scoap3.modules.analysis:alembic',
         ],
         'invenio_db.models': [
             'scoap3_api = scoap3.modules.api.models',
+            'scoap3_analysis = scoap3.modules.analysis.models',
         ],
         'invenio_pidstore.minters': [
             'scoap3_minter = scoap3.modules.pidstore.minters:scoap3_recid_minter',
