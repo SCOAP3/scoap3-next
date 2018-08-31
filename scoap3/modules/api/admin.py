@@ -8,18 +8,13 @@
 
 """Admin views for managing access to actions."""
 
-from flask import current_app, flash, request
-from flask_admin import expose
+from flask import current_app, flash
 from flask_admin.actions import action
 from flask_admin.contrib.sqla import ModelView
 from werkzeug.local import LocalProxy
-from wtforms import SelectField
 
 from .models import ApiRegistrations
 from invenio_db import db
-from invenio_access.proxies import current_access
-from gettext import ngettext
-from flask_mail import Message
 from flask_security.forms import ConfirmRegisterForm
 from werkzeug.datastructures import MultiDict
 from invenio_accounts.models import Role
@@ -37,28 +32,32 @@ class ApiRegistrationsView(ModelView):
     can_view_details = True
     can_edit = False
 
-    #list_all = ('id', 'creation_date', 'name', 'partner', 'organization', 'email', 'role', 'country', 'description', 'accepted',)
-    column_list = ('id', 'creation_date', 'name', 'partner', 'organization', 'email', 'role', 'country', 'description', 'accepted')
+    column_list = ('id', 'creation_date', 'name', 'partner', 'organization',
+                   'email', 'role', 'country', 'description', 'accepted')
 
     column_default_sort = ('id', True)
 
     column_labels = {
-         'creation_date': "Registration date",
-         'name': "Name",
-         'email': "E-mail",
+        'creation_date': "Registration date",
+        'name': "Name",
+        'email': "E-mail",
     }
 
     list_template = 'scoap3_api/custom_list.html'
-    column_filters = column_list
+    column_filters = ('id', 'creation_date', 'name', 'partner', 'organization',
+                      'country', 'accepted')
 
     def _create_user_for_api_registration(self, api_user_id):
         api_registration = ApiRegistrations.query.filter_by(id=api_user_id).one()
         password = os.urandom(5).encode('hex')
 
-        kwargs = dict(email=api_registration.email, password=password, active='y')
+        kwargs = dict(email=api_registration.email,
+                      password=password,
+                      active='y')
         form = ConfirmRegisterForm(MultiDict(kwargs), csrf_enabled=False)
 
         u = None
+        # Role with id 4 is an API user
         r = Role.query.filter_by(id=4).one()
 
         if form.validate():
@@ -77,15 +76,15 @@ class ApiRegistrationsView(ModelView):
                                             })
                 current_app.extensions['mail'].send(msg)
         else:
-           flash('Error creating user. %s' % form.errors, 'error')
+            flash('Error creating user. %s' % form.errors, 'error')
 
-    @action('accept', 'Accept','Are you sure you want to accept selected API registrations?')
+    @action('accept', 'Accept', 'Are you sure you want to accept selected API registrations?')
     def action_accept(self, ids):
         """Accept users."""
         try:
             count = 0
             for api_user_id in ids:
-                user = ApiRegistrations.query.filter_by(id = api_user_id).one()
+                user = ApiRegistrations.query.filter_by(id=api_user_id).one()
                 if user.accepted == 1:
                     flash('API user %s was already accepted.' % (user.email,), 'warning')
                     continue
@@ -102,9 +101,9 @@ class ApiRegistrationsView(ModelView):
                 raise
 
             current_app.logger.exception(str(exc))  # pragma: no cover
-            flash('Failed to accept API users.','error')  # pragma: no cover
+            flash('Failed to accept API users.', 'error')  # pragma: no cover
 
-    @action('reject', 'Reject','Are you sure you want to reject selected API registrations?')
+    @action('reject', 'Reject', 'Are you sure you want to reject selected API registrations?')
     def action_reject(self, ids):
         """Accept users."""
         try:
@@ -122,16 +121,15 @@ class ApiRegistrationsView(ModelView):
                 raise
 
             current_app.logger.exception(str(exc))  # pragma: no cover
-            flash('Failed to reject API users.','error')  # pragma: no cover
+            flash('Failed to reject API users.', 'error')  # pragma: no cover
 
 
 api_registrations_adminview = {
     'model': ApiRegistrations,
-    'modelview':ApiRegistrationsView,
+    'modelview': ApiRegistrationsView,
     'category': 'Api Registrations',
 }
 
 __all__ = (
     'api_registrations_adminview',
 )
-                                    
