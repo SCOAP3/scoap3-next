@@ -54,13 +54,13 @@ class ApiRegistrations(db.Model):
 
     @classmethod
     def accept(cls, id):
-        registration = cls.query.filter_by(id == id).one()
+        registration = cls.query.filter_by(id=id).one()
         registration.accepted = 1
         return True
 
     @classmethod
     def reject(cls, id):
-        registration = cls.query.filter_by(id == id).one()
+        registration = cls.query.filter_by(id=id).one()
         registration.accepted = -1
         return True
 

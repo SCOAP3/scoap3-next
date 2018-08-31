@@ -14,13 +14,18 @@ with open(os.path.join('scoap3',
 
 install_requires = [
     'celery<4.0',
+    'idutils',
+    'inspire-crawler~=1.0',
+    'invenio-accounts',
     'invenio-assets>=1.0.0b7',
     'invenio-base>=1.0.0a16',
+    'invenio-collections>=1.0.0a4',
     'invenio-config>=1.0.0b3',
     'invenio-db[postgresql,versioning]>=1.0.0b8',
     'invenio-indexer>=1.0.0a10',
     'invenio-jsonschemas>=1.0.0a5',
     'invenio-logging',
+    'invenio-mail',
     'invenio-oaiharvester>=1.0.0a3',
     'invenio-oauth2server',
     'invenio-oauthclient',
@@ -30,13 +35,10 @@ install_requires = [
     'invenio-records-ui>=1.0.0b1',
     'invenio-search==1.0.0a11',
     'invenio-search-ui==1.0.1',
-    'invenio-collections>=1.0.0a4',
     'invenio-theme',
-    'idutils',
     'invenio-workflows~=7.0',
     'invenio-workflows-files~=1.0',
     'invenio-workflows-ui~=2.0',
-    'inspire-crawler~=1.0'
 ],
 
 setup(

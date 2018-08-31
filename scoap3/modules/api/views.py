@@ -1,7 +1,7 @@
 from __future__ import absolute_import, print_function
 
 from flask import Blueprint, render_template, request
-from .models import ApiRegistration
+from .models import ApiRegistrations
 
 import sys
 from invenio_db import db
@@ -21,22 +21,6 @@ class EmailRegisterdException(Exception):
 
 
 class NameUsedException(Exception):
-    pass
-
-
-def check_registration_parameters(args):
-    pass
-
-
-def save_new_registration():
-    pass
-
-
-def create_new_invenio_user():
-    pass
-
-
-def send_notification_email_to_new_user(uid):
     pass
 
 
@@ -63,7 +47,6 @@ def register():
                                       )
             db.session.add(new_reg)
             db.session.commit()
-
             message = ('success', "Registration succesful. We will confirm your registration shortly.")
         except EmailRegisterdException():
             message = ('error', "User with this <b>email</b>: {} is already registered.".format(request.args.get('inputEmail')))
@@ -77,6 +60,5 @@ def register():
         title='SCOAP3 Repository - Tools registration',
         message=message,
     )
-
 
 
