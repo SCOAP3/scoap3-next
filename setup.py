@@ -16,6 +16,7 @@ install_requires = [
     'celery<4.0',
     'idutils',
     'inspire-crawler~=1.0',
+    'invenio-access',
     'invenio-accounts',
     'invenio-assets>=1.0.0b7',
     'invenio-base>=1.0.0a16',
