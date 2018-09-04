@@ -24,7 +24,7 @@ version: '2.1'
 
 services:
   base:
-    image: scoap3/python-base-test
+    image: inspirehep/python-base-test
     tty: true
     environment:
       - BASE_USER_UID=${BASE_USER_UID:-1000}
@@ -46,7 +46,7 @@ services:
       - APP_CRAWL_ONCE_PATH=/code/scrapy/crawl_once
 
   indexer:
-    image: scoap3/elasticsearch5
+    image: inspirehep/elasticsearch5
     command: bash -c "chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data && gosu elasticsearch env ES_JAVA_OPTS=\"-Xms2g -Xmx2g\" elasticsearch -Ecluster.name=inspire-dev"
     entrypoint: /docker-entrypoint.sh
 
