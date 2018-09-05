@@ -60,8 +60,8 @@ services:
       redis:
         condition: service_healthy
     environment:
-      - APP_DEBUG=True
-      - APP_ASSETS_DEBUG=True
+      - APP_DEBUG=False
+      - APP_ASSETS_DEBUG=False
 
   worker:
     extends:
