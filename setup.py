@@ -16,6 +16,7 @@ install_requires = [
     'celery<4.0',
     'idutils',
     'inspire-crawler~=1.0',
+    'invenio-access',
     'invenio-accounts',
     'invenio-assets>=1.0.0b7',
     'invenio-base>=1.0.0a16',
@@ -26,6 +27,7 @@ install_requires = [
     'invenio-jsonschemas>=1.0.0a5',
     'invenio-logging',
     'invenio-mail',
+    'invenio-oaiserver',
     'invenio-oaiharvester>=1.0.0a3',
     'invenio-oauth2server',
     'invenio-oauthclient',
@@ -38,7 +40,7 @@ install_requires = [
     'invenio-theme',
     'invenio-workflows~=7.0',
     'invenio-workflows-files~=1.0',
-    'invenio-workflows-ui~=2.0',
+    'invenio-workflows-ui==2.0.1',
 ],
 
 setup(
