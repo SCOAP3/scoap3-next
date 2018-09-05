@@ -2,5 +2,7 @@ elasticsearch==2.4.1
 elasticsearch-dsl==2.2.0
 raven
 flower
-celery<4.0:
-scrapy
+celery<4.0
+Scrapy
+scrapyd
+gunicorn
