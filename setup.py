@@ -29,6 +29,7 @@ install_requires = [
     'invenio-mail',
     'invenio-oaiserver',
     'invenio-oaiharvester>=1.0.0a3',
+    'invenio-oaiserver',
     'invenio-oauth2server',
     'invenio-oauthclient',
     'invenio-pidstore>=1.0.0b1',
