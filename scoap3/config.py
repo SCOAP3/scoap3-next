@@ -528,3 +528,6 @@ OAISERVER_METADATA_FORMATS = {
 # Invenio Logging config
 SENTRY_DSN = "https://0ab30d15e9354b7c919b03120210859b:9bdb60fdbff14b32a32cb11cdd184a01@test-scoap3-sentry.web.cern.ch/3"
 LOGGING_SENTRY_CLASS = "invenio_logging.sentry6.Sentry6"
+
+JSONSCHEMAS_HOST='localhost:5000'
+JSONSCHEMAS_REPLACE_REFS = True

@@ -30,6 +30,8 @@ services:
       service: base
     environment:
       - APP_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://scoap3:dbpass123@database:5432/scoap3
+      - APP_CELERY_BROKER_URL=pyamqp://guest:guest@rabbitmq:5672//
+      - APP_CELERY_RESULT_BACKEND=redis://redis:6379/1
       - CELERY_BROKER_URL=pyamqp://guest:guest@rabbitmq:5672//
       - CELERY_RESULT_BACKEND=redis://redis:6379/1
       - APP_CACHE_REDIS_URL=redis://redis:6379/0
