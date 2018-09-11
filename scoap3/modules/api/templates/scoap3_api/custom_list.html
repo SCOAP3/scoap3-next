@@ -1,0 +1,20 @@
+{% extends 'admin/model/list.html' %}
+{% block list_row_actions %}
+  {{ super() }}
+  <form class="icon" method="POST" action="/admin/apiregistrations/action/">
+    <input id="action" name="action" value="accept" type="hidden">
+    <input  name="rowid" value="{{ get_pk_value(row) }}" type="hidden">
+    <input id="url" name="url" type="hidden" value="/admin/apiregistrations/">
+    <button onclick="return confirm('Are you sure you want to accept selected API users?');" title="Approve">
+      <span class="fa fa-check-circle glyphicon glyphicon-ok"></span>
+    </button>
+  </form>
+  <form class="icon" method="POST" action="/admin/apiregistrations/action/">
+    <input id="action" name="action" value="reject" type="hidden">
+    <input  name="rowid" value="{{ get_pk_value(row) }}" type="hidden">
+    <input id="url" name="url" type="hidden" value="/admin/apiregistrations/">
+    <button onclick="return confirm('Are you sure you want to reject selected API users?');" title="Approve">
+      <span class="fa fa-minus-circle glyphicon glyphicon-ok"></span>
+    </button>
+  </form>
+{% endblock %}

@@ -19,6 +19,8 @@ I18N_LANGUAGES = [
 COVER_TEMPLATE = "invenio_theme/page_cover.html"
 SETTINGS_TEMPLATE = "invenio_theme/settings/content.html"
 
+SERVER_NAME = 'localhost:5000'
+
 # WARNING: Do not share the secret key - especially do not commit it to
 # version control.
 SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUUsVFWThN5YmJ023XzKHOMcMZIEblxgyoMSkyP5rcnlBCQ4yJOCBsXxmn13RxcK7yQ7U996ey59zce1i47VoVTyk1wwOKJocafnyOk4HfcE3Xx2IxKQYk8EXWtPVlndmVZZuba9kivA73QfWB9uxumFd8wtMhLm6quRa8KB9eqywNyCwcz6DHGYQzRKKvtgo"
@@ -38,6 +40,7 @@ SEARCH_UI_SEARCH_INDEX = "records-record"
 SEARCH_UI_JSTEMPLATE_RANGE_FACET = 'templates/scoap3_search/range.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
+SETTINGS_TEMPLATE = "invenio_theme/page_settings.html"
 
 # Celery
 BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/scoap3"
@@ -521,3 +524,7 @@ OAISERVER_METADATA_FORMATS = {
         'schema': 'http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd'
     }
 }
+
+# Invenio Logging config
+SENTRY_DSN = "https://0ab30d15e9354b7c919b03120210859b:9bdb60fdbff14b32a32cb11cdd184a01@test-scoap3-sentry.web.cern.ch/3"
+LOGGING_SENTRY_CLASS = "invenio_logging.sentry6.Sentry6"

@@ -258,7 +258,7 @@ def update_record(obj, eng):
         obj.data['acquisition_source']['source'] = 'Springer/SIF'
 
     # preserving oryginal creation date
-    obj.date['record_creation_date'] = existing_record['record_creation_date']
+    obj.data['record_creation_date'] = existing_record['record_creation_date']
     existing_record.clear()
     existing_record.update(obj.data)
     existing_record.commit()
