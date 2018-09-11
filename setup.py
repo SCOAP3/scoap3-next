@@ -18,6 +18,7 @@ install_requires = [
     'inspire-crawler~=1.0',
     'invenio-access',
     'invenio-accounts',
+    'invenio-admin',
     'invenio-assets>=1.0.0b7',
     'invenio-base>=1.0.0a16',
     'invenio-collections>=1.0.0a4',

@@ -1,210 +1,204 @@
 {
   "records": [
       {
-        "metadata": {
-          "abstracts": [
-            {
-              "source": "Elsevier",
-              "value": "We study single field inflation in noncommutative spacetime and compute two-point and three-point correlation functions for the curvature perturbation. We find that both power spectrum and bispectrum for comoving curvature perturbation are statistically anisotropic and the bispectrum is also modified by a phase factor depending upon the noncommutative parameters. The non-linearity parameter fNL is small for small statistical anisotropic corrections to the bispectrum coming from the noncommutative geometry and is consistent with the recent PLANCK bounds. There is a scale dependence of fNL due to the noncommutative spacetime which is different from the standard single field inflation models and statistically anisotropic vector field inflation models. Deviations from statistical isotropy of CMB, observed by PLANCK can tightly constraint the effects due to noncommutative geometry on power spectrum and bispectrum."
-            }
-          ],
-          "acquisition_source": {
-            "date": "2014-01-08T00:00:00",
-            "method": "scoap3",
+        "abstracts": [
+          {
             "source": "Elsevier",
-            "submission_number": "372790d4430511e898b102163e01809a"
-          },
-          "authors": [
-            {
-              "affiliations": [
-                {
-                  "country": "India",
-                  "value": "Institute of Mathematical Sciences, CIT Campus, Taramani, Chennai-600113, India"
-                }
-              ],
-              "full_name": "Nautiyal, Akhilesh",
-              "given_names": "Akhilesh",
-              "raw_name": "Nautiyal, Akhilesh",
-              "surname": "Nautiyal"
-            }
-          ],
-          "copyright": [
-            {
-              "holder": "",
-              "material": "",
-              "statement": "The Author",
-              "year": ""
-            }
-          ],
-          "dois": [
-            {
-              "value": "10.1016/j.physletb.2013.12.007"
-            }
-          ],
-          "imprints": [
-            {
-              "date": "2014-01-20",
-              "publisher": "Elsevier"
-            }
-          ],
-          "license": [
-            {
-              "license": "CC-BY-3.0",
-              "url": "http://creativecommons.org/licenses/by/3.0/"
-            }
-          ],
-          "local_files": [
-            {
-              "value": {
-                "filetype": "pdf",
-                "path": "http://repo.scoap3.org/record/725/files/main.pdf"
-              }
-            },
-            {
-              "value": {
-                "filetype": "xml",
-                "path": "http://repo.scoap3.org/record/725/files/main.xml"
-              }
-            },
-            {
-              "value": {
-                "filetype": "pdfa",
-                "path": "http://repo.scoap3.org/record/725/files/main.pdf?subformat=pdfa"
-              }
-            }
-          ],
-          "publication_info": [
-            {
-              "artid": "",
-              "journal_issue": "",
-              "journal_title": "Physics Letters B",
-              "journal_volume": "",
-              "note": "",
-              "page_end": "481",
-              "page_start": "472",
-              "pubinfo_freetext": "",
-              "year": 2014
-            }
-          ],
-          "titles": [
-            {
-              "source": "Elsevier",
-              "subtitle": "",
-              "title": "Anisotropic non-gaussianity with noncommutative spacetime"
-            }
-          ]
-        }
-      },
-      {
-        "metadata": {
-          "abstracts": [
-            {
-              "source": "Elsevier",
-              "value": "The nuclear aspects of flavour changing neutral current (FCNC) processes, predicted by various new-physics models to occur in the presence of nuclei, are examined by computing the relevant nuclear matrix elements within the context of the quasi-particle RPA using realistic strong two-body forces. One of our aims is to explore the role of the non-standard interactions (NSI) in the leptonic sector and specifically: (i) in lepton flavour violating (LFV) processes involving the neutral particles Î½â and Î½Ëâ , â=e,Î¼,Ï and (ii) in charged lepton flavour violating (cLFV) processes involving the charged leptons ââ or â+ . As concrete nuclear systems we have chosen the stopping targets of Î¼ââeâ conversion experiments, i.e. the 48 Ti nucleus of the PRIME/PRISM experiment at J-PARC and the 27 Al of the COMET at J-PARC as well as of the Mu2e at Fermilab. These experiments have been designed to reduce the single event sensitivity down to 10 â16 â10 â18 in searching for charged lepton mixing events. Our goal is, by taking advantage of our detailed nuclear structure calculations and using the present limits or the sensitivity of the aforementioned exotic Î¼ââeâ experiments, to put stringent constraints on the parameters of NSI Lagrangians."
-            }
-          ],
-          "acquisition_source": {
-            "date": "2014-01-08T00:00:00",
-            "method": "scoap3",
-            "source": "Elsevier",
-            "submission_number": "372790d4430511e898b102163e01809a"
-          },
-          "authors": [
-            {
-              "affiliations": [
-                {
-                  "country": "Greece",
-                  "value": "Division of Theoretical Physics, University of Ioannina, GR 45100 Ioannina, Greece"
-                }
-              ],
-              "full_name": "Papoulias, D.K.",
-              "given_names": "D.K.",
-              "raw_name": "Papoulias, D.K.",
-              "surname": "Papoulias"
-            },
-            {
-              "affiliations": [
-                {
-                  "country": "Greece",
-                  "value": "Division of Theoretical Physics, University of Ioannina, GR 45100 Ioannina, Greece"
-                }
-              ],
-              "full_name": "Kosmas, T.S.",
-              "given_names": "T.S.",
-              "raw_name": "Kosmas, T.S.",
-              "surname": "Kosmas"
-            }
-          ],
-          "copyright": [
-            {
-              "holder": "",
-              "material": "",
-              "statement": "The Authors",
-              "year": ""
-            }
-          ],
-          "dois": [
-            {
-              "value": "10.1016/j.physletb.2013.12.028"
-            }
-          ],
-          "imprints": [
-            {
-              "date": "2014-01-20",
-              "publisher": "Elsevier"
-            }
-          ],
-          "license": [
-            {
-              "license": "CC-BY-3.0",
-              "url": "http://creativecommons.org/licenses/by/3.0/"
-            }
-          ],
-          "local_files": [
-            {
-              "value": {
-                "filetype": "pdf",
-                "path": "http://repo.scoap3.org/record/726/files/main.pdf"
-              }
-            },
-            {
-              "value": {
-                "filetype": "xml",
-                "path": "http://repo.scoap3.org/record/726/files/main.xml"
-              }
-            },
-            {
-              "value": {
-                "filetype": "pdfa",
-                "path": "http://repo.scoap3.org/record/726/files/main.pdf?subformat=pdfa"
-              }
-            }
-          ],
-          "publication_info": [
-            {
-              "artid": "",
-              "journal_issue": "",
-              "journal_title": "Physics Letters B",
-              "journal_volume": "",
-              "note": "",
-              "page_end": "488",
-              "page_start": "482",
-              "pubinfo_freetext": "",
-              "year": 2014
-            }
-          ],
-          "titles": [
-            {
-              "source": "Elsevier",
-              "subtitle": "",
-              "title": "Nuclear aspects of neutral current non-standard Î½ -nucleus reactions and the role of the exotic Î¼ââeâ transitions experimental limits"
-            }
-          ]
+            "value": "We study single field inflation in noncommutative spacetime and compute two-point and three-point correlation functions for the curvature perturbation. We find that both power spectrum and bispectrum for comoving curvature perturbation are statistically anisotropic and the bispectrum is also modified by a phase factor depending upon the noncommutative parameters. The non-linearity parameter fNL is small for small statistical anisotropic corrections to the bispectrum coming from the noncommutative geometry and is consistent with the recent PLANCK bounds. There is a scale dependence of fNL due to the noncommutative spacetime which is different from the standard single field inflation models and statistically anisotropic vector field inflation models. Deviations from statistical isotropy of CMB, observed by PLANCK can tightly constraint the effects due to noncommutative geometry on power spectrum and bispectrum."
+          }
+        ],
+        "acquisition_source": {
+          "date": "2014-01-08T00:00:00",
+          "method": "scoap3",
+          "source": "Elsevier",
+          "submission_number": "372790d4430511e898b102163e01809a"
         },
-        "updated": "2018-04-18T12:59:08.424598+00:00"
+        "authors": [
+          {
+            "affiliations": [
+              {
+                "country": "India",
+                "value": "Institute of Mathematical Sciences, CIT Campus, Taramani, Chennai-600113, India"
+              }
+            ],
+            "full_name": "Nautiyal, Akhilesh",
+            "given_names": "Akhilesh",
+            "raw_name": "Nautiyal, Akhilesh",
+            "surname": "Nautiyal"
+          }
+        ],
+        "copyright": [
+          {
+            "holder": "",
+            "material": "",
+            "statement": "The Author",
+            "year": ""
+          }
+        ],
+        "dois": [
+          {
+            "value": "10.1016/j.physletb.2013.12.007"
+          }
+        ],
+        "imprints": [
+          {
+            "date": "2014-01-20",
+            "publisher": "Elsevier"
+          }
+        ],
+        "license": [
+          {
+            "license": "CC-BY-3.0",
+            "url": "http://creativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "local_files": [
+          {
+            "value": {
+              "filetype": "pdf",
+              "path": "http://repo.scoap3.org/record/725/files/main.pdf"
+            }
+          },
+          {
+            "value": {
+              "filetype": "xml",
+              "path": "http://repo.scoap3.org/record/725/files/main.xml"
+            }
+          },
+          {
+            "value": {
+              "filetype": "pdfa",
+              "path": "http://repo.scoap3.org/record/725/files/main.pdf?subformat=pdfa"
+            }
+          }
+        ],
+        "publication_info": [
+          {
+            "artid": "",
+            "journal_issue": "",
+            "journal_title": "Physics Letters B",
+            "journal_volume": "",
+            "note": "",
+            "page_end": "481",
+            "page_start": "472",
+            "pubinfo_freetext": "",
+            "year": 2014
+          }
+        ],
+        "titles": [
+          {
+            "source": "Elsevier",
+            "subtitle": "",
+            "title": "Anisotropic non-gaussianity with noncommutative spacetime"
+          }
+        ]
       },
       {
-        "metadata": {
+        "abstracts": [
+          {
+            "source": "Elsevier",
+            "value": "The nuclear aspects of flavour changing neutral current (FCNC) processes, predicted by various new-physics models to occur in the presence of nuclei, are examined by computing the relevant nuclear matrix elements within the context of the quasi-particle RPA using realistic strong two-body forces. One of our aims is to explore the role of the non-standard interactions (NSI) in the leptonic sector and specifically: (i) in lepton flavour violating (LFV) processes involving the neutral particles Î½â and Î½Ëâ , â=e,Î¼,Ï and (ii) in charged lepton flavour violating (cLFV) processes involving the charged leptons ââ or â+ . As concrete nuclear systems we have chosen the stopping targets of Î¼ââeâ conversion experiments, i.e. the 48 Ti nucleus of the PRIME/PRISM experiment at J-PARC and the 27 Al of the COMET at J-PARC as well as of the Mu2e at Fermilab. These experiments have been designed to reduce the single event sensitivity down to 10 â16 â10 â18 in searching for charged lepton mixing events. Our goal is, by taking advantage of our detailed nuclear structure calculations and using the present limits or the sensitivity of the aforementioned exotic Î¼ââeâ experiments, to put stringent constraints on the parameters of NSI Lagrangians."
+          }
+        ],
+        "acquisition_source": {
+          "date": "2014-01-08T00:00:00",
+          "method": "scoap3",
+          "source": "Elsevier",
+          "submission_number": "372790d4430511e898b102163e01809a"
+        },
+        "authors": [
+          {
+            "affiliations": [
+              {
+                "country": "Greece",
+                "value": "Division of Theoretical Physics, University of Ioannina, GR 45100 Ioannina, Greece"
+              }
+            ],
+            "full_name": "Papoulias, D.K.",
+            "given_names": "D.K.",
+            "raw_name": "Papoulias, D.K.",
+            "surname": "Papoulias"
+          },
+          {
+            "affiliations": [
+              {
+                "country": "Greece",
+                "value": "Division of Theoretical Physics, University of Ioannina, GR 45100 Ioannina, Greece"
+              }
+            ],
+            "full_name": "Kosmas, T.S.",
+            "given_names": "T.S.",
+            "raw_name": "Kosmas, T.S.",
+            "surname": "Kosmas"
+          }
+        ],
+        "copyright": [
+          {
+            "holder": "",
+            "material": "",
+            "statement": "The Authors",
+            "year": ""
+          }
+        ],
+        "dois": [
+          {
+            "value": "10.1016/j.physletb.2013.12.028"
+          }
+        ],
+        "imprints": [
+          {
+            "date": "2014-01-20",
+            "publisher": "Elsevier"
+          }
+        ],
+        "license": [
+          {
+            "license": "CC-BY-3.0",
+            "url": "http://creativecommons.org/licenses/by/3.0/"
+          }
+        ],
+        "local_files": [
+          {
+            "value": {
+              "filetype": "pdf",
+              "path": "http://repo.scoap3.org/record/726/files/main.pdf"
+            }
+          },
+          {
+            "value": {
+              "filetype": "xml",
+              "path": "http://repo.scoap3.org/record/726/files/main.xml"
+            }
+          },
+          {
+            "value": {
+              "filetype": "pdfa",
+              "path": "http://repo.scoap3.org/record/726/files/main.pdf?subformat=pdfa"
+            }
+          }
+        ],
+        "publication_info": [
+          {
+            "artid": "",
+            "journal_issue": "",
+            "journal_title": "Physics Letters B",
+            "journal_volume": "",
+            "note": "",
+            "page_end": "488",
+            "page_start": "482",
+            "pubinfo_freetext": "",
+            "year": 2014
+          }
+        ],
+        "titles": [
+          {
+            "source": "Elsevier",
+            "subtitle": "",
+            "title": "Nuclear aspects of neutral current non-standard Î½ -nucleus reactions and the role of the exotic Î¼ââeâ transitions experimental limits"
+          }
+        ]
+      },
+      {
           "abstracts": [
             {
               "source": "Elsevier",
@@ -311,10 +305,8 @@
               "title": "Supersymmetry at the LHC and the theory of R-parity"
             }
           ]
-        }
-      },
+        },
       {
-        "metadata": {
           "abstracts": [
             {
               "source": "Elsevier",
@@ -10465,7 +10457,7 @@
               ],
               "full_name": "FoÃ, L.",
               "given_names": "L.",
-              "raw_name": "FoÃ , L.",
+              "raw_name": "FoÃ , L.",
               "surname": "FoÃ"
             },
             {
@@ -16010,7 +16002,7 @@
               ],
               "full_name": "DonegÃ, M.",
               "given_names": "M.",
-              "raw_name": "DonegÃ , M.",
+              "raw_name": "DonegÃ , M.",
               "surname": "DonegÃ"
             },
             {
@@ -27479,8 +27471,6 @@
               "title": "Determination of the top-quark pole mass and strong coupling constant from the ttÂ¯ production cross section in pp collisions at s=7 TeV"
             }
           ]
-        },
-        "updated": "2018-04-13T16:36:50.387349+00:00"
       },
       {
        "abstracts": [{"source": "Hindawi Publishing Corporation",

@@ -36,8 +36,7 @@ scoap3 db drop --yes-i-know
 scoap3 db create
 scoap3 index destroy --force --yes-i-know
 scoap3 index init
-scoap3 fixtures init
 
 if [[ "$1" != "--no-populate" ]]; then
-  scoap3 migrate file --force --wait scoap3/data/scoap3export.xml
+  scoap3 loadrecords scopa3/data/scoap3demodata.json
 fi
