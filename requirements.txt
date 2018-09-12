@@ -6,3 +6,4 @@ celery<4.0
 Scrapy
 scrapyd
 gunicorn
+pdfminer==20140328
