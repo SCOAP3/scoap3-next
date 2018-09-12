@@ -120,7 +120,10 @@ def check_compliance(obj, eng):
         }
 
     c = Compliance()
-    results = {'checks': checks}
+    results = {
+        'checks': checks,
+        'accepted': all_ok
+    }
     c.results = results
     pid = PersistentIdentifier.get('recid', obj.extra_data['recid'])
     c.id_record = pid.object_uuid
