@@ -27,7 +27,7 @@
 from __future__ import absolute_import, print_function
 
 from flask import Blueprint
-from markupsafe import Markup
+from jinja2.utils import Markup
 
 blueprint = Blueprint(
     'scoap3_theme',
@@ -59,3 +59,11 @@ def tri_state_boolean_to_icon(input):
         -1: 'remove',
     }
     return Markup(template % classes.get(input))
+
+@blueprint.app_template_filter()
+def boolean_to_icon(input):
+    template = '<span class="glyphicon glyphicon-%s-sign text-%s" aria-hidden="true"></span>'
+    if input:
+        return Markup(template % ('ok', 'success'))
+
+    return Markup(template % ('remove', 'danger'))
