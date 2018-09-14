@@ -1,0 +1,21 @@
+{% extends 'admin/model/list.html' %}
+
+{% macro render_results(model, column) %}
+    {% for check_name, check_data in model.results.checks.iteritems() %}
+      {% if not check_data.check %}
+        {{ check_name }}: {{ check_data.details }}<br/>
+      {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro render_doi(model, column) %}
+  <a href="http://doi.org/{{ model.doi }}" target="_blank">{{ model.doi }}</a>
+{% endmacro %}
+
+{% macro render_arxiv(model, column) %}
+  {% if model.arxiv %}
+    <a href="http://arxiv.org/abs/{{ model.arxiv }}" target="_blank">{{ model.arxiv }}</a>
+  {% else %}
+    -
+  {% endif %}
+{% endmacro %}
