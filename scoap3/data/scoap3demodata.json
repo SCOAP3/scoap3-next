@@ -27564,7 +27564,7 @@
                      "url": "https://creativecommons.org/licenses//by/4.0"}],
        "local_files": [{"value": {"filetype": "xml",
                                     "path": "scoap3/data/10.1140_epjc_s10052-018-6183-4.xml"}},
-                        {"value": {"filetype": "pdf/a",
+                        {"value": {"filetype": "pdf",
                                     "path": "scoap3/data/10.1140_epjc_s10052-018-6183-4.pdf"}}],
        "publication_info": [{"artid": "",
                               "journal_issue": "9",
