@@ -21,11 +21,12 @@ def __extract_text_as_extra_data(obj):
     if 'extracted_data' in obj.extra_data:
         return
 
+    obj.extra_data['extracted_data'] = {}
     for file in obj.extra_data['files']:
-        # TODO add pdfa extraction and checks as well
-        if file['filetype'] in ('pdf', ):
+        filetype = file['filetype']
+        if filetype in ('pdf', 'pdf/a'):
             path = file['url']
-            obj.extra_data['extracted_data'] = extract_text_from_pdf(path)
+            obj.extra_data['extracted_data'][filetype] = extract_text_from_pdf(path).decode('utf-8')
 
 
 def __find_regexp(data, patterns):
@@ -52,25 +53,31 @@ def __find_regexp(data, patterns):
 
 def __find_regexp_in_pdf(obj, patterns, forbidden_patterns=None):
     """
-    Finds all matches for given patterns with surrounding characters.
-    Failes only if there are no matches at all.
+    Finds all matches for given patterns with surrounding characters in all filetypes.
+    Fails only if there are no matches at all or there is a match for a forbidden pattern.
     :param patterns: iterable of string patterns
     """
     __extract_text_as_extra_data(obj)
 
-    # first check for forbidden patterns
-    if forbidden_patterns:
-        forbidden_matches =__find_regexp(obj.extra_data['extracted_data'], forbidden_patterns)
-        if forbidden_matches:
-            return False, 'Found forbidden match: "%s"' % '", "'.join(set(forbidden_matches)), None
+    ok = True
+    details = []
 
-    matches = __find_regexp(obj.extra_data['extracted_data'], patterns)
+    for filetype, data in obj.extra_data['extracted_data'].iteritems():
+        # first check for forbidden patterns
+        if forbidden_patterns:
+            forbidden_matches =__find_regexp(data, forbidden_patterns)
+            if forbidden_matches:
+                ok = False
+                details.append('Found forbidden match in %s: "%s"' % (filetype, '", "'.join(set(forbidden_matches))))
 
-    if not matches:
-        return False, 'Not found.', None
+        matches = __find_regexp(data, patterns)
+        if not matches:
+            ok = False
+            details.append('Not found in %s' % filetype)
+        else:
+            details.append('Found in %s as: "%s"' % (filetype, '", "'.join(set(matches))))
 
-    details = 'Found as: "%s"' % '", "'.join(set(matches))
-    return True, details, None
+    return ok, " | ".join(details), None
 
 
 def _files(obj):
@@ -100,7 +107,7 @@ def _received_in_time(obj):
 
     api_message = requests.get(api_url % __get_first_doi(obj)).json()['message']
 
-    api_time = parse_date(api_message['created'])  # todo check published-online for PTEP
+    api_time = parse_date(api_message['created']['date-time'], ignoretz=True)  # todo check published-online for PTEP
     received_time = parse_date(obj.data['acquisition_source']['date'])
     delta = received_time - api_time
 
