@@ -41,6 +41,16 @@
       </tr>
     {% endfor %}
     <tr>
+      <td><b>Stored files</b></td>
+      <td colspan="2">
+        {% for file in model.record.json._files %}
+          <a href="/api/files/{{ file.bucket }}/{{ file.key }}" target="_blank">
+            {{ file.filetype }}<br/>
+          </a>
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
       <td><b>Actions</b></td>
       <td colspan="2">
         <form method="POST" action="/admin/compliance/action/">
