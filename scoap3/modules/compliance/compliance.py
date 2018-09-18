@@ -1,5 +1,5 @@
 import itertools
-import re
+import regex
 from datetime import timedelta
 from dateutil.parser import parse as parse_date
 
@@ -36,11 +36,14 @@ def __find_regexp(data, patterns):
 
     matches = []
 
-    for pattern in patterns:
-        # add the surrounding characters too
-        pattern = "(.{0,10}%s.{0,10})" % pattern
+    for original_pattern in patterns:
+        # add fuzzing based on pattern length
+        fuzz_i = len(original_pattern) / 10
 
-        match = re.findall(pattern, data, re.IGNORECASE | re.DOTALL)
+        # add the surrounding characters too
+        pattern = "(.{0,10}%s.{0,10}){i<=%d}" % (original_pattern, fuzz_i)
+
+        match = regex.findall(pattern, data, regex.IGNORECASE | regex.DOTALL)
         for m in match:
             # it can contain a string or tuple of strings if there is multiple match groups
             if isinstance(m, tuple):
@@ -126,7 +129,7 @@ def _founded_by(obj):
 
 
 def _author_rights(obj):
-    COPYRIGHT = u'\N{COPYRIGHT SIGN}'.encode('utf-8')
+    COPYRIGHT = u'\N{COPYRIGHT SIGN}'
 
     start_patterns = (COPYRIGHT, 'copyright', '/(c/)', )
 
