@@ -27,6 +27,7 @@
 from __future__ import absolute_import, print_function
 
 from flask import Blueprint
+from markupsafe import Markup
 
 blueprint = Blueprint(
     'scoap3_theme',
@@ -48,3 +49,13 @@ def is_list(value):
 @blueprint.app_template_filter()
 def format_author_name(name):
     return ' '.join(reversed(name.split(',')))
+
+@blueprint.app_template_filter()
+def tri_state_boolean_to_icon(input):
+    template = '<span class="glyphicon glyphicon-%s-sign" aria-hidden="true"></span>'
+    classes = {
+        0: 'question',
+        1: 'ok',
+        -1: 'remove',
+    }
+    return Markup(template % classes.get(input))
