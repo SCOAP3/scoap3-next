@@ -10,11 +10,30 @@
 
 from flask import flash
 from flask_admin.actions import action
-from flask_admin.contrib.sqla import ModelView
+from flask_admin.contrib.sqla import ModelView, tools
+from flask_admin.contrib.sqla.filters import FilterLike, FilterEqual
 from flask_admin.model.template import macro
 from invenio_db import db
 
 from .models import Compliance
+
+class JsonFilterLike(FilterLike):
+    def apply(self, query, value, alias=None):
+        stmt = tools.parse_like_term(value)
+        return query.filter(self.get_column(alias).astext.ilike(stmt))
+
+
+class JsonFilterEqual(FilterEqual):
+    def apply(self, query, value, alias=None):
+        return query.filter(self.get_column(alias).astext == value)
+
+
+class FilterByAccepance(FilterEqual):
+    def apply(self, query, value, alias=None):
+        return query.filter(Compliance.accepted.astext==value)
+
+    def get_options(self, view):
+        return (True, 'True'), (False, 'False')
 
 
 class ComplianceView(ModelView):
@@ -37,6 +56,14 @@ class ComplianceView(ModelView):
         'arxiv': 'Arxiv number',
     }
     column_sortable_list = ()
+    column_filters = (
+        Compliance.created,
+        Compliance.updated,
+        FilterByAccepance(column=None, name='Acceptance'),
+        JsonFilterLike(column=Compliance.publisher, name='Publisher'),
+        JsonFilterEqual(column=Compliance.doi, name='DOI'),
+        JsonFilterEqual(column=Compliance.arxiv, name='Arxiv'),
+    )
 
     list_template = 'scoap3_compliance/admin/list.html'
     details_template = 'scoap3_compliance/admin/details.html'

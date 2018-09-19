@@ -175,7 +175,12 @@ def check_compliance(obj, eng):
     c = Compliance()
     results = {
         'checks': checks,
-        'accepted': all_ok
+        'accepted': all_ok,
+        'data': {
+            'doi': obj.data['dois'][0]['value'],
+            'publisher': obj.data['imprints'][0]['publisher'],
+            'arxiv': 'todo'  # todo
+        }
     }
 
     c.results = results
