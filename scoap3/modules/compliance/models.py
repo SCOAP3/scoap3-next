@@ -16,8 +16,9 @@ from flask import flash
 from invenio_db import db
 from invenio_records.models import RecordMetadata
 from sqlalchemy.dialects import postgresql
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm.attributes import flag_modified
-from sqlalchemy_utils import JSONType, UUIDType
+from sqlalchemy_utils import UUIDType
 
 
 class Compliance(db.Model):
@@ -33,36 +34,25 @@ class Compliance(db.Model):
     )
     record = db.relationship(RecordMetadata, foreign_keys=[id_record])
 
-    results = db.Column(db.JSON().with_variant(
-            postgresql.JSONB(none_as_null=True),
-            'postgresql',
-        ).with_variant(
-            JSONType(),
-            'sqlite',
-        ).with_variant(
-            JSONType(),
-            'mysql',
-        ),
-        default=lambda: dict(),
-        nullable=False
+    results = db.Column(postgresql.JSONB(none_as_null=True),
+                        nullable=False
     )
 
-    @property
+    @hybrid_property
     def accepted(self):
-        return self.results.get('accepted', False)
+        return self.results['accepted']
 
-    @property
+    @hybrid_property
     def doi(self):
-        return self.record.json['dois'][0]['value']
+        return self.results['data']['doi']
 
-    @property
+    @hybrid_property
     def publisher(self):
-        return self.record.json['imprints'][0]['publisher']
+        return self.results['data']['publisher']
 
-    @property
+    @hybrid_property
     def arxiv(self):
-        # todo
-        return 'todo'
+        return self.results['data']['arxiv']
 
     @classmethod
     def accept(cls, id):
