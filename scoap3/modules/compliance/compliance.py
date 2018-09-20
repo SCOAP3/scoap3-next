@@ -142,7 +142,7 @@ def _founded_by(obj):
 def _author_rights(obj):
     COPYRIGHT = u'\N{COPYRIGHT SIGN}'
 
-    start_patterns = (COPYRIGHT, 'copyright', '/(c/)', )
+    start_patterns = (COPYRIGHT, 'copyright', '\(c\)', )
 
     needed_patterns = [p + '.{15}' for p in start_patterns]
 
