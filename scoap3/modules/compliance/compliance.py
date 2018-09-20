@@ -15,6 +15,17 @@ def __get_first_doi(obj):
     return obj.data['dois'][0]['value']
 
 
+def __get_first_arxiv(obj):
+    arxiv_array = [
+        a['value'].split(':')[1]
+        for a in obj.data.get('report_numbers', ())
+        if a['source'] == 'arXiv'
+    ]
+    if arxiv_array:
+        return arxiv_array[0]
+    return None
+
+
 def __extract_text_as_extra_data(obj):
     # fixme extraction shouldn't happen in article_upload?
     # do extraction only if not done earlier
@@ -179,7 +190,7 @@ def check_compliance(obj, eng):
         'data': {
             'doi': obj.data['dois'][0]['value'],
             'publisher': obj.data['imprints'][0]['publisher'],
-            'arxiv': 'todo'  # todo
+            'arxiv': __get_first_arxiv(obj)
         }
     }
 
