@@ -1,0 +1,677 @@
+<article xmlns="" xmlns:xlink="http://www.w3.org/1999/xlink">
+<front>
+<journal-meta>
+<journal-id journal-id-type="publisher-id">cpc</journal-id>
+<journal-id journal-id-type="coden">JPAPEH</journal-id>
+<journal-title-group>
+<journal-title>Chinese Physics C</journal-title>
+<abbrev-journal-title abbrev-type="IOP">CPC</abbrev-journal-title>
+<abbrev-journal-title abbrev-type="publisher"/>
+</journal-title-group>
+<issn pub-type="ppub">1674-1137</issn>
+<publisher>
+<publisher-name>Science Press</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="doi">10.1088/1674-1137/38/1/013103</article-id>
+<title-group>
+<article-title>Meson decays in an extended Nambu--Jona-Lasinio model with heavy quark flavors</article-title>
+</title-group>
+
+<contrib-group>
+<contrib contrib-type="author">
+<name><surname>DENG</surname>
+<given-names>Hong-Bo</given-names></name>
+<xref ref-type="aff" rid="af1"/></contrib>
+<contrib contrib-type="author">
+<name><surname>CHEN</surname>
+<given-names>Xiao-Lin</given-names></name>
+<xref ref-type="aff" rid="af1"/>
+</contrib>
+<contrib contrib-type="author">
+<name><surname>DENG</surname>
+<given-names>Wei-Zhen</given-names></name>
+<xref ref-type="aff" rid="af1"/>
+<xref ref-type="fn" rid="em1">1</xref></contrib>
+<aff id="af1">School of Physics and State Key Laboratory of Nuclear Physics and Technology,
+Peking University, Beijing 100871, <country>China</country></aff>
+</contrib-group>
+<author-notes>
+<fn id="em1">
+<label>1</label><p>dwz@pku.edu.cn</p></fn>
+</author-notes>
+<pub-date pub-type="ppub"><month>1</month><year>2014</year></pub-date>
+<volume>38</volume>
+<issue>1</issue>
+<elocation-id content-type="artnum">013103</elocation-id>
+<history>
+<date date-type="received"><day>19</day><month>4</month><year>2013</year></date>
+<date date-type="finalform"><day>10</day><month>9</month><year>2013</year></date>
+</history>
+<permissions>
+<copyright-statement>Article funded by SCOAP<sup>3</sup>
+and published under licence by Chinese Physical Society and the
+Institute of High Energy Physics of the Chinese Academy of
+Sciences and the Institute of Modern Physics of the Chinese Academy of Sciences and IOP Publishing Ltd</copyright-statement>
+<copyright-year>2013</copyright-year>
+<license license-type="cc-by" xlink:href=" http://creativecommons.org/licenses/by/3.0/">
+<license-p>
+<graphic content-type="print" xlink:href="by-grey.eps"/>
+ Content from this work may be used under the terms of the Creative
+Commons Attribution 3.0 licence. Any further distribution of this
+work must maintain attribution to the author(s) and the title of
+the work, journal citation and DOI. </license-p>
+</license>
+</permissions>
+<related-article related-article-type="arxiv"><pub-id pub-id-type="arxiv">1304.5279</pub-id></related-article>
+<abstract><title>Abstract</title><p>In a previous work, we proposed an extended Nambu-Jona-Lasinio (NJL) model including heavy
+  quark flavors. In this work, we will calculate strong and radiative decays of vector mesons in this
+  extended NJL model, including light <inline-formula><tex-math>$\uprho$</tex-math></inline-formula>, <inline-formula><tex-math>$\upomega$</tex-math></inline-formula>, <inline-formula><tex-math>$\rm K^*$</tex-math></inline-formula>,
+<inline-formula><tex-math>$\upphi$</tex-math></inline-formula> and heavy <inline-formula><tex-math>$\rm D^*$</tex-math></inline-formula>, <inline-formula><tex-math>$\rm D^*_s$</tex-math></inline-formula>, <inline-formula><tex-math>$\rm B^*$</tex-math></inline-formula>, <inline-formula><tex-math>$\rm B^*_s$</tex-math></inline-formula>.</p></abstract>
+
+<kwd-group kwd-group-type="author-pacs">
+<kwd>12.39.Fe</kwd>
+<kwd>12.39.Hg</kwd>
+<kwd>14.40.-n</kwd>
+</kwd-group>
+<kwd-group kwd-group-type="author">
+<kwd>NJL model</kwd>
+<kwd>heavy meson</kwd>
+<kwd>heavy quark limit</kwd>
+</kwd-group>
+<funding-group>
+<open-access>
+<p content-type="scoap3">Article funded by SCOAP<sup>3</sup></p>
+</open-access>
+</funding-group>
+<counts>
+<page-count count="5"/>
+</counts>
+</article-meta>
+</front>
+
+<body>
+
+<sec>
+<title>Introduction</title>
+<p>
+The Nambu--Jona-Lasinio (NJL) model \cite{Nambu:1961tp, Nambu:1961fr},
+in its original form as a pre-QCD theory, was constructed of nucleons
+that interact via an effective two-body contact interaction. {The}
+model was {later} reinterpreted as a theory of quark degrees of freedom
+\cite{Eguchi:1976iz, Kikkawa:1976fe}. The most important feature of {the}
+NJL model is the chiral symmetry of {the} Lagrangian plus a chiral symmetry
+breaking ground state. The model was generalized to {the} $SU(3)_{\rm f}$ case of
+light quark flavors in Refs.~\cite{Klimt:1989pm, Vogl:1989ea,
+  Vogl:1991qt, Klevansky:1992qe, Ebert:1994mf}.
+
+On the other {hand}, for heavy quark flavors, the chiral symmetry
+no longer holds. However, new important symmetries, such as the
+spin symmetry {that} was discovered in heavy ($\rm Q\bar
+q$)-mesons \cite{Isgur:1989vq}, which is a consequence of the
+order $1/m_{\rm Q}$ of {the} spin-spin interaction in the
+effective quark potential \cite{Caswell:1985ui}. In
+Ref.~\cite{Ebert:1994tv}, {the} NJL model was generalized to
+include heavy flavors. Both the chiral symmetry in {the} light
+meson sector and the spin symmetry in {the} heavy meson sector
+were reproduced with the vector-current interaction. The
+bosonization technique was used there to obtain an effective
+Lagrangian of {the} meson degrees of freedom.
+
+However, as already shown in Ref.~\cite{Klimt:1989pm}, {the} vector-current
+interaction only is not enough to reproduce the experimental masses of
+light vector mesons, such as $\uprho$, $\rm K^*$ etc. Other chiral
+symmetrical interactions, such as the axial-vector-current one, are
+needed to get satisfactory results for {the} light meson sector. {However}, these
+additional interactions do not obey the spin symmetry in {the} heavy meson
+sector since they {generate} the incorrect spin-spin interaction
+that is not $1/m_{\rm Q}$ suppressed. In the above work~\cite{Ebert:1994tv},
+the authors just introduced two coupling constants $G_1$ and $G_2$ for
+the {light} meson sector and another different coupling $G_3$ for the
+heavy meson sector.
+
+In our previous work \cite{Guo:2012tm}, we proposed a solution to
+extend the NJL model to comprise the heavy quark flavors. The NJL
+interactions were expanded with respect to $1/m_{\rm f}$ of constituent
+quark mass $m_{\rm f}$, just like the expansion in the heavy quark effective theory (HQET). Naturally, the
+vector-current interaction is dominant while other interactions, such
+as the typical axial-vector-current one, should be $1/m_{\rm f}$
+suppressed. We had performed numerical calculations for both the light
+and heavy meson sectors.  The mass spectra fit the experimental data
+quite well.  The decay constants of heavy mesons were smaller than {the}
+experimental values, roughly by a factor of $2$.
+
+The strong and radiative decays provide us {with} important information about
+hadron structure.  Experimentally, the decay widths of light vector
+mesons have been well measured \cite{Akhmetshin:2003zn,
+  Akhmetshin:2006bx, Akhmetshin:2006sc, Fujikawa:2008ma,
+  Baubillier:1984wi, Chandlee:1983hf} and so far, {some decay}
+widths or ratios of the charmed and {bottom} heavy vector mesons {have been}
+reported \cite{Abachi:1988fw, Gronberg:1995qp, Abreu:1995ky}.
+
+Generally speaking, it is a rigid test for any model to fit the
+experimental values of {the} decay width or ratio. The most popular model
+for strong decay is the $^3P_0$ model \cite{L1, L2}. This model has
+been applied to a great number of decay processes \cite{L3, L4, L19,
+  L20}. The radiative decays, mainly {the} M1 transition, which takes place
+when one of the constituent quark changes its spin and radiates one
+photon, has been studied in potential quark models~\cite{Jena:2010zza,
+  Goity:2000dk} or from flavor symmetry \cite{Sucipto:1987qj}. For
+decays
+
+\end{multicols}
+\begin{multicols}{2}
+
+\noindent of heavy mesons, abundant works have been done in the
+{framework} of {the} chiral quark model \cite{Goity:2000dk, Deandrea:1998hi},
+potential model ~\cite{Ebert:2002xz, Colangelo:1994jc}, bag
+model \cite{Orsland:1998de}, chiral perturbation
+model \cite{Amundson:1992yp}, and QCD sum rules \cite{Aliev:1995wi,
+  Dosch:1995kw}. The decays were also studied in {the} NJL model
+\cite{Bernard:1993wf, Polleri:1996fc} and from lattice QCD
+\cite{Frison:2010ws, Fu:2012tj, Becirevic:2009xp}.
+
+In this work, we calculate {the} strong and radiative
+decays of vector
+mesons in the extended NJL model with heavy flavors, including light
+mesons $\uprho$, $\upomega$, $\rm K^*$, $\upphi$ and heavy ones $\rm D^*$, $\rm D^*_s$,
+$\rm B^*$, $\rm B^*_s$.
+
+</p>
+</sec>
+
+<sec>
+<title>Model and formalism</title>
+<p>
+
+In Ref.~\cite{Guo:2012tm}, the Nambu-Jona-Lasinio model was
+generalized to deal with heavy quarks as well as light ones. The
+Lagrangian reads
+\begin{equation}
+%1
+\mathcal{L} = \bar{\psi}({\rm i}\not{\vpartial} - \hat{m}_0) \psi + \mathcal{L}_4 ,
+\end{equation}
+where
+\begin{eqnarray}
+%2
+\label{four}
+\mathcal{L}_4 &amp;=&amp; G_{\rm V} (\bar{\psi}\lambda_{\rm c}^{\rm a} \gamma_\mu \psi)^2 \notag\\
+&amp;&amp; + \frac{h}{m_{\rm q} m_{\rm q^\prime}}[(\bar{\psi} \lambda_{\rm c}^{\rm a} \gamma_\mu \psi)^2
++ (\bar{\psi} \lambda_{\rm c}^{\rm a} \gamma_\mu \gamma_5 \psi)^2] ,
+\end{eqnarray}
+describes the four-point quark-quark interaction compatible with QCD
+chiral symmetry. $G_{\rm V}$, of dimension (mass)$^{-2}$, and the
+dimensionless $h$ were parameters fixed in the spectral
+calculation. The second term on the right side in Eq.~(\ref{four})
+appears as {a} higher order correction expanded with respect to
+the constituent quark mass $m_{\rm q}$, similiar to the HQET expansion.  We
+can rewrite Eq.~(\ref{four}) in a Fierz invariant form. For the light sector, one has
+\begin{align}
+%3
+  \mathcal{L}^{\rm q}_4 =&amp; \frac{4}{9}G_{\rm V} [(\bar{q}\lambda^i_{\rm f} q)^2
+  + (\bar{q}{\rm i} \gamma_5 \lambda^i_{\rm f} q)^2] \notag \\
+  &amp;- \frac{2}{9}\left(G_{\rm V} + \frac{h}{m_{\rm q} m_{\rm q^\prime}}\right)
+  [(\bar{q}\lambda^i_{\rm f} \gamma_\mu q)^2
+  + (\bar{q} \lambda^i_{\rm f} \gamma_\mu \gamma_5 q)^2],
+\end{align}
+where $\lambda_{\rm f}^i$'s are the $U_{\rm f}(3)$ generators, with $\lambda_{\rm f}^0 =
+\sqrt{\dfrac{2}{3}}I$ (where $I$ is the $3 \times 3$ unit matrix) and
+the rest are Gell-Mann matrices in flavour space. For the heavy sector, one has
+\begin{align}
+%4
+  \mathcal{L}^{\rm Q}_4 =&amp; \frac{8}{9}G_{\rm V} [(\bar{Q}{\rm q})^2
+  + (\bar{Q}{\rm i} \gamma_5 \lambda^i_{\rm f} q)(\bar{q}{\rm i} \gamma_5 \lambda^i_{\rm f} Q)] \notag \\
+  &amp;- \frac{4}{9}\left(G_{\rm V} + \frac{h}{m_{\rm q} m_{\rm Q}}\right) [(\bar{Q} \gamma_\mu
+  q)(\bar{q} \gamma^\mu Q) \notag \\
+  &amp;+ (\bar{q} \gamma_\mu \gamma_5 q)(\bar{q}  \gamma^\mu \gamma_5 q)] ,
+\end{align}
+where {we} still have
+\begin{equation}
+%5
+{\rm Tr} \lambda_i \lambda_j = 2\delta_{ij}.
+\end{equation}
+One can see that actually we only consider the higher order $1/m_{\rm q}m_{\rm Q}$
+suppressed interaction in vector and axial-vector channels and so the
+important chiral symmetry breaking vaccum (the ground state) is unchanged.
+
+Using {the} Bethe-Salpeter equation (BSE), we obtained the meson masses via
+the corresponding $T$-matrix where the mesons appear as the poles of the
+$T$-matrix. The meson-quark coupling constants were also obtained by further
+expanding the $T$-matrix around the meson poles.
+
+In this work, we will use the effective meson Lagrangian to calculate
+strong and radiative decays of vector mesons. The effective
+meson-quark coupling constants will be directly taken from our previous work.
+
+In the cases of {the} pseudo-scalar meson and {the} vector meson, the
+corresponding effective quark couplings read
+\begin{align}
+%6,7
+\L_{\uppi\rm q} =&amp; -g_{\uppi\rm q} \bar\psi {\rm i}\gamma_5 \bm{\tau} \psi \cdot \bm{\pi}
+  -\frac{\tilde{g}_{\rm\uppi q}}{2m_{\rm u}} \bar\psi \gamma_\mu\gamma_5 \bm{\tau} \psi
+  \cdot \vpartial\nolimits^\mu \bm{\pi} , \\[1mm]
+  \L_{\rm \uprho q} =&amp; -g_{\uprho\rm q} \bar\psi \gamma_\mu \bm{\tau} \psi \cdot \bm{\rho}^\mu.
+\end{align}
+
+For the decay of a vector meson (V) into two pseudo-scalars (P), one has
+\begin{equation}
+%8
+  \varGamma({\rm V \to PP}) = \frac{1}{2m_{\rm V}}  \vint{\rm d}\phi^{(2)} | \mathcal{M}\rm(V \to PP) |^2,
+\end{equation}
+where
+\begin{equation*}
+\vint{\rm d}\phi^{(2)} = \vint \frac{{\rm d}^3 k_1}{(2\uppi)^3 2E_{k_1}}
+\frac{{\rm d}^3 k_2}{(2\uppi)^3 2E_{k_2}} (2\uppi)^4 \delta^4 (q - k_1 - k_2)
+\end{equation*}
+is the standard two-body phase-space-measure. In the rest frame of the
+decaying meson, the decay amplitude of the vector meson can be {written} as
+\begin{equation}
+%9
+\mathcal{M}({\rm V\to PP}) = \epsilon^\mu T_\mu = - \bm{\epsilon}\cdot\bm{T} ,
+\end{equation}
+where $\epsilon^\mu$ is the polarized vector of {the} V meson. Then we have
+\begin{equation}
+%10
+\varGamma({\rm V \to PP}) = \frac{k_{\rm c}}{24\uppi m_{\rm V}^2} |\bm{ T}|^2 .
+\end{equation}
+
+The strong decay process of a vector meson is shown in {a} Feynmann
+diagram {in} Fig.~\ref{strong}, where $$q = \dfrac{k_1 + k_2}{2} =
+\left(\dfrac{m_{\rm V}}{2}, {0}\right),~ l = \dfrac{k_1 - k_2}{2} = \left(\dfrac{k_1^0 -
+  k_2^0}{2},~ \bm{k}_{\rm c}\right),$$ and $m_1$, $m_2$, $m_3$ denote the
+constituent masses of the constituting quarks. Using the Feynman
+rules, one can write down the expression for the decay amplitude directly. One finds
+\begin{align}
+%11
+ {\rm i} T^\mu =&amp; - \text{Tr} \vint\frac{{\rm d}^4p}{(2\uppi)^4}{\rm i} g_{\rm v}
+  \gamma^\mu \lambda^{\rm V} \frac{\rm i}{\not{p} - \not{q} - m_1}\notag\\[1mm]
+  &amp;\times {\rm i}\left(g_1 + \frac{\tilde{g}_1}{m_1+m_3} \not{k}_1\right)
+  {\rm i} \gamma_5 \lambda^{\rm P_1} \frac{\rm i}{\not{p} + \not{l} - m_3} \notag \\[1mm]
+  &amp; \times {\rm i} \left(g_2  +\frac{\tilde{g}_2}{m_2 + m_3} \not{k}_2\right){\rm i} \gamma_5 \lambda^{\rm P_2}
+  \frac{\rm i}{\not{p}+ \not{q} - m_2} .
+\end{align}
+
+For the reaction of a vector meson {that} decays into a pseudo-scalar and a
+photon ($\upgamma$), $\rm V\to P\upgamma$, the decay\linebreak\vspace{-4mm}
+
+%fig 1
+\begin{center}
+\includegraphics{denghb-1}
+\figcaption{\label{strong}</p>
+<fig-group><caption><p>The Feynman diagram corresponds to the strong decay process.</p></caption></fig-group>
+<p>}
+\end{center}
+\vspace{-5mm}
+
+\noindent width can be expressed as
+\begin{equation}\label{radiative}
+%12
+\varGamma({\rm V \to P}\upgamma) = \frac{1}{2m_{\rm V}} \vint{\rm d}\phi^{(2)} | \mathcal{M} |^ 2,
+\end{equation}
+where the decay amplitude should take the form
+\begin{equation}
+%13
+{\rm i} \mathcal{M}({\rm V \to P}\upgamma) ={\rm e}
+  \epsilon^\mu(V) \epsilon^{*\nu}(\gamma) T_{\mu \nu} .
+\end{equation}
+
+The Feynman diagrams of radiative decay are shown in Fig.~\ref{radi}.
+We can write down the radiative decay amplitude
+\begin{align}
+%14
+  T^{\mu \nu} =&amp; \text{Tr} \vint \frac{{\rm d}^4p }{(2\uppi)^4}{\rm i} g_{\rm V} \gamma^\mu
+  \lambda^{\rm V} \frac{\rm i}{\not{p} - \not{q} - m_1}{\rm i} \widehat{Q}
+  \gamma^\nu \frac{\rm i}{\not{p} + \not{l} - m_1}  \notag\\[3mm]
+  &amp; \times{\rm i}\left (g_{\rm P} + \tilde{g}_{\rm P} \frac{\not k_2}{m_1 + m_2}\right)
+ {\rm i}\gamma_5 \lambda^{\rm P} \frac{\rm i}{\not{p} + \not{q} - m_2} \notag\\[3mm]
+  +&amp; \text{Tr} \vint \frac{{\rm d}^4p }{(2\uppi)^4}{\rm i} g_{\rm V} \gamma^\mu \lambda^{\rm V}
+  \frac{\rm i}{\not{p} - \not{q} - m_1} \notag\\[3mm]
+  &amp; \times {\rm i} \left(g_{\rm P} + \tilde{g}_{\rm P} \frac{\not k_2}{m_1 + m_2}\right){\rm i}
+  \gamma_5 \lambda^{\rm P} \notag\\[3mm]
+  &amp; \times \frac{\rm i}{\not{p} - \not{l} - m_2}{\rm i} \widehat{Q}
+  \gamma^\nu \frac{\rm i}{\not{p} + \not{q} - m_2} .
+\end{align}
+
+
+
+In the rest frame of {the} decaying meson, we only need the space components
+of the tensor $T^{ij}$ and it can be written as
+\begin{equation}
+%15
+  T^{ij} = \epsilon^{ijl}  T^l_{\rm VP\upgamma}.
+\end{equation}
+Then we have
+\begin{equation}
+%16
+\varGamma({\rm V\to P}\upgamma) = \frac{\alpha k_{\rm c}}{3 m_{\rm V}^2} |T_{\rm VP\upgamma}|^2,
+\end{equation}
+where $\alpha \approx 1/137$ is the electromagnetic fine structure constant.
+
+To calculate the loop integrals, we apply the three-momentum cut-off
+regularization scheme to the integrals. First, we define some useful quantities
+\begin{eqnarray*}
+E_{\rm p} (m) &amp;=&amp; \sqrt{\bm{p}^2 + m^2} ,\\[1mm]
+E_{\rm k} (m) &amp;=&amp; \sqrt{(\bm{p} + \bm{k}_{\rm c})^2 + m^2} ,\\[1mm]
+\omega_{1,2} &amp;=&amp; + q^0 \pm E_{\rm p} (m_1) ,
+\end{eqnarray*}
+\begin{eqnarray*}
+\omega_{3,4} &amp;=&amp; - q^0 \pm E_{\rm p} (m_2) ,\\[1mm]
+\omega_{5,6} &amp;=&amp; - l^0 \pm E_{\rm k} (m_3) .
+\end{eqnarray*}
+The $\omega_i$s emerge as poles when the integral with respect to
+$\rm p^0$ is performed. After we integrate out $\rm p^0$, the amplitudes can
+always be represented as spatial integrals
+\begin{align*}
+  T =&amp; \vint\nolimits^\Lambda \frac{{\rm d}^3 \bm{p}}{(2\uppi)^3} \sum_i^{2,4,6}
+  \frac{N|_{p_0 = \omega_i}}{\prod\limits_{j \neq i} (\omega_i - \omega_j)} \\[3mm]
+  =&amp; \frac{1}{4\uppi^2} \vint\nolimits_0^\Lambda p^2{\rm d}p \vint\nolimits_{-1}^1 {\rm d}t
+  \sum_i^{2,4,6} \frac{N|_{p_0 = \omega_i}}{\prod\limits_{j \neq i} (\omega_i - \omega_j)},
+\end{align*}
+where $N$ represents the numerator of {the} integrand. The 2-dimensional
+integral will be performed numerically by {the} Monte Carlo integration
+method using the {vegas} routine from {the} {gsl} library.
+
+%fig 2
+\begin{center}
+\includegraphics{denghb-2}
+\figcaption{\label{radi}</p>
+<fig-group><caption><p>The Feynman diagrams correspond to the radiative decay process.</p></caption></fig-group>
+<p>}
+\end{center}
+\vspace{-7mm}
+
+</p>
+</sec>
+
+<sec>
+<title>Numerical results</title>
+<p>
+
+In the previous work \cite{Guo:2012tm}, we had calculated the
+pseudo-scalar and vector mesons, light and heavy, consistently in an
+extended NJL model with {the} interaction given by Eq.~(\ref{four}).  The
+input parameters were the current masses of light quarks and the
+constituent masses of heavy quarks, the two coupling constants and the
+3-dimensional cutoff.  Numerically, the parameters were set to
+\begin{equation}
+%17
+  \label{parameters}
+  \begin{aligned}
+    &amp;m_{\rm u/d}^0 = 2.79 \text{ MeV}, &amp;&amp;m_{\rm s}^0 = 72.0 \text{ MeV}, \\[1mm]
+    &amp;m_{\rm c} = 1.62 \text{ GeV}, &amp;&amp;m_{\rm b} = 4.94 \text{ GeV}, \\[1mm]
+    &amp;\varLambda = 0.8 \text{ GeV} , &amp;&amp;G_{\rm V} = 2.41, &amp;&amp;h = 0.65.
+  \end{aligned}
+\end{equation}
+Using above parameters, we obtained the constituent masses
+of light quarks
+\begin{align}
+%18
+  &amp;m_{\rm u} = m_{\rm d} = 392 \text{ MeV}, &amp;&amp;m_{\rm s} = 542 \text{ MeV}.
+\end{align}
+The obtained meson-quark coupling constants, which we need
+to calculate the strong and radiative decays, are given in Table
+\ref{coupling}. We will use the experimental meson masses given by {the}
+Particle Date Group \cite{Nakamura:2010zzi}.
+
+In Table \ref{light}, we show the results for the strong and radiative
+decays of light vector mesons. As we can see, our results are in
+qualitative agreement with the empirical values.
+
+
+%table 1
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\tabcaption{Meson-quark coupling constants.\label{coupling}} \footnotesize
+\begin{tabular*}{86mm}{@{\extracolsep{\fill}}ccccccc}
+\toprule
+      ~~$g_\uppi$ &amp; $g_{\rm K}$ &amp; $g_{\rm D}$ &amp; $g_{\rm D_s}$ &amp; $g_{\rm B}$ &amp; $g_{\rm B_s}$ &amp; \\
+\hline
+      4.25 &amp; 4.32 &amp; 4.71 &amp; 5.03 &amp; 5.92 &amp; 6.69 &amp; \\
+\hline\hline
+      ~~$\tilde{g}_\uppi$ &amp; $\tilde{g}_{\rm K}$ &amp; $\tilde{g}_{\rm D}$ &amp; $\tilde{g}_{\rm D_s}$
+      &amp; $\tilde{g}_{\rm B}$ &amp; $\tilde{g}_{\rm B_s}$ &amp; \\
+\hline
+     ~~ 1.56 &amp; 1.61 &amp; 2.04 &amp; 2.09 &amp; 2.84 &amp; 3.11 &amp; \\
+\hline\hline
+     ~~ $g_{\uprho/\upomega}$ &amp; $g_\upphi$ &amp; $g_{\rm K^*}$ &amp; $g_{\rm D^*}$ &amp; $g_{\rm D_s^*}$ &amp; $g_{\rm B^*}$
+      &amp; $g_{\rm B_s^*}$  \\
+\hline
+     ~~ 1.29 &amp; 1.38 &amp; 1.31 &amp; 1.64 &amp; 1.83 &amp; 2.51 &amp; 2.89 \\
+\bottomrule
+\end{tabular*}%
+\end{center}
+
+%table 2
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\tabcaption{Strong and radiative decay widths for light vector mesons.\label{light}}
+\footnotesize
+\begin{tabular*}{86mm}{@{\extracolsep{\fill}}ccccc}
+\toprule
+       &amp; &amp;  &amp; Bernard &amp; empirical \\
+\raisebox{1.5ex}[0ex]{decay modes} &amp; &amp; \raisebox{1.5ex}[0ex]{this work}
+&amp; \cite{Bernard:1993wf} &amp; \cite{Nakamura:2010zzi} \\
+      \hline
+      $\uprho \to \uppi\uppi$ &amp; MeV &amp; 68.5 &amp; 52.0 &amp; 149.1 $\pm$ 0.8 \\
+      $\uprho^\pm \to \uppi^\pm \upgamma$ &amp; keV &amp; 21.9 &amp; 60.1 &amp; $68\pm 7$ \\
+      $\uprho^0 \to \uppi^0 \upgamma$ &amp; keV &amp; 43.9 &amp; $-$ &amp; $89 \pm 12$ \\
+      $\upomega \to \uppi\upgamma$ &amp; keV &amp; 866 &amp; 762 &amp; $764\pm 51$ \\
+      $\upphi \to\rm K^+ K^-$ &amp; MeV &amp; 1.28 &amp; $-$ &amp; 2.08 \\
+      $\upphi \to\rm K_L^0 K_S^0$ &amp; MeV &amp; 0.86 &amp; $-$ &amp; 1.46 \\
+      $\rm K^{*\pm} \to (K\uppi)^\pm$ &amp; MeV &amp; 20.9 &amp; 27.0 &amp; $50.7\pm 0.9$\\
+      $\rm K^{*\pm} \to K^\pm\upgamma$ &amp; keV &amp; 13.5 &amp; 92.0 &amp; $50\pm 0.5$ \\
+      $\rm K^{*0} \to K^0\upgamma$ &amp; keV &amp; 31.3 &amp; $ - $ &amp; $117 \pm 10$ \\
+\bottomrule
+\end{tabular*}%
+\end{center}
+
+
+
+Nevertheless, quantitatively, our results are systematically smaller
+than the empirical values by a factor of $2$ or $3$. The discrepancy
+always {occurs} in the NJL calculation as the model lacks the quark
+confinement mechanism. In the potential model \cite{Godfrey:1985xj},
+generally the masses of light vector mesons $\uprho$ or $\rm K^*$ {lie} above
+the constituent quark mass thresholds and still they are bound states
+due to the linear confinement potential. In our calculation, the
+constituent masses of light quarks are intentionally {tuned} larger so
+that the mesons are still bound states under the constituent quark
+mass thresholds, even without the confinment. In another NJL
+calculation \cite{Bernard:1993wf}, the smaller constituent quark
+masses were used and the $\uprho$ and $\rm K^*$ vector meson was found as
+the resonant poles. Then they {proposed} to account for the
+discrepancy by introducing a renormalization factor of roughly $2$
+into the light vector meson field after {having} taken the higher order
+meson loops into consideration.  In comparison, the numerical
+results from Ref.~\cite{Bernard:1993wf} are also listed in
+Table~\ref{light}. As we know, the amplitudes of triangle Feynman Diagrams
+heavily depend on the quarks masses when the meson masses are close to
+the mass threshold. Our numerical study shows that to fit the
+experimental decay width of $\uprho$ demands that $2m_{\rm u}$ should be very
+close to $m_\uprho$ and then the numerical result turns {out} to be unstable.
+We guess that the confinement mechanism is important here for the
+light vector mesons as it is critical to their formation.
+
+
+Table \ref{heavy} shows the strong and radiative decay widths of heavy
+vector mesons. Table~\ref{branching} exhibits the branching ratios
+for charmed vector mesons. It can be seen that our results agree with
+the experimental values. As the empirical data are not complete, here
+we also list some of {the} other model {calculations} and lattice {calculations}
+in the table for comparison.
+
+
+%table 3
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\tabcaption{Strong and radiative decay widths for heavy vector mesons
+    (all in unit keV).\label{heavy}} \footnotesize
+\begin{tabular*}{86mm}{@{\extracolsep{\fill}}ccccc}
+\toprule
+       &amp;  &amp; Kamal &amp; Goity &amp; empirical \\
+   \raisebox{1.5ex}[0ex]{decay modes}  &amp; \raisebox{1.5ex}[0ex]{this work} &amp; \cite{Kamal:1992uv} &amp; \cite{Goity:2000dk} &amp;
+    \cite{Anastassov:2001cw, Abachi:1988fw, Gronberg:1995qp} \\
+      \hline
+      $\rm D^{*\pm} \to D^\pm\uppi^0$ &amp; 39.7 &amp; 25.9 &amp; 28.8 &amp; \\
+      $\rm D^{*\pm} \to D^0\uppi^\pm$ &amp; 84.4 &amp; 58.8 &amp; 64.6 &amp; \\
+      $\rm D^{*\pm} \to D^\pm\upgamma$ &amp; 0.7 &amp; 1.7 &amp; 1.4 &amp; \\
+      $\rm D^{*\pm} \to$ all &amp; 124.8 &amp; 86.4 &amp; 94.9 &amp; 96$\pm$22 \\
+      $\rm D^{*0} \to D^0\uppi^0$ &amp; 46.5 &amp; 42.4 &amp; 41.6 &amp;  \\
+      $\rm D^{*0} \to D^0\upgamma$ &amp; 19.4 &amp; 21.8 &amp; 32.0 &amp; \\
+      $\rm D^{*0} \to$ all &amp; 65.9 &amp; 64.2 &amp; 73.6 &amp; $&lt;2.1$ MeV \\
+      $\rm D^{*}_s \to D_s\upgamma$ &amp; 0.09 &amp; 0.21 &amp; 0.32 &amp; $&lt; 1.9$ MeV\\
+      $\rm B^{*\pm} \to B^\pm\upgamma$ &amp; 0.25 &amp; --- &amp; 0.74 &amp; \\
+      $\rm B^{*0} \to B^\pm\upgamma$ &amp; 0.22 &amp; --- &amp; 0.23 &amp; \\
+      $\rm B^{*}_s \to B_s\upgamma$ &amp; 0.10 &amp; --- &amp; 0.14 &amp; \\
+\bottomrule
+\end{tabular*}%
+\end{center}
+
+
+%table 4
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\tabcaption{Branching ratios for charmed vector mesons ($\%$).\label{branching}} \footnotesize
+\begin{tabular*}{86mm}{@{\extracolsep{\fill}}ccccc}
+\toprule
+       &amp;  &amp; Kamal &amp; Goity &amp; empirical \\
+    \raisebox{1.5ex}[0ex]{decay modes} &amp; \raisebox{1.5ex}[0ex]{this work}
+    &amp; \cite{Kamal:1992uv} &amp; \cite{Goity:2000dk} &amp; \cite{Nakamura:2010zzi}\\
+      \hline
+      $\rm D^{*\pm} \to D^\pm\uppi^0$ &amp; 31.8 &amp; 30.0 &amp; 30.3 &amp; $30.7\pm 0.5$ \\
+      $\rm D^{*\pm} \to D^0\uppi^\pm$ &amp; 67.7 &amp; 68.0 &amp; 68.1 &amp; $67.7\pm 0.5$ \\
+      $\rm D^{*\pm} \to D^\pm\upgamma$ &amp; 0.5 &amp; 2.0 &amp; 1.5 &amp; $1.6 \pm 0.5 $ \\
+      $\rm D^{*0} \to D^0\uppi^0$ &amp; 70.6 &amp; 66.0 &amp; 56.5 &amp; $61 \pm 2.9$ \\
+      $\rm D^{*0} \to D^0\upgamma$ &amp; 29.4 &amp; 34.0 &amp; 43.5 &amp; $38.1 \pm 2.9$ \\
+\bottomrule
+\end{tabular*}%
+\vspace{2mm}
+\end{center}
+
+
+In Table \ref{heavy}, our decay width of $\rm D^{*+}$ is a little {larger}
+than the empirical one. Numerically, this can be corrected by changing
+$m_{\rm c}$ slightly, about 5~MeV larger. In Table~\ref{branching}, our
+resulted branching ratios also are in agree-
+
+\noindent ment with the experimental
+data.  Here the numerical results are less sensitive to constituent
+quark masses than {those} of the light meson sector. We may expect that
+the calculation of strong and radiative decays for heavy mesons are
+more reliable as it is well known that for heavy mesons, the
+confinement is less important than the one gluon exchange coulomb potential.
+
+
+</p>
+</sec>
+<sec><title>Summary</title>
+<p>
+
+We\, have\, used\, the\, extended\, NJL\, model\, with\,\, heavy
+
+ flavors
+\cite{Guo:2012tm} to calculate strong and radiative decays of vector
+mesons. It should be noted that no extra assumption {or} free
+parameter was introduced into our {calculation}. A reasonable
+agreement to the experimental data is obtained. The results of {the} light
+vector mesons may indicate that a more complex quark structure should
+be considered for vector {mesons}, due to the confinement {that is lacking} in the NJL model.
+</p>
+</sec>
+</body>
+<back>
+<ack><title> </title>
+<p>We would like to thank professor Shi-Lin Zhu for useful discussions.</p>
+</ack>
+<ref-list content-type="numerical">
+<title>References</title>
+
+<ref id="Nambu:1961tp"><label>1</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRev.122.345</uri></element-citation></ref>
+
+<ref id="Nambu:1961fr"><label>2</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRev.124.246</uri></element-citation></ref>
+
+<ref id="Eguchi:1976iz"><label>3</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.14.2755</uri></element-citation></ref>
+
+<ref id="Kikkawa:1976fe"><label>4</label><element-citation><uri>http://dx.doi.org/10.1143/PTP.56.947</uri></element-citation></ref>
+
+<ref id="Klimt:1989pm"><label>5</label><element-citation><uri>http://dx.doi.org/10.1016/0375-9474(90)90123-4</uri></element-citation></ref>
+
+<ref id="Vogl:1989ea"><label>6</label><element-citation><uri>http://dx.doi.org/10.1016/0375-9474(90)90124-5</uri></element-citation></ref>
+
+<ref id="Vogl:1991qt"><label>7</label><element-citation><uri>http://dx.doi.org/10.1016/0146-6410(91)90005-9</uri></element-citation></ref>
+
+<ref id="Klevansky:1992qe"><label>8</label><element-citation><uri>http://dx.doi.org/10.1103/RevModPhys.64.649</uri></element-citation></ref>
+
+<ref id="Ebert:1994mf"><label>9</label><element-citation><uri>http://dx.doi.org/10.1016/0146-6410(94)90043-4</uri></element-citation></ref>
+
+<ref id="Isgur:1989vq"><label>10</label><element-citation><uri>http://dx.doi.org/10.1016/0370-2693(89)90566-2</uri></element-citation></ref>
+
+<ref id="Caswell:1985ui"><label>11</label><element-citation><uri>http://dx.doi.org/10.1016/0370-2693(86)91297-9</uri></element-citation></ref>
+
+<ref id="Ebert:1994tv"><label>12</label><element-citation><uri>http://dx.doi.org/10.1016/0550-3213(94)00456-O</uri></element-citation></ref>
+
+<ref id="Guo:2012tm"><label>13</label><element-citation><uri>http://dx.doi.org/10.1088/1674-1137/37/3/033102</uri></element-citation></ref>
+
+<ref id="Akhmetshin:2003zn"><label>14</label><element-citation><uri>http://dx.doi.org/10.1016/j.physletb.2003.10.108</uri></element-citation></ref>
+<ref id="Akhmetshin:2006bx"><label>15</label><element-citation><uri>http://dx.doi.org/10.1016/j.physletb.2007.01.073</uri></element-citation></ref>
+
+
+<ref id="Akhmetshin:2006sc"><label>16</label><element-citation><uri>http://dx.doi.org/10.1016/j.physletb.2006.09.041</uri></element-citation></ref>
+
+
+<ref id="Fujikawa:2008ma"><label>17</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.78.072006</uri></element-citation></ref>
+
+
+<ref id="Baubillier:1984wi"><label>18</label><mixed-citation>Baubillier M et al. (Birmingham-CERN-Glasgow-Michigan State-Paris collaboration). Z. Phys. C, 1984, <bold>26</bold>: 37</mixed-citation></ref>
+
+
+<ref id="Chandlee:1983hf"><label>19</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevLett.51.168</uri></element-citation></ref>
+<ref id="Abachi:1988fw"><label>20</label><element-citation><uri>http://dx.doi.org/10.1016/0370-2693(88)91811-4</uri></element-citation></ref>
+<ref id="Gronberg:1995qp"><label>21</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevLett.75.3232</uri></element-citation></ref>
+<ref id="Abreu:1995ky"><label>22</label><mixed-citation>Abreu P et~al. (DELPHI collaboration). Z. Phys. C, 1995, <bold>68</bold>: 353--362</mixed-citation></ref>
+
+<ref id="L1"><label>23</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.8.2223</uri></element-citation></ref>
+
+<ref id="L2"><label>24</label><element-citation><uri>http://dx.doi.org/10.1016/0550-3213(69)90039-X</uri></element-citation></ref>
+
+<ref id="L3"><label>25</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.53.3700</uri></element-citation></ref>
+
+<ref id="L4"><label>26</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.55.4157</uri></element-citation></ref>
+
+<ref id="L19"><label>27</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.34.2809</uri></element-citation></ref>
+
+<ref id="L20"><label>28</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.49.4570</uri></element-citation></ref>
+
+<ref id="Jena:2010zza"><label>29</label><element-citation><uri>http://dx.doi.org/10.1142/S0217751X10048214</uri></element-citation></ref>
+
+<ref id="Goity:2000dk"><label>30</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.64.094007</uri></element-citation></ref>
+
+<ref id="Sucipto:1987qj"><label>31</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.36.2074</uri></element-citation></ref>
+
+<ref id="Deandrea:1998hi"><label>32</label><element-citation><uri>http://arxiv.org/abs/hep-ph/9809393</uri></element-citation></ref>
+
+<ref id="Ebert:2002xz"><label>33</label><element-citation><uri>http://dx.doi.org/10.1016/S0370-2693(02)01939-1</uri></element-citation></ref>
+
+<ref id="Colangelo:1994jc"><label>34</label><element-citation><uri>http://dx.doi.org/10.1016/0370-2693(94)90607-6</uri></element-citation></ref>
+
+<ref id="Orsland:1998de"><label>35</label><element-citation><uri>http://dx.doi.org/10.1007/s100520050044 </uri></element-citation></ref>
+
+<ref id="Amundson:1992yp"><label>36</label><element-citation><uri>http://dx.doi.org/10.1016/0370-2693(92)91341-6</uri></element-citation></ref>
+<ref id="Aliev:1995wi"><label>37</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.54.857</uri></element-citation></ref>
+<ref id="Dosch:1995kw"><label>38</label><element-citation><uri>http://dx.doi.org/10.1016/0370-2693(95)01417-9</uri></element-citation></ref>
+
+<ref id="Bernard:1993wf"><label>39</label><element-citation><uri>http://dx.doi.org/10.1016/0370-2693(93)91122-4</uri></element-citation></ref>
+<ref id="Polleri:1996fc"><label>40</label><mixed-citation>Polleri A, Broglia R, Pizzochero P, Scoccola N. Z. Phys. A, 1997, <bold>357</bold>: 325--331</mixed-citation></ref>
+<ref id="Frison:2010ws"><label>41</label><mixed-citation>Frison J et~al. (Budapest-Marseille-Wuppertal collaboration). PoS, 2010,
+<bold>LATTICE2010</bold>: 139</mixed-citation></ref>
+ 
+<ref id="Fu:2012tj"><label>42</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.86.094507</uri></element-citation></ref>
+<ref id="Becirevic:2009xp"><label>43</label><element-citation><uri>http://dx.doi.org/10.1140/epjc/s10052-011-1734-y</uri></element-citation></ref>
+<ref id="Nakamura:2010zzi"><label>44</label><element-citation><uri>http://dx.doi.org/10.1088/0954-3899/37/7A/075021</uri></element-citation></ref>
+<ref id="Godfrey:1985xj"><label>45</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.32.189</uri></element-citation></ref>
+<ref id="Kamal:1992uv"><label>46</label><element-citation><uri>http://dx.doi.org/10.1016/0370-2693(92)90455-D</uri></element-citation></ref>
+<ref id="Anastassov:2001cw"><label>47</label><element-citation><uri>http://dx.doi.org/10.1103/PhysRevD.65.032003</uri></element-citation></ref>
+</ref-list>
+</back>
+</article>
