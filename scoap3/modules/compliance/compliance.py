@@ -49,7 +49,7 @@ def __find_regexp(data, patterns):
 
     for original_pattern in patterns:
         # add fuzzing based on pattern length
-        fuzz_i = len(original_pattern) / 10
+        fuzz_i = len(original_pattern) / 11
 
         # add the surrounding characters too
         pattern = "(.{0,10}%s.{0,10}){i<=%d}" % (original_pattern, fuzz_i)
