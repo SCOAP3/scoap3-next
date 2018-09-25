@@ -1,6 +1,6 @@
 import itertools
 import regex
-from datetime import timedelta
+from datetime import timedelta, datetime
 from dateutil.parser import parse as parse_date
 
 import requests
@@ -121,7 +121,12 @@ def _received_in_time(obj):
 
     api_message = requests.get(api_url % __get_first_doi(obj)).json()['message']
 
-    api_time = parse_date(api_message['created']['date-time'], ignoretz=True)  # todo check published-online for PTEP
+    if 'publication_info' in obj.data and obj.data['publication_info'][0]['journal_title'] == 'Progress of Theoretical and Experimental Physics':
+        parts = api_message['published-online']['date-parts'][0]
+        # only contains day of publication, check for end of day
+        api_time = datetime(*parts, hour=23, minute=59, second=59)
+    else:
+        api_time = parse_date(api_message['created']['date-time'], ignoretz=True)
     received_time = parse_date(obj.data['acquisition_source']['date'])
     delta = received_time - api_time
 
