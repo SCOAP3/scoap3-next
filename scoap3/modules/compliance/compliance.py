@@ -4,8 +4,11 @@ from datetime import timedelta, datetime
 from dateutil.parser import parse as parse_date
 
 import requests
+from flask import current_app
 from invenio_db import db
+from invenio_files_rest.models import ObjectVersion
 from invenio_pidstore.models import PersistentIdentifier
+from pdfminer.pdfparser import PDFSyntaxError
 
 from scoap3.modules.compliance.models import Compliance
 from scoap3.utils.pdf import extract_text_from_pdf
@@ -33,11 +36,15 @@ def __extract_text_as_extra_data(obj):
         return
 
     obj.extra_data['extracted_data'] = {}
-    for file in obj.extra_data['files']:
+    for file in obj.data['_files']:
         filetype = file['filetype']
         if filetype in ('pdf', 'pdf/a'):
-            path = file['url']
-            obj.extra_data['extracted_data'][filetype] = extract_text_from_pdf(path).decode('utf-8')
+            path = ObjectVersion.get(file['bucket'], file['key']).file.uri
+            try:
+                obj.extra_data['extracted_data'][filetype] = extract_text_from_pdf(path).decode('utf-8')
+            except PDFSyntaxError as e:
+                current_app.logger.error('Error while extracting text from pdf with uri %s: %s' % (path, e))
+
 
 
 def __find_regexp(data, patterns):
@@ -79,7 +86,7 @@ def __find_regexp_in_pdf(obj, patterns, forbidden_patterns=None):
     for filetype, data in obj.extra_data['extracted_data'].iteritems():
         # first check for forbidden patterns
         if forbidden_patterns:
-            forbidden_matches =__find_regexp(data, forbidden_patterns)
+            forbidden_matches = __find_regexp(data, forbidden_patterns)
             if forbidden_matches:
                 ok = False
                 details.append('Found forbidden match in %s: "%s"' % (filetype, '", "'.join(set(forbidden_matches))))
