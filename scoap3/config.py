@@ -531,3 +531,5 @@ LOGGING_SENTRY_CLASS = "invenio_logging.sentry6.Sentry6"
 
 JSONSCHEMAS_HOST='localhost:5000'
 JSONSCHEMAS_REPLACE_REFS = True
+
+COMPLIANCE_EMAIL = 'repo.admin@scoap3.org'

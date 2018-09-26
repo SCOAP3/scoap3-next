@@ -7,6 +7,7 @@ import requests
 from flask import current_app
 from invenio_db import db
 from invenio_files_rest.models import ObjectVersion
+from invenio_mail.api import TemplatedMessage
 from invenio_pidstore.models import PersistentIdentifier
 from pdfminer.pdfparser import PDFSyntaxError
 
@@ -213,4 +214,13 @@ def check_compliance(obj, eng):
     db.session.add(c)
     db.session.commit()
 
-    # todo send notif
+    # send notification about failed checks
+    if not all_ok:
+        msg = TemplatedMessage(
+            template_html='scoap3_compliance/admin/failed_email.html',
+            subject='SCOAP3 - Compliance check',
+            sender='from@example.org',
+            recipients=[current_app.config.get('COMPLIANCE_EMAIL')],
+            ctx={'results': results}
+        )
+        current_app.extensions['mail'].send(msg)
