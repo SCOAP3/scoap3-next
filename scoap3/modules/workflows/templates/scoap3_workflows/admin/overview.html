@@ -1,0 +1,27 @@
+{% extends 'admin/master.html' %}
+
+{% macro render_table(data) %}
+  {% if data %}
+    <table class="table">
+      <tr>
+        <th>Status</th>
+        <th>Count</th>
+      </tr>
+      {% for status, count in data %}
+      <tr>
+        <td>{{ status.name }}</td>
+        <td>{{ count }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    There are no workflows.
+  {% endif %}
+{% endmacro %}
+
+{% block body %}
+  <h3>Last 24h:</h3>
+  {{ render_table(last24h) }}
+  <h3>Last week:</h3>
+  {{ render_table(last1w) }}
+{% endblock %}
