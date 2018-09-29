@@ -22,7 +22,7 @@
         Published in: <b>{{ record.metadata.publication_info[0].journal_title }}</b> {{ record.metadata.publication_info[0].journal_issue }} ({{ record.metadata.publication_info[0].year }}) {{ record.metadata.publication_info[0].page_artid }} by <b>{{ record.metadata.imprints[0].publisher }}</b>
     </small><br>
     <small ng-if='record.metadata.dois[0]'>
-        DOI: <a href='http://dx.doi.org/{{ record.metadata.dois[0].value }}'>{{ record.metadata.dois[0].value }}</a>
+        DOI: <a href='https://doi.org/{{ record.metadata.dois[0].value }}'>{{ record.metadata.dois[0].value }}</a>
     </small>
     <small ng-if='record.metadata.report_numbers[0]'>
         arXiv: <a href='http://arxiv.org/abs/{{ record.metadata.report_numbers[0].value }}'>{{ record.metadata.report_numbers[0].value }}</a>
