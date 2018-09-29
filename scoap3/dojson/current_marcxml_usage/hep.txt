@@ -9385,7 +9385,7 @@ intbitset([34073, 239599, 288792, 385859, 511175, ..., 1382040, 1382041, 1382042
          1 Nature,130,363 
          1 Open Appl.Math.J.,I,1 
          1 JETP Lett.,86,157 
-         1 DOI: http://dx.doi.org/10.1103/PhysRev.50.48 
+         1 DOI: https://doi.org/10.1103/PhysRev.50.48 
          1 J Algebra Appl.,6,415-441 
          1 mosc 
          1 jouranl 

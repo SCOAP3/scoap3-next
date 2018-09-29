@@ -63,7 +63,7 @@
         <dt>Published in:</dt>
         <dd>{{ record['publication_info'][0]['journal_title'] }} {{ record['publication_info'][0]['journal_issue'] }} ({{ record['publication_info'][0]['year'] }}) {{ record['publication_info'][0]['page_artid'] }}</dd>
         <dt>DOI:</dt>
-        <dd><a href="http://dx.doi.org/{{ record['dois'][0]['value'] }}">http://dx.doi.org/{{ record['dois'][0]['value'] }}</a></dd>
+        <dd><a href="https://doi.org/{{ record['dois'][0]['value'] }}">https://doi.org/{{ record['dois'][0]['value'] }}</a></dd>
         {% if record['arxiv_eprints']%}
         <dt>arXiv:</dt>
         <dd><a href="http://arxiv.org/abs/{{ record['arxiv_eprints'][0]['value'] }}">{{ record['arxiv_eprints'][0]['value'] }}</a></dd>
