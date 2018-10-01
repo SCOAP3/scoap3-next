@@ -3,7 +3,7 @@
 {% macro render_results(model, column) %}
     {% for check_name, check_data in model.results.checks.iteritems() %}
       {% if not check_data.check %}
-        {{ check_name }}: {{ check_data.details }}<br/>
+        {{ check_name }}: {{ check_data.details|join(' | ') }}<br/>
       {% endif %}
     {% endfor %}
 {% endmacro %}

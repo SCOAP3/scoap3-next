@@ -99,7 +99,7 @@ def __find_regexp_in_pdf(obj, patterns, forbidden_patterns=None):
         else:
             details.append('Found in %s as: "%s"' % (filetype, '", "'.join(set(matches))))
 
-    return ok, " | ".join(details), None
+    return ok, details, None
 
 
 def _files(obj):
@@ -120,7 +120,7 @@ def _files(obj):
 
     details += 'Available files: %s' % ', '.join(file_types)
 
-    return ok, details, None
+    return ok, (details, ), None
 
 
 def _received_in_time(obj):
@@ -142,7 +142,7 @@ def _received_in_time(obj):
     details_message = 'Arrived %d hours later then creation date on crossref.org.' % (delta.total_seconds() / 3600)
     debug = 'Time from crossref: %s, Received time: %s' % (api_time, received_time)
 
-    return ok, details_message, debug
+    return ok, (details_message ,), debug
 
 
 def _founded_by(obj):

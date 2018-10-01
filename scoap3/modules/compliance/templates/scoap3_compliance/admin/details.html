@@ -37,7 +37,7 @@
           {{ check_data.check|boolean_to_icon }}
         </td>
         <td>
-          {{ check_data.details }}
+          {{ check_data.details|join('<br/>'|safe) }}
           {% if check_data.debug %}
             <br/><i>{{ check_data.debug }}</i>
           {% endif %}
