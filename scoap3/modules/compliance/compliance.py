@@ -79,7 +79,7 @@ def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None):
     Fails only if there are no matches at all or there is a match for a forbidden pattern.
     :param patterns: iterable of string patterns
     """
-    ok = True
+    check_accepted = True
     details = []
 
     for filetype, data in extra_data['extracted_text'].iteritems():
@@ -87,42 +87,42 @@ def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None):
         if forbidden_patterns:
             forbidden_matches = __find_regexp(data, forbidden_patterns)
             if forbidden_matches:
-                ok = False
+                check_accepted = False
                 details.append('Found forbidden match in %s: "%s"' % (filetype, '", "'.join(set(forbidden_matches))))
 
         matches = __find_regexp(data, patterns)
         if not matches:
-            ok = False
+            check_accepted = False
             details.append('Not found in %s' % filetype)
         else:
             details.append('Found in %s as: "%s"' % (filetype, '", "'.join(set(matches))))
 
-    return ok, details, None
+    return check_accepted, details, None
 
 
 def _files(obj, extra_data):
-    """check if it has the necessary files: .xml, .pdf, .pdfa """
+    """Check if it has the necessary files: .xml, .pdf, .pdfa """
 
     file_types = [file['filetype'] for file in obj.data['_files']]
 
-    ok = True
+    check_accepted = True
     details = ''
 
     if 'xml' not in file_types:
-        ok = False
+        check_accepted = False
         details += 'No xml file. '
 
     if 'pdf' not in file_types and 'pdf/a' not in file_types:
-        ok = False
+        check_accepted = False
         details += 'No pdf file. '
 
     details += 'Available files: %s' % ', '.join(file_types)
 
-    return ok, (details, ), None
+    return check_accepted, (details, ), None
 
 
 def _received_in_time(obj, extra_data):
-    """check if publication is not older than 24h """
+    """Check if publication is not older than 24h """
     api_url = current_app.config.get('CROSSREF_API_URL')
 
     api_message = requests.get(api_url % __get_first_doi(obj)).json()['message']
@@ -136,15 +136,15 @@ def _received_in_time(obj, extra_data):
     received_time = parse_date(obj.data['record_creation_date'])
     delta = received_time - api_time
 
-    ok = delta <= timedelta(hours=24)
+    check_accepted = delta <= timedelta(hours=24)
     details_message = 'Arrived %d hours later then creation date on crossref.org.' % (delta.total_seconds() / 3600)
     debug = 'Time from crossref: %s, Received time: %s' % (api_time, received_time)
 
-    return ok, (details_message ,), debug
+    return check_accepted, (details_message ,), debug
 
 
-def _founded_by(obj, extra_data):
-    """check if publication has "Founded by SCOAP3" marking *in pdf(a) file* """
+def _funded_by(obj, extra_data):
+    """Check if publication has "Funded by SCOAP3" marking *in pdf(a) file* """
 
     patterns = ['scoap3?', ]
     return __find_regexp_in_pdf(extra_data, patterns)
@@ -168,7 +168,7 @@ def _author_rights(obj, extra_data):
 
 
 def _cc_licence(obj, extra_data):
-    """check fif publication has 'cc by' or 'creative commons attribution' marking *in pdf(a) file* """
+    """Check if publication has 'cc by' or 'creative commons attribution' marking *in pdf(a) file* """
     patterns = ['cc.?by', 'creative.?commons.?attribution', ]
     return __find_regexp_in_pdf(extra_data, patterns)
 
@@ -176,7 +176,7 @@ def _cc_licence(obj, extra_data):
 COMPLIANCE_TASKS = [
     ('Files', _files),
     ('Received in time', _received_in_time),
-    ('Founded by', _founded_by),
+    ('Funded by', _funded_by),
     ('Author rights', _author_rights),
     ('Licence', _cc_licence),
 ]
@@ -194,12 +194,12 @@ def check_compliance(obj, eng):
     # Add temporary data to evalutaion
     extra_data = {'extracted_text': __extract_article_text(obj)}
 
-    all_ok = True
+    all_checks_accepted = True
     for name, func in COMPLIANCE_TASKS:
-        ok, details, debug = func(obj, extra_data)
-        all_ok = all_ok and ok
+        check_accepted, details, debug = func(obj, extra_data)
+        all_checks_accepted = all_checks_accepted and check_accepted
         checks[name] = {
-            'check': ok,
+            'check': check_accepted,
             'details': details,
             'debug': debug
         }
@@ -207,7 +207,7 @@ def check_compliance(obj, eng):
     c = Compliance()
     results = {
         'checks': checks,
-        'accepted': all_ok,
+        'accepted': all_checks_accepted,
         'data': {
             'doi': obj.data['dois'][0]['value'],
             'publisher': obj.data['imprints'][0]['publisher'],
@@ -222,7 +222,7 @@ def check_compliance(obj, eng):
     db.session.commit()
 
     # send notification about failed checks
-    if not all_ok:
+    if not all_checks_accepted:
         msg = TemplatedMessage(
             template_html='scoap3_compliance/admin/failed_email.html',
             subject='SCOAP3 - Compliance check',
