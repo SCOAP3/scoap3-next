@@ -53,7 +53,7 @@ class ComplianceView(ModelView):
     }
     column_labels = {
         'results': 'Problems',
-        'arxiv': 'Arxiv number',
+        'arxiv': 'arXiv number',
     }
     column_sortable_list = ()
     column_filters = (
@@ -62,7 +62,7 @@ class ComplianceView(ModelView):
         FilterByAccepance(column=None, name='Acceptance'),
         JsonFilterLike(column=Compliance.publisher, name='Publisher'),
         JsonFilterEqual(column=Compliance.doi, name='DOI'),
-        JsonFilterEqual(column=Compliance.arxiv, name='Arxiv'),
+        JsonFilterEqual(column=Compliance.arxiv, name='arXiv'),
     )
 
     list_template = 'scoap3_compliance/admin/list.html'
