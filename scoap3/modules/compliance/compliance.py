@@ -220,7 +220,7 @@ def check_compliance(obj, eng):
             template_html='scoap3_compliance/admin/failed_email.html',
             subject='SCOAP3 - Compliance check',
             sender='from@example.org',
-            recipients=[current_app.config.get('COMPLIANCE_EMAIL')],
+            recipients=current_app.config.get('COMPLIANCE_EMAILS'),
             ctx={'results': results}
         )
         current_app.extensions['mail'].send(msg)
