@@ -146,7 +146,7 @@ def _received_in_time(obj, extra_data):
 def _funded_by(obj, extra_data):
     """Check if publication has "Funded by SCOAP3" marking *in pdf(a) file* """
 
-    patterns = ['scoap3?', ]
+    patterns = ['funded.?by.?scoap3?', ]
     return __find_regexp_in_pdf(extra_data, patterns)
 
 
