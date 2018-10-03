@@ -168,9 +168,14 @@ def _author_rights(obj, extra_data):
 
 
 def _cc_licence(obj, extra_data):
-    """Check if publication has 'cc by' or 'creative commons attribution' marking *in pdf(a) file* """
+    """Check if publication has appropriate license stated *in pdf(a) file* """
     patterns = ['cc.?by', 'creative.?commons.?attribution', ]
-    return __find_regexp_in_pdf(extra_data, patterns)
+    forbidden_patterns = [
+        'cc.?by.?sa', 'creative.?commons.?share.?alike',
+        'cc.?by.?nc', 'creative.?commons.?non.?commercial',
+        'cc.?by.?nd', 'creative.?commons.?non.?derivatives',
+    ]
+    return __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns)
 
 
 COMPLIANCE_TASKS = [
