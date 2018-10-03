@@ -9,6 +9,7 @@ from invenio_db import db
 from invenio_files_rest.models import ObjectVersion
 from invenio_mail.api import TemplatedMessage
 from invenio_pidstore.models import PersistentIdentifier
+from invenio_records import Record
 from pdfminer.pdfparser import PDFSyntaxError
 
 from scoap3.modules.compliance.models import Compliance
@@ -184,6 +185,12 @@ COMPLIANCE_TASKS = [
 def check_compliance(obj, eng):
     checks = {}
 
+    recid = obj.data['control_number']
+    pid = PersistentIdentifier.get('recid', recid)
+
+    if '_files' not in obj.data:
+        obj.data['_files'] = Record.get_record(pid.object_uuid)['_files']
+
     # Add temporary data to evalutaion
     extra_data = {'extracted_text': __extract_article_text(obj)}
 
@@ -209,7 +216,6 @@ def check_compliance(obj, eng):
     }
 
     c.results = results
-    pid = PersistentIdentifier.get('recid', obj.extra_data['recid'])
     c.id_record = pid.object_uuid
 
     db.session.add(c)
