@@ -30,22 +30,21 @@ def __get_first_arxiv(obj):
     return None
 
 
-def __extract_text_as_extra_data(obj):
+def __extract_article_text(obj):
     # fixme extraction shouldn't happen in article_upload?
-    # do extraction only if not done earlier
-    if 'extracted_data' in obj.extra_data:
-        return
 
-    obj.extra_data['extracted_data'] = {}
+    extracted_text = {}
+
     for file in obj.data['_files']:
         filetype = file['filetype']
         if filetype in ('pdf', 'pdf/a'):
             path = ObjectVersion.get(file['bucket'], file['key']).file.uri
             try:
-                obj.extra_data['extracted_data'][filetype] = extract_text_from_pdf(path).decode('utf-8')
+                extracted_text[filetype] = extract_text_from_pdf(path).decode('utf-8')
             except PDFSyntaxError as e:
                 current_app.logger.error('Error while extracting text from pdf with uri %s: %s' % (path, e))
 
+    return extracted_text
 
 
 def __find_regexp(data, patterns):
@@ -73,18 +72,16 @@ def __find_regexp(data, patterns):
     return matches
 
 
-def __find_regexp_in_pdf(obj, patterns, forbidden_patterns=None):
+def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None):
     """
     Finds all matches for given patterns with surrounding characters in all filetypes.
     Fails only if there are no matches at all or there is a match for a forbidden pattern.
     :param patterns: iterable of string patterns
     """
-    __extract_text_as_extra_data(obj)
-
     ok = True
     details = []
 
-    for filetype, data in obj.extra_data['extracted_data'].iteritems():
+    for filetype, data in extra_data['extracted_text'].iteritems():
         # first check for forbidden patterns
         if forbidden_patterns:
             forbidden_matches = __find_regexp(data, forbidden_patterns)
@@ -102,7 +99,7 @@ def __find_regexp_in_pdf(obj, patterns, forbidden_patterns=None):
     return ok, details, None
 
 
-def _files(obj):
+def _files(obj, extra_data):
     """check if it has the necessary files: .xml, .pdf, .pdfa """
 
     file_types = [file['filetype'] for file in obj.data['_files']]
@@ -123,7 +120,7 @@ def _files(obj):
     return ok, (details, ), None
 
 
-def _received_in_time(obj):
+def _received_in_time(obj, extra_data):
     """check if publication is not older than 24h """
     api_url = current_app.config.get('CROSSREF_API_URL')
 
@@ -145,14 +142,14 @@ def _received_in_time(obj):
     return ok, (details_message ,), debug
 
 
-def _founded_by(obj):
+def _founded_by(obj, extra_data):
     """check if publication has "Founded by SCOAP3" marking *in pdf(a) file* """
 
     patterns = ['scoap3?', ]
-    return __find_regexp_in_pdf(obj, patterns)
+    return __find_regexp_in_pdf(extra_data, patterns)
 
 
-def _author_rights(obj):
+def _author_rights(obj, extra_data):
     COPYRIGHT = u'\N{COPYRIGHT SIGN}'
 
     start_patterns = (COPYRIGHT, 'copyright', '\(c\)', )
@@ -166,13 +163,13 @@ def _author_rights(obj):
 
     forbidden_patterns = ['.{0, 10}'.join(x) for x in itertools.product(start_patterns, forbidden_patterns)]
 
-    return __find_regexp_in_pdf(obj, needed_patterns, forbidden_patterns)
+    return __find_regexp_in_pdf(extra_data, needed_patterns, forbidden_patterns)
 
 
-def _cc_licence(obj):
+def _cc_licence(obj, extra_data):
     """check fif publication has 'cc by' or 'creative commons attribution' marking *in pdf(a) file* """
     patterns = ['cc.?by', 'creative.?commons.?attribution', ]
-    return __find_regexp_in_pdf(obj, patterns)
+    return __find_regexp_in_pdf(extra_data, patterns)
 
 
 COMPLIANCE_TASKS = [
@@ -186,9 +183,13 @@ COMPLIANCE_TASKS = [
 
 def check_compliance(obj, eng):
     checks = {}
+
+    # Add temporary data to evalutaion
+    extra_data = {'extracted_text': __extract_article_text(obj)}
+
     all_ok = True
     for name, func in COMPLIANCE_TASKS:
-        ok, details, debug = func(obj)
+        ok, details, debug = func(obj, extra_data)
         all_ok = all_ok and ok
         checks[name] = {
             'check': ok,
