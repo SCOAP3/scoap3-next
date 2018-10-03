@@ -125,7 +125,7 @@ def _files(obj):
 
 def _received_in_time(obj):
     """check if publication is not older than 24h """
-    api_url = 'https://api.crossref.org/works/%s'
+    api_url = current_app.config.get('CROSSREF_API_URL')
 
     api_message = requests.get(api_url % __get_first_doi(obj)).json()['message']
 
