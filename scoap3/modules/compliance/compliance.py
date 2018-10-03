@@ -135,7 +135,7 @@ def _received_in_time(obj):
         api_time = datetime(*parts, hour=23, minute=59, second=59)
     else:
         api_time = parse_date(api_message['created']['date-time'], ignoretz=True)
-    received_time = parse_date(obj.data['acquisition_source']['date'])
+    received_time = parse_date(obj.data['record_creation_date'])
     delta = received_time - api_time
 
     ok = delta <= timedelta(hours=24)
