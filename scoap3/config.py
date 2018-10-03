@@ -534,3 +534,4 @@ JSONSCHEMAS_REPLACE_REFS = True
 
 DEFAULT_FROM_EMAIL = 'repo.admin@scoap3.org'
 COMPLIANCE_EMAILS = ['scoap3-compliance-mailing@cern.ch', ]
+CROSSREF_API_URL = 'https://api.crossref.org/works/%s'
