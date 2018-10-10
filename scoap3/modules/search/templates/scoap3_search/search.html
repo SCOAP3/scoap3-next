@@ -31,7 +31,7 @@
 {%- block javascript %}
   {{ super() }}
   {% assets "invenio_search_ui_search_js" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
-  {% include "scoap3_theme/javascript.html" %}
+  {% assets "scoap3_search_js" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
 {%- endblock javascript %}
 
 {%- block body_inner %}
