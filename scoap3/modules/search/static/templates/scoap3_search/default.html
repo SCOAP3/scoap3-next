@@ -13,7 +13,7 @@
         <small class="search-record-list-date"> - {{ record.metadata.record_creation_date.split('T')[0] }}</small>
     </p>
     <p ng-repeat='abstract in record.metadata.abstracts'>
-      {{ abstract.value | limitTo:600}}
+      <span ng-bind-html="abstract.value | limitTo:600 | safe"></span>
       <span ng-if='abstract.value.length > 600'>
           ...
       </span>
