@@ -213,7 +213,7 @@ def check_compliance(obj, eng):
             'debug': debug
         }
 
-    c = Compliance()
+    c = Compliance.get_or_create(pid.object_uuid)
     results = {
         'checks': checks,
         'accepted': all_checks_accepted,
@@ -224,7 +224,7 @@ def check_compliance(obj, eng):
         }
     }
 
-    c.results = results
+    c.add_results(results)
     c.id_record = pid.object_uuid
 
     db.session.add(c)
