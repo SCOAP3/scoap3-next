@@ -125,7 +125,11 @@ def _received_in_time(obj, extra_data):
     """Check if publication is not older than 24h """
     api_url = current_app.config.get('CROSSREF_API_URL')
 
-    api_message = requests.get(api_url % __get_first_doi(obj)).json()['message']
+    api_response = requests.get(api_url % __get_first_doi(obj))
+    if api_response.status_code != 200:
+        return True, ('Article is not on crossref.', ), 'Api response: %s' % api_response.text
+
+    api_message = api_response.json()['message']
 
     if 'publication_info' in obj.data and obj.data['publication_info'][0]['journal_title'] == 'Progress of Theoretical and Experimental Physics':
         parts = api_message['published-online']['date-parts'][0]
@@ -140,7 +144,7 @@ def _received_in_time(obj, extra_data):
     details_message = 'Arrived %d hours later then creation date on crossref.org.' % (delta.total_seconds() / 3600)
     debug = 'Time from crossref: %s, Received time: %s' % (api_time, received_time)
 
-    return check_accepted, (details_message ,), debug
+    return check_accepted, (details_message, ), debug
 
 
 def _funded_by(obj, extra_data):
