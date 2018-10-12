@@ -26,7 +26,7 @@ class Compliance(db.Model):
 
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     created = db.Column(db.DateTime, default=datetime.utcnow)
-    updated = db.Column(db.DateTime, onupdate=datetime.utcnow)
+    updated = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     id_record = db.Column(
         UUIDType,
         db.ForeignKey(RecordMetadata.id),
@@ -36,6 +36,11 @@ class Compliance(db.Model):
 
     results = db.Column(postgresql.JSONB(none_as_null=True),
                         nullable=False
+    )
+
+    history = db.Column(postgresql.JSONB(none_as_null=True),
+                        nullable=False,
+                        default=[]
     )
 
     @hybrid_property
@@ -53,6 +58,11 @@ class Compliance(db.Model):
     @hybrid_property
     def arxiv(self):
         return self.results['data']['arxiv']
+
+    @classmethod
+    def get_or_create(cls, object_uuid):
+        c = Compliance.query.filter(Compliance.id_record==object_uuid).first()
+        return c or cls()
 
     @classmethod
     def accept(cls, id):
@@ -83,3 +93,15 @@ class Compliance(db.Model):
         flag_modified(o, 'results')
 
         return True
+
+    def add_results(self, new_results):
+        if self.results == new_results or new_results is None:
+            return
+
+        if self.results:
+            self.history.append({
+                'datetime': datetime.now(),
+                'results': self.results
+            })
+
+        self.results = new_results
