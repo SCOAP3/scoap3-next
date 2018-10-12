@@ -75,5 +75,36 @@
         </form>
       </td>
     </tr>
+    <tr>
+      <td><b>History</b></td>
+      <td colspan="2">
+        {% if model.history %}
+          <table class="table table-hover table-bordered">
+            <tr>
+              <th>Originally created</th>
+              <th>Files</th>
+              <th>Funded by</th>
+              <th>Received in time</th>
+              <th>Licence</th>
+              <th>Author</th>
+              <th>Accepted</th>
+            </tr>
+            {% for h in model.history %}
+              <tr>
+                <td>{{ h.created }}</td>
+                <td>{{ h.results.checks['Files'].check|boolean_to_icon }}</td>
+                <td>{{ h.results.checks['Funded by'].check|boolean_to_icon }}</td>
+                <td>{{ h.results.checks['Received in time'].check|boolean_to_icon }}</td>
+                <td>{{ h.results.checks['Licence'].check|boolean_to_icon }}</td>
+                <td>{{ h.results.checks['Author rights'].check|boolean_to_icon }}</td>
+                <td>{{ h.results.accepted|boolean_to_icon }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        {% else %}
+          No history yet.
+        {% endif %}
+      </td>
+    </tr>
   </table>
 {% endblock %}

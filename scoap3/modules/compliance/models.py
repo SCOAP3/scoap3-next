@@ -59,6 +59,10 @@ class Compliance(db.Model):
     def arxiv(self):
         return self.results['data']['arxiv']
 
+    @property
+    def history_count(self):
+        return len(self.history)
+
     @classmethod
     def get_or_create(cls, object_uuid):
         c = Compliance.query.filter(Compliance.id_record==object_uuid).first()
@@ -100,8 +104,10 @@ class Compliance(db.Model):
 
         if self.results:
             self.history.append({
-                'datetime': datetime.now(),
+                'created': self.created.isoformat(),
                 'results': self.results
             })
+            flag_modified(self, 'history')
 
         self.results = new_results
+        flag_modified(self, 'results')
