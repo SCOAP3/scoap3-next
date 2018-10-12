@@ -1,6 +1,6 @@
 from __future__ import absolute_import, print_function
 
-from .cli import loadrecords
+from .cli import loadrecords, fixdb
 
 
 class Scoap3Records(object):
@@ -15,4 +15,5 @@ class Scoap3Records(object):
         """Flask application initialization."""
         app.extensions['scoap3-records'] = self
         app.cli.add_command(loadrecords)
+        app.cli.add_command(fixdb)
         return self
