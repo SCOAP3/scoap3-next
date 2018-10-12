@@ -45,7 +45,7 @@ class ComplianceView(ModelView):
     can_view_details = True
     column_default_sort = ('created', True)
 
-    column_list = ('publisher', 'created', 'updated', 'doi', 'arxiv', 'accepted', 'results')
+    column_list = ('publisher', 'updated', 'doi', 'arxiv', 'accepted', 'results', 'history_count')
     column_formatters = {
         'results': macro('render_results'),
         'doi': macro('render_doi'),
