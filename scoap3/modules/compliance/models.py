@@ -51,17 +51,33 @@ class Compliance(db.Model):
     def doi(self):
         return self.results['data']['doi']
 
+    @doi.expression
+    def doi(cls):
+        return cls.results['data']['doi'].astext
+
     @hybrid_property
     def publisher(self):
         return self.results['data']['publisher']
+
+    @publisher.expression
+    def publisher(cls):
+        return cls.results['data']['publisher'].astext
 
     @hybrid_property
     def journal(self):
         return self.results['data']['journal']
 
+    @journal.expression
+    def journal(cls):
+        return cls.results['data']['journal'].astext
+
     @hybrid_property
     def arxiv(self):
         return self.results['data']['arxiv']
+
+    @arxiv.expression
+    def arxiv(cls):
+        return cls.results['data']['arxiv'].astext
 
     @property
     def history_count(self):

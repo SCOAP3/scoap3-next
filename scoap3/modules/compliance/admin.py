@@ -17,16 +17,6 @@ from invenio_db import db
 
 from .models import Compliance
 
-class JsonFilterLike(FilterLike):
-    def apply(self, query, value, alias=None):
-        stmt = tools.parse_like_term(value)
-        return query.filter(self.get_column(alias).astext.ilike(stmt))
-
-
-class JsonFilterEqual(FilterEqual):
-    def apply(self, query, value, alias=None):
-        return query.filter(self.get_column(alias).astext == value)
-
 
 class FilterByAccepance(FilterEqual):
     def apply(self, query, value, alias=None):
@@ -43,7 +33,7 @@ class ComplianceView(ModelView):
     can_delete = False
     can_create = False
     can_view_details = True
-    column_default_sort = ('created', True)
+    column_default_sort = ('updated', True)
 
     column_list = ('publisher', 'journal', 'updated', 'doi', 'arxiv', 'accepted', 'results', 'history_count')
     column_formatters = {
@@ -56,15 +46,21 @@ class ComplianceView(ModelView):
         'results': 'Problems',
         'arxiv': 'arXiv number',
     }
-    column_sortable_list = ()
+    column_sortable_list = (
+        Compliance.updated,
+        Compliance.publisher,
+        Compliance.journal,
+        Compliance.doi,
+        Compliance.arxiv,
+    )
     column_filters = (
         Compliance.created,
         Compliance.updated,
         FilterByAccepance(column=None, name='Acceptance'),
-        JsonFilterLike(column=Compliance.publisher, name='Publisher'),
-        JsonFilterLike(column=Compliance.journal, name='Journal'),
-        JsonFilterEqual(column=Compliance.doi, name='DOI'),
-        JsonFilterEqual(column=Compliance.arxiv, name='arXiv'),
+        FilterLike(column=Compliance.publisher, name='Publisher'),
+        FilterLike(column=Compliance.journal, name='Journal'),
+        FilterEqual(column=Compliance.doi, name='DOI'),
+        FilterEqual(column=Compliance.arxiv, name='arXiv'),
     )
 
     list_template = 'scoap3_compliance/admin/list.html'
