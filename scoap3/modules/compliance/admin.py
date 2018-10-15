@@ -45,12 +45,13 @@ class ComplianceView(ModelView):
     can_view_details = True
     column_default_sort = ('updated', True)
 
-    column_list = ('publisher', 'journal', 'updated', 'doi', 'arxiv', 'accepted', 'results', 'history_count')
+    column_list = ('publisher', 'journal', 'updated', 'recid', 'doi', 'arxiv', 'accepted', 'results', 'history_count')
     column_formatters = {
         'results': macro('render_results'),
         'doi': macro('render_doi'),
         'arxiv': macro('render_arxiv'),
         'accepted': macro('render_accepted'),
+        'recid': macro('render_url'),
     }
     column_labels = {
         'results': 'Problems',
