@@ -541,4 +541,35 @@ DEFAULT_FROM_EMAIL = 'repo.admin@scoap3.org'
 COMPLIANCE_EMAILS = ['scoap3-compliance-mailing@cern.ch', ]
 CROSSREF_API_URL = 'https://api.crossref.org/works/%s'
 
+#  Abbreviations
+PUBLISHER_ABBREVIATIONS = {
+    'Jagiellonian University': 'Jagiellonian Uni.',
+    'Hindawi Publishing Corporation': 'Hindawi',
+    'Institute of Physics Publishing/Chinese Academy of Sciences': 'IOP',
+    'Institute of Physics Publishing/SISSA': 'IOP',
+    'Institute of Physics Publishing/Deutsche Physikalische Gesellschaft': 'IOP',
+    'Springer/SISSA': 'Springer',
+    'Springer/Societ\xe0 Italiana di Fisica': 'Springer',
+    'Elsevier': 'Elsevier',
+    'American Physical Society': 'APS',
+    'Oxford University Press/Physical Society of Japan': 'OUP',
+}
+
+JOURNAL_ABBREVIATIONS = {
+    'Acta Physica Polonica B': 'APPB',
+    'Advances in High Energy Physics': 'AHEP',
+    'Chinese Physics C': 'CPC',
+    'European Physical Journal C': 'EPJC',
+    'Journal of Cosmology and Astroparticle Physics': 'JCAP',
+    'Journal of High Energy Physics': 'JHEP',
+    'New Journal of Physics': 'NJP',
+    'Nuclear Physics B': 'NPB',
+    'Physics Letters B': 'PLB',
+    'Physical Review C': 'PRC',
+    'Physical Review D': 'PRD',
+    'Physical Review Letters': 'PRL',
+    'Progress of Theoretical and Experimental Physics': 'PTEP',
+}
+
 API_UNAUTHENTICATED_PAGE_LIMIT = 10
+

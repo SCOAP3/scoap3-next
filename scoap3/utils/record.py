@@ -24,6 +24,8 @@
 
 import re
 
+from flask import current_app
+
 SPLIT_KEY_PATTERN = re.compile('\.|\[')
 
 
@@ -35,6 +37,14 @@ def get_title(record):
             return title['title']
 
     return title
+
+
+def get_first_publisher(record):
+    return record['imprints'][0]['publisher']
+
+
+def get_first_journal(record):
+    return record['publication_info'][0]['journal_title']
 
 
 def get_value(record, key, default=None):
@@ -85,3 +95,15 @@ def get_value(record, key, default=None):
         except KeyError:
             return default
     return value
+
+
+def get_abbreviated_publisher(record):
+    """Returns abbreviated publisher name, or the original one if abbreviation doesn't exists"""
+    publisher = get_first_publisher(record)
+    return current_app.config.get('PUBLISHER_ABBREVIATIONS').get(publisher, publisher)
+
+
+def get_abbreviated_journal(record):
+    """Returns abbreviated publisher name, or the original one if abbreviation doesn't exists"""
+    journal = get_first_journal(record)
+    return current_app.config.get('JOURNAL_ABBREVIATIONS').get(journal, journal)
