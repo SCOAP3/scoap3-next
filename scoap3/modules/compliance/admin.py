@@ -50,6 +50,7 @@ class ComplianceView(ModelView):
         'results': macro('render_results'),
         'doi': macro('render_doi'),
         'arxiv': macro('render_arxiv'),
+        'accepted': macro('render_accepted'),
     }
     column_labels = {
         'results': 'Problems',
