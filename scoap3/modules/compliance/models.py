@@ -56,6 +56,10 @@ class Compliance(db.Model):
         return self.results['data']['publisher']
 
     @hybrid_property
+    def journal(self):
+        return self.results['data']['journal']
+
+    @hybrid_property
     def arxiv(self):
         return self.results['data']['arxiv']
 

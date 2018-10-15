@@ -45,7 +45,7 @@ class ComplianceView(ModelView):
     can_view_details = True
     column_default_sort = ('created', True)
 
-    column_list = ('publisher', 'updated', 'doi', 'arxiv', 'accepted', 'results', 'history_count')
+    column_list = ('publisher', 'journal', 'updated', 'doi', 'arxiv', 'accepted', 'results', 'history_count')
     column_formatters = {
         'results': macro('render_results'),
         'doi': macro('render_doi'),
@@ -61,6 +61,7 @@ class ComplianceView(ModelView):
         Compliance.updated,
         FilterByAccepance(column=None, name='Acceptance'),
         JsonFilterLike(column=Compliance.publisher, name='Publisher'),
+        JsonFilterLike(column=Compliance.journal, name='Journal'),
         JsonFilterEqual(column=Compliance.doi, name='DOI'),
         JsonFilterEqual(column=Compliance.arxiv, name='arXiv'),
     )

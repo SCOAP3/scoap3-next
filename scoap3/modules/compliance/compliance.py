@@ -14,6 +14,7 @@ from pdfminer.pdfparser import PDFSyntaxError
 
 from scoap3.modules.compliance.models import Compliance
 from scoap3.utils.pdf import extract_text_from_pdf
+from scoap3.utils.record import get_abbreviated_publisher, get_abbreviated_journal
 
 
 def __get_first_doi(obj):
@@ -196,9 +197,10 @@ def check_compliance(obj, eng):
 
     recid = obj.data['control_number']
     pid = PersistentIdentifier.get('recid', recid)
+    record = Record.get_record(pid.object_uuid)
 
     if '_files' not in obj.data:
-        obj.data['_files'] = Record.get_record(pid.object_uuid)['_files']
+        obj.data['_files'] = record['_files']
 
     # Add temporary data to evalutaion
     extra_data = {'extracted_text': __extract_article_text(obj)}
@@ -219,7 +221,8 @@ def check_compliance(obj, eng):
         'accepted': all_checks_accepted,
         'data': {
             'doi': obj.data['dois'][0]['value'],
-            'publisher': obj.data['imprints'][0]['publisher'],
+            'publisher': get_abbreviated_publisher(record),
+            'journal': get_abbreviated_journal(record),
             'arxiv': __get_first_arxiv(obj)
         }
     }
