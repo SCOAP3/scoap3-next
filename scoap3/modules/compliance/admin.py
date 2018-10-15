@@ -8,9 +8,9 @@
 
 """Admin views for managing API registrations."""
 
-from flask import flash
+from flask import flash, url_for
 from flask_admin.actions import action
-from flask_admin.contrib.sqla import ModelView, tools
+from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import FilterLike, FilterEqual
 from flask_admin.model.template import macro
 from invenio_db import db
@@ -26,10 +26,20 @@ class FilterByAccepance(FilterEqual):
         return (True, 'True'), (False, 'False')
 
 
+def export_generate_problems(v, c, m, p):
+    """Helper function to export 'results' field.
+    Filters for not accepted checks, returns the concatenated details.
+    """
+    problems = [', '.join(r['details']).replace('\n', '')
+                for r in m.results['checks'].values() if not r['check']]
+    return "\r\n".join(problems)
+
+
 class ComplianceView(ModelView):
     """View for managing Compliance results."""
 
     can_edit = False
+    can_export = True
     can_delete = False
     can_create = False
     can_view_details = True
@@ -62,6 +72,15 @@ class ComplianceView(ModelView):
         FilterEqual(column=Compliance.doi, name='DOI'),
         FilterEqual(column=Compliance.arxiv, name='arXiv'),
     )
+
+    column_export_list = ('updated', 'publisher', 'journal', 'doi', 'arxiv', 'accepted', 'problems', 'url')
+    column_formatters_export = {
+        'doi': lambda v, c, m, p: m.doi,
+        'arxiv': lambda v, c, m, p: m.arxiv,
+        'accepted': lambda v, c, m, p: 'YES' if m.accepted else 'NO',
+        'url': lambda v, c, m, p: url_for('compliance.details_view', id='%s,%s' % (m.id, m.id_record), _external=True),
+        'problems': export_generate_problems,
+    }
 
     list_template = 'scoap3_compliance/admin/list.html'
     details_template = 'scoap3_compliance/admin/details.html'
