@@ -19,3 +19,7 @@
     -
   {% endif %}
 {% endmacro %}
+
+{% macro render_accepted(model, column) %}
+  {{ model.accepted|boolean_to_icon }}
+{% endmacro %}
