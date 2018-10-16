@@ -11,6 +11,7 @@
 from flask import current_app, flash
 from flask_admin.actions import action
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.model.template import macro
 from werkzeug.local import LocalProxy
 
 from .models import ApiRegistrations
@@ -44,8 +45,10 @@ class ApiRegistrationsView(ModelView):
     }
 
     list_template = 'scoap3_api/custom_list.html'
+    details_template = 'scoap3_api/details.html'
     column_filters = ('id', 'creation_date', 'name', 'partner', 'organization',
                       'country', 'accepted')
+    column_formatters = {'accepted': macro('render_tri_state_boolean_to_icon')}
 
     def _create_user_for_api_registration(self, api_user_id):
         api_registration = ApiRegistrations.query.filter_by(id=api_user_id).one()
@@ -68,7 +71,7 @@ class ApiRegistrationsView(ModelView):
             if _datastore.add_role_to_user(u, r):
                 msg = TemplatedMessage(template_html='scoap3_api/email.html',
                                        subject='SCOAP3 - API registration confirmation',
-                                       sender='from@example.org',
+                                       sender=current_app.config.get('DEFAULT_FROM_EMAIL'),
                                        recipients=[api_registration.email],
                                        ctx={'email': api_registration.email,
                                             'password': password,

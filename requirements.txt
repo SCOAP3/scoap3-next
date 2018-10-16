@@ -1,6 +1,7 @@
 elasticsearch==2.4.1
 elasticsearch-dsl==2.2.0
 raven
+regex==2018.8.29
 flower
 celery<4.0
 Scrapy

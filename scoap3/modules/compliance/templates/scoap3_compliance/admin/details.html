@@ -1,0 +1,79 @@
+{% extends 'admin/model/details.html' %}
+
+{# hide search field #}
+{% block details_search %}
+{% endblock %}
+
+{% block details_table %}
+  <table class="table table-hover table-bordered">
+    <tr>
+      <td><b>DOI</b></td>
+      <td colspan="2">
+        <a href="http://doi.org/{{ model.doi }}" target="_blank">{{ model.doi }}</a>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Arxiv</b></td>
+      <td colspan="2">
+        {% if model.arxiv %}
+          <a href="http://arxiv.org/abs/{{ model.arxiv }}" target="_blank">{{ model.arxiv }}</a>
+        {% else %}
+          -
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td><b>Accepted</b></td>
+      <td colspan="2">
+        {{ model.accepted|boolean_to_icon }}
+      </td>
+    </tr>
+    {% for check_name, check_data in model.results.checks.iteritems() %}
+      <tr>
+        <td>
+          <b>{{ check_name }}</b>
+        </td>
+        <td>
+          {{ check_data.check|boolean_to_icon }}
+        </td>
+        <td>
+          {{ check_data.details|join('<br/>'|safe) }}
+          {% if check_data.debug %}
+            <br/><i>{{ check_data.debug }}</i>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    <tr>
+      <td><b>Stored files</b></td>
+      <td colspan="2">
+        {% for file in model.record.json._files %}
+          <a href="/api/files/{{ file.bucket }}/{{ file.key }}" target="_blank">
+            {{ file.filetype }}<br/>
+          </a>
+        {% endfor %}
+      </td>
+    </tr>
+    <tr>
+      <td><b>Actions</b></td>
+      <td colspan="2">
+        <form method="POST" action="/admin/compliance/action/">
+            <input name="rowid" value="{{ model.id }},{{ model.id_record }}" type="hidden">
+            <input name="url" type="hidden" value="/admin/compliance/">
+
+          {% if model.results.accepted %}
+            <input name="action" value="reject" type="hidden" />
+            <button onclick="return confirm('Are you sure you want to reject?');" class="btn btn-danger">
+              Reject manually
+            </button>
+          {% else %}
+            <input name="action" value="accept" type="hidden" />
+            <button onclick="return confirm('Are you sure you want to accept?');" class="btn">
+              Accept manually
+            </button>
+          {% endif %}
+        </form>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

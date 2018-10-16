@@ -1,0 +1,26 @@
+
+<p>
+  Compliance check failed for the following article: {{ results.data.doi }} ({{ results.data.publisher }}).
+<p>
+
+Failed checks:
+<table>
+  {% for check_name, check_data in results.checks.iteritems() %}
+    {% if not check_data.check %}
+      <tr>
+        <td>
+          <b>{{ check_name }}</b>
+        </td>
+        <td>
+          {{ check_data.details }}
+          {% if check_data.debug %}
+            <br/><i>{{ check_data.debug }}</i>
+          {% endif %}
+        </td>
+      </tr>
+    {% endif %}
+  {% endfor %}
+</table>
+
+With kind regards,
+The SCOAP3 Team
