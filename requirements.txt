@@ -7,4 +7,6 @@ celery<4.0
 Scrapy
 scrapyd
 gunicorn
+webarg==1.8.1
+marshmallow==2.13.6
 pdfminer==20140328
