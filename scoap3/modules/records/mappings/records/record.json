@@ -1,4 +1,17 @@
 {
+    "settings": {
+        "analysis": {
+            "normalizer": {
+                "lowercase_normalizer": {
+                    "type": "custom",
+                    "char_filter": [],
+                    "filter": [
+                        "lowercase"
+                    ]
+                }
+            }
+        }
+    },
     "mappings": {
         "record-v1.0.0": {
             "_all": {
@@ -19,19 +32,20 @@
                     "properties":{
                         "full_name":{
                             "index": "analyzed",
-                            "type": "string",
+                            "type": "text",
                             "copy_to": "author"
                         },
                         "affiliations":{
                             "properties":{
                                 "country":{
                                     "index": "not_analyzed",
-                                    "type": "string",
-                                    "copy_to": "country"
+                                    "type": "keyword",
+                                    "copy_to": "country",
+                                    "normalizer": "lowercase_normalizer"
                                 },
                                 "value":{
                                     "index": "analyzed",
-                                    "type": "string",
+                                    "type": "text",
                                     "copy_to": "affiliation"
                                 }
                             },
@@ -60,7 +74,7 @@
                     "properties":{
                         "title":{
                             "index": "analyzed",
-                            "type": "string",
+                            "type": "text",
                             "copy_to": "title"
                         }
                     },
@@ -70,7 +84,7 @@
                     "properties":{
                         "value":{
                             "index": "not_analyzed",
-                            "type": "string",
+                            "type": "keyword",
                             "copy_to": "doi"
                         }
                     },
@@ -87,27 +101,28 @@
                 },
                 "country": {
                     "index": "not_analyzed",
-                    "type": "string"
+                    "type": "keyword",
+                    "normalizer": "lowercase_normalizer"
                 },
                 "affiliation": {
                     "index": "analyzed",
-                    "type": "string"
+                    "type": "text"
                 },
                 "title": {
                     "index": "analyzed",
-                    "type": "string"
+                    "type": "text"
                 },
                 "author": {
                     "index": "analyzed",
-                    "type": "string"
+                    "type": "text"
                 },
                 "date": {
                     "index": "analyzed",
                     "type": "date"
                 },
                 "doi":{
-                    "index": "analyzed",
-                    "type": "string"
+                    "index": "not_analyzed",
+                    "type": "keyword"
                 }
             }
         }
