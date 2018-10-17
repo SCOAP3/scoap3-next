@@ -5,6 +5,8 @@
 from __future__ import absolute_import, print_function
 from invenio_records_rest.facets import terms_filter, range_filter
 
+from scoap3.modules.search.utils import Scoap3RecordsSearch
+
 
 # Identity function for string extraction
 def _(x):
@@ -48,11 +50,14 @@ BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/scoap3"
 # Elasticsearch
 INDEXER_DEFAULT_INDEX = "records-record"
 SEARCH_ELASTIC_HOSTS = 'localhost'
+
+
 RECORDS_REST_ENDPOINTS = dict(
     recid=dict(
         pid_type='recid',
         pid_minter='scoap3_minter',
         pid_fetcher='recid',
+        search_class=Scoap3RecordsSearch,
         search_index='records-record',
         search_type=['record-v1.0.0'],
         record_serializers={
@@ -535,3 +540,5 @@ JSONSCHEMAS_REPLACE_REFS = True
 DEFAULT_FROM_EMAIL = 'repo.admin@scoap3.org'
 COMPLIANCE_EMAILS = ['scoap3-compliance-mailing@cern.ch', ]
 CROSSREF_API_URL = 'https://api.crossref.org/works/%s'
+
+API_UNAUTHENTICATED_PAGE_LIMIT = 10
