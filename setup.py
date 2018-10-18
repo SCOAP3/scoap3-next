@@ -62,6 +62,8 @@ setup(
         'invenio_admin.views': [
             'scoap3_api_registrations = scoap3.modules.api.admin:api_registrations_adminview',
             'scoap3_analysis = scoap3.modules.analysis.admin:gdp_adminview',
+            'scoap3_workflows = scoap3.modules.workflows.admin:workflows',
+            'scoap3_workflows_summary = scoap3.modules.workflows.admin:workflows_summary',
             'scoap3_compliance = scoap3.modules.compliance.admin:compliance_adminview',
         ],
         'invenio_base.apps': [

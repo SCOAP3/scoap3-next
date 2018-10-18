@@ -1,0 +1,14 @@
+{% extends 'admin/model/list.html' %}
+
+{% macro render_info(model, column) %}
+  {% if 'titles' in model.data %}
+      Title: {{ model.data['titles'][0]['title'] }}<br/>
+  {% endif %}
+  {% if 'dois' in model.data %}
+    Doi:
+    <a href="http://doi.org/{{ model.data['dois'][0]['value'] }}" target="_blank">
+      {{ model.data['dois'][0]['value'] }}
+    </a>
+    <br/>
+  {% endif %}
+{% endmacro %}
