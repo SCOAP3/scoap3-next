@@ -113,8 +113,8 @@ RECORDS_REST_FACETS = {
             "journal": terms_filter("publication_info.journal_title"),
             "country": terms_filter("authors.affiliations.country"),
             "collaboration": terms_filter("facet_collaboration"),
-            "earliest_date": range_filter(
-                'earliest_date',
+            "record_creation_date": range_filter(
+                'record_creation_date',
                 format='yyyy',
                 end_date_math='/y')
         },
@@ -139,7 +139,7 @@ RECORDS_REST_FACETS = {
                     "size": 20
                 }
             },
-            "earliest_date": {
+            "record_creation_date": {
                 "date_histogram": {
                     "field": "record_creation_date",
                     "interval": "year",
