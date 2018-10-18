@@ -1,6 +1,6 @@
 <div ng-init="order={'country': 'Country', 'journal': 'Journal'}">
   <div ng-init="tree=[];tree_more=[]" ng-repeat="(key, value) in vm.invenioSearchResults.aggregations track by $index">
-    <div ng-if="value.buckets.length > 0 && key != 'earliest_date'" class="panel panel-default">
+    <div ng-if="value.buckets.length > 0 && key != 'record_creation_date'" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">{{ order[key] }}</h3>
       </div>
