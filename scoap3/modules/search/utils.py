@@ -12,7 +12,7 @@ class Scoap3RecordsSearch(RecordsSearch):
         if 'query_string' in result['query'] and 'default_operator' not in result['query']['query_string']:
             result['query']['query_string']['default_operator'] = 'and'
 
-        # hack: sets fit page size for not logged in users
+        # hack: sets fixed page size for not logged in users
         new_size = current_app.config.get('API_UNAUTHENTICATED_PAGE_LIMIT')
         if not current_user.is_authenticated and new_size:
             result['size'] = new_size
