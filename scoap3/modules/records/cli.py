@@ -12,6 +12,7 @@ from uuid import uuid1
 from flask import current_app
 from flask.cli import with_appcontext
 from invenio_db import db
+from invenio_pidstore.models import PersistentIdentifier
 from invenio_records.models import RecordMetadata
 from invenio_workflows import WorkflowEngine
 from invenio_workflows.proxies import workflow_object_class
@@ -98,7 +99,8 @@ def fixdb():
 
 @fixdb.command()
 @with_appcontext
-def unescaperecords():
+@click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'")
+def unescaperecords(ids):
     """HTML unescape abstract and title for all records."""
 
     parser = HTMLParser()
@@ -111,7 +113,10 @@ def unescaperecords():
         unescape_abstract(record, parser)
         unescape_titles(record, parser)
 
-    process_all_records(proc, 50, parser)
+    if ids:
+        ids = ids.split(',')
+
+    process_all_records(proc, 50, ids, parser)
 
     info('all done!')
 
@@ -176,7 +181,8 @@ def utf8rec(data):
 
 @fixdb.command()
 @with_appcontext
-def utf8():
+@click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'")
+def utf8(ids):
     """Unescape records and store data as unicode."""
 
     def proc(record):
@@ -186,16 +192,35 @@ def utf8():
         record.json = utf8rec(record.json)
         flag_modified(record, 'json')
 
-    process_all_records(proc)
+    if ids:
+        ids = ids.split(',')
+
+    process_all_records(proc, control_ids=ids)
     info('all done!')
 
 
-def process_all_records(function, chuck_size=50, *args):
+def process_all_records(function, chuck_size=50, control_ids=(), *args):
+    """
+    Calls the 'function' for all records.
+    If 'control_ids' is set to a non empty list, then only those records will be processed.
+    :param function: Function to be called for all record
+    :param chuck_size: How many records should be queried at once from db.
+    :param control_ids: Control ids of records. If set to a non empty list, this will be used to filter records
+    :param args: Args to be passed to 'function'
+    """
     info('gathering records...')
 
     # query ids from all records
-    record_ids = RecordMetadata.query.with_entities(RecordMetadata.id).all()
-    record_ids = [r[0] for r in record_ids]
+    record_ids = RecordMetadata.query.with_entities(RecordMetadata.id)
+
+    # filter records
+    if control_ids:
+        info('applying filter for records...')
+        uuids = [PersistentIdentifier.get('recid', recid).object_uuid for recid in control_ids]
+        record_ids = record_ids.filter(RecordMetadata.id.in_(uuids))
+
+    # get record ids
+    record_ids = [r[0] for r in record_ids.all()]
     records_count = len(record_ids)
     processed = 0
 
