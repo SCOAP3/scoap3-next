@@ -123,6 +123,15 @@
                 "doi":{
                     "index": "not_analyzed",
                     "type": "keyword"
+                },
+                "imprints":{
+                    "properties": {
+                        "date": {
+                            "format": "yyyy||yyyy-MM||yyyy-MM-dd",
+                            "type": "date"
+                        }
+                    },
+                    "type": "object"
                 }
             }
         }
