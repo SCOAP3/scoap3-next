@@ -27564,7 +27564,7 @@
                      "url": "https://creativecommons.org/licenses//by/4.0"}],
        "local_files": [{"value": {"filetype": "xml",
                                     "path": "scoap3/data/10.1140_epjc_s10052-018-6183-4.xml"}},
-                        {"value": {"filetype": "pdf/a",
+                        {"value": {"filetype": "pdf",
                                     "path": "scoap3/data/10.1140_epjc_s10052-018-6183-4.pdf"}}],
        "publication_info": [{"artid": "",
                               "journal_issue": "9",
@@ -27578,6 +27578,1249 @@
        "titles": [{"source": "Springer",
                     "subtitle": "",
                     "title": "Revealing timid pseudo-scalars with taus at the LHC"}]
-                    }
+                    },
+
+    {
+      "abstracts": [
+        {
+          "source": "Springer",
+          "value": "We study the electroweak phase transition within a 5D warped model including a scalar potential with an exponential behavior, and strong back-reaction over the metric, in the infrared. By means of a novel treatment of the superpotential formalism, we explore parameter regions that were previously inaccessible. We find that for large enough values of the t\u2019Hooft parameter (e.g. N \u2243 25) the holographic phase transition occurs, and it can force the Higgs to undergo a first order electroweak phase transition, suitable for electroweak baryogenesis. The model exhibits gravitational waves and colliders signatures. It typically predicts a stochastic gravitational wave background observable both at the Laser Interferometer Space Antenna and at the Einstein Telescope. Moreover the radion tends to be heavy enough such that it evades current constraints, but may show up in future LHC runs."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2018-09-19T16:10:17.116337",
+        "method": "Springer",
+        "source": "Springer",
+        "submission_number": "b1f8d0e6bc1511e8b89c02163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "Spain",
+              "organization": "Universidad de Granada",
+              "value": "Departamento de Fsica Atmica, Molecular y Nuclear and Instituto Carlos I de Fsica Terica y Computacional, Universidad de Granada, Avenida de Fuente Nueva s/n, Granada, 18071, Spain"
+            },
+            {
+              "country": "Spain",
+              "organization": "Departamento de F\u0131sica Terica, Universidad del Pas Vasco UPV/EH",
+              "value": "Departamento de F\u0131sica Terica, Universidad del Pas Vasco UPV/EHU, Apartado 644, Bilbao, 48080, Spain"
+            }
+          ],
+          "email": "emegias@ugr.es",
+          "full_name": "Megas, Eugenio",
+          "given_names": "Eugenio",
+          "surname": "Megas"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "Switzerland",
+              "organization": "University of Bern",
+              "value": "AEC, Institute for Theoretical Physics, University of Bern, Sidlerstrasse 5, Bern, CH-3012, Switzerland"
+            }
+          ],
+          "email": "nardini@itp.unibe.ch",
+          "full_name": "Nardini, Germano",
+          "given_names": "Germano",
+          "surname": "Nardini"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "Spain",
+              "organization": "The Barcelona Institute of Science and Technology (BIST)",
+              "value": "Institut de Fsica d\u2019Altes Energies (IFAE), The Barcelona Institute of Science and Technology (BIST), Campus UAB, Bellaterra (Barcelona), 08193, Spain"
+            }
+          ],
+          "email": "quiros@ifae.es",
+          "full_name": "Quirs, Mariano",
+          "given_names": "Mariano",
+          "surname": "Quirs"
+        }
+      ],
+      "collections": [
+        {
+          "primary": "Journal of High Energy Physics"
+        }
+      ],
+      "control_number": "42707",
+      "copyright": [
+        {
+          "holder": "The Author(s)",
+          "material": "Article",
+          "statement": "",
+          "year": "2018"
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1007/JHEP09(2018)095"
+        }
+      ],
+      "earliest_date": "2018-09-17",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2018-09-17",
+          "publisher": "Springer"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "https://creativecommons.org/licenses/by/3.0"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1007_JHEP09(2018)095.pdf"
+          }
+        }
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "9",
+          "journal_title": "Journal of High Energy Physics",
+          "journal_volume": "2018",
+          "note": "",
+          "page_end": "49",
+          "page_start": "1",
+          "pubinfo_freetext": "",
+          "year": 2018
+        }
+      ],
+      "record_creation_date": "2018-09-19T16:10:17.116361",
+      "titles": [
+        {
+          "source": "Springer",
+          "subtitle": "",
+          "title": "Cosmological phase transitions in warped space: gravitational waves and collider signatures"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Jagiellonian University",
+          "value": "We investigate constraints on neutrino mass ordering and degeneracy by considering the first cosmological result based on the Planck measurements of the cosmic microwave background. It is shown that the result at 95\\%~C.L. rejects a neutrino mass degeneracy larger than 85\\% (82.5\\%) for the normal (inverted) hierarchical case. We can also find some regions where the neutrino mass ordering will be able to be distinguished by combining a value of sum of the neutrino masses with an effective neutrino mass determined by neutrino-less double beta decay experiments. The results are obtained from the latest data of neutrino oscillation, cosmic microwave background, and the neutrino-less double beta decay experiments. These have significance in the discrimination of the neutrino mass ordering."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-01-21T00:00:00",
+        "method": "scoap3",
+        "source": "Jagiellonian University",
+        "submission_number": "37c2dc643e4711e881c402163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "Japan",
+              "value": "Department of Physics, Faculty of Science, Hokkaido University, Sapporo 060-0810, Japan"
+            }
+          ],
+          "full_name": "Haba, Naoyuki",
+          "given_names": "Naoyuki",
+          "raw_name": "Haba, Naoyuki",
+          "surname": "Haba"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "Japan",
+              "value": "Department of Physics, Faculty of Science, Hokkaido University, Sapporo 060-0810, Japan"
+            }
+          ],
+          "full_name": "Takahashi, Ryo",
+          "given_names": "Ryo",
+          "raw_name": "Takahashi, Ryo",
+          "surname": "Takahashi"
+        }
+      ],
+      "control_number": "1012",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "The Authors",
+          "year": ""
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.5506/APhysPolB.45.61"
+        }
+      ],
+      "earliest_date": "2014-01-01",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-01-01",
+          "publisher": "Jagiellonian University"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.5506_APhysPolB.45.61.pdf"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdfa",
+            "path": "scoap3/data/10.5506_APhysPolB.45.61.pdfa"
+          }
+        }
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "1",
+          "journal_title": "Acta Physica Polonica B",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "69",
+          "page_start": "61",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-21",
+      "report_numbers": [
+        {
+          "categories": [
+            "hep-ph",
+            "astro-ph.CO",
+            "hep-ex"
+          ],
+          "source": "arXiv",
+          "value": "arXiv:1305.0147"
+        }
+      ],
+      "titles": [
+        {
+          "source": "Jagiellonian University",
+          "subtitle": "",
+          "title": "Constraints on Neutrino Mass Ordering and Degeneracy from Planck and Neutrino-less Double Beta Decay"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Hindawi Publishing Corporation",
+          "value": "The purpose of this paper is to review the experimental apparatus and some physics results from the NOMAD (neutrino oscillation magnetic detector) experiment which took data in the CERN wide-band neutrino beam from 1995 to 1998. It collected and reconstructed more than one million charged current (CC) &lt;math t;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt; events with an accuracy which was previously obtained only with bubble chambers. The main aim of the experiment was to search for the oscillation &lt;math id=M2 xmlns=http://www.w3.org/1998/Math/MathML&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;&lt;/mi&gt;&lt;mi&gt;&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt; into &lt;math id=M3 xmlns=http://www.w3.org/1998/Math/MathML&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;&lt;/mi&gt;&lt;mi&gt;&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt; , in a region of mass compatible with the prescriptions of the hot dark matter hypothesis, which predicted a &lt;math id=M4 xmlns=http://www.w3.org/1998/Math/MathML&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;&lt;/mi&gt;&lt;mi&gt;&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt; mass in the range of 110eV/c2. This was done by searching for &lt;math id=M5 xmlns&gt;&lt;mrow&gt;&lt;mi&gt;&lt;/mi&gt;&lt;/mrow&gt;&lt;/math&gt; lepton through its various decay modes by using kinematical criteria. In parallel, NOMAD also strongly contributed to the study of more conventional processes: quasielastic events, strangeness production and charm dimuon production, single photon production, and coherent neutral pion production. Exotic searches were also investigated. The paper reviews the neutrino beam, the detector setup, the detector performances, the neutrino oscillation results, the strangeness production, the dimuon charm production, and summarizes other pieces of research."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-01-20T00:00:00",
+        "method": "scoap3",
+        "source": "Hindawi Publishing Corporation",
+        "submission_number": "6554419e43d411e890c902163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "France",
+              "value": "LPNHE/APC, Universit Paris 7-Diderot, 4 place Jussieu, 75005 Paris, France"
+            }
+          ],
+          "full_name": "Vannucci, F.",
+          "given_names": "F.",
+          "raw_name": "Vannucci, F.",
+          "surname": "Vannucci"
+        }
+      ],
+      "control_number": "990",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "Copyright  2014 F. Vannucci.",
+          "year": "2014"
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1155/2014/129694"
+        }
+      ],
+      "earliest_date": "2014-01-20",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-01-20",
+          "publisher": "Hindawi Publishing Corporation"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1155_2014_129694.xml"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1155_2014_129694.pdf"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdfa",
+            "path": "scoap3/data/10.1155_2014_129694.pdfa"
+          }
+        }
+      ],
+      "page_nr": [
+        "20"
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "",
+          "journal_title": "Advances in High Energy Physics",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "",
+          "page_start": "129694",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-20",
+      "titles": [
+        {
+          "source": "Hindawi Publishing Corporation",
+          "subtitle": "",
+          "title": "The NOMAD Experiment at CERN"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Institute of Physics Publishing/Chinese Academy of Sciences",
+          "value": "In a previous work, we proposed an extended Nambu-Jona-Lasinio (NJL) model including heavy quark flavors. In this work, we will calculate strong and radiative decays of vector mesons in this extended NJL model, including light , , K*,  and heavy D*, Ds*, B*, Bs*."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-01-22T00:00:00",
+        "method": "scoap3",
+        "source": "Institute of Physics Publishing/Chinese Academy of Sciences",
+        "submission_number": "9bcda7fe424111e898b102163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "China",
+              "value": "School of Physics and State Key Laboratory of Nuclear Physics and Technology, Peking University, Beijing 100871, China"
+            }
+          ],
+          "full_name": "Deng, Hong-Bo",
+          "given_names": "Hong-Bo",
+          "raw_name": "Deng, Hong-Bo",
+          "surname": "Deng"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "China",
+              "value": "School of Physics and State Key Laboratory of Nuclear Physics and Technology, Peking University, Beijing 100871, China"
+            }
+          ],
+          "full_name": "Chen, Xiao-Lin",
+          "given_names": "Xiao-Lin",
+          "raw_name": "Chen, Xiao-Lin",
+          "surname": "Chen"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "China",
+              "value": "School of Physics and State Key Laboratory of Nuclear Physics and Technology, Peking University, Beijing 100871, China"
+            }
+          ],
+          "full_name": "Deng, Wei-Zhen",
+          "given_names": "Wei-Zhen",
+          "raw_name": "Deng, Wei-Zhen",
+          "surname": "Deng"
+        }
+      ],
+      "control_number": "1023",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "2014 Chinese Physical Society and the Institute of High Energy Physics of the Chinese Academy of Sciences and the Institute of Modern Physics of the Chinese Academy of Sciences and IOP Publishing Ltd",
+          "year": "2014"
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1088/1674-1137/38/1/013103"
+        }
+      ],
+      "earliest_date": "2014-01-01",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-01-01",
+          "publisher": "Institute of Physics Publishing/Chinese Academy of Sciences"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1088_1674-1137_38_1_013103.xml"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1088_1674-1137_38_1_013103.pdf"
+          }
+        }
+      ],
+      "page_nr": [
+        "5"
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "1",
+          "journal_title": "Chinese Physics C",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "",
+          "page_start": "013103",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-22",
+      "report_numbers": [
+        {
+          "categories": [
+            "hep-ph"
+          ],
+          "source": "arXiv",
+          "value": "arXiv:1304.5279"
+        }
+      ],
+      "titles": [
+        {
+          "source": "Institute of Physics Publishing/Chinese Academy of Sciences",
+          "subtitle": "",
+          "title": "Meson decays in an extended NambuJona-Lasinio model with heavy quark flavors"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Springer/SIF",
+          "value": "We consider the closed string moving in a weakly curved background and its totally T-dualized background. Using T-duality transformation laws, we find the structure of the Poisson brackets in the T-dual space corresponding to the fundamental Poisson brackets in the original theory. From this structure we see that the commutative original theory is equivalent to the non-commutative T-dual theory, whose Poisson brackets are proportional to the background fluxes times winding and momentum numbers. The non-commutative theory of the present article is more nongeometrical than T-folds and in the case of three space-time dimensions corresponds to the nongeometric space-time with &lt;math&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/math&gt; -flux."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-01-28T00:00:00",
+        "method": "scoap3",
+        "source": "Springer/SIF",
+        "submission_number": "408e37ea3e5a11e881c402163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "Serbia",
+              "value": "Institute of Physics, University of Belgrade, P.O.Box 57, 110012 , Belgrade, Serbia"
+            }
+          ],
+          "full_name": "Davidovi47, Lj.",
+          "given_names": "Lj.",
+          "raw_name": "Davidovi47, Lj.",
+          "surname": "Davidovi47"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "Serbia",
+              "value": "Institute of Physics, University of Belgrade, P.O.Box 57, 110012 , Belgrade, Serbia"
+            }
+          ],
+          "full_name": "Nikoli47, B.",
+          "given_names": "B.",
+          "raw_name": "Nikoli47, B.",
+          "surname": "Nikoli47"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "Serbia",
+              "value": "Institute of Physics, University of Belgrade, P.O.Box 57, 110012 , Belgrade, Serbia"
+            }
+          ],
+          "full_name": "Sazdovi47, B.",
+          "given_names": "B.",
+          "raw_name": "Sazdovi47, B.",
+          "surname": "Sazdovi47"
+        }
+      ],
+      "control_number": "1098",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "The Author(s)",
+          "year": ""
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1140/epjc/s10052-014-2734-5"
+        }
+      ],
+      "earliest_date": "2014-01-28",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-01-28",
+          "publisher": "Springer/Societ30 Italiana di Fisica"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1140_epjc_s10052-014-2734-5.xml"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdfa",
+            "path": "scoap3/data/10.1140_epjc_s10052-014-2734-5.pdf"
+          }
+        }
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "1",
+          "journal_title": "European Physical Journal C",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "",
+          "page_start": "2734",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-28",
+      "titles": [
+        {
+          "source": "Springer/Societ30 Italiana di Fisica",
+          "subtitle": "",
+          "title": "Canonical approach to the closed string non-commutativity"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Institute of Physics Publishing/SISSA",
+          "value": "We investigate all single-field, slow-roll inflationary models whose slow-roll parameters scale as 1/N in the limit of a large number of e-folds N. We proof that all such models belong to two universality classes, characterised by a single parameter. One class contains small field models like hilltop inflation, while the other class consists of large field models like chaotic inflation. We give the leading expressions for the spectral index and tensor-to-scalar ratio r, which are universal for each class, plus subleading corrections for a number of models. This predicts r either to be unobservably small, r &lt; 0.01, or close to the present observational limit, r 0.07."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-01-08T00:00:00",
+        "method": "scoap3",
+        "source": "Institute of Physics Publishing/SISSA",
+        "submission_number": "1f12c56a3e8511e881c402163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "Netherlands",
+              "value": "Centre for Theoretical Physics, University of Groningen, Nijenborgh 4, 9747 AG Groningen, The Netherlands"
+            }
+          ],
+          "full_name": "Roest, Diederik",
+          "given_names": "Diederik",
+          "raw_name": "Roest, Diederik",
+          "surname": "Roest"
+        }
+      ],
+      "control_number": "786",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "",
+          "year": ""
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1088/1475-7516/2014/01/007"
+        }
+      ],
+      "earliest_date": "2014-01-01",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-01-01",
+          "publisher": "Institute of Physics Publishing/SISSA"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1088_1475-7516_2014_01_007.xml"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1088_1475-7516_2014_01_007.pdf"
+          }
+        }
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "01",
+          "journal_title": "Journal of Cosmology and Astroparticle Physics",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "",
+          "page_start": "007",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-08",
+      "report_numbers": [
+        {
+          "categories": [
+            "hep-th",
+            "astro-ph.CO",
+            "gr-qc",
+            "hep-ph"
+          ],
+          "source": "arXiv",
+          "value": "arXiv:1309.1285"
+        }
+      ],
+      "titles": [
+        {
+          "source": "Institute of Physics Publishing/SISSA",
+          "subtitle": "",
+          "title": "Universality classes of inflation"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Institute of Physics Publishing/Deutsche Physikalische Gesellschaft",
+          "value": "Relic neutrinos play an important role in the evolution of the Universe, modifying some of the cosmological observables. We summarize the main aspects of cosmological neutrinos and describe how the precision of present cosmological data can be used to learn about neutrino properties. In particular, we discuss how cosmology provides information on the absolute scale of neutrino masses, complementary to beta decay and neutrinoless double-beta decay experiments. We explain why the combination of Planck temperature data with measurements of the baryon acoustic oscillation angular scale provides a strong bound on the sum of neutrino masses, 0.23 eV at the 95% confidence level, while the lensing potential spectrum and the cluster mass function measured by Planck are compatible with larger values. We also review the constraints from current data on other neutrino properties. Finally, we describe the very good perspectives from future cosmological measurements, which are expected to be sensitive to neutrino masses close to the minimum values guaranteed by flavour oscillations."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-06-09T00:00:00",
+        "method": "scoap3",
+        "source": "Institute of Physics Publishing/Deutsche Physikalische Gesellschaft",
+        "submission_number": "031c66683f6611e881c402163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "CERN",
+              "value": "Institut de Thorie des Phnomnes Physiques, EPFL, CH-1015 Lausanne, Switzerland CERN, Theory Division, CH-1211 Geneva 23, Switzerland LAPTh (CNRS-Universit de Savoie), B.P. 110, F-74941 Annecy-le-Vieux Cedex, France"
+            }
+          ],
+          "full_name": "Lesgourgues, Julien",
+          "given_names": "Julien",
+          "raw_name": "Lesgourgues, Julien",
+          "surname": "Lesgourgues"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "Spain",
+              "value": "Instituto de Fsica Corpuscular (CSIC-Universitat de Valncia), c/ Catedrtico Jos Beltrn, 2, E-46980 Paterna (Valencia), Spain"
+            }
+          ],
+          "full_name": "Pastor, Sergio",
+          "given_names": "Sergio",
+          "raw_name": "Pastor, Sergio",
+          "surname": "Pastor"
+        }
+      ],
+      "control_number": "2755",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "",
+          "year": ""
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1088/1367-2630/16/6/065002"
+        }
+      ],
+      "earliest_date": "2014-06-01",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-06-01",
+          "publisher": "Institute of Physics Publishing/Deutsche Physikalische Gesellschaft"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1088_1367-2630_16_6_065002.xml"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1088_1367-2630_16_6_065002.pdf"
+          }
+        }
+      ],
+      "page_nr": [
+        "24"
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "6",
+          "journal_title": "New Journal of Physics",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "",
+          "page_start": "065002",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-06-09",
+      "report_numbers": [
+        {
+          "categories": [
+            "hep-ph",
+            "astro-ph.CO",
+            "hep-ex"
+          ],
+          "source": "arXiv",
+          "value": "arXiv:1404.1740"
+        }
+      ],
+      "titles": [
+        {
+          "source": "Institute of Physics Publishing/Deutsche Physikalische Gesellschaft",
+          "subtitle": "",
+          "title": "Neutrino cosmology and Planck"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Elsevier",
+          "value": "We study the emergence of non-compact degrees of freedom in the low energy effective theory for a class of Z2 -staggered six-vertex models. In the finite size spectrum of the vertex model this shows up through the appearance of a continuum of critical exponents. To analyze this part of the spectrum we derive a set of coupled nonlinear integral equations from the Bethe ansatz solution of the vertex model which allow to compute the energies of the system for a range of anisotropies and of the staggering parameter. The critical theory is found to be independent of the staggering. Its spectrum and density of states coincide with the SL(2,R)/U(1) Euclidean black hole conformal field theory which has been identified previously in the continuum limit of the vertex model for a particular self-dual choice of the staggering. We also study the asymptotic behavior of subleading corrections to the finite size scaling and discuss our findings in the context of the conformal field theory."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-01-08T00:00:00",
+        "method": "scoap3",
+        "source": "Elsevier",
+        "submission_number": "f692f55443c211e898b102163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "Germany",
+              "value": "Institut fr Theoretische Physik, Leibniz Universitt Hannover, Appelstrae 2, Hannover, 30167, Germany"
+            }
+          ],
+          "full_name": "Frahm, Holger",
+          "given_names": "Holger",
+          "orcid": "0000-0003-4629-6612",
+          "raw_name": "Frahm, Holger",
+          "surname": "Frahm"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "Germany",
+              "value": "Lehrstuhl fr Theoretische Elektrotechnik und Photonik, Universitt Siegen, Hlderlinstrae 3, Siegen, 57068, Germany"
+            }
+          ],
+          "full_name": "Seel, Alexander",
+          "given_names": "Alexander",
+          "raw_name": "Seel, Alexander",
+          "surname": "Seel"
+        }
+      ],
+      "control_number": "765",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "The Authors",
+          "year": ""
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1016/j.nuclphysb.2013.12.015"
+        }
+      ],
+      "earliest_date": "2014-02-01",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-02-01",
+          "publisher": "Elsevier"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1016_j.nuclphysb.2013.12.015.xml"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1016_j.nuclphysb.2013.12.015.pdf"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdfa",
+            "path": "scoap3/data/10.1016_j.nuclphysb.2013.12.015.pdfa"
+          }
+        }
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "",
+          "journal_title": "Nuclear Physics B",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "406",
+          "page_start": "382",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-08",
+      "titles": [
+        {
+          "source": "Elsevier",
+          "subtitle": "",
+          "title": "The staggered six-vertex model: Conformal invariance and corrections to scaling"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "APS",
+          "value": "We discuss the two-dimensional Grassmannian sigma model &lt;math&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mrow&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;/math&gt; on a finite interval &lt;math&gt;&lt;mi&gt;L&lt;/mi&gt;&lt;/math&gt;. The different boundary conditions which allow one to obtain analytical solutions by the saddle-point method in the large &lt;math&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;/math&gt; limit are considered. The nontrivial phase structure of the model on the interval similar to the &lt;math&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;P&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/math&gt; model is found."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2018-01-04T00:00:00",
+        "method": "scoap3",
+        "source": "APS",
+        "submission_number": "06f7e826416811e8a35002163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "Russia",
+              "value": "Institute of Theoretical and Experimental Physics Moscow 117218, Russia and Moscow Institute of Physics and Technology Dolgoprudny 141700, Russia"
+            }
+          ],
+          "full_name": "Pavshinkin, D.",
+          "given_names": "D.",
+          "raw_name": "Pavshinkin, D.",
+          "surname": "Pavshinkin"
+        }
+      ],
+      "control_number": "22964",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "Published by the American Physical Society",
+          "year": ""
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1103/PhysRevD.97.025001"
+        }
+      ],
+      "earliest_date": "2018-01-02",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2018-01-02",
+          "publisher": "APS"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-4.0",
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1103_PhysRevD.97.025001.pdf"
+          }
+        },
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1103_PhysRevD.97.025001.xml"
+          }
+        }
+      ],
+      "page_nr": [
+        "4"
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "2",
+          "journal_title": "Physical Review D",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "",
+          "page_start": "",
+          "pubinfo_freetext": "",
+          "year": 2018
+        }
+      ],
+      "record_creation_date": "2018-01-04",
+      "report_numbers": [
+        {
+          "categories": [
+            "hep-th"
+          ],
+          "source": "arXiv",
+          "value": "arXiv:1708.06399"
+        }
+      ],
+      "titles": [
+        {
+          "source": "APS",
+          "subtitle": "",
+          "title": "Grassmannian sigma model on a finite interval"
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Elsevier",
+          "value": "The coherence factor and average strong phase difference of D0 and D0 decay amplitudes to the same final state play an important role in the precision determination of the CKM parameter  using BDK and related decay modes. So far, this important input from the charm sector could only be obtained from measurements based on quantum-correlated DD pairs produced at the charm threshold. We propose to constrain these parameters using charm mixing, using the large charm samples available at the B factories and LHCb. We demonstrate for the example of DK++ that a substantial improvement in the precision of the coherence factor and average strong phase difference can be obtained with this method, using existing data."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-01-08T00:00:00",
+        "method": "scoap3",
+        "source": "Elsevier",
+        "submission_number": "37254efa430511e898b102163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "UK",
+              "value": "H H Wills Physics Laboratory, Bristol, UK"
+            }
+          ],
+          "full_name": "Harnew, Samuel",
+          "given_names": "Samuel",
+          "orcid": "0000-0002-2285-1805",
+          "raw_name": "Harnew, Samuel",
+          "surname": "Harnew"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "UK",
+              "value": "H H Wills Physics Laboratory, Bristol, UK"
+            }
+          ],
+          "full_name": "Rademacker, Jonas",
+          "given_names": "Jonas",
+          "raw_name": "Rademacker, Jonas",
+          "surname": "Rademacker"
+        }
+      ],
+      "control_number": "695",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "The Authors",
+          "year": ""
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1016/j.physletb.2013.11.065"
+        }
+      ],
+      "earliest_date": "2014-01-20",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-01-20",
+          "publisher": "Elsevier"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1016_j.physletb.2013.11.065.pdf"
+          }
+        },
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1016_j.physletb.2013.11.065.xml"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdfa",
+            "path": "scoap3/data/10.1016_j.physletb.2013.11.065.pdfa"
+          }
+        }
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "",
+          "journal_title": "Physics Letters B",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "302",
+          "page_start": "296",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-08",
+      "titles": [
+        {
+          "source": "Elsevier",
+          "subtitle": "",
+          "title": "Charm mixing as input for model-independent determinations of the CKM phase "
+        }
+      ]
+    },
+    {
+      "abstracts": [
+        {
+          "source": "Oxford University Press/Physical Society of Japan",
+          "value": "Inspired by the small mass-squared difference measured in solar neutrino oscillation experiments and by the testability, we suggest that a limit of the partial mass degeneracy, in which the masses of the first two-generation fermions are degenerate, may be a good starting point for understanding the observed fermion mass spectra and mixing patterns. The limit indicates the existence of a 2D rotation symmetry, such as , , and so on, in the flavor space of the first two generations. We propose simple models for the lepton sector based on and show that the models can successfully reproduce the experimental data without imposing unnatural hierarchies among dimensionless couplings, although at least tuning is necessary in order to explain the large atmospheric mixing. In particular, it is found that the subgroup of the symmetry plays an important role in understanding the smallness of the electron mass and . We also discuss the testability of the models by the future neutrinoless-double-beta-decay experiments and cosmological observations."
+        }
+      ],
+      "acquisition_source": {
+        "date": "2014-01-21T00:00:00",
+        "method": "scoap3",
+        "source": "Oxford University Press/Physical Society of Japan",
+        "submission_number": "c1e1d35643dc11e890c902163e01809a"
+      },
+      "authors": [
+        {
+          "affiliations": [
+            {
+              "country": "Japan",
+              "value": "Maskawa Institute, Kyoto Sangyo University, Motoyama, Kamigamo, Kita-Ku, Kyoto 603-8555, Japan"
+            }
+          ],
+          "full_name": "Araki, Takeshi",
+          "given_names": "Takeshi",
+          "raw_name": "Araki, Takeshi",
+          "surname": "Araki"
+        },
+        {
+          "affiliations": [
+            {
+              "country": "Japan",
+              "value": "Maskawa Institute, Kyoto Sangyo University, Motoyama, Kamigamo, Kita-Ku, Kyoto 603-8555, Japan"
+            }
+          ],
+          "full_name": "Ishida, Hiroyuki",
+          "given_names": "Hiroyuki",
+          "raw_name": "Ishida, Hiroyuki",
+          "surname": "Ishida"
+        }
+      ],
+      "control_number": "1010",
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "The Author(s) 2014",
+          "year": "2014"
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1093/ptep/ptt114"
+        }
+      ],
+      "earliest_date": "2014-01-20",
+      "files": [],
+      "imprints": [
+        {
+          "date": "2014-01-20",
+          "publisher": "Oxford University Press/Physical Society of Japan"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "local_files": [
+        {
+          "value": {
+            "filetype": "xml",
+            "path": "scoap3/data/10.1093_ptep_ptt114.xml"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdf",
+            "path": "scoap3/data/10.1093_ptep_ptt114.pdf"
+          }
+        },
+        {
+          "value": {
+            "filetype": "pdfa",
+            "path": "scoap3/data/10.1093_ptep_ptt114.pdfa"
+          }
+        }
+      ],
+      "page_nr": [
+        "14"
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "1",
+          "journal_title": "Progress of Theoretical and Experimental Physics",
+          "journal_volume": "",
+          "note": "",
+          "page_end": "",
+          "page_start": "013B01",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-21",
+      "report_numbers": [
+        {
+          "categories": [
+            "hep-ph"
+          ],
+          "source": "arXiv",
+          "value": "arXiv:1211.4452"
+        }
+      ],
+      "titles": [
+        {
+          "source": "Oxford University Press/Physical Society of Japan",
+          "subtitle": "",
+          "title": "Partial mass degeneracy and spontaneous CP violation in the lepton sector"
+        }
+      ]
+    }
 ]
 }

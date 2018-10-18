@@ -20,9 +20,12 @@
 // In applying this license, CERN does not
 // waive the privileges and immunities granted to it by virtue of its status
 // as an Intergovernmental Organization or submit itself to any jurisdiction.
-require([
-  "node_modules/invenio-search-js/dist/invenio-search-js",
-  ], function() {
-  // On document ready bootstrap angular
-  }
-);
+$(document).ready(function() {
+    // add safe filter to invenioSearch module
+    angular.module('invenioSearch')
+    .filter('safe', ['$sce', function($sce) {
+        return function(input) {
+            return $sce.trustAsHtml(input);
+        }
+    }]);
+});

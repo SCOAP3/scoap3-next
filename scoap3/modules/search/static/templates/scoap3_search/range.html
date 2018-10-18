@@ -3,7 +3,7 @@
         <h3 class="panel-title">Year</h3>
     </div>
     <span class="pull-right" ng-show="vm.invenioSearchArgs['earliest_date'] && vm.invenioSearchArgs.earliest_date.length > 0">
-          <a ng-click="resetRangeSelection()">reset</a>
+          <a class="reset-button btn btn-primary btn-sm" ng-click="resetRangeSelection()">Reset</a>
     </span>
     <div class="panel-body">
         <div style="width: 80%; margin: 0 auto;" id="year_hist"></div>

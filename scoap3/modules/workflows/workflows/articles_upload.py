@@ -45,6 +45,7 @@ from jsonschema import validate
 from jsonschema.exceptions import ValidationError, SchemaError
 
 from scoap3.dojson.utils.nations import find_nation
+from scoap3.modules.compliance.compliance import check_compliance
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from scoap3.utils.arxiv import get_arxiv_categories
 
@@ -453,5 +454,6 @@ class ArticlesUpload(object):
         add_nations,
         STORE_REC,
         FILES,
-        add_oai_information
+        add_oai_information,
+        check_compliance,
     ]

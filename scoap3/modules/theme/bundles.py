@@ -62,6 +62,6 @@ js = NpmBundle(
         "flightjs": "~1.5.0",
         "angular": "~1.4.8",
         "readmore-js": "~2.1.0",
-        "mathjax": "~2.5",
+        "mathjax": "~2.7",
     }
 )
