@@ -27,5 +27,20 @@ $(document).ready(function() {
         return function(input) {
             return $sce.trustAsHtml(input);
         }
-    }]);
+    }])
+    .filter('titlecase_country', function() {
+        return function(value) {
+            if (!value) return value;
+            if (typeof value !== 'string') {
+                throw invalidPipeArgumentError(value);
+            }
+
+            // Some values should be uppercase.
+            if (['cern', 'uk', 'usa'].includes(value))
+                return value.toUpperCase()
+
+            // Change first letter of words to uppercase, except: and, of
+            return value.replace(/(?:(?!of|and\b)\b\w+)\S*/g, (txt => txt[0].toUpperCase() + txt.substr(1).toLowerCase()));
+        }
+    });
 });
