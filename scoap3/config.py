@@ -102,8 +102,8 @@ RECORDS_REST_SORT_OPTIONS = {
 #: Default sort for records REST API.
 RECORDS_REST_DEFAULT_SORT = {
     "records-record": {
-        'query': 'record_creation_date',
-        'noquery': 'record_creation_date'
+        'query': '-record_creation_date',
+        'noquery': '-record_creation_date'
     },
 }
 
