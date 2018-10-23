@@ -71,7 +71,7 @@ class ApiRegistrationsView(ModelView):
             if _datastore.add_role_to_user(u, r):
                 msg = TemplatedMessage(template_html='scoap3_api/email.html',
                                        subject='SCOAP3 - API registration confirmation',
-                                       sender=current_app.config.get('DEFAULT_FROM_EMAIL'),
+                                       sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
                                        recipients=[api_registration.email],
                                        ctx={'email': api_registration.email,
                                             'password': password,

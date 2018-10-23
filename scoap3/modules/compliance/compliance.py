@@ -241,7 +241,7 @@ def check_compliance(obj, *args):
         msg = TemplatedMessage(
             template_html='scoap3_compliance/admin/failed_email.html',
             subject='SCOAP3 - Compliance check',
-            sender=current_app.config.get('DEFAULT_FROM_EMAIL'),
+            sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
             recipients=current_app.config.get('COMPLIANCE_EMAILS'),
             ctx={'results': results}
         )
