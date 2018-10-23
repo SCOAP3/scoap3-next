@@ -28,6 +28,16 @@ from scoap3.modules.analysis.models import ArticlesImpact
 from invenio_db import db
 
 
+def get_authors_max_affiliation(author, country_list):
+    max_aff = None
+    max_value = 0
+    for affiliation in author['affiliations']:
+        if country_list[affiliation['country']] > max_value:
+            max_value = country_list[affiliation['country']]
+            max_aff = affiliation
+    return max_aff
+
+
 @shared_task
 def calculate_articles_impact(from_date=None, until_date=None,
                               countries_ordering="value1", **kwargs):
@@ -44,15 +54,14 @@ def calculate_articles_impact(from_date=None, until_date=None,
             }
         }
     }
-    countries_gdp = Gdp.query.all()
-
     search_results = es.search(index='records-record',
                                doc_type='record-v1.0.0',
                                body=query)
 
+    countries_gdp = Gdp.query.all()
     country_list = {
-        b.name: getattr(b, countries_ordering)
-        for b in countries_gdp
+        country.name: getattr(country, countries_ordering)
+        for country in countries_gdp
     }
 
     for i, article in enumerate(search_results['hits']['hits']):
@@ -62,12 +71,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
         }
         result = {}
         for author in article['authors']:
-            max_aff = None
-            max_value = 0
-            for affiliation in author['affiliations']:
-                if country_list[affiliation['country']] > max_value:
-                    max_value = country_list[affiliation['country']]
-                    max_aff = affiliation
+            max_aff = get_authors_max_affiliation(author, country_list)
             details['authors']['raw_name'] = {
                 'affiliation': max_aff['value'],
                 'country': max_aff['country']
@@ -77,7 +81,8 @@ def calculate_articles_impact(from_date=None, until_date=None,
             else:
                 result[max_aff['country']] = 1
 
-        country_ai = ArticlesImpact.query.filter_by(control_number=article['control_number']).one_or_none()
+        country_ai = ArticlesImpact.query.filter_by(
+            control_number=article['control_number']).one_or_none()
         if country_ai:
             country_ai.details = details
             country_ai.result = result
