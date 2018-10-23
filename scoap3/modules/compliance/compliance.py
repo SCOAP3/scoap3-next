@@ -203,7 +203,7 @@ def check_compliance(obj, eng):
     record = Record.get_record(pid.object_uuid)
 
     if '_files' not in obj.data:
-        obj.data['_files'] = record['_files']
+        obj.data['_files'] = record.get('_files', ())
 
     # Add temporary data to evalutaion
     extra_data = {'extracted_text': __extract_article_text(obj)}
