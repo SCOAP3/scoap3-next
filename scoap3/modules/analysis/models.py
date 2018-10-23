@@ -44,7 +44,7 @@ class ArticlesImpact(db.Model):
     __tablename__ = 'analysis_articles_impact'
 
     __table_args__ = (UniqueConstraint(
-        'name',
+        'control_number',
         name='analysis_gdp_unique'),
     )
 

@@ -11,7 +11,7 @@
 from flask import current_app
 from flask_admin.contrib.sqla import ModelView
 from werkzeug.local import LocalProxy
-from .models import Gdp, CountryShare
+from .models import Gdp, ArticlesImpact
 
 
 _datastore = LocalProxy(lambda: current_app.extensions['security'].datastore)
@@ -33,7 +33,7 @@ class GdpView(ModelView):
     column_filters = column_list
 
 
-class CountriesShareView(ModelView):
+class ArticleImpactView(ModelView):
     """View for displaying country share calculations."""
     can_view_details = True
     can_edit = True
@@ -60,13 +60,13 @@ gdp_adminview = {
     'category': 'Analysis',
 }
 
-countriesshare_adminview = {
-    'model': CountryShare,
-    'modelview': CountriesShareView,
+articleimpact_adminview = {
+    'model': ArticlesImpact,
+    'modelview': ArticleImpactView,
     'category': 'Analysis',
 }
 
 __all__ = (
     'gdp_adminview',
-    'countriesshare_adminview'
+    'articleimpact_adminview'
 )
