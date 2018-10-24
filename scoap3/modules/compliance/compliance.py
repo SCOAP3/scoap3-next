@@ -193,6 +193,9 @@ COMPLIANCE_TASKS = [
 
 
 def check_compliance(obj, *args):
+    if 'control_number' not in obj.data:
+        raise ValueError("Object should have a 'control_number' key in 'data' dict to be consistent with article upload.")
+
     recid = obj.data['control_number']
     pid = PersistentIdentifier.get('recid', recid)
     record = Record.get_record(pid.object_uuid)
