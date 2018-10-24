@@ -51,7 +51,10 @@ class ArticleImpactView(ModelView):
         'control_number': "recid",
     }
 
-    column_filters = column_list
+    column_filters = (
+        'control_number',
+        'created',
+        'updated')
 
 
 gdp_adminview = {

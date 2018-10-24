@@ -33,10 +33,14 @@ class Gdp(db.Model):
 
     name = db.Column(db.String(150), nullable=False)
 
-    value1 = db.Column(db.Integer, default=0, nullable=False, server_default='0')
-    value2 = db.Column(db.Integer, default=0, nullable=False, server_default='0')
-    value3 = db.Column(db.Integer, default=0, nullable=False, server_default='0')
-    value4 = db.Column(db.Integer, default=0, nullable=False, server_default='0')
+    value1 = db.Column(db.Integer, default=0,
+                       nullable=False, server_default='0')
+    value2 = db.Column(db.Integer, default=0,
+                       nullable=False, server_default='0')
+    value3 = db.Column(db.Integer, default=0,
+                       nullable=False, server_default='0')
+    value4 = db.Column(db.Integer, default=0,
+                       nullable=False, server_default='0')
 
 
 class ArticlesImpact(db.Model):
@@ -56,9 +60,15 @@ class ArticlesImpact(db.Model):
     details = db.Column(postgresql.JSONB(none_as_null=True),
                         nullable=False,
                         default=[]
-    )
+                        )
 
     results = db.Column(postgresql.JSONB(none_as_null=True),
                         nullable=False,
                         default=[]
-    )
+                        )
+
+    @classmethod
+    def get_or_create(cls, recid):
+        c = ArticlesImpact.query.filter(
+            ArticlesImpact.control_number == recid).first()
+        return c or cls(control_number=recid)
