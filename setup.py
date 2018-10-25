@@ -63,6 +63,8 @@ setup(
             'scoap3_api_registrations = scoap3.modules.api.admin:api_registrations_adminview',
             'scoap3_gdp = scoap3.modules.analysis.admin:gdp_adminview',
             'scoap3_countriesshare = scoap3.modules.analysis.admin:articleimpact_adminview',
+            'scoap3_analysis = scoap3.modules.analysis.admin:gdp_adminview',
+            'scoap3_analysis_gpd_import = scoap3.modules.analysis.admin:gpdimport_adminview',
             'scoap3_workflows = scoap3.modules.workflows.admin:workflows',
             'scoap3_workflows_summary = scoap3.modules.workflows.admin:workflows_summary',
             'scoap3_compliance = scoap3.modules.compliance.admin:compliance_adminview',
@@ -86,6 +88,7 @@ setup(
             'scoap3_robotupload = scoap3.modules.robotupload.views:blueprint',
             'scoap3_api = scoap3.modules.api.views:blueprint',
             'scoap3_compliance = scoap3.modules.compliance.views:blueprint',
+            'scoap3_analysis = scoap3.modules.analysis.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
