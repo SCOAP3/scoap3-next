@@ -1,0 +1,38 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+  <p>
+    To use this feature paste your data in csv format to the input field. In each line, the first item has to be the
+    name of the country. After that 4 separate values can be defined. All countries that currently have some values
+    in the database will be overridden.
+  </p>
+
+  <p>
+    <b>Data must be separated by semicolon, instead of comma.</b>
+  </p>
+
+  <form method="post" action="">
+    <label>Data:</label><br/>
+    <textarea name="data" cols="150" rows="10">{{ raw_data }}</textarea><br/>
+    <input type="submit" name="upload" value="Upload" class="btn btn-danger">
+    <input type="submit" name="test" value="Test" class="btn">
+  </form>
+
+  {% if test_results %}
+    <h3>Test results</h3>
+    <table class="table">
+      <tr>
+        <th>Only in db</th>
+        <th>Both places</th>
+        <th>Only in uploaded data</th>
+      </tr>
+      <tr>
+        <td>{{ test_results.only_in_db|join('<br/>')|safe }}</td>
+        <td>{{ test_results.both_places|join('<br/>')|safe }}</td>
+        <td>{{ test_results.only_in_data|join('<br/>')|safe }}</td>
+      </tr>
+    </table>
+  {% endif %}
+
+{% endblock %}
