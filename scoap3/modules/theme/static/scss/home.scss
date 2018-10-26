@@ -86,3 +86,15 @@ footer{
 .reset-button {
     margin:5px 10px;
 }
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    background-color: transparent;
+}
+
+.navbar-nav {
+    float:none;
+}
+
+.dropdown.user > dropdown-toggle {
+    margin-bottom: 0;
+}
