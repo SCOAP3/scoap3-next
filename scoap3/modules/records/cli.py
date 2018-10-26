@@ -13,12 +13,16 @@ from flask import current_app
 from flask.cli import with_appcontext
 from invenio_db import db
 from invenio_pidstore.models import PersistentIdentifier
+from invenio_records import Record
 from invenio_records.models import RecordMetadata
+from invenio_search import current_search_client
 from invenio_workflows import WorkflowEngine
 from invenio_workflows.proxies import workflow_object_class
 from invenio_workflows.tasks import start
 from inspire_crawler.models import CrawlerWorkflowObject
 from sqlalchemy.orm.attributes import flag_modified
+
+from scoap3.utils.google_maps import get_country
 
 
 def info(msg):
@@ -197,6 +201,44 @@ def utf8(ids):
 
     process_all_records(proc, control_ids=ids)
     info('all done!')
+
+
+@fixdb.command()
+@click.option('--dry-run', is_flag=True, default=False,
+              help='If set to True no changes will be committed to the database.')
+@with_appcontext
+def update_countries(dry_run):
+    """
+    Updates countries for articles, that are marked as 'HUMAN CHECK'. Countries are determined with the google maps api.
+    """
+
+    COUNTRY = "HUMAN CHECK"
+
+    records = current_search_client.search('records-record', 'record-v1.0.0',
+                                           {'size':10000, 'query': {'term': {'country': COUNTRY}}})
+
+    info('Found %d records having %s as a country of one of the authors.' % (records['hits']['total'], COUNTRY))
+
+    for hit in records['hits']['hits']:
+        pid = PersistentIdentifier.get('recid', hit['_source']['control_number'])
+        record = Record.get_record(pid.object_uuid)
+
+        for author_index, author_data in enumerate(record['authors']):
+            for aff_index, aff_data in enumerate(author_data['affiliations']):
+                if aff_data['country'] == COUNTRY:
+                    new_country = get_country(aff_data['value'])
+                    if new_country:
+                        record['authors'][author_index]['affiliations'][aff_index]['country'] = new_country
+                        info('Changed country for record with id %s to %s' % (record['control_number'], new_country))
+                    else:
+                        error('Could not find country for record with id %s' % record['control_number'])
+
+        if not dry_run:
+            record.commit()
+            db.session.commit()
+
+    if dry_run:
+        error('NO CHANGES were committed to the database, because --dry-run flag was present.')
 
 
 def process_all_records(function, chuck_size=50, control_ids=(), *args):
