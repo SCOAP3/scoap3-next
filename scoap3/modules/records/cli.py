@@ -213,6 +213,7 @@ def update_countries(dry_run):
     """
 
     COUNTRY = "HUMAN CHECK"
+    country_cache = {}
 
     records = current_search_client.search('records-record', 'record-v1.0.0',
                                            {'size':10000, 'query': {'term': {'country': COUNTRY}}})
@@ -226,7 +227,13 @@ def update_countries(dry_run):
         for author_index, author_data in enumerate(record['authors']):
             for aff_index, aff_data in enumerate(author_data['affiliations']):
                 if aff_data['country'] == COUNTRY:
-                    new_country = get_country(aff_data['value'])
+                    # cache countries based on old affiliation value to decrease api requests
+                    old_value = aff_data['value']
+                    if old_value not in country_cache:
+                        country_cache[old_value] = get_country(old_value)
+
+                    new_country = country_cache[old_value]
+
                     if new_country:
                         record['authors'][author_index]['affiliations'][aff_index]['country'] = new_country
                         info('Changed country for record with id %s to %s' % (record['control_number'], new_country))
