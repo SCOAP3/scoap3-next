@@ -25,7 +25,6 @@
 from __future__ import absolute_import, division, print_function
 
 import json
-import requests
 import urllib2
 
 from datetime import datetime
@@ -52,7 +51,6 @@ from scoap3.utils.arxiv import get_arxiv_categories
 from workflow.patterns.controlflow import (
     IF,
     IF_ELSE,
-    IF_NOT,
 )
 
 ARXIV_HEP_CATEGORIES = set(["hep-ex", "hep-lat", "hep-ph", "hep-th"])
@@ -135,63 +133,9 @@ def check_arxiv_category(obj, eng):
 
 def add_nations(obj, eng):
     """Add nations extracted from affiliations"""
-    def _traverse_result(j):
-        if 'results' in j:
-            for address_component in j['results'][0]['address_components']:
-                if 'country' in address_component['types']:
-                    return address_component['long_name']
-        return None
-
-    def _get_google_maps_location(affiliation):
-        GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
-        params = {
-            'address': affiliation,
-            'language': 'en',
-            'key': 'AIzaSyBq0DeKzMJc-_ejCMPTmcADQ_WA8zpaQzc'
-        }
-        req = requests.get(GOOGLE_MAPS_API_URL, params=params, timeout=1)
-        return req.json()
-
-    def _prepare_shorter_affiliation(affiliation):
-        add = affiliation.split(',')
-        if len(add) <= 1:
-            raise AffiliationEndedException()
-        return ','.join(add[1:])
-
-    class AffiliationEndedException(Exception):
-        pass
-
-    class NotSupportetGoogleStatusException(Exception):
-        pass
-
-    class UndefinedException(Exception):
-        pass
-
     for author_index, author in enumerate(obj.data.get('authors', [])):
         for affiliation_index, affiliation in enumerate(author.get('affiliations',[])):
             obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(affiliation['value'])
-            # try:
-            #     result = ''
-            #     new_aff = affiliation['value']
-            #     while(not result):
-            #         print("i'm in a loop: %s" % new_aff)
-            #         j = _get_google_maps_location(new_aff)
-            #         print(j)
-            #         if 'status' in j:
-            #             if j['status'].lower() == 'ok' :
-            #                 result = _traverse_result(j)
-            #                 if not result:
-            #                     new_aff = _prepare_shorter_affiliation(new_aff)
-            #             elif j['status'].lower() in ['zero_results', 'invalid_request']:
-            #                 new_aff = _prepare_shorter_affiliation(new_aff)
-            #             else:
-            #                raise NotSupportetGoogleStatusException()
-            #         else:
-            #             raise UndefinedException()
-
-            #     obj.data['authors'][author_index]['affiliations'][affiliation_index]['country_google_api'] = result
-            # except:
-            #     eng.halt(sys.exc_info())
 
 
 def is_record_in_db(obj, eng):
