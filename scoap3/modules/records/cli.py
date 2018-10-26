@@ -214,6 +214,8 @@ def update_countries(dry_run):
 
     COUNTRY = "HUMAN CHECK"
     country_cache = {}
+    cache_fails = 0
+    total_hits = 0
 
     records = current_search_client.search('records-record', 'record-v1.0.0',
                                            {'size':10000, 'query': {'term': {'country': COUNTRY}}})
@@ -227,10 +229,13 @@ def update_countries(dry_run):
         for author_index, author_data in enumerate(record['authors']):
             for aff_index, aff_data in enumerate(author_data['affiliations']):
                 if aff_data['country'] == COUNTRY:
+                    total_hits += 1
+
                     # cache countries based on old affiliation value to decrease api requests
                     old_value = aff_data['value']
                     if old_value not in country_cache:
                         country_cache[old_value] = get_country(old_value)
+                        cache_fails += 1
 
                     new_country = country_cache[old_value]
 
@@ -243,6 +248,8 @@ def update_countries(dry_run):
         if not dry_run:
             record.commit()
             db.session.commit()
+
+    info('In total %d countries needed to be updated and %d queries were made to determine the countries.' % (total_hits, cache_fails))
 
     if dry_run:
         error('NO CHANGES were committed to the database, because --dry-run flag was present.')
