@@ -8,19 +8,26 @@
 
 """Admin views for managing API registrations."""
 
-from flask import current_app, request, flash
+import csv
+import os
+import StringIO
+
+from celery import Celery
+from flask import current_app, make_response, request, flash
 from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla import ModelView
+from functools import reduce
 from invenio_db import db
 from werkzeug.local import LocalProxy
-from .models import Gdp, ArticlesImpact
+
+from .models import ArticlesImpact, Gdp
 
 
 _datastore = LocalProxy(lambda: current_app.extensions['security'].datastore)
 
 
 class GdpView(ModelView):
-    """View for managing access to API registration."""
+    """View for managing GDP values used in country share calculation."""
     can_view_details = True
     can_edit = True
 
@@ -36,7 +43,7 @@ class GdpView(ModelView):
 
 
 class ArticleImpactView(ModelView):
-    """View for displaying country share calculations."""
+    """View for displaying share calculation per article."""
     can_view_details = True
     can_edit = True
 
@@ -53,10 +60,13 @@ class ArticleImpactView(ModelView):
         'control_number': "recid",
     }
 
-    column_filters = column_list
+    column_filters = (
+        'control_number',
+        'created',
+        'updated')
 
 
-class GpdImport(BaseView):
+class GdpImport(BaseView):
     def parse_data(self, data):
         chars_to_strip = '\r\n ,\'"'
         separator = ';'
@@ -77,11 +87,13 @@ class GpdImport(BaseView):
 
             country = row_data[0].strip(chars_to_strip)
             if country in result:
-                flash('Multiple rows found with country "%s". Overriding previous value.' % country, 'warning')
+                flash('Multiple rows found with country "%s". Overriding previous value.' %
+                      country, 'warning')
 
             try:
                 values = map(lambda d: float(d), row_data[1:])
-                values.extend([0] * (4 - len(values)))  # add dummy values for easier indexing
+                # add dummy values for easier indexing
+                values.extend([0] * (4 - len(values)))
                 result[country] = values
             except ValueError as _:
                 flash('Invalid  data: "%s"' % row, 'warning')
@@ -151,10 +163,75 @@ class GpdImport(BaseView):
         return self.render('scoap3_analysis/admin/import.html', **context)
 
 
+class CountriesShare(BaseView):
+    """View for displaying country share calculations."""
+    @expose('/', methods=('GET', 'POST'))
+    def index(self):
+        celery_config_dict = dict(
+            BROKER_URL=current_app.config.get(
+                "BROKER_URL", ""),
+            CELERY_RESULT_BACKEND=current_app.config.get(
+                "CELERY_RESULT_BACKEND", ''),
+            CELERY_ACCEPT_CONTENT=current_app.config.get(
+                "CELERY_ACCEPT_CONTENT", ['json']),
+            CELERY_TIMEZONE=current_app.config.get(
+                "CELERY_TIMEZONE", 'Europe/Amsterdam'),
+            CELERY_DISABLE_RATE_LIMITS=True,
+            CELERY_TASK_SERIALIZER='json',
+            CELERY_RESULT_SERIALIZER='json',
+        )
+        message = ""
+        if request.method == 'POST':
+            if 'run' in request.form:
+                celery = Celery()
+                celery.conf.update(celery_config_dict)
+                celery.send_task(
+                    'scoap3.modules.analysis.tasks.calculate_articles_impact',
+                    kwargs={'from_date': request.form['from_date'],
+                            'until_date': request.form['until_date'],
+                            'countries_ordering': request.form['gdp-value'],
+                            'step': 50}
+                )
+                message = "New calculation scheduled."
+            elif 'generate_csv' in request.form:
+                countries = Gdp.query.order_by(Gdp.name.asc()).all()
+                records = ArticlesImpact.query.all()
+
+                header = ['doi', 'recid']
+                header.extend([c.name.strip() for c in countries])
+                si = StringIO.StringIO()
+                cw = csv.writer(si, delimiter=";")
+                cw.writerow(header)
+
+                for record in records:
+                    total_authors = reduce(lambda x, y: x + y,
+                                           record.results.values(), 0)
+                    country_share = [float(record.results[c.name.strip()]) / total_authors
+                                     if c.name.strip() in record.results else 0
+                                     for c in countries]
+                    csv_line = [record.doi, record.control_number]
+                    csv_line.extend(country_share)
+                    cw.writerow(csv_line)
+
+                output = make_response(si.getvalue())
+                output.headers["Content-Disposition"] = "attachment; filename=countries_share.csv"
+                output.headers["Content-type"] = "text/csv"
+                return output
+
+        return self.render('scoap3_analysis/admin/countries_share.html', message=message)
+
+
 gdp_adminview = {
     'model': Gdp,
     'modelview': GdpView,
     'category': 'Analysis',
+    'name': 'GDP list',
+}
+
+gdpimport_adminview = {
+    'view_class': GdpImport,
+    'category': 'Analysis',
+    'kwargs': {'category': 'Analysis', 'name': 'GDP import'},
 }
 
 articleimpact_adminview = {
@@ -163,14 +240,15 @@ articleimpact_adminview = {
     'category': 'Analysis',
 }
 
-gpdimport_adminview = {
-    'view_class': GpdImport,
-    'kwargs': {'category': 'Analysis', 'name': 'GDP import'},
+countriesshare_view = {
+    'view_class': CountriesShare,
     'category': 'Analysis',
+    'kwargs': {'category': 'Analysis', 'name': 'Countries Share'},
 }
 
 __all__ = (
     'gdp_adminview',
-    'gpdimport_adminview',
-    'articleimpact_adminview'
+    'gdpimport_adminview',
+    'articleimpact_adminview',
+    'countriesshare_view'
 )

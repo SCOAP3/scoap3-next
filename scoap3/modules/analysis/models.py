@@ -33,10 +33,14 @@ class Gdp(db.Model):
 
     name = db.Column(db.String(150), nullable=False)
 
-    value1 = db.Column(db.Float, default=0.0, nullable=False, server_default='0.0')
-    value2 = db.Column(db.Float, default=0.0, nullable=False, server_default='0.0')
-    value3 = db.Column(db.Float, default=0.0, nullable=False, server_default='0.0')
-    value4 = db.Column(db.Float, default=0.0, nullable=False, server_default='0.0')
+    value1 = db.Column(db.Float, default=0.0,
+                       nullable=False, server_default='0.0')
+    value2 = db.Column(db.Float, default=0.0,
+                       nullable=False, server_default='0.0')
+    value3 = db.Column(db.Float, default=0.0,
+                       nullable=False, server_default='0.0')
+    value4 = db.Column(db.Float, default=0.0,
+                       nullable=False, server_default='0.0')
 
 
 class ArticlesImpact(db.Model):
@@ -45,10 +49,11 @@ class ArticlesImpact(db.Model):
 
     __table_args__ = (UniqueConstraint(
         'control_number',
-        name='analysis_gdp_unique'),
+        name='articles_impact_unique'),
     )
 
     control_number = db.Column(db.Integer, primary_key=True)
+    doi = db.Column(db.String)
 
     created = db.Column(db.DateTime, default=datetime.utcnow)
     updated = db.Column(db.DateTime, onupdate=datetime.utcnow)
@@ -56,9 +61,15 @@ class ArticlesImpact(db.Model):
     details = db.Column(postgresql.JSONB(none_as_null=True),
                         nullable=False,
                         default=[]
-    )
+                        )
 
     results = db.Column(postgresql.JSONB(none_as_null=True),
                         nullable=False,
                         default=[]
-    )
+                        )
+
+    @classmethod
+    def get_or_create(cls, recid):
+        c = ArticlesImpact.query.filter(
+            ArticlesImpact.control_number == recid).first()
+        return c or cls(control_number=recid)
