@@ -203,7 +203,7 @@ def process_all_records(function, chuck_size=50, control_ids=(), *args):
     """
     Calls the 'function' for all records.
     If 'control_ids' is set to a non empty list, then only those records will be processed.
-    :param function: Function to be called for all record
+    :param function: Function to be called for all record. First parameter will be a RecordMetadata object.
     :param chuck_size: How many records should be queried at once from db.
     :param control_ids: Control ids of records. If set to a non empty list, this will be used to filter records
     :param args: Args to be passed to 'function'

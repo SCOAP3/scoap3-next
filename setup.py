@@ -118,6 +118,7 @@ setup(
         ],
         'invenio_workflows.workflows': [
             'articles_upload = scoap3.modules.workflows.workflows:ArticlesUpload',
+            'run_compliance = scoap3.modules.workflows.workflows:RunCompliance',
         ],
         'invenio_celery.tasks': [
             'robotupload = scoap3.modules.robotupload.tasks',
