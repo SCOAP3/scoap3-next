@@ -22,10 +22,9 @@
 from __future__ import absolute_import, print_function
 
 from celery import shared_task
-from invenio_search.api import current_search_client as es
-from scoap3.modules.analysis.models import Gdp
-from scoap3.modules.analysis.models import ArticlesImpact
 from invenio_db import db
+from invenio_search.api import current_search_client as es
+from scoap3.modules.analysis.models import ArticlesImpact, Gdp
 from sqlalchemy.orm.attributes import flag_modified
 
 
@@ -68,14 +67,17 @@ def get_country_list(countries_ordering):
 def calculate_articles_impact(from_date=None, until_date=None,
                               countries_ordering="value1", step=1, **kwargs):
     count = 0
-    search_results = es.search(index='records-record',
-                               doc_type='record-v1.0.0',
-                               body=get_query(count, step, from_date, until_date))
-    print("Calculating articles share for {} articles between: {} - {}".format(
-        search_results['hits']['total'], from_date, until_date))
+
+    print("Calculating articles impact between: {} and {}".format(
+        from_date, until_date))
+
     while True:
+        search_results = es.search(index='records-record',
+                                   doc_type='record-v1.0.0',
+                                   body=get_query(count, step, from_date, until_date))
+
         country_list = get_country_list(countries_ordering)
-        for i, article in enumerate(search_results['hits']['hits']):
+        for article in search_results['hits']['hits']:
             details = {
                 'countries_ordering': countries_ordering,
                 'authors': {}
@@ -112,11 +114,5 @@ def calculate_articles_impact(from_date=None, until_date=None,
                 search_results['hits']['total'],
                 get_query(count, step, from_date, until_date))
             )
-            search_results = es.search(index='records-record',
-                                       doc_type='record-v1.0.0',
-                                       body=get_query(count,
-                                                      step,
-                                                      from_date,
-                                                      until_date))
         else:
             break

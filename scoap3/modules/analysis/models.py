@@ -49,7 +49,7 @@ class ArticlesImpact(db.Model):
 
     __table_args__ = (UniqueConstraint(
         'control_number',
-        name='analysis_gdp_unique'),
+        name='articles_impact_unique'),
     )
 
     control_number = db.Column(db.Integer, primary_key=True)
