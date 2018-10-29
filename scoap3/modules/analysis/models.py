@@ -33,10 +33,10 @@ class Gdp(db.Model):
 
     name = db.Column(db.String(150), nullable=False)
 
-    value1 = db.Column(db.Integer, default=0, nullable=False, server_default='0')
-    value2 = db.Column(db.Integer, default=0, nullable=False, server_default='0')
-    value3 = db.Column(db.Integer, default=0, nullable=False, server_default='0')
-    value4 = db.Column(db.Integer, default=0, nullable=False, server_default='0')
+    value1 = db.Column(db.Float, default=0.0, nullable=False, server_default='0.0')
+    value2 = db.Column(db.Float, default=0.0, nullable=False, server_default='0.0')
+    value3 = db.Column(db.Float, default=0.0, nullable=False, server_default='0.0')
+    value4 = db.Column(db.Float, default=0.0, nullable=False, server_default='0.0')
 
 
 class ArticlesImpact(db.Model):
