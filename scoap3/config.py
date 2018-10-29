@@ -5,7 +5,7 @@
 from __future__ import absolute_import, print_function
 from invenio_records_rest.facets import terms_filter, range_filter
 
-from scoap3.modules.search.utils import Scoap3RecordsSearch
+from scoap3.modules.search.utils import Scoap3RecordsSearch, terms_filter_with_must
 
 
 # Identity function for string extraction
@@ -102,8 +102,8 @@ RECORDS_REST_SORT_OPTIONS = {
 #: Default sort for records REST API.
 RECORDS_REST_DEFAULT_SORT = {
     "records-record": {
-        'query': 'record_creation_date',
-        'noquery': 'record_creation_date'
+        'query': '-record_creation_date',
+        'noquery': '-record_creation_date'
     },
 }
 
@@ -111,10 +111,10 @@ RECORDS_REST_FACETS = {
     "records-record": {
         "filters": {
             "journal": terms_filter("publication_info.journal_title"),
-            "country": terms_filter("authors.affiliations.country"),
+            "country": terms_filter_with_must("authors.affiliations.country"),
             "collaboration": terms_filter("facet_collaboration"),
-            "earliest_date": range_filter(
-                'earliest_date',
+            "record_creation_date": range_filter(
+                'record_creation_date',
                 format='yyyy',
                 end_date_math='/y')
         },
@@ -139,7 +139,7 @@ RECORDS_REST_FACETS = {
                     "size": 20
                 }
             },
-            "earliest_date": {
+            "record_creation_date": {
                 "date_histogram": {
                     "field": "record_creation_date",
                     "interval": "year",

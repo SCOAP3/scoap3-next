@@ -74,11 +74,13 @@ def __find_regexp(data, patterns):
     return matches
 
 
-def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None):
+def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None, accept_even_if_not_found=False):
     """
     Finds all matches for given patterns with surrounding characters in all filetypes.
     Fails only if there are no matches at all or there is a match for a forbidden pattern.
     :param patterns: iterable of string patterns
+    :param accept_even_if_not_found: check will be accepted if no forbidden patterns are
+    found, even if normal patterns are not found.
     """
     check_accepted = True
     details = []
@@ -93,7 +95,8 @@ def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None):
 
         matches = __find_regexp(data, patterns)
         if not matches:
-            check_accepted = False
+            if not accept_even_if_not_found:
+                check_accepted = False
             details.append('Not found in %s' % filetype)
         else:
             details.append('Found in %s as: "%s"' % (filetype, '", "'.join(set(matches))))
@@ -169,7 +172,7 @@ def _author_rights(record, extra_data):
 
     forbidden_patterns = ['.{0, 10}'.join(x) for x in itertools.product(start_patterns, forbidden_patterns)]
 
-    return __find_regexp_in_pdf(extra_data, needed_patterns, forbidden_patterns)
+    return __find_regexp_in_pdf(extra_data, needed_patterns, forbidden_patterns, accept_even_if_not_found=True)
 
 
 def _cc_licence(record, extra_data):
