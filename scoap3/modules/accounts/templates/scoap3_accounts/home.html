@@ -1,0 +1,9 @@
+{%- extends config.ACCOUNTS_SETTINGS_TEMPLATE %}
+
+{% set panel_title = _("Home") %}
+{% set panel_icon = "fa fa-home" %}
+
+{% block settings_form %}
+  <b>Current user email:</b> {{ current_user.email }}<br/>
+  <b>Current user roles:</b> {{current_user.roles|join(', ') }}<br/>
+{% endblock settings_form %}

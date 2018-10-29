@@ -1,0 +1,23 @@
+{%- extends 'invenio_theme/page_settings.html' %}
+
+{%- block settings_menu scoped %}
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>{{ _('General') }}</strong>
+      </div>
+      <ul class="list-group">
+      {%- for item in current_menu.submenu('general').children if item.visible %}
+      {%- block settings_menu_item scoped %}
+
+        <a href="{{ item.url }}" class="list-group-item{% if item.active %} active{% endif %}">
+          {{ item.text|safe }}
+        </a>
+      {%- endblock %}
+      {%- endfor %}
+      </ul>
+    </div>
+  </div>
+
+  {{ super() }}
+{%- endblock %}

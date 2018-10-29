@@ -576,3 +576,5 @@ API_UNAUTHENTICATED_PAGE_LIMIT = 10
 # GOOGLE API key. Value should come from secrets.
 # Used to determine the country of affiliations.
 GOOGLE_API_KEY = ''
+
+ACCOUNTS_SETTINGS_TEMPLATE = 'scoap3_accounts/settings.html'
