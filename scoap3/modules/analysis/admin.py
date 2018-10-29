@@ -80,7 +80,7 @@ class GpdImport(BaseView):
                 flash('Multiple rows found with country "%s". Overriding previous value.' % country, 'warning')
 
             try:
-                values = map(lambda d: int(round(float(d))), row_data[1:])
+                values = map(lambda d: float(d), row_data[1:])
                 values.extend([0] * (4 - len(values)))  # add dummy values for easier indexing
                 result[country] = values
             except ValueError as _:
