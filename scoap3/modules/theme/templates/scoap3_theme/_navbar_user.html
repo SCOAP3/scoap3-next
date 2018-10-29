@@ -2,10 +2,14 @@
   <li class="dropdown user pull-right">
   {%- set username = current_userprofile.username|default(current_user.email) if current_userprofile else None %}
   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-    <i class="glyphicon glyphicon-user"></i> {{ username or current_user.email }}
+    {{ username or current_user.email }}
     <b class="caret"></b>
   </a>
   <ul class="dropdown-menu">
+      {%- for item in current_menu.submenu('general').children if item.visible %}
+        <li><a href="{{ item.url }}">{{ item.text|safe }}</a></li>
+      {%- endfor %}
+      <li class="divider"></li>
       {%- for item in current_menu.submenu('settings').children if item.visible %}
         <li><a href="{{ item.url }}">{{ item.text|safe }}</a></li>
       {%- endfor %}

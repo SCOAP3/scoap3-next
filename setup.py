@@ -84,11 +84,13 @@ setup(
             'scoap3_search = scoap3.modules.search.views:blueprint',
             'scoap3_theme = scoap3.modules.theme.views:blueprint',
             'scoap3_frontpage = scoap3.modules.frontpage.views:blueprint',
+            'scoap3_accounts = scoap3.modules.accounts.views:blueprint',
             'scoap3_workflows = scoap3.modules.workflows.views:blueprint',
             'scoap3_robotupload = scoap3.modules.robotupload.views:blueprint',
             'scoap3_api = scoap3.modules.api.views:blueprint',
             'scoap3_compliance = scoap3.modules.compliance.views:blueprint',
             'scoap3_analysis = scoap3.modules.analysis.views:blueprint',
+            'scoap3_tools = scoap3.modules.tools.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
