@@ -20,6 +20,8 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm.attributes import flag_modified
 from sqlalchemy_utils import UUIDType
 
+from scoap3.modules.workflows.utils import start_compliance_workflow
+
 
 class Compliance(db.Model):
     __tablename__ = 'compliance'
@@ -117,6 +119,12 @@ class Compliance(db.Model):
         flag_modified(o, 'results')
 
         return True
+
+    @classmethod
+    def rerun(cls, id):
+        """Starts a compliance check for the same record. Previous checks won't be deleted."""
+        o = cls.query.filter_by(id=id).one()
+        start_compliance_workflow(o.record)
 
     def add_results(self, new_results):
         if self.results == new_results or new_results is None:

@@ -72,3 +72,4 @@ class ArticlesImpact(db.Model):
         c = ArticlesImpact.query.filter(
             ArticlesImpact.control_number == recid).first()
         return c or cls(control_number=recid)
+

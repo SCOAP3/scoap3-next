@@ -1,13 +1,15 @@
-<div ng-init="order={'country': 'Country', 'journal': 'Journal'}">
+<div ng-init="titles={'country': 'Country', 'journal': 'Journal'};limit=10">
   <div ng-init="tree=[];tree_more=[]" ng-repeat="(key, value) in vm.invenioSearchResults.aggregations track by $index">
-    <div ng-if="value.buckets.length > 0 && key != 'earliest_date'" class="panel panel-default">
+    <div ng-if="value.buckets.length > 0 && key != 'record_creation_date'" class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">{{ order[key] }}</h3>
+        <a name="anchor_{{ key }}"></a>
+        <h3 class="panel-title">{{ titles[key] }}</h3>
       </div>
       <div class="panel-body">
-        <ul class="list-unstyled" ng-init="values=getValues(key)" ng-repeat="item in value.buckets | limitTo:11">
-          <li>
-            <input type="checkbox" ng-checked="values.indexOf(item.key) > -1" ng-click="handleClick(key, item.key)" /> {{ item.key }} <span class="badge pull-right">{{ item.doc_count }}</span>
+        <ul class="list-unstyled" ng-init="values=getValues(key);showall=false">
+          <li ng-repeat="item in value.buckets" ng-show="$index < limit || showall">
+            <input type="checkbox" ng-checked="values.indexOf(item.key) > -1" ng-click="handleClick(key, item.key)" /> {{ item.key | titlecase_country }}
+            <span class="badge pull-right">{{ item.doc_count }}</span>
             <small>
               <a
                 ng-init="tree_more[item.key]=false;tree[item.key]=(values.indexOf(item.key) > -1) ? true : false"
@@ -32,36 +34,10 @@
             </div>
           </li>
         </ul>
-        <span id="more_countries" class='collapse'>
-          <ul class="list-unstyled" ng-init="values=getValues(key)" ng-repeat="item in value.buckets | limitTo:150:12">
-            <li>
-              <input type="checkbox" ng-checked="values.indexOf(item.key) > -1" ng-click="handleClick(key, item.key)" /> {{ item.key }} <span class="badge pull-right">{{ item.doc_count }}</span>
-              <small>
-                <a
-                  ng-init="tree_more[item.key]=false;tree[item.key]=(values.indexOf(item.key) > -1) ? true : false"
-                  ng-model="tree[item.key]"
-                  ng-show="tree_more[item.key]"
-                  ng-click="tree[item.key]=!tree[item.key]"
-                >
-                  {{ (tree[item.key]) ? '-' : '+' }}
-                </a>
-              </small><div ng-show="tree[item.key]===true" ng-repeat="(subKey, subValue) in item">
-                <div ng-if="['doc_count', 'key'].indexOf(subKey) === -1">
-                  <ul ng-init="tree_more[item.key]=true;subValues=getValues(subKey)" ng-repeat="subFacets in subValue.buckets">
-                    <li>
-                      <input
-                       ng-init="tree[item.key]=(subValues.indexOf(subFacets.key) > -1 || tree[item.key])"
-                       type="checkbox"
-                       ng-checked="subValues.indexOf(subFacets.key) > -1"
-                       ng-click="handleClick(subKey, subFacets.key)" /> {{ subFacets.key }} <span class="badge pull-right">{{ subFacet.doc_count }}</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </span>
-        <a href="#more_countries" ng-if="value.buckets.length > 11" data-toggle="collapse">More/less countries</a>
+        <a ng-show="value.buckets.length > limit" ng-click="showall = !showall" href="#anchor_{{ key }}">
+          <span ng-if="showall">Show less</span>
+          <span ng-if="!showall">Show more</span>
+        </a>
       </div>
     </div>
   </div>

@@ -1,3 +1,4 @@
+from elasticsearch_dsl import Q
 from flask import current_app
 from flask_login import current_user
 from invenio_search import RecordsSearch
@@ -18,3 +19,16 @@ class Scoap3RecordsSearch(RecordsSearch):
             result['size'] = new_size
 
         return result
+
+
+def terms_filter_with_must(field):
+    """Create a term filter with AND logical operator instead of or.
+
+    :param field: Field name.
+    :returns: Function that returns the Terms query.
+    """
+
+    def inner(values):
+        terms = [Q('term', **{field: value}) for value in values]
+        return Q('bool', must=terms)
+    return inner

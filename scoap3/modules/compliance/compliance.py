@@ -17,14 +17,14 @@ from scoap3.utils.pdf import extract_text_from_pdf
 from scoap3.utils.record import get_abbreviated_publisher, get_abbreviated_journal
 
 
-def __get_first_doi(obj):
-    return obj.data['dois'][0]['value']
+def __get_first_doi(record):
+    return record['dois'][0]['value']
 
 
-def __get_first_arxiv(obj):
+def __get_first_arxiv(record):
     arxiv_array = [
         a['value'].split(':')[1]
-        for a in obj.data.get('report_numbers', ())
+        for a in record.get('report_numbers', ())
         if a['source'] == 'arXiv'
     ]
     if arxiv_array:
@@ -32,12 +32,12 @@ def __get_first_arxiv(obj):
     return None
 
 
-def __extract_article_text(obj):
+def __extract_article_text(record):
     # fixme extraction shouldn't happen in article_upload?
 
     extracted_text = {}
 
-    for file in obj.data['_files']:
+    for file in record.get('_files', ()):
         filetype = file['filetype']
         if filetype in ('pdf', 'pdf/a'):
             path = ObjectVersion.get(file['bucket'], file['key']).file.uri
@@ -74,11 +74,13 @@ def __find_regexp(data, patterns):
     return matches
 
 
-def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None):
+def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None, accept_even_if_not_found=False):
     """
     Finds all matches for given patterns with surrounding characters in all filetypes.
     Fails only if there are no matches at all or there is a match for a forbidden pattern.
     :param patterns: iterable of string patterns
+    :param accept_even_if_not_found: check will be accepted if no forbidden patterns are
+    found, even if normal patterns are not found.
     """
     check_accepted = True
     details = []
@@ -93,7 +95,8 @@ def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None):
 
         matches = __find_regexp(data, patterns)
         if not matches:
-            check_accepted = False
+            if not accept_even_if_not_found:
+                check_accepted = False
             details.append('Not found in %s' % filetype)
         else:
             details.append('Found in %s as: "%s"' % (filetype, '", "'.join(set(matches))))
@@ -101,10 +104,10 @@ def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None):
     return check_accepted, details, None
 
 
-def _files(obj, extra_data):
+def _files(record, extra_data):
     """Check if it has the necessary files: .xml, .pdf, .pdfa """
 
-    file_types = [file['filetype'] for file in obj.data['_files']]
+    file_types = [file['filetype'] for file in record.get('_files', ())]
 
     check_accepted = True
     details = ''
@@ -122,23 +125,23 @@ def _files(obj, extra_data):
     return check_accepted, (details, ), None
 
 
-def _received_in_time(obj, extra_data):
+def _received_in_time(record, extra_data):
     """Check if publication is not older than 24h """
     api_url = current_app.config.get('CROSSREF_API_URL')
 
-    api_response = requests.get(api_url % __get_first_doi(obj))
+    api_response = requests.get(api_url % __get_first_doi(record))
     if api_response.status_code != 200:
         return True, ('Article is not on crossref.', ), 'Api response: %s' % api_response.text
 
     api_message = api_response.json()['message']
 
-    if 'publication_info' in obj.data and obj.data['publication_info'][0]['journal_title'] == 'Progress of Theoretical and Experimental Physics':
+    if 'publication_info' in record and record['publication_info'][0]['journal_title'] == 'Progress of Theoretical and Experimental Physics':
         parts = api_message['published-online']['date-parts'][0]
         # only contains day of publication, check for end of day
         api_time = datetime(*parts, hour=23, minute=59, second=59)
     else:
         api_time = parse_date(api_message['created']['date-time'], ignoretz=True)
-    received_time = parse_date(obj.data['record_creation_date'])
+    received_time = parse_date(record['record_creation_date'])
     delta = received_time - api_time
 
     check_accepted = delta <= timedelta(hours=24)
@@ -148,14 +151,14 @@ def _received_in_time(obj, extra_data):
     return check_accepted, (details_message, ), debug
 
 
-def _funded_by(obj, extra_data):
+def _funded_by(record, extra_data):
     """Check if publication has "Funded by SCOAP3" marking *in pdf(a) file* """
 
     patterns = ['funded.?by.?scoap3?', ]
     return __find_regexp_in_pdf(extra_data, patterns)
 
 
-def _author_rights(obj, extra_data):
+def _author_rights(record, extra_data):
     COPYRIGHT = u'\N{COPYRIGHT SIGN}'
 
     start_patterns = (COPYRIGHT, 'copyright', '\(c\)', )
@@ -169,10 +172,10 @@ def _author_rights(obj, extra_data):
 
     forbidden_patterns = ['.{0, 10}'.join(x) for x in itertools.product(start_patterns, forbidden_patterns)]
 
-    return __find_regexp_in_pdf(extra_data, needed_patterns, forbidden_patterns)
+    return __find_regexp_in_pdf(extra_data, needed_patterns, forbidden_patterns, accept_even_if_not_found=True)
 
 
-def _cc_licence(obj, extra_data):
+def _cc_licence(record, extra_data):
     """Check if publication has appropriate license stated *in pdf(a) file* """
     patterns = ['cc.?by', 'creative.?commons.?attribution', ]
     forbidden_patterns = [
@@ -192,22 +195,22 @@ COMPLIANCE_TASKS = [
 ]
 
 
-def check_compliance(obj, eng):
-    checks = {}
+def check_compliance(obj, *args):
+    if 'control_number' not in obj.data:
+        raise ValueError("Object should have a 'control_number' key in 'data' dict to be consistent with article upload.")
 
     recid = obj.data['control_number']
     pid = PersistentIdentifier.get('recid', recid)
     record = Record.get_record(pid.object_uuid)
 
-    if '_files' not in obj.data:
-        obj.data['_files'] = record['_files']
+    checks = {}
 
     # Add temporary data to evalutaion
-    extra_data = {'extracted_text': __extract_article_text(obj)}
+    extra_data = {'extracted_text': __extract_article_text(record)}
 
     all_checks_accepted = True
     for name, func in COMPLIANCE_TASKS:
-        check_accepted, details, debug = func(obj, extra_data)
+        check_accepted, details, debug = func(record, extra_data)
         all_checks_accepted = all_checks_accepted and check_accepted
         checks[name] = {
             'check': check_accepted,
@@ -220,10 +223,10 @@ def check_compliance(obj, eng):
         'checks': checks,
         'accepted': all_checks_accepted,
         'data': {
-            'doi': obj.data['dois'][0]['value'],
+            'doi': __get_first_doi(record),
             'publisher': get_abbreviated_publisher(record),
             'journal': get_abbreviated_journal(record),
-            'arxiv': __get_first_arxiv(obj)
+            'arxiv': __get_first_arxiv(record)
         }
     }
 

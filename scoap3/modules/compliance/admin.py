@@ -111,6 +111,12 @@ class ComplianceView(ModelView):
         if count > 0:
             flash('%d compliance record(s) were successfully rejected.' % count, 'success')
 
+    @action('rerun', 'Rerun', 'Are you sure you want to run again the compliance check for selected records?')
+    def action_rerun(self, ids):
+        self.action_base(ids, Compliance.rerun)
+        flash('%d record(s) will be checked shortly for compliance. '
+              'This process can a few minutes to complete.' % len(ids), 'success')
+
 
 compliance_adminview = {
     'model': Compliance,

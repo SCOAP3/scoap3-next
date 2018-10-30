@@ -17,7 +17,6 @@ from flask import current_app, make_response, request
 from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 from werkzeug.local import LocalProxy
-
 from .models import ArticlesImpact, Gdp
 
 
@@ -39,7 +38,7 @@ celery_config_dict = dict(
 
 
 class GdpView(ModelView):
-    """View for managing access to API registration."""
+    """View for managing GDP values used in country share calculation."""
     can_view_details = True
     can_edit = True
 
@@ -55,7 +54,7 @@ class GdpView(ModelView):
 
 
 class ArticleImpactView(ModelView):
-    """View for displaying country share calculations."""
+    """View for displaying share calculation per article."""
     can_view_details = True
     can_edit = True
 
@@ -79,6 +78,7 @@ class ArticleImpactView(ModelView):
 
 
 class CountriesShare(BaseView):
+    """View for displaying country share calculations."""
     @expose('/', methods=('GET', 'POST'))
     def index(self):
         if request.method == 'POST':
@@ -127,7 +127,7 @@ gdp_adminview = {
 articleimpact_adminview = {
     'model': ArticlesImpact,
     'modelview': ArticleImpactView,
-    'category': 'Analysis',
+    {'category': 'Analysis', 'name': 'Articles Impact'},
 }
 
 countriesshare_view = {
