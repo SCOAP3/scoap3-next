@@ -1,12 +1,17 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, url_for, redirect
 from flask_menu import register_menu
 
 blueprint = Blueprint(
     'scoap3_accounts',
     __name__,
-    url_prefix='/accounts',
+    url_prefix='/account',
     template_folder='templates'
 )
+
+
+@blueprint.route('/settings/')
+def default_setting():
+    return redirect(url_for('security.change_password'))
 
 
 @blueprint.route('/')
