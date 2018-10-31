@@ -206,8 +206,9 @@ def utf8(ids):
 @fixdb.command()
 @click.option('--dry-run', is_flag=True, default=False,
               help='If set to True no changes will be committed to the database.')
+@click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'")
 @with_appcontext
-def update_countries(dry_run):
+def update_countries(dry_run, ids):
     """
     Updates countries for articles, that are marked as 'HUMAN CHECK'. Countries are determined with the google maps api.
     """
@@ -217,15 +218,19 @@ def update_countries(dry_run):
     cache_fails = 0
     total_hits = 0
 
-    records = current_search_client.search('records-record', 'record-v1.0.0',
-                                           {'size':10000, 'query': {'term': {'country': COUNTRY}}})
+    # Use parameter ids or, if not given, search for all records with the specified country.
+    if ids:
+        ids = ids.split(',')
+    else:
+        search_result = current_search_client.search('records-record', 'record-v1.0.0',
+                                                     {'size': 10000, 'query': {'term': {'country': COUNTRY}}})
+        ids = [hit['_source']['control_number'] for hit in search_result['hits']['hits']]
+        info('Found %d records having %s as a country of one of the authors.' % (len(ids), COUNTRY))
 
-    info('Found %d records having %s as a country of one of the authors.' % (records['hits']['total'], COUNTRY))
+    uuids = [PersistentIdentifier.get('recid', recid).object_uuid for recid in ids]
+    records = Record.get_records(uuids)
 
-    for hit in records['hits']['hits']:
-        pid = PersistentIdentifier.get('recid', hit['_source']['control_number'])
-        record = Record.get_record(pid.object_uuid)
-
+    for record in records:
         for author_index, author_data in enumerate(record['authors']):
             for aff_index, aff_data in enumerate(author_data['affiliations']):
                 if aff_data['country'] == COUNTRY:
