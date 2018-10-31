@@ -107,3 +107,17 @@ def get_abbreviated_journal(record):
     """Returns abbreviated publisher name, or the original one if abbreviation doesn't exists"""
     journal = get_first_journal(record)
     return current_app.config.get('JOURNAL_ABBREVIATIONS').get(journal, journal)
+
+
+def get_arxiv_primary_category(record):
+    if "report_numbers" in record:
+        for i, report_number in enumerate(record["report_numbers"]):
+            if report_number['source'].lower() == 'arxiv':
+                if not 'primary_category' in report_number:
+                    # Since we added this field later, there can be records without it.
+                    # Ff we haven't extracted the primary_cetegory yet, do it now.
+                    arxiv_id = report_number['value'].lower().replace('arxiv:', '').split('v')[0]
+                    record["report_numbers"][i]['primary_category'] = get_arxiv_primary_category(arxiv_id)
+                    record.commit()
+
+                return record["report_numbers"][i]['primary_category']

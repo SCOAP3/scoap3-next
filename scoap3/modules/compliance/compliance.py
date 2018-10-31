@@ -14,7 +14,7 @@ from pdfminer.pdfparser import PDFSyntaxError
 
 from scoap3.modules.compliance.models import Compliance
 from scoap3.utils.pdf import extract_text_from_pdf
-from scoap3.utils.record import get_abbreviated_publisher, get_abbreviated_journal
+from scoap3.utils.record import get_abbreviated_publisher, get_abbreviated_journal, get_arxiv_primary_category
 
 
 def __get_first_doi(record):
@@ -58,7 +58,7 @@ def __find_regexp(data, patterns):
 
     for original_pattern in patterns:
         # add fuzzing based on pattern length
-        fuzz_i = len(original_pattern) / 11
+        fuzz_i = max(len(original_pattern) / 11, 3)
 
         # add the surrounding characters too
         pattern = "(.{0,10}%s.{0,10}){i<=%d}" % (original_pattern, fuzz_i)
@@ -165,10 +165,10 @@ def _author_rights(record, extra_data):
 
     needed_patterns = [p + '.{15}' for p in start_patterns]
 
-    forbidden_patterns = ['iop', 'institute of physics', 'elsevier', 'hindawi', 'cas', 'chinese academy of science',
-                          'sissa', 'dpg', 'deutsche physikalische gesellschaft', 'uj', 'jagiellonian university', 'oup',
-                          'oxford university press', 'jps', 'physical society of japan', 'springer', 'sif',
-                          'societa italiana di fisica', ]
+    forbidden_patterns = ['(iop|institute of physics|elsevier|hindawi|cas|chinese academy of science|'
+                          'sissa|dpg|deutsche physikalische gesellschaft|uj|jagiellonian university|oup|'
+                          'oxford university press|jps|physical society of japan|springer|sif|'
+                          'societa italiana di fisica)', ]
 
     forbidden_patterns = ['.{0, 10}'.join(x) for x in itertools.product(start_patterns, forbidden_patterns)]
 
@@ -186,12 +186,19 @@ def _cc_licence(record, extra_data):
     return __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns)
 
 
+def _arxiv(record, extra_data):
+    primary = get_arxiv_primary_category(record)
+    check_accepted = primary is None or (primary in current_app.config.get('ARXIV_HEP_CATEGORIES'))
+    return check_accepted, ('Primary category: %s' % primary, ), None
+
+
 COMPLIANCE_TASKS = [
     ('Files', _files),
     ('Received in time', _received_in_time),
     ('Funded by', _funded_by),
     ('Author rights', _author_rights),
     ('Licence', _cc_licence),
+    ('arXiv', _arxiv),
 ]
 
 
