@@ -28,7 +28,7 @@ import json
 import urllib2
 
 from datetime import datetime
-from flask import url_for
+from flask import url_for, current_app
 
 from invenio_db import db
 from invenio_files_rest.models import Bucket
@@ -46,31 +46,9 @@ from jsonschema.exceptions import ValidationError, SchemaError
 from scoap3.dojson.utils.nations import find_nation
 from scoap3.modules.compliance.compliance import check_compliance
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
-from scoap3.utils.arxiv import get_arxiv_categories
+from scoap3.utils.arxiv import get_arxiv_categories, get_arxiv_primary_category
 
-from workflow.patterns.controlflow import (
-    IF,
-    IF_ELSE,
-)
-
-ARXIV_HEP_CATEGORIES = set(["hep-ex", "hep-lat", "hep-ph", "hep-th"])
-
-JOURNAL_TITLE_ABREVIATION = {
-    'Physical Review D': 'PRD',
-    'Physical Review C': 'PRC',
-    'Physical Review Letters': 'PRL',
-    'Advances in High Energy Physics': 'AHEP',
-    'Progress of Theoretical and Experimental Physics': 'PTEP',
-    'Acta Physica Polonica B': 'APPB',
-    'Physics Letters B': 'PLB',
-    'Nuclear Physics B': 'NPB'
-    }
-
-PARTIAL_JOURNALS = ["Acta Physica Polonica B",
-                    "Chinese Physics C",
-                    "Journal of Cosmology and Astroparticle Physics",
-                    "New Journal of Physics",
-                    "Progress of Theoretical and Experimental Physics"]
+from workflow.patterns.controlflow import IF_ELSE
 
 
 def validate_schema(obj, eng):
@@ -89,25 +67,6 @@ def set_schema(obj, eng):
     obj.data['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
 
 
-def record_not_published_before_2014(obj, eng):
-    """Make sure record was published in 2014 and onwards."""
-    try:
-        datetime_object = datetime.strptime(obj.data['imprints'][0]['date'], '%Y-%m-%d')
-    except:
-        datetime_object = datetime.strptime(obj.data['imprints'][0]['date'], '%Y-%m')
-    if not datetime_object.year >= 2014:
-        eng.halt("Record published before 2014")
-    return True
-
-
-def is_record_from_partial_journal(obj, eng):
-    """Check if record comes from journal partially funded by SCOAP3."""
-    if obj.data['publication_info'][0]['journal_title'] in PARTIAL_JOURNALS:
-        return True
-    else:
-        return False
-
-
 def add_arxiv_category(obj, eng):
     """Add arXiv categories fetched from arXiv.org"""
     if "report_numbers" in obj.data:
@@ -115,20 +74,12 @@ def add_arxiv_category(obj, eng):
             if arxiv_id['value'].lower().startswith("arxiv:"):
                 arxiv_id = arxiv_id['value'][6:].split('v')[0]
             arxiv_id = arxiv_id.split('v')[0]
+
             categories = get_arxiv_categories(arxiv_id)
             obj.data["report_numbers"][i]['categories'] = categories
 
-
-def check_arxiv_category(obj, eng):
-    """Check if at least one arXiv category is in ARXIV_HEP_CATEGORIES"""
-    if "report_numbers" in obj.data:
-        for report_number in obj.data["report_numbers"]:
-            if report_number['source'].lower() == 'arxiv':
-                if not set(report_number['categories']).intersection(ARXIV_HEP_CATEGORIES):
-                    eng.halt("It is a paper from partial journal, but it doesn't have correct arXiv category!")
-    else:
-        eng.halt(action='add_arxiv',
-                 msg="Missing arXiv id - you need to ad it to proceed.")
+            primary_category = get_arxiv_primary_category(arxiv_id)
+            obj.data["report_numbers"][i]['primary_category'] = primary_category
 
 
 def add_nations(obj, eng):
@@ -217,7 +168,7 @@ def add_to_before_2014_collection(obj, eng):
 
 
 def _get_oai_sets(record):
-    for phrase, set_name in JOURNAL_TITLE_ABREVIATION.iteritems():
+    for phrase, set_name in current_app.config.get('JOURNAL_TITLE_ABREVIATION').iteritems():
         if phrase in record['publication_info'][0]['journal_title']:
             return [set_name]
     return []
@@ -341,23 +292,6 @@ def _extract_local_files_info(obj, doi):
 
     return f
 
-PART1 = [
-        IF_ELSE(
-            record_not_published_before_2014,
-            [
-                IF(
-                    is_record_from_partial_journal,
-                    [
-                        check_arxiv_category,
-                    ]
-                ),
-            ],
-            [
-                add_to_before_2014_collection,
-            ]
-        ),
-]
-
 STORE_REC = [
         IF_ELSE(
             is_record_in_db,
@@ -373,15 +307,6 @@ STORE_REC = [
 FILES = [
         build_files_data,
         attach_files,
-        # IF_ELSE(
-        #     are_files_attached,
-        #     [
-        #         update_files,
-        #     ],
-        #     [
-        #         attach_files,
-        #     ]
-        # )
 ]
 
 
@@ -392,9 +317,7 @@ class ArticlesUpload(object):
 
     workflow = [
         set_schema,
-        #validate_schema,
         add_arxiv_category,
-        PART1,
         add_nations,
         STORE_REC,
         FILES,

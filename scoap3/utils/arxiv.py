@@ -26,6 +26,8 @@ from __future__ import absolute_import, division, print_function
 import urllib
 from xml.dom.minidom import parseString
 
+url = 'http://export.arxiv.org/api/query?search_query=id:{0}'
+
 
 def get_clean_arXiv_id(record):
     """Return the arXiv identifier from given record."""
@@ -43,7 +45,6 @@ def get_clean_arXiv_id(record):
 
 
 def get_arxiv_categories(arxiv_id):
-    url = 'http://export.arxiv.org/api/query?search_query=id:{0}'
     try:
         data = urllib.urlopen(url.format(arxiv_id)).read()
     except Exception as e:
@@ -60,3 +61,16 @@ def get_arxiv_categories(arxiv_id):
     if not categories:
         raise Exception(data)
     return categories
+
+
+def get_arxiv_primary_category(arxiv_id):
+    data = urllib.urlopen(url.format(arxiv_id)).read()
+
+    if data:
+        xml = parseString(data)
+        category = xml.getElementsByTagName('arxiv:primary_category')
+        if not category or len(category) > 1:
+            raise AttributeError('Exactly one primary category must be present.')
+        return category[0].attributes['term'].value
+
+    return None
