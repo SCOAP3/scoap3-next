@@ -86,7 +86,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
             for author in article['_source'].get('authors', []):
                 max_aff = get_authors_max_affiliation(author, country_list)
                 if max_aff:
-                    details['authors'][author['raw_name']] = {
+                    details['authors'][author['full_name']] = {
                         'affiliation': max_aff['value'],
                         'country': max_aff['country']
                     }
@@ -116,4 +116,5 @@ def calculate_articles_impact(from_date=None, until_date=None,
                 get_query(count, step, from_date, until_date))
             )
         else:
+            print("Finished article impact calculation.")
             break
