@@ -3,46 +3,54 @@
   {% if message %}
     <div class="alert alert-primary" role="alert">{{ message }}</div>
   {% endif %}
-  <form id="articles_impact_form" method="POST" action="/admin/countriesshare/">
-    <form action="" method="POST" role="form" class="admin-form form-horizontal" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="from_date" class="col-md-2 control-label">From date
-            &nbsp;
-        </label>
-        <div class="col-md-10">
-          <input class="form-control active" data-date-format="YYYY-MM-DD" data-role="datetimepicker" id="from_date" name="from_date" type="text">
-        </div>
+  <form id="articles_impact_form" method="POST" action="/admin/countriesshare/" role="form" class="admin-form form-horizontal">
+    <div class="form-group">
+      <label for="from_date" class="col-md-2 control-label">From date
+          &nbsp;
+      </label>
+      <div class="col-md-10">
+        <input class="form-control active" data-date-format="YYYY-MM-DD" data-role="datetimepicker" id="from_date" name="from_date" type="text">
       </div>
-      <div class="form-group">
-        <label for="until_date" class="col-md-2 control-label">Until date
-            &nbsp;
-        </label>
-        <div class="col-md-10">
-          <input class="form-control active" data-date-format="YYYY-MM-DD" data-role="datetimepicker" id="until_date" name="until_date" type="text">
-        </div>
+    </div>
+    <div class="form-group">
+      <label for="until_date" class="col-md-2 control-label">Until date
+          &nbsp;
+      </label>
+      <div class="col-md-10">
+        <input class="form-control active" data-date-format="YYYY-MM-DD" data-role="datetimepicker" id="until_date" name="until_date" type="text">
       </div>
-      <div class="form-group">
-        <label for="gdp-value" class="col-md-2 control-label">GDP value
-            &nbsp;
-        </label>
-        <div class="col-md-10">
-          <select class="form-control select2" data-role="select2" id="gdp-value" name="gdp-value" tabindex="-1" aria-hidden="true">
-            <option value="value1">value 1</option>
-            <option value="value2">value 2</option>
-            <option value="value3">value 3</option>
-            <option value="value4">value 4</option>
-          </select>
-        </div>
-        
+    </div>
+    <div class="form-group">
+      <label for="gdp-value" class="col-md-2 control-label">GDP value
+          &nbsp;
+      </label>
+      <div class="col-md-10">
+        <select class="form-control select2" data-role="select2" id="gdp-value" name="gdp-value" tabindex="-1" aria-hidden="true">
+          <option value="value1">value 1</option>
+          <option value="value2">value 2</option>
+          <option value="value3">value 3</option>
+          <option value="value4">value 4</option>
+        </select>
       </div>
-
-      <hr>
-      <div class="form-group">
-        <div class="col-md-offset-2 col-md-10 submit-row">
-          <input type="submit" class="btn btn-primary" value="Run new articles share calculation" name="run">
-          <input type="submit" class="btn btn-primary" value="Generate new CSV for current db status" name="generate_csv">
-        </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10 submit-row">
+        <input type="submit" class="btn btn-primary" value="Run new articles share calculation" name="run">
+        <input type="submit" class="btn btn-primary" value="Generate new CSV for current db status" name="generate_csv">
       </div>
-    </form>
+    </div>
+    <div class="form-group">
+      <label for="inspire_query" class="col-md-2 control-label">Inspire query
+          &nbsp;
+      </label>
+      <div class="col-md-10">
+        <input class="form-control active" id="inspire_query" name="inspire_query" type="text">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10 submit-row">
+        <input type="submit" class="btn btn-primary" value="Run for Inspire articles" name="run_inspire">
+      </div>
+    </div>
   </form>
 {% endblock %}
