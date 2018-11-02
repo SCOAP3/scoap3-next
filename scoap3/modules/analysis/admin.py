@@ -193,6 +193,16 @@ class CountriesShare(BaseView):
                             'step': 50}
                 )
                 message = "New calculation scheduled."
+            if 'run_inspire' in request.form:
+                celery = Celery()
+                celery.conf.update(celery_config_dict)
+                celery.send_task(
+                    'scoap3.modules.analysis.tasks.calculate_articles_impact',
+                    kwargs={'countries_ordering': request.form['gdp-value'],
+                            'step': 100,
+                            'inspire_query': request.form['inspire_query']}
+                )
+                message = "New calculation for Inspire query scheduled."
             elif 'generate_csv' in request.form:
                 countries = Gdp.query.order_by(Gdp.name.asc()).all()
                 records = ArticlesImpact.query.all()

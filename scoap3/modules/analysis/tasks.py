@@ -132,14 +132,18 @@ def parse_inspire_records(size, query, jrec=1):
 
 @shared_task
 def calculate_articles_impact(from_date=None, until_date=None,
-                              countries_ordering="value1", step=1,
+                              countries_ordering="value1", step=10,
                               inspire_query=None, **kwargs):
     count = 0
     jrec = 1
     country_list = get_country_list(countries_ordering)
 
-    print("Calculating articles impact between: {} and {}".format(
-        from_date, until_date))
+    if inspire_query:
+        print("Calculating articles impact for Inspire query: {}".format(
+              inspire_query))
+    else:
+        print("Calculating articles impact between: {} and {}".format(
+              from_date, until_date))
 
     while True:
         if inspire_query:
@@ -181,7 +185,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
         db.session.commit()
 
         count += len(search_results['hits']['hits'])
-        jrec += 100
+        jrec += step
         if count < search_results['hits']['total']:
             print("Count {} is < than {}. Running next query: {}".format(
                 count,
