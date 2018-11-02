@@ -11,7 +11,11 @@ def __get_country_from_results(results):
     return None
 
 
-def get_country(search_text):
+def get_country(text):
+    return __get_country(text) or __get_country(text.split(',')[-1]) or __get_country(' '.join(text.split(',')[-2:])) 
+
+
+def __get_country(search_text):
     """Return the country of the search text based on Google Maps."""
 
     GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
