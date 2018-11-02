@@ -230,29 +230,31 @@ def update_countries(dry_run, ids):
     uuids = [PersistentIdentifier.get('recid', recid).object_uuid for recid in ids]
     records = Record.get_records(uuids)
 
-    for record in records:
-        for author_index, author_data in enumerate(record['authors']):
-            for aff_index, aff_data in enumerate(author_data['affiliations']):
-                if aff_data['country'] == COUNTRY:
-                    total_hits += 1
+    try:
+        for record in records:
+            for author_index, author_data in enumerate(record['authors']):
+                for aff_index, aff_data in enumerate(author_data['affiliations']):
+                    if aff_data['country'] == COUNTRY:
+                        total_hits += 1
 
-                    # cache countries based on old affiliation value to decrease api requests
-                    old_value = aff_data['value']
-                    if old_value not in country_cache:
-                        country_cache[old_value] = get_country(old_value)
-                        cache_fails += 1
+                        # cache countries based on old affiliation value to decrease api requests
+                        old_value = aff_data['value']
+                        if old_value not in country_cache:
+                            country_cache[old_value] = get_country(old_value)
+                            cache_fails += 1
 
-                    new_country = country_cache[old_value]
+                        new_country = country_cache[old_value]
 
-                    if new_country:
-                        record['authors'][author_index]['affiliations'][aff_index]['country'] = new_country
-                        info('Changed country for record with id %s to %s' % (record['control_number'], new_country))
-                    else:
-                        error('Could not find country for record with id %s' % record['control_number'])
-
-        if not dry_run:
-            record.commit()
-            db.session.commit()
+                        if new_country:
+                            record['authors'][author_index]['affiliations'][aff_index]['country'] = new_country
+                            info('Changed country for record with id %s to %s' % (record['control_number'], new_country))
+                        else:
+                            error('Could not find country for record with id %s (affiliation value: %s)' % (record['control_number'], old_value))
+            if not dry_run:
+                record.commit()
+                db.session.commit()
+    except Exception as e:
+        print(e)
 
     info('In total %d countries needed to be updated and %d queries were made to determine the countries.' % (total_hits, cache_fails))
 
@@ -284,20 +286,19 @@ def process_all_records(function, chuck_size=50, control_ids=(), *args):
     record_ids = [r[0] for r in record_ids.all()]
     records_count = len(record_ids)
     processed = 0
-
     info('start processing %d records...' % records_count)
 
     # process record chunks
     for i in range((records_count / chuck_size) + 1):
         # calculate chunk start and end position
         ixn = i * chuck_size
-        current_ids = record_ids[ixn:ixn+chuck_size]
+        current_ids = record_ids[ixn:ixn + chuck_size]
 
         # process current chunk
         for record in RecordMetadata.query.filter(RecordMetadata.id.in_(current_ids)):
             try:
                 function(record, *args)
-            except Exception as e:
+            except Exception:
                 raise  # TODO Should we handle anything here, or just stop the whole process?
             processed += 1
 
