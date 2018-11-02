@@ -21,11 +21,25 @@
 
 from __future__ import absolute_import, print_function
 
+import re
+import urllib
+import xml.etree.ElementTree as ET
+
 from celery import shared_task
 from invenio_db import db
 from invenio_search.api import current_search_client as es
+from scoap3.dojson.utils.nations import find_nation
 from scoap3.modules.analysis.models import ArticlesImpact, Gdp
 from sqlalchemy.orm.attributes import flag_modified
+
+inspire_namespace = {'a': 'http://www.loc.gov/MARC21/slim'}
+es_result_mock = {
+    'hits': {
+        'hits': [],
+        'total': 0
+    }
+}
+inspire_base_url = "http://inspirehep.net/search?of=xm&sf=earliestdate&so=d&rm=&sc=0&ot=001,024,100,700,260,773"
 
 
 def get_query(start_index, step, from_date, until_date):
@@ -63,20 +77,78 @@ def get_country_list(countries_ordering):
     }
 
 
+def fetch_url(jrec, size, query):
+    final_url = '&'.join([inspire_base_url, urllib.urlencode({'jrec': jrec,
+                                                              'rg': size,
+                                                              'p': query})])
+    req = urllib.urlopen(final_url)
+    req_text = req.read().replace(b'\n', b'')
+    root = ET.fromstring(req_text)
+    total_records_count = re.findall('(?<=Search-Engine-Total-Number-Of-Results: )\d{1,10}', req_text)
+    if total_records_count:
+        total_records_count = total_records_count[0]
+    else:
+        total_records_count = 0
+    return total_records_count, root.findall('./a:record', inspire_namespace)
+
+
+def parse_inspire_records(size, query, jrec=1):
+    articles = es_result_mock
+    jrec = jrec
+    articles['hits']['total'], records = fetch_url(jrec, size, query)
+    while records:
+        for r in records:
+            json_record = {'_source': {'authors': []}}
+            authors = r.findall('./a:datafield[@tag="100"]', inspire_namespace)
+            authors.extend(r.findall('./a:datafield[@tag="700"]',
+                           inspire_namespace))
+            for author in authors:
+                json_author = {
+                    'full_name': author.find('./a:subfield[@code="a"]',
+                                             inspire_namespace).text.encode('utf-8'),
+                    'affiliations': []
+                }
+                affs = author.findall('./a:subfield[@code="v"]',
+                                      inspire_namespace)
+                for aff in affs:
+                    json_aff = {
+                        'value': aff.text.encode('utf-8'),
+                        'country': find_nation(aff.text.encode('utf-8'))
+                    }
+                    json_author['affiliations'].append(json_aff)
+                    # print(aff.text.encode('utf-8'))
+                    # print(find_nation(aff.text.encode('utf-8'))
+                json_record['_source']['authors'].append(json_author)
+            json_record['_source']['control_number'] = int(r.find('./a:controlfield[@tag="001"]', inspire_namespace).text)
+            json_record['_source']['dois'] = [{'value': r.find('./a:datafield[@tag="024"][@ind1="7"]/a:subfield[@code="a"]', inspire_namespace).text}]
+            json_record['_source']['creation_date'] = r.find('./a:datafield[@tag="260"]/a:subfield[@code="c"]', inspire_namespace).text
+            json_record['_source']['journal'] = r.find('./a:datafield[@tag="773"]/a:subfield[@code="p"]', inspire_namespace).text + r.find('./a:datafield[@tag="773"]/a:subfield[@code="v"]', inspire_namespace).text
+            articles['hits']['hits'].append(json_record)
+        # jrec += size
+        # records = fetch_url(jrec, size, query)
+    # print("Finished")
+    return articles
+
+
 @shared_task
 def calculate_articles_impact(from_date=None, until_date=None,
-                              countries_ordering="value1", step=1, **kwargs):
+                              countries_ordering="value1", step=1,
+                              inspire_query=None, **kwargs):
     count = 0
+    jrec = 1
+    country_list = get_country_list(countries_ordering)
 
     print("Calculating articles impact between: {} and {}".format(
         from_date, until_date))
 
     while True:
-        search_results = es.search(index='records-record',
+        if inspire_query:
+            search_results = parse_inspire_records(100, inspire_query, jrec)
+        else:
+            search_results = es.search(index='records-record',
                                    doc_type='record-v1.0.0',
                                    body=get_query(count, step, from_date, until_date))
 
-        country_list = get_country_list(countries_ordering)
         for article in search_results['hits']['hits']:
             details = {
                 'countries_ordering': countries_ordering,
@@ -109,6 +181,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
         db.session.commit()
 
         count += len(search_results['hits']['hits'])
+        jrec += 100
         if count < search_results['hits']['total']:
             print("Count {} is < than {}. Running next query: {}".format(
                 count,
