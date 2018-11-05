@@ -9,12 +9,17 @@ blueprint = Blueprint(
 )
 
 
+@blueprint.route('/')
+def default():
+    return redirect(url_for('scoap3_accounts.home'))
+
+
 @blueprint.route('/settings/')
 def default_setting():
     return redirect(url_for('security.change_password'))
 
 
-@blueprint.route('/')
+@blueprint.route('/home/')
 @register_menu(blueprint, 'general.home', text='<i class="fa fa-home fa-fw"></i> Home', order=-1)
-def test():
+def home():
     return render_template('scoap3_accounts/home.html')
