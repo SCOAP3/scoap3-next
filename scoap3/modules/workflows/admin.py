@@ -49,10 +49,12 @@ class WorkflowView(ModelView):
     column_formatters = {
         'info': macro('render_info'),
         'data': lambda v, c, m, p: Markup("<pre>{0}</pre>".format(
-            json.dumps(m.data, indent=2, sort_keys=True)))
+            json.dumps(m.data, indent=2, sort_keys=True))),
+        'error_msg': lambda v, c, m, p: Markup("<pre>{0}</pre>".format(
+            m.extra_data.get('_error_msg', ''))),
     }
     column_auto_select_related = True
-    column_details_list = column_list + ('data', )
+    column_details_list = column_list + ('error_msg', 'data', )
     column_details_exclude_list = ('info', )
 
     list_template = 'scoap3_workflows/admin/list.html'
