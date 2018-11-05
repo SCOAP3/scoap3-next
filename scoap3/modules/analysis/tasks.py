@@ -44,7 +44,7 @@ inspire_base_url = "http://inspirehep.net/search?of=xm&sf=earliestdate&so=d&rm=&
 
 def get_query(start_index, step, from_date, until_date):
     return {
-        '_source': ['authors', 'control_number', 'dois'],
+        '_source': ['authors', 'control_number', 'dois', 'earliest_date', 'publication_info', 'record_creation_date'],
         'from': start_index,
         'size': step,
         'query': {
@@ -62,7 +62,7 @@ def get_query(start_index, step, from_date, until_date):
 def get_authors_max_affiliation(author, country_list):
     max_aff = None
     max_value = 0
-    for affiliation in author['affiliations']:
+    for affiliation in author.get('affiliations', []):
         if country_list.get(affiliation['country'], 0) >= max_value:
             max_value = country_list.get(affiliation['country'], 0)
             max_aff = affiliation
@@ -96,37 +96,33 @@ def parse_inspire_records(size, query, jrec=1):
     articles = es_result_mock
     jrec = jrec
     articles['hits']['total'], records = fetch_url(jrec, size, query)
-    while records:
-        for r in records:
-            json_record = {'_source': {'authors': []}}
-            authors = r.findall('./a:datafield[@tag="100"]', inspire_namespace)
-            authors.extend(r.findall('./a:datafield[@tag="700"]',
-                           inspire_namespace))
-            for author in authors:
-                json_author = {
-                    'full_name': author.find('./a:subfield[@code="a"]',
-                                             inspire_namespace).text.encode('utf-8'),
-                    'affiliations': []
+
+    for r in records:
+        json_record = {'_source': {'authors': [], 'publication_info': []}}
+        authors = r.findall('./a:datafield[@tag="100"]', inspire_namespace)
+        authors.extend(r.findall('./a:datafield[@tag="700"]',
+                       inspire_namespace))
+        for author in authors:
+            json_author = {
+                'full_name': author.find('./a:subfield[@code="a"]',
+                                         inspire_namespace).text.encode('utf-8'),
+                'affiliations': []
+            }
+            affs = author.findall('./a:subfield[@code="v"]',
+                                  inspire_namespace)
+            for aff in affs:
+                json_aff = {
+                    'value': aff.text.encode('utf-8'),
+                    'country': find_nation(aff.text.encode('utf-8'))
                 }
-                affs = author.findall('./a:subfield[@code="v"]',
-                                      inspire_namespace)
-                for aff in affs:
-                    json_aff = {
-                        'value': aff.text.encode('utf-8'),
-                        'country': find_nation(aff.text.encode('utf-8'))
-                    }
-                    json_author['affiliations'].append(json_aff)
-                    # print(aff.text.encode('utf-8'))
-                    # print(find_nation(aff.text.encode('utf-8'))
-                json_record['_source']['authors'].append(json_author)
-            json_record['_source']['control_number'] = int(r.find('./a:controlfield[@tag="001"]', inspire_namespace).text)
-            json_record['_source']['dois'] = [{'value': r.find('./a:datafield[@tag="024"][@ind1="7"]/a:subfield[@code="a"]', inspire_namespace).text}]
-            json_record['_source']['creation_date'] = r.find('./a:datafield[@tag="260"]/a:subfield[@code="c"]', inspire_namespace).text
-            json_record['_source']['journal'] = r.find('./a:datafield[@tag="773"]/a:subfield[@code="p"]', inspire_namespace).text + r.find('./a:datafield[@tag="773"]/a:subfield[@code="v"]', inspire_namespace).text
-            articles['hits']['hits'].append(json_record)
-        # jrec += size
-        # records = fetch_url(jrec, size, query)
-    # print("Finished")
+                json_author['affiliations'].append(json_aff)
+            json_record['_source']['authors'].append(json_author)
+        json_record['_source']['control_number'] = int(r.find('./a:controlfield[@tag="001"]', inspire_namespace).text)
+        json_record['_source']['dois'] = [{'value': r.find('./a:datafield[@tag="024"][@ind1="7"]/a:subfield[@code="a"]', inspire_namespace).text}]
+        json_record['_source']['record_creation_date'] = r.find('./a:datafield[@tag="260"]/a:subfield[@code="c"]', inspire_namespace).text
+        json_record['_source']['earliest_date'] = json_record['_source']['record_creation_date']
+        json_record['_source']['publication_info'].append({'journal_title': r.find('./a:datafield[@tag="773"]/a:subfield[@code="p"]', inspire_namespace).text + r.find('./a:datafield[@tag="773"]/a:subfield[@code="v"]', inspire_namespace).text})
+        articles['hits']['hits'].append(json_record)
     return articles
 
 
@@ -176,7 +172,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
             country_ai = ArticlesImpact.get_or_create(
                 article['_source']['control_number'])
             country_ai.doi = article['_source']['dois'][0]['value']
-            country_ai.creation_date = article['_source']['record_creation_date']
+            country_ai.creation_date = article['_source'].get('record_creation_date', article['_source']['earliest_date'])
             country_ai.journal = article['_source']['publication_info'][0]['journal_title']
             country_ai.details = details
             country_ai.results = result
@@ -188,7 +184,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
 
         count += len(search_results['hits']['hits'])
         jrec += step
-        if count < search_results['hits']['total']:
+        if count < int(search_results['hits']['total']):
             print("Count {} is < than {}. Running next query: {}".format(
                 count,
                 search_results['hits']['total'],

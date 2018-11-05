@@ -51,7 +51,7 @@ class ArticleImpactView(ModelView):
         'control_number',
         'doi',
         'journal',
-        'creation_date'
+        'creation_date',
         'updated',
         'details',
         'results')
