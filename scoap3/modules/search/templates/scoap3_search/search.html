@@ -50,46 +50,7 @@
   {%- block navbar %}
   <header>
     <nav class="navbar navbar-default navbar-static-top frontpage">
-      <div class="container">
-        {%- block navbar_header %}
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">{{_('Toggle navigation')}}</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          {%- block brand %}
-          {%- if config.THEME_LOGO %}
-            <a href="/"><img class="navbar-brand" src="{{ url_for('static', filename=config.THEME_LOGO)}}" alt="{{_(config.THEME_SITENAME)}}" /></a>
-          {%- else %}
-            <a class="navbar-brand" href="/">{{_(config.THEME_SITENAME)}}</a>
-          {%- endif %}
-          {%- endblock %}
-        </div>
-        {%- endblock navbar_header %}
-        {%- block navbar_inner %}
-        <div id="navbar" class="navbar-collapse collapse">
-          {%- block navbar_nav %}
-          <ul class="nav navbar-nav">
-            <li><a href="#">SCOAP3</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">Idea Board</a></li>
-          </ul>
-          {%- endblock navbar_nav %}
-          {%- block navbar_right %}
-            <div class="navbar-right">
-              <invenio-search-bar
-               template="{{ url_for('static', filename='templates/invenio_search_ui/searchbar.html') }}"
-               placeholder="{{ search_input_placeholder|default(_('Search')) }}">
-              </invenio-search-bar>
-            </div>
-          {%- endblock navbar_right %}
-        </div>
-        {%- endblock navbar_inner %}
-      </div>
+      {% include 'scoap3_theme/_navbar.html' %}
     </nav>
   </header>
   {%- endblock navbar %}
@@ -103,15 +64,23 @@
     <div class="col-xs-12 col-md-9 col-md-push-3">
       {%- block search_header %}
       <div class="row">
+        <div class="col-xs-12">
+          <invenio-search-bar
+           template="{{ url_for('static', filename='templates/scoap3_search/searchbar.html') }}"
+           placeholder="{{ search_input_placeholder|default(_('Search')) }}">
+          </invenio-search-bar>
+        </div>
+      </div>
+      <div class="row">
         {%- block search_count %}
-        <div class="col-md-3 col-sm-12">
+        <div class="col-xs-3">
           <invenio-search-count
            template="{{ url_for('static', filename=config.SEARCH_UI_JSTEMPLATE_COUNT) }}">
           </invenio-search-count>
         </div>
         {%- endblock search_count %}
         {%- block search_pagination_top %}
-        <div class="col-md-6 col-sm-12 text-center">
+        <div class="col-xs-6 text-center">
           <invenio-search-pagination
             template="{{ url_for('static', filename=config.SEARCH_UI_JSTEMPLATE_PAGINATION) }}">
           </invenio-search-pagination>
@@ -120,7 +89,7 @@
         {%- block search_sort %}
         {%- set sort_options = config.get('RECORDS_REST_SORT_OPTIONS', {}).get(config.SEARCH_UI_SEARCH_INDEX) %}
         {%- if sort_options %}
-        <div class="col-md-3 col-sm-12 text-right">
+        <div class="col-sm-3 text-right">
           {%- block search_sort_select scoped %}
           Sort by:
           <invenio-search-select-box
