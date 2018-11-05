@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, url_for, redirect
+from flask_login import login_required
 from flask_menu import register_menu
 
 blueprint = Blueprint(
@@ -21,5 +22,6 @@ def default_setting():
 
 @blueprint.route('/home/')
 @register_menu(blueprint, 'general.home', text='<i class="fa fa-home fa-fw"></i> Home', order=-1)
+@login_required
 def home():
     return render_template('scoap3_accounts/home.html')
