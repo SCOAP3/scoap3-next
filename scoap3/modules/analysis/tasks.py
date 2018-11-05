@@ -176,6 +176,8 @@ def calculate_articles_impact(from_date=None, until_date=None,
             country_ai = ArticlesImpact.get_or_create(
                 article['_source']['control_number'])
             country_ai.doi = article['_source']['dois'][0]['value']
+            country_ai.creation_date = article['_source']['record_creation_date']
+            country_ai.journal = article['_source']['publication_info'][0]['journal_title']
             country_ai.details = details
             country_ai.results = result
             flag_modified(country_ai, 'details')
