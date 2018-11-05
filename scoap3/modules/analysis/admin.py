@@ -49,7 +49,9 @@ class ArticleImpactView(ModelView):
 
     column_list = (
         'control_number',
-        'created',
+        'doi',
+        'journal',
+        'creation_date'
         'updated',
         'details',
         'results')
@@ -58,11 +60,14 @@ class ArticleImpactView(ModelView):
 
     column_labels = {
         'control_number': "recid",
+        'creation_date': 'Delivery'
     }
 
     column_filters = (
         'control_number',
-        'created',
+        'doi',
+        'journal',
+        'creation_date',
         'updated')
 
 

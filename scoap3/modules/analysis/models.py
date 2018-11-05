@@ -68,6 +68,9 @@ class ArticlesImpact(db.Model):
                         default=[]
                         )
 
+    creation_date = db.Column(db.DateTime, nullable=False)
+    journal = db.Column(db.String(150), nullable=False)
+
     @classmethod
     def get_or_create(cls, recid):
         c = ArticlesImpact.query.filter(
