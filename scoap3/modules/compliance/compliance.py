@@ -14,22 +14,8 @@ from pdfminer.pdfparser import PDFSyntaxError
 
 from scoap3.modules.compliance.models import Compliance
 from scoap3.utils.pdf import extract_text_from_pdf
-from scoap3.utils.record import get_abbreviated_publisher, get_abbreviated_journal, get_arxiv_primary_category
-
-
-def __get_first_doi(record):
-    return record['dois'][0]['value']
-
-
-def __get_first_arxiv(record):
-    arxiv_array = [
-        a['value'].split(':')[1]
-        for a in record.get('report_numbers', ())
-        if a['source'] == 'arXiv'
-    ]
-    if arxiv_array:
-        return arxiv_array[0]
-    return None
+from scoap3.utils.record import (get_abbreviated_publisher, get_abbreviated_journal, get_arxiv_primary_category,
+                                 get_first_doi, get_first_arxiv)
 
 
 def __extract_article_text(record):
@@ -129,7 +115,7 @@ def _received_in_time(record, extra_data):
     """Check if publication is not older than 24h """
     api_url = current_app.config.get('CROSSREF_API_URL')
 
-    api_response = requests.get(api_url % __get_first_doi(record))
+    api_response = requests.get(api_url % get_first_doi(record))
     if api_response.status_code != 200:
         return True, ('Article is not on crossref.', ), 'Api response: %s' % api_response.text
 
@@ -230,10 +216,10 @@ def check_compliance(obj, *args):
         'checks': checks,
         'accepted': all_checks_accepted,
         'data': {
-            'doi': __get_first_doi(record),
+            'doi': get_first_doi(record),
             'publisher': get_abbreviated_publisher(record),
             'journal': get_abbreviated_journal(record),
-            'arxiv': __get_first_arxiv(record)
+            'arxiv': get_first_arxiv(record)
         }
     }
 
