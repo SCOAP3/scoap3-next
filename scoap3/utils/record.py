@@ -47,6 +47,21 @@ def get_first_journal(record):
     return record['publication_info'][0]['journal_title']
 
 
+def get_first_arxiv(record):
+    arxiv_array = [
+        a['value'].split(':')[1]
+        for a in record.get('report_numbers', ())
+        if a['source'] == 'arXiv'
+    ]
+    if arxiv_array:
+        return arxiv_array[0]
+    return None
+
+
+def get_first_doi(record):
+    return record['dois'][0]['value']
+
+
 def get_value(record, key, default=None):
     """Return item as `dict.__getitem__` but using 'smart queries'.
     .. note::
@@ -113,7 +128,7 @@ def get_arxiv_primary_category(record):
     if "report_numbers" in record:
         for i, report_number in enumerate(record["report_numbers"]):
             if report_number['source'].lower() == 'arxiv':
-                if not 'primary_category' in report_number:
+                if 'primary_category' not in report_number:
                     # Since we added this field later, there can be records without it.
                     # Ff we haven't extracted the primary_cetegory yet, do it now.
                     arxiv_id = report_number['value'].lower().replace('arxiv:', '').split('v')[0]
