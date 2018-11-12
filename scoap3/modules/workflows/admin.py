@@ -10,7 +10,7 @@
 import json
 from datetime import timedelta, datetime
 
-from flask import flash
+from flask import flash, request
 from flask_admin import expose, BaseView
 from flask_admin.actions import action
 from flask_admin.contrib.sqla import ModelView
@@ -18,7 +18,7 @@ from flask_admin.contrib.sqla.filters import FilterEqual
 from flask_admin.model.template import macro
 from invenio_db import db
 from invenio_workflows import restart
-from invenio_workflows.models import WorkflowObjectModel, ObjectStatus
+from invenio_workflows.models import WorkflowObjectModel, ObjectStatus, Workflow
 from markupsafe import Markup
 from sqlalchemy import func
 
@@ -82,20 +82,31 @@ class WorkflowView(ModelView):
 
 class WorkflowsOverview(BaseView):
     def get_context_data(self):
-        query = db.session\
+        last_n_hour = 24
+        last_n_days = 0
+        try:
+            last_n_hour = int(request.args.get('hour_delta', last_n_hour))
+            last_n_days = int(request.args.get('day_delta', last_n_days))
+        except ValueError:
+            flash('Failed to convert time filters, falling back to default.', 'warning')
+
+        date_from = datetime.now() - timedelta(hours=last_n_hour, days=last_n_days)
+
+        by_status = db.session\
             .query(WorkflowObjectModel.status, func.count(WorkflowObjectModel.status))\
-            .group_by(WorkflowObjectModel.status)
+            .group_by(WorkflowObjectModel.status)\
+            .filter(WorkflowObjectModel.created >= date_from).all()
+        by_status = map(lambda x: (x[0].name, x[1]), by_status)
 
-        now = datetime.now()
-        last24h = now - timedelta(hours=24)
-        last1w = now - timedelta(weeks=1)
-
-        data_last1w = query.filter(WorkflowObjectModel.created >= last1w).all()
-        data_last24h = query.filter(WorkflowObjectModel.created >= last24h).all()
+        by_name = db.session \
+            .query(Workflow.name, func.count(Workflow.name)) \
+            .group_by(Workflow.name) \
+            .filter(WorkflowObjectModel.created >= date_from).all()
 
         return {
-            'last1w': data_last1w,
-            'last24h': data_last24h
+            'by_status': by_status,
+            'by_name': by_name,
+            'date_from': date_from
         }
 
     @expose('/')
