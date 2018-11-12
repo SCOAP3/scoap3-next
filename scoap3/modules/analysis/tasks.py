@@ -21,6 +21,7 @@
 
 from __future__ import absolute_import, print_function
 
+import copy
 import re
 import urllib
 import xml.etree.ElementTree as ET
@@ -31,6 +32,8 @@ from invenio_search.api import current_search_client as es
 from scoap3.dojson.utils.nations import find_nation
 from scoap3.modules.analysis.models import ArticlesImpact, Gdp
 from sqlalchemy.orm.attributes import flag_modified
+
+from scoap3.utils.google_maps import get_country
 
 inspire_namespace = {'a': 'http://www.loc.gov/MARC21/slim'}
 es_result_mock = {
@@ -93,7 +96,7 @@ def fetch_url(jrec, size, query):
 
 
 def parse_inspire_records(size, query, jrec=1):
-    articles = es_result_mock
+    articles = {'hits':{'hits':[],'total':0}}
     jrec = jrec
     articles['hits']['total'], records = fetch_url(jrec, size, query)
 
@@ -111,18 +114,27 @@ def parse_inspire_records(size, query, jrec=1):
             affs = author.findall('./a:subfield[@code="v"]',
                                   inspire_namespace)
             for aff in affs:
+                country = find_nation(aff.text.encode('utf-8'))
+                if country == 'HUMAN CHECK':
+                    country = get_country(aff.text.encode('utf-8'))
                 json_aff = {
                     'value': aff.text.encode('utf-8'),
-                    'country': find_nation(aff.text.encode('utf-8'))
+                    'country': country
                 }
                 json_author['affiliations'].append(json_aff)
             json_record['_source']['authors'].append(json_author)
-        json_record['_source']['control_number'] = int(r.find('./a:controlfield[@tag="001"]', inspire_namespace).text)
-        json_record['_source']['dois'] = [{'value': r.find('./a:datafield[@tag="024"][@ind1="7"]/a:subfield[@code="a"]', inspire_namespace).text}]
-        json_record['_source']['record_creation_date'] = r.find('./a:datafield[@tag="260"]/a:subfield[@code="c"]', inspire_namespace).text
-        json_record['_source']['earliest_date'] = json_record['_source']['record_creation_date']
-        json_record['_source']['publication_info'].append({'journal_title': r.find('./a:datafield[@tag="773"]/a:subfield[@code="p"]', inspire_namespace).text + r.find('./a:datafield[@tag="773"]/a:subfield[@code="v"]', inspire_namespace).text})
+
+        try:
+            json_record['_source']['control_number'] = int(r.find('./a:controlfield[@tag="001"]', inspire_namespace).text)
+            json_record['_source']['dois'] = [{'value': r.find('./a:datafield[@tag="024"][@ind1="7"]/a:subfield[@code="a"]', inspire_namespace).text}]
+            json_record['_source']['record_creation_date'] = r.find('./a:datafield[@tag="260"]/a:subfield[@code="c"]', inspire_namespace).text
+            json_record['_source']['earliest_date'] = json_record['_source']['record_creation_date']
+            json_record['_source']['publication_info'].append({'journal_title': r.find('./a:datafield[@tag="773"]/a:subfield[@code="p"]', inspire_namespace).text + r.find('./a:datafield[@tag="773"]/a:subfield[@code="v"]', inspire_namespace).text})
+        except:
+            continue
+
         articles['hits']['hits'].append(json_record)
+
     return articles
 
 
@@ -143,7 +155,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
 
     while True:
         if inspire_query:
-            search_results = parse_inspire_records(100, inspire_query, jrec)
+            search_results = parse_inspire_records(step, inspire_query, jrec)
         else:
             search_results = es.search(index='records-record',
                                    doc_type='record-v1.0.0',
@@ -169,6 +181,11 @@ def calculate_articles_impact(from_date=None, until_date=None,
                 else:
                     continue
 
+            if not result:
+                # do not store empty result
+                # todo logging
+                continue
+
             country_ai = ArticlesImpact.get_or_create(
                 article['_source']['control_number'])
             country_ai.doi = article['_source']['dois'][0]['value']
@@ -182,7 +199,13 @@ def calculate_articles_impact(from_date=None, until_date=None,
             db.session.add(country_ai)
         db.session.commit()
 
-        count += len(search_results['hits']['hits'])
+        hits_len = len(search_results['hits']['hits'])
+        # if we got no articles, something went wrong. Prevent an infinite cycle.
+        if not hits_len:
+            print("ERROR: no results found. Did we miss something?? Aborting to break infinite cycle.")
+            break
+
+        count += hits_len
         jrec += step
         if count < int(search_results['hits']['total']):
             print("Count {} is < than {}. Running next query: {}".format(

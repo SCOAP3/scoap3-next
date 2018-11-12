@@ -170,6 +170,37 @@ class GdpImport(BaseView):
 
 class CountriesShare(BaseView):
     """View for displaying country share calculations."""
+
+    @classmethod
+    def _get_csv(self):
+        chunk_size = 50
+        countries = Gdp.query.order_by(Gdp.name.asc()).all()
+        record_ids = ArticlesImpact.query.with_entities(ArticlesImpact.control_number).all()
+        record_ids = [r[0] for r in record_ids]
+
+        header = ['doi', 'recid', 'journal', 'creation_date']
+        header.extend([c.name.strip() for c in countries])
+        si = StringIO.StringIO()
+        cw = csv.writer(si, delimiter=";")
+        cw.writerow(header)
+
+        for i in range((len(record_ids) // chunk_size) + 1):
+            # calculate chunk start and end position
+            ixn = i * chunk_size
+            current_ids = record_ids[ixn:ixn + chunk_size]
+
+            for record in ArticlesImpact.query.filter(ArticlesImpact.control_number.in_(current_ids)):
+                total_authors = reduce(lambda x, y: x + y,
+                                       record.results.values(), 0)
+                country_share = [float(record.results[c.name.strip()]) / total_authors
+                                 if c.name.strip() in record.results else 0
+                                 for c in countries]
+                csv_line = [record.doi, record.control_number, record.journal, record.creation_date]
+                csv_line.extend(country_share)
+                cw.writerow(csv_line)
+
+        return si.getvalue()
+
     @expose('/', methods=('GET', 'POST'))
     def index(self):
         celery_config_dict = dict(
@@ -209,26 +240,8 @@ class CountriesShare(BaseView):
                 )
                 message = "New calculation for Inspire query scheduled."
             elif 'generate_csv' in request.form:
-                countries = Gdp.query.order_by(Gdp.name.asc()).all()
-                records = ArticlesImpact.query.all()
-
-                header = ['doi', 'recid']
-                header.extend([c.name.strip() for c in countries])
-                si = StringIO.StringIO()
-                cw = csv.writer(si, delimiter=";")
-                cw.writerow(header)
-
-                for record in records:
-                    total_authors = reduce(lambda x, y: x + y,
-                                           record.results.values(), 0)
-                    country_share = [float(record.results[c.name.strip()]) / total_authors
-                                     if c.name.strip() in record.results else 0
-                                     for c in countries]
-                    csv_line = [record.doi, record.control_number]
-                    csv_line.extend(country_share)
-                    cw.writerow(csv_line)
-
-                output = make_response(si.getvalue())
+                csv_data = self._get_csv()
+                output = make_response(csv_data)
                 output.headers["Content-Disposition"] = "attachment; filename=countries_share.csv"
                 output.headers["Content-type"] = "text/csv"
                 return output

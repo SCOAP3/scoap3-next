@@ -1,6 +1,8 @@
 import requests
 from flask import current_app
 
+from scoap3.dojson.utils.nations import NATIONS_DEFAULT_MAP
+
 
 def __get_country_from_results(results):
     if 'results' in results:
@@ -30,6 +32,8 @@ def __get_country(search_text):
 
     if 'status' in req:
         if req['status'].lower() == 'ok':
-            return __get_country_from_results(req)
+            country = __get_country_from_results(req)
+            NATIONS_DEFAULT_MAP.get(country, country)
+            return country
 
     return None
