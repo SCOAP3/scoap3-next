@@ -10,11 +10,14 @@
 import json
 from datetime import timedelta, datetime
 
+from flask import flash
 from flask_admin import expose, BaseView
+from flask_admin.actions import action
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import FilterEqual
 from flask_admin.model.template import macro
 from invenio_db import db
+from invenio_workflows import restart
 from invenio_workflows.models import WorkflowObjectModel, ObjectStatus
 from markupsafe import Markup
 from sqlalchemy import func
@@ -56,6 +59,23 @@ class WorkflowView(ModelView):
     column_auto_select_related = True
     column_details_list = column_list + ('error_msg', 'data', )
     column_details_exclude_list = ('info', )
+
+    def action_base(self, ids, action):
+        objects = WorkflowObjectModel.query.filter(WorkflowObjectModel.id.in_(ids)).all()
+
+        if len(objects) != len(ids):
+            raise ValueError("Invalid id for workflow(s).")
+
+        for workflow in objects:
+            action.apply_async((str(workflow.workflow.uuid),))
+
+    @action('restart', 'Restart', 'Are you sure?')
+    def action_restart(self, ids):
+        try:
+            self.action_base(ids, restart)
+            flash("Selected workflow(s) restarted.", "success")
+        except Exception as e:
+            flash("Failed to restart all selected workflows. Reason: %s" % e.message, "error")
 
     list_template = 'scoap3_workflows/admin/list.html'
 
