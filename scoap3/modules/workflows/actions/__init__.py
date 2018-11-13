@@ -27,4 +27,4 @@ from __future__ import absolute_import, division, print_function
 
 from .add_arxiv import AddArxiv
 
-__all__ = ('AddArxiv')
+__all__ = ('AddArxiv', )

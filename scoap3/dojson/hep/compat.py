@@ -10,6 +10,7 @@ PY3 = sys.version_info[0] == 3
 
 if PY3:
     import io
+
     StringIO = io.StringIO
     BytesIO = io.BytesIO
 
@@ -21,9 +22,11 @@ if PY3:
         """Return iterator with dict items."""
         return iter(d.items(**kw))
 
-    from itertools import zip_longest
+
+    from itertools import zip_longest  # noqa
 else:
     import StringIO
+
     StringIO = BytesIO = StringIO.StringIO
 
     binary_type = str
@@ -34,4 +37,5 @@ else:
         """Return iterator with dict items."""
         return iter(d.iteritems(**kw))
 
-    from itertools import izip_longest as zip_longest
+
+    from itertools import izip_longest as zip_longest  # noqa

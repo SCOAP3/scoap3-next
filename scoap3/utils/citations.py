@@ -21,10 +21,8 @@
 # waive the privileges and immunities granted to it by virtue of its status
 # as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-from invenio_pidstore.models import PersistentIdentifier
 from invenio_search import current_search_client as es
 
-from inspirehep.utils.record import get_title
 from inspirehep.modules.search import IQ
 
 from jinja2 import render_template_to_string

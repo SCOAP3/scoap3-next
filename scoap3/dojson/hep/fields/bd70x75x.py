@@ -68,7 +68,7 @@ def collaboration(self, key, value):
         if '0' in value:
             try:
                 recid = int(value.get('0'))
-            except:
+            except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
                 pass
         return {
             'value': value.get('g'),

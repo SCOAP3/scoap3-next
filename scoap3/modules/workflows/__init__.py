@@ -27,4 +27,4 @@ from __future__ import absolute_import, print_function
 
 from .ext import SCOAP3Workflows
 
-__all__ = ('SCOAP3Workflows')
+__all__ = ('SCOAP3Workflows', )

@@ -64,6 +64,7 @@ def get_json_for_plots(plots):
         index += 1
     return dict(fft=output_records)
 
+
 def force_force_list(data):
     """Wrap data in list.
     We need to define this awkardly named method because DoJSON's method

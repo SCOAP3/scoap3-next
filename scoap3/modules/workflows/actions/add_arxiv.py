@@ -46,11 +46,11 @@ class AddArxiv(object):
             "side": render_template('workflows/actions/add_arxiv_side.html',
                                     message=obj.get_action_message(),
                                     object=obj,
-                                    resolve_url=self.url,),
+                                    resolve_url=self.url, ),
             "main": render_template('workflows/actions/add_arxiv_main.html',
                                     message=obj.get_action_message(),
                                     object=obj,
-                                    resolve_url=self.url,)
+                                    resolve_url=self.url, )
         }
 
     def resolve(self, bwo):
@@ -64,10 +64,10 @@ class AddArxiv(object):
         if "report_numbers" not in data:
             data["report_numbers"] = []
 
-        data["report_numbers"].append({'source':'arXiv', 'value':new_arxiv_id})
+        data["report_numbers"].append({'source': 'arXiv', 'value': new_arxiv_id})
         bwo.set_data(data)
         bwo.save()
-        bwo.continue_workflow(start_point="restart_task",delayed=True)
+        bwo.continue_workflow(start_point="restart_task", delayed=True)
         return {
             "message": "Record has been update!",
             "category": "success",

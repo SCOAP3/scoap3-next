@@ -9,7 +9,6 @@
 """Admin views for managing API registrations."""
 
 import csv
-import os
 import StringIO
 
 from celery import Celery
@@ -100,7 +99,7 @@ class GdpImport(BaseView):
                 # add dummy values for easier indexing
                 values.extend([0] * (4 - len(values)))
                 result[country] = values
-            except ValueError as _:
+            except ValueError:
                 flash('Invalid  data: "%s"' % row, 'warning')
                 failed = True
 

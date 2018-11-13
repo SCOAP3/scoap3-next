@@ -8,7 +8,7 @@ from scoap3.modules.pidstore.minters import scoap3_recid_minter
 recs = [hep.do(create_record(data)) for data in split_stream(open('../data/scoap3export.xml', 'r'))]
 
 for i, obj in enumerate(recs, start=1):
-    print("Creating record {}/{}".format(i,len(recs)))
+    print("Creating record {}/{}".format(i, len(recs)))
     record = Record.create(data, id_=None)
     print record
 

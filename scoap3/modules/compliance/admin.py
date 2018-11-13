@@ -20,7 +20,7 @@ from .models import Compliance
 
 class FilterByAccepance(FilterEqual):
     def apply(self, query, value, alias=None):
-        return query.filter(Compliance.accepted.astext==value)
+        return query.filter(Compliance.accepted.astext == value)
 
     def get_options(self, view):
         return (True, 'True'), (False, 'False')

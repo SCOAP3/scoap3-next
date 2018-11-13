@@ -6,7 +6,6 @@ from .models import ApiRegistrations
 import sys
 from invenio_db import db
 
-
 blueprint = Blueprint(
     'scoap3_api',
     __name__,
@@ -44,14 +43,17 @@ def register():
                                        role=request.form['role'],
                                        country=request.form['country'],
                                        description=request.form['description']
-                                      )
+                                       )
             db.session.add(new_reg)
             db.session.commit()
             message = ('success', "Registration succesful. We will confirm your registration shortly.")
         except EmailRegisterdException():
-            message = ('error', "User with this <b>email</b>: {} is already registered.".format(request.args.get('inputEmail')))
+            message = (
+                'error',
+                "User with this <b>email</b>: {} is already registered.".format(request.args.get('inputEmail')))
         except NameUsedException():
-            message = ('error', "User with this <b>name</b>: {} is already registered".format(request.args.get('inputName')))
+            message = (
+                'error', "User with this <b>name</b>: {} is already registered".format(request.args.get('inputName')))
         except Exception():
             message = ('error', sys.exc_info()[0])
 
@@ -60,5 +62,3 @@ def register():
         title='SCOAP3 Repository - Tools registration',
         message=message,
     )
-
-

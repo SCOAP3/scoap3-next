@@ -82,12 +82,12 @@ def dumps_etree(records, xslt_filename=None, prefix=None):
                             items = tuple()
 
                         for code, value in items:
-                          if value:
-                            if not isinstance(value, string_types):
-                                for v in value:
-                                    datafield.append(E.subfield(v, code=code))
-                            else:
-                                datafield.append(E.subfield(value, code=code))
+                            if value:
+                                if not isinstance(value, string_types):
+                                    for v in value:
+                                        datafield.append(E.subfield(v, code=code))
+                                else:
+                                    datafield.append(E.subfield(value, code=code))
 
                         rec.append(datafield)
         return rec

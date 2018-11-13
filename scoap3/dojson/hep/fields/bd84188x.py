@@ -41,16 +41,17 @@ def urls2marc(self, key, value):
         'y': value.get('description'),
     }
 
-@hep.over('files','8564')
+
+@hep.over('files', '8564')
 @utils.for_each_value
 @utils.filter_values
 def files(self, key, value):
-	if(value.get('x',None)):
-		file_extension = value.get('x').lower()
-	else:
-		tmp, file_extension = os.path.splitext(value.get('u'))
-	file_extension = file_extension.lower().strip('.')
+    if (value.get('x', None)):
+        file_extension = value.get('x').lower()
+    else:
+        tmp, file_extension = os.path.splitext(value.get('u'))
+    file_extension = file_extension.lower().strip('.')
 
-	return {
-		file_extension: value.get('u')
-	}
+    return {
+        file_extension: value.get('u')
+    }

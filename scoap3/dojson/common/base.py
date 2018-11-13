@@ -42,7 +42,9 @@ def self_url(index):
         """Url of the record itself."""
         self['control_number'] = value
         return get_record_ref(value, index)
+
     return _self_url
+
 
 hep.over('self', '^001')(self_url('record'))
 

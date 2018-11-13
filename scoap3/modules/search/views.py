@@ -26,7 +26,6 @@ from __future__ import division
 
 from flask import Blueprint
 
-
 blueprint = Blueprint(
     'scoap3_search',
     __name__,
@@ -34,6 +33,7 @@ blueprint = Blueprint(
     template_folder='templates',
     static_folder='static',
 )
+
 
 @blueprint.route('/ping')
 def ping():

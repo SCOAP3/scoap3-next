@@ -24,14 +24,12 @@
 
 from __future__ import absolute_import, division, print_function
 
-
 from dojson import utils
 from idutils import normalize_isbn
 
 from scoap3.utils.dedupers import dedupe_list_of_dicts
 
 from ..model import hep, hep2marc
-from ...utils import strip_empty_values
 
 
 @hep.over('isbns', '^020..')
@@ -116,11 +114,12 @@ def persistent_identifiers(self, key, value):
 def dois2marc(self, key, value):
     """Other Standard Identifier."""
     return {
-        '$ind1':7,
-        'a':value.get('value'),
-        '9':'APS',
-        '2':'DOI'
+        '$ind1': 7,
+        'a': value.get('value'),
+        '9': 'APS',
+        '2': 'DOI'
     }
+
 
 @hep.over('external_system_numbers', '^035..')
 def external_system_numbers(self, key, value):
@@ -156,6 +155,7 @@ def external_system_numbers2marc(self, key, value):
 @hep.over('report_numbers', '^037..')
 def report_numbers(self, key, value):
     """Report numbers and arXiv numbers from 037."""
+
     def get_value(value):
         return {
             'source': value.get('9'),

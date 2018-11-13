@@ -666,7 +666,7 @@ class Bibtex(Export):
                         coden = ','.join(
                             [record['coden'][0], volume, pages])
                         return coden
-                except:
+                except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
                     return ''
         else:
             return ''

@@ -32,6 +32,7 @@ blueprint = Blueprint(
     static_folder='static',
 )
 
+
 @blueprint.route('/')
 def index():
     """SCOAP3 home page."""
@@ -53,8 +54,8 @@ def index():
     #               {'name':'Oxford University Press/Physical Society of Japan'}]
     # for publisher in publishers:
     #     publisher['count'] = current_search_client.count(q=u'imprints.publisher:"{0}"'.format(publisher['name']))['count']
-    #TODO Move to configuration
-    countries = ["Australia","Austria", "Belgium", "Canada", "China", "CERN",
+    # TODO Move to configuration
+    countries = ["Australia", "Austria", "Belgium", "Canada", "China", "CERN",
                  "Czech Republic", "Denmark", "Finland", "France", "Germany",
                  "Greece", "Hong-Kong", "Hungary", "Iceland", "Israel",
                  "Italy", "Japan", "JINR", "South Korea", "Mexico",
@@ -62,15 +63,15 @@ def index():
                  "Slovak Republic", "South Africa", "Spain", "Sweden",
                  "Switzerland", "Taiwan", "Turkey", "United Kingdom",
                  "United States"]
-    countries = {country:{'search_names':[country]} for country in countries}
+    countries = {country: {'search_names': [country]} for country in countries}
     countries['Hong-Kong']['search_names'] = ['Hong Kong']
     countries['Slovak Republic']['search_names'] = ['Slovakia']
     countries['United Kingdom']['search_names'] = ['UK']
     countries['United States']['search_names'] = ['USA']
     countries['JINR']['search_names'] = ['Armenia', 'Azerbaijan', 'Belarus',
-                                        'Cuba', 'North Korea', 'Georgia',
-                                        'Kazakhstan', 'Moldova', 'Mongolia',
-                                        'Ukraine', 'Uzbekistan', 'Vietnam']
+                                         'Cuba', 'North Korea', 'Georgia',
+                                         'Kazakhstan', 'Moldova', 'Mongolia',
+                                         'Ukraine', 'Uzbekistan', 'Vietnam']
     countries['JINR']['search_affiliation'] = ['JINR']
 
     for country in countries:

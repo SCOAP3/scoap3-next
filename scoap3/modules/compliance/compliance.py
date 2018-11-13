@@ -121,7 +121,8 @@ def _received_in_time(record, extra_data):
 
     api_message = api_response.json()['message']
 
-    if 'publication_info' in record and record['publication_info'][0]['journal_title'] == 'Progress of Theoretical and Experimental Physics':
+    if 'publication_info' in record and \
+            record['publication_info'][0]['journal_title'] == 'Progress of Theoretical and Experimental Physics':
         parts = api_message['published-online']['date-parts'][0]
         # only contains day of publication, check for end of day
         api_time = datetime(*parts, hour=23, minute=59, second=59)
@@ -147,7 +148,7 @@ def _funded_by(record, extra_data):
 def _author_rights(record, extra_data):
     COPYRIGHT = u'\N{COPYRIGHT SIGN}'
 
-    start_patterns = (COPYRIGHT, 'copyright', '\(c\)', )
+    start_patterns = (COPYRIGHT, 'copyright', r'\(c\)', )
 
     needed_patterns = [p + '.{15}' for p in start_patterns]
 
