@@ -101,7 +101,7 @@ class WorkflowsOverview(BaseView):
         by_name = db.session \
             .query(Workflow.name, func.count(Workflow.name)) \
             .group_by(Workflow.name) \
-            .filter(WorkflowObjectModel.created >= date_from).all()
+            .filter(Workflow.created >= date_from).all()
 
         return {
             'by_status': by_status,
