@@ -21,7 +21,6 @@
 
 from __future__ import absolute_import, print_function
 
-import copy
 import re
 import urllib
 import xml.etree.ElementTree as ET
@@ -87,7 +86,7 @@ def fetch_url(jrec, size, query):
     req = urllib.urlopen(final_url)
     req_text = req.read().replace(b'\n', b'')
     root = ET.fromstring(req_text)
-    total_records_count = re.findall('(?<=Search-Engine-Total-Number-Of-Results: )\d{1,10}', req_text)
+    total_records_count = re.findall('(?<=Search-Engine-Total-Number-Of-Results: )\\d{1,10}', req_text)
     if total_records_count:
         total_records_count = total_records_count[0]
     else:
@@ -96,7 +95,7 @@ def fetch_url(jrec, size, query):
 
 
 def parse_inspire_records(size, query, jrec=1):
-    articles = {'hits':{'hits':[],'total':0}}
+    articles = {'hits': {'hits': [], 'total': 0}}
     jrec = jrec
     articles['hits']['total'], records = fetch_url(jrec, size, query)
 
@@ -104,7 +103,7 @@ def parse_inspire_records(size, query, jrec=1):
         json_record = {'_source': {'authors': [], 'publication_info': []}}
         authors = r.findall('./a:datafield[@tag="100"]', inspire_namespace)
         authors.extend(r.findall('./a:datafield[@tag="700"]',
-                       inspire_namespace))
+                                 inspire_namespace))
         for author in authors:
             json_author = {
                 'full_name': author.find('./a:subfield[@code="a"]',
@@ -125,12 +124,17 @@ def parse_inspire_records(size, query, jrec=1):
             json_record['_source']['authors'].append(json_author)
 
         try:
-            json_record['_source']['control_number'] = int(r.find('./a:controlfield[@tag="001"]', inspire_namespace).text)
-            json_record['_source']['dois'] = [{'value': r.find('./a:datafield[@tag="024"][@ind1="7"]/a:subfield[@code="a"]', inspire_namespace).text}]
-            json_record['_source']['record_creation_date'] = r.find('./a:datafield[@tag="260"]/a:subfield[@code="c"]', inspire_namespace).text
+            json_record['_source']['control_number'] = int(
+                r.find('./a:controlfield[@tag="001"]', inspire_namespace).text)
+            json_record['_source']['dois'] = [
+                {'value': r.find('./a:datafield[@tag="024"][@ind1="7"]/a:subfield[@code="a"]', inspire_namespace).text}]
+            json_record['_source']['record_creation_date'] = r.find('./a:datafield[@tag="260"]/a:subfield[@code="c"]',
+                                                                    inspire_namespace).text
             json_record['_source']['earliest_date'] = json_record['_source']['record_creation_date']
-            json_record['_source']['publication_info'].append({'journal_title': r.find('./a:datafield[@tag="773"]/a:subfield[@code="p"]', inspire_namespace).text + r.find('./a:datafield[@tag="773"]/a:subfield[@code="v"]', inspire_namespace).text})
-        except:
+            json_record['_source']['publication_info'].append({'journal_title': r.find(
+                './a:datafield[@tag="773"]/a:subfield[@code="p"]', inspire_namespace).text + r.find(
+                './a:datafield[@tag="773"]/a:subfield[@code="v"]', inspire_namespace).text})
+        except:  # noqa todo: implement proper error handling
             continue
 
         articles['hits']['hits'].append(json_record)
@@ -148,18 +152,18 @@ def calculate_articles_impact(from_date=None, until_date=None,
 
     if inspire_query:
         print("Calculating articles impact for Inspire query: {}".format(
-              inspire_query))
+            inspire_query))
     else:
         print("Calculating articles impact between: {} and {}".format(
-              from_date, until_date))
+            from_date, until_date))
 
     while True:
         if inspire_query:
             search_results = parse_inspire_records(step, inspire_query, jrec)
         else:
             search_results = es.search(index='records-record',
-                                   doc_type='record-v1.0.0',
-                                   body=get_query(count, step, from_date, until_date))
+                                       doc_type='record-v1.0.0',
+                                       body=get_query(count, step, from_date, until_date))
 
         for article in search_results['hits']['hits']:
             details = {
@@ -189,7 +193,8 @@ def calculate_articles_impact(from_date=None, until_date=None,
             country_ai = ArticlesImpact.get_or_create(
                 article['_source']['control_number'])
             country_ai.doi = article['_source']['dois'][0]['value']
-            country_ai.creation_date = article['_source'].get('record_creation_date', article['_source']['earliest_date'])
+            country_ai.creation_date = article['_source'].get('record_creation_date',
+                                                              article['_source']['earliest_date'])
             country_ai.journal = article['_source']['publication_info'][0]['journal_title']
             country_ai.details = details
             country_ai.results = result

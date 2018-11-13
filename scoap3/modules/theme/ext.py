@@ -1,5 +1,6 @@
 from .views import blueprint
 
+
 class SCOAP3Theme(object):
     """Invenio theme extension."""
 

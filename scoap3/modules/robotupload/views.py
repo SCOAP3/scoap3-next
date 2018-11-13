@@ -31,18 +31,19 @@ def handle_invalid_usage(error):
     response.status_code = error.status_code
     return response
 
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in config.ROBOTUPLOAD_ALLOWED_EXTENSIONS
 
+
 @blueprint.route('/robotupload', methods=['POST'])
 def robotupload():
     mode = None
-    nonce = None
-    callback_url = None
 
     if request.environ['REMOTE_ADDR'] not in config.ROBOTUPLOAD_ALLOWED_USERS:
-        raise InvalidUsage("Sorry, client IP %s cannot use the service." % request.environ['REMOTE_ADDR'], status_code=403)
+        raise InvalidUsage("Sorry, client IP %s cannot use the service." % request.environ['REMOTE_ADDR'],
+                           status_code=403)
     if 'file' not in request.files:
         raise InvalidUsage("Please specify file body to input.")
     file = request.files['file']
@@ -57,10 +58,6 @@ def robotupload():
     for key in request.form:
         if key == 'mode':
             mode = request.form[key]
-        if key == 'nonce':
-            nonce = request.form[key]
-        if key == 'callback_url':
-            callback_url = request.form[key]
 
     if not mode:
         raise InvalidUsage("Please specify upload mode to use.")
@@ -74,28 +71,30 @@ def robotupload():
     with open(os.path.join(UPLOAD_FOLDER, filename)) as newfile:
         try:
             obj = hep.do(create_record(newfile.read()))
-        except:
+        except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
             raise InvalidUsage("MARCXML is not valid.")
         obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
         del obj['self']
 
         # TODO - change this ugly mess
         tmp_allowed_journals = config.ROBOTUPLOAD_ALLOWED_USERS[request.environ['REMOTE_ADDR']]
-        if obj['metadata']['publication_info'][0]['journal_title'] not in tmp_allowed_journals or 'ALL' not in tmp_allowed_journals:
+        if obj['metadata']['publication_info'][0]['journal_title'] not in tmp_allowed_journals or\
+                'ALL' not in tmp_allowed_journals:
             raise InvalidUsage("Cannot submit such a file from this IP. (Wrong journal.)")
 
-        print(json.dumps(obj,ensure_ascii=False))
+        print(json.dumps(obj, ensure_ascii=False))
         json_filename = '.'.join([os.path.splitext(filename)[0], 'jl'])
         json_uri = os.path.join(UPLOAD_FOLDER, json_filename)
-        f = codecs.open(json_uri, 'w',"utf-8-sig")
-        f.write(json.dumps(obj,ensure_ascii=False))
+        f = codecs.open(json_uri, 'w', "utf-8-sig")
+        f.write(json.dumps(obj, ensure_ascii=False))
         f.close()
 
     celery = Celery()
     celery.conf.update(dict(
         BROKER_URL=os.environ.get("APP_BROKER_URL", "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:5672/scoap3"),
-        CELERY_RESULT_BACKEND=os.environ.get("APP_CELERY_RESULT_BACKEND", 'redis://:mypass@scoap3-cache1.cern.ch:6379/1'),
-        CELERY_ACCEPT_CONTENT=os.environ.get("CELERY_ACCEPT_CONTENT",['json']),
+        CELERY_RESULT_BACKEND=os.environ.get("APP_CELERY_RESULT_BACKEND",
+                                             'redis://:mypass@scoap3-cache1.cern.ch:6379/1'),
+        CELERY_ACCEPT_CONTENT=os.environ.get("CELERY_ACCEPT_CONTENT", ['json']),
         CELERY_TIMEZONE=os.environ.get("CELERY_TIMEZONE", 'Europe/Amsterdam'),
         CELERY_DISABLE_RATE_LIMITS=True,
         CELERY_TASK_SERIALIZER='json',
@@ -103,7 +102,7 @@ def robotupload():
     ))
     celery.send_task(
         API_ENDPOINT_DEFAULT,
-        kwargs={'results_data':obj}
+        kwargs={'results_data': obj}
     )
 
     return "OK"

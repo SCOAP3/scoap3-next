@@ -29,7 +29,7 @@ from dojson import utils
 from scoap3.utils.dedupers import dedupe_list
 
 from ..model import hep, hep2marc
-from ...utils import create_profile_url, get_recid_from_ref, get_record_ref
+from ...utils import create_profile_url, get_record_ref
 from ...utils.nations import find_nation
 
 
@@ -53,7 +53,7 @@ def authors(self, key, value):
         if value.get('x'):
             try:
                 person_recid = int(value.get('x'))
-            except:
+            except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
                 pass
         inspire_id = ''
         if value.get('i'):

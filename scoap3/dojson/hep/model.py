@@ -24,20 +24,18 @@
 
 from __future__ import absolute_import, division, print_function
 
-from dojson import Overdo
 from dojson.utils import force_list
 
 from ..schema import SchemaOverdo
 from ..utils import get_record_ref
 
-import warnings
 from collections import MutableMapping, MutableSequence
-from operator import itemgetter
 
 from dojson import Overdo
 from .compat import iteritems
 from dojson.errors import IgnoreKey, MissingRule
 from dojson.utils import GroupableOrderedDict
+
 
 class Underdo(Overdo):
     """Translation index specification for reverse marc21 translation."""
@@ -84,38 +82,38 @@ class Underdo(Overdo):
             if type(values) != list:
                 values = [values]
             for value in values:
-              try:
-                result = self.index.query(key)
-                if not result:
-                    raise MissingRule(key)
+                try:
+                    result = self.index.query(key)
+                    if not result:
+                        raise MissingRule(key)
 
-                name, creator = result
-                item = creator(output, key, value)
-                if isinstance(item, MutableMapping):
-                    field = '{0}{1}{2}'.format(
-                        name, item.pop('$ind1', '_'),
-                        item.pop('$ind2', '_'))
-                    if '__order__' in item:
-                        item = GroupableOrderedDict(item)
-                    output.append((field, item))
-                elif isinstance(item, MutableSequence):
-                    for v in item:
-                        try:
-                            field = '{0}{1}{2}'.format(
-                                name, v.pop('$ind1', '_'),
-                                v.pop('$ind2', '_'))
-                        except AttributeError:
-                            field = name
-                        output.append((field, v))
-                else:
-                    output.append((name, item))
-              except Exception as exc:
-                if exc.__class__ in handlers:
-                    handler = handlers[exc.__class__]
-                    if handler is not None:
-                        handler(exc, output, key, value)
-                else:
-                    raise
+                    name, creator = result
+                    item = creator(output, key, value)
+                    if isinstance(item, MutableMapping):
+                        field = '{0}{1}{2}'.format(
+                            name, item.pop('$ind1', '_'),
+                            item.pop('$ind2', '_'))
+                        if '__order__' in item:
+                            item = GroupableOrderedDict(item)
+                        output.append((field, item))
+                    elif isinstance(item, MutableSequence):
+                        for v in item:
+                            try:
+                                field = '{0}{1}{2}'.format(
+                                    name, v.pop('$ind1', '_'),
+                                    v.pop('$ind2', '_'))
+                            except AttributeError:
+                                field = name
+                            output.append((field, v))
+                    else:
+                        output.append((name, item))
+                except Exception as exc:
+                    if exc.__class__ in handlers:
+                        handler = handlers[exc.__class__]
+                        if handler is not None:
+                            handler(exc, output, key, value)
+                    else:
+                        raise
 
         return GroupableOrderedDict(output)
 
@@ -143,6 +141,7 @@ class Publication(SchemaOverdo):
         output = super(Publication, self).do(blob, **kwargs)
         add_book_info(output, blob)
         return output
+
 
 hep = Overdo(entry_point_group="scoap3.dojson.hep")
 hep2marc = Underdo(entry_point_group="scoap3.dojson.hep2marc")

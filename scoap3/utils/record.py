@@ -26,7 +26,7 @@ import re
 
 from flask import current_app
 
-SPLIT_KEY_PATTERN = re.compile('\.|\[')
+SPLIT_KEY_PATTERN = re.compile(r'\.|\[')
 
 
 def get_title(record):

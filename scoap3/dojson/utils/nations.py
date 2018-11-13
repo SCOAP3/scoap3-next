@@ -163,7 +163,7 @@ NATIONS_DEFAULT_MAP["Malaysia"] = "Malaysia"
 NATIONS_DEFAULT_MAP["Qatar"] = "Qatar"
 NATIONS_DEFAULT_MAP["Kyrgyz Republic"] = "Kyrgyz Republic"
 NATIONS_DEFAULT_MAP["Jordan"] = "Jordan"
-## cities #############
+# ######### cities #############
 NATIONS_DEFAULT_MAP['Belgrade'] = 'Serbia'
 NATIONS_DEFAULT_MAP['Istanbul'] = 'Turkey'
 NATIONS_DEFAULT_MAP['Ankara'] = 'Turkey'
@@ -177,7 +177,7 @@ def find_nation(affiliation):
     def _sublistExists(list1, list2):
         return ''.join(map(str, list2)) in ''.join(map(str, list1))
 
-    values = set([y.lower().strip() for y in re.findall(ur"[\w']+", affiliation.replace('.',''), re.UNICODE)])
+    values = set([y.lower().strip() for y in re.findall(ur"[\w']+", affiliation.replace('.', ''), re.UNICODE)])
     for key, val in NATIONS_DEFAULT_MAP.iteritems():
         key_parts = set(key.lower().decode('utf-8').split())
         if key_parts.issubset(values):

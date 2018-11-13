@@ -24,7 +24,6 @@
 
 from __future__ import absolute_import, division, print_function
 
-
 from dojson import utils
 
 from ..model import hep, hep2marc
@@ -77,6 +76,7 @@ def references(self, key, value):
     references = self.get('references', [])
     references.extend(get_value(v) for v in value)
     return references
+
 
 @hep2marc.over('999C5', 'references')
 @utils.for_each_value
@@ -137,7 +137,7 @@ def collections(record, key, value):
     """Parse custom MARC tag 980."""
     special = None
     deleted = None
-    if value.get('c') in ['EDITORIAL','ERRATUM', 'ADDENDUM', 'CORRIGENDUM', 'LETTER_TO_THE_EDITOR']:
+    if value.get('c') in ['EDITORIAL', 'ERRATUM', 'ADDENDUM', 'CORRIGENDUM', 'LETTER_TO_THE_EDITOR']:
         special = value.get('c')
     else:
         deleted = value.get('c')
@@ -148,7 +148,8 @@ def collections(record, key, value):
         'deleted': deleted,
     }
 
-## TODO - this needs to be updated to convert back 'special' collections to MARC
+
+# TODO - this needs to be updated to convert back 'special' collections to MARC
 @hep2marc.over('980', '^collections$')
 @utils.reverse_for_each_value
 @utils.filter_values

@@ -14,7 +14,7 @@ def __get_country_from_results(results):
 
 
 def get_country(text):
-    return __get_country(text) or __get_country(text.split(',')[-1]) or __get_country(' '.join(text.split(',')[-2:])) 
+    return __get_country(text) or __get_country(text.split(',')[-1]) or __get_country(' '.join(text.split(',')[-2:]))
 
 
 def __get_country(search_text):

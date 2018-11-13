@@ -20,22 +20,7 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 
-from .fields import (
-    bd01x09x,
-    bd1xx,
-    bd20x24x,
-    bd25x28x,
-    bd3xx,
-    bd4xx,
-    bd5xx,
-    bd6xx,
-    bd70x75x,
-    bd76x78x,
-    bd84188x,
-    bd90x99x,
-)
 
 from .model import hep, hep2marc
-from .receivers import *
 
-__all__ = ('hep', 'hep2marc')
+__all__ = ('hep', 'hep2marc', )

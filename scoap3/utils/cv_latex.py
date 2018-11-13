@@ -53,7 +53,7 @@ class Cv_latex(Export):
         """
         :raises: MissingRequiredFieldError
         """
-        out = '%\cite{' + self._get_citation_key() + '}\n'
+        out = '%\\cite{' + self._get_citation_key() + '}\n'
         out += r'\item%{' + self._get_citation_key() + '}\n'
         out += self._fetch_fields(req, opt) + '\n'
         return out
@@ -92,15 +92,15 @@ class Cv_latex(Export):
                         if 'collaboration' in self.record:
                             collaboration = self.record['collaboration'][0]['value']
                             if 'Collaboration' in collaboration:
-                                out += u' {\it et al.} [' + \
+                                out += u' {\\it et al.} [' + \
                                     collaboration + '].\n'
                             else:
-                                out += u' {\it et al.} [' + \
+                                out += u' {\\it et al.} [' + \
                                     collaboration + ' Collaboration].\n'
                     except IndexError:
                         pass
                 else:
-                    out += u' {\it et al.}.\n'
+                    out += u' {\\it et al.}.\n'
             else:
                 out += u'  \\\\{{}}{} and {}.\n'.format(
                     ', '.join(value[:-1]), value[-1]
@@ -123,7 +123,7 @@ class Cv_latex(Export):
         elif field == 'doi':
             out += u'    \\\\{{}}{}.\n'.format(value)
         elif field == 'url':
-            out += u' %\href{{{}}}{{HEP entry}}.\n'.format(value)
+            out += u' %\\href{{{}}}{{HEP entry}}.\n'.format(value)
         elif field == 'citation_count':
             out += u' %{}'.format(value)
         return out
@@ -279,7 +279,7 @@ class Cv_latex(Export):
                 return self._format_date(datestruct)  # FIX ME ADD 0 IN THE DAY
 
         if self.arxiv_field:
-            date = re.search('(\d+)',
+            date = re.search('(\\d+)',
                              self.arxiv_field['value']).groups()[0]
             if len(date) >= 4:
                 year = date[0:2]

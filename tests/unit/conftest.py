@@ -44,7 +44,8 @@ def app():
     """
     app = create_app(
         DEBUG=False,
-        # Tests may fail when turned on because of Flask bug (A setup function was called after the first request was handled. when initializing - when Alembic initialization)
+        # Tests may fail when turned on because of Flask bug (A setup function was called after the first request
+        # was handled. when initializing - when Alembic initialization)
         WTF_CSRF_ENABLED=False,
         CELERY_TASK_ALWAYS_EAGER=True,
         CELERY_RESULT_BACKEND='cache',

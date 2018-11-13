@@ -195,7 +195,7 @@ def convert_datestruct_to_dategui(datestruct, ln=None, output_format="d MMM Y, H
             return babel_format_datetime(dt, output_format)
         else:
             raise ValueError
-    except:
+    except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
         return _("N/A")
 
 

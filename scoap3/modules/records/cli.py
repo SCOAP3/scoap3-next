@@ -171,7 +171,7 @@ def utf8rec(data):
     if isinstance(data, basestring):
         try:
             return ''.join(chr(ord(c)) for c in data).decode('utf8')
-        except:
+        except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
             return data
 
     if isinstance(data, tuple) or isinstance(data, list):
@@ -251,23 +251,26 @@ def update_countries(dry_run, ids):
 
                         if new_country:
                             record['authors'][author_index]['affiliations'][aff_index]['country'] = new_country
-                            info('Changed country for record with id %s to %s' % (record['control_number'], new_country))
+                            info(
+                                'Changed country for record with id %s to %s' % (record['control_number'], new_country))
                         else:
-                            error('Could not find country for record with id %s (affiliation value: %s)' % (record['control_number'], old_value))
+                            error('Could not find country for record with id %s (affiliation value: %s)' % (
+                                record['control_number'], old_value))
             if not dry_run:
                 record.commit()
                 db.session.commit()
     except Exception as e:
         print(e)
 
-    info('In total %d countries needed to be updated and %d queries were made to determine the countries.' % (total_hits, cache_fails))
+    info('In total %d countries needed to be updated and %d queries were made to determine the countries.' % (
+        total_hits, cache_fails))
 
     if dry_run:
         error('NO CHANGES were committed to the database, because --dry-run flag was present.')
 
 
 def get_country_for_aff(x_aff):
-    ORGS = ('CERN', 'JINR', )
+    ORGS = ('CERN', 'JINR',)
 
     organizations = [c.childNodes[0].nodeValue for c in x_aff.getElementsByTagName('sa:organization')]
     common = set(organizations).intersection(ORGS)
@@ -296,12 +299,18 @@ def update_authors(record, authors, new_affs):
             updated += 1
             # TODO add new affiliations
 
-    assert(updated == len(authors))
+    assert (updated == len(authors))
+
 
 @fixdb.command()
 @with_appcontext
 def hotfix_country_mapping():
-    ids = (24958,22783,24213,23544,23575,20026,40533,19858,42820,42098,41691,42268,43140,12224,768,43275,23538,2142,24522,18606,22009,4879,24855,41724,40950,41119,41793,24332,23328,42942,23475,41849,24247,23326,40823,41896,24004,40261,23041,43021,43008,42671,41873,42327,40845,3952,42073,41850,)
+    ids = (
+        24958, 22783, 24213, 23544, 23575, 20026, 40533, 19858, 42820, 42098, 41691, 42268, 43140, 12224, 768, 43275,
+        23538,
+        2142, 24522, 18606, 22009, 4879, 24855, 41724, 40950, 41119, 41793, 24332, 23328, 42942, 23475, 41849, 24247,
+        23326,
+        40823, 41896, 24004, 40261, 23041, 43021, 43008, 42671, 41873, 42327, 40845, 3952, 42073, 41850,)
 
     def proc(record):
         """Fix country mappings..."""
@@ -319,11 +328,12 @@ def hotfix_country_mapping():
     process_all_records(proc, control_ids=ids)
     info('ALL DONE')
 
+
 @fixdb.command()
 @with_appcontext
 def hotfix_country_mapping_in_article_impacts():
     def proc(r):
-        for k,v in dict(r.results).iteritems():
+        for k, v in dict(r.results).iteritems():
             new_k = NATIONS_DEFAULT_MAP.get(k, k)
             if k != new_k:
                 info('%d: %s => %s' % (r.control_number, k, new_k))
@@ -334,11 +344,27 @@ def hotfix_country_mapping_in_article_impacts():
     process_all_articles_impact(proc)
     info('ALL DONE')
 
+
 @fixdb.command()
 @with_appcontext
 def hotfix_els_countries():
     """Hotfix for updating countries from xml"""
-    ids = (18758,19841,21407,21896,22903,24301,40311,23504,23866,23613,23661,23861,23725,24005,23867,15590,16071,15938,15943,15867,15931,16014,15940,15942,16196,15851,15817,15789,15790,15745,25282,25288,24955,25442,25376,25346,25277,40576,40629,40677,40680,40813,23974,24958,24932,40833,25272,25265,24434,25301,25303,25299,25261,24811,24810,24809,24860,24848,24815,24825,24571,40834,40766,40838,40900,40906,23424,23411,23237,23040,23195,23060,23221,23414,23081,23419,23130,23134,23211,23017,23451,23235,40240,40279,40288,40487,40435,25292,25426,25400,25399,25522,40392,40583,40575,40665,40245,40242,25309,40633,25467,25468,25471,40678,40291,40285,40343,25328,25445,40910,40911,40679,40540,40812,40839,40438,40728,40681,40884,40885,40858,40932,40901,40904,40928,40962,40963,41570,41572,41573,41585,41588,41594,41595,41598,41599,41601,41602,41605,41612,41613,41617,41618,41627,41628,41631,41637,41640,41641,41678,41692,41702,41740,41810,41837,41857,41944,41977,41979,42005,42049,42050,42099,42116,42155,42156,42174,42215,42221,42225,42259,42286,42300,42307,42308,42341,42344,42351,42385,42422,42424,42456,42458,42485,42505,43068,43070,43071,43072,43080,43082,43084,43089,43092,43093,43096,43098,43109,43110,43113,43114,43116,43118,43120,43121,43127,43129,43150,43154,43170,43171,43173,43174,43176,43200,43213,43224,43226,43227,43230,43237,43269,43288,43290,43303,43305,43314,)
+    ids = (
+        18758, 19841, 21407, 21896, 22903, 24301, 40311, 23504, 23866, 23613, 23661, 23861, 23725, 24005, 23867, 15590,
+        16071, 15938, 15943, 15867, 15931, 16014, 15940, 15942, 16196, 15851, 15817, 15789, 15790, 15745, 25282, 25288,
+        24955, 25442, 25376, 25346, 25277, 40576, 40629, 40677, 40680, 40813, 23974, 24958, 24932, 40833, 25272, 25265,
+        24434, 25301, 25303, 25299, 25261, 24811, 24810, 24809, 24860, 24848, 24815, 24825, 24571, 40834, 40766, 40838,
+        40900, 40906, 23424, 23411, 23237, 23040, 23195, 23060, 23221, 23414, 23081, 23419, 23130, 23134, 23211, 23017,
+        23451, 23235, 40240, 40279, 40288, 40487, 40435, 25292, 25426, 25400, 25399, 25522, 40392, 40583, 40575, 40665,
+        40245, 40242, 25309, 40633, 25467, 25468, 25471, 40678, 40291, 40285, 40343, 25328, 25445, 40910, 40911, 40679,
+        40540, 40812, 40839, 40438, 40728, 40681, 40884, 40885, 40858, 40932, 40901, 40904, 40928, 40962, 40963, 41570,
+        41572, 41573, 41585, 41588, 41594, 41595, 41598, 41599, 41601, 41602, 41605, 41612, 41613, 41617, 41618, 41627,
+        41628, 41631, 41637, 41640, 41641, 41678, 41692, 41702, 41740, 41810, 41837, 41857, 41944, 41977, 41979, 42005,
+        42049, 42050, 42099, 42116, 42155, 42156, 42174, 42215, 42221, 42225, 42259, 42286, 42300, 42307, 42308, 42341,
+        42344, 42351, 42385, 42422, 42424, 42456, 42458, 42485, 42505, 43068, 43070, 43071, 43072, 43080, 43082, 43084,
+        43089, 43092, 43093, 43096, 43098, 43109, 43110, 43113, 43114, 43116, 43118, 43120, 43121, 43127, 43129, 43150,
+        43154, 43170, 43171, 43173, 43174, 43176, 43200, 43213, 43224, 43226, 43227, 43230, 43237, 43269, 43288, 43290,
+        43303, 43305, 43314,)
 
     def proc(record):
         rinfo('start...', record)
@@ -382,7 +408,8 @@ def hotfix_els_countries():
 
                 # extract collaborations, find countries later
                 # FIXME we should always extract collaborations, but that would cause a lot more problems now.
-                authors = [{'full_name': c.getElementsByTagName('ce:text')[0].childNodes[0].nodeValue} for c in x_collaborations]
+                authors = [{'full_name': c.getElementsByTagName('ce:text')[0].childNodes[0].nodeValue} for c in
+                           x_collaborations]
                 if authors:
                     rinfo('Collaborations found: %s' % authors, record)
                     record.json['authors'] = authors
@@ -397,13 +424,14 @@ def hotfix_els_countries():
                 if aff_count == 0:
                     # Type 4: No affiliations in data.
                     new_affs = [
-                        {u'country':get_country_for_aff(a),
-                         u'value':a.getElementsByTagName('ce:textfn')[0].childNodes[0].nodeValue
+                        {u'country': get_country_for_aff(a),
+                         u'value': a.getElementsByTagName('ce:textfn')[0].childNodes[0].nodeValue
                          }
                         for a in x_affiliations]
                     if new_affs:
                         rinfo('New affiliations: %s' % new_affs, record)
-                        # FIXME modify this, if multiple author groups should be supported (not all authors should be updated)!!!
+                        # FIXME modify this, if multiple author groups should be supported
+                        # FIXME (not all authors should be updated)!!!
                         # update_authors(record, authors_in_group, new_affs)
                         for i, a in enumerate(record.json.get('authors')):
                             record.json['authors'][i]['affiliations'] = new_affs
@@ -474,7 +502,7 @@ def process_all_records(function, chuck_size=50, control_ids=(), *args):
         info('%s records processed.' % processed)
 
     # have we processed everything?
-    assert(processed == records_count)
+    assert (processed == records_count)
 
 
 def process_all_articles_impact(function, chuck_size=50, *args):
@@ -518,4 +546,4 @@ def process_all_articles_impact(function, chuck_size=50, *args):
         info('%s records processed.' % processed)
 
     # have we processed everything?
-    assert(processed == records_count)
+    assert (processed == records_count)

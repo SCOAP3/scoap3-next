@@ -12,6 +12,7 @@ from scoap3.modules.search.utils import Scoap3RecordsSearch, terms_filter_with_m
 def _(x):
     return x
 
+
 # Default language and timezone
 BABEL_DEFAULT_LANGUAGE = 'en'
 BABEL_DEFAULT_TIMEZONE = 'Europe/Zurich'
@@ -25,7 +26,7 @@ SERVER_NAME = 'localhost:5000'
 
 # WARNING: Do not share the secret key - especially do not commit it to
 # version control.
-SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUUsVFWThN5YmJ023XzKHOMcMZIEblxgyoMSkyP5rcnlBCQ4yJOCBsXxmn13RxcK7yQ7U996ey59zce1i47VoVTyk1wwOKJocafnyOk4HfcE3Xx2IxKQYk8EXWtPVlndmVZZuba9kivA73QfWB9uxumFd8wtMhLm6quRa8KB9eqywNyCwcz6DHGYQzRKKvtgo"
+SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUUsVFWThN5YmJ023XzKHOMcMZIEblxgyoMSkyP5rcnlBCQ4yJOCBsXxmn13RxcK7yQ7U996ey59zce1i47VoVTyk1wwOKJocafnyOk4HfcE3Xx2IxKQYk8EXWtPVlndmVZZuba9kivA73QfWB9uxumFd8wtMhLm6quRa8KB9eqywNyCwcz6DHGYQzRKKvtgo"  # noqa
 
 # Theme
 THEME_SITENAME = _("SCOAP3 Repository")
@@ -387,7 +388,7 @@ FRONTPAGE_ENDPOINT = "scoap3_frontpage.index"
 # Static file
 COLLECT_STORAGE = 'flask_collect.storage.link'
 
-## Workflows
+# Workflows
 WORKFLOWS_UI_URL = "/harvesting"
 WORKFLOWS_UI_API_URL = "/api/harvesting/"
 
@@ -523,8 +524,7 @@ OAISERVER_METADATA_FORMATS = {
     'marc21': {
         'namespace': 'http://www.loc.gov/MARC21/slim',
         'serializer': (
-                'scoap3.modules.records.oai_serializer:dumps_etree', {
-                'prefix': 'marc'}
+                'scoap3.modules.records.oai_serializer:dumps_etree', {'prefix': 'marc'}
         ),
         'schema': 'http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd'
     }
@@ -533,7 +533,7 @@ OAISERVER_METADATA_FORMATS = {
 # Invenio Logging config
 LOGGING_SENTRY_CLASS = "invenio_logging.sentry6.Sentry6"
 
-JSONSCHEMAS_HOST='localhost:5000'
+JSONSCHEMAS_HOST = 'localhost:5000'
 JSONSCHEMAS_REPLACE_REFS = True
 
 MAIL_DEFAULT_SENDER = 'repo.admin@scoap3.org'

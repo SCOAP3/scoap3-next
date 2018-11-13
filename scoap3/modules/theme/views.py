@@ -37,18 +37,22 @@ blueprint = Blueprint(
     static_folder='static',
 )
 
+
 @blueprint.route('/ping')
 def ping():
     return 'OK'
+
 
 @blueprint.app_template_filter()
 def is_list(value):
     """Checks if an object is a list."""
     return isinstance(value, list) or None
 
+
 @blueprint.app_template_filter()
 def format_author_name(name):
     return ' '.join(reversed(name.split(',')))
+
 
 @blueprint.app_template_filter()
 def tri_state_boolean_to_icon(input):
@@ -59,6 +63,7 @@ def tri_state_boolean_to_icon(input):
         -1: 'remove',
     }
     return Markup(template % classes.get(input))
+
 
 @blueprint.app_template_filter()
 def boolean_to_icon(input):

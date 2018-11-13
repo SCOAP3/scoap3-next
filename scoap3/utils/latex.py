@@ -53,7 +53,7 @@ class Latex(Export):
         """
         :raises: MissingRequiredFieldError
         """
-        out = '%\cite{' + self._get_citation_key() + '}\n'
+        out = r'%\cite{' + self._get_citation_key() + '}\n'
         out += r'\bibitem{' + self._get_citation_key() + '}\n'
         out += self._fetch_fields(req, opt) + '\n'
         return out
@@ -93,15 +93,15 @@ class Latex(Export):
                         collaboration = self.\
                             record['collaboration'][0]['value']
                         if 'Collaboration' in collaboration:
-                            out += u' {{\it et al.}} [' + collaboration +\
+                            out += u' {{\\it et al.}} [' + collaboration +\
                                 '],\n'
                         else:
-                            out += u' {{\it et al.}} [' + collaboration +\
+                            out += u' {{\\it et al.}} [' + collaboration +\
                                 ' Collaboration],\n'
                     except IndexError:
                         pass
                 else:
-                    out += u' {\it et al.},\n'
+                    out += u' {\\it et al.},\n'
             else:
                 out += u'  {} and {},\n'.format(', '.join(value[:-1]),
                                                 value[-1])
@@ -312,7 +312,7 @@ class Latex(Export):
                         coden = ','.join(
                             [record['coden'][0], volume, pages])
                         return coden
-                except:
+                except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
                     return ''
         else:
             return ''

@@ -25,7 +25,6 @@
 from invenio_records.signals import before_record_insert, before_record_update
 
 from scoap3.utils.date import create_earliest_date
-from scoap3.utils.dedupers import dedupe_list_of_dicts
 
 
 @before_record_insert.connect

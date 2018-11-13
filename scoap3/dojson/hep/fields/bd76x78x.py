@@ -35,6 +35,7 @@ from ...utils import get_recid_from_ref, get_record_ref
 @utils.filter_values
 def publication_info(self, key, value):
     """Publication info about record."""
+
     def get_int_value(val):
         if val:
             out = utils.force_list(val)[0]
@@ -51,7 +52,7 @@ def publication_info(self, key, value):
     conference_record = get_record_ref(conference_recid, 'conferences')
     journal_record = get_record_ref(journal_recid, 'journals')
 
-    #Conversion to fullname of journals
+    # Conversion to fullname of journals
     journal_title = value.get('p')
     if journal_title == "JHEP":
         journal_title = "Journal of High Energy Physics"

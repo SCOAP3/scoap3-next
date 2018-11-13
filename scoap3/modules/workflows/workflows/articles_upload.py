@@ -79,15 +79,16 @@ def add_arxiv_category(obj, eng):
 def add_nations(obj, eng):
     """Add nations extracted from affiliations"""
     for author_index, author in enumerate(obj.data.get('authors', [])):
-        for affiliation_index, affiliation in enumerate(author.get('affiliations',[])):
+        for affiliation_index, affiliation in enumerate(author.get('affiliations', [])):
             if 'country' not in affiliation:
-                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(affiliation['value'])
+                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(
+                    affiliation['value'])
                 # TODO if needed use google api and cache all results
 
 
 def is_record_in_db(obj, eng):
     """Checks if record is in database"""
-    return es.count(q='dois.value:"%s"' % (__get_first_doi(obj), ))['count'] > 0
+    return es.count(q='dois.value:"%s"' % (__get_first_doi(obj),))['count'] > 0
 
 
 def store_record(obj, eng):
@@ -115,7 +116,7 @@ def store_record(obj, eng):
         indexer.index_by_id(pid.object_uuid)
 
     except ValidationError as err:
-        eng.halt("Validation error: %s. Skipping..." % (err, ))
+        eng.halt("Validation error: %s. Skipping..." % (err,))
 
     except PIDAlreadyExists:
         eng.halt("Record with this id already in DB")
@@ -279,15 +280,15 @@ def add_oai_information(obj, eng):
 
 
 STORE_REC = [
-        IF_ELSE(
-            is_record_in_db,
-            [
-                update_record,
-            ],
-            [
-                store_record,
-            ]
-        ),
+    IF_ELSE(
+        is_record_in_db,
+        [
+            update_record,
+        ],
+        [
+            store_record,
+        ]
+    ),
 ]
 
 

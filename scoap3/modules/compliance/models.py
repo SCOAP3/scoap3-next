@@ -38,12 +38,12 @@ class Compliance(db.Model):
 
     results = db.Column(postgresql.JSONB(none_as_null=True),
                         nullable=False
-    )
+                        )
 
     history = db.Column(postgresql.JSONB(none_as_null=True),
                         nullable=False,
                         default=[]
-    )
+                        )
 
     @hybrid_property
     def accepted(self):
@@ -87,7 +87,7 @@ class Compliance(db.Model):
 
     @classmethod
     def get_or_create(cls, object_uuid):
-        c = Compliance.query.filter(Compliance.id_record==object_uuid).first()
+        c = Compliance.query.filter(Compliance.id_record == object_uuid).first()
         return c or cls()
 
     @classmethod
