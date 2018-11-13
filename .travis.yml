@@ -1,0 +1,32 @@
+language: python
+
+python:
+ - 2.7
+
+services: postgresql
+
+env:
+  global:
+      - PIP_USE_MIRRORS=true
+
+install:
+  - pip install -r requirements.txt
+  - pip install -e .
+  - bash scripts/clean_assets
+  - pip install flake8, radon
+  - pip freeze
+
+#before_script:
+#  - psql -c "CREATE DATABASE travisdb;" -U postgres
+
+script:
+  - sh travis.sh
+  - flake8 .
+
+after_success:
+  - echo "Code complexity scores:" && radon cc --min B .
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
