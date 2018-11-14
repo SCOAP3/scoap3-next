@@ -91,7 +91,8 @@
             "subtitle": "",
             "title": "Anisotropic non-gaussianity with noncommutative spacetime"
           }
-        ]
+        ],
+        "record_creation_date": "2014-01-08"
       },
       {
         "abstracts": [
@@ -145,6 +146,7 @@
             "value": "10.1016/j.physletb.2013.12.028"
           }
         ],
+        "record_creation_date": "2014-01-08",
         "imprints": [
           {
             "date": "2014-01-20",
@@ -304,7 +306,8 @@
             "subtitle": "",
             "title": "Supersymmetry at the LHC and the theory of R-parity"
           }
-        ]
+        ],
+        "record_creation_date": "2014-01-20"
       },
       {
         "abstracts": [
@@ -27470,7 +27473,8 @@
             "subtitle": "",
             "title": "Determination of the top-quark pole mass and strong coupling constant from the ttÂ¯ production cross section in pp collisions at s=7 TeV"
           }
-        ]
+        ],
+        "record_creation_date": "2014-01-20"
       },
       {
        "abstracts": [{"source": "Hindawi Publishing Corporation",
@@ -27479,6 +27483,7 @@
                                "method": "scoap3",
                                "source": "Hindawi Publishing Corporation",
                                "submission_number": "6554419e43d411e890c902163e01809a"},
+       "record_creation_date": "2014-01-20",
        "authors": [{"affiliations": [{"country": "Belgium",
                                         "value": "IFPA, AGO Department, University of Li\\xc3\\xa8ge, Sart Tilman, 4000 Li\\xc3\\xa8ge, Belgium"}],
                      "full_name": "Wallemacq, Quentin",
@@ -27577,9 +27582,9 @@
                               "year": 2018}],
        "titles": [{"source": "Springer",
                     "subtitle": "",
-                    "title": "Revealing timid pseudo-scalars with taus at the LHC"}]
-                    },
-
+                    "title": "Revealing timid pseudo-scalars with taus at the LHC"}],
+       "record_creation_date": "2018-09-06"
+    },
     {
       "abstracts": [
         {
@@ -28050,6 +28055,7 @@
           "value": "We consider the closed string moving in a weakly curved background and its totally T-dualized background. Using T-duality transformation laws, we find the structure of the Poisson brackets in the T-dual space corresponding to the fundamental Poisson brackets in the original theory. From this structure we see that the commutative original theory is equivalent to the non-commutative T-dual theory, whose Poisson brackets are proportional to the background fluxes times winding and momentum numbers. The non-commutative theory of the present article is more nongeometrical than T-folds and in the case of three space-time dimensions corresponds to the nongeometric space-time with &lt;math&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;/math&gt; -flux."
         }
       ],
+      "record_creation_date": "2014-01-28",
       "acquisition_source": {
         "date": "2014-01-28T00:00:00",
         "method": "scoap3",
@@ -28149,7 +28155,6 @@
           "year": 2014
         }
       ],
-      "record_creation_date": "2014-01-28",
       "titles": [
         {
           "source": "Springer/Societ30 Italiana di Fisica",

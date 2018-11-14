@@ -35,7 +35,7 @@ install_requires = [
     'invenio-pidstore>=1.0.0b1',
     'invenio-records==1.0.0b4',
     'invenio-records-rest==1.0.0b5',
-    'invenio-records-ui==1.0.0b1',
+    'invenio-records-ui==1.0.0b2',
     'invenio-search==1.0.0a11',
     'invenio-search-ui==1.0.1',
     'invenio-theme',

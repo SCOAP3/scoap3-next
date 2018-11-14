@@ -1,0 +1,12 @@
+import json
+
+from scoap3.modules.compliance.models import Compliance
+from scoap3.utils.record import create_from_json
+
+
+def test_article_upload():
+    with open('scoap3/data/scoap3demodata.json') as source:
+        records = json.loads(source.read())
+        create_from_json(records, apply_async=False)
+
+    assert(Compliance.query.count() == 1)
