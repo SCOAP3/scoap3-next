@@ -21,10 +21,16 @@
 # or submit itself to any jurisdiction.
 
 """Helpers for handling records."""
-
+import copy
 import re
+from uuid import uuid1
 
 from flask import current_app
+from inspire_crawler.models import CrawlerWorkflowObject
+from invenio_db import db
+from invenio_workflows import WorkflowEngine, workflow_object_class
+from invenio_workflows.tasks import start
+
 
 SPLIT_KEY_PATTERN = re.compile(r'\.|\[')
 
@@ -136,3 +142,48 @@ def get_arxiv_primary_category(record):
                     record.commit()
 
                 return record["report_numbers"][i]['primary_category']
+
+
+def create_from_json(records, apply_async=True):
+    current_app.logger.info('Loading dump...')
+
+    for i, record in enumerate(records['records']):
+        engine = WorkflowEngine.with_name("articles_upload")
+        engine.save()
+        obj = workflow_object_class.create(data=record)
+        obj.id_workflow = str(engine.uuid)
+        extra_data = {}
+        record_extra = record.pop('extra_data', {})
+        if record_extra:
+            extra_data['record_extra'] = record_extra
+
+        obj.extra_data['source_data'] = {
+            'data': copy.deepcopy(record),
+            'extra_data': copy.deepcopy(extra_data),
+        }
+        obj.extra_data.update(extra_data)
+
+        obj.data_type = current_app.config['CRAWLER_DATA_TYPE']
+        obj.save()
+        db.session.commit()
+
+        job_id = uuid1()
+
+        crawler_object = CrawlerWorkflowObject(
+            job_id=job_id, object_id=obj.id
+        )
+        db.session.add(crawler_object)
+        queue = current_app.config['CRAWLER_CELERY_QUEUE']
+
+        if apply_async:
+            start.apply_async(
+                kwargs={
+                    'workflow_name': "articles_upload",
+                    'object_id': obj.id,
+                },
+                queue=queue,
+            )
+        else:
+            start(workflow_name="articles_upload", object_id=obj.id)
+
+        current_app.logger.info('Parsed record {}.'.format(i))

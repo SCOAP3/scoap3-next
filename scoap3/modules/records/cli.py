@@ -4,12 +4,9 @@ import numbers
 from HTMLParser import HTMLParser
 
 import click
-import copy
 import json
 import sys
 
-from uuid import uuid1
-from flask import current_app
 from flask.cli import with_appcontext
 from invenio_db import db
 from invenio_files_rest.models import ObjectVersion
@@ -17,16 +14,13 @@ from invenio_pidstore.models import PersistentIdentifier
 from invenio_records import Record
 from invenio_records.models import RecordMetadata
 from invenio_search import current_search_client
-from invenio_workflows import WorkflowEngine
-from invenio_workflows.proxies import workflow_object_class
-from invenio_workflows.tasks import start
-from inspire_crawler.models import CrawlerWorkflowObject
 from sqlalchemy.orm.attributes import flag_modified
 from xml.dom.minidom import parse
 
 from scoap3.dojson.utils.nations import NATIONS_DEFAULT_MAP
 from scoap3.modules.analysis.models import ArticlesImpact
 from scoap3.utils.google_maps import get_country
+from scoap3.utils.record import create_from_json
 
 
 def info(msg):
@@ -57,47 +51,8 @@ def loadrecords():
 @with_appcontext
 def loadrecords(source):
     """Load records migration dump."""
-    info('Loading dump...')
-
     records = json.loads(source.read())
-
-    for i, record in enumerate(records['records']):
-        engine = WorkflowEngine.with_name("articles_upload")
-        engine.save()
-        obj = workflow_object_class.create(data=record)
-        obj.id_workflow = str(engine.uuid)
-        extra_data = {}
-        record_extra = record.pop('extra_data', {})
-        if record_extra:
-            extra_data['record_extra'] = record_extra
-
-        obj.extra_data['source_data'] = {
-            'data': copy.deepcopy(record),
-            'extra_data': copy.deepcopy(extra_data),
-        }
-        obj.extra_data.update(extra_data)
-
-        obj.data_type = current_app.config['CRAWLER_DATA_TYPE']
-        obj.save()
-        db.session.commit()
-
-        job_id = uuid1()
-
-        crawler_object = CrawlerWorkflowObject(
-            job_id=job_id, object_id=obj.id
-        )
-        db.session.add(crawler_object)
-        queue = current_app.config['CRAWLER_CELERY_QUEUE']
-
-        start.apply_async(
-            kwargs={
-                'workflow_name': "articles_upload",
-                'object_id': obj.id,
-            },
-            queue=queue,
-        )
-
-        info('Parsed record {}.'.format(i))
+    create_from_json(records)
 
 
 @click.group()
