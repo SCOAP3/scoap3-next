@@ -1,7 +1,7 @@
 import json
 
 from scoap3.modules.compliance.models import Compliance
-from scoap3.utils.record import create_from_json
+from scoap3.modules.records.util import create_from_json
 
 
 def test_article_upload():
