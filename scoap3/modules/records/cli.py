@@ -20,7 +20,7 @@ from xml.dom.minidom import parse
 from scoap3.dojson.utils.nations import NATIONS_DEFAULT_MAP
 from scoap3.modules.analysis.models import ArticlesImpact
 from scoap3.utils.google_maps import get_country
-from scoap3.utils.record import create_from_json
+from scoap3.modules.records.util import create_from_json
 
 
 def info(msg):

@@ -14,8 +14,8 @@ from pdfminer.pdfparser import PDFSyntaxError
 
 from scoap3.modules.compliance.models import Compliance
 from scoap3.utils.pdf import extract_text_from_pdf
-from scoap3.utils.record import (get_abbreviated_publisher, get_abbreviated_journal, get_arxiv_primary_category,
-                                 get_first_doi, get_first_arxiv)
+from scoap3.modules.records.util import (get_abbreviated_publisher, get_abbreviated_journal, get_arxiv_primary_category,
+                                         get_first_doi, get_first_arxiv)
 
 
 def __extract_article_text(record):
