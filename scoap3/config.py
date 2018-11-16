@@ -570,6 +570,15 @@ JOURNAL_ABBREVIATIONS = {
     'Progress of Theoretical and Experimental Physics': 'PTEP',
 }
 
+PARTNER_COUNTRIES = ["Australia", "Austria", "Belgium", "Canada", "China", "CERN",
+                     "Czech Republic", "Denmark", "Finland", "France", "Germany",
+                     "Greece", "Hong-Kong", "Hungary", "Iceland", "Israel",
+                     "Italy", "Japan", "JINR", "South Korea", "Mexico",
+                     "Netherlands", "Norway", "Poland", "Portugal",
+                     "Slovak Republic", "South Africa", "Spain", "Sweden",
+                     "Switzerland", "Taiwan", "Turkey", "United Kingdom",
+                     "United States"]
+
 API_UNAUTHENTICATED_PAGE_LIMIT = 10
 
 # GOOGLE API key. Value should come from secrets.

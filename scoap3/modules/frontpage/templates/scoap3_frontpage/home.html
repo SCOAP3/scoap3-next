@@ -54,11 +54,11 @@
             <div class="tab-pane active" id="1">
               <h3 class="text-left">Browse by journal:</h3>
               <ul class="list-unstyled">
-              {%- for collection in collections %}
+              {%- for journal in journals %}
                 <li>
-                  <a style="display:inline-block; width:350px;" href="{{ url_for('invenio_search_ui.search', q='_collections:"'+collection.name+'"') }}">
-                    {{ collection.name }}
-                    <span class="badge pull-right">{{ collection.count }}</span>
+                  <a style="display:inline-block; width:350px;" href="{{ url_for('invenio_search_ui.search', q=journal['query']) }}">
+                    {{ journal.title }}
+                    <span class="badge pull-right">{{ journal.count }}</span>
                   </a>
                 </li>
               {%- endfor %}

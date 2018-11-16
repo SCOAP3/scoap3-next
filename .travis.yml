@@ -11,7 +11,6 @@ env:
       - BASE_USER_GID=2000
 
 install:
-  - pip install -r requirements-test.txt
   - docker-compose -f docker-compose.deps.yml pull pip
   - docker-compose -f docker-compose.deps.yml run --rm pip
   - docker-compose -f docker-compose.yml pull

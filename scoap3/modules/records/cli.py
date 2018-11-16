@@ -9,7 +9,7 @@ import sys
 
 from flask.cli import with_appcontext
 from invenio_db import db
-from invenio_files_rest.models import ObjectVersion
+from invenio_files_rest.models import ObjectVersion, Location
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_records import Record
 from invenio_records.models import RecordMetadata
@@ -502,3 +502,14 @@ def process_all_articles_impact(function, chuck_size=50, *args):
 
     # have we processed everything?
     assert (processed == records_count)
+
+
+@fixdb.command()
+@with_appcontext
+def init_default_location():
+    loc = Location()
+    loc.name = 'default'
+    loc.default = True
+    loc.uri = '/virtualenv/files/'
+    db.session.add(loc)
+    db.session.commit()

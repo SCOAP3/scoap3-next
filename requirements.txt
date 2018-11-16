@@ -90,7 +90,6 @@ invenio-admin==1.0.0b4
 invenio-assets==1.0.0
 invenio-base==1.0.0b1
 invenio-celery==1.0.0b2
-invenio-collections==1.0.0a4
 invenio-config==1.0.0b3
 invenio-db==1.0.0b9
 invenio-files-rest==1.0.0a17

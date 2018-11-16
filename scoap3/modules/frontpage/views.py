@@ -21,9 +21,8 @@
 
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, current_app
 from invenio_search.api import current_search_client
-from invenio_collections.models import Collection
 
 blueprint = Blueprint(
     'scoap3_home',
@@ -38,9 +37,6 @@ def index():
     """SCOAP3 home page."""
 
     count = current_search_client.count(index='records-record')
-    collections = Collection.query.filter(Collection.level == 2, Collection.parent_id == 1).all()
-    for collection in collections:
-        collection.count = current_search_client.count(q='_collections:"%s"' % (collection.name,))['count']
 
     # # TODO show only for administrators
     # publishers = [{'name':'Elsevier'},
@@ -54,16 +50,7 @@ def index():
     #               {'name':'Oxford University Press/Physical Society of Japan'}]
     # for publisher in publishers:
     #     publisher['count'] = current_search_client.count(q=u'imprints.publisher:"{0}"'.format(publisher['name']))['count']
-    # TODO Move to configuration
-    countries = ["Australia", "Austria", "Belgium", "Canada", "China", "CERN",
-                 "Czech Republic", "Denmark", "Finland", "France", "Germany",
-                 "Greece", "Hong-Kong", "Hungary", "Iceland", "Israel",
-                 "Italy", "Japan", "JINR", "South Korea", "Mexico",
-                 "Netherlands", "Norway", "Poland", "Portugal",
-                 "Slovak Republic", "South Africa", "Spain", "Sweden",
-                 "Switzerland", "Taiwan", "Turkey", "United Kingdom",
-                 "United States"]
-    countries = {country: {'search_names': [country]} for country in countries}
+    countries = {country: {'search_names': [country]} for country in current_app.config['PARTNER_COUNTRIES']}
     countries['Hong-Kong']['search_names'] = ['Hong Kong']
     countries['Slovak Republic']['search_names'] = ['Slovakia']
     countries['United Kingdom']['search_names'] = ['UK']
@@ -87,10 +74,20 @@ def index():
         countries[country]['query'] = query
         countries[country]['count'] = current_search_client.count(q=query)['count']
 
+    journals = []
+    for journal in current_app.config['JOURNAL_ABBREVIATIONS'].keys():
+        query = 'publication_info.journal_title:"%s"' % journal
+        journals.append({
+            'query': query,
+            'count': current_search_client.count(q=query)['count'],
+            'title': journal
+        })
+    journals = sorted(journals, key=lambda x: x['title'])
+
     return render_template(
         'scoap3_frontpage/home.html',
         title='SCOAP3 Repository',
         articles_count=count['count'],
-        collections=sorted(collections, key=lambda x: x.name),
+        journals=journals,
         countries=countries
     )
