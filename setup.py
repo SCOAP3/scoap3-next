@@ -69,12 +69,9 @@ setup(
             'scoap3_compliance = scoap3.modules.compliance.admin:compliance_adminview',
         ],
         'invenio_base.apps': [
-            'scoap3_records = scoap3.modules.records:Scoap3Records',
+            'scoap3 = scoap3:Scoap3',
             'scoap3_workflows = scoap3.modules.workflows:SCOAP3Workflows',
             'scoap3_robotupload = scoap3.modules.robotupload:SCOAP3Robotupload',
-        ],
-        'invenio_base.api_apps': [
-            'scoap3_records = scoap3.modules.records:Scoap3Records',
         ],
         'invenio_base.api_blueprints': [
             'scoap3_oauth2server = scoap3.modules.oauth2server.views:blueprint',
