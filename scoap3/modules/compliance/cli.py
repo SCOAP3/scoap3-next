@@ -24,8 +24,8 @@ import click
 
 from flask.cli import with_appcontext
 
-from scoap3.modules.records.cli import process_all_records
 from scoap3.modules.workflows.utils import start_compliance_workflow
+from scoap3.utils.processor import process_all_records
 
 
 def info(msg):
