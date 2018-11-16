@@ -16,7 +16,7 @@ install:
   - docker-compose -f docker-compose.yml pull
 
 script:
-  - docker-compose -f docker-compose.yml run --rm travis
+  - docker-compose -f docker-compose.yml -f docker-compose.test.yml run --rm travis
 
 notifications:
   email:
