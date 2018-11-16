@@ -30,7 +30,7 @@ from scoap3.utils.dedupers import dedupe_list
 
 from ..model import hep, hep2marc
 from ...utils import create_profile_url, get_record_ref
-from ...utils.nations import find_nation
+from ...utils.nations import find_country
 
 
 @hep.over('authors', '^[17]00[103_].')
@@ -45,7 +45,7 @@ def authors(self, key, value):
 
             tmp_affiliations = []
             for aff in affiliations:
-                country = find_nation(aff)
+                country = find_country(aff)
                 tmp_affiliations.append({'value': aff, 'country': country})
             affiliations = tmp_affiliations
 

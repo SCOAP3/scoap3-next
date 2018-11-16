@@ -1,20 +1,34 @@
 import requests
 from flask import current_app
+from invenio_db import db
+from sqlalchemy import func
+from sqlalchemy.orm.exc import NoResultFound
 
-from scoap3.dojson.utils.nations import NATIONS_DEFAULT_MAP
-
-
-def __get_country_from_results(results):
-    if 'results' in results:
-        for address_component in results['results'][0]['address_components']:
-            if 'country' in address_component['types']:
-                return address_component['long_name']
-
-    return None
+from scoap3.config import COUNTRIES_DEFAULT_MAPPING
+from scoap3.modules.analysis.models import CountryCache
 
 
 def get_country(text):
-    return __get_country(text) or __get_country(text.split(',')[-1]) or __get_country(' '.join(text.split(',')[-2:]))
+    """
+    Tries to get find the country for the given text. It can use multiple Google API calls to decide.
+    If the query was successful we store the result in the cache.
+    Returns None if can't determine.
+    """
+
+    try:
+        return CountryCache.query.filter(func.lower(CountryCache.key) == text.lower()).one().country
+    except NoResultFound:
+        # try with different subsets of the affiliation if we can't find a match at first
+        country = __get_country(text) or __get_country(text.split(',')[-1]) or __get_country(' '.join(text.split(',')[-2:]))
+
+    if country:
+        cc = CountryCache()
+        cc.key = text
+        cc.country = country
+        db.session.add(cc)
+        db.session.commit()
+
+    return country
 
 
 def __get_country(search_text):
@@ -33,7 +47,16 @@ def __get_country(search_text):
     if 'status' in req:
         if req['status'].lower() == 'ok':
             country = __get_country_from_results(req)
-            NATIONS_DEFAULT_MAP.get(country, country)
+            COUNTRIES_DEFAULT_MAPPING.get(country, country)
             return country
+
+    return None
+
+
+def __get_country_from_results(results):
+    if 'results' in results:
+        for address_component in results['results'][0]['address_components']:
+            if 'country' in address_component['types']:
+                return address_component['long_name']
 
     return None

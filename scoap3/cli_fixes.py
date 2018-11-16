@@ -11,7 +11,7 @@ from invenio_search import current_search_client
 from sqlalchemy.orm.attributes import flag_modified
 from xml.dom.minidom import parse
 
-from scoap3.dojson.utils.nations import NATIONS_DEFAULT_MAP
+from scoap3.config import COUNTRIES_DEFAULT_MAPPING
 from scoap3.utils.click_logging import rerror, error, info, rinfo
 from scoap3.utils.google_maps import get_country
 from scoap3.utils.processor import process_all_records, process_all_articles_impact
@@ -236,7 +236,7 @@ def hotfix_country_mapping():
             for i, a in enumerate(record.json['authors']):
                 for i2, aff in enumerate(a.get('affiliations', ())):
                     c = aff['country']
-                    new_c = NATIONS_DEFAULT_MAP.get(c, c)
+                    new_c = COUNTRIES_DEFAULT_MAPPING.get(c, c)
                     if c != new_c:
                         rinfo('%s -> %s' % (c, new_c), record)
                         record.json['authors'][i]['affiliations'][i2]['country'] = new_c
@@ -251,7 +251,7 @@ def hotfix_country_mapping():
 def hotfix_country_mapping_in_article_impacts():
     def proc(r):
         for k, v in dict(r.results).iteritems():
-            new_k = NATIONS_DEFAULT_MAP.get(k, k)
+            new_k = COUNTRIES_DEFAULT_MAPPING.get(k, k)
             if k != new_k:
                 info('%d: %s => %s' % (r.control_number, k, new_k))
                 r.results[new_k] = v

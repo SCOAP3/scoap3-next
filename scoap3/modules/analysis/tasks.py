@@ -28,11 +28,9 @@ import xml.etree.ElementTree as ET
 from celery import shared_task
 from invenio_db import db
 from invenio_search.api import current_search_client as es
-from scoap3.dojson.utils.nations import find_nation
+from scoap3.dojson.utils.nations import find_country
 from scoap3.modules.analysis.models import ArticlesImpact, Gdp
 from sqlalchemy.orm.attributes import flag_modified
-
-from scoap3.utils.google_maps import get_country
 
 inspire_namespace = {'a': 'http://www.loc.gov/MARC21/slim'}
 es_result_mock = {
@@ -113,9 +111,7 @@ def parse_inspire_records(size, query, jrec=1):
             affs = author.findall('./a:subfield[@code="v"]',
                                   inspire_namespace)
             for aff in affs:
-                country = find_nation(aff.text.encode('utf-8'))
-                if country == 'HUMAN CHECK':
-                    country = get_country(aff.text.encode('utf-8'))
+                country = find_country(aff.text.encode('utf-8'))
                 json_aff = {
                     'value': aff.text.encode('utf-8'),
                     'country': country
