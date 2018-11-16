@@ -76,3 +76,10 @@ class ArticlesImpact(db.Model):
         c = ArticlesImpact.query.filter(
             ArticlesImpact.control_number == recid).first()
         return c or cls(control_number=recid)
+
+
+class CountryCache(db.Model):
+    __tablename__ = 'country_cache'
+
+    key = db.Column(db.String(1000), primary_key=True)
+    country = db.Column(db.String(200))

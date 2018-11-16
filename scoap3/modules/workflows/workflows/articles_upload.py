@@ -41,7 +41,7 @@ from invenio_search import current_search_client as es
 
 from jsonschema.exceptions import ValidationError
 
-from scoap3.dojson.utils.nations import find_nation
+from scoap3.dojson.utils.nations import find_country
 from scoap3.modules.compliance.compliance import check_compliance
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from scoap3.utils.arxiv import get_arxiv_categories, get_arxiv_primary_category
@@ -81,9 +81,8 @@ def add_nations(obj, eng):
     for author_index, author in enumerate(obj.data.get('authors', [])):
         for affiliation_index, affiliation in enumerate(author.get('affiliations', [])):
             if 'country' not in affiliation:
-                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_nation(
+                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_country(
                     affiliation['value'])
-                # TODO if needed use google api and cache all results
 
 
 def is_record_in_db(obj, eng):
