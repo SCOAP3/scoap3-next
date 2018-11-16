@@ -53,6 +53,7 @@ css = NpmBundle(
 )
 
 js = NpmBundle(
+    'js/scoap3.js',
     filters='jsmin',
     output="gen/scoap3.%(version)s.js",
     npm={
