@@ -32,6 +32,7 @@ from flask import url_for, current_app
 from invenio_db import db
 from invenio_files_rest.models import Bucket
 from invenio_indexer.api import RecordIndexer
+from invenio_mail.api import TemplatedMessage
 from invenio_oaiserver.minters import oaiid_minter
 from invenio_pidstore.errors import PIDAlreadyExists
 from invenio_pidstore.models import PersistentIdentifier
@@ -51,6 +52,25 @@ from workflow.patterns.controlflow import IF_ELSE
 
 def __get_first_doi(obj):
     return obj.data['dois'][0]['value']
+
+
+def __halt_and_notify(msg, obj, eng):
+    eng.halt(msg)
+
+    ctx = {
+        'doi': __get_first_doi(obj),
+        'reason': msg,
+        'url': url_for('workflow.details_view', id=eng.current_object.workflow.uuid, _external=True)
+    }
+
+    msg = TemplatedMessage(
+        template_html='scoap3_workflows/emails/halted_article_upload.html',
+        subject='SCOAP3 - Artcile upload',
+        sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
+        recipients=current_app.config.get('ADMIN_DEFAULT_EMAILS'),
+        ctx=ctx
+    )
+    current_app.extensions['mail'].send(msg)
 
 
 def set_schema(obj, eng):
@@ -78,8 +98,14 @@ def add_arxiv_category(obj, eng):
 
 def add_nations(obj, eng):
     """Add nations extracted from affiliations"""
-    for author_index, author in enumerate(obj.data.get('authors', [])):
-        for affiliation_index, affiliation in enumerate(author.get('affiliations', [])):
+    if 'authors' not in obj.data:
+        __halt_and_notify('No authors for article.', obj, eng)
+
+    for author_index, author in enumerate(obj.data['authors']):
+        if 'affiliations' not in author:
+            __halt_and_notify('No affiliations for author: %s.' % author, obj, eng)
+
+        for affiliation_index, affiliation in enumerate(author['affiliations']):
             if 'country' not in affiliation:
                 obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_country(
                     affiliation['value'])
@@ -115,10 +141,10 @@ def store_record(obj, eng):
         indexer.index_by_id(pid.object_uuid)
 
     except ValidationError as err:
-        eng.halt("Validation error: %s. Skipping..." % (err,))
+        __halt_and_notify("Validation error: %s. Skipping..." % (err,), obj, eng)
 
     except PIDAlreadyExists:
-        eng.halt("Record with this id already in DB")
+        __halt_and_notify("Record with this id already in DB", obj, eng)
         # updating deleted record
         # pid = PersistentIdentifier.get('recid', record['control_number'])
         # pid.assign('rec', record.id, overwrite=True)
@@ -237,6 +263,8 @@ def attach_files(obj, eng):
         obj.save()
         existing_record.commit()
         db.session.commit()
+    else:
+        __halt_and_notify('No files found.', obj, eng)
 
 
 def _get_oai_sets(record):
