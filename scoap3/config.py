@@ -540,6 +540,7 @@ JSONSCHEMAS_HOST = 'localhost:5000'
 JSONSCHEMAS_REPLACE_REFS = True
 
 MAIL_DEFAULT_SENDER = 'repo.admin@scoap3.org'
+ADMIN_DEFAULT_EMAILS = ['repo.admin@scoap3.org', ]
 COMPLIANCE_EMAILS = ['scoap3-compliance-mailing@cern.ch', ]
 CROSSREF_API_URL = 'https://api.crossref.org/works/%s'
 

@@ -17,7 +17,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import FilterEqual
 from flask_admin.model.template import macro
 from invenio_db import db
-from invenio_workflows import restart
+from invenio_workflows import restart, resume
 from invenio_workflows.models import WorkflowObjectModel, ObjectStatus, Workflow
 from markupsafe import Markup
 from sqlalchemy import func
@@ -73,6 +73,22 @@ class WorkflowView(ModelView):
     column_auto_select_related = True
     column_details_list = column_list + ('message', 'error_msg', 'data', )
     column_details_exclude_list = ('info', )
+
+    @action('resume', 'Resume', 'Are you sure?')
+    def action_resume(self, ids):
+        objects = Workflow.query.filter(Workflow.uuid.in_(ids)).all()
+
+        if len(objects) != len(ids):
+            raise ValueError("Invalid id for workflow(s).")
+
+        try:
+            for workflow in objects:
+                for workflow_object in workflow.objects:
+                    resume.apply_async((workflow_object.id,))
+
+            flash("Selected workflow(s) resumed.", "success")
+        except Exception as e:
+            flash("Failed to resume all selected workflows. Reason: %s" % e.message, "error")
 
     @action('restart', 'Restart', 'Are you sure?')
     def action_restart(self, ids):
