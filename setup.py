@@ -124,6 +124,7 @@ setup(
         'invenio_celery.tasks': [
             'robotupload = scoap3.modules.robotupload.tasks',
             'analysis = scoap3.modules.analysis.tasks'
+            'workflows = scoap3.modules.workflows.tasks'
         ],
         'invenio_oauth2server.scopes': [
             'harvesting_read = scoap3.modules.oauth2server.scopes:harvesting_read',
