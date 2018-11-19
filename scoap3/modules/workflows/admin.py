@@ -31,6 +31,21 @@ class FilterStatus(FilterEqual):
         return [(k, v) for k, v in ObjectStatus.labels.iteritems()]
 
 
+def data_formatter(v, c, m, p):
+    data = '\n'.join([json.dumps(obj.data, indent=2, sort_keys=True) for obj in m.objects])
+    return Markup("<pre>%s</pre>" % data)
+
+
+def error_msg_formatter(v, c, m, p):
+    data = '\n'.join([obj.extra_data.get('_error_msg', '') for obj in m.objects])
+    return Markup("<pre>%s</pre>" % data)
+
+
+def msg_formatter(v, c, m, p):
+    data = '\n'.join([obj.extra_data.get('_message', '') for obj in m.objects])
+    return Markup("<pre>%s</pre>" % data)
+
+
 class WorkflowView(ModelView):
     """View for managing Compliance results."""
 
@@ -40,39 +55,31 @@ class WorkflowView(ModelView):
     can_view_details = True
     column_default_sort = ('created', True)
 
-    column_list = ('created', 'modified', 'status', 'workflow.name', 'info')
+    column_list = ('created', 'modified', 'status', 'name', 'info')
     column_labels = {'workflow.name': 'Workflow name'}
     column_sortable_list = ()
     column_filters = (
         'created',
         'modified',
-        'workflow.name',
-        FilterStatus(column=WorkflowObjectModel.status, name='Status')
+        'name',
+        FilterStatus(column=Workflow.status, name='Status')
     )
     column_formatters = {
         'info': macro('render_info'),
-        'data': lambda v, c, m, p: Markup("<pre>{0}</pre>".format(
-            json.dumps(m.data, indent=2, sort_keys=True))),
-        'error_msg': lambda v, c, m, p: Markup("<pre>{0}</pre>".format(
-            m.extra_data.get('_error_msg', ''))),
+        'data': data_formatter,
+        'error_msg': error_msg_formatter,
+        'message': msg_formatter,
     }
     column_auto_select_related = True
-    column_details_list = column_list + ('error_msg', 'data', )
+    column_details_list = column_list + ('message', 'error_msg', 'data', )
     column_details_exclude_list = ('info', )
-
-    def action_base(self, ids, action):
-        objects = WorkflowObjectModel.query.filter(WorkflowObjectModel.id.in_(ids)).all()
-
-        if len(objects) != len(ids):
-            raise ValueError("Invalid id for workflow(s).")
-
-        for workflow in objects:
-            action.apply_async((str(workflow.workflow.uuid),))
 
     @action('restart', 'Restart', 'Are you sure?')
     def action_restart(self, ids):
         try:
-            self.action_base(ids, restart)
+            for id in ids:
+                restart.apply_async((id,))
+
             flash("Selected workflow(s) restarted.", "success")
         except Exception as e:
             flash("Failed to restart all selected workflows. Reason: %s" % e.message, "error")
@@ -93,9 +100,9 @@ class WorkflowsOverview(BaseView):
         date_from = datetime.now() - timedelta(hours=last_n_hour, days=last_n_days)
 
         by_status = db.session\
-            .query(WorkflowObjectModel.status, func.count(WorkflowObjectModel.status))\
-            .group_by(WorkflowObjectModel.status)\
-            .filter(WorkflowObjectModel.created >= date_from).all()
+            .query(Workflow.status, func.count(Workflow.status))\
+            .group_by(Workflow.status)\
+            .filter(Workflow.created >= date_from).all()
         by_status = map(lambda x: (x[0].name, x[1]), by_status)
 
         by_name = db.session \
@@ -115,7 +122,7 @@ class WorkflowsOverview(BaseView):
 
 
 workflows = {
-    'model': WorkflowObjectModel,
+    'model': Workflow,
     'modelview': WorkflowView,
     'category': 'Workflows',
     'name': 'Workflows',
