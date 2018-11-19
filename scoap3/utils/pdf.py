@@ -5,6 +5,10 @@ from pdfminer.pdfpage import PDFPage
 from io import BytesIO
 
 
+def _sanitize(text):
+    return text.replace('\0000', '')
+
+
 def extract_text_from_pdf(pdf_path):
     rsrcmgr = PDFResourceManager()
     codec = 'utf-8'
@@ -22,4 +26,4 @@ def extract_text_from_pdf(pdf_path):
         text = retstr.getvalue()
         device.close()
 
-    return text
+    return _sanitize(text)
