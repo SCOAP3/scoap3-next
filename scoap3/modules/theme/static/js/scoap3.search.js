@@ -36,7 +36,7 @@ $(document).ready(function() {
             }
 
             // Some values should be uppercase.
-            if (['cern', 'uk', 'usa'].includes(value))
+            if (['cern', 'uk', 'usa', 'kek', 'slack', 'jinr'].includes(value.toLowerCase()))
                 return value.toUpperCase()
 
             // Change first letter of words to uppercase, except: and, of
