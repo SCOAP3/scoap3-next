@@ -10,7 +10,7 @@ from scoap3.modules.analysis.models import CountryCache
 
 def get_country(text):
     """
-    Tries to get find the country for the given text. It can use multiple Google API calls to decide.
+    Tries to find the country for the given text. It can use multiple Google API calls to decide.
     If the query was successful we store the result in the cache.
     Returns None if can't determine.
     """

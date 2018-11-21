@@ -129,12 +129,11 @@ def utf8(ids):
               help='If set to True no changes will be committed to the database.')
 @click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'")
 @with_appcontext
-def update_countries(dry_run, ids):
+def update_countries(dry_run, ids, country="HUMAN CHECK"):
     """
-    Updates countries for articles, that are marked as 'HUMAN CHECK'. Countries are determined with the google maps api.
+    Updates countries for articles, that are marked as given parameter. Countries are determined with the google maps api.
     """
 
-    COUNTRY = "HUMAN CHECK"
     country_cache = {}
     cache_fails = 0
     total_hits = 0
@@ -144,9 +143,9 @@ def update_countries(dry_run, ids):
         ids = ids.split(',')
     else:
         search_result = current_search_client.search('records-record', 'record-v1.0.0',
-                                                     {'size': 10000, 'query': {'term': {'country': COUNTRY}}})
+                                                     {'size': 10000, 'query': {'term': {'country': country}}})
         ids = [hit['_source']['control_number'] for hit in search_result['hits']['hits']]
-        info('Found %d records having %s as a country of one of the authors.' % (len(ids), COUNTRY))
+        info('Found %d records having %s as a country of one of the authors.' % (len(ids), country))
 
     uuids = [PersistentIdentifier.get('recid', recid).object_uuid for recid in ids]
     records = Record.get_records(uuids)
@@ -155,7 +154,7 @@ def update_countries(dry_run, ids):
         for record in records:
             for author_index, author_data in enumerate(record['authors']):
                 for aff_index, aff_data in enumerate(author_data['affiliations']):
-                    if aff_data['country'] == COUNTRY:
+                    if aff_data['country'] == country:
                         total_hits += 1
 
                         # cache countries based on old affiliation value to decrease api requests
@@ -187,6 +186,7 @@ def update_countries(dry_run, ids):
 
 
 def get_country_for_aff(x_aff):
+    # In XML could have other representations for certain organizations?
     ORGS = ('CERN', 'JINR',)
 
     organizations = [c.childNodes[0].nodeValue for c in x_aff.getElementsByTagName('sa:organization')]
@@ -224,10 +224,8 @@ def update_authors(record, authors, new_affs):
 def hotfix_country_mapping():
     ids = (
         24958, 22783, 24213, 23544, 23575, 20026, 40533, 19858, 42820, 42098, 41691, 42268, 43140, 12224, 768, 43275,
-        23538,
-        2142, 24522, 18606, 22009, 4879, 24855, 41724, 40950, 41119, 41793, 24332, 23328, 42942, 23475, 41849, 24247,
-        23326,
-        40823, 41896, 24004, 40261, 23041, 43021, 43008, 42671, 41873, 42327, 40845, 3952, 42073, 41850,)
+        23538, 2142, 24522, 18606, 22009, 4879, 24855, 41724, 40950, 41119, 41793, 24332, 23328, 42942, 23475, 41849,
+        24247, 23326, 40823, 41896, 24004, 40261, 23041, 43021, 43008, 42671, 41873, 42327, 40845, 3952, 42073, 41850,)
 
     def proc(record):
         """Fix country mappings..."""
