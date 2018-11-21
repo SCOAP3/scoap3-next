@@ -9,7 +9,7 @@ def test_countries():
         ('CMS CERN Switzerland', 'CERN'),
         ('ETH Switzerland', 'Switzerland'),
         ('CMS CERN KEK', 'CERN'),
-        ('KEK Japan', 'KEK'),
+        ('KEK Japan', 'Japan'),
         ('Hungary University of Magic and Witchcraft', 'Hungary'),
         ('Rome', 'Italy'),
         ('Ankara', 'Turkey'),
