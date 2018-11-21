@@ -56,7 +56,7 @@
               <ul class="list-unstyled">
               {%- for journal in journals %}
                 <li>
-                  <a style="display:inline-block; width:350px;" href="{{ url_for('invenio_search_ui.search', q=journal['query']) }}">
+                  <a style="display:inline-block; width:350px;" href="{{ url_for('invenio_search_ui.search', journal=journal['title']) }}">
                     {{ journal.title }}
                     <span class="badge pull-right">{{ journal.count }}</span>
                   </a>
