@@ -758,3 +758,4 @@ GOOGLE_API_KEY = ''
 ACCOUNTS_SETTINGS_TEMPLATE = 'scoap3_accounts/settings.html'
 
 ARXIV_HEP_CATEGORIES = {"hep-ex", "hep-lat", "hep-ph", "hep-th"}
+DELETE_WORKFLOWS_OLDER_THEN_DAYS = 183
