@@ -78,7 +78,6 @@ def index():
     for journal in current_app.config['JOURNAL_ABBREVIATIONS'].keys():
         query = 'publication_info.journal_title:"%s"' % journal
         journals.append({
-            'query': query,
             'count': current_search_client.count(q=query)['count'],
             'title': journal
         })
