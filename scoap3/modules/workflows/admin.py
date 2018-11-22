@@ -21,6 +21,7 @@ from invenio_workflows import restart, resume
 from invenio_workflows.models import WorkflowObjectModel, ObjectStatus, Workflow
 from markupsafe import Markup
 from sqlalchemy import func
+from workflow.engine_db import WorkflowStatus
 
 
 class FilterStatus(FilterEqual):
@@ -104,7 +105,7 @@ class WorkflowView(ModelView):
 
 
 class WorkflowsOverview(BaseView):
-    def get_context_data(self):
+    def _get_date_from(self):
         last_n_hour = 24
         last_n_days = 0
         try:
@@ -113,7 +114,10 @@ class WorkflowsOverview(BaseView):
         except ValueError:
             flash('Failed to convert time filters, falling back to default.', 'warning')
 
-        date_from = datetime.now() - timedelta(hours=last_n_hour, days=last_n_days)
+        return datetime.now() - timedelta(hours=last_n_hour, days=last_n_days)
+
+    def get_context_data(self):
+        date_from = self._get_date_from()
 
         by_status = db.session\
             .query(Workflow.status, func.count(Workflow.status))\
@@ -132,9 +136,22 @@ class WorkflowsOverview(BaseView):
             'date_from': date_from
         }
 
-    @expose('/')
+    @expose('/', methods=('GET', ))
     def index(self):
         return self.render('scoap3_workflows/admin/overview.html', **self.get_context_data())
+
+    @expose('/', methods=('POST', ))
+    def index_post(self):
+        date_from = self._get_date_from()
+
+        for w in db.session.query(Workflow.uuid)\
+                .filter(Workflow.created >= date_from).filter(Workflow.status == WorkflowStatus.ERROR).all():
+            restart.apply_async((str(w.uuid),))
+
+        flash("Restarted workflows in ERROR state that were modified after %s. "
+              "Please wait for the tasks to finish." % date_from, 'success')
+
+        return self.index()
 
 
 workflows = {
