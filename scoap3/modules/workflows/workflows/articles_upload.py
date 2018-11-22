@@ -27,6 +27,7 @@ from __future__ import absolute_import, division, print_function
 import urllib2
 
 from datetime import datetime
+from dateutil.parser import parse as parse_date
 from flask import url_for, current_app
 
 from invenio_db import db
@@ -123,6 +124,8 @@ def store_record(obj, eng):
     if 'Italiana di Fisica'.lower() in obj.data['acquisition_source']['source'].lower():
         obj.data['acquisition_source']['source'] = 'Springer/SIF'
 
+    obj.data['record_creation_year'] = parse_date(obj.data['record_creation_date']).year
+
     try:
         record = Record.create(obj.data, id_=None)
 
@@ -176,7 +179,9 @@ def update_record(obj, eng):
         obj.data['acquisition_source']['source'] = 'Springer/SIF'
 
     # preserving original creation date
-    obj.data['record_creation_date'] = existing_record['record_creation_date']
+    creation_date = existing_record['record_creation_date']
+    obj.data['record_creation_date'] = creation_date
+    obj.data['record_creation_year'] = parse_date(creation_date).year
     existing_record.clear()
     existing_record.update(obj.data)
     existing_record.commit()

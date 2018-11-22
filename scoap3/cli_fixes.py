@@ -2,6 +2,7 @@ import numbers
 from HTMLParser import HTMLParser
 
 import click
+from dateutil.parser import parse as parse_date
 from flask.cli import with_appcontext
 from invenio_db import db
 from invenio_files_rest.models import ObjectVersion, Location
@@ -372,8 +373,31 @@ def hotfix_els_countries():
 
 @fixdb.command()
 @with_appcontext
+def extract_year_from_record_creation():
+    def proc(record):
+        if not record.json:
+            rerror('no json.', record)
+            return
+
+        if 'record_creation_year' not in record.json:
+            date = parse_date(record.json['record_creation_date'])
+            if not date:
+                rerror("Date couldn't be parsed: %s" % record.json['record_creation_date'], record)
+
+            record.json['record_creation_year'] = date.year
+            flag_modified(record, 'json')
+
+    process_all_records(proc)
+    info('ALL DONE')
+
+
+@fixdb.command()
+@with_appcontext
 def init_default_location():
-    """Add default Location, if not already present."""
+    """
+    Add default Location, if not already present.
+    Used by Travis as well.
+    """
 
     if not Location.query.filter(Location.name == 'default').count():
         loc = Location()
