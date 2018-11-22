@@ -24,6 +24,11 @@
                         "updated": {
                             "index": "analyzed",
                             "type": "date"
+                        },
+                        "sets": {
+                            "index": "not_analyzed",
+                            "type": "keyword",
+                            "copy_to": "journal"
                         }
                     },
                     "type": "object"
@@ -61,10 +66,15 @@
                     "properties": {
                         "journal_title": {
                             "index": "not_analyzed",
-                            "type": "string"
+                            "type": "string",
+                            "copy_to": "journal"
                         }
                     },
                     "type": "object"
+                },
+                "journal": {
+                    "index": "not_analyzed",
+                    "type": "keyword"
                 },
                 "record_creation_date": {
                     "type": "date",
