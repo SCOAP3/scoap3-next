@@ -41,6 +41,17 @@ es_result_mock = {
 }
 inspire_base_url = "http://inspirehep.net/search?of=xm&sf=earliestdate&so=d&rm=&sc=0&ot=001,024,100,700,260,773"
 
+COUNTRIES_WITH_LABS = ["Germany", "USA", "Japan"]
+LABS = {
+    "DESY": "DESY",
+    "Fermilab": "FERMILAB",
+    "FNAL": "FERMILAB",
+    "SLACK": "SLACK",
+    "Stanford Linear Accelerator": "SLACK",
+    "KEK": "KEK",
+    "High Energy Accelerator Research Organization": "KEK"
+}
+
 
 def get_query(start_index, step, from_date, until_date):
     return {
@@ -59,10 +70,15 @@ def get_query(start_index, step, from_date, until_date):
     }
 
 
-def get_authors_max_affiliation(author, country_list):
+def get_author_max_affiliation(author, country_list):
     max_aff = None
     max_value = 0
     for affiliation in author.get('affiliations', []):
+        if affiliation['country'] in COUNTRIES_WITH_LABS:
+            for name_pattern, lab in LABS.items():
+                if name_pattern.lower() in affiliation['value'].lower():
+                    affiliation['country'] = lab
+                    break
         if country_list.get(affiliation['country'], 0) >= max_value:
             max_value = country_list.get(affiliation['country'], 0)
             max_aff = affiliation
@@ -126,7 +142,6 @@ def parse_inspire_records(size, query, jrec=1):
                 {'value': r.find('./a:datafield[@tag="024"][@ind1="7"]/a:subfield[@code="a"]', inspire_namespace).text}]
             json_record['_source']['record_creation_date'] = r.find('./a:datafield[@tag="260"]/a:subfield[@code="c"]',
                                                                     inspire_namespace).text
-            json_record['_source']['earliest_date'] = json_record['_source']['record_creation_date']
             json_record['_source']['publication_info'].append({'journal_title': r.find(
                 './a:datafield[@tag="773"]/a:subfield[@code="p"]', inspire_namespace).text + r.find(
                 './a:datafield[@tag="773"]/a:subfield[@code="v"]', inspire_namespace).text})
@@ -138,13 +153,34 @@ def parse_inspire_records(size, query, jrec=1):
     return articles
 
 
+def authors_and_share_summary(article, country_list, countries_ordering_name):
+    details = {
+        'countries_ordering': countries_ordering_name,
+        'authors': {}
+    }
+    result = {}
+    for author in article['_source'].get('authors', []):
+        max_aff = get_author_max_affiliation(author, country_list)
+        if max_aff:
+            details['authors'][author['full_name']] = {
+                'affiliation': max_aff['value'],
+                'country': max_aff['country']
+            }
+            if max_aff['country'] in result:
+                result[max_aff['country']] += 1
+            else:
+                result[max_aff['country']] = 1
+        else:
+            continue
+    return result, details
+
+
 @shared_task
 def calculate_articles_impact(from_date=None, until_date=None,
                               countries_ordering="value1", step=10,
                               inspire_query=None, **kwargs):
     count = 0
     jrec = 1
-    country_list = get_country_list(countries_ordering)
 
     if inspire_query:
         print("Calculating articles impact for Inspire query: {}".format(
@@ -161,25 +197,11 @@ def calculate_articles_impact(from_date=None, until_date=None,
                                        doc_type='record-v1.0.0',
                                        body=get_query(count, step, from_date, until_date))
 
+        country_list = get_country_list(countries_ordering)
+
         for article in search_results['hits']['hits']:
-            details = {
-                'countries_ordering': countries_ordering,
-                'authors': {}
-            }
-            result = {}
-            for author in article['_source'].get('authors', []):
-                max_aff = get_authors_max_affiliation(author, country_list)
-                if max_aff:
-                    details['authors'][author['full_name']] = {
-                        'affiliation': max_aff['value'],
-                        'country': max_aff['country']
-                    }
-                    if max_aff['country'] in result:
-                        result[max_aff['country']] += 1
-                    else:
-                        result[max_aff['country']] = 1
-                else:
-                    continue
+            result, details = authors_and_share_summary(article, country_list,
+                                                        countries_ordering)
 
             if not result:
                 # do not store empty result
@@ -189,8 +211,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
             country_ai = ArticlesImpact.get_or_create(
                 article['_source']['control_number'])
             country_ai.doi = article['_source']['dois'][0]['value']
-            country_ai.creation_date = article['_source'].get('record_creation_date',
-                                                              article['_source']['earliest_date'])
+            country_ai.creation_date = article['_source'].get('record_creation_date')
             country_ai.journal = article['_source']['publication_info'][0]['journal_title']
             country_ai.details = details
             country_ai.results = result
