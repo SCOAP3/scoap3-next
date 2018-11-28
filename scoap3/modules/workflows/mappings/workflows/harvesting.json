@@ -66,10 +66,6 @@
                                 }
                             },
                             "type": "object"
-                        },
-                        "earliest_date": {
-                            "format": "yyyy||yyyy-MM||yyyy-MM-dd",
-                            "type": "date"
                         }
                     },
                     "type": "object"

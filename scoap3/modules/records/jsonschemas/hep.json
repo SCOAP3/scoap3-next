@@ -173,11 +173,6 @@
             },
             "type": "array"
         },
-        "earliest_date": {
-            "type": "string",
-            "format": "yyyy||yyyy-MM||yyyy-MM-dd",
-            "description": "The earliest date of this record among all types of dates"
-        },
         "breadcrumb_title": {
             "type": "string",
             "description": "The title shown in all page breadcrumbs"

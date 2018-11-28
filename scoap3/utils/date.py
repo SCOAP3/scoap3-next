@@ -132,26 +132,6 @@ def strptime(date_string, fmt):
     return real_datetime(*(time.strptime(date_string, fmt)[:6]))
 
 
-def create_earliest_date(dates):
-    """Return the earliest valid date from a list of date strings."""
-    if not dates:
-        return None
-    if not isinstance(dates, (list, set)):
-        dates = [dates]
-    valid_dates = []
-    for date in dates:
-        # Add 99 to the end of partial date to make sure we get the REAL
-        # earliest date
-        valid_date = create_valid_date(date,
-                                       date_format_month="%Y-%m-99",
-                                       date_format_year="%Y-99-99")
-        if valid_date:
-            valid_dates.append(valid_date)
-    if valid_dates:
-        date = min(valid_dates)
-        return date.replace('-99', '')
-
-
 def create_valid_date(date, date_format_full="%Y-%m-%d",
                       date_format_month="%Y-%m", date_format_year="%Y"):
     """Iterate over possible formats and return a valid date if found."""
