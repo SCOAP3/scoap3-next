@@ -126,14 +126,16 @@ def _received_in_time(record, extra_data):
         parts = api_message['published-online']['date-parts'][0]
         # only contains day of publication, check for end of day
         api_time = datetime(*parts, hour=23, minute=59, second=59)
+        time_source = '"published online" field'
     else:
         api_time = parse_date(api_message['created']['date-time'], ignoretz=True)
+        time_source = 'crossref'
     received_time = parse_date(record['record_creation_date'])
     delta = received_time - api_time
 
     check_accepted = delta <= timedelta(hours=24)
     details_message = 'Arrived %d hours later then creation date on crossref.org.' % (delta.total_seconds() / 3600)
-    debug = 'Time from crossref: %s, Received time: %s' % (api_time, received_time)
+    debug = 'Time from %s: %s, Received time: %s' % (time_source, api_time, received_time)
 
     return check_accepted, (details_message, ), debug
 
@@ -148,7 +150,7 @@ def _funded_by(record, extra_data):
 def _author_rights(record, extra_data):
     COPYRIGHT = u'\N{COPYRIGHT SIGN}'
 
-    start_patterns = (COPYRIGHT, 'copyright', r'\(c\)', )
+    start_patterns = (COPYRIGHT, 'copyright')
 
     needed_patterns = [p + '.{15}' for p in start_patterns]
 
