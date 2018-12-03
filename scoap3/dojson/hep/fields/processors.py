@@ -26,8 +26,7 @@ import re
 import six
 
 import idutils
-from isbn import ISBNError
-from isbn.hyphen import ISBNRangeError
+from isbn import ISBNError, ISBNRangeError
 
 from scoap3.utils.pubnote import split_pubnote
 
