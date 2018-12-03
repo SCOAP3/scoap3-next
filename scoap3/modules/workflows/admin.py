@@ -18,7 +18,7 @@ from flask_admin.contrib.sqla.filters import FilterEqual
 from flask_admin.model.template import macro
 from invenio_db import db
 from invenio_workflows import restart, resume
-from invenio_workflows.models import WorkflowObjectModel, ObjectStatus, Workflow
+from invenio_workflows.models import Workflow
 from markupsafe import Markup
 from sqlalchemy import func
 from workflow.engine_db import WorkflowStatus
@@ -26,10 +26,10 @@ from workflow.engine_db import WorkflowStatus
 
 class FilterStatus(FilterEqual):
     def apply(self, query, value, alias=None):
-        return query.filter(WorkflowObjectModel.status == int(value))
+        return query.filter(Workflow.status == int(value))
 
     def get_options(self, view):
-        return [(k, v) for k, v in ObjectStatus.labels.iteritems()]
+        return [(k, v) for k, v in WorkflowStatus.labels.iteritems()]
 
 
 def data_formatter(v, c, m, p):
