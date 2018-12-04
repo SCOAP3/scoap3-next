@@ -596,6 +596,8 @@ COUNTRIES_DEFAULT_MAPPING = OrderedDict([
     ("FNAL", "USA"),
     ("SLACK", "USA"),
     ("Stanford Linear Accelerator Center", "USA"),
+    ("Joint Institute for Nuclear Research", "JINR"),
+    ("JINR", "JINR"),
     ("Northern Cyprus", "Turkey"),
     ("North Cyprus", "Turkey"),
     ("New Mexico", "USA"),
