@@ -99,8 +99,9 @@ def _files(record, extra_data):
     details = ''
 
     if 'xml' not in file_types:
-        check_accepted = False
-        details += 'No xml file. '
+        if record['publication_info'][0]['journal_title'] != 'Acta Physica Polonica B':
+            check_accepted = False
+            details += 'No xml file. '
 
     if 'pdf' not in file_types and 'pdf/a' not in file_types:
         check_accepted = False
