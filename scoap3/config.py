@@ -537,7 +537,7 @@ OAISERVER_METADATA_FORMATS = {
 LOGGING_SENTRY_CLASS = "invenio_logging.sentry6.Sentry6"
 
 JSONSCHEMAS_HOST = 'localhost:5000'
-JSONSCHEMAS_REPLACE_REFS = True
+JSONSCHEMAS_REPLACE_REFS = False
 
 MAIL_DEFAULT_SENDER = 'repo.admin@scoap3.org'
 ADMIN_DEFAULT_EMAILS = ['repo.admin@scoap3.org', ]
