@@ -13,6 +13,7 @@ from sqlalchemy.orm.attributes import flag_modified
 from xml.dom.minidom import parse
 
 from scoap3.config import COUNTRIES_DEFAULT_MAPPING
+from scoap3.dojson.utils.nations import find_country
 from scoap3.utils.click_logging import rerror, error, info, rinfo
 from scoap3.utils.google_maps import get_country
 from scoap3.utils.processor import process_all_records, process_all_articles_impact
@@ -223,21 +224,19 @@ def update_authors(record, authors, new_affs):
 @fixdb.command()
 @with_appcontext
 def hotfix_country_mapping():
-    ids = (
-        24958, 22783, 24213, 23544, 23575, 20026, 40533, 19858, 42820, 42098, 41691, 42268, 43140, 12224, 768, 43275,
-        23538, 2142, 24522, 18606, 22009, 4879, 24855, 41724, 40950, 41119, 41793, 24332, 23328, 42942, 23475, 41849,
-        24247, 23326, 40823, 41896, 24004, 40261, 23041, 43021, 43008, 42671, 41873, 42327, 40845, 3952, 42073, 41850,)
+    ids = ()
 
     def proc(record):
         """Fix country mappings..."""
 
-        if 'authors' in record.json:
+        if record.json and 'authors' in record.json:
             for i, a in enumerate(record.json['authors']):
                 for i2, aff in enumerate(a.get('affiliations', ())):
+
                     c = aff['country']
-                    new_c = COUNTRIES_DEFAULT_MAPPING.get(c, c)
+                    new_c = find_country(aff['value'])
                     if c != new_c:
-                        rinfo('%s -> %s' % (c, new_c), record)
+                        rinfo('%s -> %s (%s)' % (c, new_c, aff['value']), record)
                         record.json['authors'][i]['affiliations'][i2]['country'] = new_c
                         flag_modified(record, 'json')
 

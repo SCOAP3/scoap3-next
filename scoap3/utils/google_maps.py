@@ -1,4 +1,3 @@
-import requests
 from flask import current_app
 from invenio_db import db
 from sqlalchemy import func
@@ -6,6 +5,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from scoap3.config import COUNTRIES_DEFAULT_MAPPING
 from scoap3.modules.analysis.models import CountryCache
+from scoap3.utils.http import requests_retry_session
 
 
 def get_country(text):
@@ -42,13 +42,12 @@ def __get_country(search_text):
         'key': current_app.config.get('GOOGLE_API_KEY', '')
     }
 
-    req = requests.get(GOOGLE_MAPS_API_URL, params=params, timeout=1).json()
+    req = requests_retry_session().get(GOOGLE_MAPS_API_URL, params=params, timeout=1).json()
 
     if 'status' in req:
         if req['status'].lower() == 'ok':
             country = __get_country_from_results(req)
-            COUNTRIES_DEFAULT_MAPPING.get(country, country)
-            return country
+            return COUNTRIES_DEFAULT_MAPPING.get(country, country)
 
     return None
 
