@@ -70,10 +70,14 @@
         {% endif %}
         <!-- copyright & license -->
         <dt>Copyrights:</dt>
-        {%- if "copyright" in record %}
-          <dd>{{ record['copyright'][0]['statement'] }}</dd>
+        {%- if "copyright" in record and (record['copyright'][0]['statement'] or record['copyright'][0]['holder'])%}
+          {%- if record['copyright'][0]['statement'] %}
+            <dd>{{ record['copyright'][0]['statement'] }}</dd>
+          {%- else %}
+            <dd>{{ record['copyright'][0]['holder'] }}</dd>
+          {% endif %}
         {%- else %}
-          <dd>Not available yet</dd>
+          <dd>No information available</dd>
         {% endif %}
         <dt>Licence:</dt>
         {%- if "copyright" in record %}
