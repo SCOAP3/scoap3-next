@@ -22,63 +22,33 @@
 
 from __future__ import absolute_import, division, print_function
 
-# from flask import current_app, session
 from flask_security import current_user
-# from werkzeug.local import LocalProxy
 
-# from invenio_access.models import ActionUsers
+from flask_principal import ActionNeed
 from invenio_access.permissions import (DynamicPermission,
-                                        ParameterizedActionNeed)
-
-# from inspirehep.modules.cache import current_cache
-
-
-# action_view_restricted_collection = ParameterizedActionNeed(
-#     'view-restricted-collection', argument=None
-# )
-
-# all_restricted_collections = LocalProxy(lambda: load_restricted_collections())
-
-# user_collections = LocalProxy(lambda: get_user_collections())
+                                        ParameterizedActionNeed,
+                                        Permission)
 
 
-# def get_user_collections():
-#     Get user restricted collections.
-#     return session.get('restricted_collections', set())
+class PublicBucketPermission(object):
+    """Permission for files in public buckets.
+    Everyone are allowed to read. Admin can do everything.
+    """
+
+    def __init__(self, action):
+        """Initialize permission."""
+        self.action = action
+
+    def can(self):
+        """Check permission."""
+        if self.action == 'object-read':
+            return True
+        else:
+            return Permission(ActionNeed('admin-access')).can()
 
 
-# def load_user_collections(app, user):
-#     """Load user restricted collections upon login.
-
-#     Receiver for flask_login.user_logged_in
-#     """
-#     user_collections = set(
-#         [a.argument for a in ActionUsers.query.filter_by(
-#             action='view-restricted-collection',
-#             user_id=current_user.get_id()).all()]
-#     )
-#     session['restricted_collections'] = user_collections
-
-
-# def load_restricted_collections():
-#     restricted_collections = current_cache.get('restricted_collections')
-#     if restricted_collections:
-#         return restricted_collections
-#     else:
-#         restricted_collections = set(
-#             [
-#                 a.argument for a in ActionUsers.query.filter_by(
-#                     action='view-restricted-collection').all()
-#             ]
-#         )
-#         if restricted_collections:
-#             current_cache.set(
-#                 'restricted_collections',
-#                 restricted_collections,
-#                 timeout=current_app.config.get(
-#                     'INSPIRE_COLLECTIONS_RESTRICTED_CACHE_TIMEOUT', 120)
-#             )
-#         return restricted_collections
+def files_permission_factory(obj, action=None):
+    return PublicBucketPermission(action)
 
 
 def record_read_permission_factory(record=None):
@@ -126,20 +96,13 @@ def has_read_permission(user, record):
     if 'superuser' in user_roles:
         return True
 
-    # if '_collections' in record:
-    #     record_collections = set(record['_collections'])
-    #     restricted_coll = all_restricted_collections & record_collections
-    #     if restricted_coll:
-    #         if any(map(_cant_view, restricted_coll)):
-    #             return False
-
     # By default we allow access
     return True
-
 
 #
 # Utility functions
 #
+
 
 def deny(user, record):
     """Deny access."""
