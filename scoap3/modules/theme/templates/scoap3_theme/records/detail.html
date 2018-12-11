@@ -44,14 +44,23 @@
         <p class="summary">{{ summary['value']|safe }}</p>
         {% endfor %}
       {%- endblock %}
-      <div>
-          <div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <strong>Metadata preview.</strong> This is a preview of JSON metadata for this article. This box is going to be removed in final version of the repository.</a>
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a data-toggle="collapse" href="#record_json">
+              <h4 class="panel-title">
+                <strong>Metadata preview.</strong> Preview of JSON metadata for this article.
+                <span class="glyphicon glyphicon-menu-down pull-right"></span>
+              </h4>
+            </a>
           </div>
-          <pre>{{ record | pprint }}</pre>
+          <div id="record_json" class="panel-collapse collapse">
+            <div class="panel-body"><pre>{{ record | pprint }}</pre></div>
+          </div>
+        </div>
       </div>
     </div><!-- /.body -->
+
     {%- endblock %}
     {%- block record_extra_info %}
     <div class="extra-info col-sm-12 col-md-3">
