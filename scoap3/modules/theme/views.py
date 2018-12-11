@@ -26,6 +26,7 @@
 
 from __future__ import absolute_import, print_function
 
+from dateutil.parser import parse
 from flask import Blueprint
 from jinja2.utils import Markup
 
@@ -72,3 +73,8 @@ def boolean_to_icon(input):
         return Markup(template % ('ok', 'success'))
 
     return Markup(template % ('remove', 'danger'))
+
+
+@blueprint.app_template_filter()
+def to_date(input):
+    return parse(input)

@@ -66,7 +66,7 @@
     <div class="extra-info col-sm-12 col-md-3">
       <dl>
         <dt>Added on:</dt>
-        <dd>{{ record['acquisition_source']['date'] }}</dd>
+        <dd>{{ (record['record_creation_date']|to_date).strftime('%d %B %Y') }}</dd>
         <dt>Publisher:</dt>
         <dd>{{ record['imprints'][0]['publisher'] }}</dd>
         <dt>Published in:</dt>
