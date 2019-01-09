@@ -120,11 +120,16 @@ def _received_in_time(record, extra_data):
     if api_response.status_code != 200:
         return True, ('Article is not on crossref.', ), 'Api response: %s' % api_response.text
 
+    details_message = ""
     api_message = api_response.json()['message']
 
     if 'publication_info' in record and \
             record['publication_info'][0]['journal_title'] == 'Progress of Theoretical and Experimental Physics':
         parts = api_message['published-online']['date-parts'][0]
+        # if we don't have month or day substitute it with 1
+        if len(parts) < 3:
+            parts.extend([1] * (3 - len(parts)))
+            details_message += 'Month and/or day is missing, substitute it with "1".'
         # only contains day of publication, check for end of day
         api_time = datetime(*parts, hour=23, minute=59, second=59)
         time_source = '"published online" field'
@@ -135,7 +140,7 @@ def _received_in_time(record, extra_data):
     delta = received_time - api_time
 
     check_accepted = delta <= timedelta(hours=24)
-    details_message = 'Arrived %d hours later then creation date on crossref.org.' % (delta.total_seconds() / 3600)
+    details_message += 'Arrived %d hours later then creation date on crossref.org.' % (delta.total_seconds() / 3600)
     debug = 'Time from %s: %s, Received time: %s' % (time_source, api_time, received_time)
 
     return check_accepted, (details_message, ), debug
