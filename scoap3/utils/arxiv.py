@@ -64,6 +64,9 @@ def get_arxiv_categories(arxiv_id):
 
 
 def get_arxiv_primary_category(arxiv_id):
+    # arxiv ids can have version at the end, cut that.
+    arxiv_id = arxiv_id.split('v')[0]
+
     data = urllib.urlopen(url.format(arxiv_id)).read()
 
     if data:

@@ -177,7 +177,7 @@ class CountriesShare(BaseView):
         record_ids = ArticlesImpact.query.with_entities(ArticlesImpact.control_number).all()
         record_ids = [r[0] for r in record_ids]
 
-        header = ['doi', 'recid', 'journal', 'creation_date', 'total_authors']
+        header = ['doi', 'recid', 'journal', 'creation_date', 'primary_category', 'total_authors']
         header.extend([c.name.strip() for c in countries])
         si = StringIO.StringIO()
         cw = csv.writer(si, delimiter=";")
@@ -194,7 +194,9 @@ class CountriesShare(BaseView):
                 country_share = [float(record.results[c.name.strip()]) / total_authors
                                  if c.name.strip() in record.results else 0
                                  for c in countries]
-                csv_line = [record.doi, record.control_number, record.journal, record.creation_date, total_authors]
+                primary_category = record.details.get('arxiv_primary_category')
+                csv_line = [record.doi, record.control_number, record.journal, record.creation_date, primary_category,
+                            total_authors]
                 csv_line.extend(country_share)
                 cw.writerow(csv_line)
 
