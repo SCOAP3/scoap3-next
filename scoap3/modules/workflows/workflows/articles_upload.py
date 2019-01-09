@@ -107,9 +107,8 @@ def add_nations(obj, eng):
             __halt_and_notify('No affiliations for author: %s.' % author, obj, eng)
 
         for affiliation_index, affiliation in enumerate(author['affiliations']):
-            if 'country' not in affiliation:
-                obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_country(
-                    affiliation['value'])
+            obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_country(
+                affiliation['value'])
 
 
 def is_record_in_db(obj, eng):
