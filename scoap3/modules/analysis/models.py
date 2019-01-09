@@ -12,8 +12,13 @@ from __future__ import absolute_import, print_function
 
 from datetime import datetime
 from invenio_db import db
+from invenio_pidstore.errors import PIDDoesNotExistError
+from invenio_pidstore.models import PersistentIdentifier
+from invenio_records import Record
 from sqlalchemy import UniqueConstraint
 from sqlalchemy.dialects import postgresql
+
+from scoap3.modules.records.util import get_arxiv_primary_category
 
 
 class Gdp(db.Model):
@@ -76,6 +81,17 @@ class ArticlesImpact(db.Model):
         c = ArticlesImpact.query.filter(
             ArticlesImpact.control_number == recid).first()
         return c or cls(control_number=recid)
+
+    def get_primary_arxiv_category(self):
+        try:
+            pid = PersistentIdentifier.get('recid', self.control_number)
+            record = Record.get_record(pid.object_uuid)
+            return get_arxiv_primary_category(record)
+        except PIDDoesNotExistError:
+            # records imported from Inspire won't be found
+            pass
+
+        return None
 
 
 class CountryCache(db.Model):
