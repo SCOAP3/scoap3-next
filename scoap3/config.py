@@ -697,8 +697,6 @@ COUNTRIES_DEFAULT_MAPPING = OrderedDict([
     ("Republic of San Marino", "San Marino"),
     ("Republic of South Africa", "South Africa"),
     ("Romania", "Romania"),
-    ("Republic of San Marino", "Republic of San Marino"),
-    ("San Marino", "Republic of San Marino"),
     ("Russia", "Russia"),
     ("Russian Federation", "Russia"),
     ("Saudi Arabia", "Saudi Arabia"),
