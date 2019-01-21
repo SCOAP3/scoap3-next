@@ -31,6 +31,7 @@ from invenio_db import db
 from invenio_workflows import WorkflowEngine, workflow_object_class
 from invenio_workflows.tasks import start
 
+from scoap3.utils.arxiv import get_arxiv_primary_category_by_id
 
 SPLIT_KEY_PATTERN = re.compile(r'\.|\[')
 
@@ -138,7 +139,7 @@ def get_arxiv_primary_category(record):
                     # Since we added this field later, there can be records without it.
                     # Ff we haven't extracted the primary_cetegory yet, do it now.
                     arxiv_id = report_number['value'].lower().replace('arxiv:', '').split('v')[0]
-                    record["report_numbers"][i]['primary_category'] = get_arxiv_primary_category(arxiv_id)
+                    record["report_numbers"][i]['primary_category'] = get_arxiv_primary_category_by_id(arxiv_id)
                     record.commit()
 
                 return record["report_numbers"][i]['primary_category']

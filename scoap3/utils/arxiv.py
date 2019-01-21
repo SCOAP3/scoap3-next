@@ -63,7 +63,7 @@ def get_arxiv_categories(arxiv_id):
     return categories
 
 
-def get_arxiv_primary_category(arxiv_id):
+def get_arxiv_primary_category_by_id(arxiv_id):
     # arxiv ids can have version at the end, cut that.
     arxiv_id = arxiv_id.split('v')[0]
 
