@@ -31,7 +31,7 @@ country_list = {
     "France": 38334.15531,
     "South Korea": 35479.39286,
     "DESY": 1899999.0,
-    "SLACK": 1899997.0,
+    "SLAC": 1899997.0,
     "FERMILAB": 1899998.0,
     "Switzerland": 57415.85718,
     "Japan": 38642.364,
@@ -112,9 +112,9 @@ testauthors = [
         "full_name": "Someone One",
         "affiliations": [
             {"country": "USA", "value": "USA"},
-            {"country": "USA", "value": "SLACK, USA"}
+            {"country": "USA", "value": "SLAC, USA"}
         ]
-    }, "SLACK"),
+    }, "SLAC"),
     ({
         "full_name": "Someone One",
         "affiliations": [
@@ -190,7 +190,7 @@ testarticles = [
                     "affiliations": [
                         {"country": "Poland", "value": "Poland"},
                         {"country": "FERMILAB", "value": "Fermilab, USA"},
-                        {"country": "SLACK", "value": "SLAK, USA"}
+                        {"country": "SLAC", "value": "SLAC, USA"}
                     ]
                 },
                 {
