@@ -9,6 +9,7 @@
 """Admin views for managing API registrations."""
 
 import csv
+import dateutil
 import StringIO
 
 from celery import Celery
@@ -17,8 +18,12 @@ from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 from functools import reduce
 from invenio_db import db
+from invenio_pidstore.errors import PIDDoesNotExistError
+from invenio_pidstore.models import PersistentIdentifier
+from invenio_records import Record
 from werkzeug.local import LocalProxy
 
+from scoap3.modules.records.util import get_title
 from .models import ArticlesImpact, Gdp
 
 
@@ -171,14 +176,14 @@ class CountriesShare(BaseView):
     """View for displaying country share calculations."""
 
     @classmethod
-    def _get_csv(self):
+    def _get_csv(self, date_from=None, date_to=None):
         chunk_size = 50
         countries = Gdp.query.order_by(Gdp.name.asc()).all()
         record_ids = ArticlesImpact.query.with_entities(ArticlesImpact.control_number).all()
         record_ids = [r[0] for r in record_ids]
 
         header = ['doi', 'recid', 'journal', 'creation_date', 'primary_category', 'total_authors']
-        header.extend([c.name.strip() for c in countries])
+        header.extend([c.name.strip().replace(',', '') for c in countries])
         si = StringIO.StringIO()
         cw = csv.writer(si, delimiter=";")
         cw.writerow(header)
@@ -189,6 +194,20 @@ class CountriesShare(BaseView):
             current_ids = record_ids[ixn:ixn + chunk_size]
 
             for record in ArticlesImpact.query.filter(ArticlesImpact.control_number.in_(current_ids)):
+                # FIXME during country share refactor, this logic should be moved
+                if (date_from is not None and date_from > record.creation_date) or (
+                        date_to is not None and date_to < record.creation_date):
+                    continue
+
+                try:
+                    r = Record.get_record(PersistentIdentifier.get('recid', record.control_number).object_uuid)
+                    title = get_title(r).lower()
+
+                    if 'addendum' in title or 'corrigendum' in title or 'erratum' in title:
+                        continue
+                except PIDDoesNotExistError:
+                    pass
+
                 total_authors = reduce(lambda x, y: x + y,
                                        record.results.values(), 0)
                 country_share = [float(record.results[c.name.strip()]) / total_authors
@@ -241,7 +260,15 @@ class CountriesShare(BaseView):
                 )
                 message = "New calculation for Inspire query scheduled."
             elif 'generate_csv' in request.form:
-                csv_data = self._get_csv()
+                try:
+                    date_from = dateutil.parser.parse(request.form['from_date'])
+                except ValueError:
+                    date_from = None
+                try:
+                    date_to = dateutil.parser.parse(request.form['until_date'])
+                except ValueError:
+                    date_to = None
+                csv_data = self._get_csv(date_from, date_to)
                 output = make_response(csv_data)
                 output.headers["Content-Disposition"] = "attachment; filename=countries_share.csv"
                 output.headers["Content-type"] = "text/csv"
