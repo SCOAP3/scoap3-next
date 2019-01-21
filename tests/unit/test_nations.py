@@ -20,7 +20,7 @@ def test_countries():
 
 
 def test_cache():
-    test_country_key = "Some cached value2"
+    test_country_key = "some cached value2"
     test_country_value = "Noland"
     cc = CountryCache()
     cc.key = test_country_key
