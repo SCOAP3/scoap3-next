@@ -1,6 +1,5 @@
 from flask import current_app
 from invenio_db import db
-from sqlalchemy import func
 from sqlalchemy.orm.exc import NoResultFound
 
 from scoap3.config import COUNTRIES_DEFAULT_MAPPING
@@ -15,8 +14,10 @@ def get_country(text):
     Returns None if can't determine.
     """
 
+    text = text.lower()
+
     try:
-        return CountryCache.query.filter(func.lower(CountryCache.key) == text.lower()).one().country
+        return CountryCache.query.filter(CountryCache.key == text).one().country
     except NoResultFound:
         # try with different subsets of the affiliation if we can't find a match at first
         country = __get_country(text) or __get_country(text.split(',')[-1]) or __get_country(' '.join(text.split(',')[-2:]))
