@@ -50,8 +50,8 @@ LABS = {
     "DESY": "DESY",
     "Fermilab": "FERMILAB",
     "FNAL": "FERMILAB",
-    "SLACK": "SLACK",
-    "Stanford Linear Accelerator": "SLACK",
+    "SLAC": "SLAC",
+    "Stanford Linear Accelerator": "SLAC",
     "KEK": "KEK",
     "High Energy Accelerator Research Organization": "KEK"
 }
@@ -166,6 +166,7 @@ def authors_and_share_summary(article, country_list, countries_ordering_name):
     for author in article['_source'].get('authors', []):
         max_aff = get_author_max_affiliation(author, country_list)
         if max_aff:
+            # FIXME author names are NOT unique...
             details['authors'][author['full_name']] = {
                 'affiliation': max_aff['value'],
                 'country': max_aff['country']
