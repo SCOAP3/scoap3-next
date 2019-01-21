@@ -46,7 +46,7 @@ from jsonschema.exceptions import ValidationError
 from scoap3.dojson.utils.nations import find_country
 from scoap3.modules.compliance.compliance import check_compliance
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
-from scoap3.utils.arxiv import get_arxiv_categories, get_arxiv_primary_category
+from scoap3.utils.arxiv import get_arxiv_categories, get_arxiv_primary_category_by_id
 
 from workflow.patterns.controlflow import IF_ELSE
 
@@ -93,7 +93,7 @@ def add_arxiv_category(obj, eng):
                 obj.data["report_numbers"][i]['categories'] = categories
 
             if 'primary_category' not in element:
-                primary_category = get_arxiv_primary_category(arxiv_id)
+                primary_category = get_arxiv_primary_category_by_id(arxiv_id)
                 obj.data["report_numbers"][i]['primary_category'] = primary_category
 
 
