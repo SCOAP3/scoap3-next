@@ -24,13 +24,17 @@ from __future__ import absolute_import, print_function
 import re
 import urllib
 import xml.etree.ElementTree as ET
+from datetime import datetime
 
 from celery import shared_task
+from flask import current_app
 from invenio_db import db
 from invenio_search.api import current_search_client as es
 from scoap3.dojson.utils.nations import find_country
 from scoap3.modules.analysis.models import ArticlesImpact, Gdp
 from sqlalchemy.orm.attributes import flag_modified
+
+from scoap3.utils.http import requests_retry_session
 
 inspire_namespace = {'a': 'http://www.loc.gov/MARC21/slim'}
 es_result_mock = {
@@ -175,6 +179,25 @@ def authors_and_share_summary(article, country_list, countries_ordering_name):
     return result, details
 
 
+def get_record_date(doi):
+    crossref_url = current_app.config.get('CROSSREF_API_URL')
+
+    api_response = requests_retry_session().get(crossref_url % doi)
+    if api_response.status_code != 200:
+        current_app.logger.error('Failed to query crossref for doi: %s. Error code: %s' % (doi, api_response.status_code))
+        return None
+
+    message = api_response.json()['message']
+    if 'published-online' in message:
+        parts = message['published-online']['date-parts'][0]
+        # if we don't have month or day substitute it with 1
+        if len(parts) < 3:
+            parts.extend([1] * (3 - len(parts)))
+        return datetime(*parts)
+
+    return datetime.fromtimestamp(message['created']['timestamp'] // 1000)
+
+
 @shared_task
 def calculate_articles_impact(from_date=None, until_date=None,
                               countries_ordering="value1", step=10,
@@ -211,7 +234,7 @@ def calculate_articles_impact(from_date=None, until_date=None,
             country_ai = ArticlesImpact.get_or_create(
                 article['_source']['control_number'])
             country_ai.doi = article['_source']['dois'][0]['value']
-            country_ai.creation_date = article['_source'].get('record_creation_date')
+            country_ai.creation_date = get_record_date(country_ai.doi) or article['_source'].get('record_creation_date')
             country_ai.journal = article['_source']['publication_info'][0]['journal_title']
             country_ai.details = details
             country_ai.results = result
