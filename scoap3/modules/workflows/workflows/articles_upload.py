@@ -24,6 +24,7 @@
 
 from __future__ import absolute_import, division, print_function
 
+import logging
 import urllib2
 
 from datetime import datetime
@@ -46,9 +47,11 @@ from jsonschema.exceptions import ValidationError
 from scoap3.dojson.utils.nations import find_country
 from scoap3.modules.compliance.compliance import check_compliance
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
-from scoap3.utils.arxiv import get_arxiv_categories, get_arxiv_primary_category_by_id
+from scoap3.utils.arxiv import get_arxiv_categories
 
 from workflow.patterns.controlflow import IF_ELSE
+
+logger = logging.getLogger(__name__)
 
 
 def __get_first_doi(obj):
@@ -81,20 +84,17 @@ def set_schema(obj, eng):
 
 def add_arxiv_category(obj, eng):
     """Add arXiv categories fetched from arXiv.org"""
-    if "report_numbers" in obj.data:
-        for i, element in enumerate(obj.data["report_numbers"]):
+    if "arxiv_eprints" in obj.data:
+        for element in obj.data.get("arxiv_eprints", ()):
+            if 'value' not in element:
+                logger.warning('arxiv_eprints value missing for article with doi: %s' % __get_first_doi(obj))
+                continue
+
             arxiv_id = element['value']
-            if arxiv_id.lower().startswith("arxiv:"):
-                arxiv_id = element['value'][6:]
-            arxiv_id = arxiv_id.split('v')[0]
 
             if 'categories' not in element:
                 categories = get_arxiv_categories(arxiv_id)
-                obj.data["report_numbers"][i]['categories'] = categories
-
-            if 'primary_category' not in element:
-                primary_category = get_arxiv_primary_category_by_id(arxiv_id)
-                obj.data["report_numbers"][i]['primary_category'] = primary_category
+                element['categories'] = categories
 
 
 def add_nations(obj, eng):

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3A1811.00370%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:1811.00370&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/5pCnlIN8Xma44FaZxgrjVdS6NQ8</id>
+  <updated>2019-02-18T00:00:00-05:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1811.00370v2</id>
+    <updated>2019-01-25T11:24:40Z</updated>
+    <published>2018-11-01T13:34:49Z</published>
+    <title>Conserved charges in AdS: A new formula</title>
+    <summary>  We give a new construction of conserved charges in asymptotically anti-de
+Sitter spacetimes in Einstein's gravity. The new formula is explicitly
+gauge-invariant and makes direct use of the linearized curvature tensor instead
+of the metric perturbation. As an example, we compute the mass and angular
+momentum of the Kerr-AdS black holes.
+</summary>
+    <author>
+      <name>Emel Altas</name>
+    </author>
+    <author>
+      <name>Bayram Tekin</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">4 pages, detailed derivations added</arxiv:comment>
+    <link href="http://arxiv.org/abs/1811.00370v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1811.00370v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.MP" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>

@@ -31,7 +31,7 @@ from invenio_db import db
 from invenio_workflows import WorkflowEngine, workflow_object_class
 from invenio_workflows.tasks import start
 
-from scoap3.utils.arxiv import get_arxiv_primary_category_by_id
+from scoap3.utils.arxiv import clean_arxiv
 
 SPLIT_KEY_PATTERN = re.compile(r'\.|\[')
 
@@ -55,13 +55,9 @@ def get_first_journal(record):
 
 
 def get_first_arxiv(record):
-    arxiv_array = [
-        a['value'].split(':')[1]
-        for a in record.get('report_numbers', ())
-        if a['source'] == 'arXiv'
-    ]
-    if arxiv_array:
-        return arxiv_array[0]
+    for arxiv in record.get('arxiv_eprints', ()):
+        if 'value' in arxiv:
+            return clean_arxiv(arxiv['value'])
     return None
 
 
@@ -132,17 +128,12 @@ def get_abbreviated_journal(record):
 
 
 def get_arxiv_primary_category(record):
-    if "report_numbers" in record:
-        for i, report_number in enumerate(record["report_numbers"]):
-            if report_number['source'].lower() == 'arxiv':
-                if 'primary_category' not in report_number:
-                    # Since we added this field later, there can be records without it.
-                    # Ff we haven't extracted the primary_cetegory yet, do it now.
-                    arxiv_id = report_number['value'].lower().replace('arxiv:', '').split('v')[0]
-                    record["report_numbers"][i]['primary_category'] = get_arxiv_primary_category_by_id(arxiv_id)
-                    record.commit()
+    """Return primary arXiv category for record. None if not available."""
+    for arxiv_eprints in record.get('arxiv_eprints', ()):
+        if 'categories' in arxiv_eprints and arxiv_eprints['categories']:
+            return arxiv_eprints['categories'][0]
 
-                return record["report_numbers"][i]['primary_category']
+    return None
 
 
 def create_from_json(records, apply_async=True):

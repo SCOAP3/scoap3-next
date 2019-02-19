@@ -24,8 +24,8 @@
     <small ng-if='record.metadata.dois[0]'>
         DOI: <a href='https://doi.org/{{ record.metadata.dois[0].value }}'>{{ record.metadata.dois[0].value }}</a>
     </small>
-    <small ng-if='record.metadata.report_numbers[0]'>
-        arXiv: <a href='http://arxiv.org/abs/{{ record.metadata.report_numbers[0].value }}'>{{ record.metadata.report_numbers[0].value }}</a>
+    <small ng-if='record.metadata.arxiv_eprints[0]'>
+        arXiv: <a href='http://arxiv.org/abs/{{ record.metadata.arxiv_eprints[0].value }}'>{{ record.metadata.arxiv_eprints[0].value }}</a>
     </small>
     <span class='right'>
       <small ng-repeat="file in record.metadata._files">
