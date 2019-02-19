@@ -35,7 +35,7 @@ from scoap3.utils.click_logging import rerror, error, info, rinfo
 from scoap3.utils.google_maps import get_country
 from scoap3.utils.http import requests_retry_session
 from scoap3.utils.processor import process_all_records, process_all_articles_impact
-from scoap3.utils.arxiv import get_arxiv_primary_category_by_id
+from scoap3.utils.arxiv import get_arxiv_categories
 
 from scoap3.modules.records.util import get_arxiv_primary_category
 
@@ -618,7 +618,7 @@ def add_primary_arxiv_categories():
             if 'arxiv_eprints' in record:
                 info('%d: eprints found' % article_impact.control_number)
                 arxiv = (record['arxiv_eprints'][0]['value'].split(':')[1]).split('v')[0]
-                cat = get_arxiv_primary_category_by_id(arxiv)
+                cat = get_arxiv_categories(arxiv)[0]
                 info('category: %s' % cat)
                 if cat:
                     article_impact.details['arxiv_primary_category'] = cat
@@ -859,7 +859,7 @@ def japanise():
             journal = data['publication_info'][0]['journal_title']
             doi = data['dois'][0]['value']
             arxiv = get_arxiv(data)
-            arxiv_category = get_arxiv_primary_category_by_id(arxiv) if arxiv else ''
+            arxiv_category = get_arxiv_categories(arxiv)[0] if arxiv else ''
 
             total_authors = len(data['authors'])
 

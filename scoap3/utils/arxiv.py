@@ -23,57 +23,63 @@
 """Helpers for arXiv.org."""
 
 from __future__ import absolute_import, division, print_function
-import urllib
-from xml.dom.minidom import parseString
+
+import logging
+from lxml import etree
+
+from scoap3.utils.http import requests_retry_session
+
+logger = logging.getLogger(__name__)
 
 url = 'http://export.arxiv.org/api/query?search_query=id:{0}'
+xml_namespaces = {'arxiv': 'http://arxiv.org/schemas/atom',
+                  'w3': 'http://www.w3.org/2005/Atom'}
 
 
 def get_clean_arXiv_id(record):
     """Return the arXiv identifier from given record."""
-    arxiv_id = record.get("arxiv_id")
-    if not arxiv_id:
-        arxiv_eprints = record.get('arxiv_eprints', [])
-        for element in arxiv_eprints:
-            if element.get("value", ""):
-                arxiv_id = element.get("value", "")
+    for element in record.get('arxiv_eprints', []):
+        value = element.get("value", "")
+        if value:
+            return clean_arxiv(value)
 
-    if arxiv_id:
-        return arxiv_id.split(':')[-1]
-    else:
-        return None
+    return None
+
+
+def clean_arxiv(arxiv):
+    # drop 'arxiv:' prefix and version
+    return arxiv.split(':')[-1].split('v')[0]
 
 
 def get_arxiv_categories(arxiv_id):
-    try:
-        data = urllib.urlopen(url.format(arxiv_id)).read()
-    except Exception as e:
-        raise e
-        # data = None
+    """
+    Return a list of arxiv categories for specified arXiv identifier.
+    First element of the list is the primary category.
+    In case categories cannot be found, empty list is returned.
+    """
+
+    # make sure we have a clean arxiv number
+    arxiv_id = clean_arxiv(arxiv_id)
+
+    data = requests_retry_session().get(url.format(arxiv_id))
+
     categories = []
-    if data:
-        xml = parseString(data)
-        for tag in xml.getElementsByTagName('category'):
-            try:
-                categories.append(tag.attributes['term'].value)
-            except KeyError:
-                pass
-    if not categories:
-        raise Exception(data)
+    if data.status_code == 200:
+        xml = etree.fromstring(data.content)
+        primary_category = xml.xpath('//arxiv:primary_category/@term', namespaces=xml_namespaces)
+        if len(primary_category) != 1:
+            raise ValueError('Arxiv returned %d primary categories for id: %s' % (len(primary_category), arxiv_id))
+
+        secondary_categories = xml.xpath('//w3:category/@term', namespaces=xml_namespaces)
+
+        # remove primary category from secondary category list, if exists
+        try:
+            secondary_categories.remove(primary_category[0])
+        except ValueError:
+            logger.warning('Primary arxiv category not present in secondary categories for arxiv: %s' % arxiv_id)
+        categories = primary_category + secondary_categories
+
+    else:
+        logger.error('Got status_code %s from arXiv when looking for categires for %s' % (data.status_code, arxiv_id))
+
     return categories
-
-
-def get_arxiv_primary_category_by_id(arxiv_id):
-    # arxiv ids can have version at the end, cut that.
-    arxiv_id = arxiv_id.split('v')[0]
-
-    data = urllib.urlopen(url.format(arxiv_id)).read()
-
-    if data:
-        xml = parseString(data)
-        category = xml.getElementsByTagName('arxiv:primary_category')
-        if not category or len(category) > 1:
-            raise AttributeError('Exactly one primary category must be present.')
-        return category[0].attributes['term'].value
-
-    return None
