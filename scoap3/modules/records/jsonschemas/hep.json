@@ -774,8 +774,7 @@
         "page_nr": {
             "type": "array",
             "items": {
-                "type": "string",
-                "description": "FIXME: shall it be integer perhaps?",
+                "type": "integer",
                 "title": "Number of pages"
             }
         },
