@@ -228,7 +228,7 @@ def build_files_data(obj, eng):
              'name': '{0}.xml'.format(doi),
              'filetype': 'xml'}
         ]
-    elif source == 'Hindawi':
+    elif 'Hindawi' in source:
         doi_part = doi.split('10.1155/')[1]
         obj.extra_data['files'] = [
             {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
