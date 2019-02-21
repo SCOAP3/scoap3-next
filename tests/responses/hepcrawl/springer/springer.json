@@ -1,0 +1,134 @@
+{
+  "files": [], 
+  "dois": [
+    {
+      "value": "10.1140/epjc/s10052-019-6572-3"
+    }
+  ], 
+  "local_files": [
+    {
+      "value": {
+        "path": "tests/responses/hepcrawl/springer/10052_2019_Article_6572.xml.Meta",
+        "filetype": "xml"
+      }
+    }, 
+    {
+      "value": {
+        "path": "tests/responses/hepcrawl/springer/10052_2019_Article_6572.pdf",
+        "filetype": "pdf/a"
+      }
+    }
+  ], 
+  "titles": [
+    {
+      "source": "Springer", 
+      "subtitle": "", 
+      "title": "Revisiting the mechanical properties of the nucleon"
+    }
+  ], 
+  "authors": [
+    {
+      "affiliations": [
+        {
+          "organization": "Universit\u00e9 Paris-Saclay", 
+          "value": "Centre de Physique Th\u00e9orique, \u00c9cole polytechnique, CNRS, Universit\u00e9 Paris-Saclay, Palaiseau, 91128, France", 
+          "country": "France"
+        }
+      ], 
+      "surname": "Lorc\u00e9", 
+      "given_names": "C\u00e9dric", 
+      "full_name": "Lorc\u00e9, C\u00e9dric", 
+      "email": ""
+    }, 
+    {
+      "affiliations": [
+        {
+          "organization": "Universit\u00e9 Paris-Saclay", 
+          "value": "IRFU, CEA, Universit\u00e9 Paris-Saclay, Gif-sur-Yvette, 91191, France", 
+          "country": "France"
+        }
+      ], 
+      "surname": "Moutarde", 
+      "given_names": "Herv\u00e9", 
+      "full_name": "Moutarde, Herv\u00e9", 
+      "email": ""
+    }, 
+    {
+      "affiliations": [
+        {
+          "organization": "Universit\u00e9 Paris-Saclay", 
+          "value": "Centre de Physique Th\u00e9orique, \u00c9cole polytechnique, CNRS, Universit\u00e9 Paris-Saclay, Palaiseau, 91128, France", 
+          "country": "France"
+        }, 
+        {
+          "organization": "Universit\u00e9 Paris-Saclay", 
+          "value": "IRFU, CEA, Universit\u00e9 Paris-Saclay, Gif-sur-Yvette, 91191, France", 
+          "country": "France"
+        }
+      ], 
+      "surname": "Trawi\u0144ski", 
+      "given_names": "Arkadiusz", 
+      "full_name": "Trawi\u0144ski, Arkadiusz", 
+      "email": "Arkadiusz.Trawinski@cea.fr"
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "79", 
+      "page_end": "25", 
+      "artid": "s10052-019-6572-3", 
+      "journal_title": "European Physical Journal C", 
+      "pubinfo_freetext": "", 
+      "journal_issue": "1", 
+      "page_start": "1", 
+      "material": "article", 
+      "year": 2019
+    }
+  ], 
+  "license": [
+    {
+      "url": "https://creativecommons.org/licenses//by/4.0", 
+      "license": "CC-BY-4.0"
+    }
+  ], 
+  "page_nr": [
+    25
+  ], 
+  "acquisition_source": {
+    "date": "2019-02-21T14:58:57.981271", 
+    "source": "Springer", 
+    "method": "Springer", 
+    "submission_number": "334aa66835e911e9abd30242ac12000a"
+  }, 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "The Author(s)", 
+      "statement": "", 
+      "year": "2019"
+    }
+  ], 
+  "record_creation_date": "2019-02-21T14:58:57.981314", 
+  "collections": [
+    {
+      "primary": "European Physical Journal C"
+    }
+  ], 
+  "arxiv_eprints": [
+    {
+      "value": "1810.09837"
+    }
+  ], 
+  "abstracts": [
+    {
+      "source": "Springer", 
+      "value": "We discuss in detail the distributions of energy, radial pressure and tangential pressure inside the nucleon. In particular, this discussion is carried on in both the instant form and the front form of dynamics. Moreover we show for the first time how these mechanical concepts can be defined when the average nucleon momentum does not vanish. We express the conditions of hydrostatic equilibrium and stability in terms of these two and three-dimensional energy and pressure distributions. We briefly discuss the phenomenological relevance of our findings with a simple yet realistic model. In the light of this exhaustive mechanical description of the nucleon, we also present several possible connections between hadronic physics and compact stars, like e.g. the study of the equation of state for matter under extreme conditions and stability constraints."
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2019-01-29", 
+      "publisher": "Springer"
+    }
+  ]
+}

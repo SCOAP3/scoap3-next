@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Publisher PUBLIC "-//Springer-Verlag//DTD A++ V2.4//EN" "http://devel.springer.de/A++/V2.4/DTD/A++V2.4.dtd">
+<Publisher>
+   <PublisherInfo>
+      <PublisherName>Springer Berlin Heidelberg</PublisherName>
+      <PublisherLocation>Berlin/Heidelberg</PublisherLocation>
+      <PublisherImprintName>Springer</PublisherImprintName>
+   </PublisherInfo>
+   <Journal OutputMedium="All">
+      <JournalInfo JournalProductType="NonStandardArchiveJournal" NumberingStyle="ContentOnly">
+         <JournalID>10052</JournalID>
+         <JournalDOI>10.1007/10052.1434-6052</JournalDOI>
+         <JournalPrintISSN>1434-6044</JournalPrintISSN>
+         <JournalElectronicISSN>1434-6052</JournalElectronicISSN>
+         <JournalSPIN>30312819</JournalSPIN>
+         <JournalTitle>The European Physical Journal C</JournalTitle>
+         <JournalSubTitle>Particles and Fields</JournalSubTitle>
+         <JournalAbbreviatedTitle>Eur. Phys. J. C</JournalAbbreviatedTitle>
+         <JournalSubjectGroup>
+            <JournalSubject Code="SCP" Type="Primary">Physics</JournalSubject>
+            <JournalSubject Code="SCP23029" Priority="1" Type="Secondary">Elementary Particles, Quantum Field Theory</JournalSubject>
+            <JournalSubject Code="SCP23010" Priority="2" Type="Secondary">Nuclear Physics, Heavy Ions, Hadrons</JournalSubject>
+            <JournalSubject Code="SCP19048" Priority="3" Type="Secondary">Quantum Field Theories, String Theory</JournalSubject>
+            <JournalSubject Code="SCP31040" Priority="4" Type="Secondary">Measurement Science and Instrumentation</JournalSubject>
+            <JournalSubject Code="SCP22006" Priority="5" Type="Secondary">Astronomy, Astrophysics and Cosmology</JournalSubject>
+            <JournalSubject Code="SC113000" Priority="6" Type="Secondary">Nuclear Energy</JournalSubject>
+            <SubjectCollection Code="SC12">Physics and Astronomy</SubjectCollection>
+         </JournalSubjectGroup>
+      </JournalInfo>
+      <Volume OutputMedium="All">
+         <VolumeInfo TocLevels="0" VolumeType="Regular">
+            <VolumeIDStart>79</VolumeIDStart>
+            <VolumeIDEnd>79</VolumeIDEnd>
+            <VolumeIssueCount>12</VolumeIssueCount>
+         </VolumeInfo>
+         <Issue IssueType="Regular" OutputMedium="All">
+            <IssueInfo IssueType="Regular" TocLevels="0">
+               <IssueIDStart>1</IssueIDStart>
+               <IssueIDEnd>1</IssueIDEnd>
+               <IssueArticleCount>0</IssueArticleCount>
+               <IssueHistory>
+                  <CoverDate>
+                     <Year>2019</Year>
+                     <Month>1</Month>
+                  </CoverDate>
+                  <PricelistYear>2019</PricelistYear>
+               </IssueHistory>
+               <IssueCopyright>
+                  <CopyrightHolderName>The Author(s)</CopyrightHolderName>
+                  <CopyrightYear>2019</CopyrightYear>
+               </IssueCopyright>
+            </IssueInfo>
+            <Article ID="s10052-019-6572-3" OutputMedium="All">
+               <ArticleInfo ArticleType="OriginalPaper" ContainsESM="No" Language="En" NumberingStyle="ContentOnly" TocLevels="0">
+                  <ArticleID>6572</ArticleID>
+                  <ArticleExternalID Type="arXiv">1810.09837</ArticleExternalID>
+                  <ArticleDOI>10.1140/epjc/s10052-019-6572-3</ArticleDOI>
+                  <ArticleCitationID>89</ArticleCitationID>
+                  <ArticleSequenceNumber>89</ArticleSequenceNumber>
+                  <ArticleTitle Language="En" OutputMedium="All">Revisiting the mechanical properties of the nucleon</ArticleTitle>
+                  <ArticleCategory>Regular Article - Theoretical Physics</ArticleCategory>
+                  <ArticleFirstPage>1</ArticleFirstPage>
+                  <ArticleLastPage>25</ArticleLastPage>
+                  <ArticleHistory>
+                     <RegistrationDate>
+                        <Year>2019</Year>
+                        <Month>1</Month>
+                        <Day>9</Day>
+                     </RegistrationDate>
+                     <Received>
+                        <Year>2018</Year>
+                        <Month>11</Month>
+                        <Day>21</Day>
+                     </Received>
+                     <Accepted>
+                        <Year>2019</Year>
+                        <Month>1</Month>
+                        <Day>5</Day>
+                     </Accepted>
+                     <OnlineDate>
+                        <Year>2019</Year>
+                        <Month>1</Month>
+                        <Day>29</Day>
+                     </OnlineDate>
+                  </ArticleHistory>
+                  <ArticleFundingInformation>
+                     <Fund>
+                        <FunderName>Agence Nationale de la Recherche</FunderName>
+                        <GrantNumber Type="FundRef">ANR-11-IDEX-0003-01</GrantNumber>
+                     </Fund>
+                     <Fund>
+                        <FunderName>CEA-Enhanced Eurotalents Program</FunderName>
+                        <GrantNumber Type="FundRef">600382</GrantNumber>
+                     </Fund>
+                     <Fund>
+                        <FunderName>P2IO LabEx</FunderName>
+                        <GrantNumber Type="FundRef">ANR-10-LABX-0038</GrantNumber>
+                     </Fund>
+                     <Fund>
+                        <FunderName FundRefID="http://dx.doi.org/10.13039/501100001665">Agence Nationale de la Recherche</FunderName>
+                        <GrantNumber Type="FundRef">ANR-16-CE31-0019</GrantNumber>
+                     </Fund>
+                  </ArticleFundingInformation>
+                  <ArticleCopyright>
+                     <CopyrightHolderName>The Author(s)</CopyrightHolderName>
+                     <CopyrightYear>2019</CopyrightYear>
+                     <License SubType="CC BY" Type="OpenAccess" Version="4.0">
+                        <SimplePara>
+                           <Emphasis Type="Bold">Open Access</Emphasis>This article is distributed under the terms of the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made.</SimplePara>
+                        <SimplePara>Funded by SCOAP<Superscript>3</Superscript>
+                        </SimplePara>
+                     </License>
+                  </ArticleCopyright>
+                  <ArticleGrants Type="OpenChoice">
+                     <MetadataGrant Grant="OpenAccess" />
+                     <AbstractGrant Grant="OpenAccess" />
+                     <BodyPDFGrant Grant="OpenAccess" />
+                     <BodyHTMLGrant Grant="OpenAccess" />
+                     <BibliographyGrant Grant="OpenAccess" />
+                     <ESMGrant Grant="OpenAccess" />
+                  </ArticleGrants>
+               </ArticleInfo>
+               <ArticleHeader>
+                  <AuthorGroup>
+                     <Author AffiliationIDS="Aff1" ID="Au1">
+                        <AuthorName DisplayOrder="Western">
+                           <GivenName>Cédric</GivenName>
+                           <FamilyName>Lorcé</FamilyName>
+                        </AuthorName>
+                     </Author>
+                     <Author AffiliationIDS="Aff2" ID="Au2">
+                        <AuthorName DisplayOrder="Western">
+                           <GivenName>Hervé</GivenName>
+                           <FamilyName>Moutarde</FamilyName>
+                        </AuthorName>
+                     </Author>
+                     <Author AffiliationIDS="Aff1 Aff2" CorrespondingAffiliationID="Aff1" ID="Au3">
+                        <AuthorName DisplayOrder="Western">
+                           <GivenName>Arkadiusz</GivenName>
+                           <GivenName>P.</GivenName>
+                           <FamilyName>Trawiński</FamilyName>
+                        </AuthorName>
+                        <Contact>
+                           <Email>Arkadiusz.Trawinski@cea.fr</Email>
+                        </Contact>
+                     </Author>
+                     <Affiliation ID="Aff1">
+                        <OrgID Level="Institution" Type="ISNI">0000 0004 4910 6535</OrgID>
+                        <OrgID Level="Institution" Type="GRID">grid.460789.4</OrgID>
+                        <OrgDivision>Centre de Physique Théorique, École polytechnique, CNRS</OrgDivision>
+                        <OrgName>Université Paris-Saclay</OrgName>
+                        <OrgAddress>
+                           <Postcode>91128</Postcode>
+                           <City>Palaiseau</City>
+                           <Country Code="FR">France</Country>
+                        </OrgAddress>
+                     </Affiliation>
+                     <Affiliation ID="Aff2">
+                        <OrgID Level="Institution" Type="ISNI">0000 0004 4910 6535</OrgID>
+                        <OrgID Level="Institution" Type="GRID">grid.460789.4</OrgID>
+                        <OrgDivision>IRFU, CEA</OrgDivision>
+                        <OrgName>Université Paris-Saclay</OrgName>
+                        <OrgAddress>
+                           <Postcode>91191</Postcode>
+                           <City>Gif-sur-Yvette</City>
+                           <Country Code="FR">France</Country>
+                        </OrgAddress>
+                     </Affiliation>
+                  </AuthorGroup>
+                  <Abstract ID="Abs1" Language="En" OutputMedium="All">
+                     <Heading>Abstract</Heading>
+                     <Para ID="Par1">We discuss in detail the distributions of energy, radial pressure and tangential pressure inside the nucleon. In particular, this discussion is carried on in both the instant form and the front form of dynamics. Moreover we show for the first time how these mechanical concepts can be defined when the average nucleon momentum does not vanish. We express the conditions of hydrostatic equilibrium and stability in terms of these two and three-dimensional energy and pressure distributions. We briefly discuss the phenomenological relevance of our findings with a simple yet realistic model. In the light of this exhaustive mechanical description of the nucleon, we also present several possible connections between hadronic physics and compact stars, like e.g. the study of the equation of state for matter under extreme conditions and stability constraints.</Para>
+                  </Abstract>
+               </ArticleHeader>
+               <NoBody />
+            </Article>
+         </Issue>
+      </Volume>
+   </Journal>
+</Publisher>
