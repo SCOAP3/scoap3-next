@@ -168,14 +168,16 @@ def create_from_json(records, apply_async=True):
         queue = current_app.config['CRAWLER_CELERY_QUEUE']
 
         if apply_async:
-            start.apply_async(
+            workflow_id = start.apply_async(
                 kwargs={
                     'workflow_name': "articles_upload",
                     'object_id': obj.id,
                 },
                 queue=queue,
-            )
+            ).result
         else:
-            start(workflow_name="articles_upload", object_id=obj.id)
+            workflow_id = start(workflow_name="articles_upload", object_id=obj.id)
 
         current_app.logger.info('Parsed record {}.'.format(i))
+
+        return workflow_id
