@@ -1,12 +1,29 @@
 import json
+from os import path
 
-from scoap3.modules.compliance.models import Compliance
+from invenio_workflows import Workflow
+from workflow.engine_db import WorkflowStatus
+
 from scoap3.modules.records.util import create_from_json
+from tests.responses import get_response_dir
 
 
-def test_article_upload():
-    with open('scoap3/data/scoap3demodata_short.json') as source:
-        records = json.loads(source.read())
-        create_from_json(records, apply_async=False)
+def common(input_json_filename):
+    """Use input_json_filename to load hepcrawl response and to run article_upload workflow."""
 
-    assert(Compliance.query.count() == 1)
+    file_path = path.join(get_response_dir(), 'hepcrawl', input_json_filename)
+    with open(file_path, 'rt') as f:
+        json_data = json.loads(f.read())
+
+    workflow_id = create_from_json({'records': [json_data]}, apply_async=False)
+    workflow = Workflow.query.get(workflow_id)
+
+    assert workflow.status == WorkflowStatus.COMPLETED
+
+
+def test_hindawi():
+    common('hindawi.json')
+
+
+def test_aps():
+    common('aps.json')
