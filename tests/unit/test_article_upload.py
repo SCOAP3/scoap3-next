@@ -35,3 +35,7 @@ def test_elsevier():
 
 def test_springer():
     common('springer/springer.json')
+
+
+def test_oup():
+    common('oup/oup.json')
