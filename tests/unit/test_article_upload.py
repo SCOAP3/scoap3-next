@@ -27,3 +27,7 @@ def test_hindawi():
 
 def test_aps():
     common('aps.json')
+
+
+def test_elsevier():
+    common('elsevier/elsevier.json')

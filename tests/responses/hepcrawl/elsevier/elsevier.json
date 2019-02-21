@@ -1,0 +1,93 @@
+{
+  "files": [], 
+  "dois": [
+    {
+      "value": "10.1016/j.nuclphysb.2018.07.004"
+    }
+  ], 
+  "local_files": [
+    {
+      "value": {
+        "path": "tests/responses/hepcrawl/elsevier/S0550321318301901_main.xml",
+        "filetype": "xml"
+      }
+    }, 
+    {
+      "value": {
+        "path": "tests/responses/hepcrawl/elsevier/S0550321318301901_main.pdf",
+        "filetype": "pdf"
+      }
+    }
+  ], 
+  "titles": [
+    {
+      "source": "Elsevier", 
+      "subtitle": "", 
+      "title": "Renormalization in condensed matter: Fermionic systems \u2013 from mathematics to materials"
+    }
+  ], 
+  "authors": [
+    {
+      "affiliations": [
+        {
+          "value": "Institut f\u00fcr Theoretische Physik, Universit\u00e4t Heidelberg, Philosophenweg 19, 69120 Heidelberg, Germany"
+        }
+      ], 
+      "surname": "Salmhofer", 
+      "given_names": "Manfred", 
+      "full_name": "Salmhofer, Manfred", 
+      "email": "salmhofer@uni-heidelberg.de"
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "", 
+      "page_end": "", 
+      "artid": "14394", 
+      "journal_title": "Nuclear Physics B", 
+      "pubinfo_freetext": "", 
+      "journal_issue": "", 
+      "page_start": "", 
+      "material": "article", 
+      "year": 2018
+    }
+  ], 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "The Author", 
+      "statement": "The Author", 
+      "year": "2018"
+    }
+  ], 
+  "acquisition_source": {
+    "date": "2019-02-21T14:38:42.640666", 
+    "source": "Elsevier", 
+    "method": "Elsevier", 
+    "submission_number": "5edfa9ac35e611e9abd30242ac12000a"
+  }, 
+  "license": [
+    {
+      "url": "http://creativecommons.org/licenses/by/3.0/", 
+      "license": "CC-BY-3.0"
+    }
+  ], 
+  "record_creation_date": "2019-02-21T14:38:42.640699", 
+  "collections": [
+    {
+      "primary": "Nuclear Physics B"
+    }
+  ], 
+  "abstracts": [
+    {
+      "source": "Elsevier", 
+      "value": "Renormalization plays an important role in the theoretically and mathematically careful analysis of models in condensed-matter physics. I review selected results about correlated-fermion systems, ranging from mathematical theorems to applications in models relevant for materials science, such as the prediction of equilibrium phases of systems with competing ordering tendencies, and quantum criticality."
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2018-07-04", 
+      "publisher": "Elsevier"
+    }
+  ]
+}
