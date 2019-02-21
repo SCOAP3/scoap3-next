@@ -1,0 +1,107 @@
+{
+  "files": [], 
+  "dois": [
+    {
+      "value": "10.1155/2019/4123108"
+    }
+  ], 
+  "titles": [
+    {
+      "source": "Hindawi", 
+      "subtitle": "", 
+      "title": "Neutrino Physics in the Frontiers of Intensities and Very High Sensitivities 2018"
+    }
+  ], 
+  "authors": [
+    {
+      "surname": "Kosmas", 
+      "given_names": "Theocharis", 
+      "raw_name": "Kosmas, Theocharis", 
+      "affiliations": [
+        {
+          "value": "Division of Theoretical Physics, University of Ioannina, GR-45110 Ioannina, Greece"
+        }
+      ], 
+      "full_name": "Kosmas, Theocharis", 
+      "orcid": "0000-0001-6245-6589"
+    }, 
+    {
+      "surname": "Ejiri", 
+      "given_names": "Hiroyasu", 
+      "raw_name": "Ejiri, Hiroyasu", 
+      "affiliations": [
+        {
+          "value": "Research Center for Nuclear Physics, Osaka University, Ibaraki Osaka 567-0047, Japan"
+        }
+      ], 
+      "full_name": "Ejiri, Hiroyasu", 
+      "orcid": "0000-0003-0568-3528"
+    }, 
+    {
+      "surname": "Hatzikoutelis", 
+      "given_names": "Athanasios", 
+      "raw_name": "Hatzikoutelis, Athanasios", 
+      "affiliations": [
+        {
+          "value": "Physics Department, University of Tennessee, Knoxville, TN, USA"
+        }
+      ], 
+      "full_name": "Hatzikoutelis, Athanasios", 
+      "orcid": "0000-0001-5405-1485"
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "", 
+      "page_end": "", 
+      "artid": "", 
+      "journal_title": "Advances in High Energy Physics", 
+      "pubinfo_freetext": "", 
+      "year": 2019, 
+      "page_start": "4123108", 
+      "material": "", 
+      "journal_issue": ""
+    }
+  ], 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "", 
+      "statement": "Copyright \u00a9 2019 Theocharis Kosmas et al.", 
+      "year": "2019"
+    }
+  ], 
+  "page_nr": [
+    3
+  ], 
+  "acquisition_source": {
+    "date": "2019-02-21T11:40:07.549168", 
+    "source": "Hindawi", 
+    "method": "Hindawi", 
+    "submission_number": "6daa447e35cd11e9abd30242ac12000a"
+  }, 
+  "license": [
+    {
+      "url": "http://creativecommons.org/licenses/by/3.0/", 
+      "license": "CC-BY-3.0"
+    }
+  ], 
+  "record_creation_date": "2019-02-21T11:40:07.549195", 
+  "collections": [
+    {
+      "primary": "Advances in High Energy Physics"
+    }
+  ], 
+  "abstracts": [
+    {
+      "source": "Hindawi", 
+      "value": ""
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2019-02-17", 
+      "publisher": "Hindawi"
+    }
+  ]
+}
