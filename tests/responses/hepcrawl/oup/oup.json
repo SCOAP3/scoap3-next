@@ -1,0 +1,129 @@
+{
+  "files": [], 
+  "dois": [
+    {
+      "value": "10.1093/ptep/pty143"
+    }
+  ], 
+  "local_files": [
+    {
+      "value": {
+        "path": "tests/responses/hepcrawl/oup/pty143.xml",
+        "filetype": "xml"
+      }
+    }, 
+    {
+      "value": {
+        "path": "tests/responses/hepcrawl/oup/pty143.pdf",
+        "filetype": "pdf"
+      }
+    }, 
+    {
+      "value": {
+        "path": "tests/responses/hepcrawl/oup/pty143_archival.pdf",
+        "filetype": "pdf/a"
+      }
+    }
+  ], 
+  "titles": [
+    {
+      "source": "OUP", 
+      "subtitle": "", 
+      "title": "Entropy spectrum of charged BTZ black holes in massive gravity\u2019s rainbow"
+    }
+  ], 
+  "authors": [
+    {
+      "affiliations": [
+        {
+          "value": "Physics Department and Biruni Observatory, College of Sciences, Shiraz University, Shiraz 71454, Iran"
+        }
+      ], 
+      "surname": "Panah", 
+      "given_names": "B Eslam", 
+      "full_name": "Panah, B Eslam", 
+      "email": "beslampanah@shirazu.ac.ir"
+    }, 
+    {
+      "affiliations": [
+        {
+          "value": "Helmholtz-Institut Jena, Fr\u00f6belstieg 3, Jena D-07743 Germany"
+        }
+      ], 
+      "surname": "Panahiyan", 
+      "given_names": "S", 
+      "full_name": "Panahiyan, S", 
+      "email": ""
+    }, 
+    {
+      "affiliations": [
+        {
+          "value": "Physics Department and Biruni Observatory, College of Sciences, Shiraz University, Shiraz 71454, Iran"
+        }
+      ], 
+      "surname": "Hendi", 
+      "given_names": "S H", 
+      "full_name": "Hendi, S H", 
+      "email": ""
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "2019", 
+      "page_end": "", 
+      "artid": "013E02", 
+      "journal_title": "Progress of Theoretical and Experimental Physics", 
+      "pubinfo_freetext": "", 
+      "journal_issue": "1", 
+      "page_start": "", 
+      "material": "article", 
+      "year": 2019
+    }
+  ], 
+  "license": [
+    {
+      "url": "http://creativecommons.org/licenses/by/4.0/", 
+      "license": "CC-BY-4.0"
+    }
+  ], 
+  "page_nr": [
+    13
+  ], 
+  "acquisition_source": {
+    "date": "2019-02-21T15:12:47.652081", 
+    "source": "OUP", 
+    "method": "OUP", 
+    "submission_number": "220e6dd835eb11e9abd30242ac12000a"
+  }, 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "", 
+      "statement": "\u00a9  The Author(s) 2019. Published by Oxford University Press on behalf of the Physical Society of Japan.", 
+      "year": "2019"
+    }
+  ], 
+  "record_creation_date": "2019-02-21T15:12:47.652141", 
+  "collections": [
+    {
+      "primary": "Progress of Theoretical and Experimental Physics"
+    }
+  ], 
+  "arxiv_eprints": [
+    {
+      "value": "1611.10151"
+    }
+  ], 
+  "abstracts": [
+    {
+      "source": "OUP", 
+      "value": "Abstract Regarding the significant interests in massive gravity and combining it with gravity\u2019s rainbow and also BTZ black holes, we apply the formalism introduced by Jiang and Han in order to investigate the quantization of the entropy of black holes. We show that the entropy of BTZ black holes in massive gravity\u2019s rainbow is quantized with equally spaced spectra and it depends on the black holes\u2019 properties including massive parameters, electrical charge, the cosmological constant, and also rainbow functions. In addition, we show that quantization of the entropy results in the appearance of novel properties for this quantity, such as the existence of divergences, non-zero entropy in a vanishing horizon radius, and the possibility of tracing out the effects of the black holes\u2019 properties. Such properties are absent in the non-quantized version of the black hole entropy. Furthermore, we investigate the effects of quantization on the thermodynamical behavior of the solutions. We confirm that due to quantization, novel phase transition points are introduced and stable solutions are limited to only de Sitter black holes (anti-de Sitter and asymptotically flat solutions are unstable)."
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2019-01-17", 
+      "publisher": "OUP"
+    }
+  ]
+}
