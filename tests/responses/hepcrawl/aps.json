@@ -1,0 +1,118 @@
+{
+  "files": [], 
+  "dois": [
+    {
+      "value": "10.1103/PhysRevD.99.045009"
+    }
+  ], 
+  "titles": [
+    {
+      "source": "APS", 
+      "subtitle": "", 
+      "title": "New factorization relations for nonlinear sigma model amplitudes"
+    }
+  ], 
+  "authors": [
+    {
+      "raw_name": "N.\u2009E.\u2009J. Bjerrum-Bohr", 
+      "affiliations": [
+        {
+          "value": "Niels Bohr International Academy and Discovery Center Niels Bohr Insitute, University of Copenhagen Blegdamsvej 17, DK-2100 Copenhagen \u00d8, Denmark"
+        }
+      ], 
+      "surname": "Bjerrum-Bohr", 
+      "given_names": "N.\u2009E.\u2009J.", 
+      "full_name": "Bjerrum-Bohr, N.\u2009E.\u2009J."
+    }, 
+    {
+      "raw_name": "Humberto Gomez", 
+      "affiliations": [
+        {
+          "value": "Niels Bohr International Academy and Discovery Center Niels Bohr Insitute, University of Copenhagen Blegdamsvej 17, DK-2100 Copenhagen \u00d8, Denmark"
+        }, 
+        {
+          "value": "Facultad de Ciencias, Basicas Universidad Santiago de Cali, Calle 5 N\u00b0 62-00 Barrio Pampalinda Cali, Valle, Colombia"
+        }
+      ], 
+      "surname": "Gomez", 
+      "given_names": "Humberto", 
+      "full_name": "Gomez, Humberto"
+    }, 
+    {
+      "raw_name": "Andreas Helset", 
+      "affiliations": [
+        {
+          "value": "Niels Bohr International Academy and Discovery Center Niels Bohr Insitute, University of Copenhagen Blegdamsvej 17, DK-2100 Copenhagen \u00d8, Denmark"
+        }
+      ], 
+      "surname": "Helset", 
+      "given_names": "Andreas", 
+      "full_name": "Helset, Andreas"
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "99", 
+      "page_end": "", 
+      "artid": "", 
+      "journal_title": "Physical Review D", 
+      "pubinfo_freetext": "", 
+      "year": 2019, 
+      "page_start": "", 
+      "material": "article", 
+      "journal_issue": "4"
+    }
+  ], 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "", 
+      "statement": "Published by the American Physical Society", 
+      "year": "2019"
+    }
+  ], 
+  "page_nr": [
+    6
+  ], 
+  "acquisition_source": {
+    "date": "2019-02-21T14:23:29.625549", 
+    "source": "APS", 
+    "method": "APS", 
+    "submission_number": "3e3a892635e411e9abd30242ac12000a"
+  }, 
+  "license": [
+    {
+      "url": "https://creativecommons.org/licenses/by/4.0/", 
+      "license": "CC-BY-4.0"
+    }
+  ], 
+  "record_creation_date": "2019-02-21T14:23:29.625576", 
+  "collections": [
+    {
+      "primary": "HEP"
+    }, 
+    {
+      "primary": "Citeable"
+    }, 
+    {
+      "primary": "Published"
+    }
+  ], 
+  "arxiv_eprints": [
+    {
+      "value": "1811.06024"
+    }
+  ], 
+  "abstracts": [
+    {
+      "source": "APS", 
+      "value": "We obtain novel factorization identities for nonlinear sigma model amplitudes using a new integrand in the Cachazo-He-Yuan double-cover prescription. We find that it is possible to write very compact relations using only longitudinal degrees of freedom. We discuss implications for on shell recursion."
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2019-02-19", 
+      "publisher": "APS"
+    }
+  ]
+}
