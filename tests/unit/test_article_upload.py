@@ -31,3 +31,7 @@ def test_aps():
 
 def test_elsevier():
     common('elsevier/elsevier.json')
+
+
+def test_springer():
+    common('springer/springer.json')
