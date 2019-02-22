@@ -1,6 +1,6 @@
 from os import path
 
-from mock import patch
+import requests_mock
 
 from scoap3.utils.arxiv import get_arxiv_categories, clean_arxiv
 from tests.responses import get_response_dir
@@ -13,15 +13,8 @@ def test_categories():
     with open(file_path, 'rb') as f:
         file_data = f.read()
 
-        class MockRequests():
-            status_code = 200
-            content = file_data
-
-            @staticmethod
-            def get(url):
-                return MockRequests()
-
-        with patch('scoap3.utils.arxiv.requests_retry_session', return_value=MockRequests):
+        with requests_mock.Mocker() as m:
+            m.get('http://export.arxiv.org/api/query?search_query=id:1811.00370', text=file_data)
             categories = get_arxiv_categories('1811.00370')
             assert categories == ['hep-th', 'gr-qc', 'math-ph', 'math.MP']
 
