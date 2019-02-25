@@ -48,6 +48,8 @@ def get_clean_arXiv_id(record):
 
 def clean_arxiv(arxiv):
     # drop 'arxiv:' prefix and version
+    if arxiv is None:
+        return None
     return arxiv.split(':')[-1].split('v')[0]
 
 
