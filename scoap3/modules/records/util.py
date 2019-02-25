@@ -83,6 +83,8 @@ def get_arxiv_primary_category(record):
 def create_from_json(records, apply_async=True):
     current_app.logger.info('Loading dump...')
 
+    results = []
+
     for i, record in enumerate(records['records']):
         engine = WorkflowEngine.with_name("articles_upload")
         engine.save()
@@ -112,16 +114,17 @@ def create_from_json(records, apply_async=True):
         queue = current_app.config['CRAWLER_CELERY_QUEUE']
 
         if apply_async:
-            workflow_id = start.apply_async(
+            workflow = start.apply_async(
                 kwargs={
                     'workflow_name': "articles_upload",
                     'object_id': obj.id,
                 },
                 queue=queue,
-            ).result
+            )
         else:
-            workflow_id = start(workflow_name="articles_upload", object_id=obj.id)
+            workflow = start(workflow_name="articles_upload", object_id=obj.id)
+        results.append(workflow)
 
         current_app.logger.info('Parsed record {}.'.format(i))
 
-        return workflow_id
+    return results
