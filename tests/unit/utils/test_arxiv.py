@@ -7,7 +7,7 @@ from tests.responses import get_response_dir
 
 
 def test_categories():
-    """Test extraction arxiv categories from arxiv api."""
+    """Test extraction arXiv categories from arXiv api."""
 
     file_path = path.join(get_response_dir(), 'arxiv', '1811.00370.xml')
     with open(file_path, 'rb') as f:
@@ -19,15 +19,21 @@ def test_categories():
             assert categories == ['hep-th', 'gr-qc', 'math-ph', 'math.MP']
 
 
-def test_clean_arxiv():
+def test_extract_arxiv_id():
     """Test getting clean arXiv identifier."""
+    assert clean_arxiv('12356.78') == '12356.78'
 
-    data = (
-        ('arxiv:12356.78', '12356.78'),
-        ('arXiv:12356.78v2', '12356.78'),
-        ('12356.78', '12356.78'),
-        ('arXiv:hep-th/0401244', 'hep-th/0401244'),
-    )
 
-    for arxiv, clean_arxiv_id in data:
-        assert clean_arxiv(arxiv) == clean_arxiv_id
+def test_extract_arxiv_id_version():
+    """Test getting clean arXiv identifier."""
+    assert clean_arxiv('arXiv:12356.78v2') == '12356.78'
+
+
+def test_extract_arxiv_id_prefix():
+    """Test getting clean arXiv identifier."""
+    assert clean_arxiv('arxiv:12356.78') == '12356.78'
+
+
+def test_extract_arxiv_id_complex():
+    """Test getting clean arXiv identifier."""
+    assert clean_arxiv('arXiv:hep-th/0401244') == 'hep-th/0401244'
