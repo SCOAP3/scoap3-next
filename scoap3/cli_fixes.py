@@ -31,11 +31,11 @@ from scoap3.config import COUNTRIES_DEFAULT_MAPPING
 from scoap3.dojson.utils.nations import find_country
 from scoap3.modules.analysis.models import Gdp
 from scoap3.modules.records.util import get_first_doi
+from scoap3.utils.arxiv import get_arxiv_categories
 from scoap3.utils.click_logging import rerror, error, info, rinfo
 from scoap3.utils.google_maps import get_country
 from scoap3.utils.http import requests_retry_session
 from scoap3.utils.processor import process_all_records, process_all_articles_impact
-from scoap3.utils.arxiv import get_arxiv_categories
 
 from scoap3.modules.records.util import get_arxiv_primary_category
 
