@@ -15,10 +15,10 @@ def common(input_json_filename):
     with open(file_path, 'rt') as f:
         json_data = json.loads(f.read())
 
-    workflow_id = create_from_json({'records': [json_data]}, apply_async=False)
-    workflow = Workflow.query.get(workflow_id)
-
-    assert workflow.status == WorkflowStatus.COMPLETED
+    workflow_ids = create_from_json({'records': [json_data]}, apply_async=False)
+    for workflow_id in workflow_ids:
+        workflow = Workflow.query.get(workflow_id)
+        assert workflow.status == WorkflowStatus.COMPLETED
 
 
 def test_hindawi():
