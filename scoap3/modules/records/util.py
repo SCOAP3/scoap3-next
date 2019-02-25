@@ -27,6 +27,7 @@ from uuid import uuid1
 
 from flask import current_app
 from inspire_crawler.models import CrawlerWorkflowObject
+from inspire_utils.record import get_value
 from invenio_db import db
 from invenio_workflows import WorkflowEngine, workflow_object_class
 from invenio_workflows.tasks import start
@@ -55,64 +56,11 @@ def get_first_journal(record):
 
 
 def get_first_arxiv(record):
-    for arxiv in record.get('arxiv_eprints', ()):
-        if 'value' in arxiv:
-            return clean_arxiv(arxiv['value'])
-    return None
+    return clean_arxiv(get_value(record, 'arxiv_eprints.value[0]'))
 
 
 def get_first_doi(record):
     return record['dois'][0]['value']
-
-
-def get_value(record, key, default=None):
-    """Return item as `dict.__getitem__` but using 'smart queries'.
-    .. note::
-        Accessing one value in a normal way, meaning d['a'], is almost as
-        fast as accessing a regular dictionary. But using the special
-        name convention is a bit slower than using the regular access:
-        .. code-block:: python
-            >>> %timeit x = dd['a[0].b']
-            100000 loops, best of 3: 3.94 us per loop
-            >>> %timeit x = dd['a'][0]['b']
-            1000000 loops, best of 3: 598 ns per loop
-    """
-    def getitem(k, v):
-        if isinstance(v, dict):
-            return v[k]
-        elif ']' in k:
-            k = k[:-1].replace('n', '-1')
-            # Work around for list indexes and slices
-            try:
-                return v[int(k)]
-            except ValueError:
-                return v[slice(*map(
-                    lambda x: int(x.strip()) if x.strip() else None,
-                    k.split(':')
-                ))]
-        else:
-            tmp = []
-            for inner_v in v:
-                try:
-                    tmp.append(getitem(k, inner_v))
-                except KeyError:
-                    continue
-            return tmp
-
-    # Check if we are using python regular keys
-    try:
-        return record[key]
-    except KeyError:
-        pass
-
-    keys = SPLIT_KEY_PATTERN.split(key)
-    value = record
-    for k in keys:
-        try:
-            value = getitem(k, value)
-        except KeyError:
-            return default
-    return value
 
 
 def get_abbreviated_publisher(record):
@@ -129,11 +77,7 @@ def get_abbreviated_journal(record):
 
 def get_arxiv_primary_category(record):
     """Return primary arXiv category for record. None if not available."""
-    for arxiv_eprints in record.get('arxiv_eprints', ()):
-        if 'categories' in arxiv_eprints and arxiv_eprints['categories']:
-            return arxiv_eprints['categories'][0]
-
-    return None
+    return get_value(record, 'arxiv_eprints.categories[0][0]')
 
 
 def create_from_json(records, apply_async=True):

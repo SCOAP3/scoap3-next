@@ -25,6 +25,8 @@
 from __future__ import absolute_import, division, print_function
 
 import logging
+
+from inspire_utils.record import get_value
 from lxml import etree
 
 from scoap3.utils.http import requests_retry_session
@@ -38,12 +40,7 @@ xml_namespaces = {'arxiv': 'http://arxiv.org/schemas/atom',
 
 def get_clean_arXiv_id(record):
     """Return the arXiv identifier from given record."""
-    for element in record.get('arxiv_eprints', []):
-        value = element.get("value", "")
-        if value:
-            return clean_arxiv(value)
-
-    return None
+    return clean_arxiv(get_value(record, 'arxiv_eprints.value[0]'))
 
 
 def clean_arxiv(arxiv):
