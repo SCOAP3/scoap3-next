@@ -37,3 +37,8 @@ def test_extract_arxiv_id_prefix():
 def test_extract_arxiv_id_complex():
     """Test getting clean arXiv identifier."""
     assert clean_arxiv('arXiv:hep-th/0401244') == 'hep-th/0401244'
+
+
+def test_extract_arxiv_none():
+    """Test for None param."""
+    assert clean_arxiv(None) is None
