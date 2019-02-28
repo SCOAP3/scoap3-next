@@ -1,0 +1,71 @@
+<collection xmlns='http://www.loc.gov/MARC21/slim'>
+  <record>
+    <datafield tag='024' ind1='7' ind2=' '>
+      <subfield code='a'>10.1088/1674-1137/43/1/013104</subfield>
+      <subfield code='2'>DOI</subfield>
+    </datafield>
+    <datafield tag='037' ind1=' ' ind2=' '>
+      <subfield code='a'>1805.03803v3</subfield>
+      <subfield code='9'>arxiv</subfield>
+    </datafield>
+    <datafield tag='100' ind1=' ' ind2=' '>
+      <subfield code='a'>Jin, Hong-Dou</subfield>
+      <subfield code='u'>University of Chinese Academy of Science, Beijing 100049, China</subfield>
+      <subfield code='u'>Institute of High Energy Physics, Chinese Academy of Sciences, Beijing 100049, China</subfield>
+    </datafield>
+    <datafield tag='700' ind1=' ' ind2=' '>
+      <subfield code='a'>Zhou, Li-Peng</subfield>
+      <subfield code='u'>University of Chinese Academy of Science, Beijing 100049, China</subfield>
+      <subfield code='u'>Institute of High Energy Physics, Chinese Academy of Sciences, Beijing 100049, China</subfield>
+    </datafield>
+    <datafield tag='700' ind1=' ' ind2=' '>
+      <subfield code='a'>Zhang, Bing-Xin</subfield>
+      <subfield code='u'>Institute of High Energy Physics, Chinese Academy of Sciences, Beijing 100049, China</subfield>
+    </datafield>
+    <datafield tag='700' ind1=' ' ind2=' '>
+      <subfield code='a'>Hu, Hai-Ming</subfield>
+      <subfield code='u'>Institute of High Energy Physics, Chinese Academy of Sciences, Beijing 100049, China</subfield>
+      <subfield code='u'>University of Chinese Academy of Science, Beijing 100049, China</subfield>
+    </datafield>
+    <datafield tag='245' ind1=' ' ind2=' '>
+      <subfield code='a'>A discussion on vacuum polarization correction to the cross-section of e+e−→γ*/ψ→μ+μ−Supported by National Natural Science Foundation of China (11275211) and (11335008)</subfield>
+    </datafield>
+    <datafield tag='260' ind1=' ' ind2=' '>
+      <subfield code='c'>2018-12-01</subfield>
+    </datafield>
+    <datafield tag='300' ind1=' ' ind2=' '>
+      <subfield code='a'>12</subfield>
+    </datafield>
+    <datafield tag='520' ind1=' ' ind2=' '>
+      <subfield code='a'>Vacuum polarization is a part of the initial-state radiative correction for the cross-section of e+e− annihilation processes. In the energy region in the vicinity of narrow resonances J/ψ and ψ(3686), the vacuum polarization contribution from the resonant component has a significant effect on the line-shape of the lepton pair production cross-section. This paper discusses some basic concepts and describes an analytical calculation of the cross-section of e+e− →γ*/ψ→μ+μ− considering the single and double vacuum polarization effect of the virtual photon propagator. Moreover, it presents some numerical comparisons with the traditional treatments.</subfield>
+    </datafield>
+    <datafield tag='540' ind1=' ' ind2=' '>
+      <subfield code='a'>cc-by</subfield>
+      <subfield code='u'>http://creativecommons.org/licenses/by/3.0/</subfield>
+    </datafield>
+    <datafield tag='542' ind1=' ' ind2=' '>
+      <subfield code='f'>© 2019 Chinese Physical Society and the Institute of High Energy Physics of the Chinese Academy of Sciences and the Institute of Modern Physics of the Chinese Academy of Sciences and IOP Publishing Ltd</subfield>
+    </datafield>
+    <datafield tag='773' ind1=' ' ind2=' '>
+      <subfield code='p'>1674-1137</subfield>
+      <subfield code='v'>43</subfield>
+      <subfield code='n'>1</subfield>
+      <subfield code='c'>013104</subfield>
+      <subfield code='y'>2018</subfield>
+    </datafield>
+    <datafield tag='980' ind1=' ' ind2=' '>
+      <subfield code='a'>SCOAP3</subfield>
+      <subfield code='b'>IOP</subfield>
+    </datafield>
+    <datafield tag='FFT' ind1=' ' ind2=' '>
+      <subfield code='a'>http://scoap3.iop.org/article/doi/10.1088/1674-1137/43/1/013104?format=pdf</subfield>
+      <subfield code='f'>.pdf</subfield>
+      <subfield code='n'>fulltext</subfield>
+    </datafield>
+    <datafield tag='FFT' ind1=' ' ind2=' '>
+      <subfield code='a'>http://scoap3.iop.org/article/doi/10.1088/1674-1137/43/1/013104?format=xml</subfield>
+      <subfield code='f'>.xml</subfield>
+      <subfield code='n'>fulltext</subfield>
+    </datafield>
+  </record>
+</collection>

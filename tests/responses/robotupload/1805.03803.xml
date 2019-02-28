@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3A1805.03803%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:1805.03803&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/WmaR3jhjCci+XKDPCzu2NIc8ekQ</id>
+  <updated>2019-03-05T00:00:00-05:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1805.03803v4</id>
+    <updated>2018-12-16T08:59:31Z</updated>
+    <published>2018-05-10T03:54:11Z</published>
+    <title>A discussion on vacuum polarization correction to the cross-section of
+  $e^+e^-\toγ^\ast/ψ\toμ^+μ^-$</title>
+    <summary>  Vacuum polarization is a part of the initial-state radiative correction for
+the cross-section of $e^+e^-$ annihilation processes. In the energy region in
+the vicinity of narrow resonances $J/\psi$ and $\psi(3686)$, the vacuum
+polarization contribution from the resonant component has a significant effect
+on the line-shape of the lepton pair production cross-section. This paper
+discusses some basic concepts and describes an analytical calculation of the
+cross-section of $e^+e^-\to\gamma^\ast/\psi\to\mu^+\mu^-$ considering the
+single and double vacuum polarization effect of the virtual photon propagator.
+Moreover, it presents some numerical comparisons with the traditional
+treatments.
+</summary>
+    <author>
+      <name>Hong-Dou Jin</name>
+    </author>
+    <author>
+      <name>Li-Peng Zhou</name>
+    </author>
+    <author>
+      <name>Bing-Xin Zhang</name>
+    </author>
+    <author>
+      <name>Hai-Ming Hu</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1088/1674-1137/43/1/013104</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1088/1674-1137/43/1/013104" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">15 pages,14 figures</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Chinese Physics C Vol.43,No.1(2019) 013104</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/1805.03803v4" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1805.03803v4" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>

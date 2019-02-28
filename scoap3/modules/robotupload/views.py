@@ -2,16 +2,19 @@
 
 from __future__ import absolute_import, print_function
 
+import logging
+from datetime import datetime
+
 from flask import Blueprint, request, jsonify
-import os.path
-import os
+
 from werkzeug.utils import secure_filename
-from scoap3.dojson.hep.model import hep
-from dojson.contrib.marc21.utils import create_record
-from flask import url_for
-from celery import Celery
+
+from scoap3.modules.records.util import create_from_json
+from scoap3.modules.robotupload.config import ROBOTUPLOAD_ALLOWED_USERS, ROBOTUPLOAD_ALLOWED_EXTENSIONS
+from scoap3.modules.robotupload.util import save_package, parse_received_package
 from .errorhandler import InvalidUsage
-from . import config
+
+logger = logging.getLogger(__name__)
 
 blueprint = Blueprint(
     'scoap3_robotupload',
@@ -21,7 +24,6 @@ blueprint = Blueprint(
     static_folder='static',
 )
 
-UPLOAD_FOLDER = '/tmp/robotupload'
 API_ENDPOINT_DEFAULT = "scoap3.modules.robotupload.tasks.submit_results"
 
 
@@ -33,76 +35,63 @@ def handle_invalid_usage(error):
 
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in config.ROBOTUPLOAD_ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ROBOTUPLOAD_ALLOWED_EXTENSIONS
 
 
-@blueprint.route('/robotupload', methods=['POST'])
-def robotupload():
-    mode = None
+def _validate_request():
+    """Check if the request comes from a trusted source and parameters are valid."""
+    remote_addr = request.environ['REMOTE_ADDR']
+    if remote_addr not in ROBOTUPLOAD_ALLOWED_USERS:
+        logger.warning('Robotupload access from unauthorized ip address: %s' % remote_addr)
+        raise InvalidUsage("Client IP %s cannot use the service." % remote_addr, status_code=403)
 
-    if request.environ['REMOTE_ADDR'] not in config.ROBOTUPLOAD_ALLOWED_USERS:
-        raise InvalidUsage("Sorry, client IP %s cannot use the service." % request.environ['REMOTE_ADDR'],
-                           status_code=403)
     if 'file' not in request.files:
+        logger.warning('Robotupload accessed without a file specified. Remote addr: %s' % remote_addr)
         raise InvalidUsage("Please specify file body to input.")
+
     file = request.files['file']
     if file.filename == '':
-        raise InvalidUsage("Please specify file body to input.")
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(UPLOAD_FOLDER, filename))
-    else:
+        logger.warning('Robotupload accessed without a filename specified. Remote addr: %s' % remote_addr)
+        raise InvalidUsage("Please specify file body to input. Filename missing.")
+
+    if not file or not allowed_file(file.filename):
+        logger.warning('Robotupload accessed invalid extension: %s. Remote addr: %s' % (file.filename, remote_addr))
         raise InvalidUsage("File does not have an accepted file format.", status_code=415)
 
-    for key in request.form:
-        if key == 'mode':
-            mode = request.form[key]
 
-    if not mode:
-        raise InvalidUsage("Please specify upload mode to use.")
-    if mode == '-teapot':
-        raise InvalidUsage("I'm a teapot.", status_code=418, payload="The resulting entity may be short and stout.")
-    if mode not in config.ROBOTUPLOAD_UPLOAD_MODES:
-        raise InvalidUsage("Invalid upload mode.")
+def _check_permission_for_journal(journal_title, remote_addr, package_name):
+    # check if the user has the right to upload an article with the provided journal title
+    allowed_journals_for_user = ROBOTUPLOAD_ALLOWED_USERS.get(remote_addr, ())
+    if journal_title not in allowed_journals_for_user and 'ALL' not in allowed_journals_for_user:
+        logger.warning('Wrong journal name in metadata for package: %s. Remote addr: %s' % (package_name, remote_addr))
+        raise InvalidUsage("Cannot submit such a file from this IP. (Wrong journal)")
 
-    import json
-    import codecs
-    with open(os.path.join(UPLOAD_FOLDER, filename)) as newfile:
-        try:
-            obj = hep.do(create_record(newfile.read()))
-        except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
-            raise InvalidUsage("MARCXML is not valid.")
-        obj['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
-        del obj['self']
 
-        # TODO - change this ugly mess
-        tmp_allowed_journals = config.ROBOTUPLOAD_ALLOWED_USERS[request.environ['REMOTE_ADDR']]
-        if obj['metadata']['publication_info'][0]['journal_title'] not in tmp_allowed_journals or\
-                'ALL' not in tmp_allowed_journals:
-            raise InvalidUsage("Cannot submit such a file from this IP. (Wrong journal.)")
+def handle_upload_request(apply_async=True):
+    """Handle articles that are pushed from publishers."""
+    _validate_request()
 
-        print(json.dumps(obj, ensure_ascii=False))
-        json_filename = '.'.join([os.path.splitext(filename)[0], 'jl'])
-        json_uri = os.path.join(UPLOAD_FOLDER, json_filename)
-        f = codecs.open(json_uri, 'w', "utf-8-sig")
-        f.write(json.dumps(obj, ensure_ascii=False))
-        f.close()
+    remote_addr = request.environ['REMOTE_ADDR']
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    file_data = file.read()
 
-    celery = Celery()
-    celery.conf.update(dict(
-        BROKER_URL=os.environ.get("APP_BROKER_URL", "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:5672/scoap3"),
-        CELERY_RESULT_BACKEND=os.environ.get("APP_CELERY_RESULT_BACKEND",
-                                             'redis://:mypass@scoap3-cache1.cern.ch:6379/1'),
-        CELERY_ACCEPT_CONTENT=os.environ.get("CELERY_ACCEPT_CONTENT", ['json']),
-        CELERY_TIMEZONE=os.environ.get("CELERY_TIMEZONE", 'Europe/Amsterdam'),
-        CELERY_DISABLE_RATE_LIMITS=True,
-        CELERY_TASK_SERIALIZER='json',
-        CELERY_RESULT_SERIALIZER='json',
-    ))
-    celery.send_task(
-        API_ENDPOINT_DEFAULT,
-        kwargs={'results_data': obj}
-    )
+    logger.info('Package delivered with name %s from %s.' % (filename, remote_addr))
 
+    # save delivered package
+    delivery_time = datetime.now().isoformat()
+    package_name = '_'.join((delivery_time, filename, remote_addr))
+    save_package(package_name, file_data)
+
+    obj = parse_received_package(file_data, package_name)
+
+    journal_title = obj['publication_info'][0]['journal_title']
+    _check_permission_for_journal(journal_title, remote_addr, package_name)
+
+    return create_from_json({'records': [obj]}, apply_async=apply_async)
+
+
+@blueprint.route('/robotupload', methods=['POST', 'PUT'])
+def robotupload():
+    handle_upload_request()
     return "OK"

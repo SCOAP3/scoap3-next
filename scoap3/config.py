@@ -772,3 +772,6 @@ DELETE_WORKFLOWS_OLDER_THEN_DAYS = 183
 
 #: Files REST permission factory
 FILES_REST_PERMISSION_FACTORY = 'scoap3.modules.records.permissions:files_permission_factory'
+
+# Robotupload received packages
+ROBOTUPLOAD_FOLDER = '/tmp/robotupload'

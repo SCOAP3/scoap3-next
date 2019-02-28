@@ -16,6 +16,7 @@ install_requires = [
     'celery<4.0',
     'idutils',
     'inspire-crawler~=1.0',
+    'inspire-dojson~=61.1,>=61.1.6',
     'inspire-utils>=3.0.3',
     'invenio-access',
     'invenio-accounts',
