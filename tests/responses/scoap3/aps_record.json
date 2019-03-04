@@ -1,0 +1,141 @@
+{
+  "$schema": "http://beta.scoap3.org/schemas/hep.json",
+  "_collections": [
+    "Physical Review C",
+    "scoap3"
+  ],
+  "_files": [
+    {
+      "bucket": "de7b7de3-c97f-4b15-a405-d5342c82b85f",
+      "checksum": "md5:5129d21daff3e952d1dbe9465554dc86",
+      "filetype": "pdf",
+      "key": "10.1103/PhysRevC.99.034901.pdf",
+      "size": 825526,
+      "version_id": "35aae15b-9541-44ea-b6a0-ff45a9f03f16"
+    },
+    {
+      "bucket": "de7b7de3-c97f-4b15-a405-d5342c82b85f",
+      "checksum": "md5:1c64c7e6e019802afea72e1a0e783caa",
+      "filetype": "xml",
+      "key": "10.1103/PhysRevC.99.034901.xml",
+      "size": 127132,
+      "version_id": "c5c4a9a8-c4df-4196-b38e-02349bdaca32"
+    }
+  ],
+  "_oai": {
+    "id": "oai:beta.scoap3.org:45985",
+    "sets": [
+      "PRC"
+    ],
+    "updated": "2019-03-02T00:31:01Z"
+  },
+  "abstracts": [
+    {
+      "source": "APS",
+      "value": "Nonstatistical fluctuation in pseudorapidity (<math><mi>\u03b7</mi></math>), azimuthal (<math><mi>\u03d5</mi></math>), and pseudorapidity-azimuthal (<math><mrow><mi>\u03b7</mi><mtext>\u2013</mtext><mi>\u03d5</mi></mrow></math>) distribution spectra of primary particles of PYTHIA Monash (default) generated <math><mrow><mi>p</mi><mi>p</mi></mrow></math> events at <math><mrow><msqrt><mi>s</mi></msqrt><mo>=</mo><mn>2.76</mn></mrow></math>, 7, and 13 TeV have been studied using the scaled factorial moment technique. A weak intermittent type of emission could be realized for minimum-bias (MB) <math><mrow><mi>p</mi><mi>p</mi></mrow></math> events in <math><mrow><mi>\u03c7</mi><mo>(</mo><mi>\u03b7</mi><mtext>\u2013</mtext><mi>\u03d5</mi><mo>)</mo></mrow></math> space and a much stronger intermittency could be observed in high-multiplicity (HM) <math><mrow><mi>p</mi><mi>p</mi></mrow></math> events in all <math><mrow><mi>\u03c7</mi><mo>(</mo><mi>\u03b7</mi><mo>)</mo></mrow></math>, <math><mrow><mi>\u03c7</mi><mo>(</mo><mi>\u03d5</mi><mo>)</mo></mrow></math>, and <math><mrow><mi>\u03c7</mi><mo>(</mo><mi>\u03b7</mi><mtext>\u2013</mtext><mi>\u03d5</mi><mo>)</mo></mrow></math> spaces at all the studied energies. For HM <math><mrow><mi>p</mi><mi>p</mi></mrow></math> events, at a particular energy, the intermittency index <math><msub><mi>\u03b1</mi><mi>q</mi></msub></math> is found to be largest in two-dimensional <math><mrow><mi>\u03c7</mi><mo>(</mo><mi>\u03b7</mi><mtext>\u2013</mtext><mi>\u03d5</mi><mo>)</mo></mrow></math> space and least in <math><mrow><mi>\u03c7</mi><mo>(</mo><mi>\u03b7</mi><mo>)</mo></mrow></math> space, and no center of mass energy dependence of <math><msub><mi>\u03b1</mi><mi>q</mi></msub></math> could be observed. The anomalous dimensions <math><msub><mi>d</mi><mi>q</mi></msub></math> are observed to be increased with the order of the moment <math><mi>q</mi></math>, suggesting a multifractal nature of the emission spectra of various studied events. While, the coefficient <math><msub><mi>\u03bb</mi><mi>q</mi></msub></math> is found to decrease monotonically with the order of the moment <math><mi>q</mi></math> for two-dimensional analysis of MB <math><mrow><mi>p</mi><mi>p</mi></mrow></math> events as well as for one-dimensional analysis of HM <math><mrow><mi>p</mi><mi>p</mi></mrow></math> events, a clear minimum in <math><msub><mi>\u03bb</mi><mi>q</mi></msub></math> values could be observed from the two-dimensional HM <math><mrow><mi>p</mi><mi>p</mi></mrow></math> data analysis. For PYTHIA Monash generated sets of data, the strength of the intermittency is found to vary significantly with the variation of the strength of the color reconnection (CR) parameter, i.e., reconnection range RR, for <math><mrow><mi>RR</mi><mo>=</mo><mn>0.0</mn></mrow></math>, 1.8 and 3.0, thereby, establishing a strong connection between the CR mechanism and the observed intermittent type of emission of primary charged particles of the studied high-multiplicity <math><mrow><mi>p</mi><mi>p</mi></mrow></math> events."
+    }
+  ],
+  "acquisition_source": {
+    "date": "2019-03-02T01:30:20.220971",
+    "method": "APS",
+    "source": "APS",
+    "submission_number": "54456c823c8211e9aa3402163e01809a"
+  },
+  "arxiv_eprints": [
+    {
+      "categories": [
+        "hep-ph"
+      ],
+      "value": "1902.09124"
+    }
+  ],
+  "authors": [
+    {
+      "affiliations": [
+        {
+          "country": "India",
+          "value": "Nuclear and Radiation Physics Research Laboratory, Department of Physics, Gauhati University, Guwahati, Assam - 781014, India"
+        }
+      ],
+      "full_name": "Sarma, Pranjal",
+      "given_names": "Pranjal",
+      "raw_name": "Pranjal Sarma",
+      "surname": "Sarma"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "India",
+          "value": "Nuclear and Radiation Physics Research Laboratory, Department of Physics, Gauhati University, Guwahati, Assam - 781014, India"
+        }
+      ],
+      "full_name": "Bhattacharjee, Buddhadeb",
+      "given_names": "Buddhadeb",
+      "raw_name": "Buddhadeb Bhattacharjee",
+      "surname": "Bhattacharjee"
+    }
+  ],
+  "collections": [
+    {
+      "primary": "HEP"
+    },
+    {
+      "primary": "Citeable"
+    },
+    {
+      "primary": "Published"
+    }
+  ],
+  "control_number": "45985",
+  "copyright": [
+    {
+      "holder": "",
+      "material": "",
+      "statement": "Published by the American Physical Society",
+      "year": "2019"
+    }
+  ],
+  "dois": [
+    {
+      "value": "10.1103/PhysRevC.99.034901"
+    }
+  ],
+  "files": [],
+  "imprints": [
+    {
+      "date": "2019-03-01",
+      "publisher": "APS"
+    }
+  ],
+  "license": [
+    {
+      "license": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "page_nr": [
+    8
+  ],
+  "publication_info": [
+    {
+      "artid": "",
+      "journal_issue": "3",
+      "journal_title": "Physical Review C",
+      "journal_volume": "99",
+      "material": "article",
+      "page_end": "",
+      "page_start": "",
+      "pubinfo_freetext": "",
+      "year": 2019
+    }
+  ],
+  "record_creation_date": "2019-03-01T17:30:11.324880",
+  "record_creation_year": 2019,
+  "titles": [
+    {
+      "source": "APS",
+      "subtitle": "",
+      "title": "Color reconnection as a possible mechanism of intermittency in the emission spectra of charged particles in PYTHIA-generated high-multiplicity <math><mrow><mi>p</mi><mi>p</mi></mrow></math> collisions at energies available at the CERN Large Hadron Collider"
+    }
+  ]
+}
