@@ -83,6 +83,9 @@ def dumps_etree(records, xslt_filename=None, prefix=None):
 
                         for code, value in items:
                             if value:
+                                if isinstance(value, int):
+                                    value = str(value)
+
                                 if not isinstance(value, string_types):
                                     for v in value:
                                         datafield.append(E.subfield(v, code=code))
