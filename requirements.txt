@@ -1,4 +1,5 @@
 alembic==0.9.3
+amqp==1.4.9
 angular-gettext-babel==0.3
 aniso8601==1.1.0
 anyjson==0.3.3
@@ -12,9 +13,10 @@ Babel==2.5.3
 backports-abc==0.5
 backports.lzma==0.0.6
 backports.shutil-get-terminal-size==1.0.0
+billiard==3.3.0.23
 binaryornot==0.4.0
 blinker==1.4
-celery<4.2.0,>=4.1.0,~=4.0
+celery==3.1.26.post2
 Cerberus==0.7
 certifi==2018.1.18
 cffi==1.11.5
@@ -78,7 +80,7 @@ idna==2.6
 IDUtils>=1.0.1,~=1.0
 incremental==17.5.0
 infinity==1.4
-inspire-crawler>=3.0.3,~=3.0
+inspire-crawler==1.1.2
 inspire-utils>=3.0.4
 inspire-schemas>=59.0.5,~=59.0
 intbitset==2.3.0
@@ -130,6 +132,7 @@ jsonpointer==1.10
 jsonref==0.1
 jsonresolver==0.2.1
 jsonschema==2.6.0
+kombu==3.0.37
 limits==1.2.0
 LinkHeader==0.4.3
 lxml==4.2.1
@@ -144,6 +147,7 @@ node-semver==0.1.1
 oauthlib==2.1.0
 ordereddict==1.1
 orderedmultidict==0.7.10
+paramiko==2.0.9
 parsel==1.2.0
 passlib==1.7.1
 pathlib2==2.3.0
@@ -199,7 +203,7 @@ Twisted==17.5.0
 ua-parser==0.8.0
 Unidecode>=1.0.22,~=1.0
 uritools==2.2.0
-urllib3==1.23
+urllib3>=1.23,~=1.0
 validators==0.11.0
 vine==1.1.4
 w3lib==1.17.0
