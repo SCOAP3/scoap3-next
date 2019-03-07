@@ -13,9 +13,9 @@ with open(os.path.join('scoap3',
     exec(fp.read(), version)
 
 install_requires = [
-    'celery<4.2.0,>=4.1.0,~=4.0',
+    'celery<4.0',
     'idutils',
-    'inspire-crawler>=3.0.3,~=3.0',
+    'inspire-crawler~=1.0',
     'inspire-utils>=3.0.3',
     'invenio-access',
     'invenio-accounts',
