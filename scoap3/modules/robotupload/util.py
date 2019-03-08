@@ -5,7 +5,6 @@ from os.path import join
 from flask import url_for, current_app
 from inspire_dojson import marcxml2record
 
-from scoap3.modules.robotupload.config import JOURNAL_TITLE_MAPPING, JOURNAL_PUBLISHER_MAPPING
 from scoap3.modules.robotupload.errorhandler import InvalidUsage
 
 logger = logging.getLogger(__name__)
@@ -13,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 def save_package(package_name, file_data):
     # save delivered package for history
-    save_path = current_app.config('ROBOTUPLOAD_FOLDER')
+    save_path = current_app.config.get('ROBOTUPLOAD_FOLDER')
     if save_path:
         package_path = join(save_path, package_name)
         with open(package_path, 'w') as f:
@@ -45,11 +44,11 @@ def parse_received_package(file_data, package_name):
 def _add_additional_info(obj):
     # map journal title and save new value.
     journal_title = obj['publication_info'][0]['journal_title']
-    journal_title = JOURNAL_TITLE_MAPPING.get(journal_title, journal_title)
+    journal_title = current_app.config.get('JOURNAL_TITLE_MAPPING').get(journal_title, journal_title)
     obj['publication_info'][0]['journal_title'] = journal_title
 
     # get publisher based on journal title
-    publisher = JOURNAL_PUBLISHER_MAPPING.get(journal_title)
+    publisher = current_app.config.get('JOURNAL_PUBLISHER_MAPPING').get(journal_title)
 
     # add publisher if not exists
     if 'imprints' in obj and 'publisher' not in obj['imprints'][0]:

@@ -118,7 +118,7 @@ def is_record_in_db(obj, eng):
     return es.count(q='dois.value:"%s"' % (__get_first_doi(obj),))['count'] > 0
 
 
-def _fix_sources(obj):
+def set_springer_source_if_needed(obj):
     text = 'Italiana di Fisica'.lower()
     if 'source' in obj.data['abstracts'][0] and text in obj.data['abstracts'][0]['source'].lower():
         obj.data['abstracts'][0]['source'] = 'Springer/SIF'
@@ -128,7 +128,7 @@ def _fix_sources(obj):
 
 def store_record(obj, eng):
     """Stores record in database"""
-    _fix_sources(obj)
+    set_springer_source_if_needed(obj)
 
     obj.data['record_creation_year'] = parse_date(obj.data['record_creation_date']).year
 
