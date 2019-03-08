@@ -244,21 +244,21 @@ def build_files_data(obj, eng):
     elif method == 'scoap3_push':
         files = []
         for document in obj.data.get('documents', ()):
-            if 'xml' in document['key']:
-                filetype = 'xml'
-            elif 'pdfa' in document['key']:
-                filetype = 'pdfa'
-            elif 'pdf' in document['key']:
-                filetype = 'pdf'
-            else:
-                filetype = 'unknown'
+            known_extensions = ('xml', 'pdfa', 'pdf')
+
+            ext = None
+            for known_ext in known_extensions:
+                if known_ext in document['key']:
+                    ext = known_ext
+
+            if ext not in known_extensions:
                 __halt_and_notify('Invalid file type: %s' % document['key'], obj, eng)
 
             files.append(
                 {
                     'url': document['url'],
                     'name': doi,
-                    'filetype': filetype
+                    'filetype': ext
                 }
             )
         obj.extra_data['files'] = files
