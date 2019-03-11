@@ -77,7 +77,7 @@ def get_abbreviated_journal(record):
 
 def get_arxiv_primary_category(record):
     """Return primary arXiv category for record. None if not available."""
-    return get_value(record, 'arxiv_eprints.categories[0][0]')
+    return get_value(record, 'arxiv_eprints[0].categories[0]')
 
 
 def create_from_json(records, apply_async=True):

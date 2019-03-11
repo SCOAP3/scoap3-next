@@ -16,6 +16,7 @@ install_requires = [
     'celery<4.0',
     'idutils',
     'inspire-crawler~=1.0',
+    'inspire-dojson~=61.1,>=61.1.6',
     'inspire-utils>=3.0.3',
     'invenio-access',
     'invenio-accounts',
@@ -42,6 +43,7 @@ install_requires = [
     'invenio-workflows~=7.0',
     'invenio-workflows-files~=1.0',
     'invenio-workflows-ui==2.0.1',
+    'urllib3==1.23',
 ],
 
 setup(

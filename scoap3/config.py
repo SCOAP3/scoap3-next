@@ -772,3 +772,18 @@ DELETE_WORKFLOWS_OLDER_THEN_DAYS = 183
 
 #: Files REST permission factory
 FILES_REST_PERMISSION_FACTORY = 'scoap3.modules.records.permissions:files_permission_factory'
+
+# ##################### Robotupload ############################
+ROBOTUPLOAD_FOLDER = '/tmp/robotupload'
+ROBOTUPLOAD_ALLOWED_USERS = {'127.0.0.1': ['ALL'], }
+
+ROBOTUPLOAD_ALLOWED_EXTENSIONS = ['xml']
+
+JOURNAL_PUBLISHER_MAPPING = {
+    'Acta Physica Polonica B': 'Jagiellonian University',
+    'Chinese Physics C': 'Institute of Physics Publishing/Chinese Academy of Sciences',
+}
+
+JOURNAL_TITLE_MAPPING = {
+    '1674-1137': 'Chinese Physics C'
+}

@@ -25,7 +25,7 @@
 from __future__ import absolute_import, division, print_function
 
 import logging
-import urllib2
+from StringIO import StringIO
 
 from datetime import datetime
 from dateutil.parser import parse as parse_date
@@ -50,6 +50,8 @@ from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from scoap3.utils.arxiv import get_arxiv_categories
 
 from workflow.patterns.controlflow import IF_ELSE
+
+from scoap3.utils.http import requests_retry_session
 
 logger = logging.getLogger(__name__)
 
@@ -116,12 +118,17 @@ def is_record_in_db(obj, eng):
     return es.count(q='dois.value:"%s"' % (__get_first_doi(obj),))['count'] > 0
 
 
+def set_springer_source_if_needed(obj):
+    text = 'Italiana di Fisica'.lower()
+    if 'source' in obj.data['abstracts'][0] and text in obj.data['abstracts'][0]['source'].lower():
+        obj.data['abstracts'][0]['source'] = 'Springer/SIF'
+    if 'acquisition_source' in obj.data and text in obj.data['acquisition_source']['source'].lower():
+        obj.data['acquisition_source']['source'] = 'Springer/SIF'
+
+
 def store_record(obj, eng):
     """Stores record in database"""
-    if 'Italiana di Fisica'.lower() in obj.data['abstracts'][0]['source'].lower():
-        obj.data['abstracts'][0]['source'] = 'Springer/SIF'
-    if 'Italiana di Fisica'.lower() in obj.data['acquisition_source']['source'].lower():
-        obj.data['acquisition_source']['source'] = 'Springer/SIF'
+    set_springer_source_if_needed(obj)
 
     obj.data['record_creation_year'] = parse_date(obj.data['record_creation_date']).year
 
@@ -172,10 +179,6 @@ def update_record(obj, eng):
         obj.data['_files'] = existing_record['_files']
     if '_oai' in existing_record:
         obj.data['_oai'] = existing_record['_oai']
-    if 'Italiana di Fisica'.lower() in obj.data['abstracts'][0]['source'].lower():
-        obj.data['abstracts'][0]['source'] = 'Springer/SIF'
-    if 'Italiana di Fisica'.lower() in obj.data['acquisition_source']['source'].lower():
-        obj.data['acquisition_source']['source'] = 'Springer/SIF'
 
     # preserving original creation date
     creation_date = existing_record['record_creation_date']
@@ -215,9 +218,9 @@ def __extract_local_files_info(obj, doi):
 
 def build_files_data(obj, eng):
     doi = __get_first_doi(obj)
-    source = obj.data['acquisition_source']['method']
+    method = obj.data['acquisition_source']['method']
 
-    if source == 'APS':
+    if method == 'APS':
         obj.extra_data['files'] = [
             {'url': 'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
              'headers': {'Accept': 'application/pdf'},
@@ -228,7 +231,7 @@ def build_files_data(obj, eng):
              'name': '{0}.xml'.format(doi),
              'filetype': 'xml'}
         ]
-    elif 'Hindawi' in source:
+    elif 'Hindawi' in method:
         doi_part = doi.split('10.1155/')[1]
         obj.extra_data['files'] = [
             {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
@@ -238,6 +241,27 @@ def build_files_data(obj, eng):
              'name': '{0}.xml'.format(doi),
              'filetype': 'xml'}
         ]
+    elif method == 'scoap3_push':
+        files = []
+        for document in obj.data.get('documents', ()):
+            known_extensions = ('xml', 'pdfa', 'pdf')
+
+            ext = None
+            for known_ext in known_extensions:
+                if known_ext in document['key']:
+                    ext = known_ext
+
+            if ext not in known_extensions:
+                __halt_and_notify('Invalid file type: %s' % document['key'], obj, eng)
+
+            files.append(
+                {
+                    'url': document['url'],
+                    'name': doi,
+                    'filetype': ext
+                }
+            )
+        obj.extra_data['files'] = files
     else:
         obj.extra_data['files'] = __extract_local_files_info(obj, doi)
 
@@ -256,8 +280,8 @@ def attach_files(obj, eng):
 
         for file_ in obj.extra_data['files']:
             if file_['url'].startswith('http'):
-                request = urllib2.Request(file_['url'], headers=file_.get('headers', {}))
-                f = urllib2.urlopen(request)
+                data = requests_retry_session().get(file_['url'])
+                f = StringIO(data.content)
             else:
                 f = open(file_['url'])
 

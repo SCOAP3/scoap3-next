@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim">
+    <record>
+        <datafield tag="024" ind1="7" ind2=" ">
+            <subfield code="a">10.5506/APhysPolB.50.37</subfield>
+            <subfield code="2">DOI</subfield>
+        </datafield>
+        <datafield tag="037" ind1=" " ind2=" ">
+            <subfield code="a">1812.04746</subfield>
+            <subfield code="9">arXiv</subfield>
+        </datafield>
+        <datafield tag="100" ind1=" " ind2=" ">
+            <subfield code="a">Yassin, Hayam</subfield>
+            <subfield code="u">Physics Department, Faculty of Women for Arts, Science and Education, Ain Shams University, 11577 Cairo, Egypt</subfield>
+        </datafield>
+        <datafield tag="700" ind1=" " ind2=" ">
+            <subfield code="a">Abo Elyazeed, Eman R.</subfield>
+            <subfield code="u">Physics Department, Faculty of Women for Arts, Science and Education, Ain Shams University, 11577 Cairo, Egypt</subfield>
+        </datafield>
+        <datafield tag="245" ind1=" " ind2=" ">
+            <subfield code="a">Transverse Momentum $p_{\mathrm {T}}$ Spectra of Strange Particles Production in Different Collisions at $\sqrt {s_{NN}}$ = 2.76, 5.02 and 7 TeV</subfield>
+        </datafield>
+        <datafield tag="260" ind1=" " ind2=" ">
+            <subfield code="c">2019-01-01</subfield>
+        </datafield>
+        <datafield tag="520" ind1=" " ind2=" ">
+            <subfield code="a">We analyse the transverse momentum $p_{\rm T}$ spectra of strange particles $K^{0}_{\mathrm s}$, ${\mit\Lambda}$, and ${\mit\Xi}^{-}$ produced in Pb+Pb collision at $\sqrt{s_{NN}}= 2.76$~TeV, $p+{\rm Pb}$ collision at $\sqrt{s_{NN}} = 5.02$~TeV, and $p+p$ collision at $\sqrt{s_{NN}}= 7$~TeV in different multiplicity events measured by the CMS experiment at the Large Hadron Collider. The $p_{\rm T}$ spectra of strange particles are fitted by the Tsallis statistics and Boltzmann statistics, respectively. The fitting parameters are studied as a function of the multiplicity events for all systems. The Tsallis temperature ($T_{\rm Ts}$), Boltzmann temperature ($T_{\rm Boltz}$), and radius of the system ($R$) increase with both the mass and strangeness number of the particle and also increase with the multiplicity events. The non-extensive parameter ($q$) decreases with the increase in the mass of the particle and also decrease with the increase in the multiplicity events which means that the system tends to thermodynamic stabilization. The extracted temperatures from the two statistics for the strange particles exhibit a linear correlation.</subfield>
+        </datafield>
+        <datafield tag="540" ind1=" " ind2=" ">
+            <subfield code="a">CC-BY-4.0</subfield>
+            <subfield code="u">http://creativecommons.org/licenses/by/4.0/</subfield>
+        </datafield>
+        <datafield tag="542" ind1=" " ind2=" ">
+            <subfield code="f">The Authors</subfield>
+        </datafield>
+        <datafield tag="773" ind1=" " ind2=" ">
+            <subfield code="p">Acta Physica Polonica B</subfield>
+            <subfield code="v">50</subfield>
+            <subfield code="n">1</subfield>
+            <subfield code="c">37-54</subfield>
+            <subfield code="y">2019</subfield>
+        </datafield>
+        <datafield tag="980" ind1=" " ind2=" ">
+            <subfield code="a">SCOAP3</subfield>
+            <subfield code="b">Acta</subfield>
+        </datafield>
+        <datafield tag="FFT" ind1=" " ind2=" ">
+            <subfield code="a">http://www.actaphys.uj.edu.pl/fulltext?series=reg&amp;vol=50&amp;page=37</subfield>
+            <subfield code="f">.pdf</subfield>
+            <subfield code="n">fulltext</subfield>
+        </datafield>
+        <datafield tag="FFT" ind1=" " ind2=" ">
+            <subfield code="a">http://www.actaphys.uj.edu.pl/fulltext?series=reg&amp;vol=50&amp;page=37&amp;fmt=pdfa</subfield>
+            <subfield code="f">.pdf;pdfa</subfield>
+            <subfield code="n">fulltext</subfield>
+        </datafield>
+    </record>
+</collection>
