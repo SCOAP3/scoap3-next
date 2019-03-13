@@ -20,25 +20,35 @@ def run_workflow(input_json_filename):
 
 
 def test_hindawi():
+    workflows_count = Workflow.query.count()
     workflow = run_workflow('hindawi.json')
     assert workflow.status == WorkflowStatus.COMPLETED
+    assert Workflow.query.count() - workflows_count == 1
 
 
 def test_aps():
+    workflows_count = Workflow.query.count()
     workflow = run_workflow('aps.json')
     assert workflow.status == WorkflowStatus.COMPLETED
+    assert Workflow.query.count() - workflows_count == 1
 
 
 def test_elsevier():
+    workflows_count = Workflow.query.count()
     workflow = run_workflow('elsevier/elsevier.json')
     assert workflow.status == WorkflowStatus.COMPLETED
+    assert Workflow.query.count() - workflows_count == 1
 
 
 def test_springer():
+    workflows_count = Workflow.query.count()
     workflow = run_workflow('springer/springer.json')
     assert workflow.status == WorkflowStatus.COMPLETED
+    assert Workflow.query.count() - workflows_count == 1
 
 
 def test_oup():
+    workflows_count = Workflow.query.count()
     workflow = run_workflow('oup/oup.json')
     assert workflow.status == WorkflowStatus.COMPLETED
+    assert Workflow.query.count() - workflows_count == 1

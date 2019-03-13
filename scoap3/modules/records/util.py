@@ -23,13 +23,11 @@
 """Helpers for handling records."""
 import copy
 import re
-from uuid import uuid1
 
 from flask import current_app
-from inspire_crawler.models import CrawlerWorkflowObject
 from inspire_utils.record import get_value
 from invenio_db import db
-from invenio_workflows import WorkflowEngine, workflow_object_class
+from invenio_workflows import workflow_object_class
 from invenio_workflows.tasks import start
 
 from scoap3.utils.arxiv import clean_arxiv
@@ -86,10 +84,7 @@ def create_from_json(records, apply_async=True):
     results = []
 
     for i, record in enumerate(records['records']):
-        engine = WorkflowEngine.with_name("articles_upload")
-        engine.save()
         obj = workflow_object_class.create(data=record)
-        obj.id_workflow = str(engine.uuid)
         extra_data = {}
         record_extra = record.pop('extra_data', {})
         if record_extra:
@@ -105,12 +100,6 @@ def create_from_json(records, apply_async=True):
         obj.save()
         db.session.commit()
 
-        job_id = uuid1()
-
-        crawler_object = CrawlerWorkflowObject(
-            job_id=job_id, object_id=obj.id
-        )
-        db.session.add(crawler_object)
         queue = current_app.config['CRAWLER_CELERY_QUEUE']
 
         if apply_async:

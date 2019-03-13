@@ -280,7 +280,7 @@ def attach_files(obj, eng):
 
         for file_ in obj.extra_data['files']:
             if file_['url'].startswith('http'):
-                data = requests_retry_session().get(file_['url'])
+                data = requests_retry_session().get(file_['url'], headers=file_.get('headers', {}))
                 f = StringIO(data.content)
             else:
                 f = open(file_['url'])
