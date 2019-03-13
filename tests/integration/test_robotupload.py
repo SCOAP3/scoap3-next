@@ -67,8 +67,12 @@ def test_robotupload_cpc():
             real_http=True,
         )
 
+        workflows_count = Workflow.query.count()
         workflow = run_workflow('batchupload_20190102132204_4AEY6N_cpc.xml')
         assert workflow.status == WorkflowStatus.COMPLETED
+
+        # test if only one workflow was created
+        assert Workflow.query.count() - workflows_count == 1
 
 
 def test_robotupload_acta():
@@ -88,5 +92,9 @@ def test_robotupload_acta():
             real_http=True,
         )
 
+        workflows_count = Workflow.query.count()
         workflow = run_workflow('batchupload_20190125120350_PuCDSV_acta.xml')
         assert workflow.status == WorkflowStatus.COMPLETED
+
+        # test if only one workflow was created
+        assert Workflow.query.count() - workflows_count == 1

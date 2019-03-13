@@ -24,6 +24,7 @@ blueprint = Blueprint(
 )
 
 API_ENDPOINT_DEFAULT = "scoap3.modules.robotupload.tasks.submit_results"
+ALLOWED_METHODS = ['POST', 'PUT']
 
 
 @blueprint.errorhandler(InvalidUsage)
@@ -101,7 +102,17 @@ def handle_upload_request(apply_async=True):
     return create_from_json({'records': [obj]}, apply_async=apply_async)
 
 
-@blueprint.route('/robotupload', methods=['POST', 'PUT'])
+@blueprint.route('/robotupload/<mode>', methods=ALLOWED_METHODS)
+def legacy_robotupload(mode):
+    """This view is only kept for being compatible with legacy repository url. As soon as legacy is not running
+     parallel, this can be removed.
+    :param mode: unused. In the legacy repository it was used to differentiate an insertion, replace, etc.
+    """
+    return robotupload()
+
+
+@blueprint.route('/robotupload', methods=ALLOWED_METHODS)
 def robotupload():
+    """View for handling pushing publishers"""
     handle_upload_request()
     return "OK"
