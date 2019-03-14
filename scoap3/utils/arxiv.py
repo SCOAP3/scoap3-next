@@ -45,9 +45,11 @@ def get_clean_arXiv_id(record):
 
 def clean_arxiv(arxiv):
     # drop 'arxiv:' prefix, version and other information if there is
+    # also force ascii encoding and strip unnecessary characters
     if arxiv is None:
         return None
-    return arxiv.split(':')[-1].split('v')[0].split(' ')[0]
+
+    return arxiv.split(':')[-1].split('v')[0].split(' ')[0].encode('ascii').strip('"\'')
 
 
 def get_arxiv_categories(arxiv_id):
