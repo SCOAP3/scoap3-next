@@ -42,3 +42,11 @@ def test_extract_arxiv_id_complex():
 def test_extract_arxiv_none():
     """Test for None param."""
     assert clean_arxiv(None) is None
+
+
+def test_extract_arxiv_with_categ():
+    """
+    Test for arxiv with category.
+    Delivered for article: 10.1140/epjc/s10052-019-6679-6
+    """
+    assert clean_arxiv('arXiv:1803.07217 [gr-qc]') == '1803.07217'
