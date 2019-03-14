@@ -19,6 +19,19 @@ def test_categories():
             assert categories == ['hep-th', 'gr-qc', 'math-ph', 'math.MP']
 
 
+def test_empty_response():
+    """Test extraction arXiv categories from arXiv api."""
+
+    file_path = path.join(get_response_dir(), 'arxiv', 'empty.xml')
+    with open(file_path, 'rb') as f:
+        file_data = f.read()
+
+        with requests_mock.Mocker() as m:
+            m.get('http://export.arxiv.org/api/query?search_query=id:not_found', text=file_data)
+            categories = get_arxiv_categories('not_found')
+            assert categories == []
+
+
 def test_extract_arxiv_id():
     """Test getting clean arXiv identifier."""
     assert clean_arxiv('12356.78') == '12356.78'
