@@ -44,10 +44,12 @@ def get_clean_arXiv_id(record):
 
 
 def clean_arxiv(arxiv):
-    # drop 'arxiv:' prefix and version
+    # drop 'arxiv:' prefix, version and other information if there is
+    # also force ascii encoding and strip unnecessary characters
     if arxiv is None:
         return None
-    return arxiv.split(':')[-1].split('v')[0]
+
+    return arxiv.split(':')[-1].split('v')[0].split(' ')[0].encode('ascii').strip('"\'')
 
 
 def get_arxiv_categories(arxiv_id):
@@ -66,8 +68,13 @@ def get_arxiv_categories(arxiv_id):
     if data.status_code == 200:
         xml = etree.fromstring(data.content)
         primary_category = xml.xpath('//arxiv:primary_category/@term', namespaces=xml_namespaces)
+
+        if not primary_category:
+            logger.error('Arxiv did not return primary category for id: %s' % arxiv_id)
+            return categories
+
         if len(primary_category) > 1:
-            logger.error('Arxiv returned %d primary categories for id: %s' % (len(primary_category), arxiv_id))
+            logger.error('Arxiv returned %d primary category for id: %s' % (len(primary_category), arxiv_id))
 
         secondary_categories = xml.xpath('//w3:category/@term', namespaces=xml_namespaces)
 
