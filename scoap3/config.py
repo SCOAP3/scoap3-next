@@ -4,7 +4,10 @@
 
 from __future__ import absolute_import, print_function
 
+import structlog
+
 from collections import OrderedDict
+from logging.config import dictConfig
 
 from invenio_records_rest.facets import terms_filter, range_filter
 
@@ -532,6 +535,43 @@ OAISERVER_METADATA_FORMATS = {
         'schema': 'http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd'
     }
 }
+
+dictConfig({
+    'version': 1,
+    'formatters': {
+        'default': {
+            'format': '[%(asctime)s: %(levelname)s/%(processName)s] %(name)s: %(message)s',
+        }
+    },
+    'handlers': {
+        'stdout_handler': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        }
+    },
+    'loggers': {
+        'scoap3': {
+            'level': 'INFO',
+            'handlers': ['stdout_handler'],
+            'propagate': False
+        },
+    }
+})
+structlog.configure(
+    processors=[
+        structlog.stdlib.add_logger_name,
+        structlog.stdlib.add_log_level,
+        structlog.stdlib.PositionalArgumentsFormatter(),
+        structlog.processors.TimeStamper(fmt="%Y-%m-%d %H:%M.%S"),
+        structlog.processors.StackInfoRenderer(),
+        structlog.processors.format_exc_info,
+        structlog.dev.ConsoleRenderer()
+    ],
+    context_class=dict,
+    logger_factory=structlog.stdlib.LoggerFactory(),
+    wrapper_class=structlog.stdlib.BoundLogger,
+    cache_logger_on_first_use=True,
+)
 
 # Invenio Logging config
 LOGGING_SENTRY_CLASS = "invenio_logging.sentry6.Sentry6"

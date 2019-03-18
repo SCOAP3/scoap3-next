@@ -3,13 +3,13 @@ from datetime import datetime
 from os import makedirs
 from os.path import join, isdir
 
+import structlog
 from flask import url_for, current_app
 from inspire_dojson import marcxml2record
 
 from scoap3.modules.robotupload.errorhandler import InvalidUsage
 
-logger = logging.getLogger(__name__)
-
+logger = structlog.get_logger(__name__)
 
 def save_package(package_name, file_data):
     # save delivered package for history
@@ -21,6 +21,7 @@ def save_package(package_name, file_data):
         package_path = join(save_path, package_name)
         with open(package_path, 'w') as f:
             f.write(file_data)
+            logger.info('Robotupload package saved', path=package_path)
 
 
 def parse_received_package(file_data, package_name):

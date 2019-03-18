@@ -43,6 +43,7 @@ install_requires = [
     'invenio-workflows~=7.0',
     'invenio-workflows-files~=1.0',
     'invenio-workflows-ui==2.0.1',
+    'structlog~=19.1,>=19.1.0',
     'urllib3==1.23',
 ],
 
