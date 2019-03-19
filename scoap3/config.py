@@ -5,6 +5,7 @@
 from __future__ import absolute_import, print_function
 
 from collections import OrderedDict
+from logging.config import dictConfig
 
 from invenio_records_rest.facets import terms_filter, range_filter
 
@@ -533,6 +534,28 @@ OAISERVER_METADATA_FORMATS = {
 
 # Invenio Logging config
 LOGGING_SENTRY_CLASS = "invenio_logging.sentry6.Sentry6"
+dictConfig({
+    'version': 1,
+    'formatters': {
+        'default': {
+            'format': '[%(asctime)s: %(levelname)s/%(processName)s] %(name)s: %(message)s',
+        }
+    },
+    'handlers': {
+        'stdout_handler': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        }
+    },
+    'loggers': {
+        'scoap3': {
+            'level': 'INFO',
+            'handlers': ['stdout_handler'],
+            'propagate': False
+        },
+    }
+})
+
 
 JSONSCHEMAS_HOST = 'localhost:5000'
 JSONSCHEMAS_REPLACE_REFS = False
