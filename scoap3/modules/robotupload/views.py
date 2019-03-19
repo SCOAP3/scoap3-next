@@ -45,21 +45,23 @@ def validate_request(remote_addr):
     Raises InvalidUsage if not.
     :param remote_addr: remote ip address
     """
+
     if remote_addr not in current_app.config.get('ROBOTUPLOAD_ALLOWED_USERS'):
-        logger.warning('Robotupload access from unauthorized ip address: %s' % remote_addr)
+        logger.warning('Robotupload access from unauthorized ip remote_addr=%s' % remote_addr)
         raise InvalidUsage("Client IP %s cannot use the service." % remote_addr, status_code=403)
 
     uploaded_file = request.files.get('file')
     if not uploaded_file:
-        logger.warning('Robotupload accessed without a file specified. Remote addr: %s' % remote_addr)
+        logger.warning('Robotupload accessed without a file specified remote_addr=%s' % remote_addr)
         raise InvalidUsage("Please specify file body to input.")
 
     if not uploaded_file.filename:
-        logger.warning('Robotupload accessed without a filename specified. Remote addr: %s' % remote_addr)
+        logger.warning('Robotupload accessed without a filename specified. remote_addr=%s' % remote_addr)
         raise InvalidUsage("Please specify file body to input. Filename missing.")
 
     if not allowed_file(uploaded_file.filename):
-        logger.warning('Robotupload accessed invalid extension: %s. Remote addr: %s' % (uploaded_file.filename, remote_addr))
+        logger.warning('Robotupload file invalid extension remote_addr=%s filename=%s' % (remote_addr,
+                                                                                          uploaded_file.filename))
         raise InvalidUsage("File does not have an accepted file format.", status_code=415)
 
 
@@ -74,20 +76,24 @@ def check_permission_for_journal(journal_title, remote_addr, package_name):
 
     allowed_journals_for_user = current_app.config.get('ROBOTUPLOAD_ALLOWED_USERS').get(remote_addr, ())
     if journal_title not in allowed_journals_for_user and 'ALL' not in allowed_journals_for_user:
-        logger.warning('Wrong journal name in metadata for package: %s. Remote addr: %s' % (package_name, remote_addr))
+        logger.warning('Wrong journal name in metadata. remote_addr=%s package_name=%s journal_title=%s' % (
+            remote_addr, package_name, journal_title))
         raise InvalidUsage("Cannot submit such a file from this IP. (Wrong journal)")
 
 
 def handle_upload_request(apply_async=True):
     """Handle articles that are pushed from publishers."""
     remote_addr = request.environ['REMOTE_ADDR']
+
+    logger.info('Robotupload request received. remote_addr=%s headers=%s args=%s' % (remote_addr, request.headers,
+                                                                                     request.args))
     validate_request(remote_addr)
 
     uploaded_file = request.files['file']
     filename = secure_filename(uploaded_file.filename)
     file_data = uploaded_file.read()
 
-    logger.info('Package delivered with name %s from %s.' % (filename, remote_addr))
+    logger.info('Package delivered. filename=%s' % filename)
 
     # save delivered package
     delivery_time = datetime.now().isoformat()

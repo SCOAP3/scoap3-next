@@ -38,7 +38,9 @@ def run_workflow(input_filename):
                 self.file_data = ''
                 return result
 
+        headers = {'User-Agent': 'invenio_webupload', 'Host': 'localhost'}
         environ = {'REMOTE_ADDR': '127.0.0.1'}
+        args = {}
         files = {
             'file': MockFile()
         }
