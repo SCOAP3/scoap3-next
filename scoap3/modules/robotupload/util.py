@@ -21,6 +21,7 @@ def save_package(package_name, file_data):
         package_path = join(save_path, package_name)
         with open(package_path, 'w') as f:
             f.write(file_data)
+            logger.info('Robotupload package saved path=%s' % package_path)
 
 
 def parse_received_package(file_data, package_name):

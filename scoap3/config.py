@@ -23,8 +23,6 @@ I18N_LANGUAGES = [
 ]
 
 COVER_TEMPLATE = "invenio_theme/page_cover.html"
-SETTINGS_TEMPLATE = "invenio_theme/settings/content.html"
-
 SERVER_NAME = 'localhost:5000'
 
 # WARNING: Do not share the secret key - especially do not commit it to
