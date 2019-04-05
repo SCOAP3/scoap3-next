@@ -1,6 +1,5 @@
 import json
 import logging
-from os import listdir
 from os.path import join, isdir, abspath, isfile, realpath, dirname
 
 import click
@@ -11,6 +10,7 @@ from jsonschema import validate, ValidationError, SchemaError
 
 from scoap3.modules.records.util import create_from_json
 from scoap3.modules.robotupload.util import parse_received_package
+from scoap3.utils.file import get_files
 
 logger = logging.getLogger(__name__)
 
@@ -20,11 +20,11 @@ def log(msg='', level=logging.INFO, **kwargs):
     logger.log(level, msg + '\t' + '\t'.join(params))
 
 
-def validate_schema(obj):
+def is_schema_valid(obj):
     key = '$schema'
 
     if key not in obj:
-        log('No schema found!', logging.WARNING, obj=obj)
+        log('No schema found!', logging.WARNING, data=obj.get('dois', obj))
         return True
 
     schema_path = join(dirname(realpath(__file__)), 'modules', 'records', 'jsonschemas', 'hep.json')
@@ -34,7 +34,7 @@ def validate_schema(obj):
     try:
         validate(obj, schema_data)
     except (ValidationError, SchemaError) as err:
-        log('validation error!', logging.ERROR, err=err)
+        log('validation error!', logging.ERROR, err=err, data=obj('dois', obj))
         return False
 
     return True
@@ -42,24 +42,27 @@ def validate_schema(obj):
 
 @click.group()
 def harvest():
-    """
-    Manual harvest commands.
-    USE AT YOUR OWN RISK. You've been warned.
-    """
+    """ Manual harvest commands. USE AT YOUR OWN RISK. You've been warned."""
 
 
 @harvest.command()
 @with_appcontext
-@click.option('--source_file', help='File to be processed.')
-@click.option('--source_folder', help='All files in the folder will be processed.')
-def acta_cpc(source_file, source_folder):
+@click.option('--source_file', help='File to be processed. This or source_folder parameter has to be present.')
+@click.option('--source_folder', help='All files in the folder will be processed recursively. '
+                                      'This or source_file parameter has to be present.Packages will be alphabetically '
+                                      'ordered regarding their absolute path and then parsed in this order.')
+@click.option('--require_valid_schema', is_flag=True,
+              help='If provided, only records passing schema validation will be uploaded.')
+def acta_cpc(source_file, source_folder, require_valid_schema):
     """
     Harvests Acta Physica Polonica B or Chinese Physics C packages.
+
     Passed packages should contain pushed metadata in xml format.
+    Exactly one of the source_file and source_folder parameters should be present.
     If a folder is passed, all files within the folder will be parsed and uploaded.
     """
 
-    if (source_folder and source_file) or not(source_folder or source_file):
+    if not source_folder ^ source_file:
         log('Source_folder XOR source_file has to be specified, exactly one of them.', logging.ERROR,
             source_file=source_file, source_folder=source_folder)
         return
@@ -77,7 +80,7 @@ def acta_cpc(source_file, source_folder):
         if isdir(source_folder):
             # sorting like this will result in a chronological order, because the filename contains
             # the date and time of delivery.
-            entries = sorted(listdir(source_folder))
+            entries = sorted(get_files(source_folder))
         else:
             log('Source folder does not exist', logging.ERROR)
 
@@ -98,8 +101,14 @@ def acta_cpc(source_file, source_folder):
         with open(path, 'rt') as f:
             file_data = f.read()
             obj = parse_received_package(file_data, entry)
-            if not validate_schema(obj):
-                log('Schema not valid.', logging.ERROR)
+            is_valid = is_schema_valid(obj)
+            if not is_valid:
+                log('Schema not valid.', logging.ERROR, data=obj.get('dois', obj))
+
+                # skip processing this record if valid schema is mandatory
+                if require_valid_schema:
+                    continue
+
             create_from_json({'records': [obj]}, apply_async=False)
 
 
@@ -108,15 +117,15 @@ def acta_cpc(source_file, source_folder):
 @click.option('--from_date', default=None)
 @click.option('--until_date', default=None)
 @click.option('--sets', default='scoap3')
-@click.option('--spider', default='APS')
 @click.option('--workflow', default='articles_upload')
 def aps(**kwargs):
     """
-    Harvests APS through their REST API .
+    Harvests APS through their REST API.
+
     If no arguments given, it harvests all articles in the 'scoap3' set and sends them to the 'article_upload' workflow.
     All arguments are just passed to the inspire_craweler and then to the APS spider.
     """
-    spider = kwargs.pop('spider')
+    spider = 'APS'
     workflow = kwargs.pop('workflow')
     schedule_crawl(spider, workflow, **kwargs)
 
@@ -126,13 +135,13 @@ def aps(**kwargs):
 @click.option('--from_date', default=None)
 @click.option('--until_date', default=None)
 @click.option('--url', default='https://www.hindawi.com/oai-pmh/oai.aspx')
-@click.option('--spider', default='hindawi')
 @click.option('--workflow', default='articles_upload')
 @click.option('--setspecs', default='HINDAWI.AHEP')
 @click.option('--metadata_prefix', default='marc21')
 def hindawi(**kwargs):
     """
-    Harvests APS through their REST API .
+    Harvests APS through their REST API.
+
     If no arguments given, it harvests all articles in the 'scoap3' set and sends them to the 'article_upload' workflow.
     All arguments are just passed to the inspire_craweler and then to the APS spider.
 
@@ -140,4 +149,4 @@ def hindawi(**kwargs):
     interval.
     """
 
-    list_records_from_dates(**kwargs)
+    list_records_from_dates(spider='hindawi', **kwargs)
