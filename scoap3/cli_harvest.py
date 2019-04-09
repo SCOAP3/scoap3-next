@@ -1,12 +1,10 @@
-import json
 import logging
-from os.path import join, isdir, abspath, isfile, realpath, dirname
+from os.path import join, isdir, abspath, isfile
 
 import click
 from flask.cli import with_appcontext
 from inspire_crawler.tasks import schedule_crawl
 from invenio_oaiharvester.tasks import list_records_from_dates
-from jsonschema import validate, ValidationError, SchemaError
 
 from scoap3.modules.records.util import create_from_json
 from scoap3.modules.robotupload.util import parse_received_package
@@ -20,26 +18,6 @@ def log(msg='', level=logging.INFO, **kwargs):
     logger.log(level, msg + '\t' + '\t'.join(params))
 
 
-def is_schema_valid(obj):
-    key = '$schema'
-
-    if key not in obj:
-        log('No schema found!', logging.WARNING, data=obj.get('dois', obj))
-        return True
-
-    schema_path = join(dirname(realpath(__file__)), 'modules', 'records', 'jsonschemas', 'hep.json')
-    with open(schema_path, 'rt') as f:
-        schema_data = json.loads(f.read())
-
-    try:
-        validate(obj, schema_data)
-    except (ValidationError, SchemaError) as err:
-        log('validation error!', logging.ERROR, err=err, data=obj('dois', obj))
-        return False
-
-    return True
-
-
 @click.group()
 def harvest():
     """ Manual harvest commands. USE AT YOUR OWN RISK. You've been warned."""
@@ -51,15 +29,16 @@ def harvest():
 @click.option('--source_folder', help='All files in the folder will be processed recursively. '
                                       'This or source_file parameter has to be present.Packages will be alphabetically '
                                       'ordered regarding their absolute path and then parsed in this order.')
-@click.option('--require_valid_schema', is_flag=True,
-              help='If provided, only records passing schema validation will be uploaded.')
-def acta_cpc(source_file, source_folder, require_valid_schema):
+def acta_cpc(source_file, source_folder):
     """
     Harvests Acta Physica Polonica B or Chinese Physics C packages.
 
-    Passed packages should contain pushed metadata in xml format.
+    Passed files should contain pushed metadata in xml format.
     Exactly one of the source_file and source_folder parameters should be present.
-    If a folder is passed, all files within the folder will be parsed and uploaded.
+
+    If a folder is passed, all files within the folder will be parsed and processed. The files will always be processed
+    in alphabetical order, so in case an article is available in multiple files, make sure that the alphabetical and
+    chronological orders are equivalent. Ignoring this can result in having an older version of an article.
     """
 
     if not source_folder ^ source_file:
@@ -101,13 +80,6 @@ def acta_cpc(source_file, source_folder, require_valid_schema):
         with open(path, 'rt') as f:
             file_data = f.read()
             obj = parse_received_package(file_data, entry)
-            is_valid = is_schema_valid(obj)
-            if not is_valid:
-                log('Schema not valid.', logging.ERROR, data=obj.get('dois', obj))
-
-                # skip processing this record if valid schema is mandatory
-                if require_valid_schema:
-                    continue
 
             create_from_json({'records': [obj]}, apply_async=False)
 
@@ -123,7 +95,8 @@ def aps(**kwargs):
     Harvests APS through their REST API.
 
     If no arguments given, it harvests all articles in the 'scoap3' set and sends them to the 'article_upload' workflow.
-    All arguments are just passed to the inspire_craweler and then to the APS spider.
+    This is the default behavior during automatic harvests, but with a from_date specified.
+    All arguments are passed to the inspire_craweler and then to the APS spider.
     """
     spider = 'APS'
     workflow = kwargs.pop('workflow')
