@@ -5,6 +5,7 @@
 from __future__ import absolute_import, print_function
 
 from scoap3.cli_fixes import fixdb
+from scoap3.cli_harvest import harvest
 from scoap3.modules.compliance.cli import compliance
 from scoap3.modules.records.cli import loadrecords
 
@@ -25,6 +26,7 @@ class Scoap3(object):
         app.cli.add_command(fixdb)
         app.cli.add_command(compliance)
         app.cli.add_command(loadrecords)
+        app.cli.add_command(harvest)
         return self
 
 

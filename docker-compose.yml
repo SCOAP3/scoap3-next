@@ -42,6 +42,7 @@ services:
       - APP_CRAWLER_API_PIPELINE_URL=http://flower:5555/api/task/async-apply
       - APP_LAST_RUNS_PATH=.lastruns
       - APP_OAIHARVESTER_WORKDIR=/virtualenv/oaiharvest_workdir
+      - SCRAPY_FEED_URI=/tmp/scrapy_feed.json
 
   # Services using the inspirehep code.
   web:

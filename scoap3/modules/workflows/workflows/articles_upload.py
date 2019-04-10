@@ -61,8 +61,6 @@ def __get_first_doi(obj):
 
 
 def __halt_and_notify(msg, obj, eng):
-    eng.halt(msg)
-
     ctx = {
         'doi': __get_first_doi(obj),
         'reason': msg,
@@ -77,6 +75,8 @@ def __halt_and_notify(msg, obj, eng):
         ctx=ctx
     )
     current_app.extensions['mail'].send(msg)
+
+    eng.halt(msg)
 
 
 def set_schema(obj, eng):
