@@ -9,6 +9,7 @@ from invenio_oaiharvester.tasks import list_records_from_dates
 from scoap3.modules.records.util import create_from_json
 from scoap3.modules.robotupload.util import parse_received_package
 from scoap3.utils.file import get_files
+from scoap3.utils.helpers import clean_oup_package_name
 
 logger = logging.getLogger(__name__)
 
@@ -116,10 +117,117 @@ def hindawi(**kwargs):
     Harvests APS through their REST API.
 
     If no arguments given, it harvests all articles in the 'scoap3' set and sends them to the 'article_upload' workflow.
-    All arguments are just passed to the inspire_craweler and then to the APS spider.
+    This is the default behavior during automatic harvests, but with a from_date specified.
+
+    All arguments are passed to the inspire_craweler and then to the APS spider.
 
     Note: the from and until parameters include every article that was created, updated or deleted in the given
-    interval.
+    interval. I.e. it is possible to receive an article that was created before the given interval, but updated later.
     """
 
     list_records_from_dates(spider='hindawi', **kwargs)
+
+
+@harvest.command()
+@with_appcontext
+@click.option('--source_folder', help='All files in the folder will be processed recursively.', required=True)
+@click.option('--workflow', default='articles_upload')
+def oup(**kwargs):
+    """
+    Harvests OUP packages.
+
+    OUP delivers articles in multiple zip files, so *one package* consists of four zip archives:
+      1) containing pdfa full text files ('_archival.zip' postfix)
+      2) containing images ('.img.zip' postfix)
+      3) containing pdf full text files ('.pdf.zip' postfix)
+      4) containing xml metadata files ('.xml.zip' postfix)
+    These archives can contain information/files about more then one article.
+
+    Processing the files of a package in a proper order is crucial: when a non-xml file is parsed, it will only be
+    unzipped to the corresponding directory. However when the xml file is parsed a workflow will be scheduled, which
+    will be expecting the files to be in the correct place.
+
+    Since the alphabetical sort does not provide this order, the given files in a folder will be grouped together
+    by removing the postfix from the filename.
+
+    The packages will be processed in alphabetical order. To make sure the newest article is available for each article
+    after the process, ensure that the chronological and alphabetical order of the packages are equivalent. E.g. have
+    the date and time of delivery in the beginning of the filename.
+
+    The following examples demonstrate the expected folder structure and file naming.
+
+    Examples 1 (next):
+        In case of having the following files:
+        harvest/
+            - 20190331195346-ptep_iss_2019_3.img.zip
+            - 20190331195346-ptep_iss_2019_3.pdf.zip
+            - 20190331195346-ptep_iss_2019_3.xml.zip
+            - 20190331195346-ptep_iss_2019_3_archival.zip
+            - 20190228130556-ptep_iss_2019_2.img.zip
+            - 20190228130556-ptep_iss_2019_2.pdf.zip
+            - 20190228130556-ptep_iss_2019_2.xml.zip
+            - 20190228130556-ptep_iss_2019_2_archival.zip
+
+        the following command can be used:
+        `scoap3 harvest oup --source_folder harvest`
+
+    Examples 2 (legacy):
+        In case of having the following files:
+        harvest/
+            - 2019-03-30_16:30:41_ptep_iss_2019_3.img.zip
+            - 2019-03-30_16:30:41_ptep_iss_2019_3.pdf.zip
+            - 2019-03-30_16:30:41_ptep_iss_2019_3_archival.zip
+            - 2019-03-30_16:30:41_ptep_iss_2019_3.xml.zip
+            - 2019-01-30_15:30:31_ptep_iss_2018_6.img.zip
+            - 2019-01-30_15:30:31_ptep_iss_2018_6.pdf.zip
+            - 2019-01-30_15:30:31_ptep_iss_2018_6_archival.zip
+            - 2019-01-30_15:30:31_ptep_iss_2018_6.xml.zip
+
+        the following command can be used:
+        `scoap3 harvest oup --source_folder harvest`
+    """
+
+    package_prefix = 'file://'
+    source_folder = kwargs.pop('source_folder')
+
+    # validate path parameters, collect packages
+    packages = []
+    source = abspath(source_folder)
+    if isdir(source):
+        packages = get_files(source)
+    else:
+        log('Source folder does not exist', logging.ERROR)
+
+    if not packages:
+        log('No packages, abort.', logging.ERROR)
+        return
+
+    # group collected packages
+    log('grouping files...')
+    grouped_packages = {}
+    for package in packages:
+        if not package.endswith('.zip'):
+            log('package should be a .zip file. Skipping.', package_path=package)
+            continue
+
+        group_key = clean_oup_package_name(package)
+        if group_key not in grouped_packages:
+            grouped_packages[group_key] = {'files': []}
+
+        if package.endswith('.xml.zip') or package.endswith('.xml_v1.zip'):
+            grouped_packages[group_key]['xml'] = package
+        else:
+            grouped_packages[group_key]['files'].append(package)
+
+    log('sorting grouped files...')
+    sorted_grouped_packages = sorted(grouped_packages.items())
+
+    # schedule crawls on the sorted packages
+    for group_key, package in sorted_grouped_packages:
+        if 'xml' not in package:
+            log('No xml file, skipping package.', logging.ERROR, package=package, group_key=group_key)
+            continue
+
+        for f in package.get('files', []) + [package['xml']]:
+            log('scheduling...', package_path=f)
+            schedule_crawl(spider='OUP', package_path=package_prefix + f, **kwargs)
