@@ -1,5 +1,5 @@
 import logging
-from os.path import join, isdir, abspath, isfile
+from os.path import isdir, abspath, isfile
 
 import click
 from flask.cli import with_appcontext
@@ -17,6 +17,37 @@ logger = logging.getLogger(__name__)
 def log(msg='', level=logging.INFO, **kwargs):
     params = ('%s=%s' % (x[0], x[1]) for x in kwargs.items())
     logger.log(level, msg + '\t' + '\t'.join(params))
+
+
+def get_packages_for_file_or_folder(source_file, source_folder):
+    """
+    Collects all the files based on given parameters. Exactly one of the parameters has to be specified.
+
+    If source_file is given, it will return with a list containing source_file.
+    If source_folder is given, it will search recursively all files in the directory and return the list of found files.
+    """
+
+    if not bool(source_folder) ^ bool(source_file):
+        log('Source_folder XOR source_file has to be specified, exactly one of them.', logging.ERROR,
+            source_file=source_file, source_folder=source_folder)
+        return ()
+
+    # validate path parameters, collect packages
+    entries = ()
+    if source_file:
+        source = abspath(source_file)
+        if isfile(source):
+            entries = [source]
+        else:
+            log('Source file does not exist', logging.ERROR)
+    else:
+        source = abspath(source_folder)
+        if isdir(source):
+            entries = get_files(source)
+        else:
+            log('Source folder does not exist', logging.ERROR)
+
+    return entries
 
 
 @click.group()
@@ -42,37 +73,18 @@ def acta_cpc(source_file, source_folder):
     chronological orders are equivalent. Ignoring this can result in having an older version of an article.
     """
 
-    if not source_folder ^ source_file:
-        log('Source_folder XOR source_file has to be specified, exactly one of them.', logging.ERROR,
-            source_file=source_file, source_folder=source_folder)
-        return
-
-    # validate path parameters, collect packages
-    entries = None
-    if source_file:
-        source = abspath(source_file)
-        if isfile(source):
-            entries = [source]
-        else:
-            log('Source file does not exist', logging.ERROR)
-    else:
-        source = abspath(source_folder)
-        if isdir(source_folder):
-            # sorting like this will result in a chronological order, because the filename contains
-            # the date and time of delivery.
-            entries = sorted(get_files(source_folder))
-        else:
-            log('Source folder does not exist', logging.ERROR)
+    entries = get_packages_for_file_or_folder(source_file, source_folder)
 
     if not entries:
         log('No entries, abort.', logging.ERROR)
         return
 
     # harvesting all packages found in source folder
+    # sorting like this will result in a chronological order, because the filename contains
+    # the date and time of delivery.
     entries_count = len(entries)
-    log('Processing packages...', entry_count=entries_count, source_folder=source)
-    for i, entry in enumerate(entries):
-        path = join(source, entry)
+    log('Processing packages...', entry_count=entries_count)
+    for i, path in enumerate(sorted(entries)):
         if not isfile(path):
             log('Path not a file. Skipping.', path=path)
             continue
@@ -80,7 +92,7 @@ def acta_cpc(source_file, source_folder):
         log('processing package', path=path, current_index=i, entry_count=entries_count)
         with open(path, 'rt') as f:
             file_data = f.read()
-            obj = parse_received_package(file_data, entry)
+            obj = parse_received_package(file_data, path)
 
             create_from_json({'records': [obj]}, apply_async=False)
 
@@ -231,3 +243,43 @@ def oup(**kwargs):
         for f in package.get('files', []) + [package['xml']]:
             log('scheduling...', package_path=f)
             schedule_crawl(spider='OUP', package_path=package_prefix + f, **kwargs)
+
+
+@harvest.command()
+@with_appcontext
+@click.option('--source_file', help='File to be processed. This or source_folder parameter has to be present.')
+@click.option('--source_folder', help='All files in the folder will be processed recursively. This or source_file '
+                                      'parameter has to be present. Packages will be alphabetically ordered '
+                                      'regarding their absolute path and then parsed in this order.')
+@click.option('--workflow', default='articles_upload')
+def springer(source_file, source_folder, workflow):
+    """
+    Harvests Springer packages.
+
+    Exactly one of the source_file and source_folder parameters should be present.
+
+    If a folder is passed, all files within the folder will be parsed and processed. The files will always be processed
+    in alphabetical order, so in case an article is available in multiple files, make sure that the alphabetical and
+    chronological orders are equivalent. Ignoring this can result in having an older version of an article.
+    """
+    spider = 'Springer'
+    package_prefix = 'file://'
+
+    entries = get_packages_for_file_or_folder(source_file, source_folder)
+
+    if not entries:
+        log('No entries, abort.', logging.ERROR)
+        return
+
+    # harvesting all packages found in source folder
+    # sorting like this will result in a chronological order, because the filename contains
+    # the date and time of delivery.
+    entries_count = len(entries)
+    log('Processing packages...', entry_count=entries_count)
+    for i, path in enumerate(sorted(entries)):
+        if not isfile(path):
+            log('Path not a file. Skipping.', path=path)
+            continue
+
+        log('processing package', path=path, current_index=i, entry_count=entries_count)
+        schedule_crawl(spider=spider, package_path=package_prefix + path, workflow=workflow)
