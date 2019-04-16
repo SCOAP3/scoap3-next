@@ -1,5 +1,5 @@
 import logging
-from os.path import isdir, abspath, isfile
+from os.path import isdir, abspath, isfile, getmtime
 
 import click
 from flask.cli import with_appcontext
@@ -281,5 +281,44 @@ def springer(source_file, source_folder, workflow):
             log('Path not a file. Skipping.', path=path)
             continue
 
+        log('processing package', path=path, current_index=i, entry_count=entries_count)
+        schedule_crawl(spider=spider, package_path=package_prefix + path, workflow=workflow)
+
+
+@harvest.command()
+@with_appcontext
+@click.option('--source_file', help='File to be processed. This or source_folder parameter has to be present.')
+@click.option('--source_folder', help='All files in the folder will be processed recursively. This or source_file '
+                                      'parameter has to be present. Packages will be alphabetically ordered '
+                                      'regarding their absolute path and then parsed in this order.')
+@click.option('--workflow', default='articles_upload')
+def elsevier(source_file, source_folder, workflow):
+    """
+    Harvests Elsevier packages.
+
+    Exactly one of the source_file and source_folder parameters should be present.
+
+    If a folder is passed, all files within the folder will be parsed and processed. The files will be sorted by
+    modification date and processed in that order. Incorrect modification dates can result in having an older version
+    of an article.
+    """
+    spider = 'Elsevier'
+    package_prefix = 'file://'
+
+    entries = get_packages_for_file_or_folder(source_file, source_folder)
+
+    if not entries:
+        log('No entries, abort.', logging.ERROR)
+        return
+
+    # sorting files by their modification date
+    timed_entries = [(getmtime(f), f) for f in entries if isfile(f)]
+    sorted_entries = sorted(timed_entries)
+    sorted_entries = [e[1] for e in sorted_entries]
+
+    # harvesting all packages found in source folder
+    entries_count = len(sorted_entries)
+    log('Processing packages...', entry_count=entries_count)
+    for i, path in enumerate(sorted_entries):
         log('processing package', path=path, current_index=i, entry_count=entries_count)
         schedule_crawl(spider=spider, package_path=package_prefix + path, workflow=workflow)
