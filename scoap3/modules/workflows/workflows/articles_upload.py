@@ -24,12 +24,14 @@
 
 from __future__ import absolute_import, division, print_function
 
+import json
 import logging
 from StringIO import StringIO
 
 from datetime import datetime
 from dateutil.parser import parse as parse_date
 from flask import url_for, current_app
+from inspire_schemas.utils import validate
 
 from invenio_db import db
 from invenio_files_rest.models import Bucket
@@ -42,7 +44,7 @@ from invenio_records_files.api import Record
 from invenio_records_files.models import RecordsBuckets
 from invenio_search import current_search_client as es
 
-from jsonschema.exceptions import ValidationError
+from jsonschema.exceptions import ValidationError, SchemaError
 
 from scoap3.dojson.utils.nations import find_country
 from scoap3.modules.compliance.compliance import check_compliance
@@ -113,6 +115,19 @@ def add_nations(obj, eng):
                 affiliation['value'])
 
 
+def clean_metadata(obj, eng):
+    """Delete unwanted fields"""
+
+    keys_to_delete = (
+        "curated",
+        "citeable",
+        "files",
+    )
+
+    for key in keys_to_delete:
+        obj.data.pop(key, None)
+
+
 def is_record_in_db(obj, eng):
     """Checks if record is in database"""
     return es.count(q='dois.value:"%s"' % (__get_first_doi(obj),))['count'] > 0
@@ -136,7 +151,7 @@ def store_record(obj, eng):
         record = Record.create(obj.data, id_=None)
 
         # Create persistent identifier.
-        pid = scoap3_recid_minter(str(record.id), record)
+        scoap3_recid_minter(str(record.id), record)
         obj.save()
         record.commit()
 
@@ -144,10 +159,6 @@ def store_record(obj, eng):
         db.session.commit()
         obj.data['control_number'] = record['control_number']
         obj.save()
-
-        # Index record
-        indexer = RecordIndexer()
-        indexer.index_by_id(pid.object_uuid)
 
     except ValidationError as err:
         __halt_and_notify("Validation error: %s. Skipping..." % (err,), obj, eng)
@@ -196,7 +207,7 @@ def __extract_local_files_info(obj, doi):
     if 'local_files' not in obj.data:
         return files
 
-    for local_file in obj.data['local_files']:
+    for local_file in obj.data.pop('local_files'):
         if local_file['value']['filetype'] in ['pdf/a', 'pdfa']:
             files.append(
                 {'url': local_file['value']['path'],
@@ -209,9 +220,6 @@ def __extract_local_files_info(obj, doi):
                  'name': '{0}.{1}'.format(doi, local_file['value']['filetype']),
                  'filetype': local_file['value']['filetype']}
             )
-
-    # remove local files from data
-    del (obj.data['local_files'])
 
     return files
 
@@ -243,7 +251,7 @@ def build_files_data(obj, eng):
         ]
     elif method == 'scoap3_push':
         files = []
-        for document in obj.data.get('documents', ()):
+        for document in obj.data.pop('documents', ()):
             known_extensions = ('xml', 'pdfa', 'pdf')
 
             ext = None
@@ -330,6 +338,39 @@ def add_oai_information(obj, eng):
     existing_record.commit()
     obj.save()
     db.session.commit()
+
+
+def validate_record(obj, eng):
+    """
+    Validate record based on its schema.
+
+    If there is no schema or the record is invalid, the workflow will be halted.
+    """
+
+    if '$schema' not in obj.data:
+        __halt_and_notify('No schema found!', obj, eng)
+        return
+
+    schema_data = requests_retry_session().get(obj.data['$schema']).content
+    schema_data = json.loads(schema_data)
+
+    try:
+        validate(obj.data, schema_data)
+    except ValidationError as err:
+        __halt_and_notify('Invalid record: %s' % err, obj, eng)
+    except SchemaError as err:
+        __halt_and_notify('SchemaError during record validation! %s' % err, obj, eng)
+
+
+def index_record(obj, eng):
+    """
+    Index the record.
+
+    It only should be indexed when every other step finished successfully.
+    """
+
+    recid = obj.data['control_number']
+    pid = PersistentIdentifier.get('recid', recid)
     indexer = RecordIndexer()
     indexer.index_by_id(pid.object_uuid)
 
@@ -351,14 +392,16 @@ class ArticlesUpload(object):
     """Article ingestion workflow for Records collection."""
     name = "HEP"
     data_type = "harvesting"
-
     workflow = [
         set_schema,
         add_arxiv_category,
         add_nations,
-        STORE_REC,
+        clean_metadata,
         build_files_data,
+        STORE_REC,
         attach_files,
         add_oai_information,
         check_compliance,
+        validate_record,
+        index_record,
     ]

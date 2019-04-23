@@ -29,7 +29,7 @@
     </small>
     <span class='right'>
       <small ng-repeat="file in record.metadata._files">
-        <a href="https://beta.scoap3.org/api/files/{{ file.bucket }}/{{ file.key }}">
+        <a href="/api/files/{{ file.bucket }}/{{ file.key }}">
           <i ng-if='file.filetype.includes("pdf")' class="fa fa-file-pdf-o" aria-hidden="true"></i>
           <i ng-if='file.filetype.includes("xml")' class="fa fa-file-text-o" aria-hidden="true"></i>
           {{ file.filetype.toUpperCase() }}
