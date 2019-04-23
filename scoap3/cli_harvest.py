@@ -1,9 +1,13 @@
 import logging
-from os.path import isdir, abspath, isfile
+from os.path import isdir, abspath, isfile, getmtime
+from time import sleep
 
 import click
+from flask import current_app
 from flask.cli import with_appcontext
+from inspire_crawler.models import CrawlerJob, JobStatus
 from inspire_crawler.tasks import schedule_crawl
+from invenio_db import db
 from invenio_oaiharvester.tasks import list_records_from_dates
 
 from scoap3.modules.records.util import create_from_json
@@ -48,6 +52,56 @@ def get_packages_for_file_or_folder(source_file, source_folder):
             log('Source folder does not exist', logging.ERROR)
 
     return entries
+
+
+def schedule_and_wait_crawl(max_wait, *args, **kwargs):
+    """
+    Calls inspire-crawler schedule_task and waits for the created task to finish.
+
+    :return: if the job finished successfully
+    """
+
+    job_id = schedule_crawl(*args, **kwargs)
+    log('Crawler job scheduled.', job_id=job_id)
+    job = CrawlerJob.get_by_job(job_id)
+
+    sleep_time = current_app.config.get('CLI_HARVEST_SLEEP_TIME', 0.5)
+    sleep_counter = 0
+
+    while job.status not in (JobStatus.ERROR, JobStatus.FINISHED):
+        if sleep_counter * sleep_time > max_wait:
+            log('Timeout reached, skip waiting for job.', logging.ERROR, job_id=job_id, job_status=job.status)
+            break
+
+        sleep(sleep_time)
+        sleep_counter += 1
+
+        db.session.refresh(job)
+
+    if job.status in (JobStatus.ERROR, JobStatus.FINISHED):
+        log('Job finished.', job_id=job_id, job_status=job.status)
+
+    return job.status == JobStatus.FINISHED
+
+
+def retry_schedule_and_wait_crawl(max_wait, *args, **kwargs):
+    """
+    Calls schedule_and_wait_crawl and retries if it wasn't successful.
+
+    :return: if the job finished successfully
+    """
+    max_retries = current_app.config.get('CLI_HARVEST_MAX_RETRIES', 2)
+
+    retries = 0
+    while retries < max_retries:
+        result = schedule_and_wait_crawl(max_wait, *args, **kwargs)
+        if result:
+            return True
+
+        retries += 1
+        log('Retrying job...', logging.WARNING, current_try=retries, max_retries=max_retries)
+
+    return False
 
 
 @click.group()
@@ -103,6 +157,9 @@ def acta_cpc(source_file, source_folder):
 @click.option('--until_date', default=None)
 @click.option('--sets', default='scoap3')
 @click.option('--workflow', default='articles_upload')
+@click.option('--max_wait', default=None,
+              type=int, help='Maximum time to wait for the crawler to finish in seconds.'
+                             ' Uses CLI_HARVEST_MAX_WAIT_TIME value from config if not given.')
 def aps(**kwargs):
     """
     Harvests APS through their REST API.
@@ -110,10 +167,17 @@ def aps(**kwargs):
     If no arguments given, it harvests all articles in the 'scoap3' set and sends them to the 'article_upload' workflow.
     This is the default behavior during automatic harvests, but with a from_date specified.
     All arguments are passed to the inspire_craweler and then to the APS spider.
+
+    A new job will only be submitted if the previously submitted job finished (i.e. workflow(s) were created based on
+    the Scrapy output). Without this, Scrapy could delete the output files before they got processed, if the workflow
+    creation is slower then scraping the packages.
     """
     spider = 'APS'
     workflow = kwargs.pop('workflow')
-    schedule_crawl(spider, workflow, **kwargs)
+    max_wait = kwargs.pop('max_wait') or current_app.config.get('CLI_HARVEST_MAX_WAIT_TIME', 60)
+
+    if not retry_schedule_and_wait_crawl(max_wait, spider, workflow, **kwargs):
+        log('crawl failed.', logging.ERROR)
 
 
 @harvest.command()
@@ -133,17 +197,24 @@ def hindawi(**kwargs):
 
     All arguments are passed to the inspire_craweler and then to the APS spider.
 
+    A new job will only be submitted if the previously submitted job finished (i.e. workflow(s) were created based on
+    the Scrapy output). Without this, Scrapy could delete the output files before they got processed, if the workflow
+    creation is slower then scraping the packages.
+
     Note: the from and until parameters include every article that was created, updated or deleted in the given
     interval. I.e. it is possible to receive an article that was created before the given interval, but updated later.
     """
-
-    list_records_from_dates(spider='hindawi', **kwargs)
+    spider = 'hindawi'
+    list_records_from_dates(spider, **kwargs)
 
 
 @harvest.command()
 @with_appcontext
 @click.option('--source_folder', help='All files in the folder will be processed recursively.', required=True)
 @click.option('--workflow', default='articles_upload')
+@click.option('--max_wait', default=None,
+              type=int, help='Maximum time to wait for the crawler to finish in seconds.'
+                             ' Uses CLI_HARVEST_MAX_WAIT_TIME value from config if not given.')
 def oup(**kwargs):
     """
     Harvests OUP packages.
@@ -165,6 +236,10 @@ def oup(**kwargs):
     The packages will be processed in alphabetical order. To make sure the newest article is available for each article
     after the process, ensure that the chronological and alphabetical order of the packages are equivalent. E.g. have
     the date and time of delivery in the beginning of the filename.
+
+    A new job will only be submitted if the previously submitted job finished (i.e. workflow(s) were created based on
+    the Scrapy output). Without this, Scrapy could delete the output files before they got processed, if the workflow
+    creation is slower then scraping the packages.
 
     The following examples demonstrate the expected folder structure and file naming.
 
@@ -201,6 +276,7 @@ def oup(**kwargs):
 
     package_prefix = 'file://'
     source_folder = kwargs.pop('source_folder')
+    max_wait = kwargs.pop('max_wait') or current_app.config.get('CLI_HARVEST_MAX_WAIT_TIME', 60)
 
     # validate path parameters, collect packages
     packages = []
@@ -242,7 +318,8 @@ def oup(**kwargs):
 
         for f in package.get('files', []) + [package['xml']]:
             log('scheduling...', package_path=f)
-            schedule_crawl(spider='OUP', package_path=package_prefix + f, **kwargs)
+            if not retry_schedule_and_wait_crawl(max_wait, 'OUP', package_path=package_prefix + f, **kwargs):
+                log('package failed.', logging.ERROR, path=f)
 
 
 @harvest.command()
@@ -252,7 +329,10 @@ def oup(**kwargs):
                                       'parameter has to be present. Packages will be alphabetically ordered '
                                       'regarding their absolute path and then parsed in this order.')
 @click.option('--workflow', default='articles_upload')
-def springer(source_file, source_folder, workflow):
+@click.option('--max_wait', default=None,
+              type=int, help='Maximum time to wait for the crawler to finish in seconds.'
+                             ' Uses CLI_HARVEST_MAX_WAIT_TIME value from config if not given.')
+def springer(source_file, source_folder, workflow, max_wait):
     """
     Harvests Springer packages.
 
@@ -261,9 +341,14 @@ def springer(source_file, source_folder, workflow):
     If a folder is passed, all files within the folder will be parsed and processed. The files will always be processed
     in alphabetical order, so in case an article is available in multiple files, make sure that the alphabetical and
     chronological orders are equivalent. Ignoring this can result in having an older version of an article.
+
+    A new job will only be submitted if the previously submitted job finished (i.e. workflow(s) were created based on
+    the Scrapy output). Without this, Scrapy could delete the output files before they got processed, if the workflow
+    creation is slower then scraping the packages.
     """
     spider = 'Springer'
     package_prefix = 'file://'
+    max_wait = max_wait or current_app.config.get('CLI_HARVEST_MAX_WAIT_TIME', 60)
 
     entries = get_packages_for_file_or_folder(source_file, source_folder)
 
@@ -282,4 +367,53 @@ def springer(source_file, source_folder, workflow):
             continue
 
         log('processing package', path=path, current_index=i, entry_count=entries_count)
-        schedule_crawl(spider=spider, package_path=package_prefix + path, workflow=workflow)
+        if not retry_schedule_and_wait_crawl(max_wait, spider, workflow, package_path=package_prefix + path):
+            log('package failed.', logging.ERROR, path=path)
+
+
+@harvest.command()
+@with_appcontext
+@click.option('--source_file', help='File to be processed. This or source_folder parameter has to be present.')
+@click.option('--source_folder', help='All files in the folder will be processed recursively. This or source_file '
+                                      'parameter has to be present. Packages will be alphabetically ordered '
+                                      'regarding their absolute path and then parsed in this order.')
+@click.option('--workflow', default='articles_upload')
+@click.option('--max_wait', default=None,
+              type=int, help='Maximum time to wait for the crawler to finish in seconds.'
+                             ' Uses CLI_HARVEST_MAX_WAIT_TIME value from config if not given.')
+def elsevier(source_file, source_folder, workflow, max_wait):
+    """
+    Harvests Elsevier packages.
+
+    Exactly one of the source_file and source_folder parameters should be present.
+
+    If a folder is passed, all files within the folder will be parsed and processed. The files will be sorted by
+    modification date and processed in that order. Incorrect modification dates can result in having an older version
+    of an article.
+
+    A new job will only be submitted if the previously submitted job finished (i.e. workflow(s) were created based on
+    the Scrapy output). Without this, Scrapy could delete the output files before they got processed, if the workflow
+    creation is slower then scraping the packages.
+    """
+    spider = 'Elsevier'
+    package_prefix = 'file://'
+    max_wait = max_wait or current_app.config.get('CLI_HARVEST_MAX_WAIT_TIME', 60)
+
+    entries = get_packages_for_file_or_folder(source_file, source_folder)
+
+    if not entries:
+        log('No entries, abort.', logging.ERROR)
+        return
+
+    # sorting files by their modification date
+    timed_entries = [(getmtime(f), f) for f in entries if isfile(f)]
+    sorted_entries = sorted(timed_entries)
+    sorted_entries = [e[1] for e in sorted_entries]
+
+    # harvesting all packages found in source folder
+    entries_count = len(sorted_entries)
+    log('Processing packages...', entry_count=entries_count)
+    for i, path in enumerate(sorted_entries):
+        log('processing package', path=path, current_index=i, entry_count=entries_count)
+        if not retry_schedule_and_wait_crawl(max_wait, spider, workflow, package_path=package_prefix + path):
+            log('package failed.', logging.ERROR, path=path)
