@@ -3,11 +3,11 @@ from mock import patch
 from pytest import raises
 from workflow.errors import HaltProcessing
 
-from scoap3.modules.workflows.workflows.articles_upload import validate_record
+from scoap3.modules.workflows.workflows.articles_upload import validate_record, get_first_doi
 from tests.responses import read_hep_schema, read_titles_schema
 
 
-def mock_halt(msg, obj, eng):
+def mock_halt(msg, eng):
     raise HaltProcessing(msg)
 
 
@@ -176,3 +176,13 @@ def test_validate_required_fields():
     }
 
     run_validate(data)
+
+
+def test_no_doi():
+    data = {}
+    assert get_first_doi(MockObj(data)) is None
+
+
+def test_doi():
+    data = {'dois': [{'value': '10.1103/PhysRevD.99.045009'}]}
+    assert get_first_doi(MockObj(data)) == '10.1103/PhysRevD.99.045009'

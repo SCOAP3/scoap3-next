@@ -1,0 +1,107 @@
+{
+  "files": [],
+  "license": [
+    {
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "license": "CC-BY-4.0"
+    }
+  ],
+  "page_nr": [
+    7
+  ],
+  "acquisition_source": {
+    "date": "2019-04-26T02:30:15.966622",
+    "source": "APS",
+    "method": "APS",
+    "submission_number": "709129e067ba11e9b4ef02163e01809a"
+  },
+  "copyright": [
+    {
+      "material": "",
+      "holder": "",
+      "statement": "Published by the American Physical Society",
+      "year": "2019"
+    }
+  ],
+  "record_creation_date": "2019-04-26T02:30:15.966655",
+  "dois": [
+    {
+      "value": "10.1103/PhysRevD.99.075025"
+    }
+  ],
+  "authors": [
+    {
+      "raw_name": "We-Fu Chang",
+      "affiliations": [
+        {
+          "value": "Department of Physics, National Tsing Hua University, No. 101, Section 2, Kuang-Fu Road, Hsinchu 30013, Taiwan"
+        },
+        {
+          "value": "TRIUMF, 4004 Wesbrook Mall, Vancouver, British Columbia V6T 2A3, Canada"
+        }
+      ],
+      "surname": "Chang",
+      "given_names": "We-Fu",
+      "full_name": "Chang, We-Fu"
+    },
+    {
+      "raw_name": "John N. Ng",
+      "affiliations": [
+        {
+          "value": "TRIUMF, 4004 Wesbrook Mall, Vancouver, British Columbia V6T 2A3, Canada"
+        }
+      ],
+      "surname": "Ng",
+      "given_names": "John N.",
+      "full_name": "Ng, John N."
+    }
+  ],
+  "titles": [
+    {
+      "source": "APS",
+      "subtitle": "",
+      "title": "Alternative perspective on gauged lepton number and implications for collider physics"
+    }
+  ],
+  "collections": [
+    {
+      "primary": "HEP"
+    },
+    {
+      "primary": "Citeable"
+    },
+    {
+      "primary": "Published"
+    }
+  ],
+  "arxiv_eprints": [
+    {
+      "value": "1808.08188"
+    }
+  ],
+  "publication_info": [
+    {
+      "journal_volume": "99",
+      "material": "article",
+      "page_end": "",
+      "artid": "",
+      "journal_title": "Physical Review D",
+      "pubinfo_freetext": "",
+      "page_start": "",
+      "year": 2019,
+      "journal_issue": "7"
+    }
+  ],
+  "abstracts": [
+    {
+      "source": "APS",
+      "value": "A new anomaly-free gauged <math><mi>U</mi><mo>(</mo><mn>1</mn><msub><mo>)</mo><mo>\u2113</mo></msub></math> lepton-number model is studied. Two Standard Model (SM) lepton generations acquire the same but oppositive-sign <math><mi>U</mi><mo>(</mo><mn>1</mn><msub><mo>)</mo><mo>\u2113</mo></msub></math> charges, while four exotic chiral leptons cancel the anomalies of the remaining lepton family. We discuss a simplified case which has the universal Yukawa couplings. It agrees with all the experimental constraints and predicts <math><mrow><msub><mi>m</mi><mi>e</mi></msub></mrow></math>, <math><msub><mi>m</mi><mi>\u03bc</mi></msub><mo>\u226a</mo><msub><mi>m</mi><mi>\u03c4</mi></msub></math>, and the latter is of the electroweak scale. Due to the interference between the SM and <math><mi>U</mi><mo>(</mo><mn>1</mn><msub><mo>)</mo><mo>\u2113</mo></msub></math> gauge interactions, this model robustly predicts that <math><mrow><mi>e</mi></mrow></math>, <math><mrow><mi>\u03bc</mi></mrow></math>, <math><mrow><mi>\u03c4</mi></mrow></math> have distinctive forward-backward asymmetries at the <math><msup><mi>e</mi><mo>+</mo></msup><msup><mi>e</mi><mo>\u2212</mo></msup></math> colliders. It can be searched for at the <math><msup><mi>e</mi><mo>+</mo></msup><msup><mi>e</mi><mo>\u2212</mo></msup></math> machine with <math><mo>\u223c</mo><mi>TeV</mi></math> center-of-mass energy and an integrated luminosity <math><mo>\u223c</mo><mi>a</mi><msup><mi>b</mi><mrow><mo>\u2212</mo><mn>1</mn></mrow></msup></math>."
+    }
+  ],
+  "imprints": [
+    {
+      "date": "2019-04-25",
+      "publisher": "APS"
+    }
+  ]
+}

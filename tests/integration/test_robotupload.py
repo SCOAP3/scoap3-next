@@ -12,7 +12,7 @@ from scoap3.modules.robotupload.views import handle_upload_request
 from tests.responses import get_response_dir, read_response
 
 
-def mock_halt(msg, obj, eng):
+def mock_halt(msg, eng):
     raise HaltProcessing(msg)
 
 
