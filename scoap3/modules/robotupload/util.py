@@ -78,3 +78,7 @@ def _add_additional_info(obj):
     # remove document type, it should be in publication_info as material
     if 'document_type' in obj:
         del obj['document_type']
+
+    if 'number_of_pages' in obj:
+        obj['page_nr'] = [obj['number_of_pages']]
+        del obj['number_of_pages']

@@ -3,94 +3,98 @@
     "title": "Publication",
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "$schema",
+        "abstracts",
+        "authors",
+        "copyright",
+        "dois",
+        "imprints",
+        "license",
+        "publication_info",
+        "titles"
+    ],
     "properties": {
         "self": {
           "description": "Url of the record itself",
           "title": "Url of the record",
           "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
         },
-        "funding_info": {
-            "uniqueItems": true,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "grant_number": {
-                        "type": "string",
-                        "title": "Grant number"
-                    },
-                    "agency": {
-                        "type": "string",
-                        "title": "Agency"
-                    },
-                    "project_number": {
-                        "type": "string",
-                        "title": "Project number"
-                    }
+        "$schema": {
+            "type": "string",
+            "format": "uri"
+        },
+        "acquisition_source": {
+            "type": "object",
+            "title": "Origin of the metadata in the record",
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "title": "Date on which the metadata was obtained"
                 },
-                "title": "Grant information"
-            },
-            "type": "array",
-            "description": "Information related to funding. FIXME: Do we care about this? So far only 349 records were tagged and all for a single EU project.",
-            "title": "Funding information"
-        },
-        "isbns": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "medium": {
-                        "description": "Medium (type) of the ISBN.",
-                        "type": "string",
-                        "enum": [
-                            "print",
-                            "online"
-                        ]
-                    },
-                    "value": {
-                        "type": "string",
-                        "format": "isbn"
-                    },
-                    "comment": {
-                        "description": "Further information about type.",
-                        "type": "string"
-                    }
+                "method": {
+                    "type": "string",
+                    "title": "How the medata was obtained"
                 },
-                "required": ["value"]
-            },
-            "uniqueItems": true
-        },
-        "report_numbers": {
-            "uniqueItems": true,
-            "items": {
-                "type": "object",
-                "properties": {
-                    "source": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    }
+                "source": {
+                    "type": "string",
+                    "title": "Source of the information in this field."
+                },
+                "submission_number": {
+                    "type": "string"
                 }
-            },
-            "type": "array"
+            }
         },
-        "public_notes": {
-            "uniqueItems": true,
-            "items": {
-                "required": [
-                    "value"
-                ],
-                "type": "object",
-                "properties": {
-                    "source": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    }
+        "control_number": {
+            "title": "ID of record",
+            "type": "string"
+        },
+        "_oai": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
                 }
-            },
-            "type": "array"
+            }
+        },
+        "record_creation_year": {
+            "type": "integer",
+            "description": "Year part of record_creation_date. Probably will be deleted."
+        },
+        "record_creation_date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "_files": {
+            "title": "File schema",
+            "type": "array",
+            "properties": {
+                "key": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "checksum": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "size": {
+                    "type": "integer"
+                },
+                "bucket": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "version_id": {
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "filetype": {
+                    "minLength": 1,
+                    "type": "string"
+                }
+            }
         },
         "abstracts": {
             "uniqueItems": true,
@@ -174,14 +178,6 @@
             },
             "type": "array"
         },
-        "breadcrumb_title": {
-            "type": "string",
-            "description": "The title shown in all page breadcrumbs"
-        },
-        "preprint_date": {
-            "type": "string",
-            "format": "date"
-        },
         "imprints": {
             "uniqueItems": true,
             "items": {
@@ -206,6 +202,10 @@
         },
         "publication_info": {
             "uniqueItems": true,
+            "required": [
+                "journal_title",
+                "year"
+            ],
             "items": {
                 "type": "object",
                 "properties": {
@@ -262,11 +262,13 @@
                     },
                     "isbn": {
                         "type": "string"
+                    },
+                    "material": {
+                        "type": "string"
                     }
                 }
             },
-            "type": "array",
-            "description": "FIXME: Shall we split conference information away? FIXME: shall we move the DOI and ISBN next to where it belongs? So that we can also align erratum and friends?"
+            "type": "array"
         },
         "references": {
             "uniqueItems": true,
@@ -339,25 +341,24 @@
             "type": "array"
         },
         "copyright": {
-            "type": "object",
-            "properties": {
-                "url": {
-                    "type": "string",
-                    "format": "url"
-                },
-                "material": {
-                    "enum": [
-                        "Article"
-                    ],
-                    "type": "string"
-                },
-                "holder": {
-                    "type": "string",
-                    "description": "Copyright holder."
-                },
-                "statement": {
-                    "type": "string",
-                    "description": "Copyright statement."
+            "items": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "format": "url"
+                    },
+                    "material": {
+                        "type": "string"
+                    },
+                    "holder": {
+                        "type": "string",
+                        "description": "Copyright holder."
+                    },
+                    "statement": {
+                        "type": "string",
+                        "description": "Copyright statement."
+                    }
                 }
             },
             "type": "array"

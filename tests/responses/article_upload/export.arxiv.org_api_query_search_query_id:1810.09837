@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3A1810.09837%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:1810.09837&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/nNhwXv3fjfImPhj31WHfXqkRYCw</id>
+  <updated>2019-04-18T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1810.09837v2</id>
+    <updated>2019-02-07T09:39:41Z</updated>
+    <published>2018-10-23T13:28:36Z</published>
+    <title>Revisiting the mechanical properties of the nucleon</title>
+    <summary>  We discuss in detail the distributions of energy, radial pressure and
+tangential pressure inside the nucleon. In particular, this discussion is
+carried on in both the instant form and the front form of dynamics. Moreover we
+show for the first time how these mechanical concepts can be defined when the
+average nucleon momentum does not vanish. We express the conditions of
+hydrostatic equilibrium and stability in terms of these two and
+three-dimensional energy and pressure distributions. We briefly discuss the
+phenomenological relevance of our findings with a simple yet realistic model.
+In the light of this exhaustive mechanical description of the nucleon, we also
+present several possible connections between hadronic physics and compact
+stars, like e.g. the study of the equation of state for matter under extreme
+conditions and stability constraints.
+</summary>
+    <author>
+      <name>Cédric Lorcé</name>
+    </author>
+    <author>
+      <name>Hervé Moutarde</name>
+    </author>
+    <author>
+      <name>Arkadiusz P. Trawiński</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1140/epjc/s10052-019-6572-3</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1140/epjc/s10052-019-6572-3" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">32 pages, 38 figures, version after publishing</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Eur.Phys.J. C79 (2019) no.1, 89</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/1810.09837v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1810.09837v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>

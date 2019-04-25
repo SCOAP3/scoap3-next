@@ -103,7 +103,7 @@
             No files attached for this article yet.
           {% endif %}
           {%- for file in record.get('_files', []) %}
-            <a href="https://beta.scoap3.org/api/files/{{ file['bucket'] }}/{{ file['key'] }}">
+            <a href="/api/files/{{ file['bucket'] }}/{{ file['key'] }}">
               {%- if "pdf" in file['filetype'] %}
                 <i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i>
               {%- else %}
