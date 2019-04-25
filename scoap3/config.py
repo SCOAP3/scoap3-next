@@ -508,7 +508,7 @@ OAISERVER_RESUMPTION_TOKEN_EXPIRE_TIME = 60
 #: PIDStore fetcher for OAI ID control numbers
 OAISERVER_CONTROL_NUMBER_FETCHER = 'scoap3_recid_fetcher'
 #: Support email for OAI-PMH.
-OAISERVER_ADMIN_EMAILS = ['repo.admin@scoap3.org']
+OAISERVER_ADMIN_EMAILS = ['scoap3repo.admin@cern.ch']
 #: Do not register signals to automatically update records on updates.
 OAISERVER_REGISTER_RECORD_SIGNALS = False
 #: Do not register signals to automatically update records on oaiset updates.
@@ -561,8 +561,8 @@ JSONSCHEMAS_HOST = 'localhost:5000'
 JSONSCHEMAS_REPLACE_REFS = False
 
 MAIL_DEFAULT_SENDER = 'repo.admin@scoap3.org'
-ADMIN_DEFAULT_EMAILS = ['repo.admin@scoap3.org', ]
-COMPLIANCE_EMAILS = ['scoap3-compliance-mailing@cern.ch', ]
+ADMIN_DEFAULT_EMAILS = ['scoap3repo.admin@cern.ch', ]
+COMPLIANCE_EMAILS = ['scoap3repo.admin@cern.ch', ]
 CROSSREF_API_URL = 'https://api.crossref.org/works/%s'
 
 #  Abbreviations
