@@ -47,6 +47,30 @@
                 }
             }
         },
+        "collaborations": {
+            "items": {
+                "additionalProperties": false,
+                "properties": {
+                    "value": {
+                        "description": ":MARC: ``710__g``\n\nCollaboration name as it appears on the paper",
+                        "minLength": 1,
+                        "title": "Collaboration name",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "value"
+                ],
+                "type": "object"
+            },
+            "minItems": 1,
+            "required": [
+                "value"
+            ],
+            "title": "List of collaborations",
+            "type": "array",
+            "uniqueItems": true
+        },
         "control_number": {
             "title": "ID of record",
             "type": "string"

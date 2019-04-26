@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3A1708.06771%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:1708.06771&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/HjZCAiaPv3lTspntwifWCuAWDXA</id>
+  <updated>2019-04-26T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1708.06771v3</id>
+    <updated>2018-03-20T15:13:16Z</updated>
+    <published>2017-08-22T18:09:21Z</published>
+    <title>First measurement of the $ν_μ$ charged-current cross section
+  without pions in the final state on a water target</title>
+    <summary>  This paper reports the first differential measurement of the charged-current
+interaction cross section of $\nu_{\mu}$ on water with no pions in the final
+state. This flux-averaged measurement has been made using the T2K experiment's
+off-axis near detector, and is reported in doubly-differential bins of muon
+momentum and angle. The flux-averaged total cross section in a restricted
+region of phase space was found to be $ \sigma= (0.95 \pm 0.08 (\mbox{stat})
+\pm 0.06 (\mbox{det. syst.}) \pm 0.04(\mbox{model syst.}) \pm{}
+0.08(\mbox{flux}) ) \times 10^{-38} \mbox{cm}^2$ per n.
+</summary>
+    <author>
+      <name> T2K Collaboration</name>
+    </author>
+    <author>
+      <name>K. Abe</name>
+    </author>
+    <author>
+      <name>J. Amey</name>
+    </author>
+    <author>
+      <name>C. Andreopoulos</name>
+    </author>
+    <author>
+      <name>L. Anthony</name>
+    </author>
+    <author>
+      <name>M. Antonova</name>
+    </author>
+    <author>
+      <name>S. Aoki</name>
+    </author>
+    <author>
+      <name>A. Ariga</name>
+    </author>
+    <author>
+      <name>Y. Ashida</name>
+    </author>
+    <author>
+      <name>S. Ban</name>
+    </author>
+    <author>
+      <name>M. Barbi</name>
+    </author>
+    <author>
+      <name>G. J. Barker</name>
+    </author>
+    <author>
+      <name>G. Barr</name>
+    </author>
+    <author>
+      <name>C. Barry</name>
+    </author>
+    <author>
+      <name>M. Batkiewicz</name>
+    </author>
+    <author>
+      <name>V. Berardi</name>
+    </author>
+    <author>
+      <name>S. Berkman</name>
+    </author>
+    <author>
+      <name>S. Bhadra</name>
+    </author>
+    <author>
+      <name>S. Bienstock</name>
+    </author>
+    <author>
+      <name>A. Blondel</name>
+    </author>
+    <author>
+      <name>S. Bolognesi</name>
+    </author>
+    <author>
+      <name>S. Bordoni</name>
+    </author>
+    <author>
+      <name>B. Bourguille</name>
+    </author>
+    <author>
+      <name>S. B. Boyd</name>
+    </author>
+    <author>
+      <name>D. Brailsford</name>
+    </author>
+    <author>
+      <name>A. Bravar</name>
+    </author>
+    <author>
+      <name>C. Bronner</name>
+    </author>
+    <author>
+      <name>M. Buizza Avanzini</name>
+    </author>
+    <author>
+      <name>J. Calcutt</name>
+    </author>
+    <author>
+      <name>J. Calcutt</name>
+    </author>
+    <author>
+      <name>R. G. Calland</name>
+    </author>
+    <author>
+      <name>T. Campbell</name>
+    </author>
+    <author>
+      <name>S. Cao</name>
+    </author>
+    <author>
+      <name>S. L. Cartwright</name>
+    </author>
+    <author>
+      <name>M. G. Catanesi</name>
+    </author>
+    <author>
+      <name>A. Cervera</name>
+    </author>
+    <author>
+      <name>A. Chappell</name>
+    </author>
+    <author>
+      <name>C. Checchia</name>
+    </author>
+    <author>
+      <name>D. Cherdack</name>
+    </author>
+    <author>
+      <name>N. Chikuma</name>
+    </author>
+    <author>
+      <name>G. Christodoulou</name>
+    </author>
+    <author>
+      <name>J. Coleman</name>
+    </author>
+    <author>
+      <name>G. Collazuol</name>
+    </author>
+    <author>
+      <name>D. Coplowe</name>
+    </author>
+    <author>
+      <name>A. Cudd</name>
+    </author>
+    <author>
+      <name>A. Dabrowska</name>
+    </author>
+    <author>
+      <name>G. De Rosa</name>
+    </author>
+    <author>
+      <name>T. Dealtry</name>
+    </author>
+    <author>
+      <name>P. F. Denner</name>
+    </author>
+    <author>
+      <name>S. R. Dennis</name>
+    </author>
+    <author>
+      <name>C. Densham</name>
+    </author>
+    <author>
+      <name>F. Di Lodovico</name>
+    </author>
+    <author>
+      <name>S. Dolan</name>
+    </author>
+    <author>
+      <name>O. Drapier</name>
+    </author>
+    <author>
+      <name>K. E. Duffy</name>
+    </author>
+    <author>
+      <name>J. Dumarchez</name>
+    </author>
+    <author>
+      <name>P. Dunne</name>
+    </author>
+    <author>
+      <name>S. Emery-Schrenk</name>
+    </author>
+    <author>
+      <name>A. Ereditato</name>
+    </author>
+    <author>
+      <name>T. Feusels</name>
+    </author>
+    <author>
+      <name>A. J. Finch</name>
+    </author>
+    <author>
+      <name>G. A. Fiorentini</name>
+    </author>
+    <author>
+      <name>G. Fiorillo</name>
+    </author>
+    <author>
+      <name>C. Francois</name>
+    </author>
+    <author>
+      <name>M. Friend</name>
+    </author>
+    <author>
+      <name>Y. Fujii</name>
+    </author>
+    <author>
+      <name>D. Fukuda</name>
+    </author>
+    <author>
+      <name>Y. Fukuda</name>
+    </author>
+    <author>
+      <name>A. Garcia</name>
+    </author>
+    <author>
+      <name>C. Giganti</name>
+    </author>
+    <author>
+      <name>F. Gizzarelli</name>
+    </author>
+    <author>
+      <name>T. Golan</name>
+    </author>
+    <author>
+      <name>M. Gonin</name>
+    </author>
+    <author>
+      <name>D. R. Hadley</name>
+    </author>
+    <author>
+      <name>L. Haegel</name>
+    </author>
+    <author>
+      <name>J. T. Haigh</name>
+    </author>
+    <author>
+      <name>D. Hansen</name>
+    </author>
+    <author>
+      <name>J. Harada</name>
+    </author>
+    <author>
+      <name>M. Hartz</name>
+    </author>
+    <author>
+      <name>T. Hasegawa</name>
+    </author>
+    <author>
+      <name>N. C. Hastings</name>
+    </author>
+    <author>
+      <name>T. Hayashino</name>
+    </author>
+    <author>
+      <name>Y. Hayato</name>
+    </author>
+    <author>
+      <name>A. Hillairet</name>
+    </author>
+    <author>
+      <name>T. Hiraki</name>
+    </author>
+    <author>
+      <name>A. Hiramoto</name>
+    </author>
+    <author>
+      <name>S. Hirota</name>
+    </author>
+    <author>
+      <name>M. Hogan</name>
+    </author>
+    <author>
+      <name>J. Holeczek</name>
+    </author>
+    <author>
+      <name>F. Hosomi</name>
+    </author>
+    <author>
+      <name>K. Huang</name>
+    </author>
+    <author>
+      <name>A. K. Ichikawa</name>
+    </author>
+    <author>
+      <name>M. Ikeda</name>
+    </author>
+    <author>
+      <name>J. Imber</name>
+    </author>
+    <author>
+      <name>J. Insler</name>
+    </author>
+    <author>
+      <name>R. A. Intonti</name>
+    </author>
+    <author>
+      <name>T. Ishida</name>
+    </author>
+    <author>
+      <name>T. Ishii</name>
+    </author>
+    <author>
+      <name>E. Iwai</name>
+    </author>
+    <author>
+      <name>K. Iwamoto</name>
+    </author>
+    <author>
+      <name>A. Izmaylov</name>
+    </author>
+    <author>
+      <name>B. Jamieson</name>
+    </author>
+    <author>
+      <name>M. Jiang</name>
+    </author>
+    <author>
+      <name>S. Johnson</name>
+    </author>
+    <author>
+      <name>P. Jonsson</name>
+    </author>
+    <author>
+      <name>C. K. Jung</name>
+    </author>
+    <author>
+      <name>M. Kabirnezhad</name>
+    </author>
+    <author>
+      <name>A. C. Kaboth</name>
+    </author>
+    <author>
+      <name>T. Kajita</name>
+    </author>
+    <author>
+      <name>H. Kakuno</name>
+    </author>
+    <author>
+      <name>J. Kameda</name>
+    </author>
+    <author>
+      <name>D. Karlen</name>
+    </author>
+    <author>
+      <name>T. Katori</name>
+    </author>
+    <author>
+      <name>E. Kearns</name>
+    </author>
+    <author>
+      <name>M. Khabibullin</name>
+    </author>
+    <author>
+      <name>A. Khotjantsev</name>
+    </author>
+    <author>
+      <name>H. Kim</name>
+    </author>
+    <author>
+      <name>J. Kim</name>
+    </author>
+    <author>
+      <name>S. King</name>
+    </author>
+    <author>
+      <name>J. Kisiel</name>
+    </author>
+    <author>
+      <name>A. Knight</name>
+    </author>
+    <author>
+      <name>A. Knox</name>
+    </author>
+    <author>
+      <name>T. Kobayashi</name>
+    </author>
+    <author>
+      <name>L. Koch</name>
+    </author>
+    <author>
+      <name>T. Koga</name>
+    </author>
+    <author>
+      <name>P. P. Koller</name>
+    </author>
+    <author>
+      <name>A. Konaka</name>
+    </author>
+    <author>
+      <name>L. L. Kormos</name>
+    </author>
+    <author>
+      <name>Y. Koshio</name>
+    </author>
+    <author>
+      <name>K. Kowalik</name>
+    </author>
+    <author>
+      <name>Y. Kudenko</name>
+    </author>
+    <author>
+      <name>R. Kurjata</name>
+    </author>
+    <author>
+      <name>T. Kutter</name>
+    </author>
+    <author>
+      <name>J. Lagoda</name>
+    </author>
+    <author>
+      <name>I. Lamont</name>
+    </author>
+    <author>
+      <name>M. Lamoureux</name>
+    </author>
+    <author>
+      <name>P. Lasorak</name>
+    </author>
+    <author>
+      <name>M. Laveder</name>
+    </author>
+    <author>
+      <name>M. Lawe</name>
+    </author>
+    <author>
+      <name>M. Licciardi</name>
+    </author>
+    <author>
+      <name>T. Lindner</name>
+    </author>
+    <author>
+      <name>Z. J. Liptak</name>
+    </author>
+    <author>
+      <name>R. P. Litchfield</name>
+    </author>
+    <author>
+      <name>X. Li</name>
+    </author>
+    <author>
+      <name>A. Longhin</name>
+    </author>
+    <author>
+      <name>J. P. Lopez</name>
+    </author>
+    <author>
+      <name>T. Lou</name>
+    </author>
+    <author>
+      <name>L. Ludovici</name>
+    </author>
+    <author>
+      <name>X. Lu</name>
+    </author>
+    <author>
+      <name>L. Magaletti</name>
+    </author>
+    <author>
+      <name>K. Mahn</name>
+    </author>
+    <author>
+      <name>M. Malek</name>
+    </author>
+    <author>
+      <name>S. Manly</name>
+    </author>
+    <author>
+      <name>L. Maret</name>
+    </author>
+    <author>
+      <name>A. D. Marino</name>
+    </author>
+    <author>
+      <name>J. F. Martin</name>
+    </author>
+    <author>
+      <name>P. Martins</name>
+    </author>
+    <author>
+      <name>S. Martynenko</name>
+    </author>
+    <author>
+      <name>T. Maruyama</name>
+    </author>
+    <author>
+      <name>V. Matveev</name>
+    </author>
+    <author>
+      <name>K. Mavrokoridis</name>
+    </author>
+    <author>
+      <name>W. Y. Ma</name>
+    </author>
+    <author>
+      <name>E. Mazzucato</name>
+    </author>
+    <author>
+      <name>M. McCarthy</name>
+    </author>
+    <author>
+      <name>N. McCauley</name>
+    </author>
+    <author>
+      <name>K. S. McFarland</name>
+    </author>
+    <author>
+      <name>C. McGrew</name>
+    </author>
+    <author>
+      <name>A. Mefodiev</name>
+    </author>
+    <author>
+      <name>C. Metelko</name>
+    </author>
+    <author>
+      <name>M. Mezzetto</name>
+    </author>
+    <author>
+      <name>A. Minamino</name>
+    </author>
+    <author>
+      <name>O. Mineev</name>
+    </author>
+    <author>
+      <name>S. Mine</name>
+    </author>
+    <author>
+      <name>A. Missert</name>
+    </author>
+    <author>
+      <name>M. Miura</name>
+    </author>
+    <author>
+      <name>S. Moriyama</name>
+    </author>
+    <author>
+      <name>J. Morrison</name>
+    </author>
+    <author>
+      <name>Th. A. Mueller</name>
+    </author>
+    <author>
+      <name>T. Nakadaira</name>
+    </author>
+    <author>
+      <name>M. Nakahata</name>
+    </author>
+    <author>
+      <name>K. G. Nakamura</name>
+    </author>
+    <author>
+      <name>K. Nakamura</name>
+    </author>
+    <author>
+      <name>K. D. Nakamura</name>
+    </author>
+    <author>
+      <name>Y. Nakanishi</name>
+    </author>
+    <author>
+      <name>S. Nakayama</name>
+    </author>
+    <author>
+      <name>T. Nakaya</name>
+    </author>
+    <author>
+      <name>K. Nakayoshi</name>
+    </author>
+    <author>
+      <name>C. Nantais</name>
+    </author>
+    <author>
+      <name>C. Nielsen</name>
+    </author>
+    <author>
+      <name>K. Nishikawa</name>
+    </author>
+    <author>
+      <name>Y. Nishimura</name>
+    </author>
+    <author>
+      <name>P. Novella</name>
+    </author>
+    <author>
+      <name>J. Nowak</name>
+    </author>
+    <author>
+      <name>H. M. O'Keeffe</name>
+    </author>
+    <author>
+      <name>K. Okumura</name>
+    </author>
+    <author>
+      <name>T. Okusawa</name>
+    </author>
+    <author>
+      <name>W. Oryszczak</name>
+    </author>
+    <author>
+      <name>S. M. Oser</name>
+    </author>
+    <author>
+      <name>T. Ovsyannikova</name>
+    </author>
+    <author>
+      <name>R. A. Owen</name>
+    </author>
+    <author>
+      <name>Y. Oyama</name>
+    </author>
+    <author>
+      <name>V. Palladino</name>
+    </author>
+    <author>
+      <name>J. L. Palomino</name>
+    </author>
+    <author>
+      <name>V. Paolone</name>
+    </author>
+    <author>
+      <name>N. D. Patel</name>
+    </author>
+    <author>
+      <name>P. Paudyal</name>
+    </author>
+    <author>
+      <name>M. Pavin</name>
+    </author>
+    <author>
+      <name>D. Payne</name>
+    </author>
+    <author>
+      <name>Y. Petrov</name>
+    </author>
+    <author>
+      <name>L. Pickering</name>
+    </author>
+    <author>
+      <name>E. S. Pinzon Guerra</name>
+    </author>
+    <author>
+      <name>C. Pistillo</name>
+    </author>
+    <author>
+      <name>B. Popov</name>
+    </author>
+    <author>
+      <name>M. Posiadala-Zezula</name>
+    </author>
+    <author>
+      <name>J. -M. Poutissou</name>
+    </author>
+    <author>
+      <name>A. Pritchard</name>
+    </author>
+    <author>
+      <name>P. Przewlocki</name>
+    </author>
+    <author>
+      <name>B. Quilain</name>
+    </author>
+    <author>
+      <name>T. Radermacher</name>
+    </author>
+    <author>
+      <name>E. Radicioni</name>
+    </author>
+    <author>
+      <name>P. N. Ratoff</name>
+    </author>
+    <author>
+      <name>M. A. Rayner</name>
+    </author>
+    <author>
+      <name>E. Reinherz-Aronis</name>
+    </author>
+    <author>
+      <name>C. Riccio</name>
+    </author>
+    <author>
+      <name>E. Rondio</name>
+    </author>
+    <author>
+      <name>B. Rossi</name>
+    </author>
+    <author>
+      <name>S. Roth</name>
+    </author>
+    <author>
+      <name>A. C. Ruggeri</name>
+    </author>
+    <author>
+      <name>A. Rychter</name>
+    </author>
+    <author>
+      <name>K. Sakashita</name>
+    </author>
+    <author>
+      <name>F. Sánchez</name>
+    </author>
+    <author>
+      <name>S. Sasaki</name>
+    </author>
+    <author>
+      <name>E. Scantamburlo</name>
+    </author>
+    <author>
+      <name>K. Scholberg</name>
+    </author>
+    <author>
+      <name>J. Schwehr</name>
+    </author>
+    <author>
+      <name>M. Scott</name>
+    </author>
+    <author>
+      <name>Y. Seiya</name>
+    </author>
+    <author>
+      <name>T. Sekiguchi</name>
+    </author>
+    <author>
+      <name>H. Sekiya</name>
+    </author>
+    <author>
+      <name>D. Sgalaberna</name>
+    </author>
+    <author>
+      <name>R. Shah</name>
+    </author>
+    <author>
+      <name>A. Shaikhiev</name>
+    </author>
+    <author>
+      <name>F. Shaker</name>
+    </author>
+    <author>
+      <name>D. Shaw</name>
+    </author>
+    <author>
+      <name>M. Shiozawa</name>
+    </author>
+    <author>
+      <name>T. Shirahige</name>
+    </author>
+    <author>
+      <name>M. Smy</name>
+    </author>
+    <author>
+      <name>J. T. Sobczyk</name>
+    </author>
+    <author>
+      <name>H. Sobel</name>
+    </author>
+    <author>
+      <name>J. Steinmann</name>
+    </author>
+    <author>
+      <name>T. Stewart</name>
+    </author>
+    <author>
+      <name>P. Stowell</name>
+    </author>
+    <author>
+      <name>Y. Suda</name>
+    </author>
+    <author>
+      <name>S. Suvorov</name>
+    </author>
+    <author>
+      <name>A. Suzuki</name>
+    </author>
+    <author>
+      <name>S. Y. Suzuki</name>
+    </author>
+    <author>
+      <name>Y. Suzuki</name>
+    </author>
+    <author>
+      <name>R. Tacik</name>
+    </author>
+    <author>
+      <name>M. Tada</name>
+    </author>
+    <author>
+      <name>A. Takeda</name>
+    </author>
+    <author>
+      <name>Y. Takeuchi</name>
+    </author>
+    <author>
+      <name>R. Tamura</name>
+    </author>
+    <author>
+      <name>H. K. Tanaka</name>
+    </author>
+    <author>
+      <name>H. A. Tanaka</name>
+    </author>
+    <author>
+      <name>T. Thakore</name>
+    </author>
+    <author>
+      <name>L. F. Thompson</name>
+    </author>
+    <author>
+      <name>S. Tobayama</name>
+    </author>
+    <author>
+      <name>W. Toki</name>
+    </author>
+    <author>
+      <name>T. Tomura</name>
+    </author>
+    <author>
+      <name>T. Tsukamoto</name>
+    </author>
+    <author>
+      <name>M. Tzanov</name>
+    </author>
+    <author>
+      <name>W. Uno</name>
+    </author>
+    <author>
+      <name>M. Vagins</name>
+    </author>
+    <author>
+      <name>Z. Vallari</name>
+    </author>
+    <author>
+      <name>G. Vasseur</name>
+    </author>
+    <author>
+      <name>C. Vilela</name>
+    </author>
+    <author>
+      <name>T. Vladisavljevic</name>
+    </author>
+    <author>
+      <name>T. Wachala</name>
+    </author>
+    <author>
+      <name>J. Walker</name>
+    </author>
+    <author>
+      <name>C. W. Walter</name>
+    </author>
+    <author>
+      <name>Y. Wang</name>
+    </author>
+    <author>
+      <name>D. Wark</name>
+    </author>
+    <author>
+      <name>M. O. Wascko</name>
+    </author>
+    <author>
+      <name>A. Weber</name>
+    </author>
+    <author>
+      <name>R. Wendell</name>
+    </author>
+    <author>
+      <name>M. J. Wilking</name>
+    </author>
+    <author>
+      <name>C. Wilkinson</name>
+    </author>
+    <author>
+      <name>J. R. Wilson</name>
+    </author>
+    <author>
+      <name>R. J. Wilson</name>
+    </author>
+    <author>
+      <name>C. Wret</name>
+    </author>
+    <author>
+      <name>Y. Yamada</name>
+    </author>
+    <author>
+      <name>K. Yamamoto</name>
+    </author>
+    <author>
+      <name>S. Yamasu</name>
+    </author>
+    <author>
+      <name>C. Yanagisawa</name>
+    </author>
+    <author>
+      <name>T. Yano</name>
+    </author>
+    <author>
+      <name>S. Yen</name>
+    </author>
+    <author>
+      <name>N. Yershov</name>
+    </author>
+    <author>
+      <name>M. Yokoyama</name>
+    </author>
+    <author>
+      <name>T. Yuan</name>
+    </author>
+    <author>
+      <name>M. Yu</name>
+    </author>
+    <author>
+      <name>A. Zalewska</name>
+    </author>
+    <author>
+      <name>J. Zalipska</name>
+    </author>
+    <author>
+      <name>L. Zambelli</name>
+    </author>
+    <author>
+      <name>K. Zaremba</name>
+    </author>
+    <author>
+      <name>M. Ziembicki</name>
+    </author>
+    <author>
+      <name>E. D. Zimmerman</name>
+    </author>
+    <author>
+      <name>M. Zito</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevD.97.012001</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.97.012001" rel="related"/>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys. Rev. D 97, 012001 (2018)</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/1708.06771v3" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1708.06771v3" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>

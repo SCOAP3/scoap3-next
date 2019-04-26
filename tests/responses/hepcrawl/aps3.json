@@ -1,0 +1,3529 @@
+{
+  "files": [],
+  "license": [
+    {
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "license": "CC-BY-4.0"
+    }
+  ],
+  "page_nr": [
+    16
+  ],
+  "acquisition_source": {
+    "date": "2019-04-26T15:32:12.366460",
+    "source": "APS",
+    "method": "APS",
+    "submission_number": "aff93614682711e9b0da02163e01809a"
+  },
+  "copyright": [
+    {
+      "material": "",
+      "holder": "",
+      "statement": "Published by the American Physical Society",
+      "year": "2018"
+    }
+  ],
+  "collaborations": [
+    {
+      "value": "T2K Collaboration"
+    }
+  ],
+  "dois": [
+    {
+      "value": "10.1103/PhysRevD.97.012001"
+    }
+  ],
+  "record_creation_date": "2019-04-26T15:32:12.366514",
+  "authors": [
+    {
+      "raw_name": "K. Abe",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Abe",
+      "given_names": "K.",
+      "full_name": "Abe, K."
+    },
+    {
+      "raw_name": "J. Amey",
+      "affiliations": [
+        {
+          "value": "Imperial College London, Department of Physics, London, United Kingdom"
+        }
+      ],
+      "surname": "Amey",
+      "given_names": "J.",
+      "full_name": "Amey, J."
+    },
+    {
+      "raw_name": "C. Andreopoulos",
+      "affiliations": [
+        {
+          "value": "STFC, Rutherford Appleton Laboratory, Harwell Oxford, and Daresbury Laboratory, Warrington, United Kingdom"
+        },
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Andreopoulos",
+      "given_names": "C.",
+      "full_name": "Andreopoulos, C."
+    },
+    {
+      "raw_name": "L. Anthony",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Anthony",
+      "given_names": "L.",
+      "full_name": "Anthony, L."
+    },
+    {
+      "raw_name": "M. Antonova",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Antonova",
+      "given_names": "M.",
+      "full_name": "Antonova, M."
+    },
+    {
+      "raw_name": "S. Aoki",
+      "affiliations": [
+        {
+          "value": "Kobe University, Kobe, Japan"
+        }
+      ],
+      "surname": "Aoki",
+      "given_names": "S.",
+      "full_name": "Aoki, S."
+    },
+    {
+      "raw_name": "A. Ariga",
+      "affiliations": [
+        {
+          "value": "University of Bern, Albert Einstein Center for Fundamental Physics, Laboratory for High Energy Physics (LHEP), Bern, Switzerland"
+        }
+      ],
+      "surname": "Ariga",
+      "given_names": "A.",
+      "full_name": "Ariga, A."
+    },
+    {
+      "raw_name": "Y. Ashida",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Ashida",
+      "given_names": "Y.",
+      "full_name": "Ashida, Y."
+    },
+    {
+      "raw_name": "S. Ban",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Ban",
+      "given_names": "S.",
+      "full_name": "Ban, S."
+    },
+    {
+      "raw_name": "M. Barbi",
+      "affiliations": [
+        {
+          "value": "University of Regina, Department of Physics, Regina, Saskatchewan, Canada"
+        }
+      ],
+      "surname": "Barbi",
+      "given_names": "M.",
+      "full_name": "Barbi, M."
+    },
+    {
+      "raw_name": "G.\u2009J. Barker",
+      "affiliations": [
+        {
+          "value": "University of Warwick, Department of Physics, Coventry, United Kingdom"
+        }
+      ],
+      "surname": "Barker",
+      "given_names": "G.\u2009J.",
+      "full_name": "Barker, G.\u2009J."
+    },
+    {
+      "raw_name": "G. Barr",
+      "affiliations": [
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        }
+      ],
+      "surname": "Barr",
+      "given_names": "G.",
+      "full_name": "Barr, G."
+    },
+    {
+      "raw_name": "C. Barry",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Barry",
+      "given_names": "C.",
+      "full_name": "Barry, C."
+    },
+    {
+      "raw_name": "M. Batkiewicz",
+      "affiliations": [
+        {
+          "value": "H. Niewodniczanski Institute of Nuclear Physics PAN, Cracow, Poland"
+        }
+      ],
+      "surname": "Batkiewicz",
+      "given_names": "M.",
+      "full_name": "Batkiewicz, M."
+    },
+    {
+      "raw_name": "V. Berardi",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Bari and Universit\u00e0 e Politecnico di Bari, Dipartimento Interuniversitario di Fisica, Bari, Italy"
+        }
+      ],
+      "surname": "Berardi",
+      "given_names": "V.",
+      "full_name": "Berardi, V."
+    },
+    {
+      "raw_name": "S. Berkman",
+      "affiliations": [
+        {
+          "value": "University of British Columbia, Department of Physics and Astronomy, Vancouver, British Columbia, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Berkman",
+      "given_names": "S.",
+      "full_name": "Berkman, S."
+    },
+    {
+      "raw_name": "S. Bhadra",
+      "affiliations": [
+        {
+          "value": "York University, Department of Physics and Astronomy, Toronto, Ontario, Canada"
+        }
+      ],
+      "surname": "Bhadra",
+      "given_names": "S.",
+      "full_name": "Bhadra, S."
+    },
+    {
+      "raw_name": "S. Bienstock",
+      "affiliations": [
+        {
+          "value": "UPMC, Universit\u00e9 Paris Diderot, CNRS/IN2P3, Laboratoire de Physique Nucl\u00e9aire et de Hautes Energies (LPNHE), Paris, France"
+        }
+      ],
+      "surname": "Bienstock",
+      "given_names": "S.",
+      "full_name": "Bienstock, S."
+    },
+    {
+      "raw_name": "A. Blondel",
+      "affiliations": [
+        {
+          "value": "University of Geneva, Section de Physique, DPNC, Geneva, Switzerland"
+        }
+      ],
+      "surname": "Blondel",
+      "given_names": "A.",
+      "full_name": "Blondel, A."
+    },
+    {
+      "raw_name": "S. Bolognesi",
+      "affiliations": [
+        {
+          "value": "IRFU, CEA Saclay, Gif-sur-Yvette, France"
+        }
+      ],
+      "surname": "Bolognesi",
+      "given_names": "S.",
+      "full_name": "Bolognesi, S."
+    },
+    {
+      "raw_name": "S. Bordoni",
+      "affiliations": [
+        {
+          "value": "Institut de Fisica d\u2019Altes Energies (IFAE), The Barcelona Institute of Science and Technology, Campus UAB, Bellaterra (Barcelona) Spain"
+        }
+      ],
+      "surname": "Bordoni",
+      "given_names": "S.",
+      "full_name": "Bordoni, S."
+    },
+    {
+      "raw_name": "B. Bourguille",
+      "affiliations": [
+        {
+          "value": "Institut de Fisica d\u2019Altes Energies (IFAE), The Barcelona Institute of Science and Technology, Campus UAB, Bellaterra (Barcelona) Spain"
+        }
+      ],
+      "surname": "Bourguille",
+      "given_names": "B.",
+      "full_name": "Bourguille, B."
+    },
+    {
+      "raw_name": "S.\u2009B. Boyd",
+      "affiliations": [
+        {
+          "value": "University of Warwick, Department of Physics, Coventry, United Kingdom"
+        }
+      ],
+      "surname": "Boyd",
+      "given_names": "S.\u2009B.",
+      "full_name": "Boyd, S.\u2009B."
+    },
+    {
+      "raw_name": "D. Brailsford",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Brailsford",
+      "given_names": "D.",
+      "full_name": "Brailsford, D."
+    },
+    {
+      "raw_name": "A. Bravar",
+      "affiliations": [
+        {
+          "value": "University of Geneva, Section de Physique, DPNC, Geneva, Switzerland"
+        }
+      ],
+      "surname": "Bravar",
+      "given_names": "A.",
+      "full_name": "Bravar, A."
+    },
+    {
+      "raw_name": "C. Bronner",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Bronner",
+      "given_names": "C.",
+      "full_name": "Bronner, C."
+    },
+    {
+      "raw_name": "M. Buizza Avanzini",
+      "affiliations": [
+        {
+          "value": "Ecole Polytechnique, IN2P3-CNRS, Laboratoire Leprince-Ringuet, Palaiseau, France"
+        }
+      ],
+      "surname": "Buizza Avanzini",
+      "given_names": "M.",
+      "full_name": "Buizza Avanzini, M."
+    },
+    {
+      "raw_name": "J. Calcutt",
+      "affiliations": [
+        {
+          "value": "Michigan State University, Department of Physics and Astronomy, East Lansing, Michigan, USA"
+        }
+      ],
+      "surname": "Calcutt",
+      "given_names": "J.",
+      "full_name": "Calcutt, J."
+    },
+    {
+      "raw_name": "R.\u2009G. Calland",
+      "affiliations": [
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Calland",
+      "given_names": "R.\u2009G.",
+      "full_name": "Calland, R.\u2009G."
+    },
+    {
+      "raw_name": "T. Campbell",
+      "affiliations": [
+        {
+          "value": "Colorado State University, Department of Physics, Fort Collins, Colorado, USA"
+        }
+      ],
+      "surname": "Campbell",
+      "given_names": "T.",
+      "full_name": "Campbell, T."
+    },
+    {
+      "raw_name": "S. Cao",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Cao",
+      "given_names": "S.",
+      "full_name": "Cao, S."
+    },
+    {
+      "raw_name": "S.\u2009L. Cartwright",
+      "affiliations": [
+        {
+          "value": "University of Sheffield, Department of Physics and Astronomy, Sheffield, United Kingdom"
+        }
+      ],
+      "surname": "Cartwright",
+      "given_names": "S.\u2009L.",
+      "full_name": "Cartwright, S.\u2009L."
+    },
+    {
+      "raw_name": "M.\u2009G. Catanesi",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Bari and Universit\u00e0 e Politecnico di Bari, Dipartimento Interuniversitario di Fisica, Bari, Italy"
+        }
+      ],
+      "surname": "Catanesi",
+      "given_names": "M.\u2009G.",
+      "full_name": "Catanesi, M.\u2009G."
+    },
+    {
+      "raw_name": "A. Cervera",
+      "affiliations": [
+        {
+          "value": "IFIC (CSIC & University of Valencia), Valencia, Spain"
+        }
+      ],
+      "surname": "Cervera",
+      "given_names": "A.",
+      "full_name": "Cervera, A."
+    },
+    {
+      "raw_name": "A. Chappell",
+      "affiliations": [
+        {
+          "value": "University of Warwick, Department of Physics, Coventry, United Kingdom"
+        }
+      ],
+      "surname": "Chappell",
+      "given_names": "A.",
+      "full_name": "Chappell, A."
+    },
+    {
+      "raw_name": "C. Checchia",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Padova and Universit\u00e0 di Padova, Dipartimento di Fisica, Padova, Italy"
+        }
+      ],
+      "surname": "Checchia",
+      "given_names": "C.",
+      "full_name": "Checchia, C."
+    },
+    {
+      "raw_name": "D. Cherdack",
+      "affiliations": [
+        {
+          "value": "Colorado State University, Department of Physics, Fort Collins, Colorado, USA"
+        }
+      ],
+      "surname": "Cherdack",
+      "given_names": "D.",
+      "full_name": "Cherdack, D."
+    },
+    {
+      "raw_name": "N. Chikuma",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Chikuma",
+      "given_names": "N.",
+      "full_name": "Chikuma, N."
+    },
+    {
+      "raw_name": "G. Christodoulou",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Christodoulou",
+      "given_names": "G.",
+      "full_name": "Christodoulou, G."
+    },
+    {
+      "raw_name": "J. Coleman",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Coleman",
+      "given_names": "J.",
+      "full_name": "Coleman, J."
+    },
+    {
+      "raw_name": "G. Collazuol",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Padova and Universit\u00e0 di Padova, Dipartimento di Fisica, Padova, Italy"
+        }
+      ],
+      "surname": "Collazuol",
+      "given_names": "G.",
+      "full_name": "Collazuol, G."
+    },
+    {
+      "raw_name": "D. Coplowe",
+      "affiliations": [
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        }
+      ],
+      "surname": "Coplowe",
+      "given_names": "D.",
+      "full_name": "Coplowe, D."
+    },
+    {
+      "raw_name": "A. Cudd",
+      "affiliations": [
+        {
+          "value": "Michigan State University, Department of Physics and Astronomy, East Lansing, Michigan, USA"
+        }
+      ],
+      "surname": "Cudd",
+      "given_names": "A.",
+      "full_name": "Cudd, A."
+    },
+    {
+      "raw_name": "A. Dabrowska",
+      "affiliations": [
+        {
+          "value": "H. Niewodniczanski Institute of Nuclear Physics PAN, Cracow, Poland"
+        }
+      ],
+      "surname": "Dabrowska",
+      "given_names": "A.",
+      "full_name": "Dabrowska, A."
+    },
+    {
+      "raw_name": "G. De Rosa",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Napoli and Universit\u00e0 di Napoli, Dipartimento di Fisica, Napoli, Italy"
+        }
+      ],
+      "surname": "De Rosa",
+      "given_names": "G.",
+      "full_name": "De Rosa, G."
+    },
+    {
+      "raw_name": "T. Dealtry",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Dealtry",
+      "given_names": "T.",
+      "full_name": "Dealtry, T."
+    },
+    {
+      "raw_name": "P.\u2009F. Denner",
+      "affiliations": [
+        {
+          "value": "University of Warwick, Department of Physics, Coventry, United Kingdom"
+        }
+      ],
+      "surname": "Denner",
+      "given_names": "P.\u2009F.",
+      "full_name": "Denner, P.\u2009F."
+    },
+    {
+      "raw_name": "S.\u2009R. Dennis",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Dennis",
+      "given_names": "S.\u2009R.",
+      "full_name": "Dennis, S.\u2009R."
+    },
+    {
+      "raw_name": "C. Densham",
+      "affiliations": [
+        {
+          "value": "STFC, Rutherford Appleton Laboratory, Harwell Oxford, and Daresbury Laboratory, Warrington, United Kingdom"
+        }
+      ],
+      "surname": "Densham",
+      "given_names": "C.",
+      "full_name": "Densham, C."
+    },
+    {
+      "raw_name": "F. Di Lodovico",
+      "affiliations": [
+        {
+          "value": "Queen Mary University of London, School of Physics and Astronomy, London, United Kingdom"
+        }
+      ],
+      "surname": "Di Lodovico",
+      "given_names": "F.",
+      "full_name": "Di Lodovico, F."
+    },
+    {
+      "raw_name": "S. Dolan",
+      "affiliations": [
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        }
+      ],
+      "surname": "Dolan",
+      "given_names": "S.",
+      "full_name": "Dolan, S."
+    },
+    {
+      "raw_name": "O. Drapier",
+      "affiliations": [
+        {
+          "value": "Ecole Polytechnique, IN2P3-CNRS, Laboratoire Leprince-Ringuet, Palaiseau, France"
+        }
+      ],
+      "surname": "Drapier",
+      "given_names": "O.",
+      "full_name": "Drapier, O."
+    },
+    {
+      "raw_name": "K.\u2009E. Duffy",
+      "affiliations": [
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        }
+      ],
+      "surname": "Duffy",
+      "given_names": "K.\u2009E.",
+      "full_name": "Duffy, K.\u2009E."
+    },
+    {
+      "raw_name": "J. Dumarchez",
+      "affiliations": [
+        {
+          "value": "UPMC, Universit\u00e9 Paris Diderot, CNRS/IN2P3, Laboratoire de Physique Nucl\u00e9aire et de Hautes Energies (LPNHE), Paris, France"
+        }
+      ],
+      "surname": "Dumarchez",
+      "given_names": "J.",
+      "full_name": "Dumarchez, J."
+    },
+    {
+      "raw_name": "P. Dunne",
+      "affiliations": [
+        {
+          "value": "Imperial College London, Department of Physics, London, United Kingdom"
+        }
+      ],
+      "surname": "Dunne",
+      "given_names": "P.",
+      "full_name": "Dunne, P."
+    },
+    {
+      "raw_name": "S. Emery-Schrenk",
+      "affiliations": [
+        {
+          "value": "IRFU, CEA Saclay, Gif-sur-Yvette, France"
+        }
+      ],
+      "surname": "Emery-Schrenk",
+      "given_names": "S.",
+      "full_name": "Emery-Schrenk, S."
+    },
+    {
+      "raw_name": "A. Ereditato",
+      "affiliations": [
+        {
+          "value": "University of Bern, Albert Einstein Center for Fundamental Physics, Laboratory for High Energy Physics (LHEP), Bern, Switzerland"
+        }
+      ],
+      "surname": "Ereditato",
+      "given_names": "A.",
+      "full_name": "Ereditato, A."
+    },
+    {
+      "raw_name": "T. Feusels",
+      "affiliations": [
+        {
+          "value": "University of British Columbia, Department of Physics and Astronomy, Vancouver, British Columbia, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Feusels",
+      "given_names": "T.",
+      "full_name": "Feusels, T."
+    },
+    {
+      "raw_name": "A.\u2009J. Finch",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Finch",
+      "given_names": "A.\u2009J.",
+      "full_name": "Finch, A.\u2009J."
+    },
+    {
+      "raw_name": "G.\u2009A. Fiorentini",
+      "affiliations": [
+        {
+          "value": "York University, Department of Physics and Astronomy, Toronto, Ontario, Canada"
+        }
+      ],
+      "surname": "Fiorentini",
+      "given_names": "G.\u2009A.",
+      "full_name": "Fiorentini, G.\u2009A."
+    },
+    {
+      "raw_name": "G. Fiorillo",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Napoli and Universit\u00e0 di Napoli, Dipartimento di Fisica, Napoli, Italy"
+        }
+      ],
+      "surname": "Fiorillo",
+      "given_names": "G.",
+      "full_name": "Fiorillo, G."
+    },
+    {
+      "raw_name": "C. Francois",
+      "affiliations": [
+        {
+          "value": "University of Bern, Albert Einstein Center for Fundamental Physics, Laboratory for High Energy Physics (LHEP), Bern, Switzerland"
+        }
+      ],
+      "surname": "Francois",
+      "given_names": "C.",
+      "full_name": "Francois, C."
+    },
+    {
+      "raw_name": "M. Friend",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Friend",
+      "given_names": "M.",
+      "full_name": "Friend, M."
+    },
+    {
+      "raw_name": "Y. Fujii",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Fujii",
+      "given_names": "Y.",
+      "full_name": "Fujii, Y."
+    },
+    {
+      "raw_name": "D. Fukuda",
+      "affiliations": [
+        {
+          "value": "Okayama University, Department of Physics, Okayama, Japan"
+        }
+      ],
+      "surname": "Fukuda",
+      "given_names": "D.",
+      "full_name": "Fukuda, D."
+    },
+    {
+      "raw_name": "Y. Fukuda",
+      "affiliations": [
+        {
+          "value": "Miyagi University of Education, Department of Physics, Sendai, Japan"
+        }
+      ],
+      "surname": "Fukuda",
+      "given_names": "Y.",
+      "full_name": "Fukuda, Y."
+    },
+    {
+      "raw_name": "A. Garcia",
+      "affiliations": [
+        {
+          "value": "Institut de Fisica d\u2019Altes Energies (IFAE), The Barcelona Institute of Science and Technology, Campus UAB, Bellaterra (Barcelona) Spain"
+        }
+      ],
+      "surname": "Garcia",
+      "given_names": "A.",
+      "full_name": "Garcia, A."
+    },
+    {
+      "raw_name": "C. Giganti",
+      "affiliations": [
+        {
+          "value": "UPMC, Universit\u00e9 Paris Diderot, CNRS/IN2P3, Laboratoire de Physique Nucl\u00e9aire et de Hautes Energies (LPNHE), Paris, France"
+        }
+      ],
+      "surname": "Giganti",
+      "given_names": "C.",
+      "full_name": "Giganti, C."
+    },
+    {
+      "raw_name": "F. Gizzarelli",
+      "affiliations": [
+        {
+          "value": "IRFU, CEA Saclay, Gif-sur-Yvette, France"
+        }
+      ],
+      "surname": "Gizzarelli",
+      "given_names": "F.",
+      "full_name": "Gizzarelli, F."
+    },
+    {
+      "raw_name": "T. Golan",
+      "affiliations": [
+        {
+          "value": "Wroclaw University, Faculty of Physics and Astronomy, Wroclaw, Poland"
+        }
+      ],
+      "surname": "Golan",
+      "given_names": "T.",
+      "full_name": "Golan, T."
+    },
+    {
+      "raw_name": "M. Gonin",
+      "affiliations": [
+        {
+          "value": "Ecole Polytechnique, IN2P3-CNRS, Laboratoire Leprince-Ringuet, Palaiseau, France"
+        }
+      ],
+      "surname": "Gonin",
+      "given_names": "M.",
+      "full_name": "Gonin, M."
+    },
+    {
+      "raw_name": "D.\u2009R. Hadley",
+      "affiliations": [
+        {
+          "value": "University of Warwick, Department of Physics, Coventry, United Kingdom"
+        }
+      ],
+      "surname": "Hadley",
+      "given_names": "D.\u2009R.",
+      "full_name": "Hadley, D.\u2009R."
+    },
+    {
+      "raw_name": "L. Haegel",
+      "affiliations": [
+        {
+          "value": "University of Geneva, Section de Physique, DPNC, Geneva, Switzerland"
+        }
+      ],
+      "surname": "Haegel",
+      "given_names": "L.",
+      "full_name": "Haegel, L."
+    },
+    {
+      "raw_name": "J.\u2009T. Haigh",
+      "affiliations": [
+        {
+          "value": "University of Warwick, Department of Physics, Coventry, United Kingdom"
+        }
+      ],
+      "surname": "Haigh",
+      "given_names": "J.\u2009T.",
+      "full_name": "Haigh, J.\u2009T."
+    },
+    {
+      "raw_name": "D. Hansen",
+      "affiliations": [
+        {
+          "value": "University of Pittsburgh, Department of Physics and Astronomy, Pittsburgh, Pennsylvania, USA"
+        }
+      ],
+      "surname": "Hansen",
+      "given_names": "D.",
+      "full_name": "Hansen, D."
+    },
+    {
+      "raw_name": "J. Harada",
+      "affiliations": [
+        {
+          "value": "Osaka City University, Department of Physics, Osaka, Japan"
+        }
+      ],
+      "surname": "Harada",
+      "given_names": "J.",
+      "full_name": "Harada, J."
+    },
+    {
+      "raw_name": "M. Hartz",
+      "affiliations": [
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Hartz",
+      "given_names": "M.",
+      "full_name": "Hartz, M."
+    },
+    {
+      "raw_name": "T. Hasegawa",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Hasegawa",
+      "given_names": "T.",
+      "full_name": "Hasegawa, T."
+    },
+    {
+      "raw_name": "N.\u2009C. Hastings",
+      "affiliations": [
+        {
+          "value": "University of Regina, Department of Physics, Regina, Saskatchewan, Canada"
+        }
+      ],
+      "surname": "Hastings",
+      "given_names": "N.\u2009C.",
+      "full_name": "Hastings, N.\u2009C."
+    },
+    {
+      "raw_name": "T. Hayashino",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Hayashino",
+      "given_names": "T.",
+      "full_name": "Hayashino, T."
+    },
+    {
+      "raw_name": "Y. Hayato",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Hayato",
+      "given_names": "Y.",
+      "full_name": "Hayato, Y."
+    },
+    {
+      "raw_name": "A. Hillairet",
+      "affiliations": [
+        {
+          "value": "University of Victoria, Department of Physics and Astronomy, Victoria, British Columbia, Canada"
+        }
+      ],
+      "surname": "Hillairet",
+      "given_names": "A.",
+      "full_name": "Hillairet, A."
+    },
+    {
+      "raw_name": "T. Hiraki",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Hiraki",
+      "given_names": "T.",
+      "full_name": "Hiraki, T."
+    },
+    {
+      "raw_name": "A. Hiramoto",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Hiramoto",
+      "given_names": "A.",
+      "full_name": "Hiramoto, A."
+    },
+    {
+      "raw_name": "S. Hirota",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Hirota",
+      "given_names": "S.",
+      "full_name": "Hirota, S."
+    },
+    {
+      "raw_name": "M. Hogan",
+      "affiliations": [
+        {
+          "value": "Colorado State University, Department of Physics, Fort Collins, Colorado, USA"
+        }
+      ],
+      "surname": "Hogan",
+      "given_names": "M.",
+      "full_name": "Hogan, M."
+    },
+    {
+      "raw_name": "J. Holeczek",
+      "affiliations": [
+        {
+          "value": "University of Silesia, Institute of Physics, Katowice, Poland"
+        }
+      ],
+      "surname": "Holeczek",
+      "given_names": "J.",
+      "full_name": "Holeczek, J."
+    },
+    {
+      "raw_name": "F. Hosomi",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Hosomi",
+      "given_names": "F.",
+      "full_name": "Hosomi, F."
+    },
+    {
+      "raw_name": "K. Huang",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Huang",
+      "given_names": "K.",
+      "full_name": "Huang, K."
+    },
+    {
+      "raw_name": "A.\u2009K. Ichikawa",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Ichikawa",
+      "given_names": "A.\u2009K.",
+      "full_name": "Ichikawa, A.\u2009K."
+    },
+    {
+      "raw_name": "M. Ikeda",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Ikeda",
+      "given_names": "M.",
+      "full_name": "Ikeda, M."
+    },
+    {
+      "raw_name": "J. Imber",
+      "affiliations": [
+        {
+          "value": "Ecole Polytechnique, IN2P3-CNRS, Laboratoire Leprince-Ringuet, Palaiseau, France"
+        }
+      ],
+      "surname": "Imber",
+      "given_names": "J.",
+      "full_name": "Imber, J."
+    },
+    {
+      "raw_name": "J. Insler",
+      "affiliations": [
+        {
+          "value": "Louisiana State University, Department of Physics and Astronomy, Baton Rouge, Louisiana, USA"
+        }
+      ],
+      "surname": "Insler",
+      "given_names": "J.",
+      "full_name": "Insler, J."
+    },
+    {
+      "raw_name": "R.\u2009A. Intonti",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Bari and Universit\u00e0 e Politecnico di Bari, Dipartimento Interuniversitario di Fisica, Bari, Italy"
+        }
+      ],
+      "surname": "Intonti",
+      "given_names": "R.\u2009A.",
+      "full_name": "Intonti, R.\u2009A."
+    },
+    {
+      "raw_name": "T. Ishida",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Ishida",
+      "given_names": "T.",
+      "full_name": "Ishida, T."
+    },
+    {
+      "raw_name": "T. Ishii",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Ishii",
+      "given_names": "T.",
+      "full_name": "Ishii, T."
+    },
+    {
+      "raw_name": "E. Iwai",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Iwai",
+      "given_names": "E.",
+      "full_name": "Iwai, E."
+    },
+    {
+      "raw_name": "K. Iwamoto",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Iwamoto",
+      "given_names": "K.",
+      "full_name": "Iwamoto, K."
+    },
+    {
+      "raw_name": "A. Izmaylov",
+      "affiliations": [
+        {
+          "value": "IFIC (CSIC & University of Valencia), Valencia, Spain"
+        },
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Izmaylov",
+      "given_names": "A.",
+      "full_name": "Izmaylov, A."
+    },
+    {
+      "raw_name": "B. Jamieson",
+      "affiliations": [
+        {
+          "value": "University of Winnipeg, Department of Physics, Winnipeg, Manitoba, Canada"
+        }
+      ],
+      "surname": "Jamieson",
+      "given_names": "B.",
+      "full_name": "Jamieson, B."
+    },
+    {
+      "raw_name": "M. Jiang",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Jiang",
+      "given_names": "M.",
+      "full_name": "Jiang, M."
+    },
+    {
+      "raw_name": "S. Johnson",
+      "affiliations": [
+        {
+          "value": "University of Colorado at Boulder, Department of Physics, Boulder, Colorado, USA"
+        }
+      ],
+      "surname": "Johnson",
+      "given_names": "S.",
+      "full_name": "Johnson, S."
+    },
+    {
+      "raw_name": "P. Jonsson",
+      "affiliations": [
+        {
+          "value": "Imperial College London, Department of Physics, London, United Kingdom"
+        }
+      ],
+      "surname": "Jonsson",
+      "given_names": "P.",
+      "full_name": "Jonsson, P."
+    },
+    {
+      "raw_name": "C.\u2009K. Jung",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Jung",
+      "given_names": "C.\u2009K.",
+      "full_name": "Jung, C.\u2009K."
+    },
+    {
+      "raw_name": "M. Kabirnezhad",
+      "affiliations": [
+        {
+          "value": "National Centre for Nuclear Research, Warsaw, Poland"
+        }
+      ],
+      "surname": "Kabirnezhad",
+      "given_names": "M.",
+      "full_name": "Kabirnezhad, M."
+    },
+    {
+      "raw_name": "A.\u2009C. Kaboth",
+      "affiliations": [
+        {
+          "value": "Royal Holloway University of London, Department of Physics, Egham, Surrey, United Kingdom"
+        },
+        {
+          "value": "STFC, Rutherford Appleton Laboratory, Harwell Oxford, and Daresbury Laboratory, Warrington, United Kingdom"
+        }
+      ],
+      "surname": "Kaboth",
+      "given_names": "A.\u2009C.",
+      "full_name": "Kaboth, A.\u2009C."
+    },
+    {
+      "raw_name": "T. Kajita",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Research Center for Cosmic Neutrinos, Kashiwa, Japan"
+        }
+      ],
+      "surname": "Kajita",
+      "given_names": "T.",
+      "full_name": "Kajita, T."
+    },
+    {
+      "raw_name": "H. Kakuno",
+      "affiliations": [
+        {
+          "value": "Tokyo Metropolitan University, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Kakuno",
+      "given_names": "H.",
+      "full_name": "Kakuno, H."
+    },
+    {
+      "raw_name": "J. Kameda",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Kameda",
+      "given_names": "J.",
+      "full_name": "Kameda, J."
+    },
+    {
+      "raw_name": "D. Karlen",
+      "affiliations": [
+        {
+          "value": "University of Victoria, Department of Physics and Astronomy, Victoria, British Columbia, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Karlen",
+      "given_names": "D.",
+      "full_name": "Karlen, D."
+    },
+    {
+      "raw_name": "T. Katori",
+      "affiliations": [
+        {
+          "value": "Queen Mary University of London, School of Physics and Astronomy, London, United Kingdom"
+        }
+      ],
+      "surname": "Katori",
+      "given_names": "T.",
+      "full_name": "Katori, T."
+    },
+    {
+      "raw_name": "E. Kearns",
+      "affiliations": [
+        {
+          "value": "Boston University, Department of Physics, Boston, Massachusetts, USA"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Kearns",
+      "given_names": "E.",
+      "full_name": "Kearns, E."
+    },
+    {
+      "raw_name": "M. Khabibullin",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Khabibullin",
+      "given_names": "M.",
+      "full_name": "Khabibullin, M."
+    },
+    {
+      "raw_name": "A. Khotjantsev",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Khotjantsev",
+      "given_names": "A.",
+      "full_name": "Khotjantsev, A."
+    },
+    {
+      "raw_name": "H. Kim",
+      "affiliations": [
+        {
+          "value": "Osaka City University, Department of Physics, Osaka, Japan"
+        }
+      ],
+      "surname": "Kim",
+      "given_names": "H.",
+      "full_name": "Kim, H."
+    },
+    {
+      "raw_name": "J. Kim",
+      "affiliations": [
+        {
+          "value": "University of British Columbia, Department of Physics and Astronomy, Vancouver, British Columbia, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Kim",
+      "given_names": "J.",
+      "full_name": "Kim, J."
+    },
+    {
+      "raw_name": "S. King",
+      "affiliations": [
+        {
+          "value": "Queen Mary University of London, School of Physics and Astronomy, London, United Kingdom"
+        }
+      ],
+      "surname": "King",
+      "given_names": "S.",
+      "full_name": "King, S."
+    },
+    {
+      "raw_name": "J. Kisiel",
+      "affiliations": [
+        {
+          "value": "University of Silesia, Institute of Physics, Katowice, Poland"
+        }
+      ],
+      "surname": "Kisiel",
+      "given_names": "J.",
+      "full_name": "Kisiel, J."
+    },
+    {
+      "raw_name": "A. Knight",
+      "affiliations": [
+        {
+          "value": "University of Warwick, Department of Physics, Coventry, United Kingdom"
+        }
+      ],
+      "surname": "Knight",
+      "given_names": "A.",
+      "full_name": "Knight, A."
+    },
+    {
+      "raw_name": "A. Knox",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Knox",
+      "given_names": "A.",
+      "full_name": "Knox, A."
+    },
+    {
+      "raw_name": "T. Kobayashi",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Kobayashi",
+      "given_names": "T.",
+      "full_name": "Kobayashi, T."
+    },
+    {
+      "raw_name": "L. Koch",
+      "affiliations": [
+        {
+          "value": "RWTH Aachen University, III. Physikalisches Institut, Aachen, Germany"
+        }
+      ],
+      "surname": "Koch",
+      "given_names": "L.",
+      "full_name": "Koch, L."
+    },
+    {
+      "raw_name": "T. Koga",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Koga",
+      "given_names": "T.",
+      "full_name": "Koga, T."
+    },
+    {
+      "raw_name": "P.\u2009P. Koller",
+      "affiliations": [
+        {
+          "value": "University of Bern, Albert Einstein Center for Fundamental Physics, Laboratory for High Energy Physics (LHEP), Bern, Switzerland"
+        }
+      ],
+      "surname": "Koller",
+      "given_names": "P.\u2009P.",
+      "full_name": "Koller, P.\u2009P."
+    },
+    {
+      "raw_name": "A. Konaka",
+      "affiliations": [
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Konaka",
+      "given_names": "A.",
+      "full_name": "Konaka, A."
+    },
+    {
+      "raw_name": "L.\u2009L. Kormos",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Kormos",
+      "given_names": "L.\u2009L.",
+      "full_name": "Kormos, L.\u2009L."
+    },
+    {
+      "raw_name": "Y. Koshio",
+      "affiliations": [
+        {
+          "value": "Okayama University, Department of Physics, Okayama, Japan"
+        }
+      ],
+      "surname": "Koshio",
+      "given_names": "Y.",
+      "full_name": "Koshio, Y."
+    },
+    {
+      "raw_name": "K. Kowalik",
+      "affiliations": [
+        {
+          "value": "National Centre for Nuclear Research, Warsaw, Poland"
+        }
+      ],
+      "surname": "Kowalik",
+      "given_names": "K.",
+      "full_name": "Kowalik, K."
+    },
+    {
+      "raw_name": "Y. Kudenko",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Kudenko",
+      "given_names": "Y.",
+      "full_name": "Kudenko, Y."
+    },
+    {
+      "raw_name": "R. Kurjata",
+      "affiliations": [
+        {
+          "value": "Warsaw University of Technology, Institute of Radioelectronics, Warsaw, Poland"
+        }
+      ],
+      "surname": "Kurjata",
+      "given_names": "R.",
+      "full_name": "Kurjata, R."
+    },
+    {
+      "raw_name": "T. Kutter",
+      "affiliations": [
+        {
+          "value": "Louisiana State University, Department of Physics and Astronomy, Baton Rouge, Louisiana, USA"
+        }
+      ],
+      "surname": "Kutter",
+      "given_names": "T.",
+      "full_name": "Kutter, T."
+    },
+    {
+      "raw_name": "J. Lagoda",
+      "affiliations": [
+        {
+          "value": "National Centre for Nuclear Research, Warsaw, Poland"
+        }
+      ],
+      "surname": "Lagoda",
+      "given_names": "J.",
+      "full_name": "Lagoda, J."
+    },
+    {
+      "raw_name": "I. Lamont",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Lamont",
+      "given_names": "I.",
+      "full_name": "Lamont, I."
+    },
+    {
+      "raw_name": "M. Lamoureux",
+      "affiliations": [
+        {
+          "value": "IRFU, CEA Saclay, Gif-sur-Yvette, France"
+        }
+      ],
+      "surname": "Lamoureux",
+      "given_names": "M.",
+      "full_name": "Lamoureux, M."
+    },
+    {
+      "raw_name": "P. Lasorak",
+      "affiliations": [
+        {
+          "value": "Queen Mary University of London, School of Physics and Astronomy, London, United Kingdom"
+        }
+      ],
+      "surname": "Lasorak",
+      "given_names": "P.",
+      "full_name": "Lasorak, P."
+    },
+    {
+      "raw_name": "M. Laveder",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Padova and Universit\u00e0 di Padova, Dipartimento di Fisica, Padova, Italy"
+        }
+      ],
+      "surname": "Laveder",
+      "given_names": "M.",
+      "full_name": "Laveder, M."
+    },
+    {
+      "raw_name": "M. Lawe",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Lawe",
+      "given_names": "M.",
+      "full_name": "Lawe, M."
+    },
+    {
+      "raw_name": "M. Licciardi",
+      "affiliations": [
+        {
+          "value": "Ecole Polytechnique, IN2P3-CNRS, Laboratoire Leprince-Ringuet, Palaiseau, France"
+        }
+      ],
+      "surname": "Licciardi",
+      "given_names": "M.",
+      "full_name": "Licciardi, M."
+    },
+    {
+      "raw_name": "T. Lindner",
+      "affiliations": [
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Lindner",
+      "given_names": "T.",
+      "full_name": "Lindner, T."
+    },
+    {
+      "raw_name": "Z.\u2009J. Liptak",
+      "affiliations": [
+        {
+          "value": "University of Colorado at Boulder, Department of Physics, Boulder, Colorado, USA"
+        }
+      ],
+      "surname": "Liptak",
+      "given_names": "Z.\u2009J.",
+      "full_name": "Liptak, Z.\u2009J."
+    },
+    {
+      "raw_name": "R.\u2009P. Litchfield",
+      "affiliations": [
+        {
+          "value": "Imperial College London, Department of Physics, London, United Kingdom"
+        }
+      ],
+      "surname": "Litchfield",
+      "given_names": "R.\u2009P.",
+      "full_name": "Litchfield, R.\u2009P."
+    },
+    {
+      "raw_name": "X. Li",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Li",
+      "given_names": "X.",
+      "full_name": "Li, X."
+    },
+    {
+      "raw_name": "A. Longhin",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Padova and Universit\u00e0 di Padova, Dipartimento di Fisica, Padova, Italy"
+        }
+      ],
+      "surname": "Longhin",
+      "given_names": "A.",
+      "full_name": "Longhin, A."
+    },
+    {
+      "raw_name": "J.\u2009P. Lopez",
+      "affiliations": [
+        {
+          "value": "University of Colorado at Boulder, Department of Physics, Boulder, Colorado, USA"
+        }
+      ],
+      "surname": "Lopez",
+      "given_names": "J.\u2009P.",
+      "full_name": "Lopez, J.\u2009P."
+    },
+    {
+      "raw_name": "T. Lou",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Lou",
+      "given_names": "T.",
+      "full_name": "Lou, T."
+    },
+    {
+      "raw_name": "L. Ludovici",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Roma and Universit\u00e0 di Roma \u201cLa Sapienza\u201d, Roma, Italy"
+        }
+      ],
+      "surname": "Ludovici",
+      "given_names": "L.",
+      "full_name": "Ludovici, L."
+    },
+    {
+      "raw_name": "X. Lu",
+      "affiliations": [
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        }
+      ],
+      "surname": "Lu",
+      "given_names": "X.",
+      "full_name": "Lu, X."
+    },
+    {
+      "raw_name": "L. Magaletti",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Bari and Universit\u00e0 e Politecnico di Bari, Dipartimento Interuniversitario di Fisica, Bari, Italy"
+        }
+      ],
+      "surname": "Magaletti",
+      "given_names": "L.",
+      "full_name": "Magaletti, L."
+    },
+    {
+      "raw_name": "K. Mahn",
+      "affiliations": [
+        {
+          "value": "Michigan State University, Department of Physics and Astronomy, East Lansing, Michigan, USA"
+        }
+      ],
+      "surname": "Mahn",
+      "given_names": "K.",
+      "full_name": "Mahn, K."
+    },
+    {
+      "raw_name": "M. Malek",
+      "affiliations": [
+        {
+          "value": "University of Sheffield, Department of Physics and Astronomy, Sheffield, United Kingdom"
+        }
+      ],
+      "surname": "Malek",
+      "given_names": "M.",
+      "full_name": "Malek, M."
+    },
+    {
+      "raw_name": "S. Manly",
+      "affiliations": [
+        {
+          "value": "University of Rochester, Department of Physics and Astronomy, Rochester, New York, USA"
+        }
+      ],
+      "surname": "Manly",
+      "given_names": "S.",
+      "full_name": "Manly, S."
+    },
+    {
+      "raw_name": "L. Maret",
+      "affiliations": [
+        {
+          "value": "University of Geneva, Section de Physique, DPNC, Geneva, Switzerland"
+        }
+      ],
+      "surname": "Maret",
+      "given_names": "L.",
+      "full_name": "Maret, L."
+    },
+    {
+      "raw_name": "A.\u2009D. Marino",
+      "affiliations": [
+        {
+          "value": "University of Colorado at Boulder, Department of Physics, Boulder, Colorado, USA"
+        }
+      ],
+      "surname": "Marino",
+      "given_names": "A.\u2009D.",
+      "full_name": "Marino, A.\u2009D."
+    },
+    {
+      "raw_name": "J.\u2009F. Martin",
+      "affiliations": [
+        {
+          "value": "University of Toronto, Department of Physics, Toronto, Ontario, Canada"
+        }
+      ],
+      "surname": "Martin",
+      "given_names": "J.\u2009F.",
+      "full_name": "Martin, J.\u2009F."
+    },
+    {
+      "raw_name": "P. Martins",
+      "affiliations": [
+        {
+          "value": "Queen Mary University of London, School of Physics and Astronomy, London, United Kingdom"
+        }
+      ],
+      "surname": "Martins",
+      "given_names": "P.",
+      "full_name": "Martins, P."
+    },
+    {
+      "raw_name": "S. Martynenko",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Martynenko",
+      "given_names": "S.",
+      "full_name": "Martynenko, S."
+    },
+    {
+      "raw_name": "T. Maruyama",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Maruyama",
+      "given_names": "T.",
+      "full_name": "Maruyama, T."
+    },
+    {
+      "raw_name": "V. Matveev",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Matveev",
+      "given_names": "V.",
+      "full_name": "Matveev, V."
+    },
+    {
+      "raw_name": "K. Mavrokoridis",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Mavrokoridis",
+      "given_names": "K.",
+      "full_name": "Mavrokoridis, K."
+    },
+    {
+      "raw_name": "W.\u2009Y. Ma",
+      "affiliations": [
+        {
+          "value": "Imperial College London, Department of Physics, London, United Kingdom"
+        }
+      ],
+      "surname": "Ma",
+      "given_names": "W.\u2009Y.",
+      "full_name": "Ma, W.\u2009Y."
+    },
+    {
+      "raw_name": "E. Mazzucato",
+      "affiliations": [
+        {
+          "value": "IRFU, CEA Saclay, Gif-sur-Yvette, France"
+        }
+      ],
+      "surname": "Mazzucato",
+      "given_names": "E.",
+      "full_name": "Mazzucato, E."
+    },
+    {
+      "raw_name": "M. McCarthy",
+      "affiliations": [
+        {
+          "value": "York University, Department of Physics and Astronomy, Toronto, Ontario, Canada"
+        }
+      ],
+      "surname": "McCarthy",
+      "given_names": "M.",
+      "full_name": "McCarthy, M."
+    },
+    {
+      "raw_name": "N. McCauley",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "McCauley",
+      "given_names": "N.",
+      "full_name": "McCauley, N."
+    },
+    {
+      "raw_name": "K.\u2009S. McFarland",
+      "affiliations": [
+        {
+          "value": "University of Rochester, Department of Physics and Astronomy, Rochester, New York, USA"
+        }
+      ],
+      "surname": "McFarland",
+      "given_names": "K.\u2009S.",
+      "full_name": "McFarland, K.\u2009S."
+    },
+    {
+      "raw_name": "C. McGrew",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "McGrew",
+      "given_names": "C.",
+      "full_name": "McGrew, C."
+    },
+    {
+      "raw_name": "A. Mefodiev",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Mefodiev",
+      "given_names": "A.",
+      "full_name": "Mefodiev, A."
+    },
+    {
+      "raw_name": "C. Metelko",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Metelko",
+      "given_names": "C.",
+      "full_name": "Metelko, C."
+    },
+    {
+      "raw_name": "M. Mezzetto",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Padova and Universit\u00e0 di Padova, Dipartimento di Fisica, Padova, Italy"
+        }
+      ],
+      "surname": "Mezzetto",
+      "given_names": "M.",
+      "full_name": "Mezzetto, M."
+    },
+    {
+      "raw_name": "A. Minamino",
+      "affiliations": [
+        {
+          "value": "Yokohama National University, Faculty of Engineering, Yokohama, Japan"
+        }
+      ],
+      "surname": "Minamino",
+      "given_names": "A.",
+      "full_name": "Minamino, A."
+    },
+    {
+      "raw_name": "O. Mineev",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Mineev",
+      "given_names": "O.",
+      "full_name": "Mineev, O."
+    },
+    {
+      "raw_name": "S. Mine",
+      "affiliations": [
+        {
+          "value": "University of California, Irvine, Department of Physics and Astronomy, Irvine, California, USA"
+        }
+      ],
+      "surname": "Mine",
+      "given_names": "S.",
+      "full_name": "Mine, S."
+    },
+    {
+      "raw_name": "A. Missert",
+      "affiliations": [
+        {
+          "value": "University of Colorado at Boulder, Department of Physics, Boulder, Colorado, USA"
+        }
+      ],
+      "surname": "Missert",
+      "given_names": "A.",
+      "full_name": "Missert, A."
+    },
+    {
+      "raw_name": "M. Miura",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Miura",
+      "given_names": "M.",
+      "full_name": "Miura, M."
+    },
+    {
+      "raw_name": "S. Moriyama",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Moriyama",
+      "given_names": "S.",
+      "full_name": "Moriyama, S."
+    },
+    {
+      "raw_name": "J. Morrison",
+      "affiliations": [
+        {
+          "value": "Michigan State University, Department of Physics and Astronomy, East Lansing, Michigan, USA"
+        }
+      ],
+      "surname": "Morrison",
+      "given_names": "J.",
+      "full_name": "Morrison, J."
+    },
+    {
+      "raw_name": "Th.\u2009A. Mueller",
+      "affiliations": [
+        {
+          "value": "Ecole Polytechnique, IN2P3-CNRS, Laboratoire Leprince-Ringuet, Palaiseau, France"
+        }
+      ],
+      "surname": "Mueller",
+      "given_names": "Th.\u2009A.",
+      "full_name": "Mueller, Th.\u2009A."
+    },
+    {
+      "raw_name": "T. Nakadaira",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Nakadaira",
+      "given_names": "T.",
+      "full_name": "Nakadaira, T."
+    },
+    {
+      "raw_name": "M. Nakahata",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Nakahata",
+      "given_names": "M.",
+      "full_name": "Nakahata, M."
+    },
+    {
+      "raw_name": "K.\u2009G. Nakamura",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Nakamura",
+      "given_names": "K.\u2009G.",
+      "full_name": "Nakamura, K.\u2009G."
+    },
+    {
+      "raw_name": "K. Nakamura",
+      "affiliations": [
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        },
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Nakamura",
+      "given_names": "K.",
+      "full_name": "Nakamura, K."
+    },
+    {
+      "raw_name": "K.\u2009D. Nakamura",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Nakamura",
+      "given_names": "K.\u2009D.",
+      "full_name": "Nakamura, K.\u2009D."
+    },
+    {
+      "raw_name": "Y. Nakanishi",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Nakanishi",
+      "given_names": "Y.",
+      "full_name": "Nakanishi, Y."
+    },
+    {
+      "raw_name": "S. Nakayama",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Nakayama",
+      "given_names": "S.",
+      "full_name": "Nakayama, S."
+    },
+    {
+      "raw_name": "T. Nakaya",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Nakaya",
+      "given_names": "T.",
+      "full_name": "Nakaya, T."
+    },
+    {
+      "raw_name": "K. Nakayoshi",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Nakayoshi",
+      "given_names": "K.",
+      "full_name": "Nakayoshi, K."
+    },
+    {
+      "raw_name": "C. Nantais",
+      "affiliations": [
+        {
+          "value": "University of Toronto, Department of Physics, Toronto, Ontario, Canada"
+        }
+      ],
+      "surname": "Nantais",
+      "given_names": "C.",
+      "full_name": "Nantais, C."
+    },
+    {
+      "raw_name": "C. Nielsen",
+      "affiliations": [
+        {
+          "value": "University of British Columbia, Department of Physics and Astronomy, Vancouver, British Columbia, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Nielsen",
+      "given_names": "C.",
+      "full_name": "Nielsen, C."
+    },
+    {
+      "raw_name": "K. Nishikawa",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Nishikawa",
+      "given_names": "K.",
+      "full_name": "Nishikawa, K."
+    },
+    {
+      "raw_name": "Y. Nishimura",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Research Center for Cosmic Neutrinos, Kashiwa, Japan"
+        }
+      ],
+      "surname": "Nishimura",
+      "given_names": "Y.",
+      "full_name": "Nishimura, Y."
+    },
+    {
+      "raw_name": "P. Novella",
+      "affiliations": [
+        {
+          "value": "IFIC (CSIC & University of Valencia), Valencia, Spain"
+        }
+      ],
+      "surname": "Novella",
+      "given_names": "P.",
+      "full_name": "Novella, P."
+    },
+    {
+      "raw_name": "J. Nowak",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Nowak",
+      "given_names": "J.",
+      "full_name": "Nowak, J."
+    },
+    {
+      "raw_name": "H.\u2009M. O\u2019Keeffe",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "O\u2019Keeffe",
+      "given_names": "H.\u2009M.",
+      "full_name": "O\u2019Keeffe, H.\u2009M."
+    },
+    {
+      "raw_name": "K. Okumura",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Research Center for Cosmic Neutrinos, Kashiwa, Japan"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Okumura",
+      "given_names": "K.",
+      "full_name": "Okumura, K."
+    },
+    {
+      "raw_name": "T. Okusawa",
+      "affiliations": [
+        {
+          "value": "Osaka City University, Department of Physics, Osaka, Japan"
+        }
+      ],
+      "surname": "Okusawa",
+      "given_names": "T.",
+      "full_name": "Okusawa, T."
+    },
+    {
+      "raw_name": "W. Oryszczak",
+      "affiliations": [
+        {
+          "value": "University of Warsaw, Faculty of Physics, Warsaw, Poland"
+        }
+      ],
+      "surname": "Oryszczak",
+      "given_names": "W.",
+      "full_name": "Oryszczak, W."
+    },
+    {
+      "raw_name": "S.\u2009M. Oser",
+      "affiliations": [
+        {
+          "value": "University of British Columbia, Department of Physics and Astronomy, Vancouver, British Columbia, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Oser",
+      "given_names": "S.\u2009M.",
+      "full_name": "Oser, S.\u2009M."
+    },
+    {
+      "raw_name": "T. Ovsyannikova",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Ovsyannikova",
+      "given_names": "T.",
+      "full_name": "Ovsyannikova, T."
+    },
+    {
+      "raw_name": "R.\u2009A. Owen",
+      "affiliations": [
+        {
+          "value": "Queen Mary University of London, School of Physics and Astronomy, London, United Kingdom"
+        }
+      ],
+      "surname": "Owen",
+      "given_names": "R.\u2009A.",
+      "full_name": "Owen, R.\u2009A."
+    },
+    {
+      "raw_name": "Y. Oyama",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Oyama",
+      "given_names": "Y.",
+      "full_name": "Oyama, Y."
+    },
+    {
+      "raw_name": "V. Palladino",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Napoli and Universit\u00e0 di Napoli, Dipartimento di Fisica, Napoli, Italy"
+        }
+      ],
+      "surname": "Palladino",
+      "given_names": "V.",
+      "full_name": "Palladino, V."
+    },
+    {
+      "raw_name": "J.\u2009L. Palomino",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Palomino",
+      "given_names": "J.\u2009L.",
+      "full_name": "Palomino, J.\u2009L."
+    },
+    {
+      "raw_name": "V. Paolone",
+      "affiliations": [
+        {
+          "value": "University of Pittsburgh, Department of Physics and Astronomy, Pittsburgh, Pennsylvania, USA"
+        }
+      ],
+      "surname": "Paolone",
+      "given_names": "V.",
+      "full_name": "Paolone, V."
+    },
+    {
+      "raw_name": "N.\u2009D. Patel",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Patel",
+      "given_names": "N.\u2009D.",
+      "full_name": "Patel, N.\u2009D."
+    },
+    {
+      "raw_name": "P. Paudyal",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Paudyal",
+      "given_names": "P.",
+      "full_name": "Paudyal, P."
+    },
+    {
+      "raw_name": "M. Pavin",
+      "affiliations": [
+        {
+          "value": "UPMC, Universit\u00e9 Paris Diderot, CNRS/IN2P3, Laboratoire de Physique Nucl\u00e9aire et de Hautes Energies (LPNHE), Paris, France"
+        }
+      ],
+      "surname": "Pavin",
+      "given_names": "M.",
+      "full_name": "Pavin, M."
+    },
+    {
+      "raw_name": "D. Payne",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Payne",
+      "given_names": "D.",
+      "full_name": "Payne, D."
+    },
+    {
+      "raw_name": "Y. Petrov",
+      "affiliations": [
+        {
+          "value": "University of British Columbia, Department of Physics and Astronomy, Vancouver, British Columbia, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Petrov",
+      "given_names": "Y.",
+      "full_name": "Petrov, Y."
+    },
+    {
+      "raw_name": "L. Pickering",
+      "affiliations": [
+        {
+          "value": "Imperial College London, Department of Physics, London, United Kingdom"
+        }
+      ],
+      "surname": "Pickering",
+      "given_names": "L.",
+      "full_name": "Pickering, L."
+    },
+    {
+      "raw_name": "E.\u2009S. Pinzon Guerra",
+      "affiliations": [
+        {
+          "value": "York University, Department of Physics and Astronomy, Toronto, Ontario, Canada"
+        }
+      ],
+      "surname": "Pinzon Guerra",
+      "given_names": "E.\u2009S.",
+      "full_name": "Pinzon Guerra, E.\u2009S."
+    },
+    {
+      "raw_name": "C. Pistillo",
+      "affiliations": [
+        {
+          "value": "University of Bern, Albert Einstein Center for Fundamental Physics, Laboratory for High Energy Physics (LHEP), Bern, Switzerland"
+        }
+      ],
+      "surname": "Pistillo",
+      "given_names": "C.",
+      "full_name": "Pistillo, C."
+    },
+    {
+      "raw_name": "B. Popov",
+      "affiliations": [
+        {
+          "value": "UPMC, Universit\u00e9 Paris Diderot, CNRS/IN2P3, Laboratoire de Physique Nucl\u00e9aire et de Hautes Energies (LPNHE), Paris, France"
+        }
+      ],
+      "surname": "Popov",
+      "given_names": "B.",
+      "full_name": "Popov, B."
+    },
+    {
+      "raw_name": "M. Posiadala-Zezula",
+      "affiliations": [
+        {
+          "value": "University of Warsaw, Faculty of Physics, Warsaw, Poland"
+        }
+      ],
+      "surname": "Posiadala-Zezula",
+      "given_names": "M.",
+      "full_name": "Posiadala-Zezula, M."
+    },
+    {
+      "raw_name": "J.-M. Poutissou",
+      "affiliations": [
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Poutissou",
+      "given_names": "J.M.",
+      "full_name": "Poutissou, J.M."
+    },
+    {
+      "raw_name": "A. Pritchard",
+      "affiliations": [
+        {
+          "value": "University of Liverpool, Department of Physics, Liverpool, United Kingdom"
+        }
+      ],
+      "surname": "Pritchard",
+      "given_names": "A.",
+      "full_name": "Pritchard, A."
+    },
+    {
+      "raw_name": "P. Przewlocki",
+      "affiliations": [
+        {
+          "value": "National Centre for Nuclear Research, Warsaw, Poland"
+        }
+      ],
+      "surname": "Przewlocki",
+      "given_names": "P.",
+      "full_name": "Przewlocki, P."
+    },
+    {
+      "raw_name": "B. Quilain",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Quilain",
+      "given_names": "B.",
+      "full_name": "Quilain, B."
+    },
+    {
+      "raw_name": "T. Radermacher",
+      "affiliations": [
+        {
+          "value": "RWTH Aachen University, III. Physikalisches Institut, Aachen, Germany"
+        }
+      ],
+      "surname": "Radermacher",
+      "given_names": "T.",
+      "full_name": "Radermacher, T."
+    },
+    {
+      "raw_name": "E. Radicioni",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Bari and Universit\u00e0 e Politecnico di Bari, Dipartimento Interuniversitario di Fisica, Bari, Italy"
+        }
+      ],
+      "surname": "Radicioni",
+      "given_names": "E.",
+      "full_name": "Radicioni, E."
+    },
+    {
+      "raw_name": "P.\u2009N. Ratoff",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Ratoff",
+      "given_names": "P.\u2009N.",
+      "full_name": "Ratoff, P.\u2009N."
+    },
+    {
+      "raw_name": "M.\u2009A. Rayner",
+      "affiliations": [
+        {
+          "value": "University of Geneva, Section de Physique, DPNC, Geneva, Switzerland"
+        }
+      ],
+      "surname": "Rayner",
+      "given_names": "M.\u2009A.",
+      "full_name": "Rayner, M.\u2009A."
+    },
+    {
+      "raw_name": "E. Reinherz-Aronis",
+      "affiliations": [
+        {
+          "value": "Colorado State University, Department of Physics, Fort Collins, Colorado, USA"
+        }
+      ],
+      "surname": "Reinherz-Aronis",
+      "given_names": "E.",
+      "full_name": "Reinherz-Aronis, E."
+    },
+    {
+      "raw_name": "C. Riccio",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Napoli and Universit\u00e0 di Napoli, Dipartimento di Fisica, Napoli, Italy"
+        }
+      ],
+      "surname": "Riccio",
+      "given_names": "C.",
+      "full_name": "Riccio, C."
+    },
+    {
+      "raw_name": "E. Rondio",
+      "affiliations": [
+        {
+          "value": "National Centre for Nuclear Research, Warsaw, Poland"
+        }
+      ],
+      "surname": "Rondio",
+      "given_names": "E.",
+      "full_name": "Rondio, E."
+    },
+    {
+      "raw_name": "B. Rossi",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Napoli and Universit\u00e0 di Napoli, Dipartimento di Fisica, Napoli, Italy"
+        }
+      ],
+      "surname": "Rossi",
+      "given_names": "B.",
+      "full_name": "Rossi, B."
+    },
+    {
+      "raw_name": "S. Roth",
+      "affiliations": [
+        {
+          "value": "RWTH Aachen University, III. Physikalisches Institut, Aachen, Germany"
+        }
+      ],
+      "surname": "Roth",
+      "given_names": "S.",
+      "full_name": "Roth, S."
+    },
+    {
+      "raw_name": "A.\u2009C. Ruggeri",
+      "affiliations": [
+        {
+          "value": "INFN Sezione di Napoli and Universit\u00e0 di Napoli, Dipartimento di Fisica, Napoli, Italy"
+        }
+      ],
+      "surname": "Ruggeri",
+      "given_names": "A.\u2009C.",
+      "full_name": "Ruggeri, A.\u2009C."
+    },
+    {
+      "raw_name": "A. Rychter",
+      "affiliations": [
+        {
+          "value": "Warsaw University of Technology, Institute of Radioelectronics, Warsaw, Poland"
+        }
+      ],
+      "surname": "Rychter",
+      "given_names": "A.",
+      "full_name": "Rychter, A."
+    },
+    {
+      "raw_name": "K. Sakashita",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Sakashita",
+      "given_names": "K.",
+      "full_name": "Sakashita, K."
+    },
+    {
+      "raw_name": "F. S\u00e1nchez",
+      "affiliations": [
+        {
+          "value": "Institut de Fisica d\u2019Altes Energies (IFAE), The Barcelona Institute of Science and Technology, Campus UAB, Bellaterra (Barcelona) Spain"
+        }
+      ],
+      "surname": "S\u00e1nchez",
+      "given_names": "F.",
+      "full_name": "S\u00e1nchez, F."
+    },
+    {
+      "raw_name": "S. Sasaki",
+      "affiliations": [
+        {
+          "value": "Tokyo Metropolitan University, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Sasaki",
+      "given_names": "S.",
+      "full_name": "Sasaki, S."
+    },
+    {
+      "raw_name": "E. Scantamburlo",
+      "affiliations": [
+        {
+          "value": "University of Geneva, Section de Physique, DPNC, Geneva, Switzerland"
+        }
+      ],
+      "surname": "Scantamburlo",
+      "given_names": "E.",
+      "full_name": "Scantamburlo, E."
+    },
+    {
+      "raw_name": "K. Scholberg",
+      "affiliations": [
+        {
+          "value": "Duke University, Department of Physics, Durham, North Carolina, USA"
+        }
+      ],
+      "surname": "Scholberg",
+      "given_names": "K.",
+      "full_name": "Scholberg, K."
+    },
+    {
+      "raw_name": "J. Schwehr",
+      "affiliations": [
+        {
+          "value": "Colorado State University, Department of Physics, Fort Collins, Colorado, USA"
+        }
+      ],
+      "surname": "Schwehr",
+      "given_names": "J.",
+      "full_name": "Schwehr, J."
+    },
+    {
+      "raw_name": "M. Scott",
+      "affiliations": [
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Scott",
+      "given_names": "M.",
+      "full_name": "Scott, M."
+    },
+    {
+      "raw_name": "Y. Seiya",
+      "affiliations": [
+        {
+          "value": "Osaka City University, Department of Physics, Osaka, Japan"
+        }
+      ],
+      "surname": "Seiya",
+      "given_names": "Y.",
+      "full_name": "Seiya, Y."
+    },
+    {
+      "raw_name": "T. Sekiguchi",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Sekiguchi",
+      "given_names": "T.",
+      "full_name": "Sekiguchi, T."
+    },
+    {
+      "raw_name": "H. Sekiya",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Sekiya",
+      "given_names": "H.",
+      "full_name": "Sekiya, H."
+    },
+    {
+      "raw_name": "D. Sgalaberna",
+      "affiliations": [
+        {
+          "value": "University of Geneva, Section de Physique, DPNC, Geneva, Switzerland"
+        }
+      ],
+      "surname": "Sgalaberna",
+      "given_names": "D.",
+      "full_name": "Sgalaberna, D."
+    },
+    {
+      "raw_name": "R. Shah",
+      "affiliations": [
+        {
+          "value": "STFC, Rutherford Appleton Laboratory, Harwell Oxford, and Daresbury Laboratory, Warrington, United Kingdom"
+        },
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        }
+      ],
+      "surname": "Shah",
+      "given_names": "R.",
+      "full_name": "Shah, R."
+    },
+    {
+      "raw_name": "A. Shaikhiev",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Shaikhiev",
+      "given_names": "A.",
+      "full_name": "Shaikhiev, A."
+    },
+    {
+      "raw_name": "F. Shaker",
+      "affiliations": [
+        {
+          "value": "University of Winnipeg, Department of Physics, Winnipeg, Manitoba, Canada"
+        }
+      ],
+      "surname": "Shaker",
+      "given_names": "F.",
+      "full_name": "Shaker, F."
+    },
+    {
+      "raw_name": "D. Shaw",
+      "affiliations": [
+        {
+          "value": "Lancaster University, Physics Department, Lancaster, United Kingdom"
+        }
+      ],
+      "surname": "Shaw",
+      "given_names": "D.",
+      "full_name": "Shaw, D."
+    },
+    {
+      "raw_name": "M. Shiozawa",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Shiozawa",
+      "given_names": "M.",
+      "full_name": "Shiozawa, M."
+    },
+    {
+      "raw_name": "T. Shirahige",
+      "affiliations": [
+        {
+          "value": "Okayama University, Department of Physics, Okayama, Japan"
+        }
+      ],
+      "surname": "Shirahige",
+      "given_names": "T.",
+      "full_name": "Shirahige, T."
+    },
+    {
+      "raw_name": "M. Smy",
+      "affiliations": [
+        {
+          "value": "University of California, Irvine, Department of Physics and Astronomy, Irvine, California, USA"
+        }
+      ],
+      "surname": "Smy",
+      "given_names": "M.",
+      "full_name": "Smy, M."
+    },
+    {
+      "raw_name": "J.\u2009T. Sobczyk",
+      "affiliations": [
+        {
+          "value": "Wroclaw University, Faculty of Physics and Astronomy, Wroclaw, Poland"
+        }
+      ],
+      "surname": "Sobczyk",
+      "given_names": "J.\u2009T.",
+      "full_name": "Sobczyk, J.\u2009T."
+    },
+    {
+      "raw_name": "H. Sobel",
+      "affiliations": [
+        {
+          "value": "University of California, Irvine, Department of Physics and Astronomy, Irvine, California, USA"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Sobel",
+      "given_names": "H.",
+      "full_name": "Sobel, H."
+    },
+    {
+      "raw_name": "J. Steinmann",
+      "affiliations": [
+        {
+          "value": "RWTH Aachen University, III. Physikalisches Institut, Aachen, Germany"
+        }
+      ],
+      "surname": "Steinmann",
+      "given_names": "J.",
+      "full_name": "Steinmann, J."
+    },
+    {
+      "raw_name": "T. Stewart",
+      "affiliations": [
+        {
+          "value": "STFC, Rutherford Appleton Laboratory, Harwell Oxford, and Daresbury Laboratory, Warrington, United Kingdom"
+        }
+      ],
+      "surname": "Stewart",
+      "given_names": "T.",
+      "full_name": "Stewart, T."
+    },
+    {
+      "raw_name": "P. Stowell",
+      "affiliations": [
+        {
+          "value": "University of Sheffield, Department of Physics and Astronomy, Sheffield, United Kingdom"
+        }
+      ],
+      "surname": "Stowell",
+      "given_names": "P.",
+      "full_name": "Stowell, P."
+    },
+    {
+      "raw_name": "Y. Suda",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Suda",
+      "given_names": "Y.",
+      "full_name": "Suda, Y."
+    },
+    {
+      "raw_name": "S. Suvorov",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Suvorov",
+      "given_names": "S.",
+      "full_name": "Suvorov, S."
+    },
+    {
+      "raw_name": "A. Suzuki",
+      "affiliations": [
+        {
+          "value": "Kobe University, Kobe, Japan"
+        }
+      ],
+      "surname": "Suzuki",
+      "given_names": "A.",
+      "full_name": "Suzuki, A."
+    },
+    {
+      "raw_name": "S.\u2009Y. Suzuki",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Suzuki",
+      "given_names": "S.\u2009Y.",
+      "full_name": "Suzuki, S.\u2009Y."
+    },
+    {
+      "raw_name": "Y. Suzuki",
+      "affiliations": [
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Suzuki",
+      "given_names": "Y.",
+      "full_name": "Suzuki, Y."
+    },
+    {
+      "raw_name": "R. Tacik",
+      "affiliations": [
+        {
+          "value": "University of Regina, Department of Physics, Regina, Saskatchewan, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Tacik",
+      "given_names": "R.",
+      "full_name": "Tacik, R."
+    },
+    {
+      "raw_name": "M. Tada",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Tada",
+      "given_names": "M.",
+      "full_name": "Tada, M."
+    },
+    {
+      "raw_name": "A. Takeda",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Takeda",
+      "given_names": "A.",
+      "full_name": "Takeda, A."
+    },
+    {
+      "raw_name": "Y. Takeuchi",
+      "affiliations": [
+        {
+          "value": "Kobe University, Kobe, Japan"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Takeuchi",
+      "given_names": "Y.",
+      "full_name": "Takeuchi, Y."
+    },
+    {
+      "raw_name": "R. Tamura",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Tamura",
+      "given_names": "R.",
+      "full_name": "Tamura, R."
+    },
+    {
+      "raw_name": "H.\u2009K. Tanaka",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Tanaka",
+      "given_names": "H.\u2009K.",
+      "full_name": "Tanaka, H.\u2009K."
+    },
+    {
+      "raw_name": "H.\u2009A. Tanaka",
+      "affiliations": [
+        {
+          "value": "University of Toronto, Department of Physics, Toronto, Ontario, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Tanaka",
+      "given_names": "H.\u2009A.",
+      "full_name": "Tanaka, H.\u2009A."
+    },
+    {
+      "raw_name": "T. Thakore",
+      "affiliations": [
+        {
+          "value": "Louisiana State University, Department of Physics and Astronomy, Baton Rouge, Louisiana, USA"
+        }
+      ],
+      "surname": "Thakore",
+      "given_names": "T.",
+      "full_name": "Thakore, T."
+    },
+    {
+      "raw_name": "L.\u2009F. Thompson",
+      "affiliations": [
+        {
+          "value": "University of Sheffield, Department of Physics and Astronomy, Sheffield, United Kingdom"
+        }
+      ],
+      "surname": "Thompson",
+      "given_names": "L.\u2009F.",
+      "full_name": "Thompson, L.\u2009F."
+    },
+    {
+      "raw_name": "S. Tobayama",
+      "affiliations": [
+        {
+          "value": "University of British Columbia, Department of Physics and Astronomy, Vancouver, British Columbia, Canada"
+        },
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Tobayama",
+      "given_names": "S.",
+      "full_name": "Tobayama, S."
+    },
+    {
+      "raw_name": "W. Toki",
+      "affiliations": [
+        {
+          "value": "Colorado State University, Department of Physics, Fort Collins, Colorado, USA"
+        }
+      ],
+      "surname": "Toki",
+      "given_names": "W.",
+      "full_name": "Toki, W."
+    },
+    {
+      "raw_name": "T. Tomura",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Institute for Cosmic Ray Research, Kamioka Observatory, Kamioka, Japan"
+        }
+      ],
+      "surname": "Tomura",
+      "given_names": "T.",
+      "full_name": "Tomura, T."
+    },
+    {
+      "raw_name": "T. Tsukamoto",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Tsukamoto",
+      "given_names": "T.",
+      "full_name": "Tsukamoto, T."
+    },
+    {
+      "raw_name": "M. Tzanov",
+      "affiliations": [
+        {
+          "value": "Louisiana State University, Department of Physics and Astronomy, Baton Rouge, Louisiana, USA"
+        }
+      ],
+      "surname": "Tzanov",
+      "given_names": "M.",
+      "full_name": "Tzanov, M."
+    },
+    {
+      "raw_name": "W. Uno",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Uno",
+      "given_names": "W.",
+      "full_name": "Uno, W."
+    },
+    {
+      "raw_name": "M. Vagins",
+      "affiliations": [
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        },
+        {
+          "value": "University of California, Irvine, Department of Physics and Astronomy, Irvine, California, USA"
+        }
+      ],
+      "surname": "Vagins",
+      "given_names": "M.",
+      "full_name": "Vagins, M."
+    },
+    {
+      "raw_name": "Z. Vallari",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Vallari",
+      "given_names": "Z.",
+      "full_name": "Vallari, Z."
+    },
+    {
+      "raw_name": "G. Vasseur",
+      "affiliations": [
+        {
+          "value": "IRFU, CEA Saclay, Gif-sur-Yvette, France"
+        }
+      ],
+      "surname": "Vasseur",
+      "given_names": "G.",
+      "full_name": "Vasseur, G."
+    },
+    {
+      "raw_name": "C. Vilela",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Vilela",
+      "given_names": "C.",
+      "full_name": "Vilela, C."
+    },
+    {
+      "raw_name": "T. Vladisavljevic",
+      "affiliations": [
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        },
+        {
+          "value": "Kavli Institute for the Physics and Mathematics of the Universe (WPI), The University of Tokyo Institutes for Advanced Study, University of Tokyo, Kashiwa, Chiba, Japan"
+        }
+      ],
+      "surname": "Vladisavljevic",
+      "given_names": "T.",
+      "full_name": "Vladisavljevic, T."
+    },
+    {
+      "raw_name": "T. Wachala",
+      "affiliations": [
+        {
+          "value": "H. Niewodniczanski Institute of Nuclear Physics PAN, Cracow, Poland"
+        }
+      ],
+      "surname": "Wachala",
+      "given_names": "T.",
+      "full_name": "Wachala, T."
+    },
+    {
+      "raw_name": "J. Walker",
+      "affiliations": [
+        {
+          "value": "University of Winnipeg, Department of Physics, Winnipeg, Manitoba, Canada"
+        }
+      ],
+      "surname": "Walker",
+      "given_names": "J.",
+      "full_name": "Walker, J."
+    },
+    {
+      "raw_name": "C.\u2009W. Walter",
+      "affiliations": [
+        {
+          "value": "Duke University, Department of Physics, Durham, North Carolina, USA"
+        }
+      ],
+      "surname": "Walter",
+      "given_names": "C.\u2009W.",
+      "full_name": "Walter, C.\u2009W."
+    },
+    {
+      "raw_name": "Y. Wang",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Wang",
+      "given_names": "Y.",
+      "full_name": "Wang, Y."
+    },
+    {
+      "raw_name": "D. Wark",
+      "affiliations": [
+        {
+          "value": "STFC, Rutherford Appleton Laboratory, Harwell Oxford, and Daresbury Laboratory, Warrington, United Kingdom"
+        },
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        }
+      ],
+      "surname": "Wark",
+      "given_names": "D.",
+      "full_name": "Wark, D."
+    },
+    {
+      "raw_name": "M.\u2009O. Wascko",
+      "affiliations": [
+        {
+          "value": "Imperial College London, Department of Physics, London, United Kingdom"
+        }
+      ],
+      "surname": "Wascko",
+      "given_names": "M.\u2009O.",
+      "full_name": "Wascko, M.\u2009O."
+    },
+    {
+      "raw_name": "A. Weber",
+      "affiliations": [
+        {
+          "value": "STFC, Rutherford Appleton Laboratory, Harwell Oxford, and Daresbury Laboratory, Warrington, United Kingdom"
+        },
+        {
+          "value": "Oxford University, Department of Physics, Oxford, United Kingdom"
+        }
+      ],
+      "surname": "Weber",
+      "given_names": "A.",
+      "full_name": "Weber, A."
+    },
+    {
+      "raw_name": "R. Wendell",
+      "affiliations": [
+        {
+          "value": "Kyoto University, Department of Physics, Kyoto, Japan"
+        }
+      ],
+      "surname": "Wendell",
+      "given_names": "R.",
+      "full_name": "Wendell, R."
+    },
+    {
+      "raw_name": "M.\u2009J. Wilking",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Wilking",
+      "given_names": "M.\u2009J.",
+      "full_name": "Wilking, M.\u2009J."
+    },
+    {
+      "raw_name": "C. Wilkinson",
+      "affiliations": [
+        {
+          "value": "University of Bern, Albert Einstein Center for Fundamental Physics, Laboratory for High Energy Physics (LHEP), Bern, Switzerland"
+        }
+      ],
+      "surname": "Wilkinson",
+      "given_names": "C.",
+      "full_name": "Wilkinson, C."
+    },
+    {
+      "raw_name": "J.\u2009R. Wilson",
+      "affiliations": [
+        {
+          "value": "Queen Mary University of London, School of Physics and Astronomy, London, United Kingdom"
+        }
+      ],
+      "surname": "Wilson",
+      "given_names": "J.\u2009R.",
+      "full_name": "Wilson, J.\u2009R."
+    },
+    {
+      "raw_name": "R.\u2009J. Wilson",
+      "affiliations": [
+        {
+          "value": "Colorado State University, Department of Physics, Fort Collins, Colorado, USA"
+        }
+      ],
+      "surname": "Wilson",
+      "given_names": "R.\u2009J.",
+      "full_name": "Wilson, R.\u2009J."
+    },
+    {
+      "raw_name": "C. Wret",
+      "affiliations": [
+        {
+          "value": "Imperial College London, Department of Physics, London, United Kingdom"
+        }
+      ],
+      "surname": "Wret",
+      "given_names": "C.",
+      "full_name": "Wret, C."
+    },
+    {
+      "raw_name": "Y. Yamada",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Yamada",
+      "given_names": "Y.",
+      "full_name": "Yamada, Y."
+    },
+    {
+      "raw_name": "K. Yamamoto",
+      "affiliations": [
+        {
+          "value": "Osaka City University, Department of Physics, Osaka, Japan"
+        }
+      ],
+      "surname": "Yamamoto",
+      "given_names": "K.",
+      "full_name": "Yamamoto, K."
+    },
+    {
+      "raw_name": "S. Yamasu",
+      "affiliations": [
+        {
+          "value": "Okayama University, Department of Physics, Okayama, Japan"
+        }
+      ],
+      "surname": "Yamasu",
+      "given_names": "S.",
+      "full_name": "Yamasu, S."
+    },
+    {
+      "raw_name": "C. Yanagisawa",
+      "affiliations": [
+        {
+          "value": "State University of New York at Stony Brook, Department of Physics and Astronomy, Stony Brook, New York, USA"
+        }
+      ],
+      "surname": "Yanagisawa",
+      "given_names": "C.",
+      "full_name": "Yanagisawa, C."
+    },
+    {
+      "raw_name": "T. Yano",
+      "affiliations": [
+        {
+          "value": "Kobe University, Kobe, Japan"
+        }
+      ],
+      "surname": "Yano",
+      "given_names": "T.",
+      "full_name": "Yano, T."
+    },
+    {
+      "raw_name": "S. Yen",
+      "affiliations": [
+        {
+          "value": "TRIUMF, Vancouver, British Columbia, Canada"
+        }
+      ],
+      "surname": "Yen",
+      "given_names": "S.",
+      "full_name": "Yen, S."
+    },
+    {
+      "raw_name": "N. Yershov",
+      "affiliations": [
+        {
+          "value": "Institute for Nuclear Research of the Russian Academy of Sciences, Moscow, Russia"
+        }
+      ],
+      "surname": "Yershov",
+      "given_names": "N.",
+      "full_name": "Yershov, N."
+    },
+    {
+      "raw_name": "M. Yokoyama",
+      "affiliations": [
+        {
+          "value": "University of Tokyo, Department of Physics, Tokyo, Japan"
+        }
+      ],
+      "surname": "Yokoyama",
+      "given_names": "M.",
+      "full_name": "Yokoyama, M."
+    },
+    {
+      "raw_name": "T. Yuan",
+      "affiliations": [
+        {
+          "value": "University of Colorado at Boulder, Department of Physics, Boulder, Colorado, USA"
+        }
+      ],
+      "surname": "Yuan",
+      "given_names": "T.",
+      "full_name": "Yuan, T."
+    },
+    {
+      "raw_name": "M. Yu",
+      "affiliations": [
+        {
+          "value": "York University, Department of Physics and Astronomy, Toronto, Ontario, Canada"
+        }
+      ],
+      "surname": "Yu",
+      "given_names": "M.",
+      "full_name": "Yu, M."
+    },
+    {
+      "raw_name": "A. Zalewska",
+      "affiliations": [
+        {
+          "value": "H. Niewodniczanski Institute of Nuclear Physics PAN, Cracow, Poland"
+        }
+      ],
+      "surname": "Zalewska",
+      "given_names": "A.",
+      "full_name": "Zalewska, A."
+    },
+    {
+      "raw_name": "J. Zalipska",
+      "affiliations": [
+        {
+          "value": "National Centre for Nuclear Research, Warsaw, Poland"
+        }
+      ],
+      "surname": "Zalipska",
+      "given_names": "J.",
+      "full_name": "Zalipska, J."
+    },
+    {
+      "raw_name": "L. Zambelli",
+      "affiliations": [
+        {
+          "value": "High Energy Accelerator Research Organization (KEK), Tsukuba, Ibaraki, Japan"
+        }
+      ],
+      "surname": "Zambelli",
+      "given_names": "L.",
+      "full_name": "Zambelli, L."
+    },
+    {
+      "raw_name": "K. Zaremba",
+      "affiliations": [
+        {
+          "value": "Warsaw University of Technology, Institute of Radioelectronics, Warsaw, Poland"
+        }
+      ],
+      "surname": "Zaremba",
+      "given_names": "K.",
+      "full_name": "Zaremba, K."
+    },
+    {
+      "raw_name": "M. Ziembicki",
+      "affiliations": [
+        {
+          "value": "Warsaw University of Technology, Institute of Radioelectronics, Warsaw, Poland"
+        }
+      ],
+      "surname": "Ziembicki",
+      "given_names": "M.",
+      "full_name": "Ziembicki, M."
+    },
+    {
+      "raw_name": "E.\u2009D. Zimmerman",
+      "affiliations": [
+        {
+          "value": "University of Colorado at Boulder, Department of Physics, Boulder, Colorado, USA"
+        }
+      ],
+      "surname": "Zimmerman",
+      "given_names": "E.\u2009D.",
+      "full_name": "Zimmerman, E.\u2009D."
+    },
+    {
+      "raw_name": "M. Zito",
+      "affiliations": [
+        {
+          "value": "IRFU, CEA Saclay, Gif-sur-Yvette, France"
+        }
+      ],
+      "surname": "Zito",
+      "given_names": "M.",
+      "full_name": "Zito, M."
+    }
+  ],
+  "titles": [
+    {
+      "source": "APS",
+      "subtitle": "",
+      "title": "First measurement of the <math><msub><mi>\u03bd</mi><mi>\u03bc</mi></msub></math> charged-current cross section on a water target without pions in the final state"
+    }
+  ],
+  "collections": [
+    {
+      "primary": "HEP"
+    },
+    {
+      "primary": "Citeable"
+    },
+    {
+      "primary": "Published"
+    }
+  ],
+  "arxiv_eprints": [
+    {
+      "value": "1708.06771"
+    }
+  ],
+  "publication_info": [
+    {
+      "journal_volume": "97",
+      "material": "article",
+      "page_end": "",
+      "artid": "",
+      "journal_title": "Physical Review D",
+      "pubinfo_freetext": "",
+      "page_start": "",
+      "year": 2018,
+      "journal_issue": "1"
+    }
+  ],
+  "abstracts": [
+    {
+      "source": "APS",
+      "value": "This paper reports the first differential measurement of the charged-current interaction cross section of <math><msub><mi>\u03bd</mi><mi>\u03bc</mi></msub></math> on water with no pions in the final state. This flux-averaged measurement has been made using the T2K experiment\u2019s off-axis near detector, and is reported in doubly differential bins of muon momentum and angle. The flux-averaged total cross section in a restricted region of phase space was found to be <math><mrow><mi>\u03c3</mi><mo>=</mo><mrow><mo>(</mo><mn>0.95</mn><mo>\u00b1</mo><mn>0.08</mn><mrow><mo>(</mo><mtext>stat</mtext><mo>)</mo></mrow><mo>\u00b1</mo><mn>0.06</mn><mo>(</mo><mtext>det syst</mtext><mo>)</mo><mo>\u00b1</mo><mn>0.04</mn><mo>(</mo><mtext>model syst</mtext><mo>)</mo><mo>\u00b1</mo><mn>0.08</mn><mo>(</mo><mrow><mtext>flux</mtext></mrow><mo>)</mo><mo>)</mo><mo>\u00d7</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>\u2212</mo><mn>38</mn></mrow></msup></mrow><mtext> </mtext><mtext> </mtext><msup><mrow><mi>cm</mi></mrow><mrow><mn>2</mn></mrow></msup><mo>/</mo><mi>n</mi></mrow></math>."
+    }
+  ],
+  "imprints": [
+    {
+      "date": "2018-01-08",
+      "publisher": "APS"
+    }
+  ]
+}
