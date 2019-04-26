@@ -32,6 +32,7 @@ from datetime import datetime
 from dateutil.parser import parse as parse_date
 from flask import url_for, current_app
 from inspire_schemas.utils import validate
+from inspire_utils.record import get_value
 
 from invenio_db import db
 from invenio_files_rest.models import Bucket
@@ -58,27 +59,26 @@ from scoap3.utils.http import requests_retry_session
 logger = logging.getLogger(__name__)
 
 
-def __get_first_doi(obj):
-    return obj.data['dois'][0]['value']
-
-
-def __halt_and_notify(msg, obj, eng):
+def __halt_and_notify(msg, eng):
     ctx = {
-        'doi': __get_first_doi(obj),
         'reason': msg,
-        'url': url_for('workflow.details_view', id=eng.current_object.workflow.uuid, _external=True)
+        'url': url_for('workflow.details_view', id=eng.model.uuid, _external=True)
     }
 
-    msg = TemplatedMessage(
+    template_msg = TemplatedMessage(
         template_html='scoap3_workflows/emails/halted_article_upload.html',
         subject='SCOAP3 - Artcile upload halted',
         sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
         recipients=current_app.config.get('ADMIN_DEFAULT_EMAILS'),
         ctx=ctx
     )
-    current_app.extensions['mail'].send(msg)
+    current_app.extensions['mail'].send(template_msg)
 
     eng.halt(msg)
+
+
+def get_first_doi(obj):
+    return get_value(obj.data, 'dois[0].value')
 
 
 def set_schema(obj, eng):
@@ -91,7 +91,7 @@ def add_arxiv_category(obj, eng):
     if "arxiv_eprints" in obj.data:
         for element in obj.data.get("arxiv_eprints", ()):
             if 'value' not in element:
-                logger.warning('arxiv_eprints value missing for article with doi: %s' % __get_first_doi(obj))
+                logger.warning('arxiv_eprints value missing for article with doi: %s' % get_first_doi(obj))
                 continue
 
             arxiv_id = element['value']
@@ -104,11 +104,11 @@ def add_arxiv_category(obj, eng):
 def add_nations(obj, eng):
     """Add nations extracted from affiliations"""
     if 'authors' not in obj.data:
-        __halt_and_notify('No authors for article.', obj, eng)
+        __halt_and_notify('No authors for article.', eng)
 
     for author_index, author in enumerate(obj.data['authors']):
         if 'affiliations' not in author:
-            __halt_and_notify('No affiliations for author: %s.' % author, obj, eng)
+            __halt_and_notify('No affiliations for author: %s.' % author, eng)
 
         for affiliation_index, affiliation in enumerate(author['affiliations']):
             obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_country(
@@ -130,13 +130,16 @@ def clean_metadata(obj, eng):
 
 def is_record_in_db(obj, eng):
     """Checks if record is in database"""
-    return es.count(q='dois.value:"%s"' % (__get_first_doi(obj),))['count'] > 0
+    return es.count(q='dois.value:"%s"' % (get_first_doi(obj),))['count'] > 0
 
 
 def set_springer_source_if_needed(obj):
     text = 'Italiana di Fisica'.lower()
-    if 'source' in obj.data['abstracts'][0] and text in obj.data['abstracts'][0]['source'].lower():
+    if ('abstracts' in obj.data and
+            'source' in obj.data['abstracts'][0] and
+            text in obj.data['abstracts'][0]['source'].lower()):
         obj.data['abstracts'][0]['source'] = 'Springer/SIF'
+
     if 'acquisition_source' in obj.data and text in obj.data['acquisition_source']['source'].lower():
         obj.data['acquisition_source']['source'] = 'Springer/SIF'
 
@@ -161,10 +164,10 @@ def store_record(obj, eng):
         obj.save()
 
     except ValidationError as err:
-        __halt_and_notify("Validation error: %s. Skipping..." % (err,), obj, eng)
+        __halt_and_notify("Validation error: %s." % err, eng)
 
     except PIDAlreadyExists:
-        __halt_and_notify("Record with this id already in DB", obj, eng)
+        __halt_and_notify("Record with this id already in DB", eng)
         # updating deleted record
         # pid = PersistentIdentifier.get('recid', record['control_number'])
         # pid.assign('rec', record.id, overwrite=True)
@@ -173,7 +176,7 @@ def store_record(obj, eng):
 def update_record(obj, eng):
     """Updates existing record"""
 
-    doi = __get_first_doi(obj)
+    doi = get_first_doi(obj)
 
     query = {'query': {'bool': {'must': [{'match': {'dois.value': doi}}], }}}
     search_result = es.search(index='records-record', doc_type='record-v1.0.0', body=query)
@@ -197,9 +200,15 @@ def update_record(obj, eng):
     obj.data['record_creation_year'] = parse_date(creation_date).year
     existing_record.clear()
     existing_record.update(obj.data)
-    existing_record.commit()
-    obj.save()
-    db.session.commit()
+
+    try:
+        existing_record.commit()
+        obj.save()
+        db.session.commit()
+    except ValidationError as err:
+        __halt_and_notify("Validation error: %s." % err, eng)
+    except SchemaError as err:
+        __halt_and_notify('SchemaError during record validation! %s' % err, eng)
 
 
 def __extract_local_files_info(obj, doi):
@@ -225,7 +234,7 @@ def __extract_local_files_info(obj, doi):
 
 
 def build_files_data(obj, eng):
-    doi = __get_first_doi(obj)
+    doi = get_first_doi(obj)
     method = obj.data['acquisition_source']['method']
 
     if method == 'APS':
@@ -260,7 +269,7 @@ def build_files_data(obj, eng):
                     ext = known_ext
 
             if ext not in known_extensions:
-                __halt_and_notify('Invalid file type: %s' % document['key'], obj, eng)
+                __halt_and_notify('Invalid file type: %s' % document['key'], eng)
 
             files.append(
                 {
@@ -300,7 +309,7 @@ def attach_files(obj, eng):
         existing_record.commit()
         db.session.commit()
     else:
-        __halt_and_notify('No files found.', obj, eng)
+        __halt_and_notify('No files found.', eng)
 
 
 def _get_oai_sets(record):
@@ -348,7 +357,7 @@ def validate_record(obj, eng):
     """
 
     if '$schema' not in obj.data:
-        __halt_and_notify('No schema found!', obj, eng)
+        __halt_and_notify('No schema found!', eng)
         return
 
     schema_data = requests_retry_session().get(obj.data['$schema']).content
@@ -357,9 +366,9 @@ def validate_record(obj, eng):
     try:
         validate(obj.data, schema_data)
     except ValidationError as err:
-        __halt_and_notify('Invalid record: %s' % err, obj, eng)
+        __halt_and_notify('Invalid record: %s' % err, eng)
     except SchemaError as err:
-        __halt_and_notify('SchemaError during record validation! %s' % err, obj, eng)
+        __halt_and_notify('SchemaError during record validation! %s' % err, eng)
 
 
 def index_record(obj, eng):
@@ -401,7 +410,7 @@ class ArticlesUpload(object):
         STORE_REC,
         attach_files,
         add_oai_information,
+        index_record,
         check_compliance,
         validate_record,
-        index_record,
     ]
