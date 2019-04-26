@@ -355,6 +355,29 @@ def test_aps():
     assert record['titles'][0]['title'] == 'New factorization relations for nonlinear sigma model amplitudes'
 
 
+def test_aps_with_collaboration():
+    workflows_count = Workflow.query.count()
+
+    with requests_mock.Mocker() as m:
+        m.get('http://export.arxiv.org/api/query?search_query=id:1708.06771',
+              content=read_response('article_upload', 'export.arxiv.org_api_query_search_query_id_1708.06771'))
+        m.register_uri('GET', 'http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevD.97.012001',
+                       request_headers={'Accept': 'application/pdf'},
+                       content=read_response('article_upload', 'harvest.aps.org_PhysRevD.97.012001.pdf'))
+        m.register_uri('GET', 'http://harvest.aps.org/v2/journals/articles/10.1103/PhysRevD.97.012001',
+                       request_headers={'Accept': 'text/xml'},
+                       content=read_response('article_upload', 'harvest.aps.org_PhysRevD.97.012001.xml'))
+        m.get('https://api.crossref.org/works/10.1103/PhysRevD.97.012001',
+              content=read_response('article_upload', 'crossref.org_works_10.1103_PhysRevD.97.012001'))
+        workflow = run_workflow_with_file('aps3.json', m)
+
+    assert workflow.status == WorkflowStatus.COMPLETED
+    assert Workflow.query.count() - workflows_count == 1
+
+    record = _get_record_from_workflow(workflow)
+    assert record['collaborations'] == [{"value": "T2K Collaboration"}]
+
+
 def test_elsevier():
     workflows_count = Workflow.query.count()
 
