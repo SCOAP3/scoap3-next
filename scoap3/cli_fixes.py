@@ -17,12 +17,14 @@ from HTMLParser import HTMLParser
 import click
 from dateutil.parser import parse as parse_date
 from flask.cli import with_appcontext
+from inspire_schemas.utils import validate
 from invenio_db import db
 from invenio_files_rest.models import ObjectVersion, Location
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_pidstore.errors import PIDDoesNotExistError
 from invenio_records import Record
 from invenio_search.api import current_search_client as es
+from jsonschema import ValidationError, SchemaError
 from pyexpat import ExpatError
 from sqlalchemy.orm.attributes import flag_modified
 from xml.dom.minidom import parse, parseString
@@ -884,3 +886,164 @@ def japanise():
 
     with open('/tmp/japanise.csv', 'wt') as f:
         f.write(si.getvalue())
+
+
+def map_old_record(record, dry_run):
+    """
+    Maps the given record if needed to comply with the new schema.
+
+    Following fields will be mapped:
+     - page_nr will be a list of integers instead of list of strings
+     - arxiv id will be put to the arxiv_eprints field
+     - arxiv categories will be added if not yet present
+     - "arxiv:" prefix will be removed from arxiv id
+     - record_creation_date will be converted to iso format
+
+     Following fields will be deleted at the end of the process:
+     - _collections
+     - report_numbers
+     - files
+     - local_files
+     - free_keywords
+     - additional_files
+     - file_urls
+     - earliest_date
+
+    The result won't be saved and None will be returned in the following cases:
+     - the record doesn't contain a json
+     - a record fails the validation after mapping
+     - both report_numbers and arxiv_eprints fields are present (shouldn't happen in the existing records)
+     - there is more then one value in report_numbers field (shouldn't happen in the existing records)
+     - report_numbers field is present, but there is no source subfield
+     - no record_creation_date is present
+    """
+
+    # if there is no json, the record is considered deleted
+    if not record.json:
+        rerror('no json', record)
+        return
+
+    # page_nr to list of integers
+    if 'page_nr' in record.json:
+        record.json['page_nr'] = [int(x) for x in record.json['page_nr']]
+
+    # extract arxiv from report_numbers if present
+    if "report_numbers" in record.json and "arxiv_eprints" in record.json:
+        rerror('both report_numbers and arxiv_eprints are present. Skip record.', record)
+        return
+
+    if "report_numbers" in record.json:
+        if len(record.json["report_numbers"]) > 1:
+            rerror('report_numbers has more then one element. Skip record.', record)
+            return
+
+        arxiv_id = None
+        for element in record.json.get("report_numbers", ()):
+            source = element.get('source')
+            if not source:
+                rerror('report_numbers present, but no source. Skip record.', record)
+                return
+
+            if source.lower() == 'arxiv':
+                arxiv_id = element.get('value')
+                break
+
+        if arxiv_id:
+            arxiv_id = arxiv_id.lower().replace('arxiv:', '')
+            record.json['arxiv_eprints'] = [{'value': arxiv_id}]
+            rinfo('report_numbers -> arxiv_eprints', record)
+        else:
+            rerror('report_numbers present, but no arxiv id? Skip record.', record)
+            return
+
+    # add arxiv category if not yet present
+    if "arxiv_eprints" in record.json:
+        for element in record.json.get("arxiv_eprints", ()):
+            if 'value' not in element:
+                rerror('arxiv_eprints value missing', record)
+                continue
+
+            arxiv_id = element['value']
+
+            # remove arxiv prefix if present
+            if arxiv_id.lower().startswith('arxiv:'):
+                rinfo('removing "arxiv:" prefix', record)
+                arxiv_id = arxiv_id[len('arxiv:'):]
+
+            if 'categories' not in element:
+                categories = get_arxiv_categories(arxiv_id)
+                element['categories'] = categories
+
+    # record_creation_date to isoformat
+    record_creation_date = record.json.get('record_creation_date')
+    if record_creation_date is None:
+        rerror('no record creation date. Skip record.', record)
+        return
+
+    new_date = parse_date(record_creation_date).isoformat()
+    if new_date != record_creation_date:
+        rinfo('update record_creation_date: %s -> %s' % (record_creation_date, new_date), record)
+        record.json['record_creation_date'] = new_date
+
+    # delete unwanted fields
+    unwanted_fields = (
+        '_collections',
+        'report_numbers',
+        'files',
+        'local_files',
+        'free_keywords',
+        'additional_files',
+        'file_urls',
+        'earliest_date',
+    )
+    for key in unwanted_fields:
+        if record.json.pop(key, None) is not None:
+            rinfo('deleted %s field' % key, record)
+
+    # validate record
+    valid = False
+    schema = record.json.get('$schema')
+    if schema is not None:
+        schema_data = requests_retry_session().get(schema).content
+        schema_data = json.loads(schema_data)
+
+        try:
+            validate(record.json, schema_data)
+            valid = True
+        except ValidationError as err:
+            rerror('Invalid record: %s' % err, record)
+        except SchemaError as err:
+            rerror('SchemaError during record validation! %s' % err, record)
+    else:
+        rerror('No schema found!', record)
+
+    if not valid:
+        return
+
+    # mark changes if not dry_run
+    if not dry_run:
+        flag_modified(record, 'json')
+
+    return record
+
+
+@fixdb.command()
+@with_appcontext
+@click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'. "
+                                          "If empty, all records will be processed")
+@click.option('--dry-run', is_flag=True, default=False,
+              help='If set to True no changes will be committed to the database.')
+def fix_record_mapping(ids, dry_run):
+    """
+    Maps the given records if needed to comply with the new schema.
+
+    If dry-run option is set, no changes will be committed to the database.
+    """
+
+    if ids:
+        ids = ids.split(',')
+
+    process_all_records(map_old_record, 50, ids, dry_run)
+
+    if dry_run:
+        error('NO CHANGES were committed to the database, because --dry-run flag was present.')

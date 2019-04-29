@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3A1309.3748%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:1309.3748&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/K4zjaKRMw1hI/TLdAuMTuYA+CCo</id>
+  <updated>2019-04-29T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1309.3748v2</id>
+    <updated>2013-12-13T10:50:14Z</updated>
+    <published>2013-09-15T10:58:05Z</published>
+    <title>Bounce cosmology from $F(R)$ gravity and $F(R)$ bigravity</title>
+    <summary>  We reconstruct $F(R)$ gravity models with exponential and power-law forms of
+the scale factor in which bounce cosmology can be realized. We explore the
+stability of the reconstructed models with analyzing the perturbations from the
+background solutions. Furthermore, we study an $F(R)$ gravity model with a sum
+of exponentials form of the scale factor, where the bounce in the early
+universe as well as the late-time cosmic acceleration can be realized in a
+unified manner. As a result, we build a second order polynomial type model in
+terms of $R$ and show that it could be stable. Moreover, when the scale factor
+is expressed by an exponential form, we derive $F(R)$ gravity models of a
+polynomial type in case of the non-zero spatial curvature and that of a generic
+type in that of the zero spatial curvature. In addition, for an exponential
+form of the scale factor, an $F(R)$ bigravity model realizing the bouncing
+behavior is reconstructed. It is found that in both the physical and reference
+metrics the bouncing phenomenon can occur, although in general the contraction
+and expansion rates are different each other.
+</summary>
+    <author>
+      <name>Kazuharu Bamba</name>
+    </author>
+    <author>
+      <name>Andrey N. Makarenko</name>
+    </author>
+    <author>
+      <name>Alexandr N. Myagky</name>
+    </author>
+    <author>
+      <name>Shin'ichi Nojiri</name>
+    </author>
+    <author>
+      <name>Sergei D. Odintsov</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1088/1475-7516/2014/01/008</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1088/1475-7516/2014/01/008" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">23 pages, 5 figures, version accepted for publication in JCAP</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">JCAP01(2014)008</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/1309.3748v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1309.3748v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="astro-ph.CO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>
