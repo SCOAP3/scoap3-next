@@ -1027,6 +1027,14 @@ def map_old_record(record, dry_run):
     return record
 
 
+def map_old_record_outer(record, dry_run, failed_records):
+    """Execute map_old_record function on the given record and store the record if the mapping was unsuccessful."""
+
+    result = map_old_record(record, dry_run)
+    if result is None:
+        failed_records.append(record)
+
+
 @fixdb.command()
 @with_appcontext
 @click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'. "
@@ -1043,7 +1051,13 @@ def fix_record_mapping(ids, dry_run):
     if ids:
         ids = ids.split(',')
 
-    process_all_records(map_old_record, 50, ids, dry_run)
+    failed_records = []
+
+    process_all_records(map_old_record_outer, 50, ids, dry_run, failed_records)
+
+    if failed_records:
+        failed_control_numbers = [r.json.get('control_number', r.id) for r in failed_records if r.json]
+        error('Mapping process failed for the following records: %s' % ', '.join(failed_control_numbers))
 
     if dry_run:
         error('NO CHANGES were committed to the database, because --dry-run flag was present.')
