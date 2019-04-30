@@ -203,9 +203,11 @@ def hindawi(**kwargs):
 
     Note: the from and until parameters include every article that was created, updated or deleted in the given
     interval. I.e. it is possible to receive an article that was created before the given interval, but updated later.
+    Because of this, it can be useful not to use the default set, but add the required year (volume) as well with
+    e.g. the '--setspecs HINDAWI.AHEP:2019' option for the 2019 year.
     """
-    spider = 'hindawi'
-    list_records_from_dates(spider, **kwargs)
+
+    list_records_from_dates(spider='hindawi', **kwargs)
 
 
 @harvest.command()
