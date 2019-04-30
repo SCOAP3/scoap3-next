@@ -11,9 +11,19 @@ def error(msg):
 
 def rinfo(msg, record):
     """Helper for logging info about a record."""
-    info('%s: %s' % (record.id, msg))
+    if record.json and 'control_number' in record.json:
+        recid = record.json.get('control_number')
+    else:
+        recid = record.id
+
+    info('%s: %s' % (recid, msg))
 
 
 def rerror(msg, record):
     """Helper for logging errors about a record."""
-    error('%s: %s' % (record.id, msg))
+    if record.json and 'control_number' in record.json:
+        recid = record.json.get('control_number')
+    else:
+        recid = record.id
+
+    error('%s: %s' % (recid, msg))

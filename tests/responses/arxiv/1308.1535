@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3A1308.1535%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:1308.1535&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/0BNc2qYGZUK9Uh+KiUhMp51b88Q</id>
+  <updated>2019-04-29T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1308.1535v2</id>
+    <updated>2014-02-02T09:50:13Z</updated>
+    <published>2013-08-07T11:08:04Z</published>
+    <title>Vortices and Other Topological Solitons in Dense Quark Matter</title>
+    <summary>  In this review, we discuss various properties of topological solitons in
+dense QCD matter, with a particular emphasis on the CFL phase exhibiting
+superfluidity and superconductivity, and their phenomenological implications in
+terms of the effective field theories such as the Ginzburg-Landau theory, the
+chiral Lagrangian, or the Bogoliubov--de Gennes equation. The most fundamental
+topological excitations are non-Abelian vortices, which are 1/3 quantized
+superfluid vortices and color magnetic flux tubes. They are created at a phase
+transition or a rotation such compact stars. The intervortex-interaction is
+repulsive and consequently a vortex lattice is formed. Bosonic and fermionic
+zero-energy modes are trapped in the vortex core and propagate along it as
+gapless excitations. The former consists of translational zero modes (a Kelvin
+mode) with a quadratic dispersion and CP(2) Nambu-Goldstone gapless modes with
+a linear dispersion, while the latter is the triplet Majorana fermion zero
+modes. The low-energy effective theory of the bosonic zero modes is a
+non-relativistic free complex scalar field and a CP(2) model in 1+1 dimensions.
+The effects of strange quark mass, electromagnetic interactions and
+non-perturbative quantum corrections are taken into account. Colorful boojums
+at the CFL interface, quantum color magnetic monopole confined by vortices,
+which supports the notion of quark-hadron duality, and Yang-Mills instantons
+inside a vortex as lumps are discussed. The interactions between a vortex and
+quasi-particles such as phonons, gluons, mesons, and photons are studied. A
+vortex lattice is shown to behave as a cosmic polarizer. Non-Abelian vortices
+are shown to behave as a novel kind of non-Abelian anyons. For the chiral
+symmetry breaking, we discuss fractional and integer axial domain walls,
+Abelian and non-Abelian axial vortices, axial wall-vortex composites, and
+Skyrmions.
+</summary>
+    <author>
+      <name>Minoru Eto</name>
+    </author>
+    <author>
+      <name>Yuji Hirono</name>
+    </author>
+    <author>
+      <name>Muneto Nitta</name>
+    </author>
+    <author>
+      <name>Shigehiro Yasui</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1093/ptep/ptt095</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1093/ptep/ptt095" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">168 pages, 46 figures, Invited review paper commissioned by Progress
+  of Theoretical and Experimental Physics. Comments warmly welcome, v2:
+  references and one appenndix added, published version</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Prog.Theor.Exp.Phys.:012D01,2014</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/1308.1535v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1308.1535v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="astro-ph.HE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.supr-con" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>

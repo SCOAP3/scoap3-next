@@ -1,0 +1,144 @@
+{
+  "_collections": [
+    "Advances in High Energy Physics", 
+    "scoap3"
+  ], 
+  "dois": [
+    {
+      "value": "10.1155/2018/7308935"
+    }
+  ], 
+  "titles": [
+    {
+      "source": "Hindawi", 
+      "subtitle": "", 
+      "title": "Time Dilation in Relativistic Quantum Decay Laws of Moving Unstable Particles"
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "", 
+      "note": "", 
+      "page_end": "", 
+      "artid": "", 
+      "journal_title": "Advances in High Energy Physics", 
+      "year": 2018, 
+      "page_start": "7308935", 
+      "pubinfo_freetext": "", 
+      "journal_issue": "382897"
+    }
+  ], 
+  "$schema": "http://beta.scoap3.org/schemas/hep.json", 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "", 
+      "statement": "Copyright \u00a9 2018 Filippo Giraldi.", 
+      "year": "2018"
+    }
+  ], 
+  "control_number": "40436", 
+  "_files": [
+    {
+      "checksum": "md5:616258f1ade43b1673c836ae99afb141", 
+      "filetype": "pdf", 
+      "bucket": "8c8e1eba-f2ba-45af-85f5-93ca9137ffe5", 
+      "version_id": "af0f4612-9998-4b37-b077-4f11ba420663", 
+      "key": "10.1155/2018/7308935.pdf", 
+      "size": 2209391
+    }, 
+    {
+      "checksum": "md5:73d2bdedcc3414ca9fb79a868f90be98", 
+      "filetype": "xml", 
+      "bucket": "8c8e1eba-f2ba-45af-85f5-93ca9137ffe5", 
+      "version_id": "9ac1b98e-e314-4590-b577-e20e61bc9532", 
+      "key": "10.1155/2018/7308935.xml", 
+      "size": 257289
+    }
+  ], 
+  "collections": [
+    {
+      "primary": "Advances in High Energy Physics"
+    }
+  ], 
+  "arxiv_eprints": [
+    {
+      "value": "arXiv:1803.07709"
+    }
+  ], 
+  "files": [
+    {
+      "url": "http://downloads.hindawi.com/journals/ahep/2018/7308935.pdf", 
+      "checksum": "616258f1ade43b1673c836ae99afb141", 
+      "path": "full/89ea38b517d9083a380bf16263b28fd201ff5c2d.pdf"
+    }, 
+    {
+      "url": "http://downloads.hindawi.com/journals/ahep/2018/7308935.a.pdf", 
+      "checksum": "d3db01faa65eed7c71696dff21784b7c", 
+      "path": "full/a938702dcda15698a1f2d3b1d562c80adba55ec9.pdf"
+    }
+  ], 
+  "_oai": {
+    "updated": "2018-05-29T22:00:13Z", 
+    "id": "oai:beta.scoap3.org:40436", 
+    "sets": [
+      "AHEP"
+    ]
+  }, 
+  "additional_files": [
+    {
+      "access": "INSPIRE-HIDDEN", 
+      "url": "http://downloads.hindawi.com/journals/ahep/2018/7308935.xml", 
+      "type": "Fulltext", 
+      "description": "HINDAWI"
+    }
+  ], 
+  "file_urls": [
+    "http://downloads.hindawi.com/journals/ahep/2018/7308935.pdf", 
+    "http://downloads.hindawi.com/journals/ahep/2018/7308935.a.pdf"
+  ], 
+  "authors": [
+    {
+      "surname": "Giraldi", 
+      "given_names": "Filippo", 
+      "raw_name": "Giraldi, Filippo", 
+      "affiliations": [
+        {
+          "country": "South Africa", 
+          "value": "School of Chemistry and Physics, University of KwaZulu-Natal and National Institute for Theoretical Physics (NITheP), Westville Campus, Durban 4001, South Africa"
+        }
+      ], 
+      "full_name": "Giraldi, Filippo", 
+      "orcid": "0000-0002-9060-3475"
+    }
+  ], 
+  "page_nr": [
+    "10"
+  ], 
+  "acquisition_source": {
+    "date": "2018-05-30T00:00:11.055248", 
+    "source": "Hindawi", 
+    "method": "Hindawi", 
+    "submission_number": "a4c06200638b11e887f202163e01809a"
+  }, 
+  "license": [
+    {
+      "url": "http://creativecommons.org/licenses/by/3.0/", 
+      "license": "CC-BY-3.0"
+    }
+  ], 
+  "record_creation_date": "2018-05-30T00:00:11.055283", 
+  "abstracts": [
+    {
+      "source": "Hindawi", 
+      "value": "The relativistic quantum decay [...] invariant by changing reference frame."
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2018-05-29", 
+      "publisher": "Hindawi"
+    }
+  ], 
+  "earliest_date": "2018-05-29"
+}

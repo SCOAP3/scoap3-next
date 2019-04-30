@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3A1803.07709%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:1803.07709&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/nXJDH3jlee4SwrMqZRrdWZtmJS8</id>
+  <updated>2019-04-29T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1803.07709v1</id>
+    <updated>2018-03-21T01:05:57Z</updated>
+    <published>2018-03-21T01:05:57Z</published>
+    <title>Time dilation in relativistic quantum decay laws of moving unstable
+  particles</title>
+    <summary>  The relativistic quantum decay laws of moving unstable particles are analyzed
+for a general class of mass distribution densities which behave as power laws
+near the (non-vanishing) lower bound $\mu_0$ of the mass spectrum. The survival
+probability $\mathcal{P}_p(t)$, the instantaneous mass $M_p(t)$ and the
+instantaneous decay rate $\Gamma_p(t)$ of the moving unstable particle are
+evaluated over short and long times for an arbitrary value $p$ of the
+(constant) linear momentum. The ultrarelativistic and non-relativistic limits
+are studied. Over long times, the survival probability $\mathcal{P}_p(t)$ is
+approximately related to the survival probability at rest $\mathcal{P}_0(t)$ by
+a scaling law. The scaling law can be interpreted as the effect of the
+relativistic time dilation if the asymptotic value $M_p\left(\infty\right)$ of
+the instantaneous mass is considered as the effective mass of the unstable
+particle over long times. The effective mass has magnitude $\mu_0$ at rest and
+moves with linear momentum $p$ or, equivalently, with constant velocity
+$1\Big/\sqrt{1+\mu_0^2\big/p^2}$. The instantaneous decay rate $\Gamma_p(t)$ is
+approximately independent of the linear momentum $p$, over long times, and,
+consequently, is approximately invariant by changing reference frame.
+</summary>
+    <author>
+      <name>Filippo Giraldi</name>
+    </author>
+    <link href="http://arxiv.org/abs/1803.07709v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1803.07709v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>
