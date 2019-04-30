@@ -1,0 +1,125 @@
+{
+  "license": [
+    {
+      "url": "https://creativecommons.org/licenses//by/4.0", 
+      "license": "CC-BY-4.0"
+    }
+  ], 
+  "page_nr": [
+    6
+  ], 
+  "acquisition_source": {
+    "date": "2019-04-28T05:30:19.276456", 
+    "source": "Springer", 
+    "method": "Springer", 
+    "submission_number": "eac07980696511e980e602163e01809a"
+  }, 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "The Author(s)", 
+      "statement": "", 
+      "year": "2019"
+    }
+  ], 
+  "control_number": "47025", 
+  "_oai": {
+    "updated": "2019-04-28T03:30:20Z", 
+    "id": "oai:beta.scoap3.org:47025", 
+    "sets": [
+      "EPJC"
+    ]
+  }, 
+  "authors": [
+    {
+      "affiliations": [
+        {
+          "country": "China", 
+          "value": "College of Physical Science and Technology, Hebei University, Baoding, 071002, China", 
+          "organization": "Hebei University"
+        }, 
+        {
+          "country": "China", 
+          "value": "Hebei Key Lab of Optic-Electronic Information and Materials, Hebei University, Baoding, 071002, China", 
+          "organization": "Hebei University"
+        }
+      ], 
+      "surname": "Yang", 
+      "email": "yangrongjia@tsinghua.org.cn", 
+      "full_name": "Yang, Rongjia", 
+      "given_names": "Rongjia"
+    }
+  ], 
+  "_files": [
+    {
+      "checksum": "md5:74d7eedf6327af68fbab93892a9502c6", 
+      "filetype": "xml", 
+      "bucket": "d261c148-07de-4f48-baa3-b2ceecdc543e", 
+      "version_id": "28da1f8f-7825-4182-bc7a-e92218c610b3", 
+      "key": "10.1140/epjc/s10052-019-6886-1.xml", 
+      "size": 9608
+    }, 
+    {
+      "checksum": "md5:963c1ded846f7ab780e7eb2cafeb44f6", 
+      "filetype": "pdf/a", 
+      "bucket": "d261c148-07de-4f48-baa3-b2ceecdc543e", 
+      "version_id": "6a485116-1663-4b4c-8c47-cc2095d0fa5d", 
+      "key": "10.1140/epjc/s10052-019-6886-1_a.pdf", 
+      "size": 301257
+    }
+  ], 
+  "record_creation_date": "2019-04-27T14:30:26.740556", 
+  "titles": [
+    {
+      "source": "Springer", 
+      "subtitle": "", 
+      "title": "Constraints from accretion onto a Tangherlini\u2013Reissner\u2013Nordstrom black hole"
+    }
+  ], 
+  "collections": [
+    {
+      "primary": "European Physical Journal C"
+    }
+  ], 
+  "dois": [
+    {
+      "value": "10.1140/epjc/s10052-019-6886-1"
+    }
+  ], 
+  "arxiv_eprints": [
+    {
+      "value": "1801.07973v2", 
+      "categories": [
+        "gr-qc", 
+        "hep-th"
+      ]
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "79", 
+      "page_end": "6", 
+      "artid": "s10052-019-6886-1", 
+      "journal_title": "European Physical Journal C", 
+      "pubinfo_freetext": "", 
+      "year": 2019, 
+      "page_start": "1", 
+      "material": "article", 
+      "journal_issue": "4"
+    }
+  ], 
+  "$schema": "http://beta.scoap3.org/schemas/hep.json", 
+  "abstracts": [
+    {
+      "source": "Springer", 
+      "value": "We investigate spherically symmetric [...] compared to the mass of black hole."
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2019-04-27", 
+      "publisher": "Springer"
+    }
+  ], 
+  "record_creation_year": 2019
+}

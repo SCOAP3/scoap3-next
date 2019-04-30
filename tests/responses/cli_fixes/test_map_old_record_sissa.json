@@ -1,0 +1,191 @@
+{
+  "files": [], 
+  "license": [
+    {
+      "url": "http://creativecommons.org/licenses/by/3.0/", 
+      "license": "CC-BY-3.0"
+    }
+  ], 
+  "report_numbers": [
+    {
+      "source": "arXiv", 
+      "value": "arXiv:1309.3748", 
+      "primary_category": "hep-th", 
+      "categories": [
+        "hep-th", 
+        "astro-ph.CO", 
+        "gr-qc"
+      ]
+    }
+  ], 
+  "acquisition_source": {
+    "date": "2014-01-08T00:00:00", 
+    "source": "Institute of Physics Publishing/SISSA", 
+    "method": "scoap3", 
+    "submission_number": "1f12c56a3e8511e881c402163e01809a"
+  }, 
+  "_collections": [
+    "Journal of Cosmology and Astroparticle Physics", 
+    "scoap3"
+  ], 
+  "control_number": "787", 
+  "_oai": {
+    "updated": "2018-04-12T19:25:37Z", 
+    "id": "oai:beta.scoap3.org:787", 
+    "sets": []
+  }, 
+  "dois": [
+    {
+      "value": "10.1088/1475-7516/2014/01/008"
+    }
+  ], 
+  "_files": [
+    {
+      "checksum": "md5:44ce3424291b588eb8c59f9a4d527fd7", 
+      "filetype": "pdf", 
+      "bucket": "930dfb98-9b1f-4cc0-8446-b90ad0fd60b6", 
+      "version_id": "936711b9-844c-446e-bc39-856b171b8025", 
+      "key": "10.1088/1475-7516/2014/01/008.pdf", 
+      "size": 705969
+    }, 
+    {
+      "checksum": "md5:c49a927ba18aecb0214015b59191fc8e", 
+      "filetype": "xml", 
+      "bucket": "930dfb98-9b1f-4cc0-8446-b90ad0fd60b6", 
+      "version_id": "9e2f7466-bd54-407d-a51f-63c09992e7e5", 
+      "key": "10.1088/1475-7516/2014/01/008.xml", 
+      "size": 107304
+    }
+  ], 
+  "record_creation_date": "2014-01-08", 
+  "local_files": [
+    {
+      "value": {
+        "path": "http://repo.scoap3.org/record/787/files/fulltext.pdf", 
+        "filetype": "pdf"
+      }
+    }, 
+    {
+      "value": {
+        "path": "http://repo.scoap3.org/record/787/files/fulltext.xml", 
+        "filetype": "xml"
+      }
+    }
+  ], 
+  "titles": [
+    {
+      "source": "Institute of Physics Publishing/SISSA", 
+      "subtitle": "", 
+      "title": "Bounce cosmology from F(R) gravity and F(R) bigravity"
+    }
+  ], 
+  "authors": [
+    {
+      "raw_name": "Bamba, Kazuharu", 
+      "affiliations": [
+        {
+          "country": "Japan", 
+          "value": "Kobayashi-Maskawa Institute for the Origin of Particles and the Universe, Nagoya University, Nagoya 464-8602, Japan"
+        }
+      ], 
+      "surname": "Bamba", 
+      "given_names": "Kazuharu", 
+      "full_name": "Bamba, Kazuharu"
+    }, 
+    {
+      "raw_name": "Makarenko, Andrey N.", 
+      "affiliations": [
+        {
+          "country": "Russia", 
+          "value": "Tomsk State Pedagogical University, Kievskaya Avenue, 60, 634061, Tomsk, Russia"
+        }
+      ], 
+      "surname": "Makarenko", 
+      "given_names": "Andrey N.", 
+      "full_name": "Makarenko, Andrey N."
+    }, 
+    {
+      "raw_name": "Myagky, Alexandr N.", 
+      "affiliations": [
+        {
+          "country": "Russia", 
+          "value": "Tomsk Polytechnic University, Lenin Avenue, 30, 634050, Tomsk, Russia"
+        }
+      ], 
+      "surname": "Myagky", 
+      "given_names": "Alexandr N.", 
+      "full_name": "Myagky, Alexandr N."
+    }, 
+    {
+      "raw_name": "Nojiri, Shin'ichi", 
+      "affiliations": [
+        {
+          "country": "Japan", 
+          "value": "Department of Physics, Nagoya University, Nagoya 464-8602, Japan"
+        }, 
+        {
+          "country": "Japan", 
+          "value": "Kobayashi-Maskawa Institute for the Origin of Particles and the Universe, Nagoya University, Nagoya 464-8602, Japan"
+        }
+      ], 
+      "surname": "Nojiri", 
+      "given_names": "Shin'ichi", 
+      "full_name": "Nojiri, Shin'ichi"
+    }, 
+    {
+      "raw_name": "Odintsov, Sergei D.", 
+      "affiliations": [
+        {
+          "country": "Russia", 
+          "value": "Tomsk State Pedagogical University, Kievskaya Avenue, 60, 634061, Tomsk, Russia"
+        }, 
+        {
+          "country": "Spain", 
+          "value": "Instituci\u00c3\u00b2 Catalana de Recerca i Estudis Avan\u00c3\u00a7ats (ICREA), Barcelona, Spain"
+        }, 
+        {
+          "country": "Spain", 
+          "value": "Institut de Ciencies de l'Espai (CSIC-IEEC), Campus UAB, Facultat de Ciencies, Torre C5-Par-2a pl, E-08193 Bellaterra (Barcelona), Spain"
+        }
+      ], 
+      "surname": "Odintsov", 
+      "given_names": "Sergei D.", 
+      "full_name": "Odintsov, Sergei D."
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "", 
+      "note": "", 
+      "page_end": "", 
+      "artid": "", 
+      "journal_title": "Journal of Cosmology and Astroparticle Physics", 
+      "year": 2014, 
+      "page_start": "008", 
+      "pubinfo_freetext": "", 
+      "journal_issue": "01"
+    }
+  ], 
+  "$schema": "http://beta.scoap3.org/schemas/hep.json", 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "", 
+      "statement": "", 
+      "year": ""
+    }
+  ], 
+  "abstracts": [
+    {
+      "source": "Institute of Physics Publishing/SISSA", 
+      "value": "We reconstruct F(R) gravity [...] expansion rates are different each other."
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2014-01-01", 
+      "publisher": "Institute of Physics Publishing/SISSA"
+    }
+  ], 
+  "earliest_date": "2014-01-01"
+}

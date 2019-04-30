@@ -1,0 +1,195 @@
+{
+  "files": [], 
+  "license": [
+    {
+      "url": "http://creativecommons.org/licenses/by/3.0/", 
+      "license": "CC-BY-3.0"
+    }
+  ], 
+  "page_nr": [
+    "149"
+  ], 
+  "titles": [
+    {
+      "source": "Oxford University Press/Physical Society of Japan", 
+      "subtitle": "", 
+      "title": "Vortices and other topological solitons in dense quark matter"
+    }
+  ], 
+  "acquisition_source": {
+    "date": "2014-01-13T00:00:00", 
+    "source": "Oxford University Press/Physical Society of Japan", 
+    "method": "scoap3", 
+    "submission_number": "c1e1d35643dc11e890c902163e01809a"
+  }, 
+  "_collections": [
+    "Progress of Theoretical and Experimental Physics", 
+    "scoap3"
+  ], 
+  "control_number": "899", 
+  "_oai": {
+    "updated": "2018-04-19T14:22:29Z", 
+    "id": "oai:beta.scoap3.org:899", 
+    "sets": [
+      "PTEP"
+    ]
+  }, 
+  "dois": [
+    {
+      "value": "10.1093/ptep/ptt095"
+    }
+  ], 
+  "_files": [
+    {
+      "checksum": "md5:314a308cf2664a9dfeb3738369c22719", 
+      "filetype": "xml", 
+      "bucket": "bc602784-c32d-456a-ba76-4a38181b3bd2", 
+      "version_id": "7ca67df8-5e2d-4dde-a365-e3df3e414402", 
+      "key": "10.1093/ptep/ptt095.xml", 
+      "size": 1091274
+    }, 
+    {
+      "checksum": "md5:fd2daa13aa14f22d05ab4dbd35697410", 
+      "filetype": "pdf", 
+      "bucket": "bc602784-c32d-456a-ba76-4a38181b3bd2", 
+      "version_id": "921bc121-a390-42ec-8907-3faaee041e20", 
+      "key": "10.1093/ptep/ptt095.pdf", 
+      "size": 6319461
+    }, 
+    {
+      "checksum": "md5:d46f22db9ae4827fd90ff1a00fd28f6d", 
+      "filetype": "pdf/a", 
+      "bucket": "bc602784-c32d-456a-ba76-4a38181b3bd2", 
+      "version_id": "33d47161-cfa1-4076-adb9-1425d8a6ec45", 
+      "key": "10.1093/ptep/ptt095_a.pdf", 
+      "size": 6551161
+    }
+  ], 
+  "record_creation_date": "2014-01-13", 
+  "local_files": [
+    {
+      "value": {
+        "path": "http://repo.scoap3.org/record/899/files/main.xml", 
+        "filetype": "xml"
+      }
+    }, 
+    {
+      "value": {
+        "path": "http://repo.scoap3.org/record/899/files/main.pdf", 
+        "filetype": "pdf"
+      }
+    }, 
+    {
+      "value": {
+        "path": "http://repo.scoap3.org/record/899/files/main.pdf?subformat=pdfa", 
+        "filetype": "pdfa"
+      }
+    }
+  ], 
+  "report_numbers": [
+    {
+      "source": "arXiv", 
+      "value": "arXiv:1308.1535", 
+      "primary_category": "hep-ph", 
+      "categories": [
+        "hep-ph", 
+        "astro-ph.HE", 
+        "cond-mat.supr-con", 
+        "hep-th"
+      ]
+    }
+  ], 
+  "authors": [
+    {
+      "raw_name": "Eto, Minoru", 
+      "affiliations": [
+        {
+          "country": "Japan", 
+          "value": "Department of Physics, Yamagata University, Kojirakawa 1-4-12, Yamagata, Yamagata 990-8560, Japan"
+        }
+      ], 
+      "surname": "Eto", 
+      "given_names": "Minoru", 
+      "full_name": "Eto, Minoru"
+    }, 
+    {
+      "raw_name": "Hirono, Yuji", 
+      "affiliations": [
+        {
+          "country": "Japan", 
+          "value": "Theoretical Research Division, Nishina Center, RIKEN, Wako 351-0198, Japan"
+        }, 
+        {
+          "country": "Japan", 
+          "value": "Department of Physics, Sophia University, Tokyo 102-8554, Japan"
+        }, 
+        {
+          "country": "Japan", 
+          "value": "Department of Physics, University of Tokyo, Hongo 7-3-1, Bunkyo-ku, Tokyo 113-0033, Japan"
+        }
+      ], 
+      "surname": "Hirono", 
+      "given_names": "Yuji", 
+      "full_name": "Hirono, Yuji"
+    }, 
+    {
+      "raw_name": "Nitta, Muneto", 
+      "affiliations": [
+        {
+          "country": "Japan", 
+          "value": "Department of Physics, and Research and Education Center for Natural Sciences, Keio University, Hiyoshi 4-1-1, Yokohama, Kanagawa 223-8521, Japan"
+        }
+      ], 
+      "surname": "Nitta", 
+      "given_names": "Muneto", 
+      "full_name": "Nitta, Muneto"
+    }, 
+    {
+      "raw_name": "Yasui, Shigehiro", 
+      "affiliations": [
+        {
+          "country": "Japan", 
+          "value": "KEK Theory Center, Institute of Particle and Nuclear Studies, High Energy Accelerator Research Organization (KEK), 1-1 Oho, Tsukuba, Ibaraki 305-0801, Japan"
+        }
+      ], 
+      "surname": "Yasui", 
+      "given_names": "Shigehiro", 
+      "full_name": "Yasui, Shigehiro"
+    }
+  ], 
+  "publication_info": [
+    {
+      "journal_volume": "", 
+      "note": "", 
+      "page_end": "", 
+      "artid": "", 
+      "journal_title": "Progress of Theoretical and Experimental Physics", 
+      "year": 2014, 
+      "page_start": "012D01", 
+      "pubinfo_freetext": "", 
+      "journal_issue": "1"
+    }
+  ], 
+  "$schema": "http://beta.scoap3.org/schemas/hep.json", 
+  "copyright": [
+    {
+      "material": "", 
+      "holder": "", 
+      "statement": "The Author(s) 2014", 
+      "year": "2014"
+    }
+  ], 
+  "abstracts": [
+    {
+      "source": "Oxford University Press/Physical Society of Japan", 
+      "value": "Dense quantum [...] vortices, axial wallvortex composites, and Skyrmions."
+    }
+  ], 
+  "imprints": [
+    {
+      "date": "2014-01-01", 
+      "publisher": "Oxford University Press/Physical Society of Japan"
+    }
+  ], 
+  "earliest_date": "2014-01-01"
+}
