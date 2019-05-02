@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3A1511.03024%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:1511.03024&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/9aR/9L1yZegMDV2NkaowFZRQOvw</id>
+  <updated>2019-05-02T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1511.03024v2</id>
+    <updated>2016-02-07T20:20:56Z</updated>
+    <published>2015-11-10T08:58:16Z</published>
+    <title>Brane induced supersymmetry breaking and de Sitter supergravity</title>
+    <summary>  We obtain a four-dimensional supergravity with spontaneously broken
+supersymmetry allowing for de Sitter vacua by coupling a superspace action of
+minimal N=1, D=4 supergravity to a locally supersymmetric generalization of the
+Volkov-Akulov goldstino action describing the dynamics of a space-filling
+non-BPS 3-brane in N=1, D=4 superspace. To the quadratic order in the goldstino
+field the obtained action coincides with earlier constructions of
+supergravities with nilpotent superfields, while matching the higher-order
+contributions will require a non-linear redefinition of fields. In the unitary
+gauge, in which the goldstino field is set to zero, the action coincides with
+that of Volkov and Soroka. We also show how a nilpotency constraint on a chiral
+curvature superfield emerges in this formulation.
+</summary>
+    <author>
+      <name>Igor Bandos</name>
+    </author>
+    <author>
+      <name>Luca Martucci</name>
+    </author>
+    <author>
+      <name>Dmitri Sorokin</name>
+    </author>
+    <author>
+      <name>Mario Tonin</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1007/JHEP02(2016)080</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1007/JHEP02(2016)080" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">29 pages, v2: typos corrected, references added</arxiv:comment>
+    <link href="http://arxiv.org/abs/1511.03024v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1511.03024v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>

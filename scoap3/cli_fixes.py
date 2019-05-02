@@ -980,10 +980,34 @@ def map_old_record(record, dry_run):
         rerror('no record creation date. Skip record.', record)
         return
 
+    # make sure record_creation_date is in isoformat
     new_date = parse_date(record_creation_date).isoformat()
     if new_date != record_creation_date:
         rinfo('update record_creation_date: %s -> %s' % (record_creation_date, new_date), record)
         record.json['record_creation_date'] = new_date
+
+    # make sure the date in acquisition_source is in isoformat
+    if 'acquisition_source' in record.json:
+        acquisition_date = record.json['acquisition_source']['date']
+        new_acquisition_date = parse_date(acquisition_date).isoformat()
+        if new_acquisition_date != record_creation_date:
+            rinfo('update acquisition_date : %s -> %s' % (acquisition_date, new_acquisition_date), record)
+            record.json['acquisition_source']['date'] = new_acquisition_date
+
+    # map author properties
+    authors = record.json.get('authors', ())
+    orcid_prefix = 'orcid:'
+    for i in range(len(authors)):
+        # if there is any ORCID ID available, make sure it doesn't have an 'ORCID:' prefix
+        if 'orcid' in authors[i] and authors[i]['orcid'].lower().startswith(orcid_prefix):
+            rinfo('remove orcid prefix', record)
+            authors[i]['orcid'] = authors[i]['orcid'][len(orcid_prefix):]
+
+        # make sure there is no empty field
+        for k, v in authors[i].items():
+            if not v:
+                rinfo('remove empty author property: %s' % k, record)
+                authors[i].pop(k)
 
     # delete unwanted fields
     unwanted_fields = (
