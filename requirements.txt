@@ -63,7 +63,6 @@ Flask-Registry==0.2.0
 Flask-RESTful==0.3.5
 Flask-Script==2.0.5
 Flask-Security==3.0.0
-flask-shell-ipython==0.3.0
 Flask-SQLAlchemy==2.2
 Flask-WTF==0.14.2
 flower==0.9.2
