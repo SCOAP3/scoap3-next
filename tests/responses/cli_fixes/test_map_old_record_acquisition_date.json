@@ -1,0 +1,184 @@
+{
+  "$schema": "http://beta.scoap3.org/schemas/hep.json",
+  "_collections": [
+    "Journal of High Energy Physics",
+    "scoap3"
+  ],
+  "_files": [
+    {
+      "bucket": "f781545c-190c-49f2-ae7e-041418cdbf8c",
+      "checksum": "md5:1e132c975b1f9cbf2c3fecb435063fd6",
+      "filetype": "xml",
+      "key": "10.1007/JHEP02(2016)080.xml",
+      "size": 102401,
+      "version_id": "6997aeb9-aa1f-4c5a-970e-ed36f92c21ef"
+    },
+    {
+      "bucket": "f781545c-190c-49f2-ae7e-041418cdbf8c",
+      "checksum": "md5:981a6620f3d08249dbf3460a25839c5e",
+      "filetype": "pdf/a",
+      "key": "10.1007/JHEP02(2016)080_a.pdf",
+      "size": 690167,
+      "version_id": "c409aa57-38d9-4d38-929f-35909628ce40"
+    }
+  ],
+  "_oai": {
+    "id": "oai:beta.scoap3.org:14333",
+    "sets": [],
+    "updated": "2018-04-30T22:05:20Z"
+  },
+  "abstracts": [
+    {
+      "source": "Springer/SISSA",
+      "value": "We obtain a four-dimensional supergravity with spontaneously broken super-symmetry allowing for de Sitter vacua by coupling a superspace action of minimal N = 1, D = 4 supergravity to a locally supersymmetric generalization of the Volkov-Akulov goldstino action describing the dynamics of a space-filling non-BPS 3-brane in N = 1, D = 4 superspace. To the quadratic order in the goldstino field the obtained action coincides with earlier constructions of supergravities with nilpotent superfields, while matching the higher-order contributions will require a non-linear redefinition of fields. In the unitary gauge, in which the goldstino field is set to zero, the action coincides with that of Volkov and Soroka. We also show how a nilpotency constraint on a chiral curvature superfield emerges in this formulation."
+    }
+  ],
+  "acquisition_source": {
+    "date": "2016-02-13",
+    "method": "scoap3",
+    "source": "Springer/SISSA",
+    "submission_number": "3e8107fa4cbc11e8b67702163e01809a"
+  },
+  "authors": [
+    {
+      "affiliations": [
+        {
+          "country": "Spain",
+          "value": "IKERBASQUE, Basque Foundation for Science, 48011, Bilbao, Spain"
+        },
+        {
+          "country": "Spain",
+          "value": "Department of Theoretical Physics, University of the Basque Country UPV/EHU, P.O. Box 644, 48080, Bilbao, Spain"
+        }
+      ],
+      "full_name": "Bandos, Igor",
+      "given_names": "Igor",
+      "raw_name": "Bandos, Igor",
+      "surname": "Bandos"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "Italy",
+          "value": "I.N.F.N. Sezione di Padova, Via Marzolo 8, 35131, Padova, Italy"
+        },
+        {
+          "country": "Italy",
+          "value": "Dipartimento di Fisica e Astronomia < Galileo Galilei >, Universit di Padova, Via Marzolo 8, 35131, Padova, Italy"
+        }
+      ],
+      "full_name": "Martucci, Luca",
+      "given_names": "Luca",
+      "raw_name": "Martucci, Luca",
+      "surname": "Martucci"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "Italy",
+          "value": "I.N.F.N. Sezione di Padova, Via Marzolo 8, 35131, Padova, Italy"
+        },
+        {
+          "country": "Italy",
+          "value": "Dipartimento di Fisica e Astronomia < Galileo Galilei >, Universit di Padova, Via Marzolo 8, 35131, Padova, Italy"
+        }
+      ],
+      "full_name": "Sorokin, Dmitri",
+      "given_names": "Dmitri",
+      "raw_name": "Sorokin, Dmitri",
+      "surname": "Sorokin"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "Italy",
+          "value": "I.N.F.N. Sezione di Padova, Via Marzolo 8, 35131, Padova, Italy"
+        },
+        {
+          "country": "Italy",
+          "value": "Dipartimento di Fisica e Astronomia < Galileo Galilei >, Universit di Padova, Via Marzolo 8, 35131, Padova, Italy"
+        }
+      ],
+      "full_name": "Tonin, Mario",
+      "given_names": "Mario",
+      "raw_name": "Tonin, Mario",
+      "surname": "Tonin"
+    }
+  ],
+  "control_number": "14333",
+  "copyright": [
+    {
+      "holder": "",
+      "material": "",
+      "statement": "The Author(s)",
+      "year": ""
+    }
+  ],
+  "dois": [
+    {
+      "value": "10.1007/JHEP02(2016)080"
+    }
+  ],
+  "earliest_date": "2016-02-12",
+  "files": [],
+  "imprints": [
+    {
+      "date": "2016-02-12",
+      "publisher": "Springer/SISSA"
+    }
+  ],
+  "license": [
+    {
+      "license": "CC-BY-4.0",
+      "url": "http://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "local_files": [
+    {
+      "value": {
+        "filetype": "xml",
+        "path": "http://repo.scoap3.org/record/14333/files/main.xml"
+      }
+    },
+    {
+      "value": {
+        "filetype": "pdfa",
+        "path": "http://repo.scoap3.org/record/14333/files/main.pdf?subformat=pdfa"
+      }
+    }
+  ],
+  "page_nr": [
+    "27"
+  ],
+  "publication_info": [
+    {
+      "artid": "",
+      "journal_issue": "",
+      "journal_title": "Journal of High Energy Physics",
+      "journal_volume": "",
+      "note": "",
+      "page_end": "",
+      "page_start": "080",
+      "pubinfo_freetext": "",
+      "year": 2016
+    }
+  ],
+  "record_creation_date": "2016-02-13",
+  "report_numbers": [
+    {
+      "categories": [
+        "hep-th"
+      ],
+      "primary_category": "hep-th",
+      "source": "arXiv",
+      "value": "arXiv:1511.03024"
+    }
+  ],
+  "titles": [
+    {
+      "source": "Springer/SISSA",
+      "subtitle": "",
+      "title": "Brane induced supersymmetry breaking and de Sitter supergravity"
+    }
+  ]
+}

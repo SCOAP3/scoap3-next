@@ -1,0 +1,151 @@
+{
+  "$schema": "http://beta.scoap3.org/schemas/hep.json",
+  "_collections": [
+    "European Physical Journal C",
+    "scoap3"
+  ],
+  "_files": [
+    {
+      "bucket": "3b42ece7-b8c3-4413-bb4f-c515a07fe656",
+      "checksum": "md5:676f4d77e3ba5366ffe39156962801e0",
+      "filetype": "xml",
+      "key": "10.1140/epjc/s10052-018-5792-2.xml",
+      "size": 166390,
+      "version_id": "ae5de123-c953-4026-a6e4-bf6b45c2e541"
+    },
+    {
+      "bucket": "3b42ece7-b8c3-4413-bb4f-c515a07fe656",
+      "checksum": "md5:fe4f8ca607d3484ef71eb773a23150b0",
+      "filetype": "pdf/a",
+      "key": "10.1140/epjc/s10052-018-5792-2_a.pdf",
+      "size": 604412,
+      "version_id": "67d2a695-287f-4b43-bc2a-3dfefaf0623a"
+    }
+  ],
+  "_oai": {
+    "id": "oai:beta.scoap3.org:25032",
+    "sets": [],
+    "updated": "2018-07-16T15:29:00Z"
+  },
+  "abstracts": [
+    {
+      "source": "Springer",
+      "value": "We propose a new formula to explain circular velocity profiles of spiral galaxies obtained from the Starobinsky model in the Palatini formalism. It is based on the assumption that the gravity can be described by two conformally related metrics: one of them is responsible for the measurement of distances, while the other, the so-called dark metric, is responsible for a geodesic equation and therefore can be used for the description of the velocity profile. The formula is tested against a subset of galaxies taken from the HI Nearby Galaxy Survey (THINGS)."
+    }
+  ],
+  "acquisition_source": {
+    "date": "2018-07-16T17:28:17.058865",
+    "method": "Springer",
+    "source": "Springer",
+    "submission_number": "cb44d068890c11e8911a02163e01809a"
+  },
+  "authors": [
+    {
+      "affiliations": [
+        {
+          "country": "Romania",
+          "organization": "West University of Timi\u015foara",
+          "value": "West University of Timi\u015foara, V. Prvan Ave. 4, Timisoara, 300223, Romania"
+        }
+      ],
+      "email": "ciprian.sporea@e-uvt.ro",
+      "full_name": "Sporea, Ciprian",
+      "given_names": "Ciprian",
+      "surname": "Sporea"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "Poland",
+          "organization": "Institute for Theoretical Physics",
+          "value": "Institute for Theoretical Physics, pl. M. Borna 9, Wroclaw, 50-204, Poland"
+        }
+      ],
+      "email": "",
+      "full_name": "Borowiec, Andrzej",
+      "given_names": "Andrzej",
+      "surname": "Borowiec"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "Poland",
+          "organization": "Maria Curie-Sklodowska University",
+          "value": "Institute of Physics, Maria Curie-Sklodowska University, pl.Marii Curie-Sklodowskiej 1, Lublin, 20-031, Poland"
+        }
+      ],
+      "email": "",
+      "full_name": "Wojnar, Aneta",
+      "given_names": "Aneta",
+      "surname": "Wojnar"
+    }
+  ],
+  "collections": [
+    {
+      "primary": "European Physical Journal C"
+    }
+  ],
+  "control_number": "25032",
+  "copyright": [
+    {
+      "holder": "The Author(s)",
+      "material": "Article",
+      "statement": "",
+      "year": "2018"
+    }
+  ],
+  "dois": [
+    {
+      "value": "10.1140/epjc/s10052-018-5792-2"
+    }
+  ],
+  "earliest_date": "2018-05-28",
+  "files": [],
+  "imprints": [
+    {
+      "date": "2018-05-28",
+      "publisher": "Springer"
+    }
+  ],
+  "license": [
+    {
+      "license": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses//by/4.0"
+    }
+  ],
+  "local_files": [
+    {
+      "value": {
+        "filetype": "xml",
+        "path": "/eos/project/s/scoap3repo/BETA/harvesting/Springer/unpacked/ftp_PUB_18-05-28_16-02-48_AbOHcA/JOU=10052/VOL=2018.78/ISU=4/ART=5792/10052_2018_Article_5792.xml.Meta"
+      }
+    },
+    {
+      "value": {
+        "filetype": "pdf/a",
+        "path": "/eos/project/s/scoap3repo/BETA/harvesting/Springer/unpacked/ftp_PUB_18-05-28_16-02-48_AbOHcA/JOU=10052/VOL=2018.78/ISU=4/ART=5792/BodyRef/PDF/10052_2018_Article_5792.pdf"
+      }
+    }
+  ],
+  "publication_info": [
+    {
+      "artid": "",
+      "journal_issue": "4",
+      "journal_title": "European Physical Journal C",
+      "journal_volume": "78",
+      "note": "",
+      "page_end": "7",
+      "page_start": "1",
+      "pubinfo_freetext": "",
+      "year": 2018
+    }
+  ],
+  "record_creation_date": "2018-07-16T17:28:17.058886",
+  "titles": [
+    {
+      "source": "Springer",
+      "subtitle": "",
+      "title": "Galaxy rotation curves via conformal factors"
+    }
+  ]
+}

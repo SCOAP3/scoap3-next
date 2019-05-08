@@ -94,3 +94,29 @@ def test_map_old_record_springer():
         expected_data = json.loads(read_response('cli_fixes', 'test_map_old_record_springer_expected.json'))
 
         assert run_mapper_with_mock(data, mock_address).json == expected_data
+
+
+def test_map_old_record_acquisition_date():
+    with requests_mock.Mocker() as mock_address:
+        mock_address.register_uri('GET', 'http://export.arxiv.org/api/query?search_query=id:1511.03024',
+                                  content=read_response('arxiv', '1511.03024'))
+        data = json.loads(read_response('cli_fixes', 'test_map_old_record_acquisition_date.json'))
+        expected_data = json.loads(read_response('cli_fixes', 'test_map_old_record_acquisition_date_expected.json'))
+
+        assert run_mapper_with_mock(data, mock_address).json == expected_data
+
+
+def test_map_old_record_orcid_prefix():
+    with requests_mock.Mocker() as mock_address:
+        data = json.loads(read_response('cli_fixes', 'test_map_old_record_orcid_prefix.json'))
+        expected_data = json.loads(read_response('cli_fixes', 'test_map_old_record_orcid_prefix_expected.json'))
+
+        assert run_mapper_with_mock(data, mock_address).json == expected_data
+
+
+def test_map_old_record_empty_author_prop():
+    with requests_mock.Mocker() as mock_address:
+        data = json.loads(read_response('cli_fixes', 'test_map_old_record_empty_author_prop.json'))
+        expected_data = json.loads(read_response('cli_fixes', 'test_map_old_record_empty_author_prop_expected.json'))
+
+        assert run_mapper_with_mock(data, mock_address).json == expected_data
