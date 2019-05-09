@@ -282,6 +282,95 @@ def test_hindawi():
                                            'High Sensitivities 2018'
 
 
+def test_hindawi2():
+    workflows_count = Workflow.query.count()
+
+    with requests_mock.Mocker() as m:
+        m.get('http://downloads.hindawi.com/journals/ahep/2014/191960.pdf',
+              content=read_response('article_upload', 'hindawi.com_journals_ahep_2014_191960.pdf'))
+        m.get('http://downloads.hindawi.com/journals/ahep/2014/191960.xml',
+              content=read_response('article_upload', 'hindawi.com_journals_ahep_2014_191960.xml'))
+        m.get('https://api.crossref.org/works/10.1155/2014/191960',
+              content=read_response('article_upload', 'crossref.org_works_10.1155_2014_191960'))
+        workflow = run_workflow_with_file('hindawi2.json', m)
+
+    assert workflow.status == WorkflowStatus.COMPLETED
+    assert Workflow.query.count() - workflows_count == 1
+
+    record = _get_record_from_workflow(workflow)
+    assert len(record['_files']) == 2
+    assert record['_oai']['sets'] == ['AHEP']
+    assert record['abstracts'][0]['value'] == 'In the last decades, a very [...] solutions in the near future.'
+    assert record['acquisition_source']['method'] == 'Hindawi Publishing Corporation'
+
+    assert record['authors'] == [
+        {
+            "affiliations": [
+                {
+                    "country": "Italy",
+                    "value": "Dipartimento di Fisica, Universit degli Studi and INFN, 20133 Milano, Italy"
+                }
+            ],
+            "full_name": "Bellini, G.",
+            "given_names": "G.",
+            "raw_name": "Bellini, G.",
+            "surname": "Bellini"
+        },
+        {
+            "affiliations": [
+                {
+                    "country": "Italy",
+                    "value": "Dipartimento di Fisica, Universit degli Studi and INFN, 20133 Milano, Italy"
+                }
+            ],
+            "full_name": "Ludhova, L.",
+            "given_names": "L.",
+            "raw_name": "Ludhova, L.",
+            "surname": "Ludhova"
+        },
+        {
+            "affiliations": [
+                {
+                    "country": "Italy",
+                    "value": "Dipartimento di Fisica, Universit degli Studi and INFN, 20133 Milano, Italy"
+                }
+            ],
+            "full_name": "Ranucci, G.",
+            "given_names": "G.",
+            "raw_name": "Ranucci, G.",
+            "surname": "Ranucci"
+        },
+        {
+            "affiliations": [
+                {
+                    "country": "Italy",
+                    "value": "Dipartimento di Scienze Fisiche e Chimiche, Universit0 degli Studi and "
+                             "INFN, 67100 L Aquila, Italy"}],
+            "full_name": "Villante, F.L.",
+            "given_names": "F.L.",
+            "raw_name": "Villante, F. L.",
+            "surname": "Villante"
+        }
+    ]
+    assert record['collections'] == [{'primary': 'Advances in High Energy Physics'}]
+    assert record['copyright'] == [{'holder': '', 'material': '',
+                                    'statement': 'Copyright 2014 G. Bellini et al.', 'year': '2014'}]
+    assert record['dois'] == [{'value': '10.1155/2014/191960'}]
+    assert record['imprints'] == [{'date': '2014-01-20', 'publisher': 'Hindawi Publishing Corporation'}]
+    assert record['license'] == [{'license': 'CC-BY-3.0', 'url': 'http://creativecommons.org/licenses/by/3.0/'}]
+    assert record['page_nr'] == [28]
+    assert record['publication_info'] == [{'artid': '',
+                                           'journal_issue': '',
+                                           'journal_title': 'Advances in High Energy Physics',
+                                           'journal_volume': '',
+                                           'material': '',
+                                           'page_end': '',
+                                           'page_start': '191960',
+                                           'pubinfo_freetext': '',
+                                           'year': 2014}]
+    assert record['titles'][0]['title'] == 'Neutrino Oscillations'
+
+
 def test_aps():
     workflows_count = Workflow.query.count()
 
