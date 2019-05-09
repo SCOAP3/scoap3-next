@@ -1,0 +1,117 @@
+{
+  "abstracts": [
+    {
+      "source": "Hindawi Publishing Corporation",
+      "value": "In the last decades, a very [...] solutions in the near future."
+    }
+  ],
+  "acquisition_source": {
+    "date": "2019-05-09T11:50:52.326821",
+    "method": "Hindawi Publishing Corporation",
+    "source": "Hindawi Publishing Corporation",
+    "submission_number": "ecd82afa723f11e9984a02163e01809a"
+  },
+  "authors": [
+    {
+      "affiliations": [
+        {
+          "country": "Italy",
+          "value": "Dipartimento di Fisica, Universit degli Studi and INFN, 20133 Milano, Italy"
+        }
+      ],
+      "full_name": "Bellini, G.",
+      "given_names": "G.",
+      "raw_name": "Bellini, G.",
+      "surname": "Bellini"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "Italy",
+          "value": "Dipartimento di Fisica, Universit degli Studi and INFN, 20133 Milano, Italy"
+        }
+      ],
+      "full_name": "Ludhova, L.",
+      "given_names": "L.",
+      "raw_name": "Ludhova, L.",
+      "surname": "Ludhova"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "Italy",
+          "value": "Dipartimento di Fisica, Universit degli Studi and INFN, 20133 Milano, Italy"
+        }
+      ],
+      "full_name": "Ranucci, G.",
+      "given_names": "G.",
+      "raw_name": "Ranucci, G.",
+      "surname": "Ranucci"
+    },
+    {
+      "affiliations": [
+        {
+          "country": "Italy",
+          "value": "Dipartimento di Scienze Fisiche e Chimiche, Universit0 degli Studi and INFN, 67100 L Aquila, Italy"}],
+          "full_name": "Villante, F.L.",
+          "given_names": "F.L.",
+          "raw_name": "Villante, F. L.",
+          "surname": "Villante"
+        }
+      ],
+      "collections": [
+        {
+          "primary": "Advances in High Energy Physics"
+        }
+      ],
+      "copyright": [
+        {
+          "holder": "",
+          "material": "",
+          "statement": "Copyright 2014 G. Bellini et al.",
+          "year": "2014"
+        }
+      ],
+      "dois": [
+        {
+          "value": "10.1155/2014/191960"
+        }
+      ],
+      "imprints": [
+        {
+          "date": "2014-01-20",
+          "publisher": "Hindawi Publishing Corporation"
+        }
+      ],
+      "license": [
+        {
+          "license": "CC-BY-3.0",
+          "url": "http://creativecommons.org/licenses/by/3.0/"
+        }
+      ],
+      "page_nr": [
+        28
+      ],
+      "publication_info": [
+        {
+          "artid": "",
+          "journal_issue": "",
+          "journal_title": "Advances in High Energy Physics",
+          "journal_volume": "",
+          "material": "",
+          "page_end": "",
+          "page_start": "191960",
+          "pubinfo_freetext": "",
+          "year": 2014
+        }
+      ],
+      "record_creation_date": "2014-01-20T00:00:00",
+      "record_creation_year": 2014,
+      "titles": [
+        {
+          "source": "Hindawi Publishing Corporation",
+          "subtitle": "",
+          "title": "Neutrino Oscillations"
+        }
+      ]
+    }
