@@ -46,8 +46,8 @@ services:
       - APP_CRAWL_ONCE_PATH=/code/scrapy/crawl_once
 
   indexer:
-    image: scoap3/elasticsearch5
-    command: bash -c "chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data && gosu elasticsearch env ES_JAVA_OPTS=\"-Xms2g -Xmx2g\" elasticsearch -Ecluster.name=inspire-dev"
+    image: inspirehep/elasticsearch
+    command: bash -c "chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data && gosu elasticsearch env ES_JAVA_OPTS=\"-Xms2g -Xmx2g\" elasticsearch"
     entrypoint: /docker-entrypoint.sh
 
   database:
