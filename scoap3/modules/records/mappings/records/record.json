@@ -1,17 +1,4 @@
 {
-    "settings": {
-        "analysis": {
-            "normalizer": {
-                "lowercase_normalizer": {
-                    "type": "custom",
-                    "char_filter": [],
-                    "filter": [
-                        "lowercase"
-                    ]
-                }
-            }
-        }
-    },
     "mappings": {
         "record-v1.0.0": {
             "_all": {
@@ -27,7 +14,7 @@
                         },
                         "sets": {
                             "index": "not_analyzed",
-                            "type": "keyword",
+                            "type": "string",
                             "copy_to": "journal"
                         }
                     },
@@ -37,20 +24,19 @@
                     "properties":{
                         "full_name":{
                             "index": "analyzed",
-                            "type": "text",
+                            "type": "string",
                             "copy_to": "author"
                         },
                         "affiliations":{
                             "properties":{
                                 "country":{
                                     "index": "not_analyzed",
-                                    "type": "keyword",
-                                    "copy_to": "country",
-                                    "normalizer": "lowercase_normalizer"
+                                    "type": "string",
+                                    "copy_to": "country"
                                 },
                                 "value":{
                                     "index": "analyzed",
-                                    "type": "text",
+                                    "type": "string",
                                     "copy_to": "affiliation"
                                 }
                             },
@@ -74,7 +60,7 @@
                 },
                 "journal": {
                     "index": "not_analyzed",
-                    "type": "keyword"
+                    "type": "string"
                 },
                 "record_creation_date": {
                     "type": "date",
@@ -94,7 +80,7 @@
                     "properties":{
                         "title":{
                             "index": "analyzed",
-                            "type": "text",
+                            "type": "string",
                             "copy_to": "title"
                         }
                     },
@@ -104,7 +90,7 @@
                     "properties":{
                         "value":{
                             "index": "not_analyzed",
-                            "type": "keyword",
+                            "type": "string",
                             "copy_to": "doi"
                         }
                     },
@@ -116,20 +102,19 @@
                 },
                 "country": {
                     "index": "not_analyzed",
-                    "type": "keyword",
-                    "normalizer": "lowercase_normalizer"
+                    "type": "string"
                 },
                 "affiliation": {
                     "index": "analyzed",
-                    "type": "text"
+                    "type": "string"
                 },
                 "title": {
                     "index": "analyzed",
-                    "type": "text"
+                    "type": "string"
                 },
                 "author": {
                     "index": "analyzed",
-                    "type": "text"
+                    "type": "string"
                 },
                 "date": {
                     "index": "analyzed",
@@ -137,7 +122,7 @@
                 },
                 "doi":{
                     "index": "not_analyzed",
-                    "type": "keyword"
+                    "type": "string"
                 },
                 "imprints":{
                     "properties": {
