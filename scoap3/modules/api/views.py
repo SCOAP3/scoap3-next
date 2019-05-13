@@ -1,7 +1,8 @@
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, current_app, url_for
 from invenio_accounts.models import User
+from invenio_mail.api import TemplatedMessage
 
 from .models import ApiRegistrations
 
@@ -54,6 +55,16 @@ def handler_registration():
                                )
     db.session.add(new_reg)
     db.session.commit()
+
+    msg = TemplatedMessage(
+        template_html='scoap3_api/email/new_registration.html',
+        subject='SCOAP3 - New partner registration',
+        sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
+        recipients=current_app.config.get('ADMIN_DEFAULT_EMAILS'),
+        ctx={'url': url_for('apiregistrations.index_view', _external=True)}
+    )
+    current_app.extensions['mail'].send(msg)
+
     flash("Registration successful. You will receive an email as soon as your account gets approved.",
           'message')
 
