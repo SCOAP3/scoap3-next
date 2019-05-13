@@ -12,30 +12,23 @@ from __future__ import absolute_import, print_function
 
 from datetime import datetime
 from invenio_db import db
-from sqlalchemy import UniqueConstraint
 from sqlalchemy_utils import EmailType
 
 
 class ApiRegistrations(db.Model):
     __tablename__ = 'api_registrations'
 
-    __table_args__ = (UniqueConstraint(
-        'name', 'email',
-        name='api_registrations_unique'),
-    )
-
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     """Primary key. It allows the other fields to be nullable."""
 
     creation_date = db.Column(db.DateTime, default=datetime.utcnow)
-    # updated = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     partner = db.Column(db.Boolean(name='partner'), nullable=False,
                         default=False, server_default='0')
 
     name = db.Column(db.String(150), nullable=False)
 
-    email = db.Column(EmailType, index=True, nullable=False)
+    email = db.Column(EmailType, index=True, nullable=False, unique=True)
 
     organization = db.Column(db.String(255), nullable=False)
 

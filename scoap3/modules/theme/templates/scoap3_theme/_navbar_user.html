@@ -22,5 +22,5 @@
   </ul>
 </li>
 {% else %}
-  <li class="pull-right"><a href="/login">Login</a></li>
+  <li class="pull-right"><a href="{{ url_for(config.ADMIN_LOGIN_ENDPOINT) }}">Login</a></li>
 {% endif %}
