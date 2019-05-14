@@ -5,9 +5,9 @@
       <div class="row">
         <div class="col-md-offset-1 col-md-10">
           <h1>Automated data harvest and search utility</h1>
-          <p>All articles published Open Access through the SCOAP3 initiative, with complete metadata and several download formats are publicly available on the SCOAP3 repository, in addition to the platforms of participating publishers. Public OAI-PMH feeds are also available.</p>
+          <p>All articles published Open Access through the SCOAP3 initiative, with complete metadata and several download formats are publicly available on the SCOAP3 repository, in addition to the platforms of participating publishers.</p>
 
-          <p>The SCOAP3 API offers a pilot service to SCOAP3 partners to search and download articles and the corresponding metadata. A full documentation of the API is available here.</p>
+            <p>The SCOAP3 API offers a service to SCOAP3 partners to search and download articles and the corresponding metadata. A full documentation of the API is available <a href="https://github.com/SCOAP3/scoap3-next/wiki/For-partners" target="_blank">here</a>.</p>
 
           <p>The use of the API requires a token which will be provided upon registration.</p>
         </div>
@@ -15,24 +15,20 @@
       <div class="row partner-panels">
         <div class="col-md-offset-2 col-md-4 text-center">
           <div class="panel panel-default">
-              <!-- Default panel contents -->
               <div class="panel-body">
                   <h3>Already registered?</h3>
-                  <p>If you already have your account and you would like to see how to use SCOAP3 tools (API, etc.)</p>
-                  <a class="btn btn-lg btn-default" href="#" role="button">Tools</a>
+                  <a class="btn btn-lg btn-default" href="{{ url_for(config.ADMIN_LOGIN_ENDPOINT) }}" role="button">Login</a>
               </div>
-
           </div>
         </div>
+
         <div class="col-md-4 text-center">
           <div class="panel panel-default">
-              <!-- Default panel contents -->
               <div class="panel-body">
                   <h3>Create new account</h3>
-                  <p>To start using SCOAP3 tools (API, etc.) )you need first to register.</p>
-                  <a class="btn btn-lg btn-scoap3-download" href="" role="button">Register for tools</a>
+                  <p>To start using SCOAP3 tools (API, etc.) you need first to register.</p>
+                  <a class="btn btn-lg btn-default" href="{{ url_for('scoap3_api.register') }}" role="button">Register for tools</a>
               </div>
-
           </div>
         </div>
       </div>

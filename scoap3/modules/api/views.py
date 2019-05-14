@@ -1,9 +1,11 @@
 from __future__ import absolute_import, print_function
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, flash, current_app, url_for
+from invenio_accounts.models import User
+from invenio_mail.api import TemplatedMessage
+
 from .models import ApiRegistrations
 
-import sys
 from invenio_db import db
 
 blueprint = Blueprint(
@@ -15,14 +17,6 @@ blueprint = Blueprint(
 )
 
 
-class EmailRegisterdException(Exception):
-    pass
-
-
-class NameUsedException(Exception):
-    pass
-
-
 @blueprint.route('/')
 def index():
     return render_template(
@@ -31,34 +25,57 @@ def index():
     )
 
 
+def handler_registration():
+    if request.method != 'POST':
+        return False
+
+    email = request.form.get('email')
+
+    if not email:
+        flash('Please provide a valid email address!', 'error')
+        return False
+
+    already_exists = User.query.filter(User.email == email).count()
+    if already_exists:
+        flash("User with email '%s' is already registered." % email, 'error')
+        return False
+
+    request_already_exists = ApiRegistrations.query.filter(ApiRegistrations.email == email).count()
+    if request_already_exists:
+        flash("Registration failed! Request with email '%s' already exists." % email, 'error')
+        return False
+
+    new_reg = ApiRegistrations(partner=bool(int(request.form.get('partner', '0'))),
+                               name=request.form.get('name', ''),
+                               email=email,
+                               organization=request.form.get('organization', ''),
+                               role=request.form.get('role', ''),
+                               country=request.form.get('country', ''),
+                               description=request.form.get('description', '')
+                               )
+    db.session.add(new_reg)
+    db.session.commit()
+
+    msg = TemplatedMessage(
+        template_html='scoap3_api/email/new_registration.html',
+        subject='SCOAP3 - New partner registration',
+        sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
+        recipients=current_app.config.get('ADMIN_DEFAULT_EMAILS'),
+        ctx={'url': url_for('apiregistrations.index_view', _external=True)}
+    )
+    current_app.extensions['mail'].send(msg)
+
+    flash("Registration successful. You will receive an email as soon as your account gets approved.",
+          'message')
+
+    return True
+
+
 @blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-    message = ''
-    if request.method == 'POST':
-        try:
-            new_reg = ApiRegistrations(partner=bool(int(request.form['partner'])),
-                                       name=request.form['name'],
-                                       email=request.form['email'],
-                                       organization=request.form['organization'],
-                                       role=request.form['role'],
-                                       country=request.form['country'],
-                                       description=request.form['description']
-                                       )
-            db.session.add(new_reg)
-            db.session.commit()
-            message = ('success', "Registration succesful. We will confirm your registration shortly.")
-        except EmailRegisterdException():
-            message = (
-                'error',
-                "User with this <b>email</b>: {} is already registered.".format(request.args.get('inputEmail')))
-        except NameUsedException():
-            message = (
-                'error', "User with this <b>name</b>: {} is already registered".format(request.args.get('inputName')))
-        except Exception():
-            message = ('error', sys.exc_info()[0])
+    handler_registration()
 
     return render_template(
         'scoap3_api/register.html',
         title='SCOAP3 Repository - Tools registration',
-        message=message,
     )
