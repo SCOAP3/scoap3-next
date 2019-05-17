@@ -116,7 +116,6 @@ def dois2marc(self, key, value):
     return {
         '$ind1': 7,
         'a': value.get('value'),
-        '9': 'APS',
         '2': 'DOI'
     }
 
