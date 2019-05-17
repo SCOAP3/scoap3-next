@@ -63,7 +63,6 @@ def test_field_980(xml):
 def test_field_024(xml):
     assert get_subfield(xml, '024', 'a') == ['10.1103/PhysRevC.99.034901']
     assert get_subfield(xml, '024', '2') == ['DOI']
-    assert get_subfield(xml, '024', '9') == ['APS']
 
 
 def test_field_037(xml):
