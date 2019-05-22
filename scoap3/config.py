@@ -25,7 +25,9 @@ I18N_LANGUAGES = [
 
 COVER_TEMPLATE = "invenio_theme/page_cover.html"
 SERVER_NAME = 'localhost:5000'
+
 SECURITY_REGISTERABLE = False
+SECURITY_LOGIN_USER_TEMPLATE = 'scoap3_theme/login_user.html'
 
 # WARNING: Do not share the secret key - especially do not commit it to
 # version control.

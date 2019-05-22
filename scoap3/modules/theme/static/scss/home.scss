@@ -102,3 +102,8 @@ footer{
 div.MathJax_Display {
     display: inline !important;
 }
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}

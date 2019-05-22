@@ -4,13 +4,13 @@
   <div class="container">
       <div class="row">
         <div class="col-md-offset-1 col-md-10">
-            <h1>Tools registration</h1>
+            <h1>Registration</h1>
             <p>The SCOAP3 API & tools offer a pilot service to SCOAP3 partners. Usage of these tools requires a registration.</p>
               <div class="well col-md-offset-1 col-md-10">
                 <form class="form-horizontal" method="POST">
-                  <div class="form-group">
-                      <label for="partner" class="col-sm-3 control-label">Are you affiliated to a SCOAP3 partner institution?</label>
-                      <div class="col-sm-9">
+                  <div class="form-group required">
+                      <label for="partner" class="col-sm-5 control-label">Are you affiliated to a SCOAP3 partner institution?</label>
+                      <div class="col-sm-7">
                         <div class="radio-inline">
                           <label>
                             <input type="radio" name="partner" id="partner1" value="1" checked required>Yes, I am
@@ -23,33 +23,33 @@
                         </div>
                       </div>
                   </div>
-                  <div class="form-group">
-                    <label for="name" class="col-sm-3 control-label">Full name</label>
-                    <div class="col-sm-9">
+                  <div class="form-group required">
+                    <label for="name" class="col-sm-5 control-label">Full name</label>
+                    <div class="col-sm-7">
                       <input type="text" class="form-control" name="name" id="name" placeholder="John Doe" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">E-mail</label>
-                    <div class="col-sm-9">
+                  <div class="form-group required">
+                    <label for="email" class="col-sm-5 control-label">E-mail</label>
+                    <div class="col-sm-7">
                       <input type="email" class="form-control" name="email" id="email" placeholder="john.doe@example.com" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="organization" class="col-sm-3 control-label">Organization you are affilaited to</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="organization" name="organization" placeholder="Example University" required>
+                  <div class="form-group required">
+                    <label for="organization" class="col-sm-5 control-label">Organization you are affilaited to</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" id="organization" name="organization" placeholder="University / Workplace / Company / Institution" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="role" class="col-sm-3 control-label">Your role in the organisation</label>
-                    <div class="col-sm-9">
+                  <div class="form-group required">
+                    <label for="role" class="col-sm-5 control-label">Your role in the organisation</label>
+                    <div class="col-sm-7">
                       <input type="text" class="form-control" id="role" name="role" placeholder="Librarian" required>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="country" class="col-sm-3 control-label">Country</label>
-                    <div class="col-sm-9">
+                  <div class="form-group required">
+                    <label for="country" class="col-sm-5 control-label">Country</label>
+                    <div class="col-sm-7">
                       <select id="country" name="country" class="input-medium" required>
                             <option>Afghanistan</option>
                             <option>Albania</option>
@@ -254,13 +254,13 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="description" class="col-sm-3 control-label">[NON-PARTNERS] Describe why do you need access?</label>
-                    <div class="col-sm-9">
+                    <label for="description" class="col-sm-5 control-label">[NON-PARTNERS] Describe why do you need access?</label>
+                    <div class="col-sm-7">
                         <textarea rows="3"class="form-control" id="description" name="description" placeholder="Description"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
+                    <div class="col-sm-offset-5 col-sm-7">
                       <button type="submit" class="btn btn-default">Register</button>
                     </div>
                   </div>
