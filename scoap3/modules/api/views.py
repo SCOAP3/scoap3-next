@@ -65,17 +65,15 @@ def handler_registration():
     )
     current_app.extensions['mail'].send(msg)
 
-    flash("Registration successful. You will receive an email as soon as your account gets approved.",
-          'message')
-
     return True
 
 
 @blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-    handler_registration()
+    successful = handler_registration()
 
     return render_template(
         'scoap3_api/register.html',
         title='SCOAP3 Repository - Tools registration',
+        successful=successful
     )

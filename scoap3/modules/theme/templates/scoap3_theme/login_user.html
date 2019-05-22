@@ -1,0 +1,7 @@
+{%- extends "invenio_accounts/login_user.html" %}
+
+{%- block registerable %}
+<div class="panel-footer text-center">
+    <h4 class="text-muted">{% trans sitename=config.ACCOUNTS_SITENAME %}New to {{sitename}}?{% endtrans %} <a href="{{url_for('scoap3_api.register')}}">{{_('Sign Up')}}</a></h4>
+</div>
+{%- endblock %}
