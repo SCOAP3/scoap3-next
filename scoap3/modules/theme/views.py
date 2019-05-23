@@ -29,6 +29,7 @@ from __future__ import absolute_import, print_function
 from dateutil.parser import parse
 from flask import Blueprint
 from jinja2.utils import Markup
+import json
 
 blueprint = Blueprint(
     'scoap3_theme',
@@ -56,25 +57,30 @@ def format_author_name(name):
 
 
 @blueprint.app_template_filter()
-def tri_state_boolean_to_icon(input):
+def tri_state_boolean_to_icon(inp):
     template = '<span class="glyphicon glyphicon-%s-sign" aria-hidden="true"></span>'
     classes = {
         0: 'question',
         1: 'ok',
         -1: 'remove',
     }
-    return Markup(template % classes.get(input))
+    return Markup(template % classes.get(inp))
 
 
 @blueprint.app_template_filter()
-def boolean_to_icon(input):
+def boolean_to_icon(inp):
     template = '<span class="glyphicon glyphicon-%s-sign text-%s" aria-hidden="true"></span>'
-    if input:
+    if inp:
         return Markup(template % ('ok', 'success'))
 
     return Markup(template % ('remove', 'danger'))
 
 
 @blueprint.app_template_filter()
-def to_date(input):
-    return parse(input)
+def to_date(inp):
+    return parse(inp)
+
+
+@blueprint.app_template_filter()
+def pretty_json(inp):
+    return json.dumps(inp, indent=2)
