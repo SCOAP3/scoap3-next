@@ -1,35 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import requests_mock
-from invenio_workflows import Workflow
 from lxml import etree
-from workflow.engine_db import WorkflowStatus
-
-from tests.integration.test_article_upload import run_workflow_with_file, _get_record_from_workflow
-from tests.responses import read_response
 from tests.unit.test_dojson import get_subfield, namespaces
 
 
-def upload_test_record():
-    workflows_count = Workflow.query.count()
+def test_record_by_id(app_client, test_record):
+    assert 'control_number' in test_record
 
-    with requests_mock.Mocker() as m:
-        m.get('https://api.crossref.org/works/10.1016/j.nuclphysb.2018.07.004',
-              content=read_response('article_upload', 'crossref.org_works_10.1016_j.nuclphysb.2018.07.004'))
-        workflow = run_workflow_with_file('elsevier/elsevier.json', m)
-
-    assert workflow.status == WorkflowStatus.COMPLETED
-    assert Workflow.query.count() - workflows_count == 1
-
-    return _get_record_from_workflow(workflow)
-
-
-def test_record_by_id(app_client):
-    record = upload_test_record()
-
-    assert 'control_number' in record
-
-    identifier = 'oai:beta.scoap3.org:%s' % record['control_number']
+    identifier = 'oai:beta.scoap3.org:%s' % test_record['control_number']
     response = app_client.get('/oai2d?verb=GetRecord&metadataPrefix=marc21&identifier=%s' % identifier)
 
     xml = etree.fromstring(response.data).find('.//m:record', namespaces=namespaces)

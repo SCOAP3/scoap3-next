@@ -26,8 +26,13 @@ import os
 import sys
 
 import pytest
+import requests_mock
+from workflow.engine_db import WorkflowStatus
 
 from scoap3.factory import create_app
+
+from tests.integration.utils import get_record_from_workflow, run_article_upload_with_file
+from tests.responses import read_response
 
 # Use the helpers folder to store test helpers.
 # See: http://stackoverflow.com/a/33515264/374865
@@ -88,3 +93,15 @@ def request_context(app):
     """
     with app.test_request_context() as request_context:
         yield request_context
+
+
+@pytest.fixture(scope='function')
+def test_record():
+    with requests_mock.Mocker() as m:
+        m.get('https://api.crossref.org/works/10.1016/j.nuclphysb.2018.07.004',
+              content=read_response('article_upload', 'crossref.org_works_10.1016_j.nuclphysb.2018.07.004'))
+        workflow = run_article_upload_with_file('elsevier/elsevier.json', m)
+
+    assert workflow.status == WorkflowStatus.COMPLETED
+
+    return get_record_from_workflow(workflow)

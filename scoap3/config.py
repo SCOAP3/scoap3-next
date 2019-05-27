@@ -90,9 +90,9 @@ RECORDS_UI_ENDPOINTS = dict(
 )
 RECORDS_REST_SORT_OPTIONS = {
     "records-record": {
-        "record_creation_date": {
+        "date": {
             "title": 'Most recent',
-            "fields": ['record_creation_date'],
+            "fields": ['date'],
             "default_order": 'desc',
             "order": 1,
         },
@@ -108,8 +108,8 @@ RECORDS_REST_SORT_OPTIONS = {
 #: Default sort for records REST API.
 RECORDS_REST_DEFAULT_SORT = {
     "records-record": {
-        'query': '-record_creation_date',
-        'noquery': '-record_creation_date'
+        'query': '-date',
+        'noquery': '-date'
     },
 }
 
@@ -119,8 +119,8 @@ RECORDS_REST_FACETS = {
             "journal": terms_filter("publication_info.journal_title"),
             "country": terms_filter_with_must("authors.affiliations.country"),
             "collaboration": terms_filter("facet_collaboration"),
-            "record_creation_date": range_filter(
-                'record_creation_date',
+            "year": range_filter(
+                'year',
                 format='yyyy',
                 end_date_math='/y')
         },
@@ -145,9 +145,9 @@ RECORDS_REST_FACETS = {
                     "size": 20
                 }
             },
-            "record_creation_date": {
+            "year": {
                 "date_histogram": {
-                    "field": "record_creation_date",
+                    "field": "year",
                     "interval": "year",
                     "format": "yyyy",
                     "min_doc_count": 1

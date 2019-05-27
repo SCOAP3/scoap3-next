@@ -1,3 +1,4 @@
+import json
 from os import path
 from os.path import join
 
@@ -20,3 +21,9 @@ def read_response(folder, input_filename):
     file_path = path.join(get_response_dir(), folder, input_filename)
     with open(file_path, 'rb') as f:
         return f.read()
+
+
+def read_response_as_json(folder, input_json_filename):
+    file_path = path.join(get_response_dir(), folder, input_json_filename)
+    with open(file_path, 'rt') as f:
+        return json.loads(f.read())
