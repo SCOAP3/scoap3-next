@@ -55,7 +55,7 @@
             </a>
           </div>
           <div id="record_json" class="panel-collapse collapse">
-            <div class="panel-body"><pre>{{ record | pprint }}</pre></div>
+            <div class="panel-body"><pre>{{ record | pretty_json }}</pre></div>
           </div>
         </div>
       </div>
@@ -65,8 +65,8 @@
     {%- block record_extra_info %}
     <div class="extra-info col-sm-12 col-md-3">
       <dl>
-        <dt>Added on:</dt>
-        <dd>{{ (record['record_creation_date']|to_date).strftime('%d %B %Y') }}</dd>
+        <dt>Published on:</dt>
+        <dd>{{ (record['imprints'][0]['date']|to_date).strftime('%d %B %Y') }}</dd>
         <dt>Publisher:</dt>
         <dd>{{ record['imprints'][0]['publisher'] }}</dd>
         <dt>Published in:</dt>
@@ -113,18 +113,6 @@
               {{ file['filetype'] | upper }}
             </a>
           {% endfor %}
-        </div>
-        <div class="dropdown">
-          <button class="btn btn-scoap3-download dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Metadata Export
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#">JSON</a></li>
-            <li><a href="#">MARC</a></li>
-            <li><a href="#">MARC XML</a></li>
-            <li><a href="#">Dublin Core</a></li>
-          </ul>
         </div>
       </dl>
     </div><!-- /.extra-info -->
