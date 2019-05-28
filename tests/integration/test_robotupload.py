@@ -6,14 +6,10 @@ from flask import current_app
 from mock import patch
 from invenio_workflows import Workflow
 from workflow.engine_db import WorkflowStatus
-from workflow.errors import HaltProcessing
 
 from scoap3.modules.robotupload.views import handle_upload_request
+from tests.integration.utils import mock_halt
 from tests.responses import get_response_dir, read_response
-
-
-def mock_halt(msg, eng):
-    raise HaltProcessing(msg)
 
 
 def load_schema(name):

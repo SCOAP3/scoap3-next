@@ -169,7 +169,6 @@ def test_validate_required_fields():
                               'pubinfo_freetext': '',
                               'year': 2019}],
         'record_creation_date': '2019-04-08T14:30:41.101725',
-        'record_creation_year': 2019,
         'titles': [{'source': 'Springer',
                     'subtitle': '',
                     'title': 'Collider and gravitational wave complementarity in exploring the [...]'}]

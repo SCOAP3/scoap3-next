@@ -1,8 +1,8 @@
-<div class="panel panel-default" ng-show="vm.invenioSearchResults.aggregations.record_creation_date.buckets.length > 0">
+<div class="panel panel-default" ng-show="vm.invenioSearchResults.aggregations.year.buckets.length > 0">
     <div class="panel-heading">
         <h3 class="panel-title">Year</h3>
     </div>
-    <span class="pull-right" ng-show="vm.invenioSearchArgs['record_creation_date'] && vm.invenioSearchArgs.record_creation_date.length > 0">
+    <span class="pull-right" ng-show="vm.invenioSearchArgs['year'] && vm.invenioSearchArgs.year.length > 0">
           <a class="reset-button btn btn-primary btn-sm" ng-click="resetRangeSelection()">Reset</a>
     </span>
     <div class="panel-body">

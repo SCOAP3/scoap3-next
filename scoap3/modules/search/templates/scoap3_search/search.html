@@ -141,7 +141,7 @@
     {%- block search_facets %}
     <div class="col-md-3 col-md-pull-9 col-xs-12">
       <invenio-search-range
-        options='{"histogramId": "#year_hist", "selectionId": "#year_select", "name": "record_creation_date", "width": 180}'
+        options='{"histogramId": "#year_hist", "selectionId": "#year_select", "name": "year", "width": 180}'
         template="{{ url_for('static', filename=config.SEARCH_UI_JSTEMPLATE_RANGE_FACET) }}">
       </invenio-search-range>
       <invenio-search-facets

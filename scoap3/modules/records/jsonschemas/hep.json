@@ -83,10 +83,6 @@
                 }
             }
         },
-        "record_creation_year": {
-            "type": "integer",
-            "description": "Year part of record_creation_date. Probably will be deleted."
-        },
         "record_creation_date": {
             "type": "string",
             "format": "date-time"

@@ -21,6 +21,13 @@ def test_countries():
 
 def test_cache():
     test_country_key = "some cached value2"
+
+    # make sure there is no cache for this key yet
+    existing_cc = CountryCache.query.get(test_country_key)
+    if existing_cc:
+        db.session.delete(existing_cc)
+        db.session.commit()
+
     test_country_value = "Noland"
     cc = CountryCache()
     cc.key = test_country_key
