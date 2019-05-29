@@ -30,6 +30,7 @@ from StringIO import StringIO
 
 from datetime import datetime
 from flask import url_for, current_app
+from inspire_dojson.utils import strip_empty_values
 from inspire_schemas.utils import validate
 from inspire_utils.record import get_value
 
@@ -131,6 +132,10 @@ def delete_unwanted_fields(obj, eng):
 
     for key in keys_to_delete:
         obj.data.pop(key, None)
+
+
+def delete_empty_fields(obj, eng):
+    obj.data = strip_empty_values(obj.data)
 
 
 def is_record_in_db(obj, eng):
@@ -396,6 +401,7 @@ class ArticlesUpload(object):
         add_nations,
         remove_orcid_prefix,
         delete_unwanted_fields,
+        delete_empty_fields,
         build_files_data,
         STORE_REC,
         attach_files,

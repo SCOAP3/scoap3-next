@@ -56,8 +56,6 @@ def test_validate_required_and_extra_fields():
                      'surname': 'Alves'},
                     ],
         'copyright': [{'holder': 'The Author(s)',
-                       'material': '',
-                       'statement': '',
                        'year': '2019'}],
         'dois': [{'value': '10.1007/JHEP04(2019)052'}],
         'imprints': [{'date': '2019-04-05', 'publisher': 'Springer'}],
@@ -70,10 +68,8 @@ def test_validate_required_and_extra_fields():
                               'material': 'article',
                               'page_end': '40',
                               'page_start': '1',
-                              'pubinfo_freetext': '',
                               'year': 2019}],
         'titles': [{'source': 'Springer',
-                    'subtitle': '',
                     'title': 'Collider and gravitational wave complementarity in exploring the [...]'}],
 
         'should_not_be_here': True,
@@ -151,8 +147,6 @@ def test_validate_required_fields():
         'collections': [{'primary': 'Journal of High Energy Physics'}],
         'control_number': '46684',
         'copyright': [{'holder': 'The Author(s)',
-                       'material': '',
-                       'statement': '',
                        'year': '2019'}],
         'dois': [{'value': '10.1007/JHEP04(2019)052'}],
         'imprints': [{'date': '2019-04-05', 'publisher': 'Springer'}],
@@ -166,11 +160,9 @@ def test_validate_required_fields():
                               'material': 'article',
                               'page_end': '40',
                               'page_start': '1',
-                              'pubinfo_freetext': '',
                               'year': 2019}],
         'record_creation_date': '2019-04-08T14:30:41.101725',
         'titles': [{'source': 'Springer',
-                    'subtitle': '',
                     'title': 'Collider and gravitational wave complementarity in exploring the [...]'}]
     }
 

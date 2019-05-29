@@ -181,7 +181,6 @@ def test_hindawi():
     record = get_record_from_workflow(workflow)
     assert len(record['_files']) == 2
     assert record['_oai']['sets'] == ['AHEP']
-    assert record['abstracts'][0]['value'] == ''
     assert record['acquisition_source']['method'] == 'Hindawi'
 
     assert record['authors'] == [
@@ -210,20 +209,13 @@ def test_hindawi():
          'surname': 'Hatzikoutelis'}
     ]
     assert record['collections'] == [{'primary': 'Advances in High Energy Physics'}]
-    assert record['copyright'] == [{'holder': '', 'material': '',
-                                    'statement': u'Copyright \xa9 2019 Theocharis Kosmas et al.', 'year': '2019'}]
+    assert record['copyright'] == [{'statement': u'Copyright \xa9 2019 Theocharis Kosmas et al.', 'year': '2019'}]
     assert record['dois'] == [{'value': '10.1155/2019/4123108'}]
     assert record['imprints'] == [{'date': '2019-02-17', 'publisher': 'Hindawi'}]
     assert record['license'] == [{'license': 'CC-BY-3.0', 'url': 'http://creativecommons.org/licenses/by/3.0/'}]
     assert record['page_nr'] == [3]
-    assert record['publication_info'] == [{'artid': '',
-                                           'journal_issue': '',
-                                           'journal_title': 'Advances in High Energy Physics',
-                                           'journal_volume': '',
-                                           'material': '',
-                                           'page_end': '',
+    assert record['publication_info'] == [{'journal_title': 'Advances in High Energy Physics',
                                            'page_start': '4123108',
-                                           'pubinfo_freetext': '',
                                            'year': 2019}]
     assert record['titles'][0]['title'] == 'Neutrino Physics in the Frontiers of Intensities and Very ' \
                                            'High Sensitivities 2018'
@@ -300,20 +292,13 @@ def test_hindawi2():
         }
     ]
     assert record['collections'] == [{'primary': 'Advances in High Energy Physics'}]
-    assert record['copyright'] == [{'holder': '', 'material': '',
-                                    'statement': 'Copyright 2014 G. Bellini et al.', 'year': '2014'}]
+    assert record['copyright'] == [{'statement': 'Copyright 2014 G. Bellini et al.', 'year': '2014'}]
     assert record['dois'] == [{'value': '10.1155/2014/191960'}]
     assert record['imprints'] == [{'date': '2014-01-20', 'publisher': 'Hindawi Publishing Corporation'}]
     assert record['license'] == [{'license': 'CC-BY-3.0', 'url': 'http://creativecommons.org/licenses/by/3.0/'}]
     assert record['page_nr'] == [28]
-    assert record['publication_info'] == [{'artid': '',
-                                           'journal_issue': '',
-                                           'journal_title': 'Advances in High Energy Physics',
-                                           'journal_volume': '',
-                                           'material': '',
-                                           'page_end': '',
+    assert record['publication_info'] == [{'journal_title': 'Advances in High Energy Physics',
                                            'page_start': '191960',
-                                           'pubinfo_freetext': '',
                                            'year': 2014}]
     assert record['titles'][0]['title'] == 'Neutrino Oscillations'
 
@@ -373,20 +358,15 @@ def test_aps():
          'surname': 'Helset'}
     ]
     assert record['collections'] == [{'primary': 'HEP'}, {'primary': 'Citeable'}, {'primary': 'Published'}]
-    assert record['copyright'] == [{'holder': '', 'material': '',
-                                    'statement': 'Published by the American Physical Society', 'year': '2019'}]
+    assert record['copyright'] == [{'statement': 'Published by the American Physical Society', 'year': '2019'}]
     assert record['dois'] == [{'value': '10.1103/PhysRevD.99.045009'}]
     assert record['imprints'] == [{'date': '2019-02-19', 'publisher': 'APS'}]
     assert record['license'] == [{'license': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/'}]
     assert record['page_nr'] == [6]
-    assert record['publication_info'] == [{'artid': '',
-                                           'journal_issue': '4',
+    assert record['publication_info'] == [{'journal_issue': '4',
                                            'journal_title': 'Physical Review D',
                                            'journal_volume': '99',
                                            'material': 'article',
-                                           'page_end': '',
-                                           'page_start': '',
-                                           'pubinfo_freetext': '',
                                            'year': 2019}]
     assert record['titles'][0]['title'] == 'New factorization relations for nonlinear sigma model amplitudes'
 
@@ -442,18 +422,13 @@ def test_elsevier():
                                   'given_names': 'Manfred',
                                   'surname': 'Salmhofer'}]
     assert record['collections'] == [{u'primary': u'Nuclear Physics B'}]
-    assert record['copyright'] == [{'holder': 'The Author', 'material': '', 'statement': 'The Author', 'year': '2018'}]
+    assert record['copyright'] == [{'holder': 'The Author', 'statement': 'The Author', 'year': '2018'}]
     assert record['dois'] == [{'value': '10.1016/j.nuclphysb.2018.07.004'}]
     assert record['imprints'] == [{'date': '2018-07-04', 'publisher': 'Elsevier'}]
     assert record['license'] == [{'license': 'CC-BY-3.0', 'url': 'http://creativecommons.org/licenses/by/3.0/'}]
     assert record['publication_info'] == [{'artid': '14394',
-                                           'journal_issue': '',
                                            'journal_title': 'Nuclear Physics B',
-                                           'journal_volume': '',
                                            'material': 'article',
-                                           'page_end': '',
-                                           'page_start': '',
-                                           'pubinfo_freetext': '',
                                            'year': 2018}]
     assert record['titles'][0]['title'] == u'Renormalization in condensed matter: Fermionic systems \u2013 ' \
                                            u'from mathematics to materials'
@@ -513,8 +488,7 @@ def test_springer():
          'surname': u'Trawi\u0144ski'}
     ]
     assert record['collections'] == [{'primary': 'European Physical Journal C'}]
-    assert record['copyright'] == [{'holder': 'The Author(s)', 'material': '',
-                                    'statement': '', 'year': '2019'}]
+    assert record['copyright'] == [{'holder': 'The Author(s)', 'year': '2019'}]
     assert record['dois'] == [{'value': '10.1140/epjc/s10052-019-6572-3'}]
     assert record['imprints'] == [{'date': '2019-01-29', 'publisher': 'Springer'}]
     assert record['license'] == [{'license': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses//by/4.0'}]
@@ -526,7 +500,6 @@ def test_springer():
                                            'material': 'article',
                                            'page_end': '25',
                                            'page_start': '1',
-                                           'pubinfo_freetext': '',
                                            'year': 2019}]
     assert record['titles'][0]['title'] == 'Revisiting the mechanical properties of the nucleon'
 
@@ -583,8 +556,7 @@ def test_oup():
          'surname': 'Hendi'}
     ]
     assert record['collections'] == [{'primary': 'Progress of Theoretical and Experimental Physics'}]
-    assert record['copyright'] == [{'holder': '', 'material': '',
-                                    'statement': u'\xa9  The Author(s) 2019. Published by Oxford University Press on '
+    assert record['copyright'] == [{'statement': u'\xa9  The Author(s) 2019. Published by Oxford University Press on '
                                                  'behalf of the Physical Society of Japan.',
                                     'year': '2019'}]
     assert record['dois'] == [{'value': '10.1093/ptep/pty143'}]
@@ -596,9 +568,6 @@ def test_oup():
                                            'journal_title': 'Progress of Theoretical and Experimental Physics',
                                            'journal_volume': '2019',
                                            'material': 'article',
-                                           'page_end': '',
-                                           'page_start': '',
-                                           'pubinfo_freetext': '',
                                            'year': 2019}]
     assert record['titles'][0]['title'] == u'Entropy spectrum of charged BTZ black holes in' \
                                            u' massive gravity\u2019s rainbow'
