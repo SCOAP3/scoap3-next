@@ -30,6 +30,7 @@ from StringIO import StringIO
 
 from datetime import datetime
 from flask import url_for, current_app
+from inspire_dojson.utils import strip_empty_values
 from inspire_schemas.utils import validate
 from inspire_utils.record import get_value
 
@@ -113,7 +114,14 @@ def add_nations(obj, eng):
                 affiliation['value'])
 
 
-def clean_metadata(obj, eng):
+def remove_orcid_prefix(obj, eng):
+    orcid_prefix = 'orcid:'
+    for author in obj.data.get('authors', ()):
+        if 'orcid' in author and author['orcid'].lower().startswith(orcid_prefix):
+            author['orcid'] = author['orcid'][len(orcid_prefix):]
+
+
+def delete_unwanted_fields(obj, eng):
     """Delete unwanted fields"""
 
     keys_to_delete = (
@@ -124,6 +132,10 @@ def clean_metadata(obj, eng):
 
     for key in keys_to_delete:
         obj.data.pop(key, None)
+
+
+def delete_empty_fields(obj, eng):
+    obj.data = strip_empty_values(obj.data)
 
 
 def is_record_in_db(obj, eng):
@@ -387,7 +399,9 @@ class ArticlesUpload(object):
         set_schema,
         add_arxiv_category,
         add_nations,
-        clean_metadata,
+        remove_orcid_prefix,
+        delete_unwanted_fields,
+        delete_empty_fields,
         build_files_data,
         STORE_REC,
         attach_files,

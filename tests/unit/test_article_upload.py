@@ -3,7 +3,7 @@ from mock import patch
 from pytest import raises
 from workflow.errors import HaltProcessing
 
-from scoap3.modules.workflows.workflows.articles_upload import validate_record, get_first_doi
+from scoap3.modules.workflows.workflows.articles_upload import validate_record, get_first_doi, remove_orcid_prefix
 from tests.responses import read_hep_schema, read_titles_schema
 
 
@@ -56,8 +56,6 @@ def test_validate_required_and_extra_fields():
                      'surname': 'Alves'},
                     ],
         'copyright': [{'holder': 'The Author(s)',
-                       'material': '',
-                       'statement': '',
                        'year': '2019'}],
         'dois': [{'value': '10.1007/JHEP04(2019)052'}],
         'imprints': [{'date': '2019-04-05', 'publisher': 'Springer'}],
@@ -70,10 +68,8 @@ def test_validate_required_and_extra_fields():
                               'material': 'article',
                               'page_end': '40',
                               'page_start': '1',
-                              'pubinfo_freetext': '',
                               'year': 2019}],
         'titles': [{'source': 'Springer',
-                    'subtitle': '',
                     'title': 'Collider and gravitational wave complementarity in exploring the [...]'}],
 
         'should_not_be_here': True,
@@ -151,8 +147,6 @@ def test_validate_required_fields():
         'collections': [{'primary': 'Journal of High Energy Physics'}],
         'control_number': '46684',
         'copyright': [{'holder': 'The Author(s)',
-                       'material': '',
-                       'statement': '',
                        'year': '2019'}],
         'dois': [{'value': '10.1007/JHEP04(2019)052'}],
         'imprints': [{'date': '2019-04-05', 'publisher': 'Springer'}],
@@ -166,11 +160,9 @@ def test_validate_required_fields():
                               'material': 'article',
                               'page_end': '40',
                               'page_start': '1',
-                              'pubinfo_freetext': '',
                               'year': 2019}],
         'record_creation_date': '2019-04-08T14:30:41.101725',
         'titles': [{'source': 'Springer',
-                    'subtitle': '',
                     'title': 'Collider and gravitational wave complementarity in exploring the [...]'}]
     }
 
@@ -185,3 +177,21 @@ def test_no_doi():
 def test_doi():
     data = {'dois': [{'value': '10.1103/PhysRevD.99.045009'}]}
     assert get_first_doi(MockObj(data)) == '10.1103/PhysRevD.99.045009'
+
+
+def test_orcid():
+    data = {'authors': [{'orcid': '1234-1234-1234-1234'}]}
+    remove_orcid_prefix(MockObj(data), None)
+    assert data == {'authors': [{'orcid': '1234-1234-1234-1234'}]}
+
+
+def test_no_orcid():
+    data = {'authors': [{'full_name': 'G. Anthon'}]}
+    remove_orcid_prefix(MockObj(data), None)
+    assert data == {'authors': [{'full_name': 'G. Anthon'}]}
+
+
+def test_orcid_with_prefix():
+    data = {'authors': [{'orcid': 'ORCID:1234-1234-1234-1234'}]}
+    remove_orcid_prefix(MockObj(data), None)
+    assert data == {'authors': [{'orcid': '1234-1234-1234-1234'}]}

@@ -1,7 +1,7 @@
 
 <p>
   Compliance check failed for the following article: {{ results.data.doi }} ({{ results.data.publisher }}).
-<p>
+</p>
 
 Failed checks:
 <table>
@@ -12,7 +12,7 @@ Failed checks:
           <b>{{ check_name }}</b>
         </td>
         <td>
-          {{ check_data.details }}
+          {{ check_data.details|join(', ') }}
           {% if check_data.debug %}
             <br/><i>{{ check_data.debug }}</i>
           {% endif %}
@@ -21,6 +21,10 @@ Failed checks:
     {% endif %}
   {% endfor %}
 </table>
+
+<p>
+  Click <a href="{{ url_for('compliance.details_view', id=id) }}">here</a> to open the details page.
+</p>
 
 With kind regards,<br />
 The SCOAP3 Team
