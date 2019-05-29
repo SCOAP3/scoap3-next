@@ -115,7 +115,7 @@ class ComplianceView(ModelView):
     def action_rerun(self, ids):
         self.action_base(ids, Compliance.rerun)
         flash('%d record(s) will be checked shortly for compliance. '
-              'This process can a few minutes to complete.' % len(ids), 'success')
+              'This process can take a few minutes to complete.' % len(ids), 'success')
 
 
 compliance_adminview = {

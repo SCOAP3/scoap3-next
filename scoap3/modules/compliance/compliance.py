@@ -245,6 +245,9 @@ def check_compliance(obj, *args):
             subject='SCOAP3 - Compliance check',
             sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
             recipients=current_app.config.get('COMPLIANCE_EMAILS'),
-            ctx={'results': results}
+            ctx={
+                'results': results,
+                'id': '%s,%s' % (c.id, record.id),
+            }
         )
         current_app.extensions['mail'].send(msg)
