@@ -113,7 +113,14 @@ def add_nations(obj, eng):
                 affiliation['value'])
 
 
-def clean_metadata(obj, eng):
+def remove_orcid_prefix(obj, eng):
+    orcid_prefix = 'orcid:'
+    for author in obj.data.get('authors', ()):
+        if 'orcid' in author and author['orcid'].lower().startswith(orcid_prefix):
+            author['orcid'] = author['orcid'][len(orcid_prefix):]
+
+
+def delete_unwanted_fields(obj, eng):
     """Delete unwanted fields"""
 
     keys_to_delete = (
@@ -387,7 +394,8 @@ class ArticlesUpload(object):
         set_schema,
         add_arxiv_category,
         add_nations,
-        clean_metadata,
+        remove_orcid_prefix,
+        delete_unwanted_fields,
         build_files_data,
         STORE_REC,
         attach_files,
