@@ -109,43 +109,108 @@ def unescape_titles(record, parser):
         flag_modified(record, 'json')
 
 
-def utf8rec(data):
+def validate_utf8(data):
+    """
+    This function checks how many occurrences of "normal" utf8 characters are in the given string (ie. unconvertible)
+    and how many convertible occurrences.
+
+    There are cases, when a UTF8 character got "double encoded", i.e. its bytes were separately encoded.
+    This resulted in encodings like:
+      - "\u00c3\u00a0" instead of "\xe0"
+      - "\u00e2\u0080\u0093" istead of "\u2013", etc.
+
+    Returns an (convertible_count, unconvertible_count) tuple.
+    """
+    convertible_count = 0
+    unconvertible_count = 0
+
+    needed_bytes = 0
+    for char in data:
+        char_int = ord(char)
+        char_binary = format(char_int, '08b')
+        if needed_bytes:
+            if char_int <= 255 and char_binary[:2] == '10':
+                needed_bytes -= 1
+                if needed_bytes == 0:
+                    convertible_count += 1
+                continue
+            else:
+                needed_bytes = 0
+                unconvertible_count += 1
+
+        if char_int > 255:  # surely not convertible
+            unconvertible_count += 1
+        elif char_binary[0] == '0':
+            # standard ascii char
+            pass
+        elif char_binary[:3] == '110':
+            needed_bytes = 1
+        elif char_binary[:4] == '1110':
+            needed_bytes = 2
+        elif char_binary[:5] == '11110':
+            needed_bytes = 3
+        else:
+            # other proper utf8 character
+            unconvertible_count += 1
+
+    return convertible_count, unconvertible_count
+
+
+def utf8rec(data, record):
     if isinstance(data, basestring):
-        try:
-            return ''.join(chr(ord(c)) for c in data).decode('utf8')
-        except:  # noqa todo: implement proper exception handling (E722 do not use bare except)
-            return data
+        convertible_count, unconvertible_count = validate_utf8(data)
+        if convertible_count > 0:
+            if unconvertible_count == 0:
+                rinfo('converted "%s"' % (data[:50]), record)
+                return ''.join(chr(ord(c)) for c in data).decode('utf8')
+            else:
+                rerror('both convertible (%d) and unconvertible (%d) values are present in "%s"' %
+                       (convertible_count, unconvertible_count, data[:50]), record)
+
+        return data
 
     if isinstance(data, tuple) or isinstance(data, list):
-        return [utf8rec(element) for element in data]
+        return [utf8rec(element, record) for element in data]
 
     if isinstance(data, dict):
-        return {k: utf8rec(v) for k, v in data.items()}
+        return {k: utf8rec(v, record) for k, v in data.items()}
 
     if isinstance(data, numbers.Number) or data is None:
         return data
 
-    error('Couldn\'t determine the data type of %s. Returning the same.' % data)
+    rerror('Couldn\'t determine the data type of %s. Returning the same.' % data, record)
     return data
 
 
 @fixdb.command()
 @with_appcontext
 @click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'")
-def utf8(ids):
+@click.option('--dry-run', is_flag=True, default=False,
+              help='If set to True no changes will be committed to the database.')
+def utf8(ids, dry_run):
     """Unescape records and store data as unicode."""
 
     def proc(record):
         if record.json is None:
-            rerror('record.json is None', record)
+            rinfo('record.json is None', record)
             return
-        record.json = utf8rec(record.json)
-        flag_modified(record, 'json')
+
+        try:
+            new_json = utf8rec(record.json, record)
+            if record.json != new_json and not dry_run:
+                record.json = new_json
+                flag_modified(record, 'json')
+        except (UnicodeDecodeError, ValueError) as e:
+            rerror(u'failed: %s' % e, record)
 
     if ids:
         ids = ids.split(',')
 
     process_all_records(proc, control_ids=ids)
+
+    if dry_run:
+        error('NO CHANGES were committed to the database, because --dry-run flag was present.')
+
     info('all done!')
 
 
