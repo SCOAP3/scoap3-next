@@ -161,6 +161,13 @@ def test_utf8_fix_18100_title_removed_bad():
     assert utf8rec(data, MockRecord({})) == expected
 
 
+def test_utf8_fix_18100_expected_validate():
+    expected = u'Search for new resonances decaying to a W or Z boson and a Higgs boson in the \u2113+\u2113\u2212bb' \
+               u'\xaf , \u2113\u03bdbb\xaf , and \u03bd\u03bd\xafbb\xaf channels with pp collisions at s=13 TeV with ' \
+               u'the ATLAS detector'
+    assert validate_utf8(expected) == (0, 11)
+
+
 def test_utf8_fix_18100_title():
     data = u'Search for new resonances decaying to a W or Z boson and a Higgs boson in the \u00e2\u0084\u0093+' \
            u'\u00e2\u0084\u0093\u00e2\u0088\u0092bb\u00c2\u00af , \u00e2\u0084\u0093\u00ce\u00bdbb\u00c2\u00af , and ' \

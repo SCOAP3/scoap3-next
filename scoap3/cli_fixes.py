@@ -111,14 +111,13 @@ def unescape_titles(record, parser):
 
 def validate_utf8(data):
     """
-    UTF8 magic.
+    This function checks how many occurrences of "normal" utf8 characters are in the given string (ie. unconvertible)
+    and how many convertible occurrences.
 
     There are cases, when a UTF8 character got "double encoded", i.e. its bytes were separately encoded.
     This resulted in encodings like:
       - "\u00c3\u00a0" instead of "\xe0"
       - "\u00e2\u0080\u0093" istead of "\u2013", etc.
-    This function checks how many occurrences of "normal" utf8 characters are in the given string (ie. unconvertible)
-    and how many convertible occurrences.
 
     Returns an (convertible_count, unconvertible_count) tuple.
     """
@@ -126,11 +125,11 @@ def validate_utf8(data):
     unconvertible_count = 0
 
     needed_bytes = 0
-    for c in data:
-        c_i = ord(c)
-        c_b = format(c_i, '08b')
+    for char in data:
+        char_int = ord(char)
+        char_binary = format(char_int, '08b')
         if needed_bytes:
-            if c_b[-8:-6] == '10':
+            if char_int <= 255 and char_binary[:2] == '10':
                 needed_bytes -= 1
                 if needed_bytes == 0:
                     convertible_count += 1
@@ -139,19 +138,20 @@ def validate_utf8(data):
                 needed_bytes = 0
                 unconvertible_count += 1
 
-        if c_i > 255:  # surely not convertible
+        if char_int > 255:  # surely not convertible
             unconvertible_count += 1
-        elif c_b[-8] == '0':
+        elif char_binary[0] == '0':
             # standard ascii char
             pass
-        elif c_b[-8:-5] == '110':
+        elif char_binary[:3] == '110':
             needed_bytes = 1
-        elif c_b[-8:-4] == '1110':
+        elif char_binary[:4] == '1110':
             needed_bytes = 2
-        elif c_b[-8:-3] == '11110':
+        elif char_binary[:5] == '11110':
             needed_bytes = 3
         else:
-            raise ValueError('Unexpected case for character: %s = %s' % (c, c_b))
+            # other proper utf8 character
+            unconvertible_count += 1
 
     return convertible_count, unconvertible_count
 
@@ -201,7 +201,7 @@ def utf8(ids, dry_run):
                 record.json = new_json
                 flag_modified(record, 'json')
         except (UnicodeDecodeError, ValueError) as e:
-            rerror('failed: %s' % e, record)
+            rerror(u'failed: %s' % e, record)
 
     if ids:
         ids = ids.split(',')
