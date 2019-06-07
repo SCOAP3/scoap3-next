@@ -70,7 +70,29 @@
         <dt>Publisher:</dt>
         <dd>{{ record['imprints'][0]['publisher'] }}</dd>
         <dt>Published in:</dt>
-        <dd>{{ record['publication_info'][0]['journal_title'] }} {{ record['publication_info'][0]['journal_issue'] }} ({{ record['publication_info'][0]['year'] }}) {{ record['publication_info'][0]['page_artid'] }}</dd>
+        <dd>
+          {{ record['publication_info'][0]['journal_title'] }}
+
+          {% if record['publication_info'][0]['journal_volume'] %}
+            , Volume {{ record['publication_info'][0]['journal_volume'] }}
+          {% endif %}
+
+          ({{ record['publication_info'][0]['year'] }})
+
+          <br/>
+
+          {% if record['publication_info'][0]['journal_issue'] %}
+            Issue {{ record['publication_info'][0]['journal_issue'] }}
+          {% endif %}
+
+          <br/>
+
+          {% if record['publication_info'][0]['page_start'] and record['publication_info'][0]['page_end'] %}
+            Pages {{ record['publication_info'][0]['page_start'] }}-{{ record['publication_info'][0]['page_end'] }}
+          {% elif record['publication_info'][0]['artid'] %}
+            Article ID: {{ record['publication_info'][0]['artid'] }}
+          {% endif %}
+        </dd>
         <dt>DOI:</dt>
         <dd><a href="https://doi.org/{{ record['dois'][0]['value'] }}">https://doi.org/{{ record['dois'][0]['value'] }}</a></dd>
         {% if record['arxiv_eprints']%}
