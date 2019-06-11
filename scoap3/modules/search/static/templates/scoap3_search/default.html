@@ -19,7 +19,24 @@
       </span>
     </p>
     <small>
-        Published in: <b>{{ record.metadata.publication_info[0].journal_title }}</b> {{ record.metadata.publication_info[0].journal_issue }} ({{ record.metadata.publication_info[0].year }}) {{ record.metadata.publication_info[0].page_artid }} by <b>{{ record.metadata.imprints[0].publisher }}</b>
+        Published in:
+        <b>{{ record.metadata.publication_info[0].journal_title }}</b>
+
+        <span ng-if="record.metadata.publication_info[0].journal_volume">
+          , Volume {{ record.metadata.publication_info[0].journal_volume }}
+        </span>
+
+        ({{ record.metadata.publication_info[0].year }})
+
+        <span ng-if="record.metadata.publication_info[0].journal_issue">
+            Issue {{ record.metadata.publication_info[0].journal_issue }}
+        </span>
+
+        <span ng-if="record.metadata.publication_info[0].page_start && record.metadata.publication_info[0].page_end">
+          (Pages {{ record.metadata.publication_info[0].page_start }}-{{ record.metadata.publication_info[0].page_end }})
+        </span>
+
+        by <b>{{ record.metadata.imprints[0].publisher }}</b>
     </small><br>
     <small ng-if='record.metadata.dois[0]'>
         DOI: <a href='https://doi.org/{{ record.metadata.dois[0].value }}'>{{ record.metadata.dois[0].value }}</a>
