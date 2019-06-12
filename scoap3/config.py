@@ -77,7 +77,7 @@ RECORDS_REST_ENDPOINTS = dict(
         list_route='/records/',
         item_route='/records/<pid_value>',
         default_media_type='application/json',
-        max_result_window=10000,
+        max_result_window=50000,
         read_permission_factory_imp="scoap3.modules.records.permissions:record_read_permission_factory"
     ),
 )
@@ -437,7 +437,7 @@ WORKFLOWS_UI_REST_ENDPOINT = dict(
     file_item_route='/harvesting/<object_id>/files/<path:key>',
     search_index='workflows',
     default_media_type='application/json',
-    max_result_window=10000,
+    max_result_window=50000,
 )
 
 WORKFLOWS_UI_REST_SORT_OPTIONS = {
