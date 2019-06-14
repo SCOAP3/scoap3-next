@@ -1,36 +1,41 @@
-from os import path
-
 import requests_mock
 from pytest import raises
 
 from scoap3.utils.arxiv import get_arxiv_categories, clean_arxiv
-from tests.responses import get_response_dir
+from tests.responses import read_response
 
 
 def test_categories():
     """Test extraction arXiv categories from arXiv api."""
 
-    file_path = path.join(get_response_dir(), 'arxiv', '1811.00370.xml')
-    with open(file_path, 'rb') as f:
-        file_data = f.read()
+    file_data = read_response('arxiv', '1811.00370.xml')
 
-        with requests_mock.Mocker() as m:
-            m.get('http://export.arxiv.org/api/query?search_query=id:1811.00370', text=file_data)
-            categories = get_arxiv_categories('1811.00370')
-            assert categories == ['hep-th', 'gr-qc', 'math-ph', 'math.MP']
+    with requests_mock.Mocker() as m:
+        m.get('http://export.arxiv.org/api/query?search_query=id:1811.00370', text=file_data)
+        categories = get_arxiv_categories('1811.00370')
+        assert categories == ['hep-th', 'gr-qc', 'math-ph', 'math.MP']
 
 
 def test_empty_response():
     """Test extraction arXiv categories from arXiv api."""
 
-    file_path = path.join(get_response_dir(), 'arxiv', 'empty.xml')
-    with open(file_path, 'rb') as f:
-        file_data = f.read()
+    file_data = read_response('arxiv', 'empty.xml')
 
-        with requests_mock.Mocker() as m:
-            m.get('http://export.arxiv.org/api/query?search_query=id:not_found', text=file_data)
-            categories = get_arxiv_categories('not_found')
-            assert categories == []
+    with requests_mock.Mocker() as m:
+        m.get('http://export.arxiv.org/api/query?search_query=id:not_found', text=file_data)
+        categories = get_arxiv_categories('not_found')
+        assert categories == []
+
+
+def test_ambiguous_title():
+    """Test for receiving more then one result for partial title."""
+    title = 'hep'
+
+    arxiv_search_title_hep = read_response('arxiv', 'search_title_hep.xml')
+    with requests_mock.Mocker() as m:
+        m.get('http://export.arxiv.org/api/query?search_query=ti:"%s"' % title, text=arxiv_search_title_hep)
+        categories = get_arxiv_categories(title=title)
+        assert categories == []
 
 
 def test_extract_arxiv_id():

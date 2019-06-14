@@ -27,6 +27,7 @@ import re
 from flask import current_app
 from inspire_utils.record import get_value
 from invenio_db import db
+from invenio_search import current_search_client
 from invenio_workflows import workflow_object_class
 from invenio_workflows.tasks import start
 
@@ -117,3 +118,7 @@ def create_from_json(records, apply_async=True):
         current_app.logger.info('Parsed record {}.'.format(i))
 
     return results
+
+
+def is_doi_in_db(doi):
+    return current_search_client.count(q='dois.value:"%s"' % doi)['count'] > 0

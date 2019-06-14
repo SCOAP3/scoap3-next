@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Dti%3A%22hep%22%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=ti:"hep"&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/VdUW8/8c/YZFqjIuJMdp2LXKgfM</id>
+  <updated>2019-06-12T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">114</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1807.00735v1</id>
+    <updated>2018-06-27T11:44:35Z</updated>
+    <published>2018-06-27T11:44:35Z</published>
+    <title>hep-th</title>
+    <summary>  We apply techniques in natural language processing, computational
+linguistics, and machine-learning to investigate papers in hep-th and four
+related sections of the arXiv: hep-ph, hep-lat, gr-qc, and math-ph. All of the
+titles of papers in each of these sections, from the inception of the arXiv
+until the end of 2017, are extracted and treated as a corpus which we use to
+train the neural network Word2Vec. A comparative study of common n-grams,
+linear syntactical identities, word cloud and word similarities is carried out.
+We find notable scientific and sociological differences between the fields. In
+conjunction with support vector machines, we also show that the syntactic
+structure of the titles in different sub-fields of high energy and mathematical
+physics are sufficiently different that a neural network can perform a binary
+classification of formal versus phenomenological sections with 87.1% accuracy,
+and can perform a finer five-fold classification across all sections with 65.1%
+accuracy.
+</summary>
+    <author>
+      <name>Yang-Hui He</name>
+    </author>
+    <author>
+      <name>Vishnu Jejjala</name>
+    </author>
+    <author>
+      <name>Brent D. Nelson</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">50 pages, 6 figures</arxiv:comment>
+    <link href="http://arxiv.org/abs/1807.00735v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1807.00735v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/astro-ph/9810083v1</id>
+    <updated>1998-10-06T11:19:09Z</updated>
+    <published>1998-10-06T11:19:09Z</published>
+    <title>Bounds on hep neutrinos</title>
+    <summary>  The excess of highest energy solar-neutrino events recently observed by
+Superkamiokande can be in principle explained by anomalously high
+$hep$-neutrino flux $\Phi_{\nu}(hep)$. Without using SSM calculations, from the
+solar luminosity constraint we derive that $\Phi_\nu(hep)/S_{13}$ cannot exceed
+the SSM estimate by more than a factor three. If one makes the additional
+hypothesis that $hep$ neutrino production occurs where the $^3$He concentration
+is at equilibrium, helioseismology gives an upper bound which is (less then)
+two times the SSM prediction. We argue that the anomalous $hep$-neutrino flux
+of order of that observed by Superkamiokande cannot be explained by
+astrophysics, but rather by a large production cross-section.
+</summary>
+    <author>
+      <name>G. Fiorentini</name>
+    </author>
+    <author>
+      <name>V. Berezinsky</name>
+    </author>
+    <author>
+      <name>S. Degl'Innocenti</name>
+    </author>
+    <author>
+      <name>B. Ricci</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1016/S0370-2693(98)01417-8</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1016/S0370-2693(98)01417-8" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">7 pages, RevTeX file</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys.Lett.B444:387-390,1998</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/astro-ph/9810083v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/astro-ph/9810083v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="astro-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="astro-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/nucl-th/0402008v2</id>
+    <updated>2004-12-20T02:25:36Z</updated>
+    <published>2004-02-03T05:04:47Z</published>
+    <title>The Solar $Hep$ Process</title>
+    <summary>  The $Hep$ process is a weak-interaction reaction, $He3 + p \to He4 + e^+ +
+\nu_e$, which occurs in the sun. There is renewed interest in $Hep$ owing to
+current experimental efforts to extract from the observed solar neutrino
+spectrum information on non-standard physics in the neutrino sector. $Hep$
+produces highest-energy solar neutrinos, although their flux is quite modest.
+This implies that the $Hep$ neutrios can at some level influence the solar
+neutrino spectrum near its upper end. Therefore, a precise interpretation of
+the observed solar neutrino spectrum requires an accurate estimate of the $Hep$
+rate. This is an interesting but challenging task. We describe the difficulties
+involved and how the recent theoretical developments in nuclear physics have
+enabled us to largely overcome these difficulties. A historical survey of $Hep$
+calculations is followed by an overview of the latest developments. We compare
+the results obtained in the conventional nuclear physics approach and those
+obtained in a newly developed effective field theory approach. We also discuss
+the current status of the experiments relevant to $Hep$.
+</summary>
+    <author>
+      <name>Kuniharu Kubodera</name>
+    </author>
+    <author>
+      <name>Tae-Sun Park</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1146/annurev.nucl.54.070103.181239</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1146/annurev.nucl.54.070103.181239" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Published in Ann. Rev. Nuc. Part. Sci. vol. 54, 19 (2004). AR209
+  macros are included</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Ann.Rev.Nucl.Part.Sci. 54 (2004) 19-37</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/nucl-th/0402008v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/nucl-th/0402008v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1905.00002v2</id>
+    <updated>2019-05-27T13:33:04Z</updated>
+    <published>2019-04-29T20:48:26Z</published>
+    <title>The Scikit-HEP Project</title>
+    <summary>  The Scikit-HEP project is a community-driven and community-oriented effort
+with the aim of providing Particle Physics at large with a Python scientific
+toolset containing core and common tools. The project builds on five pillars
+that embrace the major topics involved in a physicist's analysis work:
+datasets, data aggregations, modelling, simulation and visualisation. The
+vision is to build a user and developer community engaging collaboration across
+experiments, to emulate scikit-learn's unified interface with Astropy's embrace
+of third-party packages, and to improve discoverability of relevant tools.
+</summary>
+    <author>
+      <name>Eduardo Rodrigues</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">6 pages, 2 figures, Proceedings of the 23rd International Conference
+  on Computing in High Energy and Nuclear Physics (CHEP 2018), 9-13 July 2018</arxiv:comment>
+    <link href="http://arxiv.org/abs/1905.00002v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1905.00002v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/physics/0306151v1</id>
+    <updated>2003-06-20T14:25:23Z</updated>
+    <published>2003-06-20T14:25:23Z</published>
+    <title>A Geometrical Modeller for HEP</title>
+    <summary>  Geometrical modelling generally provides the geometrical description of a
+special structure and a set of services to "navigate" through its structure.
+HEP geometrical modellers are designed to handle high complexity detector
+geometries and they are usually embedded within simulation MC frameworks. The
+fact that these frameworks greatly depend on their specific geometrical tools
+makes simulation applications hardly portable to MC's other than the one they
+were designed for. The ALICE Off-line Project in collaboration with the ROOT
+team is proposing a multi-purpose geometrical modeller for HEP that is
+integrated within a virtual MC infrastructure. This tool has been optimised for
+performance with the geometry setups of several HEP experiments and provides a
+single representation for the geometry used by different applications such as
+simulation, reconstruction or event display.
+</summary>
+    <author>
+      <name>R. Brun</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">CERN, Geneva</arxiv:affiliation>
+    </author>
+    <author>
+      <name>A. Gheata</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">CERN, Geneva</arxiv:affiliation>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Institute of Space Sciences, Bucharest) For ALICE off-line collaboration</arxiv:affiliation>
+    </author>
+    <author>
+      <name>M. Gheata</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Institute of Space Sciences, Bucharest) For ALICE off-line collaboration</arxiv:affiliation>
+    </author>
+    <author>
+      <name>For ALICE off-line collaboration</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Talk from the 2003 Computing in High Energy and Nuclear Physics
+  (CHEP03), La Jolla, Ca, USA, March 2003, 7 pages, 6 figures, PDF. PSN THMT001</arxiv:comment>
+    <link href="http://arxiv.org/abs/physics/0306151v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/physics/0306151v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1209.5994v1</id>
+    <updated>2012-09-26T16:34:18Z</updated>
+    <published>2012-09-26T16:34:18Z</published>
+    <title>Publication patterns in HEP computing</title>
+    <summary>  An overview of the evolution of computing-oriented publications in high
+energy physics following the start of operation of LHC. Quantitative analyses
+are illustrated, which document the production of scholarly papers on
+computing-related topics by high energy physics experiments and core tools
+projects, and the citations they receive. Several scientometric indicators are
+analyzed to characterize the role of computing in high energy physics
+literature. Distinctive features of software-oriented and hardware-oriented
+scholarly publications are highlighted. Current patterns and trends are
+compared to the situation in previous generations' experiments.
+</summary>
+    <author>
+      <name>M. G. Pia</name>
+    </author>
+    <author>
+      <name>T. Basaglia</name>
+    </author>
+    <author>
+      <name>Z. W. Bell</name>
+    </author>
+    <author>
+      <name>P. V. Dressendorfer</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1088/1742-6596/396/6/062015</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1088/1742-6596/396/6/062015" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">To be published in the Proc. of CHEP (Computing in High Energy
+  Physics) 2012</arxiv:comment>
+    <link href="http://arxiv.org/abs/1209.5994v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1209.5994v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.soc-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ex/9705008v1</id>
+    <updated>1997-05-13T06:29:56Z</updated>
+    <published>1997-05-13T06:29:56Z</published>
+    <title>Totem: a case study in HEP</title>
+    <summary>  It is being proved that the neurochip \Totem{} is a viable solution for high
+quality and real time computational tasks in HEP, including event
+classification, triggering and signal processing. The architecture of the chip
+is based on a "derivative free" algorithm called Reactive Tabu Search (RTS),
+highly performing even for low precision weights. ISA, VME or PCI boards
+integrate the chip as a coprocessor in a host computer. This paper presents: 1)
+the state of the art and the next evolution of the design of \Totem{}; 2) its
+ability in the Higgs search at LHC as an example.
+</summary>
+    <author>
+      <name>S. Dusini</name>
+    </author>
+    <author>
+      <name>F. Ferrari</name>
+    </author>
+    <author>
+      <name>I. Lazzizzera</name>
+    </author>
+    <author>
+      <name>P. Lee</name>
+    </author>
+    <author>
+      <name>A. Sartori</name>
+    </author>
+    <author>
+      <name>A. Sidoti</name>
+    </author>
+    <author>
+      <name>G. Tecchiolli</name>
+    </author>
+    <author>
+      <name>A. Zorat</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Latex, elsart.sty, 5 pages, talk presented by I.Lazzizzera at CHEP97
+  (Berlin, April 1997)</arxiv:comment>
+    <link href="http://arxiv.org/abs/hep-ex/9705008v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ex/9705008v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ex/0010061v1</id>
+    <updated>2000-10-24T23:46:12Z</updated>
+    <published>2000-10-24T23:46:12Z</published>
+    <title>Clopper-Pearson Bounds from HEP Data Cuts</title>
+    <summary>  For the measurement of $N_s$ signals in $N$ events rigorous confidence bounds
+on the true signal probability $p_{\rm exact}$ were established in a classical
+paper by Clopper and Pearson [Biometrica 26, 404 (1934)]. Here, their bounds
+are generalized to the HEP situation where cuts on the data tag signals with
+probability $P_s$ and background data with likelihood $P_b&lt;P_s$. The Fortran
+program which, on input of $P_s$, $P_b$, the number of tagged data $N^Y$ and
+the total number of data $N$, returns the requested confidence bounds as well
+as bounds on the entire cumulative signal distribution function, is available
+on the web. In particular, the method is of interest in connection with the
+statistical analysis part of the ongoing Higgs search at the LEP experiments.
+</summary>
+    <author>
+      <name>Bernd A. Berg</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1063/1.1405275</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1063/1.1405275" rel="related"/>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">AIP Conf.Proc. 583 (2001) 104-106</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ex/0010061v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ex/0010061v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ex/0311059v1</id>
+    <updated>2003-11-27T18:49:58Z</updated>
+    <published>2003-11-27T18:49:58Z</published>
+    <title>Systematic Analysis of HEP Collider Data</title>
+    <summary>  Compelling arguments suggest the presence of new physics at energy scales
+that will be probed by frontier energy colliders over the next decade.
+Arguments for each of the many flavors of new physics that have been proposed
+seem much less compelling. The wide variety of experimental signatures by which
+new physics may manifest itself suggests the desirability of analyzing all high
+energy collider data in one systematic framework. These proceedings describe
+two potentially useful pieces of such a framework: Sleuth enables a
+model-independent search for new high-pT physics, and Quaero automates tests of
+particular hypotheses against high energy collider data. A sampling of
+algorithmic detail is provided in the form of a procedure for choosing an
+optimal binning when computing likelihood ratios.
+</summary>
+    <author>
+      <name>Bruce Knuteson</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Proceedings from PhyStat2003, SLAC, September 2003</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">ECONF C030908:MODT003,2003</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ex/0311059v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ex/0311059v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ph/0007053v1</id>
+    <updated>2000-07-06T04:12:34Z</updated>
+    <published>2000-07-06T04:12:34Z</published>
+    <title>Automatic Computation of Cross Sections in HEP</title>
+    <summary>  For the study of reactions in High Energy Physics (HEP) automatic computation
+systems have been developed and are widely used nowadays. GRACE is one of such
+systems and it has achieved much success in analyzing experimental data. Since
+we deal with the cross section whose value can be given by calculating hundreds
+of Feynman diagrams, we manage the large scale calculation, so that effective
+symbolic manipulation, the treat of singularity in the numerical integration
+are required. The talk will describe the software design of GRACE system and
+computational techniques in the GRACE.
+</summary>
+    <author>
+      <name>F. Yuasa</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">KEK</arxiv:affiliation>
+    </author>
+    <author>
+      <name>J. Fujimoto</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">KEK</arxiv:affiliation>
+    </author>
+    <author>
+      <name>T. Ishikawa</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">KEK</arxiv:affiliation>
+    </author>
+    <author>
+      <name>M. Jimbo</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Tokyo Management College</arxiv:affiliation>
+    </author>
+    <author>
+      <name>T. Kaneko</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Meiji-Gakuin University</arxiv:affiliation>
+    </author>
+    <author>
+      <name>K. Kato</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Kogakuin University</arxiv:affiliation>
+    </author>
+    <author>
+      <name>S. Kawabata</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">KEK</arxiv:affiliation>
+    </author>
+    <author>
+      <name>T. Kon</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Seikei University</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Y. Kurihara</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">KEK</arxiv:affiliation>
+    </author>
+    <author>
+      <name>M. Kuroda</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Meiji-Gakuin University</arxiv:affiliation>
+    </author>
+    <author>
+      <name>N. Nakazawa</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Kogakuin University</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Y. Shimizu</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">KEK</arxiv:affiliation>
+    </author>
+    <author>
+      <name>H. Tanaka</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Rikkyo University</arxiv:affiliation>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1143/PTPS.138.18</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1143/PTPS.138.18" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">6 pages, Latex, ICCP5</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Prog.Theor.Phys.Suppl. 138 (2000) 18-23</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ph/0007053v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ph/0007053v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>

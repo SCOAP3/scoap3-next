@@ -1,0 +1,55 @@
+<p>
+  Check for missing articles were recently performed for articles published after {{ from_date }}.
+</p>
+
+<p>
+Check overview:
+</p>
+
+<table border="1">
+  <tr>
+    <th>Journal</th>
+    <th>Outside of participation dates</th>
+    <th>Can't determine arXiv category</th>
+    <th>Non-hep category</th>
+    <th>Properly in db</th>
+    <th>Missing from db</th>
+  </tr>
+  {% for journal in statistics %}
+  <tr>
+    <td>{{ journal.journal }}</td>
+    <td>{{ journal.outside_cooperation_dates }}</td>
+    <td>{{ journal.no_arxiv_categroy }}</td>
+    <td>{{ journal.non_hep_arxiv_category }}</td>
+    <td>{{ journal.in_db }}</td>
+    <td>{{ journal.missing }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% if missing_articles %}
+  <p>
+    Missing articles:
+  </p>
+
+  <table border="1">
+    <tr>
+      <th>DOI</th>
+      <th>Title</th>
+    </tr>
+    {% for doi, title in missing_articles %}
+    <tr>
+      <td>{{ doi }}</td>
+      <td>{{ title }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>
+    Seems like there are no missing articles! :)
+  </p>
+{% endif %}
+<br/>
+
+With kind regards,<br />
+The SCOAP3 Team

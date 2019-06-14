@@ -183,7 +183,7 @@ def authors_and_share_summary(article, country_list, countries_ordering_name):
 def get_record_date(doi):
     crossref_url = current_app.config.get('CROSSREF_API_URL')
 
-    api_response = requests_retry_session().get(crossref_url % doi)
+    api_response = requests_retry_session().get(crossref_url + doi)
     if api_response.status_code != 200:
         current_app.logger.error('Failed to query crossref for doi: %s. Error code: %s' % (doi, api_response.status_code))
         return None
