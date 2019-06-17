@@ -207,7 +207,7 @@ def check_compliance(obj, *args):
 
     checks = {}
 
-    # Add temporary data to evalutaion
+    # Add temporary data to evaluation
     extra_data = {'extracted_text': __extract_article_text(record)}
 
     all_checks_accepted = True
@@ -239,7 +239,7 @@ def check_compliance(obj, *args):
     db.session.commit()
 
     # send notification about failed checks
-    if not all_checks_accepted:
+    if not all_checks_accepted and c.has_final_result_changed():
         msg = TemplatedMessage(
             template_html='scoap3_compliance/admin/failed_email.html',
             subject='SCOAP3 - Compliance check',
