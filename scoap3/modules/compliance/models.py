@@ -139,3 +139,10 @@ class Compliance(db.Model):
 
         self.results = new_results
         flag_modified(self, 'results')
+
+    def has_final_result_changed(self):
+        """
+        Returns true if there are no history entries or if the last history entry and current result
+        have different accepted value.
+        """
+        return not self.history or self.history[0]['results']['accepted'] != self.results['accepted']
