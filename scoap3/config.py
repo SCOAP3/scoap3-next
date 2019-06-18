@@ -88,6 +88,7 @@ RECORDS_UI_ENDPOINTS = dict(
         template='scoap3_theme/records/detail.html',
     ),
 )
+RECORDS_UI_TOMBSTONE_TEMPLATE = 'scoap3_theme/records/tombstone.html'
 RECORDS_REST_SORT_OPTIONS = {
     "records-record": {
         "date": {
