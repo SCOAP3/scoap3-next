@@ -90,6 +90,7 @@ setup(
             'scoap3_compliance = scoap3.modules.compliance.views:blueprint',
             'scoap3_analysis = scoap3.modules.analysis.views:blueprint',
             'scoap3_tools = scoap3.modules.tools.views:blueprint',
+            'scoap3_records = scoap3.modules.records.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
@@ -127,7 +128,8 @@ setup(
         'invenio_celery.tasks': [
             'robotupload = scoap3.modules.robotupload.tasks',
             'analysis = scoap3.modules.analysis.tasks',
-            'workflows = scoap3.modules.workflows.tasks'
+            'workflows = scoap3.modules.workflows.tasks',
+            'records = scoap3.modules.records.tasks'
         ],
         'invenio_oauth2server.scopes': [
             'harvesting_read = scoap3.modules.oauth2server.scopes:harvesting_read',

@@ -116,7 +116,7 @@ def _received_in_time(record, extra_data):
     """Check if publication is not older than 24h """
     api_url = current_app.config.get('CROSSREF_API_URL')
 
-    api_response = requests.get(api_url % get_first_doi(record))
+    api_response = requests.get(api_url + get_first_doi(record))
     if api_response.status_code != 200:
         return True, ('Article is not on crossref.', ), 'Api response: %s' % api_response.text
 
@@ -244,7 +244,7 @@ def check_compliance(obj, *args):
             template_html='scoap3_compliance/admin/failed_email.html',
             subject='SCOAP3 - Compliance check',
             sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
-            recipients=current_app.config.get('COMPLIANCE_EMAILS'),
+            recipients=current_app.config.get('OPERATIONS_EMAILS'),
             ctx={
                 'results': results,
                 'id': '%s,%s' % (c.id, record.id),

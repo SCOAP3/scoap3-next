@@ -5,6 +5,7 @@
 from __future__ import absolute_import, print_function
 
 from collections import OrderedDict
+from datetime import datetime, timedelta
 from logging.config import dictConfig
 
 from invenio_records_rest.facets import terms_filter, range_filter
@@ -566,8 +567,8 @@ JSONSCHEMAS_REPLACE_REFS = False
 
 MAIL_DEFAULT_SENDER = 'repo.admin@scoap3.org'
 ADMIN_DEFAULT_EMAILS = ['scoap3repo.admin@cern.ch', ]
-COMPLIANCE_EMAILS = ['scoap3repo.admin@cern.ch', ]
-CROSSREF_API_URL = 'https://api.crossref.org/works/%s'
+OPERATIONS_EMAILS = ['scoap3repo.admin@cern.ch', ]
+CROSSREF_API_URL = 'https://api.crossref.org/works/'
 
 #  Abbreviations
 PUBLISHER_ABBREVIATIONS = {
@@ -598,6 +599,38 @@ JOURNAL_ABBREVIATIONS = {
     'Physical Review Letters': 'PRL',
     'Progress of Theoretical and Experimental Physics': 'PTEP',
 }
+
+ARTICLE_CHECK_JOURNALS = {
+    'Acta Physica Polonica B': (datetime(2014, 1, 1), None),
+    'Advances in High Energy Physics': (datetime(2014, 1, 1), None),
+    'Chinese Physics C': (datetime(2014, 1, 1), None),
+    'The European Physical Journal C': (datetime(2014, 1, 1), None),
+    'Journal of High Energy Physics': (datetime(2014, 1, 1), None),
+    'Nuclear Physics B': (datetime(2014, 1, 1), None),
+    'Physics Letters B': (datetime(2014, 1, 1), None),
+    'Physical Review C': (datetime(2018, 1, 1), None),
+    'Physical Review D': (datetime(2018, 1, 1), None),
+    'Physical Review Letters': (datetime(2018, 1, 1), None),
+    'Progress of Theoretical and Experimental Physics': (datetime(2014, 1, 1), None),
+}
+"""Settings for the automatic journal check.
+Key has to be the name of the journal (used as a filter on crossref),
+the value has to be a (start_date, end_date) tuple, which will be used as a publication date filter.
+"""
+
+ARTICLE_CHECK_DEFAULT_TIME_DELTA = timedelta(days=4)
+"""Representing the timedelta used to determine the starting date for the check."""
+
+ARTICLE_CHECK_HAS_TO_BE_HEP = (
+    'Acta Physica Polonica B',
+    'Advances in High Energy Physics',
+    'Chinese Physics C',
+    'Physical Review C',
+    'Physical Review D',
+    'Physical Review Letters',
+    'Progress of Theoretical and Experimental Physics',
+)
+"""List of journals in which articles need to have 'hep-*' primary arXiv category."""
 
 PARTNER_COUNTRIES = ["Australia", "Austria", "Belgium", "Canada", "China", "CERN",
                      "Czech Republic", "Denmark", "Finland", "France", "Germany",
@@ -816,3 +849,5 @@ JOURNAL_TITLE_MAPPING = {
 CLI_HARVEST_SLEEP_TIME = 0.5  # seconds
 CLI_HARVEST_MAX_WAIT_TIME = 60  # seconds
 CLI_HARVEST_MAX_RETRIES = 2
+
+INSPIRE_LITERATURE_API_URL = 'https://labs.inspirehep.net/api/literature'

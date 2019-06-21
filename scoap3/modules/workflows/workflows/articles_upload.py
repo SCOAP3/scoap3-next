@@ -49,6 +49,7 @@ from jsonschema.exceptions import ValidationError, SchemaError
 from scoap3.dojson.utils.nations import find_country
 from scoap3.modules.compliance.compliance import check_compliance
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
+from scoap3.modules.records.util import is_doi_in_db
 from scoap3.utils.arxiv import get_arxiv_categories
 
 from workflow.patterns.controlflow import IF_ELSE
@@ -140,7 +141,7 @@ def delete_empty_fields(obj, eng):
 
 def is_record_in_db(obj, eng):
     """Checks if record is in database"""
-    return es.count(q='dois.value:"%s"' % (get_first_doi(obj),))['count'] > 0
+    return is_doi_in_db(get_first_doi(obj))
 
 
 def set_springer_source_if_needed(obj):
