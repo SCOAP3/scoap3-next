@@ -1,6 +1,8 @@
 import numbers
 
 import click
+from dateutil.parser import parse as parse_date
+from flask import current_app
 from flask.cli import with_appcontext
 from invenio_db import db
 from invenio_files_rest.models import Location
@@ -8,6 +10,8 @@ from sqlalchemy.orm.attributes import flag_modified
 
 from scoap3.dojson.utils.nations import find_country
 from scoap3.utils.click_logging import rerror, error, info, rinfo
+from scoap3.utils.crossref import parse_date_parts
+from scoap3.utils.http import requests_retry_session
 from scoap3.utils.processor import process_all_records
 
 
@@ -188,3 +192,63 @@ def init_default_location():
         db.session.commit()
     else:
         error("Default location already exists.")
+
+
+def process_record_for_publication_date_fix(record, min_day_diff, dry_run):
+    """
+    Processes all records and checks the difference between crossref dates and the imprints.date field.
+    If the difference is bigger then `min_day_diff`, then it will override the date stored.
+    """
+
+    crossref_url = current_app.config.get('CROSSREF_API_URL')
+
+    if record.json:
+        doi = record.json['dois'][0]['value']
+        api_response = requests_retry_session().get(crossref_url + doi)
+
+        if api_response.status_code != 200:
+            rerror('api response %d' % api_response.status_code, record)
+            return
+
+        api_message = api_response.json()['message']
+        if 'published-online' in api_message:
+            cross_date = parse_date_parts(api_message['published-online']['date-parts'][0])
+        else:
+            cross_date = parse_date_parts(api_message['created']['date-parts'][0])
+
+        pub_date = parse_date(record.json['imprints'][0]['date'])
+
+        diff_days = abs((pub_date-cross_date).days)
+
+        rinfo('diff: %d' % diff_days, record)
+        if diff_days >= min_day_diff:
+            formatted_cross_date = cross_date.date().isoformat()
+            rinfo('replaced: %s -> %s' % (record.json['imprints'][0]['date'], formatted_cross_date), record)
+
+            # only save changes if not a dry_run
+            if not dry_run:
+                record.json['imprints'][0]['date'] = formatted_cross_date
+                flag_modified(record, 'json')
+
+
+@fixdb.command()
+@with_appcontext
+@click.option('--dry-run', is_flag=True, default=False,
+              help='If set to True no changes will be committed to the database.')
+@click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'.")
+@click.option('--min_day_diff', default=2, help="Minimum day difference when replace will take place.")
+def fix_publication_date(dry_run, ids, min_day_diff):
+    """
+    Processes all records and checks the difference between crossref dates and the imprints.date field.
+    If the difference is bigger then `min_day_diff`, then it will override the date stored.
+    """
+
+    if ids:
+        ids = ids.split(',')
+
+    process_all_records(process_record_for_publication_date_fix, 50, ids, min_day_diff, dry_run)
+
+    info('ALL DONE!')
+
+    if dry_run:
+        error('NO CHANGES were committed to the database, because --dry-run flag was present.')
