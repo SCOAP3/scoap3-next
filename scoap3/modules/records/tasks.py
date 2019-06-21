@@ -106,6 +106,8 @@ def performe_article_check_for_journal(from_date, journal, cooperation_dates):
     if cooperation_dates_from is None and cooperation_dates_to is None:
         logger.warning('Cooperation dates for journal "%s" not provided.' % journal)
 
+    ignore_after_datetime = datetime.now() - current_app.config.get('ARTICLE_CHECK_IGNORE_TIME')
+
     filter_param = 'from-pub-date:%s,container-title:%s' % (from_date, journal)
     # process all articles in the given journal
     for item in get_crossref_items(filter_param):
@@ -118,6 +120,12 @@ def performe_article_check_for_journal(from_date, journal, cooperation_dates):
             logger.info('Journal outside of cooperation dates. doi=%s journal=%s pubdate=%s' % (
                 doi, journal, pub_date))
             journal_stats['outside_cooperation_dates'] += 1
+            continue
+
+        # if an article was published too recently, it shouldn't be reported
+        if pub_date >= ignore_after_datetime:
+            logger.info('Skipping article because it was published too recentry. doi=%s journal=%s pubdate=%s' % (
+                doi, journal, pub_date))
             continue
 
         # if we are only interested in hep articles, check arxiv category
