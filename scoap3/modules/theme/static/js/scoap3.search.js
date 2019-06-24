@@ -42,5 +42,22 @@ $(document).ready(function() {
             // Change first letter of words to uppercase, except: and, of
             return value.replace(/(?:(?!of|and\b)\b\w+)\S*/g, (txt => txt[0].toUpperCase() + txt.substr(1).toLowerCase()));
         }
+    })
+    .filter('short_title_journal', function() {
+        return function(value) {
+            if (!value) return value;
+            if (typeof value !== 'string') {
+                throw invalidPipeArgumentError(value);
+            }
+
+            var journal_mapping = {
+                "Journal of Cosmology and Astroparticle Physics": "J. of Cos. and Astropartcile P.",
+                "Advances in High Energy Physics": "Adv.High Energy Phys.",
+                "Progress of Theoretical and Experimental Physics": 'Prog. of Theor. and Exp. Phys.',
+                "Journal of High Energy Physics": "J. High Energy Phys."
+            };
+
+            return journal_mapping[value] || value
+        }
     });
 });
