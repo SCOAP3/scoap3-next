@@ -632,7 +632,7 @@ ARTICLE_CHECK_HAS_TO_BE_HEP = (
 )
 """List of journals in which articles need to have 'hep-*' primary arXiv category."""
 
-ARTICLE_CHECK_IGNORE_TIME = timedelta(hours=24)
+ARTICLE_CHECK_IGNORE_TIME = timedelta(hours=48)
 """An article will only be considered missing if it was published at least ARTICLE_CHECK_IGNORE_TIME ago."""
 
 PARTNER_COUNTRIES = ["Australia", "Austria", "Belgium", "Canada", "China", "CERN",

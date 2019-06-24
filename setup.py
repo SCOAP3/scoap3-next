@@ -12,7 +12,7 @@ with open(os.path.join('scoap3',
                        'version.py'), 'rt') as fp:
     exec(fp.read(), version)
 
-install_requires = [
+install_requires = (
     'celery<4.0',
     'idutils',
     'inspire-crawler~=1.0',
@@ -44,7 +44,16 @@ install_requires = [
     'invenio-workflows-files~=1.0',
     'invenio-workflows-ui==2.0.1',
     'urllib3==1.23',
-],
+)
+
+tests_require = (
+    'freezegun~=0.3,>=0.3.11',
+)
+
+extras_require = {
+    'tests': tests_require,
+    'all': install_requires + tests_require
+}
 
 setup(
     name='scoap3',
@@ -136,4 +145,6 @@ setup(
         ],
     },
     install_requires=install_requires,
+    tests_require=tests_require,
+    extras_require=extras_require
 )
