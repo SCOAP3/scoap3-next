@@ -7,8 +7,6 @@ from datetime import datetime
 
 from flask import Blueprint, request, jsonify, current_app
 
-from werkzeug.utils import secure_filename
-
 from scoap3.modules.records.util import create_from_json
 from scoap3.modules.robotupload.util import save_package, parse_received_package
 from .errorhandler import InvalidUsage
@@ -34,11 +32,6 @@ def handle_invalid_usage(error):
     return response
 
 
-def allowed_file(filename):
-    extensions = current_app.config.get('ROBOTUPLOAD_ALLOWED_EXTENSIONS')
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in extensions
-
-
 def validate_request(remote_addr):
     """
     Check if the request comes from a trusted source and parameters are valid.
@@ -50,19 +43,9 @@ def validate_request(remote_addr):
         logger.warning('Robotupload access from unauthorized ip remote_addr=%s' % remote_addr)
         raise InvalidUsage("Client IP %s cannot use the service." % remote_addr, status_code=403)
 
-    uploaded_file = request.files.get('file')
-    if not uploaded_file:
-        logger.warning('Robotupload accessed without a file specified remote_addr=%s' % remote_addr)
-        raise InvalidUsage("Please specify file body to input.")
-
-    if not uploaded_file.filename:
-        logger.warning('Robotupload accessed without a filename specified. remote_addr=%s' % remote_addr)
-        raise InvalidUsage("Please specify file body to input. Filename missing.")
-
-    if not allowed_file(uploaded_file.filename):
-        logger.warning('Robotupload file invalid extension remote_addr=%s filename=%s' % (remote_addr,
-                                                                                          uploaded_file.filename))
-        raise InvalidUsage("File does not have an accepted file format.", status_code=415)
+    if not request.data:
+        logger.warning('Robotupload accessed without data. remote_addr=%s' % remote_addr)
+        raise InvalidUsage("Please specify data to input.")
 
 
 def check_permission_for_journal(journal_title, remote_addr, package_name):
@@ -85,19 +68,16 @@ def handle_upload_request(apply_async=True):
     """Handle articles that are pushed from publishers."""
     remote_addr = request.environ['REMOTE_ADDR']
 
-    logger.info('Robotupload request received. remote_addr=%s headers=%s args=%s' % (remote_addr, request.headers,
-                                                                                     request.args))
+    logger.info('Robotupload request received. remote_addr=%s headers=%s args=%s data=%s' % (
+        remote_addr, request.headers, request.args, request.data[:100]))
     validate_request(remote_addr)
 
-    uploaded_file = request.files['file']
-    filename = secure_filename(uploaded_file.filename)
-    file_data = uploaded_file.read()
+    package_name = 'robotupload_%s_%s' % (datetime.now().isoformat(), remote_addr)
 
-    logger.info('Package delivered. filename=%s' % filename)
+    logger.info('Package delivered. package_name=%s' % package_name)
 
     # save delivered package
-    delivery_time = datetime.now().isoformat()
-    package_name = '_'.join((delivery_time, filename, remote_addr))
+    file_data = request.data
     save_package(package_name, file_data)
 
     obj = parse_received_package(file_data, package_name)
@@ -119,6 +99,11 @@ def legacy_robotupload(mode):
 
 @blueprint.route('/robotupload', methods=ALLOWED_METHODS)
 def robotupload():
-    """View for handling pushing publishers"""
+    """View for handling pushing publishers
+
+    Data is expected to be present in http body.
+    Example call using curl:
+    `curl -H "Content-Type: application/json" --data @data.xml http://localhost:5000/batchuploader/robotupload`
+    """
     handle_upload_request()
     return "OK"

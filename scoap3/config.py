@@ -835,8 +835,6 @@ FILES_REST_PERMISSION_FACTORY = 'scoap3.modules.records.permissions:files_permis
 ROBOTUPLOAD_FOLDER = '/tmp/robotupload'
 ROBOTUPLOAD_ALLOWED_USERS = {'127.0.0.1': ['ALL'], }
 
-ROBOTUPLOAD_ALLOWED_EXTENSIONS = ['xml']
-
 JOURNAL_PUBLISHER_MAPPING = {
     'Acta Physica Polonica B': 'Jagiellonian University',
     'Chinese Physics C': 'Institute of Physics Publishing/Chinese Academy of Sciences',
