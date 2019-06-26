@@ -54,19 +54,13 @@ def test_check_perm_invalid_journal():
         call_check_perms(journal_title, allowed_users, remote_addr)
 
 
-class MockFile():
-    def __init__(self, filename):
-        self.filename = filename
-
-
 class MockRequest():
-    def __init__(self, filename=None):
-        self.files = dict(file=MockFile(filename)) if filename else dict()
+    def __init__(self, data):
+        self.data = data
 
 
 def call_validate_request(remote_addr, allowed_users, request):
-    exts = ['xml']
-    config = dict(ROBOTUPLOAD_ALLOWED_USERS=allowed_users, ROBOTUPLOAD_ALLOWED_EXTENSIONS=exts)
+    config = dict(ROBOTUPLOAD_ALLOWED_USERS=allowed_users)
     with patch('scoap3.modules.robotupload.views.current_app', MockApp(config)),\
             patch('scoap3.modules.robotupload.views.request', request):
         validate_request(remote_addr)
@@ -75,7 +69,7 @@ def call_validate_request(remote_addr, allowed_users, request):
 def test_validate_valid():
     remote_addr = '2.2.2.2'
     allowed_users = {'2.2.2.2': ['ALL'], }
-    call_validate_request(remote_addr, allowed_users, MockRequest('data.xml'))
+    call_validate_request(remote_addr, allowed_users, MockRequest('<record></record>'))
 
 
 def test_validate_invalid_ip():
@@ -83,7 +77,7 @@ def test_validate_invalid_ip():
     allowed_users = {'2.2.2.2': ['ALL'], }
 
     with raises(InvalidUsage):
-        call_validate_request(remote_addr, allowed_users, MockRequest('data.xml'))
+        call_validate_request(remote_addr, allowed_users, MockRequest('<record></record>'))
 
 
 def test_validate_invalid_nofile():
@@ -91,12 +85,4 @@ def test_validate_invalid_nofile():
     allowed_users = {'2.2.2.2': ['ALL'], }
 
     with raises(InvalidUsage):
-        call_validate_request(remote_addr, allowed_users, MockRequest())
-
-
-def test_validate_invalid_extension():
-    remote_addr = '2.2.2.2'
-    allowed_users = {'2.2.2.2': ['ALL'], }
-
-    with raises(InvalidUsage):
-        call_validate_request(remote_addr, allowed_users, MockRequest('my.py'))
+        call_validate_request(remote_addr, allowed_users, MockRequest(''))

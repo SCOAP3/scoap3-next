@@ -22,25 +22,12 @@ def run_workflow(input_filename, request_mock):
 
     # build request mock
     class RequestMock():
-        class MockFile():
-            def __init__(self):
-                # read request data
-                self.file_data = read_response('robotupload', input_filename)
-
-            filename = input_filename
-
-            def read(self):
-                # read once to mimic original stream behaviour
-                result = self.file_data
-                self.file_data = ''
-                return result
+        def __init__(self):
+            self.data = read_response('robotupload', input_filename)
 
         headers = {'User-Agent': 'invenio_webupload', 'Host': 'localhost'}
         environ = {'REMOTE_ADDR': '127.0.0.1'}
         args = {}
-        files = {
-            'file': MockFile()
-        }
 
     # run workflow with patched request
     with patch('scoap3.modules.robotupload.views.request', RequestMock()), \
