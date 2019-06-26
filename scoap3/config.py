@@ -61,6 +61,7 @@ SEARCH_ELASTIC_HOSTS = 'localhost'
 
 RECORDS_REST_ENDPOINTS = dict(
     recid=dict(
+        default_endpoint_prefix=True,
         pid_type='recid',
         pid_minter='scoap3_minter',
         pid_fetcher='recid',
@@ -76,7 +77,7 @@ RECORDS_REST_ENDPOINTS = dict(
                                  ':json_v1_search'),
         },
         list_route='/records/',
-        item_route='/records/<pid_value>',
+        item_route='/records/<pid(recid):pid_value>',
         default_media_type='application/json',
         max_result_window=50000,
         read_permission_factory_imp="scoap3.modules.records.permissions:record_read_permission_factory"

@@ -7,13 +7,19 @@ import sys
 
 from invenio_base.app import create_app_factory
 from invenio_base.wsgi import create_wsgi_factory
-from invenio_config import create_conf_loader
+from invenio_config import create_config_loader
 
 from . import config
 
 env_prefix = 'APP'
 
-config_loader = create_conf_loader(config=config, env_prefix=env_prefix)
+
+def config_loader(app, **kwargs_config):
+    invenio_config_loader = create_config_loader(config=config, env_prefix=env_prefix)
+    result = invenio_config_loader(app, **kwargs_config)
+    app.url_map.strict_slashes = False
+    return result
+
 
 instance_path = os.getenv(env_prefix + '_INSTANCE_PATH') or \
     os.path.join(sys.prefix, 'var', 'scoap3-instance')
