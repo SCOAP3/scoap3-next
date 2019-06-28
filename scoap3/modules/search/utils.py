@@ -1,10 +1,21 @@
 from elasticsearch_dsl import Q
 from flask import current_app
 from flask_login import current_user
+from inspire_utils.record import get_value
 from invenio_search import RecordsSearch
 
 
 class Scoap3RecordsSearch(RecordsSearch):
+
+    @staticmethod
+    def escape_query_string(result):
+        query = get_value(result, 'query.query_string.query')
+
+        if query:
+            # escape slashes
+            result['query']['query_string']['query'] = query.replace('/', '\\/')
+
+        return result
 
     def to_dict(self, count=False, **kwargs):
         result = super(Scoap3RecordsSearch, self).to_dict(count, **kwargs)
@@ -17,6 +28,9 @@ class Scoap3RecordsSearch(RecordsSearch):
         new_size = current_app.config.get('API_UNAUTHENTICATED_PAGE_LIMIT')
         if not current_user.is_authenticated and new_size:
             result['size'] = new_size
+
+        # escape query_string
+        self.escape_query_string(result)
 
         return result
 
