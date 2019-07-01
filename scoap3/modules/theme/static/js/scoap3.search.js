@@ -51,8 +51,8 @@ $(document).ready(function() {
             }
 
             var journal_mapping = {
-                "Journal of Cosmology and Astroparticle Physics": "J. of Cos. and Astropartcile P.",
-                "Advances in High Energy Physics": "Adv.High Energy Phys.",
+                "Journal of Cosmology and Astroparticle Physics": "J. Cosm. and Astroparticle P.",
+                "Advances in High Energy Physics": "Adv. High Energy Phys.",
                 "Progress of Theoretical and Experimental Physics": 'Prog. of Theor. and Exp. Phys.',
                 "Journal of High Energy Physics": "J. High Energy Phys."
             };
