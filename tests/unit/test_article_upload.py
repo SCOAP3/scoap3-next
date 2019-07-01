@@ -195,3 +195,9 @@ def test_orcid_with_prefix():
     data = {'authors': [{'orcid': 'ORCID:1234-1234-1234-1234'}]}
     remove_orcid_prefix(MockObj(data), None)
     assert data == {'authors': [{'orcid': '1234-1234-1234-1234'}]}
+
+
+def test_orcid_with_https_prefix():
+    data = {'authors': [{'orcid': 'https://orcid.org/0000-0003-3413-9548'}]}
+    remove_orcid_prefix(MockObj(data), None)
+    assert data == {'authors': [{'orcid': '0000-0003-3413-9548'}]}

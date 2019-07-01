@@ -116,10 +116,11 @@ def add_nations(obj, eng):
 
 
 def remove_orcid_prefix(obj, eng):
-    orcid_prefix = 'orcid:'
+    orcid_prefixes = ('orcid:', 'https://orcid.org/', 'http://orcid.org/')
     for author in obj.data.get('authors', ()):
-        if 'orcid' in author and author['orcid'].lower().startswith(orcid_prefix):
-            author['orcid'] = author['orcid'][len(orcid_prefix):]
+        for orcid_prefix in orcid_prefixes:
+            if 'orcid' in author and author['orcid'].lower().startswith(orcid_prefix):
+                author['orcid'] = author['orcid'][len(orcid_prefix):]
 
 
 def delete_unwanted_fields(obj, eng):
