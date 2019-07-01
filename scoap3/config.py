@@ -838,6 +838,11 @@ FILES_REST_PERMISSION_FACTORY = 'scoap3.modules.records.permissions:files_permis
 # ##################### Robotupload ############################
 ROBOTUPLOAD_FOLDER = '/tmp/robotupload'
 ROBOTUPLOAD_ALLOWED_USERS = {'127.0.0.1': ['ALL'], }
+"""IP addresses of users who can access the robotupload API as a dictionary.
+
+Key is the ip or subnet, value is a list of journals or 'ALL' if all journals are allowed for the specified ip.
+Example: {'127.0.0.1': ['ALL'], '127.0.0.0/16': ['ALL']}
+"""
 
 JOURNAL_PUBLISHER_MAPPING = {
     'Acta Physica Polonica B': 'Jagiellonian University',
