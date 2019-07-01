@@ -5,10 +5,11 @@ from __future__ import absolute_import, print_function
 import logging
 from datetime import datetime
 
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify
 
 from scoap3.modules.records.util import create_from_json
-from scoap3.modules.robotupload.util import save_package, parse_received_package
+from scoap3.modules.robotupload.util import save_package, parse_received_package, can_ip_access, \
+    get_allowed_journals_by_ip
 from .errorhandler import InvalidUsage
 
 logger = logging.getLogger(__name__)
@@ -39,7 +40,7 @@ def validate_request(remote_addr):
     :param remote_addr: remote ip address
     """
 
-    if remote_addr not in current_app.config.get('ROBOTUPLOAD_ALLOWED_USERS'):
+    if not can_ip_access(remote_addr):
         logger.warning('Robotupload access from unauthorized ip remote_addr=%s' % remote_addr)
         raise InvalidUsage("Client IP %s cannot use the service." % remote_addr, status_code=403)
 
@@ -57,7 +58,7 @@ def check_permission_for_journal(journal_title, remote_addr, package_name):
     :param package_name: delivered package name, for logging purposes
     """
 
-    allowed_journals_for_user = current_app.config.get('ROBOTUPLOAD_ALLOWED_USERS').get(remote_addr, ())
+    allowed_journals_for_user = get_allowed_journals_by_ip(remote_addr)
     if journal_title not in allowed_journals_for_user and 'ALL' not in allowed_journals_for_user:
         logger.warning('Wrong journal name in metadata. remote_addr=%s package_name=%s journal_title=%s' % (
             remote_addr, package_name, journal_title))

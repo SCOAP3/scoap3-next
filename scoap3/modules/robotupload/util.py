@@ -5,6 +5,7 @@ from os.path import join, isdir
 
 from flask import url_for, current_app
 from inspire_dojson import marcxml2record
+from ipaddress import ip_address, ip_network
 
 from scoap3.modules.robotupload.errorhandler import InvalidUsage
 
@@ -82,3 +83,21 @@ def _add_additional_info(obj):
     if 'number_of_pages' in obj:
         obj['page_nr'] = [obj['number_of_pages']]
         del obj['number_of_pages']
+
+
+def get_allowed_journals_by_ip(remote_addr):
+    """Returns list of journals the user with remote_addr has permission to upload to."""
+    if remote_addr:
+        remote_addr = ip_address(unicode(remote_addr))
+
+        for allowed_ips, journals in current_app.config.get('ROBOTUPLOAD_ALLOWED_USERS', {}).items():
+            subnet = ip_network(unicode(allowed_ips))
+            if remote_addr in subnet:
+                return journals
+
+    return ()
+
+
+def can_ip_access(remote_addr):
+    """Returns True if the given ip has permission to upload to any of the journals."""
+    return bool(get_allowed_journals_by_ip(remote_addr))
