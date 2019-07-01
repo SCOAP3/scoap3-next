@@ -841,6 +841,7 @@ ROBOTUPLOAD_ALLOWED_USERS = {'127.0.0.1': ['ALL'], }
 """IP addresses of users who can access the robotupload API as a dictionary.
 
 Key is the ip or subnet, value is a list of journals or 'ALL' if all journals are allowed for the specified ip.
+The name of the journal has to match the publication_info.journal_title field.
 Example: {'127.0.0.1': ['ALL'], '127.0.0.0/16': ['ALL']}
 """
 
