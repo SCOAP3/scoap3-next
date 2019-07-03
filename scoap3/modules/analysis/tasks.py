@@ -218,7 +218,6 @@ def calculate_articles_impact(from_date=None, until_date=None,
             search_results = parse_inspire_records(step, inspire_query, jrec)
         else:
             search_results = es.search(index='records-record',
-                                       doc_type='record-v1.0.0',
                                        body=get_query(count, step, from_date, until_date))
 
         country_list = get_country_list(countries_ordering)

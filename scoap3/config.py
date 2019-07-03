@@ -40,7 +40,6 @@ THEME_LOGO = 'img/logo.png'
 # ASSETS_DEBUG = True
 # COLLECT_STORAGE = "flask_collect.storage.link"
 SITE_URL = "www.beta.scoap3.org"
-ELASTICSEARCH_HOST = "localhost"
 
 SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
@@ -57,6 +56,7 @@ BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/scoap3"
 
 # Elasticsearch
 INDEXER_DEFAULT_INDEX = "records-record"
+INDEXER_DEFAULT_DOC_TYPE = "_doc"
 SEARCH_ELASTIC_HOSTS = 'localhost'
 
 
@@ -68,7 +68,6 @@ RECORDS_REST_ENDPOINTS = dict(
         pid_fetcher='recid',
         search_class=Scoap3RecordsSearch,
         search_index='records-record',
-        search_type=['record-v1.0.0'],
         record_serializers={
             'application/json': ('invenio_records_rest.serializers'
                                  ':json_v1_response'),
@@ -404,7 +403,6 @@ WORKFLOWS_UI_API_URL = "/api/harvesting/"
 WORKFLOWS_UI_DATA_TYPES = dict(
     harvesting=dict(
         search_index='workflows-harvesting',
-        search_type='harvesting',
     ),
 )
 
@@ -513,7 +511,7 @@ OAISERVER_PAGE_SIZE = 100
 #: Increase resumption token expire time.
 OAISERVER_RESUMPTION_TOKEN_EXPIRE_TIME = 60
 #: PIDStore fetcher for OAI ID control numbers
-OAISERVER_CONTROL_NUMBER_FETCHER = 'scoap3_recid_fetcher'
+OAISERVER_CONTROL_NUMBER_FETCHER = 'scoap3_fetcher'
 #: Support email for OAI-PMH.
 OAISERVER_ADMIN_EMAILS = ['scoap3repo.admin@cern.ch']
 #: Do not register signals to automatically update records on updates.
