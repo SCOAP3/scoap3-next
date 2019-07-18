@@ -79,6 +79,7 @@ setup(
             'scoap3_workflows = scoap3.modules.workflows.admin:workflows',
             'scoap3_workflows_summary = scoap3.modules.workflows.admin:workflows_summary',
             'scoap3_compliance = scoap3.modules.compliance.admin:compliance_adminview',
+            'invenio_records = scoap3.modules.records.admin:record_adminview',
         ],
         'invenio_base.apps': [
             'scoap3 = scoap3:Scoap3',

@@ -1,0 +1,74 @@
+{% extends 'admin/model/edit.html' %}
+
+{% block edit_form %}
+    {% if model.objects %}
+        <table class="table">
+            <tr>
+                <td>Workflow uuid</td>
+                <td>{{ model.uuid }}</td>
+            </tr>
+            <tr>
+                <td>Workflow object id</td>
+                <td>{{ model.objects[0].id }}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>{{ model.status }}</td>
+            </tr>
+            <tr>
+                <td>DOI (if available)</td>
+                <td>{{ model.objects[0].data['dois'][0]['value'] }}</td>
+            </tr>
+            <tr>
+                <td>Title (if available)</td>
+                <td>{{ model.objects[0].data['titles'][0]['title'] }}</td>
+            </tr>
+        </table>
+
+        <form method="post" id="edit_form">
+            <div id="data_editor"></div>
+            <input id="data_input" name="data" type="hidden" value="{{ model.objects[0].data|pretty_json }}" />
+            <br/>
+            <input name="submit_continue" type="submit" value="Save & continue" class="btn btn-warning"
+                   title="Modifications will be saved and the evaluation of the workflow will continue." />
+            <input name="submit_restart" type="submit" value="Save & restart" class="btn btn-danger"
+                   title="Modifications will be saved and the evaluation of the workflow will restart." />
+
+            <p>
+                If a workflow is in COMPLETED status and there are changes to be processed, the workflow has to be
+                restarted. If the workflow is HALTED, then after modifying the metadata "Save & continue" will continue the
+                process with the updated metadata.
+            </p>
+        </form>
+
+        <form class="icon" method="POST" action="{{ url_for('workflow.delete_view', id=model.uuid) }}">
+            <input name="id" type="hidden" value="{{ model.uuid }}"/>
+            <input name="url" type="hidden" value="{{ url_for('workflow.index_view') }}"/>
+
+            <input onclick="return confirm('Are you sure you want to delete this workflow?')" title="Delete workflow"
+                    value="Delete Workflow" class="btn btn-danger" type="submit"/>
+            <p>
+                If a workflow is deleted, all the stored data will be permanently lost. Before deleting, make sure it is not needed anymore.
+            </p>
+        </form>
+    {% else %}
+        <p>Workflow with id "{{ model.uuid }}" is not editable, as it does not have objects to edit.</p>
+    {% endif %}
+{% endblock %}
+
+{% block tail %}
+  {{ super() }}
+
+  <script>
+    let data_input = $("#data_input");
+    let container = $("#data_editor");
+    let editor = new JSONEditor(container[0]);
+
+    editor.setText(data_input.val());
+
+    $("#edit_form").submit(function(event) {
+        data_input.val(editor.getText());
+    });
+  </script>
+
+{% endblock %}

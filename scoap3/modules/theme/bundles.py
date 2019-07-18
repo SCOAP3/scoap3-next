@@ -64,5 +64,6 @@ js = NpmBundle(
         "angular": "~1.4.8",
         "readmore-js": "~2.1.0",
         "mathjax": "~2.7",
+        "jsoneditor": "~6.1.0",
     }
 )

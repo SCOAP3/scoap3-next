@@ -10,7 +10,7 @@
 import json
 from datetime import timedelta, datetime
 
-from flask import flash, request
+from flask import flash, request, url_for
 from flask_admin import expose, BaseView
 from flask_admin.actions import action
 from flask_admin.contrib.sqla import ModelView
@@ -50,8 +50,8 @@ def msg_formatter(v, c, m, p):
 class WorkflowView(ModelView):
     """View for managing Compliance results."""
 
-    can_edit = False
-    can_delete = False
+    can_edit = True
+    can_delete = True
     can_create = False
     can_view_details = True
     column_default_sort = ('created', True)
@@ -74,6 +74,40 @@ class WorkflowView(ModelView):
     column_auto_select_related = True
     column_details_list = column_list + ('message', 'error_msg', 'data', )
     column_details_exclude_list = ('info', )
+
+    edit_template = 'scoap3_workflows/admin/workflow_edit.html'
+    list_template = 'scoap3_workflows/admin/workflow_list.html'
+
+    def get_save_return_url(self, model, is_created=False):
+        return url_for('workflow.edit_view', id=model.uuid)
+
+    def update_model(self, form, model):
+        try:
+            new_json_data = request.form.get('data')
+            if new_json_data:
+                new_json = json.loads(new_json_data)
+                if len(model.objects) == 1:
+                    model.objects[0].data = new_json
+                    self.session.commit()
+                else:
+                    flash('Model has %d objects. Cannot update it as it needs to have exactly one.', 'error')
+        except Exception as ex:
+            if not self.handle_view_exception(ex):
+                flash('Failed to update workflow. %s' % str(ex), 'error')
+
+            self.session.rollback()
+            return False
+        else:
+            self.after_model_change(form, model, False)
+
+        return True
+
+    def after_model_change(self, form, model, is_created):
+        if 'submit_continue' in request.form:
+            self.action_resume((str(model.uuid), ))
+
+        elif 'submit_restart' in request.form:
+            self.action_restart((str(model.uuid), ))
 
     @action('resume', 'Resume', 'Are you sure?')
     def action_resume(self, ids):
@@ -100,8 +134,6 @@ class WorkflowView(ModelView):
             flash("Selected workflow(s) restarted.", "success")
         except Exception as e:
             flash("Failed to restart all selected workflows. Reason: %s" % e.message, "error")
-
-    list_template = 'scoap3_workflows/admin/list.html'
 
 
 class WorkflowsOverview(BaseView):

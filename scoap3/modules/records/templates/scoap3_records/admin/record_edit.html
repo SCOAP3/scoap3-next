@@ -1,0 +1,62 @@
+{% extends 'admin/model/edit.html' %}
+
+{% block edit_form %}
+    <table class="table">
+        <tr>
+            <td>Record uuid</td>
+            <td>{{ model.id }}</td>
+        </tr>
+        <tr>
+            <td>Record control number (if available)</td>
+            <td>{% if model.json and model.json['control_number'] %}{{ model.json['control_number'] }}{% endif %}</td>
+        </tr>
+        <tr>
+            <td>DOI (if available)</td>
+            <td>{% if model.json and model.json['dois'] %}{{ model.json['dois'][0]['value'] }}{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Title (if available)</td>
+            <td>{% if model.json and model.json['titles'] %}{{ model.json['titles'][0]['title'] }}{% endif %}</td>
+        </tr>
+    </table>
+
+    {% if model.json %}
+        <form method="post" id="edit_form">
+            <div id="data_editor"></div>
+            <input id="data_input" name="json" type="hidden" value="{{ model.json|pretty_json }}" />
+            <br/>
+            <input name="version_id" type="hidden" value="{{ model.version_id }}"/>
+            <input type="submit" value="Save" class="btn btn-warning" title="Modifications will be saved." />
+        </form>
+
+        <form class="icon" method="POST" action="{{ url_for('record.delete_view', id=model.uuid) }}">
+            <input name="id" type="hidden" value="{{ model.id }}"/>
+            <input name="url" type="hidden" value="{{ url_for('record.index_view') }}"/>
+            <br />
+            <input onclick="return confirm('Are you sure you want to delete this record?')" title="Delete record"
+                    value="Delete record" class="btn btn-danger" type="submit"/>
+            <p>
+                If a record is deleted, all the stored data will be permanently lost. Before deleting, make sure it is not needed anymore.
+            </p>
+        </form>
+    {% else %}
+        <h3>This record is deleted.</h3>
+    {% endif %}
+{% endblock %}
+
+{% block tail %}
+  {{ super() }}
+
+  <script>
+    let data_input = $("#data_input");
+    let container = $("#data_editor");
+    let editor = new JSONEditor(container[0]);
+
+    editor.setText(data_input.val());
+
+    $("#edit_form").submit(function(event) {
+        data_input.val(editor.getText());
+    });
+  </script>
+
+{% endblock %}

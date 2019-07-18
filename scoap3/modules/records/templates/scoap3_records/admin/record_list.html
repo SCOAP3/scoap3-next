@@ -1,0 +1,23 @@
+{% extends 'admin/model/list.html' %}
+
+{% macro render_title(model, column) %}
+  {% if model.json and 'titles' in model.json %}
+    {{ model.json['titles'][0]['title'] }}
+  {% endif %}
+{% endmacro %}
+
+{% macro render_control_number(model, column) %}
+  {% if model.json %}
+    {{ model.json['control_number'] }}
+  {% endif %}
+{% endmacro %}
+
+{% macro render_doi(model, column) %}
+  {% if model.json and 'dois' in model.json %}
+    {{ model.json['dois'][0]['value'] }}
+  {% endif %}
+{% endmacro %}
+
+{% macro render_active(model, column) %}
+  {{ model.json|boolean_to_icon }}
+{% endmacro %}

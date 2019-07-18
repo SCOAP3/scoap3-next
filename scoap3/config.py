@@ -49,6 +49,7 @@ SEARCH_UI_SEARCH_INDEX = "records-record"
 SEARCH_UI_JSTEMPLATE_RANGE_FACET = 'templates/scoap3_search/range.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
+ADMIN_BASE_TEMPLATE = 'scoap3_theme/page_admin.html'
 SETTINGS_TEMPLATE = "invenio_theme/page_settings.html"
 
 # Celery
