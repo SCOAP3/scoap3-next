@@ -4,7 +4,7 @@
     {% if model.objects %}
         <table class="table">
             <tr>
-                <td>Workflow id</td>
+                <td>Workflow uuid</td>
                 <td>{{ model.uuid }}</td>
             </tr>
             <tr>
@@ -60,9 +60,9 @@
   {{ super() }}
 
   <script>
-    var data_input = $("#data_input");
-    var container = $("#data_editor");
-    var editor = new JSONEditor(container[0]);
+    let data_input = $("#data_input");
+    let container = $("#data_editor");
+    let editor = new JSONEditor(container[0]);
 
     editor.setText(data_input.val());
 
