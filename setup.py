@@ -133,8 +133,8 @@ setup(
             'scoap3_records = scoap3.modules.records.jsonschemas',
         ],
         'invenio_search.mappings': [
-            'records = scoap3.modules.records.mappings',
-            'workflows = scoap3.modules.workflows.mappings'
+            'scoap3-records = scoap3.modules.records.mappings',
+            'scoap3-workflows = scoap3.modules.workflows.mappings'
         ],
         'invenio_workflows.workflows': [
             'articles_upload = scoap3.modules.workflows.workflows:ArticlesUpload',
