@@ -56,7 +56,7 @@ BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/scoap3"
 
 # Elasticsearch
 INDEXER_DEFAULT_INDEX = "scoap3-records-record"
-INDEXER_DEFAULT_DOC_TYPE = "_doc"
+INDEXER_DEFAULT_DOC_TYPE = "scoap3-records-record"
 SEARCH_ELASTIC_HOSTS = 'localhost'
 
 
