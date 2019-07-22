@@ -1,6 +1,7 @@
 import json
 
 from flask import flash, url_for, request
+from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla.filters import FilterEqual
 from flask_admin.model.template import macro
 
@@ -12,6 +13,8 @@ from jsonschema import ValidationError
 from sqlalchemy import cast
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.exc import SQLAlchemyError
+
+from scoap3.modules.records.tasks import perform_article_check
 
 
 class FilterByControlNumber(FilterEqual):
@@ -95,6 +98,31 @@ class RecordModelView(ModelView):
         return True
 
 
+class RecordsDashboard(BaseView):
+    @expose('/', methods=('GET',))
+    def index(self):
+        return self.render('scoap3_records/admin/dashboard.html')
+
+    @expose('/', methods=('POST',))
+    def index_post(self):
+        if 'run_article_check' in request.form:
+            from_date = request.form.get('from_date')
+
+            if from_date:
+                perform_article_check.apply_async((from_date, ))
+                flash("Article check started. The result will be sent out in an email.", 'success')
+            else:
+                flash("From date is required to run article check.", 'error')
+
+        return self.index()
+
+
+record_dashboard = {
+    'view_class': RecordsDashboard,
+    'kwargs': {'category': 'Records', 'name': 'Dashboard'},
+}
+
+
 record_adminview = {
     "modelview": RecordModelView,
     "model": RecordMetadata,
@@ -106,4 +134,5 @@ record_adminview = {
 
 __all__ = (
     'record_adminview',
+    'record_dashboard',
 )

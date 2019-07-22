@@ -173,6 +173,8 @@ def perform_article_check(from_date=None):
                       If not given, Now - settings.ARTICLE_CHECK_DEFAULT_TIME_DELTA is used.
     """
 
+    logger.info('perform_article_check started, from_date=%s' % from_date)
+
     if not from_date:
         from_date = datetime.now().date() - current_app.config.get('ARTICLE_CHECK_DEFAULT_TIME_DELTA')
 
@@ -181,10 +183,12 @@ def perform_article_check(from_date=None):
     missing_records = []
     statistics = []
     for journal, cooperation_dates in journals.items():
+        logger.info('article_check is processing journal=%s' % journal)
         journal_stats, journal_missing_records = perform_article_check_for_journal(from_date, journal,
                                                                                    cooperation_dates)
 
         statistics.append(journal_stats)
         missing_records.extend(journal_missing_records)
 
+    logger.info('sending email regarding article_check results...')
     _send_article_check_report(missing_records, statistics, from_date)
