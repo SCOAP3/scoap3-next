@@ -20,7 +20,7 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 
-version: '2.1'
+version: '2.3'
 
 services:
   base:
@@ -46,9 +46,7 @@ services:
       - APP_CRAWL_ONCE_PATH=/code/scrapy/crawl_once
 
   indexer:
-    image: inspirehep/elasticsearch
-    command: bash -c "chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data && gosu elasticsearch env ES_JAVA_OPTS=\"-Xms2g -Xmx2g\" elasticsearch"
-    entrypoint: /docker-entrypoint.sh
+    image: elasticsearch:6.8.1
 
   database:
     image: postgres:9.4.5

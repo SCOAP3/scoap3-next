@@ -1,10 +1,6 @@
 {
     "mappings": {
-        "harvesting": {
-            "_all": {
-                "enabled": true
-            },
-            "date_detection": false,
+        "scoap3-workflows-workflow": {
             "properties": {
                 "_workflow": {
                     "properties": {
@@ -12,47 +8,39 @@
                             "type": "date"
                         },
                         "data_type": {
-                            "index": "not_analyzed",
-                            "type": "string"
+                            "type": "text"
                         },
                         "id_parent": {
-                            "index": "not_analyzed",
                             "type": "integer"
                         },
                         "id_user": {
-                            "index": "not_analyzed",
                             "type": "integer"
                         },
                         "id_workflow": {
-                            "index": "not_analyzed",
-                            "type": "string"
+                            "type": "keyword"
                         },
                         "modified": {
                             "type": "date"
                         },
                         "status": {
-                            "index": "not_analyzed",
-                            "type": "string"
+                            "type": "keyword"
                         },
                         "workflow_class": {
-                            "index": "not_analyzed",
-                            "type": "string"
+                            "type": "keyword"
                         },
                         "workflow_name": {
-                            "index": "not_analyzed",
-                            "type": "string"
+                            "type": "keyword"
                         },
                         "workflow_position": {
-                            "index": "not_analyzed",
-                            "type": "string"
+                            "type": "keyword"
                         }
                     },
                     "type": "object"
                 },
-                "_updated":{
+                "_updated": {
                     "type": "date"
                 },
-                "id":{
+                "id": {
                     "type": "integer"
                 },
                 "metadata": {
@@ -60,8 +48,7 @@
                         "publication_info": {
                             "properties": {
                                 "journal_title": {
-                                    "index": "not_analyzed",
-                                    "type": "string",
+                                    "type": "keyword",
                                     "copy_to": "journal_title_facet"
                                 }
                             },
@@ -70,11 +57,9 @@
                     },
                     "type": "object"
                 },
-                "journal_title_facet":{
-                    "index": "not_analyzed",
-                    "type": "string"
+                "journal_title_facet": {
+                    "type": "keyword"
                 }
-
             }
         }
     }

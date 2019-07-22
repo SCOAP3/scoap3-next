@@ -20,7 +20,7 @@
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
 
-version: '2.1'
+version: '2.3'
 
 services:
   service_base:
@@ -110,6 +110,9 @@ services:
       service: indexer
     ports:
       - "9200:9200"
+    environment:
+      - discovery.type=single-node
+      - TAKE_FILE_OWNERSHIP="true"
     volumes:
       - "${DOCKER_DATA}/tmp/scoap3_elastic/data:/usr/share/elasticsearch/data"
       - "${DOCKER_DATA}/tmp/scoap3_elastic/log:/usr/share/elasticsearch/log"
@@ -117,6 +120,7 @@ services:
       timeout: 5s
       interval: 5s
       retries: 5
+      start_period: 15s
       test:
         - "CMD-SHELL"
         - "curl http://localhost:9200/_cluster/health | grep '.status.:.\\(green\\|yellow\\)'"

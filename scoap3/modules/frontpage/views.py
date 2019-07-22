@@ -36,7 +36,7 @@ blueprint = Blueprint(
 def index():
     """SCOAP3 home page."""
 
-    count = current_search_client.count(index='records-record')
+    count = current_search_client.count(index='scoap3-records-record')
 
     # # TODO show only for administrators
     # publishers = [{'name':'Elsevier'},

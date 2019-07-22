@@ -189,7 +189,7 @@ def update_record(obj, eng):
     doi = get_first_doi(obj)
 
     query = {'query': {'bool': {'must': [{'match': {'dois.value': doi}}], }}}
-    search_result = es.search(index='records-record', doc_type='record-v1.0.0', body=query)
+    search_result = es.search(index='scoap3-records-record', body=query)
 
     recid = search_result['hits']['hits'][0]['_source']['control_number']
 

@@ -121,4 +121,4 @@ def create_from_json(records, apply_async=True):
 
 
 def is_doi_in_db(doi):
-    return current_search_client.count(q='dois.value:"%s"' % doi)['count'] > 0
+    return current_search_client.count(q='doi:"%s"' % doi)['count'] > 0

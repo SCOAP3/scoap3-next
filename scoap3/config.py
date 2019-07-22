@@ -40,12 +40,11 @@ THEME_LOGO = 'img/logo.png'
 # ASSETS_DEBUG = True
 # COLLECT_STORAGE = "flask_collect.storage.link"
 SITE_URL = "www.beta.scoap3.org"
-ELASTICSEARCH_HOST = "localhost"
 
 SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
 SEARCH_UI_JSTEMPLATE_FACETS = 'templates/scoap3_search/facets.html'
-SEARCH_UI_SEARCH_INDEX = "records-record"
+SEARCH_UI_SEARCH_INDEX = "scoap3-records-record"
 SEARCH_UI_JSTEMPLATE_RANGE_FACET = 'templates/scoap3_search/range.html'
 
 BASE_TEMPLATE = "scoap3_theme/page.html"
@@ -56,7 +55,8 @@ SETTINGS_TEMPLATE = "invenio_theme/page_settings.html"
 BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/scoap3"
 
 # Elasticsearch
-INDEXER_DEFAULT_INDEX = "records-record"
+INDEXER_DEFAULT_INDEX = "scoap3-records-record"
+INDEXER_DEFAULT_DOC_TYPE = "scoap3-records-record"
 SEARCH_ELASTIC_HOSTS = 'localhost'
 
 
@@ -67,8 +67,7 @@ RECORDS_REST_ENDPOINTS = dict(
         pid_minter='scoap3_minter',
         pid_fetcher='recid',
         search_class=Scoap3RecordsSearch,
-        search_index='records-record',
-        search_type=['record-v1.0.0'],
+        search_index='scoap3-records-record',
         record_serializers={
             'application/json': ('invenio_records_rest.serializers'
                                  ':json_v1_response'),
@@ -93,7 +92,7 @@ RECORDS_UI_ENDPOINTS = dict(
 )
 RECORDS_UI_TOMBSTONE_TEMPLATE = 'scoap3_theme/records/tombstone.html'
 RECORDS_REST_SORT_OPTIONS = {
-    "records-record": {
+    "scoap3-records-record": {
         "date": {
             "title": 'Most recent',
             "fields": ['date'],
@@ -111,14 +110,14 @@ RECORDS_REST_SORT_OPTIONS = {
 
 #: Default sort for records REST API.
 RECORDS_REST_DEFAULT_SORT = {
-    "records-record": {
+    "scoap3-records-record": {
         'query': '-date',
         'noquery': '-date'
     },
 }
 
 RECORDS_REST_FACETS = {
-    "records-record": {
+    "scoap3-records-record": {
         "filters": {
             "journal": terms_filter("publication_info.journal_title"),
             "country": terms_filter_with_must("authors.affiliations.country"),
@@ -403,8 +402,7 @@ WORKFLOWS_UI_API_URL = "/api/harvesting/"
 
 WORKFLOWS_UI_DATA_TYPES = dict(
     harvesting=dict(
-        search_index='workflows-harvesting',
-        search_type='harvesting',
+        search_index='scoap3-workflows-harvesting',
     ),
 )
 
@@ -503,7 +501,7 @@ WORKFLOWS_STORAGEDIR = '/tmp/workflows-harvesting'
 CRAWLER_DATA_TYPE = 'harvesting'
 SCRAPY_FEED_URI = '/eos/project/s/scoap3repo/scrapy_feed.json'
 
-OAISERVER_RECORD_INDEX = 'records-record'
+OAISERVER_RECORD_INDEX = 'scoap3-records-record'
 #: OAI identifier prefix
 OAISERVER_ID_PREFIX = 'oai:beta.scoap3.org:'
 #: Managed OAI identifier prefixes
@@ -513,7 +511,7 @@ OAISERVER_PAGE_SIZE = 100
 #: Increase resumption token expire time.
 OAISERVER_RESUMPTION_TOKEN_EXPIRE_TIME = 60
 #: PIDStore fetcher for OAI ID control numbers
-OAISERVER_CONTROL_NUMBER_FETCHER = 'scoap3_recid_fetcher'
+OAISERVER_CONTROL_NUMBER_FETCHER = 'scoap3_fetcher'
 #: Support email for OAI-PMH.
 OAISERVER_ADMIN_EMAILS = ['scoap3repo.admin@cern.ch']
 #: Do not register signals to automatically update records on updates.

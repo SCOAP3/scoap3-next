@@ -1,42 +1,47 @@
 {
+    "settings": {
+        "analysis": {
+            "normalizer": {
+                "lowercase_normalizer": {
+                    "type": "custom",
+                    "char_filter": [],
+                    "filter": [
+                        "lowercase"
+                    ]
+                }
+            }
+        }
+    },
     "mappings": {
-        "record-v1.0.0": {
-            "_all": {
-                "enabled": true
-            },
-            "date_detection": false,
+        "scoap3-records-record": {
             "properties": {
-                "_oai":{
+                "_oai": {
                     "properties": {
                         "updated": {
-                            "index": "analyzed",
                             "type": "date"
                         },
                         "sets": {
-                            "index": "not_analyzed",
-                            "type": "string",
+                            "type": "keyword",
                             "copy_to": "journal"
                         }
                     },
                     "type": "object"
                 },
-                "authors":{
-                    "properties":{
-                        "full_name":{
-                            "index": "analyzed",
-                            "type": "string",
+                "authors": {
+                    "properties": {
+                        "full_name": {
+                            "type": "text",
                             "copy_to": "author"
                         },
-                        "affiliations":{
-                            "properties":{
-                                "country":{
-                                    "index": "not_analyzed",
-                                    "type": "string",
+                        "affiliations": {
+                            "properties": {
+                                "country": {
+                                    "type": "keyword",
+                                    "normalizer": "lowercase_normalizer",
                                     "copy_to": "country"
                                 },
-                                "value":{
-                                    "index": "analyzed",
-                                    "type": "string",
+                                "value": {
+                                    "type": "text",
                                     "copy_to": "affiliation"
                                 }
                             },
@@ -45,74 +50,64 @@
                     },
                     "type": "object"
                 },
-                "control_number":{
+                "control_number": {
                     "type": "integer"
                 },
                 "publication_info": {
                     "properties": {
                         "journal_title": {
-                            "index": "not_analyzed",
-                            "type": "string",
+                            "type": "keyword",
                             "copy_to": "journal"
                         }
                     },
                     "type": "object"
                 },
                 "journal": {
-                    "index": "not_analyzed",
-                    "type": "string"
+                    "type": "keyword"
                 },
                 "record_creation_date": {
                     "type": "date",
                     "format": "yyyy||yyyy-MM||yyyy-MM-dd||yyyy-MM-dd'T'HH:mm:ss.SSSSSS||yyyy-MM-dd'T'HH:mm:ss"
                 },
                 "titles": {
-                    "properties":{
-                        "title":{
-                            "index": "analyzed",
-                            "type": "string",
+                    "properties": {
+                        "title": {
+                            "type": "keyword",
                             "copy_to": "title"
                         }
                     },
                     "type": "object"
                 },
-                "dois":{
-                    "properties":{
-                        "value":{
-                            "index": "not_analyzed",
-                            "type": "string",
+                "dois": {
+                    "properties": {
+                        "value": {
+                            "type": "keyword",
+                            "normalizer": "lowercase_normalizer",
                             "copy_to": "doi"
                         }
                     },
                     "type": "object"
                 },
                 "facet_collaboration": {
-                    "index": "not_analyzed",
-                    "type": "string"
+                    "type": "keyword"
                 },
                 "country": {
-                    "index": "not_analyzed",
-                    "type": "string"
+                    "type": "keyword"
                 },
                 "affiliation": {
-                    "index": "analyzed",
-                    "type": "string"
+                    "type": "keyword"
                 },
                 "title": {
-                    "index": "analyzed",
-                    "type": "string"
+                    "type": "text"
                 },
                 "author": {
-                    "index": "analyzed",
-                    "type": "string"
+                    "type": "text"
                 },
                 "date": {
-                    "index": "analyzed",
                     "type": "date"
                 },
                 "doi": {
-                    "index": "not_analyzed",
-                    "type": "string"
+                    "type": "keyword"
                 },
                 "imprints": {
                     "properties": {
@@ -125,7 +120,6 @@
                     "type": "object"
                 },
                 "year": {
-                    "index": "analyzed",
                     "type": "date",
                     "format": "yyyy"
                 }
