@@ -1,5 +1,5 @@
 from dojson.contrib.marc21.utils import create_record, split_stream
-from scoap3.dojson.hep.model import hep
+from scoap3.hep.model import hep
 from invenio_records import Record
 from invenio_db import db
 from invenio_indexer.api import RecordIndexer

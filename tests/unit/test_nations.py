@@ -1,6 +1,6 @@
 from invenio_db import db
 
-from scoap3.dojson.utils.nations import find_country
+from scoap3.utils.nations import find_country
 from scoap3.modules.analysis.models import CountryCache
 
 

@@ -72,9 +72,6 @@ setup(
         'console_scripts': [
             'scoap3 = scoap3.cli:cli',
         ],
-        'dojson.cli.rule': [
-            'hep = scoap3.dojson.hep:hep',
-        ],
         'invenio_admin.views': [
             'scoap3_api_registrations = scoap3.modules.api.admin:api_registrations_adminview',
             'scoap3_gdp = scoap3.modules.analysis.admin:gdp_adminview',

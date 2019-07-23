@@ -1,16 +1,31 @@
 # -*- coding: utf-8 -*-
 
 from lxml import etree
-from tests.unit.test_dojson import get_subfield, namespaces
+
+
+namespaces = {'m': 'http://www.loc.gov/MARC21/slim',
+              'o': 'http://www.openarchives.org/OAI/2.0/'}
+
+
+def get_control_field(xml, field_tag):
+    return xml.xpath('./o:controlfield[@tag="%s"]/text()' % field_tag, namespaces=namespaces)
+
+
+def get_subfield(xml, field_tag, subfield_code):
+    return xml.xpath('./o:datafield[@tag="%s"]/o:subfield[@code="%s"]/text()' % (field_tag, subfield_code),
+                     namespaces=namespaces)
 
 
 def test_record_by_id(app_client, test_record):
     assert 'control_number' in test_record
+    control_number = test_record['control_number']
 
-    identifier = 'oai:beta.scoap3.org:%s' % test_record['control_number']
+    identifier = 'oai:beta.scoap3.org:%s' % control_number
     response = app_client.get('/oai2d?verb=GetRecord&metadataPrefix=marc21&identifier=%s' % identifier)
 
-    xml = etree.fromstring(response.data).find('.//m:record', namespaces=namespaces)
+    xml = etree.fromstring(response.data).find('.//o:metadata/o:record', namespaces=namespaces)
+    assert get_control_field(xml, '001') == [control_number]
+    assert get_control_field(xml, '005') == ['20190221143842.0']
     assert get_subfield(xml, '100', 'a') == ['Salmhofer, Manfred']
     assert get_subfield(xml, '100', 'u') == [u'Institut für Theoretische Physik, Universität Heidelberg, '
                                              u'Philosophenweg 19, 69120 Heidelberg, Germany']
@@ -25,7 +40,6 @@ def test_record_by_id(app_client, test_record):
     assert get_subfield(xml, '540', 'u') == ['http://creativecommons.org/licenses/by/3.0/']
     assert get_subfield(xml, '542', 'd') == ['The Author']
     assert get_subfield(xml, '542', 'f') == ['The Author']
-    assert get_subfield(xml, '980', 'a') == ['Nuclear Physics B']
     assert get_subfield(xml, '520', 'a') == ['Renormalization plays an important role in the theoretically and mathemat'
                                              'ically careful analysis of models in condensed-matter physics. I review s'
                                              'elected results about correlated-fermion systems, ranging from mathematic'

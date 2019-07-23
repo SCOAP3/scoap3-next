@@ -1,4 +1,8 @@
+from dateutil.parser import parse as parse_date
 from flask import current_app
+from inspire_dojson import record2marcxml
+from inspire_utils.record import get_value
+from lxml import etree
 
 
 def dumps_etree(pid, record, **kwargs):
@@ -8,10 +12,17 @@ def dumps_etree(pid, record, **kwargs):
     :param record: The :class:`invenio_records.api.Record` instance.
     :returns: A LXML Element instance.
     """
-    from scoap3.dojson.hep.model import hep2marc
-    from scoap3.dojson.dump_utils import dumps_etree
 
     r = record['_source']
+
+    # adding legacy version (controlfield 005)
+    acquisition_date = parse_date(r['acquisition_source']['date'])
+    r['legacy_version'] = acquisition_date.strftime("%Y%m%d%H%M%S.0")
+
+    # adding number of pages (datafield 300)
+    page_nr = get_value(r, 'page_nr[0]')
+    if page_nr:
+        r['number_of_pages'] = page_nr
 
     # create and add download url
     if 'urls' not in r and '_files' in r:
@@ -24,4 +35,4 @@ def dumps_etree(pid, record, **kwargs):
             })
         r['urls'] = files
 
-    return dumps_etree(hep2marc.do(r), **kwargs)
+    return etree.fromstring(record2marcxml(r))
