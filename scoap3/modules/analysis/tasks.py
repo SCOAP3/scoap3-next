@@ -30,7 +30,7 @@ from celery import shared_task
 from flask import current_app
 from invenio_db import db
 from invenio_search.api import current_search_client as es
-from scoap3.dojson.utils.nations import find_country
+from scoap3.utils.nations import find_country
 from scoap3.modules.analysis.models import ArticlesImpact, Gdp
 from sqlalchemy.orm.attributes import flag_modified
 

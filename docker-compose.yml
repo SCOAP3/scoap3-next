@@ -73,6 +73,7 @@ services:
     volumes_from:
       - static
     healthcheck:
+      start_period: 30s
       timeout: 5s
       interval: 5s
       retries: 5

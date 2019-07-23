@@ -8,7 +8,7 @@ from invenio_db import db
 from invenio_files_rest.models import Location
 from sqlalchemy.orm.attributes import flag_modified
 
-from scoap3.dojson.utils.nations import find_country
+from scoap3.utils.nations import find_country
 from scoap3.utils.click_logging import rerror, error, info, rinfo
 from scoap3.utils.crossref import parse_date_parts
 from scoap3.utils.http import requests_retry_session

@@ -17,7 +17,7 @@ install_requires = (
     'celery<4.0',
     'idutils',
     'inspire-crawler~=1.0',
-    'inspire-dojson~=61.1,>=61.1.6',
+    'inspire-dojson~=61.1.11',
     'inspire-utils>=3.0.3',
     'invenio-access~=1.0.1',
     'invenio-accounts~=1.0.2',
@@ -42,7 +42,7 @@ install_requires = (
     'invenio-records-files==1.0.0a11',
     'invenio-search-ui==1.0.1',
     'invenio-theme==1.0.0b2',
-    'invenio-workflows~=7.0,>=7.0.3',
+    'invenio-workflows~=7.0.3',
     'invenio-workflows-files~=1.0',
     # FIXME 'invenio-workflows-ui~=2.0.15',
     'invenio-workflows-ui @ git+http://github.com/SCOAP3/invenio-workflows-ui@es7#egg=invenio-workflows-ui',
@@ -71,9 +71,6 @@ setup(
     entry_points={
         'console_scripts': [
             'scoap3 = scoap3.cli:cli',
-        ],
-        'dojson.cli.rule': [
-            'hep = scoap3.dojson.hep:hep',
         ],
         'invenio_admin.views': [
             'scoap3_api_registrations = scoap3.modules.api.admin:api_registrations_adminview',
