@@ -1,6 +1,8 @@
+from datetime import datetime
 import json
 
 from flask import flash, url_for, request
+from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla.filters import FilterEqual
 from flask_admin.model.template import macro
 
@@ -12,6 +14,8 @@ from jsonschema import ValidationError
 from sqlalchemy import cast
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.exc import SQLAlchemyError
+
+from scoap3.modules.records.tasks import perform_article_check
 
 
 class FilterByControlNumber(FilterEqual):
@@ -95,6 +99,42 @@ class RecordModelView(ModelView):
         return True
 
 
+class RecordsDashboard(BaseView):
+    @expose('/', methods=('GET',))
+    def index(self):
+        return self.render('scoap3_records/admin/dashboard.html')
+
+    @staticmethod
+    def run_article_check(from_date):
+        if not from_date:
+            flash("From date is required to run article check.", 'error')
+            return False
+
+        try:
+            datetime.strptime(from_date, '%Y-%m-%d')
+        except ValueError:
+            flash('"%s" is invalid date parameter. It has to be in YYYY-mm-dd format.' % from_date, 'error')
+            return False
+
+        perform_article_check.apply_async((from_date,))
+        flash("Article check started. The result will be sent out in an email.", 'success')
+        return True
+
+    @expose('/', methods=('POST',))
+    def index_post(self):
+        if 'run_article_check' in request.form:
+            from_date = request.form.get('from_date')
+            self.run_article_check(from_date)
+
+        return self.index()
+
+
+record_dashboard = {
+    'view_class': RecordsDashboard,
+    'kwargs': {'category': 'Records', 'name': 'Dashboard'},
+}
+
+
 record_adminview = {
     "modelview": RecordModelView,
     "model": RecordMetadata,
@@ -106,4 +146,5 @@ record_adminview = {
 
 __all__ = (
     'record_adminview',
+    'record_dashboard',
 )

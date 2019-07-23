@@ -92,7 +92,8 @@
                     "type": "keyword"
                 },
                 "country": {
-                    "type": "keyword"
+                    "type": "keyword",
+                    "normalizer": "lowercase_normalizer"
                 },
                 "affiliation": {
                     "type": "keyword"
@@ -107,7 +108,8 @@
                     "type": "date"
                 },
                 "doi": {
-                    "type": "keyword"
+                    "type": "keyword",
+                    "normalizer": "lowercase_normalizer"
                 },
                 "imprints": {
                     "properties": {

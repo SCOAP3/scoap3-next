@@ -1,0 +1,20 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Run article check manually</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <div class="form-group">
+                    <label for="from_date">From date:</label>
+                    <input class="form-control" placeholder="2019-01-01" type="text" name="from_date" id="from_date"/>
+                    <small class="form-text text-muted">From which date article check should run. Has to be YYYY-mm-dd format.</small>
+                    <br/>
+                    <input class="btn" type="submit" name="run_article_check" value="Run article check"/>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
