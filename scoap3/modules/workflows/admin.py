@@ -15,6 +15,7 @@ from flask_admin import expose, BaseView
 from flask_admin.actions import action
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import FilterEqual
+from flask_admin.helpers import is_form_submitted
 from flask_admin.model.template import macro
 from invenio_db import db
 from invenio_workflows import restart, resume
@@ -83,7 +84,7 @@ class WorkflowView(ModelView):
 
     def validate_form(self, form):
         """Override base validation as the validation is done at a later step."""
-        return True
+        return is_form_submitted()
 
     def update_model(self, form, model):
         try:
