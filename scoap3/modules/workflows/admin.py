@@ -81,6 +81,10 @@ class WorkflowView(ModelView):
     def get_save_return_url(self, model, is_created=False):
         return url_for('workflow.edit_view', id=model.uuid)
 
+    def validate_form(self, form):
+        """Override base validation as the validation is done at a later step."""
+        return True
+
     def update_model(self, form, model):
         try:
             new_json_data = request.form.get('data')
