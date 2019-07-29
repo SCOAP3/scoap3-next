@@ -23,6 +23,10 @@
                 <td>Title (if available)</td>
                 <td>{{ model.objects[0].data['titles'][0]['title'] }}</td>
             </tr>
+            <tr>
+                <td>Error message (if available):</td>
+                <td>{{ model.objects[0].extra_data.get('_message', '').split('Failed')[0] }}</td>
+            </tr>
         </table>
 
         <form method="post" id="edit_form">
