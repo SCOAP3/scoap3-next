@@ -139,7 +139,7 @@ record_adminview = {
     "modelview": RecordModelView,
     "model": RecordMetadata,
     "category": 'Records',
-    "name": 'Edit record',
+    "name": 'Edit records',
     "endpoint": 'record',
 }
 

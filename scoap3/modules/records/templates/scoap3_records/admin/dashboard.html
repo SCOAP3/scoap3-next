@@ -10,7 +10,10 @@
                 <div class="form-group">
                     <label for="from_date">From date:</label>
                     <input class="form-control" placeholder="2019-01-01" type="text" name="from_date" id="from_date"/>
-                    <small class="form-text text-muted">From which date article check should run. Has to be YYYY-mm-dd format.</small>
+                    <small class="form-text text-muted">
+                        From which date article check should run. Has to be YYYY-mm-dd format.<br/>
+                        Note that this check takes a relatively long time to run. As an estimate: checking one month takes about 5 minutes.
+                    </small>
                     <br/>
                     <input class="btn" type="submit" name="run_article_check" value="Run article check"/>
                 </div>

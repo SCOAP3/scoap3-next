@@ -6,7 +6,7 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""Admin views for managing API registrations."""
+"""Admin views for managing Partner registrations."""
 
 from flask import flash, url_for
 from flask_admin.actions import action
@@ -121,7 +121,7 @@ class ComplianceView(ModelView):
 compliance_adminview = {
     'model': Compliance,
     'modelview': ComplianceView,
-    'category': 'Compliance',
+    'category': 'Records',
 }
 
 __all__ = (

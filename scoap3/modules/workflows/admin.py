@@ -6,7 +6,7 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""Admin views for managing API registrations."""
+"""Admin views for managing Partner registrations."""
 import json
 from datetime import timedelta, datetime
 
@@ -172,25 +172,12 @@ class WorkflowsOverview(BaseView):
     def index(self):
         return self.render('scoap3_workflows/admin/overview.html', **self.get_context_data())
 
-    @expose('/', methods=('POST', ))
-    def index_post(self):
-        date_from = self._get_date_from()
-
-        for w in db.session.query(Workflow.uuid)\
-                .filter(Workflow.created >= date_from).filter(Workflow.status == WorkflowStatus.ERROR).all():
-            restart.apply_async((str(w.uuid),))
-
-        flash("Restarted workflows in ERROR state that were modified after %s. "
-              "Please wait for the tasks to finish." % date_from, 'success')
-
-        return self.index()
-
 
 workflows = {
     'model': Workflow,
     'modelview': WorkflowView,
     'category': 'Workflows',
-    'name': 'Workflows',
+    'name': 'Edit workflows',
 }
 
 workflows_summary = {
