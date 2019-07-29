@@ -46,11 +46,11 @@ from invenio_search import current_search_client as es
 
 from jsonschema.exceptions import ValidationError, SchemaError
 
-from scoap3.utils.nations import find_country
 from scoap3.modules.compliance.compliance import check_compliance
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from scoap3.modules.records.util import is_doi_in_db
 from scoap3.utils.arxiv import get_arxiv_categories
+from scoap3.utils.nations import find_country
 
 from workflow.patterns.controlflow import IF_ELSE
 

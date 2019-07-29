@@ -6,7 +6,7 @@
 # Invenio is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-"""Admin views for managing API registrations."""
+"""Admin views for managing Partner registrations."""
 
 import csv
 import dateutil

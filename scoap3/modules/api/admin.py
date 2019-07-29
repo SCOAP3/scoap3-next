@@ -70,7 +70,7 @@ class ApiRegistrationsView(ModelView):
 
             if _datastore.add_role_to_user(u, r):
                 msg = TemplatedMessage(template_html='scoap3_api/email/confirmed.html',
-                                       subject='SCOAP3 - API registration confirmation',
+                                       subject='SCOAP3 - Partner registration confirmation',
                                        sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
                                        recipients=[api_registration.email],
                                        ctx={'email': api_registration.email,
@@ -81,7 +81,7 @@ class ApiRegistrationsView(ModelView):
         else:
             flash('Error creating user. %s' % form.errors, 'error')
 
-    @action('accept', 'Accept', 'Are you sure you want to accept selected API registrations?')
+    @action('accept', 'Accept', 'Are you sure you want to accept selected Partner registrations?')
     def action_accept(self, ids):
         """Accept users."""
         try:
@@ -106,7 +106,7 @@ class ApiRegistrationsView(ModelView):
             current_app.logger.exception(str(exc))  # pragma: no cover
             flash('Failed to accept API users.', 'error')  # pragma: no cover
 
-    @action('reject', 'Reject', 'Are you sure you want to reject selected API registrations?')
+    @action('reject', 'Reject', 'Are you sure you want to reject selected Partner registrations?')
     def action_reject(self, ids):
         """Accept users."""
         try:
@@ -130,7 +130,8 @@ class ApiRegistrationsView(ModelView):
 api_registrations_adminview = {
     'model': ApiRegistrations,
     'modelview': ApiRegistrationsView,
-    'category': 'Api Registrations',
+    'category': 'User Management',
+    'name': 'Partner Registrations'
 }
 
 __all__ = (
