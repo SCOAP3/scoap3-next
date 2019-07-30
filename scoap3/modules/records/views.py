@@ -1,7 +1,7 @@
 import json
 from datetime import datetime, timedelta
 
-from flask import Blueprint, current_app
+from flask import Blueprint, current_app, Response
 from invenio_search import current_search_client
 
 blueprint = Blueprint(
@@ -33,4 +33,6 @@ def collections_count():
     # all article number
     data['other']['all'] = sum(count for _, count in data['journals'].items())
 
-    return json.dumps(data)
+    response = Response(json.dumps(data))
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response

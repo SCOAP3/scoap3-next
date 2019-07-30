@@ -76,7 +76,7 @@ def test_collections_count():
     with patch('scoap3.modules.records.views.current_app', MockApp(config)), \
             patch('scoap3.modules.records.views.current_search_client', MockES()), \
             freeze_time('2019-07-29'):
-        data = json.loads(collections_count())
+        data = json.loads(collections_count().data)
 
         assert data["other"]["last_30_days"] == 10
         assert data["other"]["this_year"] == 20
