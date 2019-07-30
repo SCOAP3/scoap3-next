@@ -6,6 +6,7 @@ from flask import current_app
 from flask.cli import with_appcontext
 from invenio_db import db
 from invenio_files_rest.models import Location
+from invenio_pidstore.models import PersistentIdentifier
 from sqlalchemy.orm.attributes import flag_modified
 
 from scoap3.utils.nations import find_country
@@ -247,6 +248,53 @@ def fix_publication_date(dry_run, ids, min_day_diff):
         ids = ids.split(',')
 
     process_all_records(process_record_for_publication_date_fix, 50, ids, min_day_diff, dry_run)
+
+    info('ALL DONE!')
+
+    if dry_run:
+        error('NO CHANGES were committed to the database, because --dry-run flag was present.')
+
+
+def change_oai_hostname_for_record(record, old_hostname, new_hostname, dry_run):
+    if not record.json:
+        rerror('no json', record)
+        return
+
+    if 'id' not in record.json.get('_oai', {}):
+        rerror('no oai information', record)
+        return
+
+    pid = PersistentIdentifier.query\
+        .filter(PersistentIdentifier.object_uuid == record.id)\
+        .filter(PersistentIdentifier.pid_type == 'oai').one()
+
+    if old_hostname in pid.pid_value:
+        new_pid_value = pid.pid_value.replace(old_hostname, new_hostname)
+
+        rinfo('%s -> %s' % (pid.pid_value, new_pid_value), record)
+
+        if not dry_run:
+            pid.pid_value = new_pid_value
+            record.json['_oai']['id'] = new_pid_value
+            flag_modified(record, 'json')
+    else:
+        rinfo('old_hosname not found in pid_value (%s)' % pid.pid_value, record)
+
+
+@fixdb.command()
+@with_appcontext
+@click.option('--dry-run', is_flag=True, default=False,
+              help='If set to True no changes will be committed to the database.')
+@click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'.")
+@click.argument('old_hostname')
+@click.argument('new_hostname')
+def change_oai_hostname(dry_run, ids, old_hostname, new_hostname):
+    """Changes the hostname part of all OAI-PMH identifier."""
+
+    if ids:
+        ids = ids.split(',')
+
+    process_all_records(change_oai_hostname_for_record, 50, ids, old_hostname, new_hostname, dry_run)
 
     info('ALL DONE!')
 
