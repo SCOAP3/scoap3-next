@@ -31,7 +31,7 @@ def dumps_etree(pid, record, **kwargs):
             url = 'http://%s/api/files/%s/%s' % (current_app.config.get('SERVER_NAME'), f['bucket'], f['key'])
             files.append({
                 'value': url,
-                'description': f['filetype']
+                'description': f.get('filetype', '')
             })
         r['urls'] = files
 

@@ -20,7 +20,9 @@ def test_record_by_id(app_client, test_record):
     assert 'control_number' in test_record
     control_number = test_record['control_number']
 
-    identifier = 'oai:beta.scoap3.org:%s' % control_number
+    assert 'id' in test_record.get('_oai', {})
+    identifier = test_record['_oai']['id']
+
     response = app_client.get('/oai2d?verb=GetRecord&metadataPrefix=marc21&identifier=%s' % identifier)
 
     xml = etree.fromstring(response.data).find('.//o:metadata/o:record', namespaces=namespaces)
