@@ -304,3 +304,36 @@ def change_oai_hostname(dry_run, ids, old_hostname, new_hostname):
 
     if dry_run:
         error('NO CHANGES were committed to the database, because --dry-run flag was present.')
+
+
+@fixdb.command()
+@with_appcontext
+@click.option('--dry-run', is_flag=True, default=False,
+              help='If set to True no changes will be committed to the database.')
+@click.option('--ids', default=None, help="Comma separated list of recids to be processed. eg. '98,324'.")
+def change_schema_url(dry_run, ids):
+    def proc(record):
+        schema_key = '$schema'
+        new_schema = 'http://repo.scoap3.org/schemas/hep.json'
+
+        if not record.json:
+            rerror('no json', record)
+            return
+
+        old_schema = record.json.get(schema_key, '')
+        if old_schema != new_schema:
+            rinfo('%s -> %s' % (old_schema, new_schema), record)
+
+            if not dry_run:
+                record.json[schema_key] = new_schema
+                flag_modified(record, 'json')
+
+    if ids:
+        ids = ids.split(',')
+
+    process_all_records(proc, 50, ids)
+
+    info('ALL DONE!')
+
+    if dry_run:
+        error('NO CHANGES were committed to the database, because --dry-run flag was present.')
