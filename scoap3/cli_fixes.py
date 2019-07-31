@@ -266,7 +266,11 @@ def change_oai_hostname_for_record(record, old_hostname, new_hostname, dry_run):
 
     pid = PersistentIdentifier.query\
         .filter(PersistentIdentifier.object_uuid == record.id)\
-        .filter(PersistentIdentifier.pid_type == 'oai').one()
+        .filter(PersistentIdentifier.pid_type == 'oai').one_or_none()
+
+    if not pid:
+        rerror('no pid found', record)
+        return
 
     if old_hostname in pid.pid_value:
         new_pid_value = pid.pid_value.replace(old_hostname, new_hostname)
