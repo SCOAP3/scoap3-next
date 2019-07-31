@@ -19,7 +19,7 @@
         "self": {
           "description": "Url of the record itself",
           "title": "Url of the record",
-          "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
+          "$ref": "http://repo.scoap3.org/schemas/json_reference.json"
         },
         "$schema": {
             "type": "string",
@@ -218,7 +218,7 @@
             "type": "array"
         },
         "titles": {
-            "$ref": "http://beta.scoap3.org/schemas/elements/titles.json"
+            "$ref": "http://repo.scoap3.org/schemas/elements/titles.json"
         },
         "publication_info": {
             "uniqueItems": true,
@@ -245,15 +245,15 @@
                         "type": "string"
                     },
                     "parent_record": {
-                        "$ref": "http://beta.scoap3.org/schemas/json_reference.json",
+                        "$ref": "http://repo.scoap3.org/schemas/json_reference.json",
                         "description": "URI for the parent this record is part of"
                     },
                     "journal_record": {
-                        "$ref": "http://beta.scoap3.org/schemas/json_reference.json",
+                        "$ref": "http://repo.scoap3.org/schemas/json_reference.json",
                         "description": "URI for corresponding Journal"
                     },
                     "conference_record": {
-                        "$ref": "http://beta.scoap3.org/schemas/json_reference.json",
+                        "$ref": "http://repo.scoap3.org/schemas/json_reference.json",
                         "description": "URI for corresponding Conference"
                     },
                     "reportnumber": {
@@ -354,7 +354,7 @@
                         "type": "array"
                     },
                     "record": {
-                        "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
+                        "$ref": "http://repo.scoap3.org/schemas/json_reference.json"
                     }
                 }
             },
@@ -384,7 +384,7 @@
             "type": "array"
         },
         "field_categories": {
-            "$ref": "http://beta.scoap3.org/schemas/elements/fields.json"
+            "$ref": "http://repo.scoap3.org/schemas/elements/fields.json"
         },
         "accelerator_experiments": {
             "uniqueItems": true,
@@ -411,7 +411,7 @@
                     },
                     "record": {
                         "description": "URI for the corresponding experiment record.",
-                        "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
+                        "$ref": "http://repo.scoap3.org/schemas/json_reference.json"
                     }
                 }
             },
@@ -436,7 +436,7 @@
             "type": "array"
         },
         "title_variations": {
-            "$ref": "http://beta.scoap3.org/schemas/elements/titles.json"
+            "$ref": "http://repo.scoap3.org/schemas/elements/titles.json"
         },
         "free_keywords": {
             "uniqueItems": true,
@@ -500,7 +500,7 @@
                         "type": "string"
                     },
                     "record": {
-                        "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
+                        "$ref": "http://repo.scoap3.org/schemas/json_reference.json"
                     }
                 },
                 "description": "Reference to previously merged records."
@@ -515,7 +515,7 @@
                         "type": "string"
                     },
                     "record": {
-                        "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
+                        "$ref": "http://repo.scoap3.org/schemas/json_reference.json"
                     }
                 }
             },
@@ -591,7 +591,7 @@
                                 "record": {
                                     "description": "URI for the Institution collection record",
                                     "title": "URI for the Institution collection record",
-                                    "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
+                                    "$ref": "http://repo.scoap3.org/schemas/json_reference.json"
                                 }
                             },
                             "title": "Affiliation"
@@ -647,7 +647,7 @@
                     "record": {
                         "description": "URI for the person record",
                         "title": "URI for the person record",
-                        "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
+                        "$ref": "http://repo.scoap3.org/schemas/json_reference.json"
                     }
                 },
                 "title": "Author"
@@ -746,13 +746,13 @@
         "deleted_records": {
             "type": "array",
             "items": {
-                "$ref": "http://beta.scoap3.org/schemas/json_reference.json"
+                "$ref": "http://repo.scoap3.org/schemas/json_reference.json"
             },
             "description": "List of deleted records referring to this record",
             "title": "Deleted Records"
         },
         "new_record": {
-            "$ref": "http://beta.scoap3.org/schemas/json_reference.json",
+            "$ref": "http://repo.scoap3.org/schemas/json_reference.json",
             "description": "Master record that replaces this record",
             "title": "New record"
         },
@@ -801,10 +801,10 @@
             }
         },
         "urls": {
-            "$ref": "http://beta.scoap3.org/schemas/elements/urls.json"
+            "$ref": "http://repo.scoap3.org/schemas/elements/urls.json"
         },
         "title_translations": {
-            "$ref": "http://beta.scoap3.org/schemas/elements/titles.json"
+            "$ref": "http://repo.scoap3.org/schemas/elements/titles.json"
         },
         "corporate_author": {
             "uniqueItems": true,

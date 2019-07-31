@@ -30,16 +30,12 @@ SERVER_NAME = 'localhost:5000'
 SECURITY_REGISTERABLE = False
 SECURITY_LOGIN_USER_TEMPLATE = 'scoap3_theme/login_user.html'
 
-# WARNING: Do not share the secret key - especially do not commit it to
-# version control.
-SECRET_KEY = "5EeAQcsqST1J6U7dTlQsBsJMcAuMgqdbfvut9YoDw75fRTlnQ7OtMcNcfp4OzOtQUUsVFWThN5YmJ023XzKHOMcMZIEblxgyoMSkyP5rcnlBCQ4yJOCBsXxmn13RxcK7yQ7U996ey59zce1i47VoVTyk1wwOKJocafnyOk4HfcE3Xx2IxKQYk8EXWtPVlndmVZZuba9kivA73QfWB9uxumFd8wtMhLm6quRa8KB9eqywNyCwcz6DHGYQzRKKvtgo"  # noqa
+SECRET_KEY = "REPLACE_WITH_SECRET"
 
 # Theme
 THEME_SITENAME = _("SCOAP3 Repository")
 THEME_LOGO = 'img/logo.png'
-# ASSETS_DEBUG = True
-# COLLECT_STORAGE = "flask_collect.storage.link"
-SITE_URL = "www.beta.scoap3.org"
+SITE_URL = "repo.scoap3.org"
 
 SEARCH_UI_SEARCH_TEMPLATE = 'scoap3_search/search.html'
 SEARCH_UI_JSTEMPLATE_RESULTS = 'templates/scoap3_search/default.html'
@@ -503,7 +499,7 @@ SCRAPY_FEED_URI = '/eos/project/s/scoap3repo/scrapy_feed.json'
 
 OAISERVER_RECORD_INDEX = 'scoap3-records-record'
 #: OAI identifier prefix
-OAISERVER_ID_PREFIX = 'oai:beta.scoap3.org:'
+OAISERVER_ID_PREFIX = 'oai:repo.scoap3.org:'
 #: Managed OAI identifier prefixes
 OAISERVER_MANAGED_ID_PREFIXES = [OAISERVER_ID_PREFIX]
 #: Number of records to return per page in OAI-PMH results.

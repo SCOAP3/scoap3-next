@@ -6,4 +6,4 @@ This file is imported by ``scoap3.__init__``,
 and parsed by ``setup.py``.
 """
 
-__version__ = "0.7.0.dev0"
+__version__ = "1.0.0"
