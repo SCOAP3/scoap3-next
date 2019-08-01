@@ -339,8 +339,9 @@ def add_oai_information(obj, eng):
         try:
             oaiid_minter(pid.object_uuid, existing_record)
         except PIDAlreadyExists:
+            oai_prefix = current_app.config.get('OAISERVER_ID_PREFIX')
             existing_record['_oai'] = {
-                'id': 'oai:beta.scoap3.org:%s' % recid,
+                'id': '%s:%s' % (oai_prefix, recid),
                 'sets': _get_oai_sets(existing_record)
             }
 
