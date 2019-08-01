@@ -4,6 +4,7 @@ import json
 from flask import flash, url_for, request
 from flask_admin import BaseView, expose
 from flask_admin.contrib.sqla.filters import FilterEqual
+from flask_admin.helpers import is_form_submitted
 from flask_admin.model.template import macro
 
 from flask_admin.contrib.sqla import ModelView
@@ -55,6 +56,10 @@ class RecordModelView(ModelView):
 
     def get_save_return_url(self, model, is_created=False):
         return url_for('record.edit_view', id=model.id)
+
+    def validate_form(self, form):
+        """Override base validation as the validation is done at a later step."""
+        return is_form_submitted()
 
     def update_model(self, form, model):
         """Update the metadata for a record."""
