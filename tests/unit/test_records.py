@@ -56,9 +56,9 @@ class MockES():
         'journal:"Nuclear Physics B"': 6,
         'journal:"Physical Review C"': 7,
 
-        "record_creation_date:>=2019-07-28": 3,
-        "record_creation_date:>=2019-06-29": 10,
-        "record_creation_date:>=2019": 20,
+        "date:>=2019-07-28": 3,
+        "date:>=2019-06-29": 10,
+        "date:>=2019": 20,
     }
 
     def count(self, q=None):

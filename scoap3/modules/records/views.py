@@ -28,7 +28,7 @@ def collections_count():
         'this_year': datetime.now().year,
     }
     for key, date in dates.items():
-        data['other'][key] = current_search_client.count(q='record_creation_date:>=%s' % date)['count']
+        data['other'][key] = current_search_client.count(q='date:>=%s' % date)['count']
 
     # all article number
     data['other']['all'] = sum(count for _, count in data['journals'].items())
