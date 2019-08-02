@@ -1,23 +1,18 @@
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-above">
-        <div class="container">
+        <div class="container text-center">
             <div class="row">
                 <div class="footer-col col-md-3">
-                    <p></p>
-                    <ul class="list-unstyled">
-                        <li><a href="http://scoap3.org">SCOAP3 website</a></li>
-                        <li><a href="https://scoap3.org/scoap3-repository/">About the repository</a></li>
-                        <li><a href="https://scoap3.org/scoap3-repository/repository-help-2/">Search help</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col col-md-3">
-                    <p>Repository contact</p>
-                    <a href="mailto:repo.admin@scoap3.org">repo.admin@scoap3.org</a>
+                    <a href="http://scoap3.org">SCOAP3 website</a> |
+                    <a href="https://scoap3.org/scoap3-repository/">About the repository</a> |
+                    <a href="https://scoap3.org/scoap3-repository/repository-help-2/">Search help</a>
                 </div>
                 <div class="footer-col col-md-6">
-                    <p>Licences</p>
                     {% trans ccby="http://creativecommons.org/licenses/by/3.0/", cc0="http://creativecommons.org/publicdomain/zero/1.0/" %}Articles in the SCOAP3 repository are released under a <a href="{{ccby}}">CC-BY</a> license. Metadata are provided by the corresponding publishers and released under the a <a href="{{cc0}}">CC0</a> waiver.{% endtrans %}
+                </div>
+                <div class="footer-col col-md-3">
+                    Repository contact: <a href="mailto:repo.admin@scoap3.org">repo.admin@scoap3.org</a>
                 </div>
             </div>
         </div>
