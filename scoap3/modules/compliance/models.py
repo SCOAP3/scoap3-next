@@ -14,10 +14,12 @@ from datetime import datetime
 
 from flask import flash
 from invenio_db import db
+from invenio_records import Record
 from invenio_records.models import RecordMetadata
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm.attributes import flag_modified
+from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy_utils import UUIDType
 
 from scoap3.modules.workflows.utils import start_compliance_workflow
@@ -117,6 +119,24 @@ class Compliance(db.Model):
         # https://bugs.launchpad.net/fuel/+bug/1482658
         # since dict ref. haven't changed need to manually report the change
         flag_modified(o, 'results')
+
+        return True
+
+    @classmethod
+    def reject_and_delete(cls, id):
+        o = cls.query.filter_by(id=id).one()
+        o.results['accepted'] = False
+        o.results['deleted'] = True
+        flag_modified(o, 'results')
+
+        try:
+            record = Record.get_record(o.record.id)
+            record.delete()
+        except NoResultFound:
+            flash('Record with id "%s" was already deleted.' % o.record.id, 'warning')
+            return False
+
+        db.session.commit()
 
         return True
 

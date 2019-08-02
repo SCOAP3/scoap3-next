@@ -626,10 +626,31 @@ ARTICLE_CHECK_HAS_TO_BE_HEP = (
     'Physical Review Letters',
     'Progress of Theoretical and Experimental Physics',
 )
-"""List of journals in which articles need to have 'hep-*' primary arXiv category."""
+"""
+List of journals in which articles need to have 'hep-*' primary arXiv category.
+Used in the article and compliance checks.
+"""
 
 ARTICLE_CHECK_IGNORE_TIME = timedelta(hours=48)
 """An article will only be considered missing if it was published at least ARTICLE_CHECK_IGNORE_TIME ago."""
+
+COMPLIANCE_JOURNAL_FILES = {
+    'Acta Physica Polonica B': {'pdf', 'pdf/a'},
+    'Advances in High Energy Physics': {'pdf', 'pdf/a', 'xml'},
+    'Chinese Physics C': {'pdf', 'xml'},
+    'The European Physical Journal C': {'pdf/a', 'xml'},
+    'Journal of High Energy Physics': {'pdf/a', 'xml'},
+    'Nuclear Physics B': {'pdf', 'pdf/a', 'xml'},
+    'Physics Letters B': {'pdf', 'pdf/a', 'xml'},
+    'Physical Review C': {'pdf/a', 'xml'},
+    'Physical Review D': {'pdf/a', 'xml'},
+    'Physical Review Letters': {'pdf/a', 'xml'},
+    'Progress of Theoretical and Experimental Physics': {'pdf', 'pdf/a', 'xml'},
+}
+"""
+Required file types for journals. This is validated in the compliance check.
+The articles are required to have *exactly* these files.
+"""
 
 PARTNER_COUNTRIES = ["Australia", "Austria", "Belgium", "Canada", "China", "CERN",
                      "Czech Republic", "Denmark", "Finland", "France", "Germany",
