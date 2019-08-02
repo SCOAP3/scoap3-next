@@ -93,7 +93,7 @@ def test_validate_required_fields():
                     'key': '10.1007/JHEP04(2019)052_a.pdf',
                     'size': 10050434,
                     'version_id': '2fa2d949-01d6-4ca9-90db-a3ef7896dd7f'}],
-        '_oai': {'id': 'oai:beta.scoap3.org:46684',
+        '_oai': {'id': 'oai:repo.scoap3.org:46684',
                  'sets': ['JHEP'],
                  'updated': '2019-04-08T12:33:38Z'},
         'abstracts': [{'source': 'Springer',
