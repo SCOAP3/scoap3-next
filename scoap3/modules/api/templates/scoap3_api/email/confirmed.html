@@ -1,7 +1,8 @@
 Dear {{ recipient }},
 
 <p>
-    Your registration to SCOAP3 API was accepted. Please find you login details below. Please remember to change the password after you login at <a href="beta.scoap3.org/login">beta.scoap3.org/login</a>
+    Your registration to SCOAP3 API was accepted. Please find you login details below. Please remember to change the password after you login at
+    <a href="{{ url_for(config.ADMIN_LOGIN_ENDPOINT, _external=True) }}">{{ url_for(config.ADMIN_LOGIN_ENDPOINT, _external=True) }}</a>
 <p>
 
 <p>

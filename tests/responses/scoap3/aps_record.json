@@ -1,5 +1,5 @@
 {
-  "$schema": "http://beta.scoap3.org/schemas/hep.json",
+  "$schema": "http://repo.scoap3.org/schemas/hep.json",
   "_collections": [
     "Physical Review C",
     "scoap3"
@@ -23,7 +23,7 @@
     }
   ],
   "_oai": {
-    "id": "oai:beta.scoap3.org:45985",
+    "id": "oai:repo.scoap3.org:45985",
     "sets": [
       "PRC"
     ],

@@ -3,7 +3,7 @@
 {% endmacro %}
 
 {% macro render_author_names(record, author, show_affiliation) %}
-  <a href="http://beta.scoap3.org/search?q=authors.full_name:'{{ author['full_name'] }}'" class="no-external-icon">
+  <a href="/search?q=authors.full_name:'{{ author['full_name'] }}'" class="no-external-icon">
     {{ author.get('full_name', '') | format_author_name() }}
   </a>
     {%- if 'orcid' in author %}
