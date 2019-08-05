@@ -504,8 +504,8 @@ OAISERVER_ID_PREFIX = 'oai:repo.scoap3.org:'
 OAISERVER_MANAGED_ID_PREFIXES = [OAISERVER_ID_PREFIX]
 #: Number of records to return per page in OAI-PMH results.
 OAISERVER_PAGE_SIZE = 100
-#: Increase resumption token expire time.
-OAISERVER_RESUMPTION_TOKEN_EXPIRE_TIME = 60
+#: Resumption token expire time in seconds.
+OAISERVER_RESUMPTION_TOKEN_EXPIRE_TIME = 60 * 60 * 24
 #: PIDStore fetcher for OAI ID control numbers
 OAISERVER_CONTROL_NUMBER_FETCHER = 'scoap3_fetcher'
 #: Support email for OAI-PMH.
