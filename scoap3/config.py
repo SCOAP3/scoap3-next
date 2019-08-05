@@ -643,9 +643,9 @@ COMPLIANCE_JOURNAL_FILES = {
     'Journal of High Energy Physics': {'pdf/a', 'xml'},
     'Nuclear Physics B': {'pdf', 'pdf/a', 'xml'},
     'Physics Letters B': {'pdf', 'pdf/a', 'xml'},
-    'Physical Review C': {'pdf/a', 'xml'},
-    'Physical Review D': {'pdf/a', 'xml'},
-    'Physical Review Letters': {'pdf/a', 'xml'},
+    'Physical Review C': {'pdf', 'xml'},
+    'Physical Review D': {'pdf', 'xml'},
+    'Physical Review Letters': {'pdf', 'xml'},
     'Progress of Theoretical and Experimental Physics': {'pdf', 'pdf/a', 'xml'},
 }
 """
