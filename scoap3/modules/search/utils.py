@@ -1,5 +1,5 @@
 from elasticsearch_dsl import Q
-from flask import current_app
+from flask import current_app, request
 from flask_login import current_user
 from inspire_utils.record import get_value
 from invenio_search import RecordsSearch
@@ -18,6 +18,14 @@ class Scoap3RecordsSearch(RecordsSearch):
         return result
 
     def to_dict(self, count=False, **kwargs):
+        # add _source parameter from url if available
+        if not self._source:
+            source = request.args.get('_source')
+            if source:
+                # make sure we have all the required fields
+                required_fields = ['control_number', '_updated', '_created']
+                self._source = required_fields + source.split(',')
+
         result = super(Scoap3RecordsSearch, self).to_dict(count, **kwargs)
 
         # hack: change default value for default_query operator to 'and'

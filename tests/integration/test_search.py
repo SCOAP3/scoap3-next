@@ -48,3 +48,17 @@ def test_case_insensitive_doi(test_record):
 
     assert data_original['hits']
     assert data_original['hits'] == data_upper['hits']
+
+
+def test_source_field(app_client, test_record):
+    doi = get_value(test_record, 'dois[0].value')
+    search_param = '"%s"' % doi
+
+    response = app_client.get('/api/records/?q=%s&_source=dois' % quote(search_param))
+    data = json.loads(response.data)
+    results = data['hits']['hits']
+
+    assert len(results) == 1
+    result_metadata = results[0]['metadata']
+    assert set(result_metadata.keys()) == {'dois', 'control_number'}
+    assert result_metadata['dois'][0]['value'] == doi
