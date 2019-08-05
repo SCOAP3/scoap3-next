@@ -504,8 +504,8 @@ OAISERVER_ID_PREFIX = 'oai:repo.scoap3.org:'
 OAISERVER_MANAGED_ID_PREFIXES = [OAISERVER_ID_PREFIX]
 #: Number of records to return per page in OAI-PMH results.
 OAISERVER_PAGE_SIZE = 100
-#: Increase resumption token expire time.
-OAISERVER_RESUMPTION_TOKEN_EXPIRE_TIME = 60
+#: Resumption token expire time in seconds.
+OAISERVER_RESUMPTION_TOKEN_EXPIRE_TIME = 60 * 60 * 24
 #: PIDStore fetcher for OAI ID control numbers
 OAISERVER_CONTROL_NUMBER_FETCHER = 'scoap3_fetcher'
 #: Support email for OAI-PMH.
@@ -561,6 +561,7 @@ dictConfig({
 JSONSCHEMAS_HOST = 'localhost:5000'
 JSONSCHEMAS_REPLACE_REFS = False
 
+MAIL_SUPPRESS_SEND = True  # only log email in local environment
 MAIL_DEFAULT_SENDER = 'repo.admin@scoap3.org'
 ADMIN_DEFAULT_EMAILS = ['scoap3repo.admin@cern.ch', ]
 OPERATIONS_EMAILS = ['scoap3repo.admin@cern.ch', ]
@@ -626,10 +627,31 @@ ARTICLE_CHECK_HAS_TO_BE_HEP = (
     'Physical Review Letters',
     'Progress of Theoretical and Experimental Physics',
 )
-"""List of journals in which articles need to have 'hep-*' primary arXiv category."""
+"""
+List of journals in which articles need to have 'hep-*' primary arXiv category.
+Used in the article and compliance checks.
+"""
 
 ARTICLE_CHECK_IGNORE_TIME = timedelta(hours=48)
 """An article will only be considered missing if it was published at least ARTICLE_CHECK_IGNORE_TIME ago."""
+
+COMPLIANCE_JOURNAL_FILES = {
+    'Acta Physica Polonica B': {'pdf', 'pdf/a'},
+    'Advances in High Energy Physics': {'pdf', 'pdf/a', 'xml'},
+    'Chinese Physics C': {'pdf', 'xml'},
+    'The European Physical Journal C': {'pdf/a', 'xml'},
+    'Journal of High Energy Physics': {'pdf/a', 'xml'},
+    'Nuclear Physics B': {'pdf', 'pdf/a', 'xml'},
+    'Physics Letters B': {'pdf', 'pdf/a', 'xml'},
+    'Physical Review C': {'pdf/a', 'xml'},
+    'Physical Review D': {'pdf/a', 'xml'},
+    'Physical Review Letters': {'pdf/a', 'xml'},
+    'Progress of Theoretical and Experimental Physics': {'pdf', 'pdf/a', 'xml'},
+}
+"""
+Required file types for journals. This is validated in the compliance check.
+The articles are required to have *exactly* these files.
+"""
 
 PARTNER_COUNTRIES = ["Australia", "Austria", "Belgium", "Canada", "China", "CERN",
                      "Czech Republic", "Denmark", "Finland", "France", "Germany",

@@ -25,5 +25,13 @@
 {% endmacro %}
 
 {% macro render_url(model, column) %}
-  <a href="/records/{{ model.record.json.control_number }}" target="_blank">{{ model.record.json.control_number }}</a>
+  {% if model.record.json.control_number %}
+    <a href="/records/{{ model.record.json.control_number }}" target="_blank">{{ model.record.json.control_number }}</a>
+  {% else %}
+    DELETED
+  {% endif %}
 {% endmacro%}
+
+{% macro render_comment(model, column) %}
+  {{ model.results.comment }}
+{% endmacro %}

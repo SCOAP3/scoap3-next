@@ -15,7 +15,7 @@ from pdfminer.pdfparser import PDFSyntaxError
 from scoap3.modules.compliance.models import Compliance
 from scoap3.utils.pdf import extract_text_from_pdf
 from scoap3.modules.records.util import (get_abbreviated_publisher, get_abbreviated_journal, get_arxiv_primary_category,
-                                         get_first_doi, get_first_arxiv)
+                                         get_first_doi, get_first_arxiv, get_first_journal)
 
 
 def __extract_article_text(record):
@@ -93,23 +93,27 @@ def __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns=None, accept_e
 def _files(record, extra_data):
     """Check if it has the necessary files: .xml, .pdf, .pdfa """
 
-    file_types = [file['filetype'] for file in record.get('_files', ())]
+    journal = get_first_journal(record)
+    required_files = current_app.config.get('COMPLIANCE_JOURNAL_FILES', {}).get(journal)
 
-    check_accepted = True
-    details = ''
+    if not required_files:
+        return True, ('No required files defined!', ), None
 
-    if 'xml' not in file_types:
-        if record['publication_info'][0]['journal_title'] != 'Acta Physica Polonica B':
-            check_accepted = False
-            details += 'No xml file. '
+    available_files = {f.get('filetype') for f in record.get('_files', ())}
 
-    if 'pdf' not in file_types and 'pdf/a' not in file_types:
-        check_accepted = False
-        details += 'No pdf file. '
+    check_accepted = required_files == available_files
+    details = []
 
-    details += 'Available files: %s' % ', '.join(file_types)
+    if not check_accepted:
+        missing_files = ', '.join(required_files - available_files)
+        if missing_files:
+            details.append('Missing files: %s' % missing_files)
 
-    return check_accepted, (details, ), None
+        extra_files = ', '.join(available_files - required_files)
+        if extra_files:
+            details.append('Extra files: %s' % extra_files)
+
+    return check_accepted, details, None
 
 
 def _received_in_time(record, extra_data):
@@ -182,9 +186,18 @@ def _cc_licence(record, extra_data):
 
 
 def _arxiv(record, extra_data):
+    # if not available it is only compliant if the arXiv check is not mandatory for the journal
+    journal = get_first_journal(record)
+    if journal not in current_app.config.get('ARTICLE_CHECK_HAS_TO_BE_HEP'):
+        return True, ("Doesn't have to be hep", ), None
+
+    # get the primary category
     primary = get_arxiv_primary_category(record)
-    check_accepted = primary is None or (primary in current_app.config.get('ARXIV_HEP_CATEGORIES'))
-    return check_accepted, ('Primary category: %s' % primary, ), None
+    if primary:
+        check_accepted = primary in current_app.config.get('ARXIV_HEP_CATEGORIES')
+        return check_accepted, ('Primary category: %s' % primary, ), None
+
+    return False, ('No arXiv id', ), None
 
 
 COMPLIANCE_TASKS = [
