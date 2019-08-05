@@ -99,7 +99,7 @@ def _files(record, extra_data):
     if not required_files:
         return True, ('No required files defined!', ), None
 
-    available_files = {file['filetype'] for file in record.get('_files', ())}
+    available_files = {f.get('filetype') for f in record.get('_files', ())}
 
     check_accepted = required_files == available_files
     details = []

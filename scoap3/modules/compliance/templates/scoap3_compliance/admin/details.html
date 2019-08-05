@@ -60,16 +60,29 @@
     </tr>
     <tr>
       <td><b>Recid:</b></td>
-      <td colspan="2"><a href="/records/{{ model.record.json.control_number }}" target="_blank">
-        {{ model.record.json.control_number }}
-      </a></td>
+      <td colspan="2">
+        {% if model.record.json.control_number %}
+          <a href="/records/{{ model.record.json.control_number }}" target="_blank">
+            {{ model.record.json.control_number }}
+          </a>
+        {% else %}
+          DELETED
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td><b>Comment:</b></td>
+      <td colspan="2">{{ model.results.comment }}</td>
     </tr>
     <tr>
       <td><b>Actions</b></td>
+      {% set current_url = url_for(request.endpoint, id="%s,%s" % (model.id, model.id_record)) %}
       <td colspan="2">
         <form method="POST" action="/admin/compliance/action/">
-            <input name="rowid" value="{{ model.id }},{{ model.id_record }}" type="hidden">
-            <input name="url" type="hidden" value="/admin/compliance/">
+          <input name="rowid" value="{{ model.id }},{{ model.id_record }}" type="hidden">
+          <input name="url" type="hidden" value="{{ current_url }}">
+
+          <input type="text" class="form-control" name="comment" placeholder="Accept/Reject comment" />
 
           {% if model.results.accepted %}
             <input name="action" value="reject" type="hidden" />
@@ -83,16 +96,36 @@
             </button>
           {% endif %}
         </form>
-        <br/>
-        <form method="POST" action="/admin/compliance/action/">
-            <input name="rowid" value="{{ model.id }},{{ model.id_record }}" type="hidden">
-            <input name="url" type="hidden" value="/admin/compliance/">
 
-            <input name="action" value="rerun" type="hidden" />
-            <button class="btn btn-danger">
-              Rerun compliance check
-            </button>
-        </form>
+        {% if model.record.json %}
+          <br/>
+          <form method="POST" action="/admin/compliance/action/">
+              <input name="rowid" value="{{ model.id }},{{ model.id_record }}" type="hidden">
+              <input name="url" type="hidden" value="{{ current_url }}">
+
+              <input type="text" class="form-control" name="comment" placeholder="Delete comment" />
+
+              <input name="action" value="reject_delete" type="hidden" />
+              <button onclick="return confirm('Are you sure you want to DELETE the record?');" class="btn btn-danger">
+                Reject & DELETE record
+              </button>
+              <br/>
+              <small class="form-text text-muted">
+                This action will reject the compliance check and permanently delete the article from our repository.
+              </small>
+          </form>
+
+          <br/>
+          <form method="POST" action="/admin/compliance/action/">
+              <input name="rowid" value="{{ model.id }},{{ model.id_record }}" type="hidden">
+              <input name="url" type="hidden" value="{{ current_url }}">
+
+              <input name="action" value="rerun" type="hidden" />
+              <button class="btn btn-warning">
+                Rerun compliance check
+              </button>
+          </form>
+        {% endif %}
       </td>
     </tr>
     <tr>

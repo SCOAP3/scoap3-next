@@ -93,40 +93,42 @@ class Compliance(db.Model):
         return c or cls()
 
     @classmethod
-    def accept(cls, id):
+    def accept(cls, id, comment=None):
         o = cls.query.filter_by(id=id).one()
         if o.results['accepted']:
             flash('Compliance check with id "%s" was already accepted.' % o.id, 'warning')
             return False
 
         o.results['accepted'] = True
+        if comment:
+            o.results['comment'] = comment
 
-        # https://bugs.launchpad.net/fuel/+bug/1482658
-        # since dict ref. haven't changed need to manually report the change
         flag_modified(o, 'results')
 
         return True
 
     @classmethod
-    def reject(cls, id):
+    def reject(cls, id, comment=None):
         o = cls.query.filter_by(id=id).one()
         if not o.results['accepted']:
             flash('Compliance check with id "%s" was already rejected.' % o.id, 'warning')
             return False
 
         o.results['accepted'] = False
+        if comment:
+            o.results['comment'] = comment
 
-        # https://bugs.launchpad.net/fuel/+bug/1482658
-        # since dict ref. haven't changed need to manually report the change
         flag_modified(o, 'results')
 
         return True
 
     @classmethod
-    def reject_and_delete(cls, id):
+    def reject_and_delete(cls, id, comment=None):
         o = cls.query.filter_by(id=id).one()
         o.results['accepted'] = False
         o.results['deleted'] = True
+        if comment:
+            o.results['comment'] = comment
         flag_modified(o, 'results')
 
         try:

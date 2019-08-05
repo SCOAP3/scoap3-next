@@ -31,3 +31,7 @@
     DELETED
   {% endif %}
 {% endmacro%}
+
+{% macro render_comment(model, column) %}
+  {{ model.results.comment }}
+{% endmacro %}
