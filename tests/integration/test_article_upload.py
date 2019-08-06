@@ -169,6 +169,8 @@ def test_hindawi():
     with requests_mock.Mocker() as m:
         m.get('http://downloads.hindawi.com/journals/ahep/2019/4123108.pdf',
               content=read_response('article_upload', 'hindawi.com_journals_ahep_2019_4123108.pdf'))
+        m.get('http://downloads.hindawi.com/journals/ahep/2019/4123108.a.pdf',
+              content=read_response('article_upload', 'hindawi.com_journals_ahep_2019_4123108.a.pdf'))
         m.get('http://downloads.hindawi.com/journals/ahep/2019/4123108.xml',
               content=read_response('article_upload', 'hindawi.com_journals_ahep_2019_4123108.xml'))
         m.get('https://api.crossref.org/works/10.1155/2019/4123108',
@@ -179,7 +181,7 @@ def test_hindawi():
     assert Workflow.query.count() - workflows_count == 1
 
     record = get_record_from_workflow(workflow)
-    assert len(record['_files']) == 2
+    assert len(record['_files']) == 3
     assert record['_oai']['sets'] == ['AHEP']
     assert record['acquisition_source']['method'] == 'Hindawi'
 
@@ -227,6 +229,8 @@ def test_hindawi2():
     with requests_mock.Mocker() as m:
         m.get('http://downloads.hindawi.com/journals/ahep/2014/191960.pdf',
               content=read_response('article_upload', 'hindawi.com_journals_ahep_2014_191960.pdf'))
+        m.get('http://downloads.hindawi.com/journals/ahep/2014/191960.a.pdf',
+              content=read_response('article_upload', 'hindawi.com_journals_ahep_2014_191960.a.pdf'))
         m.get('http://downloads.hindawi.com/journals/ahep/2014/191960.xml',
               content=read_response('article_upload', 'hindawi.com_journals_ahep_2014_191960.xml'))
         m.get('https://api.crossref.org/works/10.1155/2014/191960',
@@ -237,7 +241,7 @@ def test_hindawi2():
     assert Workflow.query.count() - workflows_count == 1
 
     record = get_record_from_workflow(workflow)
-    assert len(record['_files']) == 2
+    assert len(record['_files']) == 3
     assert record['_oai']['sets'] == ['AHEP']
     assert record['abstracts'][0]['value'] == 'In the last decades, a very [...] solutions in the near future.'
     assert record['acquisition_source']['method'] == 'Hindawi Publishing Corporation'
