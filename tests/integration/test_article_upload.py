@@ -1,8 +1,13 @@
 import requests_mock
 from invenio_workflows import Workflow
+from mock import patch
+from pytest import raises
 from workflow.engine_db import WorkflowStatus
+from workflow.errors import HaltProcessing
 
-from tests.integration.utils import get_record_from_workflow, run_article_upload_with_data, run_article_upload_with_file
+from scoap3.modules.workflows.workflows.articles_upload import attach_files
+from tests.integration.utils import get_record_from_workflow, run_article_upload_with_data, \
+    run_article_upload_with_file, mock_halt
 from tests.responses import read_response, read_response_as_json
 
 
@@ -575,3 +580,29 @@ def test_oup():
                                            'year': 2019}]
     assert record['titles'][0]['title'] == u'Entropy spectrum of charged BTZ black holes in' \
                                            u' massive gravity\u2019s rainbow'
+
+
+class MockObj:
+    def __init__(self, data, extra_data):
+        self.data = data
+        self.extra_data = extra_data
+
+    def save(self):
+        raise NotImplementedError
+
+
+def test_attach_file_404(test_record):
+    with patch('scoap3.modules.workflows.workflows.articles_upload.__halt_and_notify', mock_halt), \
+            raises(HaltProcessing), \
+            requests_mock.Mocker() as m:
+        m.get('http://localhost/doesntexist', status_code=404)
+
+        extra_data = {
+            'files': [
+                {'url': 'http://localhost/doesntexist',
+                 'name': 'no_file',
+                 'filetype': 'pdf'}
+            ]
+        }
+        obj = MockObj(test_record, extra_data)
+        attach_files(obj, None)
