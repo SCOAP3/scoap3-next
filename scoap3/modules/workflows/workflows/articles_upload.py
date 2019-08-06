@@ -263,6 +263,9 @@ def build_files_data(obj, eng):
             {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
              'name': '{0}.pdf'.format(doi),
              'filetype': 'pdf'},
+            {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.a.pdf'.format(doi_part),
+             'name': '{0}.a.pdf'.format(doi),
+             'filetype': 'pdf/a'},
             {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.xml'.format(doi_part),
              'name': '{0}.xml'.format(doi),
              'filetype': 'xml'}
