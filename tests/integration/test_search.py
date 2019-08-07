@@ -55,6 +55,7 @@ def test_source_field(app_client, test_record):
     search_param = '"%s"' % doi
 
     response = app_client.get('/api/records/?q=%s&_source=dois' % quote(search_param))
+    assert response.status_code == 200
     data = json.loads(response.data)
     results = data['hits']['hits']
 
@@ -62,3 +63,40 @@ def test_source_field(app_client, test_record):
     result_metadata = results[0]['metadata']
     assert set(result_metadata.keys()) == {'dois', 'control_number'}
     assert result_metadata['dois'][0]['value'] == doi
+
+
+def test_export(app_client, test_record):
+    doi = get_value(test_record, 'dois[0].value')
+    search_param = '"%s"' % doi
+
+    response = app_client.get('/search/export?q=%s' % quote(search_param))
+    assert response.status_code == 200
+
+    year = test_record['imprints'][0]['date'][:4]
+    control_number = test_record['control_number']
+    title = get_value(test_record, 'titles[0].title')
+    arxiv = ''
+    arxiv_categories = ''
+    pub_date = get_value(test_record, 'imprints[0].date')
+    rec_create = test_record['record_creation_date']
+    publisher = get_value(test_record, 'publication_info[0].journal_title')
+    expected_data = ('Publication year;Control number;DOI;Title;arXiv id;arXiv primary category;'
+                     'Publication date;Record creation date;Publisher\r\n%s;%s;%s;%s;%s;%s;%s;%s;%s\r\n' % (
+                         year, control_number, doi, title, arxiv, arxiv_categories, pub_date, rec_create, publisher)
+                     )
+
+    assert response.data.decode('utf8') == expected_data
+
+
+def test_export_source(app_client, test_record):
+    doi = get_value(test_record, 'dois[0].value')
+    search_param = '"%s"' % doi
+
+    response = app_client.get('/search/export?q=%s&_source=year' % quote(search_param))
+    assert response.status_code == 200
+
+    year = test_record['imprints'][0]['date'][:4]
+    control_number = test_record['control_number']
+    expected_data = 'Publication year;Control number\r\n%s;%s\r\n' % (year, control_number)
+
+    assert response.data == expected_data

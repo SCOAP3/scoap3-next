@@ -876,3 +876,22 @@ CLI_HARVEST_MAX_WAIT_TIME = 60  # seconds
 CLI_HARVEST_MAX_RETRIES = 2
 
 INSPIRE_LITERATURE_API_URL = 'https://labs.inspirehep.net/api/literature'
+
+SEARCH_EXPORT_FIELDS = (
+    ('Publication year',        'year',                     'year'),
+    ('Control number',          'control_number',           'control_number'),
+    ('DOI',                     'dois',                     'dois[0].value'),
+    ('Title',                   'titles',                   'titles[0].title'),
+    ('arXiv id',                'arxiv_eprints',            'arxiv_eprints[0].value'),
+    ('arXiv primary category',  'arxiv_eprints',            'arxiv_eprints[0].categories[0]'),
+    ('Publication date',        'imprints',                 'imprints[0].date'),
+    ('Record creation date',    'record_creation_date',     'record_creation_date'),
+    ('Publisher',               'publication_info',         'publication_info[0].journal_title'),
+)
+"""List of 3-tuples that describe the fields used for the serach export feature.
+
+Elements are 3-tuples: (name, field, key)
+ - name: human readable name. This will be displayed in the header of the exported csv.
+ - field: metadata top-level field, which contains the information.
+ - key: selector for the needed value.
+"""

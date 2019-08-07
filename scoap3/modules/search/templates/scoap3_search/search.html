@@ -77,6 +77,12 @@
           <invenio-search-count
            template="{{ url_for('static', filename=config.SEARCH_UI_JSTEMPLATE_COUNT) }}">
           </invenio-search-count>
+          {% if current_user.is_authenticated %}
+            <button class="btn btn-default"
+               onclick="window.open('{{url_for('scoap3_search.export') }}?' + location.search)">
+              Export results
+            </button>
+          {% endif %}
         </div>
         {%- endblock search_count %}
         {%- block search_pagination_top %}
