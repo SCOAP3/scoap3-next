@@ -80,8 +80,9 @@ def test_export(app_client, test_record):
     pub_date = get_value(test_record, 'imprints[0].date')
     rec_create = test_record['record_creation_date']
     publisher = get_value(test_record, 'publication_info[0].journal_title')
-    expected_data = ('Publication year;Control number;DOI;Title;arXiv id;arXiv primary category;'
-                     'Publication date;Record creation date;Publisher\r\n%s;%s;%s;%s;%s;%s;%s;%s;%s\r\n' % (
+    expected_data = ('"Publication year";"Control number";"DOI";"Title";"arXiv id";"arXiv primary category";"Publicatio'
+                     'n date";"Record creation date";"Publisher"\r\n"%s";"%s";"%s";"%s";"%s";"%s";"%s";"%s";"%s"'
+                     '\r\n' % (
                          year, control_number, doi, title, arxiv, arxiv_categories, pub_date, rec_create, publisher)
                      )
 
@@ -97,6 +98,6 @@ def test_export_source(app_client, test_record):
 
     year = test_record['imprints'][0]['date'][:4]
     control_number = test_record['control_number']
-    expected_data = 'Publication year;Control number\r\n%s;%s\r\n' % (year, control_number)
+    expected_data = '"Publication year";"Control number"\r\n"%s";"%s"\r\n' % (year, control_number)
 
     assert response.data == expected_data

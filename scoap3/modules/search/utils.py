@@ -68,7 +68,10 @@ def search_record_from_request():
     """
 
     search_index = current_app.config.get('SEARCH_UI_SEARCH_INDEX')
+    max_record_count = current_app.config.get('SEARCH_EXPORT_MAX_RECORDS')
+
     search = Scoap3RecordsSearch(index=search_index)
+    search = search[:max_record_count]
     search, _ = default_search_factory(None, search)
     return search, search.execute()
 
@@ -82,7 +85,7 @@ def export_search_result(search, search_result):
     """
 
     result = StringIO()
-    cw = csv.writer(result, delimiter=";")
+    cw = csv.writer(result, delimiter=";", quoting=csv.QUOTE_ALL)
 
     fields = current_app.config.get('SEARCH_EXPORT_FIELDS')
     if search._source:
