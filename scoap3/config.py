@@ -54,7 +54,7 @@ BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/scoap3"
 INDEXER_DEFAULT_INDEX = "scoap3-records-record"
 INDEXER_DEFAULT_DOC_TYPE = "scoap3-records-record"
 SEARCH_ELASTIC_HOSTS = 'localhost'
-
+SEARCH_MAX_RESULT_WINDOW = 50000
 
 RECORDS_REST_ENDPOINTS = dict(
     recid=dict(
@@ -75,7 +75,7 @@ RECORDS_REST_ENDPOINTS = dict(
         list_route='/records/',
         item_route='/records/<pid(recid):pid_value>',
         default_media_type='application/json',
-        max_result_window=50000,
+        max_result_window=SEARCH_MAX_RESULT_WINDOW,
         read_permission_factory_imp="scoap3.modules.records.permissions:record_read_permission_factory"
     ),
 )
@@ -435,7 +435,7 @@ WORKFLOWS_UI_REST_ENDPOINT = dict(
     file_item_route='/harvesting/<object_id>/files/<path:key>',
     search_index='workflows',
     default_media_type='application/json',
-    max_result_window=50000,
+    max_result_window=SEARCH_MAX_RESULT_WINDOW,
 )
 
 WORKFLOWS_UI_REST_SORT_OPTIONS = {
@@ -895,3 +895,6 @@ Elements are 3-tuples: (name, field, key)
  - field: metadata top-level field, which contains the information.
  - key: selector for the needed value.
 """
+
+SEARCH_EXPORT_MAX_RECORDS = SEARCH_MAX_RESULT_WINDOW
+"""Defines the maximum number of records returned by the search export feature."""

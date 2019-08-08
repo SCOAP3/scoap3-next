@@ -74,14 +74,22 @@
       <div class="row">
         {%- block search_count %}
         <div class="col-xs-3">
-          <invenio-search-count
-           template="{{ url_for('static', filename=config.SEARCH_UI_JSTEMPLATE_COUNT) }}">
-          </invenio-search-count>
+
           {% if current_user.is_authenticated %}
-            <button class="btn btn-default"
-               onclick="window.open('{{url_for('scoap3_search.export') }}?' + location.search)">
-              Export results
-            </button>
+            <a href="#"
+               onclick="window.open('{{url_for('scoap3_search.export') }}?' + location.search)"
+               data-toggle="tooltop"
+               data-placement="top"
+               title="Exports all searched articles in a csv. Warning: exporting a large amount of articles can take a long time."
+            >
+              <invenio-search-count
+                template="{{ url_for('static', filename=config.SEARCH_UI_JSTEMPLATE_COUNT) }}">
+              </invenio-search-count>
+            </a>
+          {% else %}
+            <invenio-search-count
+              template="{{ url_for('static', filename=config.SEARCH_UI_JSTEMPLATE_COUNT) }}">
+            </invenio-search-count>
           {% endif %}
         </div>
         {%- endblock search_count %}
