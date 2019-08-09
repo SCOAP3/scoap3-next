@@ -113,6 +113,14 @@ def perform_article_check_for_journal(from_date, journal, cooperation_dates):
     for item in get_crossref_items(filter_param):
         doi = item['DOI']
 
+        in_db = is_doi_in_db(doi)
+        # if the article is in the repository, no need to check everything else.
+        # (as we are only looking for missing articles)
+        if in_db:
+            journal_stats['in_db'] += 1
+            logger.info('Article is in db. doi=%s journal=%s' % (doi, journal))
+            continue
+
         # check the publication date of the given article
         pub_date = _get_pubdate_from_crossref_message(journal, item)
         if (cooperation_dates_from is not None and cooperation_dates_from > pub_date) or (
@@ -147,10 +155,7 @@ def perform_article_check_for_journal(from_date, journal, cooperation_dates):
                         'doi=%s journal=%s' % (doi, journal))
 
         # check if the article is in our database
-        if is_doi_in_db(doi):
-            journal_stats['in_db'] += 1
-            logger.info('Article is in db. doi=%s journal=%s' % (doi, journal))
-        else:
+        if not in_db:
             journal_stats['missing'] += 1
             missing_records.append((doi, item['title'][0]))
             logger.info('Article is missing. doi=%s journal=%s' % (doi, journal))
