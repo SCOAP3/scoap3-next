@@ -1,4 +1,17 @@
 {
+    "settings": {
+        "analysis": {
+            "normalizer": {
+                "lowercase_normalizer": {
+                    "type": "custom",
+                    "char_filter": [],
+                    "filter": [
+                        "lowercase"
+                    ]
+                }
+            }
+        }
+    },
     "mappings": {
         "scoap3-workflows-workflow": {
             "properties": {
@@ -50,6 +63,15 @@
                                 "journal_title": {
                                     "type": "keyword",
                                     "copy_to": "journal_title_facet"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "dois": {
+                            "properties": {
+                                "value": {
+                                    "type": "keyword",
+                                    "normalizer": "lowercase_normalizer"
                                 }
                             },
                             "type": "object"

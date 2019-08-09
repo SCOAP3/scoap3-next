@@ -49,6 +49,7 @@ from jsonschema.exceptions import ValidationError, SchemaError
 from scoap3.modules.compliance.compliance import check_compliance
 from scoap3.modules.pidstore.minters import scoap3_recid_minter
 from scoap3.modules.records.util import is_doi_in_db
+from scoap3.modules.workflows.utils import delete_halted_workflows_for_doi
 from scoap3.utils.arxiv import get_arxiv_categories
 from scoap3.utils.nations import find_country
 
@@ -62,7 +63,8 @@ logger = logging.getLogger(__name__)
 def __halt_and_notify(msg, eng):
     ctx = {
         'reason': msg,
-        'url': url_for('workflow.details_view', id=eng.model.uuid, _external=True)
+        # url with predefined filter for HALTED workflows
+        'url': url_for('workflow.index_view', flt1_21='2', _external=True),
     }
 
     template_msg = TemplatedMessage(
@@ -79,6 +81,12 @@ def __halt_and_notify(msg, eng):
 
 def get_first_doi(obj):
     return get_value(obj.data, 'dois[0].value')
+
+
+def delete_older_workflows(obj, eng):
+    """Deletes all older halted workflows containing this DOI."""
+    doi = get_first_doi(obj)
+    delete_halted_workflows_for_doi(doi)
 
 
 def set_schema(obj, eng):
@@ -411,6 +419,7 @@ class ArticlesUpload(object):
     name = "HEP"
     data_type = "harvesting"
     workflow = [
+        delete_older_workflows,
         set_schema,
         add_arxiv_category,
         add_nations,
