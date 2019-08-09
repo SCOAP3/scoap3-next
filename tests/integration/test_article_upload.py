@@ -5,6 +5,7 @@ from pytest import raises
 from workflow.engine_db import WorkflowStatus
 from workflow.errors import HaltProcessing
 
+from scoap3.modules.records.util import create_from_json
 from scoap3.modules.workflows.workflows.articles_upload import attach_files
 from tests.integration.utils import get_record_from_workflow, run_article_upload_with_data, \
     run_article_upload_with_file, mock_halt
@@ -606,3 +607,23 @@ def test_attach_file_404(test_record):
         }
         obj = MockObj(test_record, extra_data)
         attach_files(obj, None)
+
+
+def test_delete_halted_workflows():
+    record = {
+        'dois': [
+            {'value': 'test/doi'}
+        ]
+    }
+
+    workflow_id = create_from_json({'records': [record]}, apply_async=False)
+    workflow = Workflow.query.get(workflow_id)
+
+    assert workflow.status == WorkflowStatus.HALTED
+
+    workflow_id2 = create_from_json({'records': [record]}, apply_async=False)
+    workflow2 = Workflow.query.get(workflow_id2)
+
+    assert workflow_id != workflow_id2
+    assert workflow2.status == WorkflowStatus.HALTED
+    assert Workflow.query.get(workflow_id) is None

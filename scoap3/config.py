@@ -399,6 +399,7 @@ WORKFLOWS_UI_API_URL = "/api/harvesting/"
 WORKFLOWS_UI_DATA_TYPES = dict(
     harvesting=dict(
         search_index='scoap3-workflows-harvesting',
+        search_type='scoap3-workflows-workflow',
     ),
 )
 
@@ -433,7 +434,7 @@ WORKFLOWS_UI_REST_ENDPOINT = dict(
     item_route='/harvesting/<object_id>',
     file_list_route='/harvesting/<object_id>/files',
     file_item_route='/harvesting/<object_id>/files/<path:key>',
-    search_index='workflows',
+    search_index='scoap3-workflows-harvesting',
     default_media_type='application/json',
     max_result_window=SEARCH_MAX_RESULT_WINDOW,
 )

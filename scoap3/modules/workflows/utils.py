@@ -19,8 +19,10 @@
 # In applying this license, CERN does not waive the privileges and immunities
 # granted to it by virtue of its status as an Intergovernmental Organization
 # or submit itself to any jurisdiction.
-
-from invenio_workflows import start
+from invenio_db import db
+from invenio_search import current_search_client
+from invenio_workflows import start, Workflow
+from workflow.engine_db import WorkflowStatus
 
 
 def start_compliance_workflow(record):
@@ -34,3 +36,25 @@ def start_compliance_workflow(record):
             data=record.json
         )
     )
+
+
+def delete_halted_workflows_for_doi(doi):
+    """
+    Deletes all workflow that contain the given doi and are in HALTED state.
+
+    The workflow index will only be updated, when a WorkflowObjectModel instance is saved. When a workflow is halted,
+    the connected object's status won't be changed, hence the index won't be updated. Because of all this, we cannot
+    filter for HALTED state in ElasticSearch.
+    """
+
+    current_search_client.indices.refresh("scoap3-workflows-harvesting")
+    search_result = current_search_client.search('scoap3-workflows-harvesting', q='metadata.dois.value:"%s"' % doi)
+
+    workflow_ids = {x['_source']['_workflow']['id_workflow'] for x in search_result['hits']['hits']}
+    for wid in workflow_ids:
+        if wid:
+            w = Workflow.query.get(wid)
+            if w.status == WorkflowStatus.HALTED:
+                db.session.delete(w)
+
+    db.session.commit()
