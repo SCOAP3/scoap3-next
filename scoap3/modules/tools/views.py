@@ -14,4 +14,4 @@ blueprint = Blueprint(
 @register_menu(blueprint, 'general.tools', text='<i class="fa fa-cog fa-fw"></i> Tools')
 @login_required
 def test():
-    return render_template('scoap3_tools/test.html')
+    return render_template('scoap3_tools/form/test.html')
