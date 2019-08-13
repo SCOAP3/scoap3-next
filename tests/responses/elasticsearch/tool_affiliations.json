@@ -1,0 +1,218 @@
+{
+  "hits": {
+    "hits": [
+      {
+        "_score": 7.9047036, 
+        "_type": "scoap3-records-record", 
+        "_id": "58332588-3b3c-4d32-a094-0d3fe9d1e944", 
+        "_source": {
+          "_updated": "2019-08-13T00:32:39.115715+00:00", 
+          "arxiv_eprints": [
+            {
+              "value": "1905.05050", 
+              "categories": [
+                "hep-th", 
+                "math-ph", 
+                "math.MP"
+              ]
+            }
+          ], 
+          "control_number": "49119",
+          "dois": [
+            {
+              "value": "10.1103/PhysRevD.100.045010"
+            }
+          ], 
+          "authors": [
+            {
+              "raw_name": "Jessica Hutomo", 
+              "affiliations": [
+                {
+                  "country": "Australia", 
+                  "value": "Department of Physics M013, The University of Western Australia 35 Stirling Highway, Crawley W.A. 6009, Australia"
+                }
+              ], 
+              "surname": "Hutomo", 
+              "given_names": "Jessica", 
+              "full_name": "Hutomo, Jessica"
+            }, 
+            {
+              "raw_name": "Sergei M. Kuzenko", 
+              "affiliations": [
+                {
+                  "country": "Australia", 
+                  "value": "Department of Physics M013, The University of Western Australia 35 Stirling Highway, Crawley W.A. 6009, Australia"
+                }
+              ], 
+              "surname": "Kuzenko", 
+              "given_names": "Sergei M.", 
+              "full_name": "Kuzenko, Sergei M."
+            }
+          ], 
+          "publication_info": [
+            {
+              "year": 2019,
+              "journal_title": "Physical Review D"
+            }
+          ], 
+          "_created": "2019-08-12T16:32:30.601271+00:00"
+        }, 
+        "_index": "scoap3-records-record"
+      }, 
+      {
+        "_score": 7.9047036, 
+        "_type": "scoap3-records-record", 
+        "_id": "cb65460b-d968-414d-98a7-d2031da6d44d", 
+        "_source": {
+          "_updated": "2019-08-13T00:33:21.432365+00:00", 
+          "arxiv_eprints": [
+            {
+              "value": "1905.10202", 
+              "categories": [
+                "hep-lat", 
+                "hep-ph", 
+                "nucl-th"
+              ]
+            }
+          ], 
+          "control_number": "49122",
+          "dois": [
+            {
+              "value": "10.1103/PhysRevD.100.034509"
+            }
+          ], 
+          "authors": [
+            {
+              "raw_name": "C. Culver", 
+              "affiliations": [
+                {
+                  "country": "USA", 
+                  "value": "The George Washington University, Washington, DC 20052, USA"
+                }
+              ], 
+              "surname": "Culver", 
+              "given_names": "C.", 
+              "full_name": "Culver, C."
+            }, 
+            {
+              "raw_name": "M. Mai", 
+              "affiliations": [
+                {
+                  "country": "USA", 
+                  "value": "The George Washington University, Washington, DC 20052, USA"
+                }
+              ], 
+              "surname": "Mai", 
+              "given_names": "M.", 
+              "full_name": "Mai, M."
+            }, 
+            {
+              "raw_name": "A. Alexandru", 
+              "affiliations": [
+                {
+                  "country": "USA", 
+                  "value": "The George Washington University, Washington, DC 20052, USA"
+                }, 
+                {
+                  "country": "USA", 
+                  "value": "Department of Physics, University of Maryland, College Park, Maryland 20742, USA"
+                }
+              ], 
+              "surname": "Alexandru", 
+              "given_names": "A.", 
+              "full_name": "Alexandru, A."
+            }, 
+            {
+              "raw_name": "M. D\u00f6ring", 
+              "affiliations": [
+                {
+                  "country": "USA", 
+                  "value": "The George Washington University, Washington, DC 20052, USA"
+                }, 
+                {
+                  "country": "USA", 
+                  "value": "Thomas Jefferson National Accelerator Facility, Newport News, Virginia 23606, USA"
+                }
+              ], 
+              "surname": "D\u00f6ring", 
+              "given_names": "M.", 
+              "full_name": "D\u00f6ring, M."
+            }, 
+            {
+              "raw_name": "F.\u2009X. Lee", 
+              "affiliations": [
+                {
+                  "country": "USA", 
+                  "value": "The George Washington University, Washington, DC 20052, USA"
+                }
+              ], 
+              "surname": "Lee", 
+              "given_names": "F.\u2009X.", 
+              "full_name": "Lee, F.\u2009X."
+            }
+          ], 
+          "publication_info": [
+            {
+              "year": 2019,
+              "journal_title": "Physical Review D"
+            }
+          ], 
+          "_created": "2019-08-12T18:33:17.935314+00:00"
+        }, 
+        "_index": "scoap3-records-record"
+      }, 
+      {
+        "_score": 7.2017508, 
+        "_type": "scoap3-records-record", 
+        "_id": "7a5c4577-3b12-462c-9e1c-091de5429ee5", 
+        "_source": {
+          "_updated": "2019-08-13T12:30:33.313123+00:00", 
+          "control_number": "49126",
+          "authors": [
+            {
+              "affiliations": [
+                {
+                  "country": "Brazil", 
+                  "value": "Departamento de Paulo, 12228-900, Brazil",
+                  "organization": "ITA-Instituto Tecnol\u00f3gico de Aeron\u00e1utica"
+                }, 
+                {
+                  "country": "Italy", 
+                  "value": "Dipartimento di Fisica, Naples, 80126, Italy",
+                  "organization": "UNINA-Universit\u00e0 degli Studi di Napoli \u201cFederico II\u201d"
+                }
+              ], 
+              "surname": "Moraes", 
+              "email": "moraes.phrs@gmail.com", 
+              "full_name": "Moraes, P.", 
+              "given_names": "P."
+            }
+          ],
+          "dois": [
+            {
+              "value": "10.1140/epjc/s10052-019-7195-4"
+            }
+          ], 
+          "publication_info": [
+            {
+              "journal_title": "European Physical Journal C",
+              "year": 2019
+            }
+          ],
+          "_created": "2019-08-13T12:30:32.750773+00:00"
+        }, 
+        "_index": "scoap3-records-record"
+      }
+    ], 
+    "total": 3, 
+    "max_score": 7.9047036
+  }, 
+  "_shards": {
+    "successful": 5, 
+    "failed": 0, 
+    "skipped": 0, 
+    "total": 5
+  }, 
+  "took": 3, 
+  "timed_out": false
+}

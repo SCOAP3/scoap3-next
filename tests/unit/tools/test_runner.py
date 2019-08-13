@@ -2,6 +2,7 @@ from mock import patch
 from pytest import raises
 
 from scoap3.modules.tools.tasks import to_csv, run_tool
+from scoap3.modules.tools.tools import get_query_string
 from ..test_records import MockApp
 
 
@@ -64,3 +65,23 @@ def test_run_tool_parameter():
             patch('scoap3.modules.tools.tasks.send_result') as send_result:
         run_tool(result_email='TEST_MAIL', tool_name=tool_name, argument='hey')
         send_result.assert_called_with(expected_result_data, expected_content_type, expected_recipients, tool_name)
+
+
+def test_query_string():
+    assert get_query_string(year=2019, country='CERN') == 'country:CERN AND year:2019'
+
+
+def test_query_string_none():
+    assert get_query_string(year=2019, country=None) == 'year:2019'
+
+
+def test_query_string_all_none():
+    assert get_query_string(year=None, country=None) is None
+
+
+def test_query_string_all_empty():
+    assert get_query_string(year='', country='') is None
+
+
+def test_query_string_empty():
+    assert get_query_string() is None
