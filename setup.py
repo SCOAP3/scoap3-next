@@ -142,7 +142,8 @@ setup(
             'robotupload = scoap3.modules.robotupload.tasks',
             'analysis = scoap3.modules.analysis.tasks',
             'workflows = scoap3.modules.workflows.tasks',
-            'records = scoap3.modules.records.tasks'
+            'records = scoap3.modules.records.tasks',
+            'tools = scoap3.modules.tools.tasks',
         ],
         'invenio_oauth2server.scopes': [
             'harvesting_read = scoap3.modules.oauth2server.scopes:harvesting_read',
