@@ -909,3 +909,6 @@ TOOL_FUNCTIONS = {
 
 TOOL_ELASTICSEARCH_PAGE_SIZE = 100
 """Defines the page size for ES queries in tools."""
+
+TOOL_COMPRESS_ATTACHMENT = True
+"""If True, attachments sent via email will be compressed using gzip."""
