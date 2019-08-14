@@ -5,7 +5,8 @@
   </nav>
 </header>
 {%- endblock navbar %}
-  {%- block flashmessages %}
-    {%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
-    {{ flashed_messages() }}
-  {%- endblock %}
+
+{%- block flashmessages %}
+  {%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
+  {{ flashed_messages() }}
+{%- endblock %}

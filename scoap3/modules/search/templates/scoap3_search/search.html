@@ -47,13 +47,7 @@
 {%- endblock body_inner %}
 
 {%- block page_header %}
-  {%- block navbar %}
-  <header>
-    <nav class="navbar navbar-default navbar-static-top frontpage">
-      {% include 'scoap3_theme/_navbar.html' %}
-    </nav>
-  </header>
-  {%- endblock navbar %}
+  {% include 'scoap3_theme/header.html' %}
 {%- endblock page_header %}
 
 {%- block page_body %}
@@ -77,10 +71,10 @@
 
           {% if current_user.is_authenticated %}
             <a href="#"
-               onclick="window.open('{{url_for('scoap3_search.export') }}?' + location.search)"
+               onclick="window.location = '{{url_for('scoap3_search.export') }}?' + location.search"
                data-toggle="tooltop"
                data-placement="top"
-               title="Exports all searched articles in a csv. Warning: exporting a large amount of articles can take a long time."
+               title="Exports all searched articles in a csv. The results will be sent via email to {{ current_user.email }}."
             >
               <invenio-search-count
                 template="{{ url_for('static', filename=config.SEARCH_UI_JSTEMPLATE_COUNT) }}">

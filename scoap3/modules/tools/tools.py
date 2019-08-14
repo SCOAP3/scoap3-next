@@ -2,6 +2,7 @@ import logging
 from collections import Counter
 
 from flask import current_app
+from inspire_utils.record import get_value
 from invenio_search import current_search_client
 
 from scoap3.modules.records.util import get_first_journal, get_first_doi, get_arxiv_primary_category
@@ -81,8 +82,7 @@ def affiliations_export(country=None, year=None):
             for meta, count in extracted_affiliations.items():
                 aff_value, aff_country = meta
                 result_data.append(
-                    [year, journal, doi, arxiv, arxiv_category, aff_country, aff_value.encode('utf8'),
-                     count, total_authors]
+                    [year, journal, doi, arxiv, arxiv_category, aff_country, aff_value, count, total_authors]
                 )
 
     return {
@@ -143,12 +143,45 @@ def authors_export(country=None, year=None):
                     aff_country = affiliation.get('country', 'UNKNOWN')
                     aff_value = affiliation['value']
                     result_data.append(
-                        [year, journal, doi, arxiv, arxiv_category, author_name, aff_country, aff_value.encode('utf8'),
-                         total_authors]
+                        [year, journal, doi, arxiv, arxiv_category, author_name, aff_country, aff_value, total_authors]
                     )
 
     return {
         'header': ['year', 'journal', 'doi', 'arxiv number', 'primary arxiv category', 'author', 'country',
                    'affiliation', 'total number of authors'],
+        'data': result_data
+    }
+
+
+def search_export(es_dict):
+    """
+    Exports basic record data for all filtered records.
+
+    :param es_dict: defines the ElasticSearch data in order to filter the records.
+    """
+
+    fields = current_app.config.get('SEARCH_EXPORT_FIELDS')
+    source_fields = [field for _, field, _ in fields]
+
+    size = current_app.config.get('TOOL_ELASTICSEARCH_PAGE_SIZE', 100)
+    search_index = current_app.config.get('SEARCH_UI_SEARCH_INDEX')
+
+    result_data = []
+    index = 0
+    total_hits = None
+    while total_hits is None or index < total_hits:
+        # query ElasticSearch for result
+        search_results = current_search_client.search(body=es_dict, index=search_index, _source=source_fields,
+                                                      size=size, from_=index)
+        total_hits = search_results['hits']['total']
+        index += len(search_results['hits']['hits'])
+
+        # extract and add data to result list
+        for hit in search_results['hits']['hits']:
+            record = hit['_source']
+            result_data.append([get_value(record, key, '') for _, _, key in fields])
+
+    return {
+        'header': [name for name, _, _ in fields],
         'data': result_data
     }

@@ -24,9 +24,13 @@
 
 from __future__ import division
 
-from flask import Blueprint, make_response
+from flask import current_app, Blueprint, flash, request
+from flask_login import current_user
+from invenio_records_rest.query import default_search_factory
+from werkzeug.utils import redirect
 
-from scoap3.modules.search.utils import search_record_from_request, export_search_result
+from scoap3.modules.search.utils import Scoap3RecordsSearch
+from scoap3.modules.tools.tasks import run_tool
 
 blueprint = Blueprint(
     'scoap3_search',
@@ -50,9 +54,19 @@ def export():
     Filters are created based on the get parameters, which are compatible with the api or the search ui.
     """
 
-    search, search_result = search_record_from_request()
-    csv_data = export_search_result(search, search_result)
-    output = make_response(csv_data)
-    output.headers["Content-Disposition"] = "attachment; filename=search_export.csv"
-    output.headers["Content-type"] = "text/csv"
-    return output
+    search_index = current_app.config.get('SEARCH_UI_SEARCH_INDEX')
+
+    search = Scoap3RecordsSearch(index=search_index)
+    search, _ = default_search_factory(None, search)
+
+    params = {
+        'es_dict': search.to_dict(),
+        'result_email': current_user.email,
+        'tool_name': 'search'
+    }
+    run_tool.apply_async(kwargs=params)
+
+    flash('Export scheduled. As soon as the results are ready, it will be sent to %s' % params['result_email'],
+          'success')
+
+    return redirect(request.referrer)
