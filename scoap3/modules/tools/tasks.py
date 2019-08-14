@@ -2,6 +2,7 @@ import csv
 import logging
 from StringIO import StringIO
 from datetime import datetime
+from gzip import GzipFile
 
 from celery import shared_task
 from flask import current_app
@@ -42,6 +43,19 @@ def send_result(result_data, content_type, recipients, tool_name):
     """
     timestamp = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
     filename = 'scoap3_export_%s_%s.csv' % (tool_name, timestamp)
+
+    # compress data if needed
+    compress = current_app.config.get('TOOL_COMPRESS_ATTACHMENT', False)
+    if compress:
+        compressed_buffer = StringIO()
+        gzip_file = GzipFile(fileobj=compressed_buffer, mode="wt")
+        gzip_file.write(result_data)
+        gzip_file.close()
+
+        result_data = compressed_buffer.getvalue()
+        content_type = 'application/gzip'
+        filename += '.gz'
+
     attachment = Attachment(filename=filename, content_type=content_type, data=result_data)
 
     msg = TemplatedMessage(
