@@ -11,7 +11,7 @@ from logging.config import dictConfig
 from invenio_records_rest.facets import terms_filter, range_filter
 
 from scoap3.modules.search.utils import Scoap3RecordsSearch, terms_filter_with_must
-from scoap3.modules.tools.tools import affiliations_export
+from scoap3.modules.tools.tools import affiliations_export, authors_export
 
 
 # Identity function for string extraction
@@ -903,6 +903,7 @@ SEARCH_EXPORT_MAX_RECORDS = SEARCH_MAX_RESULT_WINDOW
 
 TOOL_FUNCTIONS = {
     'affiliations': affiliations_export,
+    'authors': authors_export,
 }
 """Mapping tool names to evaluation functions"""
 

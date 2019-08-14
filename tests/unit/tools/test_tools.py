@@ -1,6 +1,6 @@
 from mock import patch
 
-from scoap3.modules.tools.tools import affiliations_export
+from scoap3.modules.tools.tools import affiliations_export, authors_export
 from tests.responses import read_response_as_json
 from tests.unit.test_records import MockApp
 
@@ -15,7 +15,7 @@ class MockES:
         return self.search_result
 
 
-def base_test_affiliation(country):
+def base_test_tool(export_function, country):
     search_index = 'scoap3-records-record'
     search_result = read_response_as_json('elasticsearch', 'tool_affiliations.json')
     q = 'country:%s' % country if country else None
@@ -35,16 +35,22 @@ def base_test_affiliation(country):
 
     with patch('scoap3.modules.tools.tools.current_search_client', es), \
             patch('scoap3.modules.tools.tools.current_app', MockApp(config)):
-        return affiliations_export(country=country)
+        return export_function(country=country)
 
 
 def test_affiliation_export():
     expected_result = read_response_as_json('tools', 'affiliation_expected.json')
-    result = base_test_affiliation(country=None)
+    result = base_test_tool(export_function=affiliations_export, country=None)
     assert result['data'] == expected_result
 
 
 def test_affiliation_export_country():
     expected_result = read_response_as_json('tools', 'affiliation_expected_us.json')
-    result = base_test_affiliation(country='USA')
+    result = base_test_tool(export_function=affiliations_export, country='USA')
+    assert result['data'] == expected_result
+
+
+def test_author_export():
+    expected_result = read_response_as_json('tools', 'authors_expected.json')
+    result = base_test_tool(export_function=authors_export, country=None)
     assert result['data'] == expected_result
