@@ -1,0 +1,34 @@
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Affiliations export</h4>
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <div class="form-group">
+                    <input type="hidden" name="tool_name" value="affiliations" />
+
+                    <label for="year">Year:</label>
+                    <input class="form-control" placeholder="2019" type="number" name="year" id="year"/>
+
+                    <label for="country">Country:</label>
+                    <input class="form-control" placeholder="CERN" type="text" name="country" id="country"/>
+
+                    <small class="form-text text-muted">
+                        This tool generates a csv export showing affiliations for the articles. The exported articles
+                        are filtered by the year (publication year) and country fields, if not empty. If the country
+                        field is set, only affiliations in the given country will be exported. The country field
+                        should match exactly as it is visible in the search.
+                    </small>
+                    <br/>
+                    <small class="form-text text-muted">
+                        The result of this export will be sent via email to {{ current_user.email }} as soon as
+                        it is ready.
+                    </small>
+                    <br/>
+                    <input class="btn" type="submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
