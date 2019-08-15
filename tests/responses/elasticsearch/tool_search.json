@@ -1,0 +1,136 @@
+{
+  "hits": {
+    "hits": [
+      {
+        "_score": 8.30334,
+        "_type": "scoap3-records-record",
+        "_id": "7a5c4577-3b12-462c-9e1c-091de5429ee5",
+        "_source": {
+          "_updated": "2019-08-13T12:30:33.313123+00:00",
+          "page_nr": [
+            5
+          ],
+          "acquisition_source": {
+            "date": "2019-08-13T14:30:27.739952",
+            "source": "Springer",
+            "method": "Springer",
+            "submission_number": "1136df32bdc611e9989302163e01809a"
+          },
+          "license": [
+            {
+              "url": "https://creativecommons.org/licenses//by/4.0",
+              "license": "CC-BY-4.0"
+            }
+          ],
+          "control_number": "49126",
+          "_oai": {
+            "updated": "2019-08-13T12:30:33Z",
+            "id": "oai:repo.scoap3.org:49126",
+            "sets": [
+              "EPJC"
+            ]
+          },
+          "year": "2019",
+          "_files": [
+            {
+              "checksum": "md5:f9bed89f80b534ee70f87e1b42c785b4",
+              "filetype": "xml",
+              "bucket": "0ffa24e0-c22d-4110-bdde-ff39dab32572",
+              "version_id": "d0486139-664d-4047-b92e-3565977e58c0",
+              "key": "10.1140/epjc/s10052-019-7195-4.xml",
+              "size": 11276
+            },
+            {
+              "checksum": "md5:344a57bc8695dbdddf1f21509ce4c74b",
+              "filetype": "pdf/a",
+              "bucket": "0ffa24e0-c22d-4110-bdde-ff39dab32572",
+              "version_id": "240ffd3a-588f-4bc3-92e3-7ab6af5e338e",
+              "key": "10.1140/epjc/s10052-019-7195-4_a.pdf",
+              "size": 282367
+            }
+          ],
+          "record_creation_date": "2019-08-13T14:30:27.739985",
+          "authors": [
+            {
+              "affiliations": [
+                {
+                  "country": "Brazil",
+                  "value": "Departamento de F\u00edsica, ITA-Instituto Tecnol\u00f3gico de Aeron\u00e1utica, S\u00e3o Jos\u00e9 dos Campos, S\u00e3o Paulo, 12228-900, Brazil",
+                  "organization": "ITA-Instituto Tecnol\u00f3gico de Aeron\u00e1utica"
+                },
+                {
+                  "country": "Italy",
+                  "value": "Dipartimento di Fisica, UNINA-Universit\u00e0 degli Studi di Napoli \u201cFederico II\u201d, Naples, 80126, Italy",
+                  "organization": "UNINA-Universit\u00e0 degli Studi di Napoli \u201cFederico II\u201d"
+                }
+              ],
+              "surname": "Moraes",
+              "email": "moraes.phrs@gmail.com",
+              "full_name": "Moraes, P.",
+              "given_names": "P."
+            }
+          ],
+          "titles": [
+            {
+              "source": "Springer",
+              "title": "The trace of the trace of the energy\u2013momentum tensor-dependent Einstein\u2019s field equations"
+            }
+          ],
+          "collections": [
+            {
+              "primary": "European Physical Journal C"
+            }
+          ],
+          "dois": [
+            {
+              "value": "10.1140/epjc/s10052-019-7195-4"
+            }
+          ],
+          "publication_info": [
+            {
+              "page_end": "5",
+              "journal_title": "European Physical Journal C",
+              "material": "other",
+              "journal_volume": "79",
+              "artid": "s10052-019-7195-4",
+              "year": 2019,
+              "page_start": "1",
+              "journal_issue": "8"
+            }
+          ],
+          "$schema": "http://repo.scoap3.org/schemas/hep.json",
+          "copyright": [
+            {
+              "holder": "The Author(s)",
+              "year": "2019"
+            }
+          ],
+          "abstracts": [
+            {
+              "source": "Springer",
+              "value": "The f(R, T) gravity field equations depend generically on both the Ricci scalar R and trace of the energy\u2013momentum tensor T. Within the assumption of perfect fluids, the theory carries an arbitrariness regarding the choice of the matter lagrangian density $${\\mathcal {L}}$$ <math><mi>L</mi></math> , not uniquely defined. Such an arbitrariness can be evaded by working with the trace of the theory field equations. From such an equation, one can obtain a form for $${\\mathcal {L}}$$ <math><mi>L</mi></math> , which does not carry the arbitrariness. The obtained form for $${\\mathcal {L}}$$ <math><mi>L</mi></math>  shows that the f(R, T) gravity is unimodular. A new version of the theory is, therefore, presented and forthcoming applications are expected."
+            }
+          ],
+          "imprints": [
+            {
+              "date": "2019-08-13",
+              "publisher": "Springer"
+            }
+          ],
+          "_created": "2019-08-13T12:30:32.750773+00:00"
+        },
+        "_index": "scoap3-records-record"
+      }
+    ],
+    "total": 1,
+    "max_score": 8.30334
+  },
+  "_shards": {
+    "successful": 5,
+    "failed": 0,
+    "skipped": 0,
+    "total": 5
+  },
+  "took": 2,
+  "timed_out": false
+}

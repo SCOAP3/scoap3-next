@@ -11,7 +11,7 @@ from logging.config import dictConfig
 from invenio_records_rest.facets import terms_filter, range_filter
 
 from scoap3.modules.search.utils import Scoap3RecordsSearch, terms_filter_with_must
-from scoap3.modules.tools.tools import affiliations_export, authors_export
+from scoap3.modules.tools.tools import affiliations_export, authors_export, search_export
 
 
 # Identity function for string extraction
@@ -888,7 +888,7 @@ SEARCH_EXPORT_FIELDS = (
     ('arXiv primary category',  'arxiv_eprints',            'arxiv_eprints[0].categories[0]'),
     ('Publication date',        'imprints',                 'imprints[0].date'),
     ('Record creation date',    'record_creation_date',     'record_creation_date'),
-    ('Publisher',               'publication_info',         'publication_info[0].journal_title'),
+    ('Journal',                 'publication_info',         'publication_info[0].journal_title'),
 )
 """List of 3-tuples that describe the fields used for the serach export feature.
 
@@ -898,12 +898,10 @@ Elements are 3-tuples: (name, field, key)
  - key: selector for the needed value.
 """
 
-SEARCH_EXPORT_MAX_RECORDS = SEARCH_MAX_RESULT_WINDOW
-"""Defines the maximum number of records returned by the search export feature."""
-
 TOOL_FUNCTIONS = {
     'affiliations': affiliations_export,
     'authors': authors_export,
+    'search': search_export,
 }
 """Mapping tool names to evaluation functions"""
 

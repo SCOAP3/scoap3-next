@@ -12,6 +12,21 @@ from invenio_mail.api import TemplatedMessage
 logger = logging.getLogger(__name__)
 
 
+def encode_element(element):
+    """
+    Converts element to utf-8 string.
+
+    None value will be converted to an empty string.
+    """
+    if element is None:
+        return ""
+
+    if isinstance(element, basestring):
+        return element.encode('utf-8')
+
+    return element
+
+
 def to_csv(data):
     """
     Serialize generated tool data to CSV.
@@ -28,7 +43,7 @@ def to_csv(data):
     cw.writerow(data['header'])
 
     for row in data['data']:
-        cw.writerow(row)
+        cw.writerow([encode_element(element) for element in row])
 
     return 'text/csv', result.getvalue()
 
