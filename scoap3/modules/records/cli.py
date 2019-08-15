@@ -6,6 +6,7 @@ import json
 import sys
 from StringIO import StringIO
 
+from fs.errors import FSError
 from invenio_db import db
 from invenio_pidstore.errors import PIDDoesNotExistError
 from invenio_records.cli import records
@@ -24,6 +25,17 @@ from scoap3.modules.records.util import create_from_json
 @with_appcontext
 def crossref_diff(from_date):
     perform_article_check(from_date)
+
+
+def attach_file_object(api_record, filename, file_type, file_data):
+    try:
+        api_record.files[filename] = file_data
+        api_record.files[filename]['filetype'] = file_type
+        return True
+    except FSError as e:
+        error('Error occurred while attaching file. Is storage accessible for the current user? '
+              'Details: %s' % e.message)
+        return False
 
 
 @records.command()
@@ -59,13 +71,13 @@ def attach_file(control_number, file_path, file_type, filename):
             return
 
         file_data = StringIO(data.content)
-        api_record.files[filename] = file_data
-        api_record.files[filename]['filetype'] = file_type
+        if not attach_file_object(api_record, filename, file_type, file_data):
+            return
     else:
         try:
             with open(file_path) as f:
-                api_record.files[filename] = f
-                api_record.files[filename]['filetype'] = file_type
+                if not attach_file_object(api_record, filename, file_type, f):
+                    return
         except IOError:
             error('local file was not found or not readable: %s' % file_path)
             return
@@ -73,6 +85,32 @@ def attach_file(control_number, file_path, file_type, filename):
     api_record.commit()
     db.session.commit()
     info('File successfully attached.')
+
+
+@records.command()
+@click.option('--control-number', help='Control number of the record to attached the new file to.', required=True)
+@click.option('--key', help='Key for the file.', required=True)
+@with_appcontext
+def delete_file(control_number, key):
+    """
+    Deletes a file attached to a record.
+    """
+
+    # get existing record
+    try:
+        api_record = APIRecord.get_record(PersistentIdentifier.get('recid', control_number).object_uuid)
+    except (PIDDoesNotExistError, NoResultFound):
+        error('No record found for given control number!')
+        return
+
+    if key not in api_record.files:
+        error('Defined key is not present.')
+        return
+
+    del api_record.files[key]
+    api_record.commit()
+    db.session.commit()
+    info('File successfully deleted.')
 
 
 @click.group()
