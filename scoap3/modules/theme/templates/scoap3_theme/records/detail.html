@@ -111,7 +111,7 @@
           <dd>No information available</dd>
         {% endif %}
         <dt>Licence:</dt>
-        {%- if "copyright" in record %}
+        {%- if "license" in record %}
           <dd><a href="{{ record['license'][0]['url'] }}">{{ record['license'][0]['license'] }}</a></dd>
         {%- else %}
           <dd>Not available yet</dd>
