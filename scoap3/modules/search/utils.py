@@ -13,7 +13,7 @@ class Scoap3RecordsSearch(RecordsSearch):
 
         if query:
             # escape slashes and parenthesis
-            result['query']['query_string']['query'] = query.replace('/', '\\/').replace('(', '\\(').replace(')', '\\)')
+            result['query']['query_string']['query'] = query.replace('/', '\\/')
 
         return result
 
