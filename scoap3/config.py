@@ -48,9 +48,6 @@ BASE_TEMPLATE = "scoap3_theme/page.html"
 ADMIN_BASE_TEMPLATE = 'scoap3_theme/page_admin.html'
 SETTINGS_TEMPLATE = "invenio_theme/page_settings.html"
 
-# Celery
-BROKER_URL = "amqp://scoap3:bibbowling@scoap3-mq1.cern.ch:15672/scoap3"
-
 # Elasticsearch
 INDEXER_DEFAULT_INDEX = "scoap3-records-record"
 INDEXER_DEFAULT_DOC_TYPE = "scoap3-records-record"
