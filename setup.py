@@ -16,6 +16,7 @@ install_requires = (
     'arrow~=0.13.0',
     'celery<4.0',
     'idutils',
+    'invenio-cache~=1.0.0',
     'inspire-crawler~=1.0',
     'inspire-dojson~=61.1.11',
     'inspire-utils>=3.0.3',
@@ -88,6 +89,7 @@ setup(
             'scoap3 = scoap3:Scoap3',
             'scoap3_workflows = scoap3.modules.workflows:SCOAP3Workflows',
             'scoap3_robotupload = scoap3.modules.robotupload:SCOAP3Robotupload',
+            'scoap3_sitemap = scoap3.modules.sitemap.ext:Scoap3Sitemap',
         ],
         'invenio_base.api_blueprints': [
             'scoap3_oauth2server = scoap3.modules.oauth2server.views:blueprint',
@@ -104,6 +106,7 @@ setup(
             'scoap3_analysis = scoap3.modules.analysis.views:blueprint',
             'scoap3_tools = scoap3.modules.tools.views:blueprint',
             'scoap3_records = scoap3.modules.records.views:blueprint',
+            'scoap3_sitemap = scoap3.modules.sitemap.views:blueprint',
         ],
         'invenio_assets.bundles': [
             'scoap3_theme_css = scoap3.modules.theme.bundles:css',
@@ -144,6 +147,7 @@ setup(
             'workflows = scoap3.modules.workflows.tasks',
             'records = scoap3.modules.records.tasks',
             'tools = scoap3.modules.tools.tasks',
+            'sitemap = scoap3.modules.sitemap.tasks',
         ],
         'invenio_oauth2server.scopes': [
             'harvesting_read = scoap3.modules.oauth2server.scopes:harvesting_read',
