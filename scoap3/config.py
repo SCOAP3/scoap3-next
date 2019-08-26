@@ -910,3 +910,9 @@ TOOL_ELASTICSEARCH_PAGE_SIZE = 100
 
 TOOL_COMPRESS_ATTACHMENT = True
 """If True, attachments sent via email will be compressed using gzip."""
+
+SITEMAP_URL_SCHEME = 'http'
+"""URL scheme used for generating sitemap files."""
+
+SITEMAP_MAX_URL_COUNT = 10000
+"""Max URL count per sitemap page."""

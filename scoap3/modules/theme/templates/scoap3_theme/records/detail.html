@@ -26,6 +26,11 @@
 
 {% from "scoap3_theme/macros.html" import orcid_badge, render_record_authors with context %}
 
+{%- block head_meta %}
+  {{ super() }}
+  {%- include "scoap3_theme/records/meta.html" %}
+{%- endblock %}
+
 {%- block page_body %}
 <div class="container">
   <div class="row">
@@ -131,7 +136,7 @@
               {%- else %}
                 <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
               {% endif %}
-              </br>
+              <br/>
               {{ file['filetype'] | upper }}
             </a>
           {% endfor %}

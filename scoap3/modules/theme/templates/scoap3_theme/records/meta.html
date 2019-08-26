@@ -1,0 +1,60 @@
+{#
+# This file is part of Zenodo.
+# Copyright (C) 2015, 2016 CERN.
+#
+# Zenodo is free software; you can redistribute it
+# and/or modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of the
+# License, or (at your option) any later version.
+#
+# Zenodo is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Zenodo; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+# MA 02111-1307, USA.
+#
+# In applying this license, CERN does not
+# waive the privileges and immunities granted to it by virtue of its status
+# as an Intergovernmental Organization or submit itself to any jurisdiction.
+#}
+
+<meta name="citation_title" content="{{  record.titles[0]['title']|striptags }}" />
+{%- for author_name in record.authors|map(attribute='full_name') %}
+    <meta name="citation_author" content="{{ author_name }}" />
+{%- endfor %}
+
+<meta name="citation_publisher" content="{{ record['imprints'][0]['publisher'] }}" />
+<meta name="citation_publication_date"
+      content="{{ record['imprints'][0]['date']|to_date|to_arrow|format_arrow('YYYY/MM/DD') }}" />
+<meta name="citation_doi" content="{{ record['dois'][0]['value'] }}" />
+<meta name="citation_abstract_html_url" content="{{ request.url }}" />
+<meta name="citation_journal_title" content="{{ record['publication_info'][0]['journal_title'] }}" />
+
+{%- if 'arxiv_eprints' in record %}
+    <meta name="citation_technical_report_number" content="{{ record['arxiv_eprints'][0]['value'] }}" />
+{%- endif %}
+
+{% if record['publication_info'][0]['journal_volume'] %}
+    <meta name="citation_volume" content="{{ record['publication_info'][0]['journal_volume'] }}" />
+{% endif %}
+
+{% if record['publication_info'][0]['journal_issue'] %}
+    <meta name="citation_issue" content="{{ record['publication_info'][0]['journal_issue'] }}" />
+{% endif %}
+
+{% if record['publication_info'][0]['page_start'] and record['publication_info'][0]['page_end'] %}
+    <meta name="citation_firstpage" content="{{ record['publication_info'][0]['page_start'] }}" />
+    <meta name="citation_lastpage" content="{{ record['publication_info'][0]['page_end'] }}" />
+{% endif %}
+
+{%- for file in record.get('_files', ()) %}
+    {% if file.get('filetype') in ('pdf', 'pdf/a') %}
+        <meta name="citation_pdf_url"
+              content="http://{{ config.SERVER_NAME }}/api/files/{{ file['bucket'] }}/{{ file['key'] }}" />
+    {% endif %}
+{%- endfor %}
+
