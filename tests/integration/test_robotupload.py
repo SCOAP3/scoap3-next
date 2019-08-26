@@ -8,7 +8,7 @@ from invenio_workflows import Workflow
 from workflow.engine_db import WorkflowStatus
 
 from scoap3.modules.robotupload.views import handle_upload_request
-from tests.integration.utils import mock_halt
+from tests.integration.utils import mock_halt, get_record_from_workflow
 from tests.responses import get_response_dir, read_response
 
 
@@ -66,6 +66,10 @@ def test_robotupload_cpc():
         # test if only one workflow was created
         assert Workflow.query.count() - workflows_count == 1
 
+        record = get_record_from_workflow(workflow)
+        assert '_files' in record
+        assert len(record['_files']) == 2
+
 
 def test_robotupload_acta():
     with requests_mock.Mocker() as m:
@@ -84,3 +88,7 @@ def test_robotupload_acta():
 
         # test if only one workflow was created
         assert Workflow.query.count() - workflows_count == 1
+
+        record = get_record_from_workflow(workflow)
+        assert '_files' in record
+        assert len(record['_files']) == 2
