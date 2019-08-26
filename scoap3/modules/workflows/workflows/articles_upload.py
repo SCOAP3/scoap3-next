@@ -297,7 +297,7 @@ def build_files_data(obj, eng):
             files.append(
                 {
                     'url': document['url'],
-                    'name': doi,
+                    'name': "%s.%s" % (doi, ext),
                     'filetype': ext
                 }
             )
