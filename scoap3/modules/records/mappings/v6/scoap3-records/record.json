@@ -58,11 +58,18 @@
                         "journal_title": {
                             "type": "keyword",
                             "copy_to": "journal"
+                        },
+                        "material": {
+                            "type": "keyword",
+                            "copy_to": "type"
                         }
                     },
                     "type": "object"
                 },
                 "journal": {
+                    "type": "keyword"
+                },
+                "type": {
                     "type": "keyword"
                 },
                 "record_creation_date": {
@@ -96,7 +103,7 @@
                     "normalizer": "lowercase_normalizer"
                 },
                 "affiliation": {
-                    "type": "keyword"
+                    "type": "text"
                 },
                 "title": {
                     "type": "text"
