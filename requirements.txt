@@ -98,7 +98,7 @@ jsonschema==2.6.0
 kombu==3.0.37
 limits==1.2.0
 LinkHeader==0.4.3
-lxml==4.2.1
+lxml==4.4.0
 Mako==1.0.7
 MarkupSafe==1.0
 maxminddb==1.3.0
@@ -117,7 +117,7 @@ pdfminer==20140328
 pexpect==4.2.1
 pickleshare==0.7.4
 Pillow==3.4.1
-pluggy>=0.7
+pluggy==0.9.0
 poyo==0.4.0
 prompt-toolkit==1.0.8
 psycopg2>=2.6.2
@@ -151,7 +151,6 @@ simplegeneric==0.8.1
 simplejson==3.8.2
 simplekv==0.11.8
 singledispatch==3.4.0.3
-six==1.11.0
 speaklater==1.3
 sqlalchemy-mptt==0.2.1
 SQLAlchemy-Utils==0.33.2
