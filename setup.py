@@ -42,7 +42,7 @@ install_requires = (
     'invenio-rest==1.0.0',
     'invenio-records-ui==1.0.0b2',
     'invenio-records-files==1.0.0a11',
-    'invenio-search==1.1.1',
+    'invenio-search[elasticsearch6]==1.1.1',
     'invenio-search-ui==1.0.1',
     'invenio-theme==1.0.0b2',
     'invenio-workflows~=7.0.3',

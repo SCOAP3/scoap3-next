@@ -51,14 +51,3 @@ services:
     command: scrapyd
     volumes_from:
       - static
-
-  scrapyd-deploy:
-    extends:
-      file: services.yml
-      service: base
-    working_dir: /virtualenv/lib/python2.7/site-packages/hepcrawl
-    command: scrapyd-deploy
-    volumes_from:
-      - static
-    links:
-      - scrapyd

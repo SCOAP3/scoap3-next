@@ -38,11 +38,11 @@ services:
       - APP_ACCOUNTS_SESSION_REDIS_URL=redis://redis:6379/2
       - APP_SEARCH_ELASTIC_HOSTS=indexer
       - APP_ES_BULK_TIMEOUT=240
-      - APP_CRAWLER_HOST_URL=http://scrapyd:6800
+      - APP_CRAWLER_HOST_URL=http://localhost:6800
       - APP_CRAWLER_API_PIPELINE_URL=http://flower:5555/api/task/async-apply
       - APP_LAST_RUNS_PATH=.lastruns
       - APP_OAIHARVESTER_WORKDIR=/virtualenv/oaiharvest_workdir
-      - SCRAPY_FEED_URI=/tmp/scrapy_feed.json
+      - SCRAPY_FEED_URI=/virtualenv/scrapy_feed.json
 
   # Services using the inspirehep code.
   web:
@@ -69,7 +69,7 @@ services:
   worker:
     extends:
       service: service_base
-    command: celery worker -E -A scoap3.celery --loglevel=INFO --queues celery,harvests --concurrency=1
+    command: celery worker -E -A scoap3.celery --loglevel=INFO --queues celery,harvests --concurrency=1 --purge
     volumes_from:
       - static
     healthcheck:
@@ -157,6 +157,9 @@ services:
     command: bash -c "rm -f twistd.pid && exec scrapyd"
     volumes_from:
       - static
+    volumes:
+      - "${DOCKER_DATA}/packages:/packages"
+      - "../hepcrawl:/hepcrawl" # fixme
 
   # Services useful for monitoring/debugging.
   flower:
