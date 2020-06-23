@@ -54,12 +54,12 @@ install_requires = (
     'Flask-Caching==1.7.2',
     'urllib3==1.23',
     'jsonschema==2.6.0',
-    'pluggy==0.9.0',
+    'pluggy==0.12.0',
     'six>=1.12.0',
 )
 
 tests_require = (
-    'freezegun~=0.3,>=0.3.11',
+    'freezegun==0.3.12',
 )
 
 extras_require = {
