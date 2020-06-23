@@ -13,8 +13,8 @@ with open(os.path.join('scoap3',
     exec(fp.read(), version)
 
 install_requires = (
-    'arrow~=0.13.0',
-    'celery<4.0',
+    'arrow==0.13.2',
+    'celery==3.1.26.post2',
     'idutils',
     'invenio-cache==1.0.0',
     'inspire-crawler~=1.0',
@@ -55,7 +55,7 @@ install_requires = (
     'urllib3==1.23',
     'jsonschema==2.6.0',
     'pluggy==0.12.0',
-    'six>=1.12.0',
+    'six==1.12.0',
 )
 
 tests_require = (
