@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from flask import current_app
 from lxml import etree
 
 
@@ -55,9 +55,10 @@ def test_record_by_id(app_client, test_record):
     files = get_subfield(xml, '856', 'u')
     assert len(files) == 2
     file_xml, file_pdf = files
-    assert file_xml.startswith('http://localhost:5000/api/files/')
+    servername = current_app.config.get('SERVER_NAME')
+    assert file_xml.startswith('http://%s/api/files/' % servername)
     assert file_xml.endswith('/10.1016/j.nuclphysb.2018.07.004.xml')
-    assert file_pdf.startswith('http://localhost:5000/api/files/')
+    assert file_pdf.startswith('http://%s/api/files/' % servername)
     assert file_pdf.endswith('/10.1016/j.nuclphysb.2018.07.004.pdf')
 
     assert get_subfield(xml, '856', 'y') == ['xml', 'pdf']
