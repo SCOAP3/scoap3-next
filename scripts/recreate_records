@@ -32,6 +32,22 @@ if [ ! -x "$(command -v scoap3)" ]; then
   exit 1
 fi
 
+# FIXME: this is a hack should be moved to config.py or local cfg file
+export APP_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://scoap3:dbpass123@localhost:5432/scoap3
+export APP_CELERY_BROKER_URL=pyamqp://guest:guest@localhost:5672//
+export APP_CELERY_RESULT_BACKEND=redis://localhost:6379/1
+export CELERY_BROKER_URL=pyamqp://guest:guest@localhost:5672//
+export CELERY_RESULT_BACKEND=redis://localhost:6379/1
+export APP_CACHE_REDIS_URL=redis://localhost:6379/0
+export APP_ACCOUNTS_SESSION_REDIS_URL=redis://localhost:6379/2
+export APP_SEARCH_ELASTIC_HOSTS=localhost:9200
+export APP_ES_BULK_TIMEOUT=240
+export APP_CRAWLER_HOST_URL=http://localhost:6800
+export APP_CRAWLER_API_PIPELINE_URL=http://flower:5555/api/task/async-apply
+export APP_LAST_RUNS_PATH=.lastruns
+export APP_OAIHARVESTER_WORKDIR=/virtualenv/oaiharvest_workdir
+export APP_SERVER_NAME='localhost:5000'
+
 scoap3 db drop --yes-i-know
 scoap3 db create
 scoap3 index destroy --force --yes-i-know

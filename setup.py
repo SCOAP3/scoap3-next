@@ -62,9 +62,13 @@ tests_require = (
     'freezegun==0.3.12',
 )
 
+development_require = (
+    'honcho==1.0.1',
+)
+
 extras_require = {
     'tests': tests_require,
-    'all': install_requires + tests_require
+    'all': install_requires + tests_require + development_require
 }
 
 setup(

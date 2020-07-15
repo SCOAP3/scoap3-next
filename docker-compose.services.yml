@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2019 CERN.
+#
+# inspirehep is free software; you can redistribute it and/or modify it under
+# the terms of the MIT License; see LICENSE file for more details.
+
+version: "2.3"
+services:
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
+    ports:
+      - "6379:6379"
+  database:
+    extends:
+      file: docker-compose.yml
+      service: database
+    ports:
+      - "5432:5432"
+    command: postgres -c 'max_connections=200'
+  rabbitmq:
+    extends:
+      file: docker-compose.yml
+      service: rabbitmq
+    ports:
+      - "5672:5672"
+  indexer:
+    extends:
+      file: docker-compose.yml
+      service: indexer
+    ports:
+      - "9200:9200"
