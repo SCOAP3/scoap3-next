@@ -34,7 +34,7 @@ cssselect==1.0.1
 decorator==4.0.10
 dojson==1.4.0
 dulwich==0.17.3
-ecdsa==0.13
+ecdsa==0.13.3
 elasticsearch==6.4.0
 elasticsearch-dsl==6.1.0
 enum34==1.1.6
