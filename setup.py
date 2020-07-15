@@ -37,7 +37,7 @@ install_requires = (
     'invenio-oauth2server==1.0.3',
     'invenio-oauthclient==1.1.2',
     'invenio-pidstore~=1.0.0',
-    'invenio-records==1.0.0',
+    'invenio-records==1.2.2',
     'invenio-records-rest==1.4.2',
     'invenio-rest==1.0.0',
     'invenio-records-ui==1.0.0b2',
