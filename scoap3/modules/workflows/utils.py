@@ -54,7 +54,7 @@ def delete_halted_workflows_for_doi(doi):
     for wid in workflow_ids:
         if wid:
             w = Workflow.query.get(wid)
-            if w.status == WorkflowStatus.HALTED:
+            if w and w.status == WorkflowStatus.HALTED:
                 db.session.delete(w)
 
     db.session.commit()
