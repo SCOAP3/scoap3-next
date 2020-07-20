@@ -252,7 +252,8 @@ def check_compliance(obj, *args):
     db.session.commit()
 
     # send notification about failed checks
-    if not all_checks_accepted and c.has_final_result_changed():
+    need_email = current_app.config.get('COMPLIANCE_SEND_FAILED_EMAILS', True)
+    if need_email and not all_checks_accepted and c.has_final_result_changed():
         msg = TemplatedMessage(
             template_html='scoap3_compliance/admin/failed_email.html',
             subject='SCOAP3 - Compliance check',

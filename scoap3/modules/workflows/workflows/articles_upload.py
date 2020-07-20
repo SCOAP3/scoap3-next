@@ -61,20 +61,23 @@ logger = logging.getLogger(__name__)
 
 
 def __halt_and_notify(msg, eng):
-    ctx = {
-        'reason': msg,
-        # url with predefined filter for HALTED workflows
-        'url': url_for('workflow.index_view', flt1_21='2', _external=True),
-    }
 
-    template_msg = TemplatedMessage(
-        template_html='scoap3_workflows/emails/halted_article_upload.html',
-        subject='SCOAP3 - Artcile upload halted',
-        sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
-        recipients=current_app.config.get('ADMIN_DEFAULT_EMAILS'),
-        ctx=ctx
-    )
-    current_app.extensions['mail'].send(template_msg)
+    send_email = current_app.config.get('ARTICLE_UPLOAD_SEND_HALTED_EMAILS', True)
+    if send_email:
+        ctx = {
+            'reason': msg,
+            # url with predefined filter for HALTED workflows
+            'url': url_for('workflow.index_view', flt1_21='2', _external=True),
+        }
+
+        template_msg = TemplatedMessage(
+            template_html='scoap3_workflows/emails/halted_article_upload.html',
+            subject='SCOAP3 - Artcile upload halted',
+            sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
+            recipients=current_app.config.get('ADMIN_DEFAULT_EMAILS'),
+            ctx=ctx
+        )
+        current_app.extensions['mail'].send(template_msg)
 
     eng.halt(msg)
 
