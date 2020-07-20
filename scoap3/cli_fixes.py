@@ -5,7 +5,9 @@ import click
 from flask.cli import with_appcontext
 from invenio_db import db
 from invenio_files_rest.models import Location
-from invenio_records.api import Record, RecordMetadata
+from invenio_records.api import Record
+from invenio_search import current_search_client
+
 
 from scoap3.utils.click_logging import error, info
 
@@ -48,37 +50,37 @@ def fix_doi_dates(json_file, dry_run):
     """
     Fixes the imprint/publication/copyright dates on a list of DOIs.
     """
-    records = RecordMetadata.query.all()
-    record_dois_uuids = {
-        rec.json['dois'][0]['value']: str(rec.id)
-        for rec in records
-    }
-
-    info('Records extracted.')
-
-    # dois to be changes, with the new dates
     with open(json_file) as _file:
         dois_with_dates = json.load(_file)
 
     for doi in dois_with_dates.keys():
-        uuid = record_dois_uuids[doi]
-        rec = Record.get_record(uuid)
+        search_result = current_search_client.search(
+            'scoap3-records',
+            q='dois.value:"{}"'.format(doi)
+        )['hits']['hits']
 
-        date = dois_with_dates[doi]
-        year = int(date.split('-')[0])
-        old_date = rec['imprints'][0]['date']
+        if search_result:
+            uuid = search_result[0]['_id']
+            rec = Record.get_record(uuid)
 
-        rec['imprints'][0]['date'] = date
-        rec['publication_info'][0]['year'] = year
-        rec['copyright'][0]['year'] = year
+            date = dois_with_dates[doi]
+            year = int(date.split('-')[0])
+            old_date = rec['imprints'][0]['date']
 
-        info('{} with UUID {}: changed {} -> {}'
-             .format(doi, uuid, old_date, date))
+            rec['imprints'][0]['date'] = date
+            rec['publication_info'][0]['year'] = year
+            rec['copyright'][0]['year'] = year
 
-        if not dry_run:
-            rec.commit()
-            db.session.commit()
-            info('{} successfully updated.'.format(doi))
+            info('DOI {} with UUID {}: changed {} -> {}'
+                 .format(doi, uuid, old_date, date))
+
+            if not dry_run:
+                rec.commit()
+                db.session.commit()
+                info('{} successfully updated.'.format(doi))
+
+        else:
+            error('DOI {} not found in ES.'.format(doi))
 
     if dry_run:
         error('NO CHANGES were committed to the database, because --dry-run flag was present.')
