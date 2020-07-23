@@ -160,6 +160,8 @@ services:
     volumes:
       - "${DOCKER_DATA}/packages:/packages"
       - "${HEPCRAWL_SOURCE}:/hepcrawl"
+    environment:
+      - HEPCRAWL_BASE_WORKING_DIR=/virtualenv/data/
 
   # Services useful for monitoring/debugging.
   flower:

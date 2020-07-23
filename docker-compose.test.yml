@@ -41,3 +41,10 @@ services:
         condition: service_healthy
     volumes_from:
       - static
+
+  sftp:
+    image: atmoz/sftp
+    volumes:
+      - "${DOCKER_DATA}/packages:/home/foo/upload/"
+    command: foo:pass:1001
+
