@@ -11,10 +11,6 @@ from scoap3.utils.arxiv import get_clean_arXiv_id
 
 logger = logging.getLogger(__name__)
 
-RESULT_HEADER = [
-    'year', 'journal', 'doi', 'arxiv number', 'primary arxiv category', 'country',
-    'affiliation', 'authors with affiliation', 'total number of authors'
-]
 SOURCE_FIELDS = [
     'publication_info.year', 'publication_info.journal_title',
     'arxiv_eprints', 'dois', 'authors', 'control_number'
@@ -40,6 +36,8 @@ def affiliations_export(country=None, year=None):
     """
     size = current_app.config.get('TOOL_ELASTICSEARCH_PAGE_SIZE', 100)
     search_index = current_app.config.get('SEARCH_UI_SEARCH_INDEX')
+    result_headers = ['year', 'journal', 'doi', 'arxiv number', 'primary arxiv category',
+                      'country', 'affiliation', 'authors with affiliation', 'total number of authors']
     result_data = []
     index = 0
 
@@ -56,7 +54,7 @@ def affiliations_export(country=None, year=None):
     logger.info('Total results from query: {}'.format(total_hits))
 
     if total_hits == 0:
-        return {'header': RESULT_HEADER, 'data': result_data}
+        return {'header': result_headers, 'data': result_data}
 
     while index < total_hits:
         # query ElasticSearch for result
@@ -109,7 +107,7 @@ def affiliations_export(country=None, year=None):
                 )
 
     return {
-        'header': RESULT_HEADER,
+        'header': result_headers,
         'data': result_data
     }
 
@@ -123,6 +121,8 @@ def authors_export(country=None, year=None):
     """
     size = current_app.config.get('TOOL_ELASTICSEARCH_PAGE_SIZE', 100)
     search_index = current_app.config.get('SEARCH_UI_SEARCH_INDEX')
+    result_headers = ['year', 'journal', 'doi', 'arxiv number', 'primary arxiv category',
+                      'author', 'country', 'affiliation', 'total number of authors'],
     result_data = []
     index = 0
 
@@ -139,7 +139,7 @@ def authors_export(country=None, year=None):
     logger.info('Total results from query: {}'.format(total_hits))
 
     if total_hits == 0:
-        return {'header': RESULT_HEADER, 'data': result_data}
+        return {'header': result_headers, 'data': result_data}
 
     while index < total_hits:
         # query ElasticSearch for result
@@ -183,7 +183,7 @@ def authors_export(country=None, year=None):
                             .format(doi, missing_author_affiliations, total_authors))
 
     return {
-        'header': RESULT_HEADER,
+        'header': result_headers,
         'data': result_data
     }
 
