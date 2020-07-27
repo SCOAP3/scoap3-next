@@ -89,7 +89,7 @@ RECORDS_REST_SORT_OPTIONS = {
     "scoap3-records-record": {
         "date": {
             "title": 'Most recent',
-            "fields": ['date', 'control_number'],
+            "fields": ['date'],
             "default_order": 'desc',
             "order": 1,
         },
@@ -847,7 +847,7 @@ COUNTRIES_DEFAULT_MAPPING = OrderedDict([
     ("Georgia", "Georgia"),
 ])
 
-API_UNAUTHENTICATED_PAGE_LIMIT = 20
+API_UNAUTHENTICATED_PAGE_LIMIT = 10
 
 # GOOGLE API key. Value should come from secrets.
 # Used to determine the country of affiliations.
