@@ -619,7 +619,7 @@ Key has to be the name of the journal (used as a filter on crossref),
 the value has to be a (start_date, end_date) tuple, which will be used as a publication date filter.
 """
 
-ARTICLE_CHECK_DEFAULT_TIME_DELTA = timedelta(days=4)
+ARTICLE_CHECK_DEFAULT_TIME_DELTA = timedelta(days=14)
 """Representing the timedelta used to determine the starting date for the check."""
 
 ARTICLE_CHECK_HAS_TO_BE_HEP = (
