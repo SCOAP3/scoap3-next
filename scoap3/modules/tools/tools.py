@@ -35,16 +35,34 @@ def affiliations_export(country=None, year=None):
     source_fields = [
         'publication_info.year', 'publication_info.journal_title', 'arxiv_eprints', 'dois', 'authors', 'control_number',
     ]
-    query = get_query_string(country=country, year=year)
 
+    result_headers = ['year', 'journal', 'doi', 'arxiv number', 'primary arxiv category',
+                      'country', 'affiliation', 'authors with affiliation', 'total number of authors']
     result_data = []
     index = 0
-    total_hits = None
-    while total_hits is None or index < total_hits:
+
+    # query ElasticSearch for result (and get total hits)
+    query = get_query_string(country=country, year=year)
+    search_results = current_search_client.search(
+        q=query, index=search_index, _source=source_fields, size=size, from_=index
+    )
+
+    total_hits = search_results['hits']['total']
+    logger.info('Searching for affiliations of country: {} and year: {}'.format(
+        country if country else 'ALL',
+        year if year else 'ALL'
+    ))
+    logger.info('Total results from query: {}'.format(total_hits))
+
+    if total_hits == 0:
+        return {'header': result_headers, 'data': result_data}
+
+    while index < total_hits:
         # query ElasticSearch for result
-        search_results = current_search_client.search(q=query, index=search_index, _source=source_fields,
-                                                      size=size, from_=index)
-        total_hits = search_results['hits']['total']
+        logger.warn('INDEX NUMBER {}'.format(index))
+        search_results = current_search_client.search(
+            q=query, index=search_index, _source=source_fields, size=size, from_=index
+        )
         index += len(search_results['hits']['hits'])
 
         # extract and add data to result list
@@ -59,13 +77,14 @@ def affiliations_export(country=None, year=None):
 
             authors = record.get('authors', ())
             total_authors = len(authors)
+            missing_author_affiliations = 0
 
             extracted_affiliations = Counter()
             for author in authors:
                 # if there are no affiliations, we cannot add this author
                 # (this also means the record is not valid according to the schema)
                 if 'affiliations' not in author:
-                    logger.warn('No affiliations for author. doi=%s' % doi)
+                    missing_author_affiliations += 1
                     continue
 
                 # aggregate affiliations
@@ -76,7 +95,11 @@ def affiliations_export(country=None, year=None):
                         extracted_affiliations.update(value)
 
             if not extracted_affiliations:
-                logger.warn('No extracted affiliations for article. doi=%s' % doi)
+                logger.warn('Article with DOI: {} had no extracted affiliations'.format(doi))
+
+            if missing_author_affiliations:
+                logger.warn('Article with DOI: {} had missing affiliations in {} / {} authors'
+                            .format(doi, missing_author_affiliations, total_authors))
 
             # add extracted information to result list
             for meta, count in extracted_affiliations.items():
@@ -86,8 +109,7 @@ def affiliations_export(country=None, year=None):
                 )
 
     return {
-        'header': ['year', 'journal', 'doi', 'arxiv number', 'primary arxiv category', 'country', 'affiliation',
-                   'authors with affiliation', 'total number of authors'],
+        'header': result_headers,
         'data': result_data
     }
 
@@ -105,16 +127,33 @@ def authors_export(country=None, year=None):
     source_fields = [
         'publication_info.year', 'publication_info.journal_title', 'arxiv_eprints', 'dois', 'authors', 'control_number',
     ]
-    query = get_query_string(country=country, year=year)
 
+    result_headers = ['year', 'journal', 'doi', 'arxiv number', 'primary arxiv category',
+                      'author', 'country', 'affiliation', 'total number of authors']
     result_data = []
     index = 0
-    total_hits = None
-    while total_hits is None or index < total_hits:
+
+    # query ElasticSearch for result (and get total hits)
+    query = get_query_string(country=country, year=year)
+    search_results = current_search_client.search(
+        q=query, index=search_index, _source=source_fields, size=size, from_=index
+    )
+
+    total_hits = search_results['hits']['total']
+    logger.info('Searching for affiliations of country: {} and year: {}'.format(
+        country if country else 'ALL',
+        year if year else 'ALL'
+    ))
+    logger.info('Total results from query: {}'.format(total_hits))
+
+    if total_hits == 0:
+        return {'header': result_headers, 'data': result_data}
+
+    while index < total_hits:
         # query ElasticSearch for result
-        search_results = current_search_client.search(q=query, index=search_index, _source=source_fields,
-                                                      size=size, from_=index)
-        total_hits = search_results['hits']['total']
+        search_results = current_search_client.search(
+            q=query, index=search_index, _source=source_fields, size=size, from_=index
+        )
         index += len(search_results['hits']['hits'])
 
         # extract and add data to result list
@@ -129,12 +168,13 @@ def authors_export(country=None, year=None):
 
             authors = record.get('authors', ())
             total_authors = len(authors)
+            missing_author_affiliations = 0
 
             for author in authors:
                 # if there are no affiliations, we cannot add this author
                 # (this also means the record is not valid according to the schema)
                 if 'affiliations' not in author:
-                    logger.warn('No affiliations for author. doi=%s' % doi)
+                    missing_author_affiliations += 1
                     continue
 
                 author_name = author.get('full_name', 'UNKNOWN')
@@ -146,9 +186,12 @@ def authors_export(country=None, year=None):
                         [year, journal, doi, arxiv, arxiv_category, author_name, aff_country, aff_value, total_authors]
                     )
 
+            if missing_author_affiliations:
+                logger.warn('Article with DOI: {} had missing affiliations in {} / {} authors'
+                            .format(doi, missing_author_affiliations, total_authors))
+
     return {
-        'header': ['year', 'journal', 'doi', 'arxiv number', 'primary arxiv category', 'author', 'country',
-                   'affiliation', 'total number of authors'],
+        'header': result_headers,
         'data': result_data
     }
 
@@ -171,8 +214,9 @@ def search_export(es_dict):
     total_hits = None
     while total_hits is None or index < total_hits:
         # query ElasticSearch for result
-        search_results = current_search_client.search(body=es_dict, index=search_index, _source=source_fields,
-                                                      size=size, from_=index)
+        search_results = current_search_client.search(
+            body=es_dict, index=search_index, _source=source_fields, size=size, from_=index
+        )
         total_hits = search_results['hits']['total']
         index += len(search_results['hits']['hits'])
 
