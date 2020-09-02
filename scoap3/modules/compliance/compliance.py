@@ -15,7 +15,7 @@ from pdfminer.pdfparser import PDFSyntaxError
 from scoap3.modules.compliance.models import Compliance
 from scoap3.utils.pdf import extract_text_from_pdf
 from scoap3.modules.records.util import (get_abbreviated_publisher, get_abbreviated_journal, get_arxiv_primary_category,
-                                         get_first_doi, get_first_arxiv, get_first_journal)
+                                         get_first_doi, get_first_arxiv, get_first_journal, get_title)
 
 
 def __extract_article_text(record):
@@ -185,6 +185,16 @@ def _cc_licence(record, extra_data):
     return __find_regexp_in_pdf(extra_data, patterns, forbidden_patterns)
 
 
+def _not_erratum_addendum(record, extra_data):
+    """Check if the record is one of the non-wanted categories."""
+    title = get_title(record).lower()
+    if 'addendum' not in title and 'corrigendum' not in title \
+            and 'erratum' not in title and 'obituary' not in title:
+        return True, ('Nothing in title', ), None
+
+    return False, (title, ), None
+
+
 def _arxiv(record, extra_data):
     # if not available it is only compliant if the arXiv check is not mandatory for the journal
     journal = get_first_journal(record)
@@ -206,6 +216,7 @@ COMPLIANCE_TASKS = [
     ('Funded by', _funded_by),
     ('Author rights', _author_rights),
     ('Licence', _cc_licence),
+    ('Not Erratum/Addendum', _not_erratum_addendum),
     ('arXiv', _arxiv),
 ]
 
