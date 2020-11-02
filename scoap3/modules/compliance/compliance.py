@@ -10,6 +10,7 @@ from invenio_files_rest.models import ObjectVersion
 from invenio_mail.api import TemplatedMessage
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_records import Record
+from invenio_search import current_search_client
 from pdfminer.pdfparser import PDFSyntaxError
 
 from scoap3.modules.compliance.models import Compliance
@@ -210,6 +211,32 @@ def _arxiv(record, extra_data):
     return False, ('No arXiv id', ), None
 
 
+def _unique_arXiv(record, extra_data):
+    """Check if the arXiv ID is unique (does not already exist in Scoap3)"""
+    arxiv_id = get_first_arxiv(record)
+
+    # search through ES to find if it exists already
+    if arxiv_id:
+        result = current_search_client.search(
+            'scoap3-records-record',
+            q='arxiv_eprints.value="{}"'.format(arxiv_id)
+        )['hits']
+
+        if result['total'] == 0:
+            return True, ('ArXiv ID not found. Unique ID.', ), None
+        else:
+            # return all the control numbers in order to check the error
+            record_control_numbers = ', '.join(
+                hit['_source']['control_number']
+                for hit in result['hits']
+            )
+
+            return False, ('ArXiv ID already exists. Please check {}'.format(
+                record_control_numbers)), None
+
+    return True, ('No arXiv id: Out of the scope of this check', ), None
+
+
 COMPLIANCE_TASKS = [
     ('Files', _files),
     ('Received in time', _received_in_time),
@@ -218,6 +245,7 @@ COMPLIANCE_TASKS = [
     ('Licence', _cc_licence),
     ('Not Erratum/Addendum', _not_erratum_addendum),
     ('arXiv', _arxiv),
+    ('Unique arXiv ID', _unique_arXiv),
 ]
 
 
