@@ -9,7 +9,7 @@ asn1crypto==0.24.0
 atomicwrites==1.2.1
 attrs==18.2.0
 Automat==0.6.0
-autosemver==0.5.2
+autosemver==0.5.5
 Babel==2.5.3
 backports-abc==0.5
 backports.functools-lru-cache==1.5
@@ -33,7 +33,7 @@ cryptography==2.3
 cssselect==1.0.1
 decorator==4.0.10
 dojson==1.4.0
-dulwich==0.17.3
+dulwich==0.19.15
 ecdsa==0.13
 elasticsearch==6.4.0
 elasticsearch-dsl==6.1.0
@@ -88,7 +88,7 @@ incremental==17.5.0
 infinity==1.4
 inspire-crawler==1.1.2
 inspire-dojson==61.1.11
-inspire-schemas==59.3.2
+inspire-schemas==61.4.1
 inspire-utils==3.0.4
 intbitset==2.3.0
 intervals==0.8.0
@@ -223,7 +223,7 @@ Twisted==17.5.0
 ua-parser==0.8.0
 Unidecode==1.0.23
 uritools==2.2.0
-urllib3==1.23
+urllib3==1.24.3
 validators==0.11.0
 vine==1.1.4
 w3lib==1.17.0
