@@ -22,76 +22,6 @@
 
 version: '2.3'
 
-services:
-  service_base:
-    # Overrides default inspirehep config.
-    extends:
-      file: services.yml
-      service: base
-    environment:
-      - APP_SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://scoap3:dbpass123@database:5432/scoap3
-      - APP_CELERY_BROKER_URL=pyamqp://guest:guest@rabbitmq:5672//
-      - APP_CELERY_RESULT_BACKEND=redis://redis:6379/1
-      - CELERY_BROKER_URL=pyamqp://guest:guest@rabbitmq:5672//
-      - CELERY_RESULT_BACKEND=redis://redis:6379/1
-      - APP_CACHE_REDIS_URL=redis://redis:6379/0
-      - APP_ACCOUNTS_SESSION_REDIS_URL=redis://redis:6379/2
-      - APP_SEARCH_ELASTIC_HOSTS=indexer
-      - APP_ES_BULK_TIMEOUT=240
-      - APP_CRAWLER_HOST_URL=http://localhost:6800
-      - APP_CRAWLER_API_PIPELINE_URL=http://flower:5555/api/task/async-apply
-      - APP_LAST_RUNS_PATH=.lastruns
-      - APP_OAIHARVESTER_WORKDIR=/virtualenv/oaiharvest_workdir
-      - SCRAPY_FEED_URI=/virtualenv/scrapy_feed.json
-
-  # Services using the inspirehep code.
-  web:
-    extends:
-      service: service_base
-    command: gunicorn -b 0.0.0.0:5000 -t 3600 --access-logfile "-" --reload scoap3.wsgi
-    volumes_from:
-      - static
-    ports:
-      - "5000:5000"
-    depends_on:
-      database:
-        condition: service_healthy
-      indexer:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    environment:
-      - APP_DEBUG=False
-      - APP_ASSETS_DEBUG=False
-
-  worker:
-    extends:
-      service: service_base
-    command: celery worker -E -A scoap3.celery --loglevel=INFO --queues celery,harvests --concurrency=1 --purge
-    volumes_from:
-      - static
-    healthcheck:
-      start_period: 30s
-      timeout: 5s
-      interval: 5s
-      retries: 5
-      test:
-        - "CMD"
-        - "bash"
-        - "-c"
-        - "/virtualenv/bin/celery --broker=pyamqp://guest:guest@rabbitmq:5672// inspect ping | grep OK"
-    depends_on:
-      database:
-        condition: service_healthy
-      indexer:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-
   # Services needed for inspirehep to run.
   redis:
     image: redis:3.2.3
@@ -104,6 +34,8 @@ services:
         - "bash"
         - "-c"
         - "exec 3<> /dev/tcp/127.0.0.1/6379 && echo PING >&3 && head -1 <&3 | grep PONG"
+    ports:
+      - "6379:6379"
 
   indexer:
     extends:
@@ -136,6 +68,9 @@ services:
         - "CMD"
         - "rabbitmqctl"
         - "status"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
 
   database:
     extends:
@@ -150,40 +85,3 @@ services:
       test:
         - "CMD-SHELL"
         - "pg_isready --dbname=scoap3 --host=localhost --username=scoap3"
-
-  scrapyd:
-    extends:
-      service: service_base
-    command: bash -c "rm -f twistd.pid && exec scrapyd"
-    volumes_from:
-      - static
-    volumes:
-      - "${DOCKER_DATA}/packages:/packages"
-      - "${HEPCRAWL_SOURCE}:/hepcrawl"
-    environment:
-      - HEPCRAWL_BASE_WORKING_DIR=/virtualenv/data/
-
-  # Services useful for monitoring/debugging.
-  flower:
-    extends:
-      service: service_base
-    ports:
-      - "5555:5555"
-    command: flower -A scoap3.celery --broker=pyamqp://guest:guest@rabbitmq:5672//
-    volumes_from:
-      - static
-    depends_on:
-      database:
-        condition: service_healthy
-      indexer:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-
-  # Static volume config for service_base.
-  static:
-    extends:
-      file: services.yml
-      service: static

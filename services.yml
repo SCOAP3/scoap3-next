@@ -22,29 +22,6 @@
 
 version: '2.3'
 
-services:
-  base:
-    image: inspirehep/python-base-test
-    tty: true
-    environment:
-      - BASE_USER_UID=${BASE_USER_UID:-1000}
-      - BASE_USER_GID=${BASE_USER_GID:-1000}
-      - LANG=en_US.UTF-8
-      - LC_CTYPE=en_US.UTF-8
-      - LC_NUMERIC=en_US.UTF-8
-      - LC_TIME=en_US.UTF-8
-      - LC_COLLATE=en_US.UTF-8
-      - LC_MONETARY=en_US.UTF-8
-      - LC_MESSAGES=en_US.UTF-8
-      - LC_PAPER=en_US.UTF-8
-      - LC_NAME=en_US.UTF-8
-      - LC_ADDRESS=en_US.UTF-8
-      - LC_TELEPHONE=en_US.UTF-8
-      - LC_MEASUREMENT=en_US.UTF-8
-      - LC_IDENTIFICATION=en_US.UTF-8
-      - LC_ALL=
-      - APP_CRAWL_ONCE_PATH=/code/scrapy/crawl_once
-
   indexer:
     image: elasticsearch:6.8.1
 
@@ -54,9 +31,6 @@ services:
       - POSTGRES_PASSWORD=dbpass123
       - POSTGRES_USER=scoap3
       - PGDATA=/var/lib/postgresql/data/pgdata
-
-  static:
-    image: busybox
-    volumes:
-        - ".:/code"
-        - "${DOCKER_DATA}/tmp/virtualenv:/virtualenv"
+      - "POSTGRES_DB=scoap3"
+    ports:
+      - "5432:5432"
