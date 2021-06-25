@@ -524,7 +524,7 @@ OAISERVER_METADATA_FORMATS = {
         'namespace': 'http://www.openarchives.org/OAI/2.0/oai_dc/',
         'serializer': (
                 'invenio_oaiserver.utils:dumps_etree',
-                {'xslt_filename': '/opt/scoap3/var/scoap3-instance/static/xsl/MARC21slim2OAIDC.xsl'}
+                {'xslt_filename': '/usr/var/scoap3-instance/static/xsl/MARC21slim2OAIDC.xsl'}
         ),
         'schema': 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd'
     },
