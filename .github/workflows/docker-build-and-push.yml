@@ -25,6 +25,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          tags:
+            - scoap3/scoap3:latest
+            - scoap3/scoap3
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
