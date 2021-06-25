@@ -38,5 +38,5 @@ scoap3 index destroy --force --yes-i-know
 scoap3 index init
 
 if [[ "$1" != "--no-populate" ]]; then
-  scoap3 loadrecords scopa3/data/scoap3demodata.json
+  scoap3 loadrecords scoap3/data/scoap3demodata_short.json
 fi
