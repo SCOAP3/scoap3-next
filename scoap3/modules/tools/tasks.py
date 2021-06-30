@@ -1,9 +1,11 @@
+import io
 import csv
 import logging
 from StringIO import StringIO
 from datetime import datetime
 from gzip import GzipFile
 
+import boto3
 from celery import shared_task
 from flask import current_app
 from flask_mail import Attachment
@@ -60,28 +62,38 @@ def send_result(result_data, content_type, recipients, tool_name):
     filename = 'scoap3_export_%s_%s.csv' % (tool_name, timestamp)
 
     # compress data if needed
-    try:
-        compress = current_app.config.get('TOOL_COMPRESS_ATTACHMENT', False)
-        if compress:
-            compressed_buffer = StringIO()
-            gzip_file = GzipFile(fileobj=compressed_buffer, mode="wt")
-            gzip_file.write(result_data)
-            gzip_file.close()
+    # try:
+    #     compress = current_app.config.get('TOOL_COMPRESS_ATTACHMENT', False)
+    #     if compress:
+    #         compressed_buffer = StringIO()
+    #         gzip_file = GzipFile(fileobj=compressed_buffer, mode="wt")
+    #         gzip_file.write(result_data)
+    #         gzip_file.close()
+    #
+    #         result_data = compressed_buffer.getvalue()
+    #         content_type = 'application/gzip'
+    #         filename += '.gz'
+    # except Exception as e:
+    #     logger.error('Error in csv compression: {}'.format(e.message))
+    #
+    # attachment = Attachment(filename=filename, content_type=content_type, data=result_data)
+    host = current_app.config.get('S3_HOSTNAME')
+    bucket = current_app.config.get('S3_BUCKET')
 
-            result_data = compressed_buffer.getvalue()
-            content_type = 'application/gzip'
-            filename += '.gz'
-    except Exception as e:
-        logger.error('Error in csv compression: {}'.format(e.message))
-
-    attachment = Attachment(filename=filename, content_type=content_type, data=result_data)
+    s3 = boto3.resource('s3', endpoint_url='http://s3.cern.ch/')
+    s3.meta.client.upload_fileobj(
+        io.BytesIO(result_data), bucket, filename,
+        ExtraArgs={'ACL': 'public-read'}
+    )
+    file_url = "{}/{}/{}".format(host, bucket, filename)
 
     msg = TemplatedMessage(
         template_html='scoap3_tools/email/result.html',
+        ctx={'attachment_url': file_url},
         subject='SCOAP3 - Export %s result' % tool_name,
         sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
         recipients=recipients,
-        attachments=[attachment],
+        # attachments=[attachment],
     )
     current_app.extensions['mail'].send(msg)
 

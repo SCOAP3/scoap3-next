@@ -923,3 +923,6 @@ SITEMAP_URL_SCHEME = 'http'
 
 SITEMAP_MAX_URL_COUNT = 10000
 """Max URL count per sitemap page."""
+
+S3_HOSTNAME = 'http://s3.cern.ch/'
+S3_BUCKET = 'scoap3-prod-email-attachment'
