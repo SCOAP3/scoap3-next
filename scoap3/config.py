@@ -4,6 +4,7 @@
 
 from __future__ import absolute_import, print_function
 
+import os
 from collections import OrderedDict
 from datetime import datetime, timedelta
 from logging.config import dictConfig
@@ -924,5 +925,5 @@ SITEMAP_URL_SCHEME = 'http'
 SITEMAP_MAX_URL_COUNT = 10000
 """Max URL count per sitemap page."""
 
-S3_HOSTNAME = 'http://s3.cern.ch/'
-S3_BUCKET = 'scoap3-prod-email-attachment'
+S3_HOSTNAME = os.environ.get('AWS_S3_ENDPOINT')
+S3_BUCKET = os.environ.get('AWS_S3_EMAIL_ATTACHMENT_BUCKET')
