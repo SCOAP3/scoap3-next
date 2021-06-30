@@ -181,7 +181,7 @@ def authors_export(country=None, year=None):
                 # add extracted information to result list
                 for affiliation in author['affiliations']:
                     aff_country = affiliation.get('country', 'UNKNOWN')
-                    aff_value = affiliation['value']
+                    aff_value = affiliation.get('value', 'UNKNOWN')
                     result_data.append(
                         [year, journal, doi, arxiv, arxiv_category, author_name, aff_country, aff_value, total_authors]
                     )
