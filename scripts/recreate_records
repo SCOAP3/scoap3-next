@@ -27,6 +27,12 @@ scoap3 db create
 scoap3 index destroy --force --yes-i-know
 scoap3 index init
 
+scoap3 fixdb init_default_location
+
+scoap3 users create --active scoap3@scoap3.org
+scoap3 roles create superadmin
+scoap3 roles add scoap3@scoap3.org superadmin
+
 if [[ "$1" != "--no-populate" ]]; then
   scoap3 loadrecords scoap3/data/scoap3demodata_short.json
 fi

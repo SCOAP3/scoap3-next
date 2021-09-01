@@ -11,6 +11,10 @@ SCOAP3 journals are open for any scientist to publish without any financial barr
 
 ```shell
 docker-compose up
+
+# Initialize database
+docker-compose exec web scripts/recreate_records
+
 ```
 ## Local
 
