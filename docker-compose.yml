@@ -49,50 +49,18 @@ services:
     extends:
       service: service_base
     command: gunicorn -b 0.0.0.0:5000 -t 3600 --access-logfile "-" --reload scoap3.wsgi
-    volumes_from:
-      - static
     ports:
       - "5000:5000"
-    depends_on:
-      database:
-        condition: service_healthy
-      indexer:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
     environment:
       - APP_DEBUG=False
       - APP_ASSETS_DEBUG=False
+      - APP_SERVER_NAME='0.0.0.0:5000'
 
   worker:
     extends:
       service: service_base
     command: celery worker -E -A scoap3.celery --loglevel=INFO --queues celery,harvests --concurrency=1 --purge
-    volumes_from:
-      - static
-    healthcheck:
-      start_period: 30s
-      timeout: 5s
-      interval: 5s
-      retries: 5
-      test:
-        - "CMD"
-        - "bash"
-        - "-c"
-        - "/virtualenv/bin/celery --broker=pyamqp://guest:guest@rabbitmq:5672// inspect ping | grep OK"
-    depends_on:
-      database:
-        condition: service_healthy
-      indexer:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
 
-  # Services needed for inspirehep to run.
   redis:
     image: redis:3.2.3
     healthcheck:
@@ -114,54 +82,32 @@ services:
     environment:
       - discovery.type=single-node
       - TAKE_FILE_OWNERSHIP="true"
-    volumes:
-      - "${DOCKER_DATA}/tmp/scoap3_elastic/data:/usr/share/elasticsearch/data"
-      - "${DOCKER_DATA}/tmp/scoap3_elastic/log:/usr/share/elasticsearch/log"
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+
     healthcheck:
       timeout: 5s
       interval: 5s
       retries: 5
       start_period: 15s
-      test:
-        - "CMD-SHELL"
-        - "curl http://localhost:9200/_cluster/health | grep '.status.:.\\(green\\|yellow\\)'"
 
   rabbitmq:
     image: rabbitmq
-    healthcheck:
-      timeout: 5s
-      interval: 5s
-      retries: 5
-      test:
-        - "CMD"
-        - "rabbitmqctl"
-        - "status"
 
   database:
     extends:
       file: services.yml
       service: database
-    volumes:
-      - "${DOCKER_DATA}/tmp/scoap3_db/data:/var/lib/postgresql/data/pgdata"
-    healthcheck:
-      timeout: 5s
-      interval: 5s
-      retries: 5
-      test:
-        - "CMD-SHELL"
-        - "pg_isready --dbname=scoap3 --host=localhost --username=scoap3"
+    ports:
+      - '5432:5432'
 
   scrapyd:
     extends:
       service: service_base
     command: bash -c "rm -f twistd.pid && exec scrapyd"
-    volumes_from:
-      - static
-    volumes:
-      - "${DOCKER_DATA}/packages:/packages"
-      - "${HEPCRAWL_SOURCE}:/hepcrawl"
     environment:
-      - HEPCRAWL_BASE_WORKING_DIR=/virtualenv/data/
+      - HEPCRAWL_BASE_WORKING_DIR=/tmp/data/
 
   # Services useful for monitoring/debugging.
   flower:
@@ -182,8 +128,8 @@ services:
       redis:
         condition: service_healthy
 
-  # Static volume config for service_base.
-  static:
-    extends:
-      file: services.yml
-      service: static
+  # # Static volume config for service_base.
+  # static:
+  #   extends:
+  #     file: services.yml
+  #     service: static

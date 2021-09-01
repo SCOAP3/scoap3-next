@@ -21,9 +21,8 @@
 # or submit itself to any jurisdiction.
 
 web: gunicorn scoap3.wsgi # -c gunicorn.cfg
-cache: redis-server
-worker: celery worker -E -A scoap3.celery --loglevel=INFO --workdir="${VIRTUAL_ENV}" --pidfile="${VIRTUAL_ENV}/worker.pid" -Q celery,harvests
-workermon: celery flower -A scoap3.celery
-# beat: celery beat -A inspirehep.celery --loglevel=INFO --workdir="${VIRTUAL_ENV}" --pidfile="${VIRTUAL_ENV}/worker_beat.pid"
-# mathoid: node_modules/mathoid/server.js -c mathoid.config.yaml
-indexer: elasticsearch -Dcluster.name="scoap3" -Ddiscovery.zen.ping.multicast.enabled=false -Dpath.data="$VIRTUAL_ENV/var/data/elasticsearch"  -Dpath.logs="$VIRTUAL_ENV/var/log/elasticsearch"
+worker: celery worker -E -A scoap3.celery --loglevel=INFO -Q celery,harvests
+# workermon: celery flower -A scoap3.celery
+#beat: celery beat -A inspirehep.celery --loglevel=INFO
+
+

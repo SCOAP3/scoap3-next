@@ -1,0 +1,40 @@
+
+version: '2.1'
+services:
+  cache:
+    image: redis
+    restart: 'always'
+    read_only: true
+    ports:
+      - '6379:6379'
+  db:
+    image: postgres:9.6
+    restart: 'always'
+    command: postgres -c 'max_connections=200'
+    environment:
+      - 'POSTGRES_USER=scoap3'
+      - 'POSTGRES_PASSWORD=dbpass123'
+      - 'POSTGRES_DB=scoap3'
+    ports:
+      - '5432:5432'
+  mq-next:
+    image: rabbitmq:3-management
+    restart: 'always'
+  mq:
+    image: rabbitmq:3-management
+    restart: 'always'
+  es:
+    image: elasticsearch:6.8.1
+    restart: 'always'
+    environment:
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms1024m -Xmx1024m'
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 2g
+    ports:
+      - '9200:9200'
+      - '9300:9300'

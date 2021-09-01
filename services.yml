@@ -24,7 +24,9 @@ version: '2.3'
 
 services:
   base:
-    image: inspirehep/python-base-test
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     tty: true
     environment:
       - BASE_USER_UID=${BASE_USER_UID:-1000}
@@ -54,9 +56,3 @@ services:
       - POSTGRES_PASSWORD=dbpass123
       - POSTGRES_USER=scoap3
       - PGDATA=/var/lib/postgresql/data/pgdata
-
-  static:
-    image: busybox
-    volumes:
-        - ".:/code"
-        - "${DOCKER_DATA}/tmp/virtualenv:/virtualenv"

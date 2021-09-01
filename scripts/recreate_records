@@ -22,16 +22,6 @@
 
 set -e
 
-if [ ! -d "${VIRTUAL_ENV}" ]; then
-  >&2 echo "You must be in a virtual environment to use this script."
-  exit 1
-fi
-
-if [ ! -x "$(command -v scoap3)" ]; then
-  >&2 echo "You must have the SCOAP3 command to use this script."
-  exit 1
-fi
-
 scoap3 db drop --yes-i-know
 scoap3 db create
 scoap3 index destroy --force --yes-i-know
