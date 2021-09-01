@@ -109,25 +109,6 @@ services:
     environment:
       - HEPCRAWL_BASE_WORKING_DIR=/tmp/data/
 
-  # Services useful for monitoring/debugging.
-  flower:
-    extends:
-      service: service_base
-    ports:
-      - "5555:5555"
-    command: flower -A scoap3.celery --broker=pyamqp://guest:guest@rabbitmq:5672//
-    volumes_from:
-      - static
-    depends_on:
-      database:
-        condition: service_healthy
-      indexer:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-
   # # Static volume config for service_base.
   # static:
   #   extends:
