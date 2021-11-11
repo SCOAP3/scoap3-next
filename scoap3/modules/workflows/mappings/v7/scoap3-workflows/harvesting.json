@@ -1,0 +1,86 @@
+{
+    "settings": {
+        "analysis": {
+            "normalizer": {
+                "lowercase_normalizer": {
+                    "type": "custom",
+                    "char_filter": [],
+                    "filter": [
+                        "lowercase"
+                    ]
+                }
+            }
+        }
+    },
+    "mappings": {
+        "properties": {
+            "_workflow": {
+                "properties": {
+                    "created": {
+                        "type": "date"
+                    },
+                    "data_type": {
+                        "type": "text"
+                    },
+                    "id_parent": {
+                        "type": "integer"
+                    },
+                    "id_user": {
+                        "type": "integer"
+                    },
+                    "id_workflow": {
+                        "type": "keyword"
+                    },
+                    "modified": {
+                        "type": "date"
+                    },
+                    "status": {
+                        "type": "keyword"
+                    },
+                    "workflow_class": {
+                        "type": "keyword"
+                    },
+                    "workflow_name": {
+                        "type": "keyword"
+                    },
+                    "workflow_position": {
+                        "type": "keyword"
+                    }
+                },
+                "type": "object"
+            },
+            "_updated": {
+                "type": "date"
+            },
+            "id": {
+                "type": "integer"
+            },
+            "metadata": {
+                "properties": {
+                    "publication_info": {
+                        "properties": {
+                            "journal_title": {
+                                "type": "keyword",
+                                "copy_to": "journal_title_facet"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "dois": {
+                        "properties": {
+                            "value": {
+                                "type": "keyword",
+                                "normalizer": "lowercase_normalizer"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "journal_title_facet": {
+                "type": "keyword"
+            }
+        }
+    }
+}

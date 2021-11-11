@@ -24,7 +24,7 @@ services:
     image: rabbitmq:3-management
     restart: 'always'
   es:
-    image: elasticsearch:6.8.1
+    image: elasticsearch:7.10.1
     restart: 'always'
     environment:
       - bootstrap.memory_lock=true
