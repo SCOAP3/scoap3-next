@@ -31,7 +31,11 @@ services:
       - ".:/code"
 
   indexer:
+<<<<<<< HEAD
     image: webhippie/elasticsearch:6.4
+=======
+    image: elasticsearch:7.10.1
+>>>>>>> 0428f28 (elasticsearch v6 -> v7)
 
   database:
     image: postgres:9.6.24
