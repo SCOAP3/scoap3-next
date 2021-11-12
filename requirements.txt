@@ -37,8 +37,8 @@ decorator==4.0.10
 dojson==1.4.0
 dulwich==0.19.15
 ecdsa==0.13
-elasticsearch==6.4.0
-elasticsearch-dsl==6.1.0
+elasticsearch==7.10.1
+elasticsearch-dsl==7.4.0
 enum34==1.1.6
 Fabric==1.12.0
 fixture==1.5.8
@@ -120,7 +120,7 @@ invenio-records-files==1.0.0a11
 invenio-records-rest==1.4.2
 invenio-records-ui==1.0.0b2
 invenio-rest==1.0.0
-invenio-search==1.1.1
+invenio-search[elasticsearch7]==1.1.1
 invenio-search-ui==1.0.1
 invenio-theme==1.0.0b2
 invenio-utils==0.2.0
