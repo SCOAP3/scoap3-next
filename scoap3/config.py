@@ -27,7 +27,7 @@ I18N_LANGUAGES = [
 ]
 
 COVER_TEMPLATE = "invenio_theme/page_cover.html"
-SERVER_NAME = 'web:5000'
+SERVER_NAME = 'web:9000'
 
 SECURITY_REGISTERABLE = False
 SECURITY_LOGIN_USER_TEMPLATE = 'scoap3_theme/login_user.html'
@@ -51,7 +51,7 @@ SETTINGS_TEMPLATE = "invenio_theme/page_settings.html"
 
 # Elasticsearch
 INDEXER_DEFAULT_INDEX = "scoap3-records-record"
-INDEXER_DEFAULT_DOC_TYPE = "scoap3-records-record"
+INDEXER_DEFAULT_DOC_TYPE = "_doc"
 SEARCH_ELASTIC_HOSTS = 'localhost'
 SEARCH_MAX_RESULT_WINDOW = 50000
 
@@ -398,10 +398,10 @@ WORKFLOWS_UI_API_URL = "/api/harvesting/"
 WORKFLOWS_UI_DATA_TYPES = dict(
     harvesting=dict(
         search_index='scoap3-workflows-harvesting',
-        search_type='scoap3-workflows-workflow',
+        search_type='_doc',
     ),
 )
-
+SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://scoap3:dbpass123@localhost:5432/scoap3"
 WORKFLOWS_UI_INDEX_TEMPLATE = "scoap3_workflows/index.html"
 WORKFLOWS_UI_LIST_TEMPLATE = "scoap3_workflows/list.html"
 WORKFLOWS_UI_DETAILS_TEMPLATE = "scoap3_workflows/details.html"

@@ -48,7 +48,7 @@ def delete_halted_workflows_for_doi(doi):
     """
 
     current_search_client.indices.refresh("scoap3-workflows-harvesting")
-    search_result = current_search_client.search('scoap3-workflows-harvesting', q='metadata.dois.value:"%s"' % doi)
+    search_result = current_search_client.search(index='scoap3-workflows-harvesting', q='metadata.dois.value:"%s"' % doi)
 
     workflow_ids = {x['_source']['_workflow']['id_workflow'] for x in search_result['hits']['hits']}
     for wid in workflow_ids:

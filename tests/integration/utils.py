@@ -32,7 +32,7 @@ def run_article_upload_with_data(input_json_data, mock_address):
         mock_address.register_uri('GET', '/schemas/elements/titles.json', content=read_titles_schema())
         mock_address.register_uri(
             requests_mock.ANY,
-            re.compile('.*(indexer).*'),
+            re.compile('.*(indexer|localhost).*'),
             real_http=True,
         )
         workflow_id = create_from_json({'records': [input_json_data]}, apply_async=False)[0]

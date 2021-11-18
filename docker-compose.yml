@@ -54,7 +54,6 @@ services:
     environment:
       - APP_DEBUG=False
       - APP_ASSETS_DEBUG=False
-      - APP_SERVER_NAME='0.0.0.0:5000'
 
   worker:
     extends:

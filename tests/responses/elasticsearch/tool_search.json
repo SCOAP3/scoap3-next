@@ -3,7 +3,7 @@
     "hits": [
       {
         "_score": 8.30334,
-        "_type": "scoap3-records-record",
+        "_type": "_doc",
         "_id": "7a5c4577-3b12-462c-9e1c-091de5429ee5",
         "_source": {
           "_updated": "2019-08-13T12:30:33.313123+00:00",
