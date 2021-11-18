@@ -113,9 +113,9 @@ def fetch_url(jrec, size, query):
 
 
 def parse_inspire_records(size, query, jrec=1):
-    articles = {'hits': {'hits': [], 'total': 0}}
+    articles = {'hits': {'hits': [], 'total': {'value': 0}}}
     jrec = jrec
-    articles['hits']['total'], records = fetch_url(jrec, size, query)
+    articles['hits']['total']['value'], records = fetch_url(jrec, size, query)
 
     for r in records:
         json_record = {'_source': {'authors': [], 'publication_info': []}}
@@ -252,10 +252,10 @@ def calculate_articles_impact(from_date=None, until_date=None,
 
         count += hits_len
         jrec += step
-        if count < int(search_results['hits']['total']):
+        if count < int(search_results['hits']['total']['value']):
             print("Count {} is < than {}. Running next query: {}".format(
                 count,
-                search_results['hits']['total'],
+                search_results['hits']['total']['value'],
                 get_query(count, step, from_date, until_date))
             )
         else:

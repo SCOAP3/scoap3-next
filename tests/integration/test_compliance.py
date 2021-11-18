@@ -1,7 +1,7 @@
 from scoap3.modules.compliance.compliance import _unique_arXiv
 
 
-def test_unique_arxiv_no_arxiv_id():
+def test_unique_arxiv_no_arxiv_id(app):
     record = {
         "publication_info": [
             {
@@ -12,7 +12,7 @@ def test_unique_arxiv_no_arxiv_id():
     assert _unique_arXiv(record, None) == (True, ('No arXiv id: Out of the scope of this check', ), None)
 
 
-def test_unique_arxiv_where_arxiv_does_not_exist():
+def test_unique_arxiv_where_arxiv_does_not_exist(app):
     record = {
         "arxiv_eprints": [
             {

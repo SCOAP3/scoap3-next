@@ -55,7 +55,7 @@ def fix_doi_dates(json_file, dry_run):
 
     for doi in dois_with_dates.keys():
         search_result = current_search_client.search(
-            'scoap3-records-record',
+            index='scoap3-records-record',
             q='dois.value:"{}"'.format(doi)
         )['hits']['hits']
 
