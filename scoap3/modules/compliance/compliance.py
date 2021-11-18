@@ -230,7 +230,6 @@ def _unique_arXiv(record, extra_data):
                 hit['_source']['control_number']
                 for hit in result['hits']
             )
-            import ipdb; ipdb.set_trace()
             return False, ('ArXiv ID already exists. Please check {}'.format(
                 record_control_numbers)), None
 
