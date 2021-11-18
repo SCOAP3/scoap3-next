@@ -20,6 +20,12 @@ jobs:
           POSTGRES_USER: scoap3
           POSTGRES_PASSWORD: dbpass123
           POSTGRES_DB: scoap3
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
         ports:
           - 5432:5432
       rabbitmq:
