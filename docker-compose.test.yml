@@ -25,8 +25,8 @@ version: '2.3'
 services:
   tests:
     extends:
-      file: docker-compose.yml
-      service: service_base
+      file: services.yml
+      service: base
     command: bash run-tests.sh
 
   sftp:
