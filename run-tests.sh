@@ -5,10 +5,10 @@ set -o xtrace
 pip install -r requirements-test.txt
 pip freeze | sort
 
-sh scripts/recreate_records --no-populate
-sh scripts/clean_assets
+# sh scripts/recreate_records --no-populate
+# sh scripts/clean_assets
 
-scoap3 fixdb init_default_location
+# scoap3 fixdb init_default_location
 pytest
 
 flake8 .
