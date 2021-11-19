@@ -69,8 +69,6 @@ services:
     extends:
       file: services.yml
       service: indexer
-    ports:
-      - "9200:9200"
     environment:
       - discovery.type=single-node
       - TAKE_FILE_OWNERSHIP="true"
