@@ -62,6 +62,8 @@ services:
 
   redis:
     image: redis:3.2.3
+    ports:
+      - '6379:6379'
 
   indexer:
     extends:

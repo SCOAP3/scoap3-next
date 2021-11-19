@@ -64,7 +64,7 @@ def _create_files_location():
 
 
 @pytest.fixture(autouse=True, scope='session')
-def main_app():
+def app():
     """Flask application.
     Creates a Flask application with a simple testing configuration,
     then creates an application context and yields, so that all tests
@@ -98,33 +98,6 @@ def main_app():
         current_search.flush_and_refresh('*')
 
         yield app
-
-
-@pytest.fixture(scope='function')
-def app(main_app):
-    original_session = db.session
-    connection = db.engine.connect()
-    transaction = connection.begin()
-    db.session.begin_nested()
-
-    # Custom attribute to mark the session as isolated.
-    db.session._is_isolated = True
-
-    @sqlalchemy.event.listens_for(db.session, 'after_transaction_end')
-    def restart_savepoint(session, transaction):
-        if transaction.nested and not transaction._parent.nested and \
-                getattr(db.session, '_is_isolated', False):
-            session.expire_all()
-            session.begin_nested()
-
-
-    yield app
-
-    db.session._is_isolated = False
-    db.session.close()
-    transaction.rollback()
-    connection.close()
-    db.session = original_session
 
 
 @pytest.fixture(scope='function')
