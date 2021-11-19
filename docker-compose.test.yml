@@ -28,6 +28,11 @@ services:
       file: services.yml
       service: base
     command: bash run-tests.sh
+    depends_on:
+      - indexer
+      - database
+      - redis
+      - rabbitmq
 
   sftp:
     image: atmoz/sftp
