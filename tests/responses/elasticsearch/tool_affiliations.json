@@ -204,7 +204,9 @@
         "_index": "scoap3-records-record"
       }
     ],
-    "total": 3,
+    "total": {
+      "value":3
+    },
     "max_score": 7.9047036
   },
   "_shards": {
