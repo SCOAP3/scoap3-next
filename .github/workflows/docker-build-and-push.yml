@@ -15,10 +15,10 @@ jobs:
           ref: ${{ env.REF }}
       - name: Run services
         run: |
-          docker-compose up -d indexer database redis rabbitmq
+          docker-compose up -d indexer database redis rabbitmq;
       - name: Test
         run: |
-          docker-compose -f docker-compose.yml -f docker-compose.test.yml run  --rm tests curl indexer:9200
+          docker-compose -f docker-compose.yml -f docker-compose.test.yml run --rm tests
 
   docker:
     runs-on: ubuntu-latest
