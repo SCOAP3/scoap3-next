@@ -53,7 +53,7 @@ def update_sitemap_cache(urls=None, max_url_count=None):
 
     urlset = [
         {'loc': url_for('scoap3_sitemap.sitemappage', page=pn, _external=True, _scheme=url_scheme)}
-        for pn in range(1, page_n+1)
+        for pn in range(1, page_n + 1)
     ]
 
     index_page = render_template('scoap3_sitemap/sitemapindex.xml', urlset=urlset, url_scheme=url_scheme)

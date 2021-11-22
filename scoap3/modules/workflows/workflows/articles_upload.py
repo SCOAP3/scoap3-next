@@ -62,28 +62,28 @@ logger = logging.getLogger(__name__)
 
 def __halt_and_notify(msg, eng):
 
-    send_email = current_app.config.get('ARTICLE_UPLOAD_SEND_HALTED_EMAILS', True)
+    send_email = current_app.config.get("ARTICLE_UPLOAD_SEND_HALTED_EMAILS", True)
     if send_email:
         ctx = {
-            'reason': msg,
+            "reason": msg,
             # url with predefined filter for HALTED workflows
-            'url': url_for('workflow.index_view', flt1_21='2', _external=True),
+            "url": url_for("workflow.index_view", flt1_21="2", _external=True),
         }
 
         template_msg = TemplatedMessage(
-            template_html='scoap3_workflows/emails/halted_article_upload.html',
-            subject='SCOAP3 - Artcile upload halted',
-            sender=current_app.config.get('MAIL_DEFAULT_SENDER'),
-            recipients=current_app.config.get('ADMIN_DEFAULT_EMAILS'),
-            ctx=ctx
+            template_html="scoap3_workflows/emails/halted_article_upload.html",
+            subject="SCOAP3 - Artcile upload halted",
+            sender=current_app.config.get("MAIL_DEFAULT_SENDER"),
+            recipients=current_app.config.get("ADMIN_DEFAULT_EMAILS"),
+            ctx=ctx,
         )
-        current_app.extensions['mail'].send(template_msg)
+        current_app.extensions["mail"].send(template_msg)
 
     eng.halt(msg)
 
 
 def get_first_doi(obj):
-    return get_value(obj.data, 'dois[0].value')
+    return get_value(obj.data, "dois[0].value")
 
 
 def delete_older_workflows(obj, eng):
@@ -94,47 +94,55 @@ def delete_older_workflows(obj, eng):
 
 def set_schema(obj, eng):
     """Make sure schema is set properly and resolve it."""
-    obj.data['$schema'] = url_for('invenio_jsonschemas.get_schema', schema_path="hep.json")
+    obj.data["$schema"] = url_for(
+        "invenio_jsonschemas.get_schema", schema_path="hep.json"
+    )
 
 
 def add_arxiv_category(obj, eng):
     """Add arXiv categories fetched from arXiv.org"""
     if "arxiv_eprints" in obj.data:
         for element in obj.data.get("arxiv_eprints", ()):
-            if 'value' not in element:
-                logger.warning('arxiv_eprints value missing for article with doi: %s' % get_first_doi(obj))
+            if "value" not in element:
+                logger.warning(
+                    "arxiv_eprints value missing for article with doi: %s"
+                    % get_first_doi(obj)
+                )
                 continue
 
-            arxiv_id = element['value']
+            arxiv_id = element["value"]
 
-            if 'categories' not in element:
+            if "categories" not in element:
                 categories = get_arxiv_categories(arxiv_id)
                 if not categories:
-                    __halt_and_notify('Could not determine arXiv category based on id.', eng)
+                    __halt_and_notify(
+                        "Could not determine arXiv category based on id.", eng
+                    )
 
-                element['categories'] = categories
+                element["categories"] = categories
 
 
 def add_nations(obj, eng):
     """Add nations extracted from affiliations"""
-    if 'authors' not in obj.data:
-        __halt_and_notify('No authors for article.', eng)
+    if "authors" not in obj.data:
+        __halt_and_notify("No authors for article.", eng)
 
-    for author_index, author in enumerate(obj.data['authors']):
-        if 'affiliations' not in author:
-            __halt_and_notify('No affiliations for author: %s.' % author, eng)
+    for author_index, author in enumerate(obj.data["authors"]):
+        if "affiliations" not in author:
+            __halt_and_notify("No affiliations for author: %s." % author, eng)
 
-        for affiliation_index, affiliation in enumerate(author['affiliations']):
-            obj.data['authors'][author_index]['affiliations'][affiliation_index]['country'] = find_country(
-                affiliation['value'])
+        for affiliation_index, affiliation in enumerate(author["affiliations"]):
+            obj.data["authors"][author_index]["affiliations"][affiliation_index][
+                "country"
+            ] = find_country(affiliation["value"])
 
 
 def remove_orcid_prefix(obj, eng):
-    orcid_prefixes = ('orcid:', 'https://orcid.org/', 'http://orcid.org/')
-    for author in obj.data.get('authors', ()):
+    orcid_prefixes = ("orcid:", "https://orcid.org/", "http://orcid.org/")
+    for author in obj.data.get("authors", ()):
         for orcid_prefix in orcid_prefixes:
-            if 'orcid' in author and author['orcid'].lower().startswith(orcid_prefix):
-                author['orcid'] = author['orcid'][len(orcid_prefix):]
+            if "orcid" in author and author["orcid"].lower().startswith(orcid_prefix):
+                author["orcid"] = author["orcid"][len(orcid_prefix) :]
 
 
 def delete_unwanted_fields(obj, eng):
@@ -160,14 +168,19 @@ def is_record_in_db(obj, eng):
 
 
 def set_springer_source_if_needed(obj):
-    text = 'Italiana di Fisica'.lower()
-    if ('abstracts' in obj.data and
-            'source' in obj.data['abstracts'][0] and
-            text in obj.data['abstracts'][0]['source'].lower()):
-        obj.data['abstracts'][0]['source'] = 'Springer/SIF'
+    text = "Italiana di Fisica".lower()
+    if (
+        "abstracts" in obj.data
+        and "source" in obj.data["abstracts"][0]
+        and text in obj.data["abstracts"][0]["source"].lower()
+    ):
+        obj.data["abstracts"][0]["source"] = "Springer/SIF"
 
-    if 'acquisition_source' in obj.data and text in obj.data['acquisition_source']['source'].lower():
-        obj.data['acquisition_source']['source'] = 'Springer/SIF'
+    if (
+        "acquisition_source" in obj.data
+        and text in obj.data["acquisition_source"]["source"].lower()
+    ):
+        obj.data["acquisition_source"]["source"] = "Springer/SIF"
 
 
 def store_record(obj, eng):
@@ -184,7 +197,7 @@ def store_record(obj, eng):
 
         # Commit to DB before indexing
         db.session.commit()
-        obj.data['control_number'] = record['control_number']
+        obj.data["control_number"] = record["control_number"]
         obj.save()
 
     except ValidationError as err:
@@ -202,25 +215,31 @@ def update_record(obj, eng):
 
     doi = get_first_doi(obj)
 
-    query = {'query': {'bool': {'must': [{'match': {'dois.value': doi}}], }}}
-    search_result = es.search(index='scoap3-records-record', body=query)
+    query = {
+        "query": {
+            "bool": {
+                "must": [{"match": {"dois.value": doi}}],
+            }
+        }
+    }
+    search_result = es.search(index="scoap3-records-record", body=query)
 
-    recid = search_result['hits']['hits'][0]['_source']['control_number']
+    recid = search_result["hits"]["hits"][0]["_source"]["control_number"]
 
-    obj.extra_data['recid'] = recid
-    obj.data['control_number'] = recid
+    obj.extra_data["recid"] = recid
+    obj.data["control_number"] = recid
 
-    pid = PersistentIdentifier.get('recid', recid)
+    pid = PersistentIdentifier.get("recid", recid)
     existing_record = Record.get_record(pid.object_uuid)
 
-    if '_files' in existing_record:
-        obj.data['_files'] = existing_record['_files']
-    if '_oai' in existing_record:
-        obj.data['_oai'] = existing_record['_oai']
+    if "_files" in existing_record:
+        obj.data["_files"] = existing_record["_files"]
+    if "_oai" in existing_record:
+        obj.data["_oai"] = existing_record["_oai"]
 
     # preserving original creation date
-    creation_date = existing_record['record_creation_date']
-    obj.data['record_creation_date'] = creation_date
+    creation_date = existing_record["record_creation_date"]
+    obj.data["record_creation_date"] = creation_date
     existing_record.clear()
     existing_record.update(obj.data)
 
@@ -231,26 +250,30 @@ def update_record(obj, eng):
     except ValidationError as err:
         __halt_and_notify("Validation error: %s." % err, eng)
     except SchemaError as err:
-        __halt_and_notify('SchemaError during record validation! %s' % err, eng)
+        __halt_and_notify("SchemaError during record validation! %s" % err, eng)
 
 
 def __extract_local_files_info(obj, doi):
     files = []
-    if 'local_files' not in obj.data:
+    if "local_files" not in obj.data:
         return files
 
-    for local_file in obj.data.pop('local_files'):
-        if local_file['value']['filetype'] in ['pdf/a', 'pdfa']:
+    for local_file in obj.data.pop("local_files"):
+        if local_file["value"]["filetype"] in ["pdf/a", "pdfa"]:
             files.append(
-                {'url': local_file['value']['path'],
-                 'name': '{0}_a.{1}'.format(doi, 'pdf'),
-                 'filetype': 'pdf/a'}
+                {
+                    "url": local_file["value"]["path"],
+                    "name": "{0}_a.{1}".format(doi, "pdf"),
+                    "filetype": "pdf/a",
+                }
             )
         else:
             files.append(
-                {'url': local_file['value']['path'],
-                 'name': '{0}.{1}'.format(doi, local_file['value']['filetype']),
-                 'filetype': local_file['value']['filetype']}
+                {
+                    "url": local_file["value"]["path"],
+                    "name": "{0}.{1}".format(doi, local_file["value"]["filetype"]),
+                    "filetype": local_file["value"]["filetype"],
+                }
             )
 
     return files
@@ -258,96 +281,111 @@ def __extract_local_files_info(obj, doi):
 
 def build_files_data(obj, eng):
     doi = get_first_doi(obj)
-    method = obj.data['acquisition_source']['method']
+    method = obj.data["acquisition_source"]["method"]
 
-    if method == 'APS':
-        obj.extra_data['files'] = [
-            {'url': 'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
-             'headers': {'Accept': 'application/pdf'},
-             'name': '{0}.pdf'.format(doi),
-             'filetype': 'pdf'},
-            {'url': 'http://harvest.aps.org/v2/journals/articles/{0}'.format(doi),
-             'headers': {'Accept': 'text/xml'},
-             'name': '{0}.xml'.format(doi),
-             'filetype': 'xml'}
+    if method == "APS":
+        obj.extra_data["files"] = [
+            {
+                "url": "http://harvest.aps.org/v2/journals/articles/{0}".format(doi),
+                "headers": {"Accept": "application/pdf"},
+                "name": "{0}.pdf".format(doi),
+                "filetype": "pdf",
+            },
+            {
+                "url": "http://harvest.aps.org/v2/journals/articles/{0}".format(doi),
+                "headers": {"Accept": "text/xml"},
+                "name": "{0}.xml".format(doi),
+                "filetype": "xml",
+            },
         ]
-    elif 'Hindawi' in method:
-        doi_part = doi.split('10.1155/')[1]
-        obj.extra_data['files'] = [
-            {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.pdf'.format(doi_part),
-             'name': '{0}.pdf'.format(doi),
-             'filetype': 'pdf'},
-            {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.a.pdf'.format(doi_part),
-             'name': '{0}.a.pdf'.format(doi),
-             'filetype': 'pdf/a'},
-            {'url': 'http://downloads.hindawi.com/journals/ahep/{0}.xml'.format(doi_part),
-             'name': '{0}.xml'.format(doi),
-             'filetype': 'xml'}
+    elif "Hindawi" in method:
+        doi_part = doi.split("10.1155/")[1]
+        obj.extra_data["files"] = [
+            {
+                "url": "http://downloads.hindawi.com/journals/ahep/{0}.pdf".format(
+                    doi_part
+                ),
+                "name": "{0}.pdf".format(doi),
+                "filetype": "pdf",
+            },
+            {
+                "url": "http://downloads.hindawi.com/journals/ahep/{0}.a.pdf".format(
+                    doi_part
+                ),
+                "name": "{0}.a.pdf".format(doi),
+                "filetype": "pdf/a",
+            },
+            {
+                "url": "http://downloads.hindawi.com/journals/ahep/{0}.xml".format(
+                    doi_part
+                ),
+                "name": "{0}.xml".format(doi),
+                "filetype": "xml",
+            },
         ]
-    elif method == 'scoap3_push':
+    elif method == "scoap3_push":
         files = []
-        for document in obj.data.pop('documents', ()):
-            known_extensions = ('xml', 'pdfa', 'pdf')
+        for document in obj.data.pop("documents", ()):
+            known_extensions = ("xml", "pdfa", "pdf")
 
             ext = None
             for known_ext in known_extensions:
-                if known_ext in document['key']:
+                if known_ext in document["key"]:
                     ext = known_ext
                     break
 
             if ext not in known_extensions:
-                __halt_and_notify('Invalid file type: %s' % document['key'], eng)
+                __halt_and_notify("Invalid file type: %s" % document["key"], eng)
 
             files.append(
-                {
-                    'url': document['url'],
-                    'name': "%s.%s" % (doi, ext),
-                    'filetype': ext
-                }
+                {"url": document["url"], "name": "%s.%s" % (doi, ext), "filetype": ext}
             )
-        obj.extra_data['files'] = files
+        obj.extra_data["files"] = files
     else:
-        obj.extra_data['files'] = __extract_local_files_info(obj, doi)
+        obj.extra_data["files"] = __extract_local_files_info(obj, doi)
 
     obj.save()
 
 
 def attach_files(obj, eng):
-    if 'files' in obj.extra_data:
-        recid = obj.data['control_number']
-        pid = PersistentIdentifier.get('recid', recid)
+    if "files" in obj.extra_data:
+        recid = obj.data["control_number"]
+        pid = PersistentIdentifier.get("recid", recid)
         existing_record = Record.get_record(pid.object_uuid)
 
-        if '_files' not in existing_record or not existing_record['_files']:
+        if "_files" not in existing_record or not existing_record["_files"]:
             bucket = Bucket.create()
             RecordsBuckets.create(record=existing_record.model, bucket=bucket)
 
-        for file_ in obj.extra_data['files']:
-            if file_['url'].startswith('http'):
-                headers = file_.get('headers', {})
-                data = requests_retry_session().get(file_['url'], headers=headers)
+        for file_ in obj.extra_data["files"]:
+            if file_["url"].startswith("http"):
+                headers = file_.get("headers", {})
+                data = requests_retry_session().get(file_["url"], headers=headers)
 
                 if data.status_code != 200:
-                    __halt_and_notify("Error during acquiring files.\nHTTP status: %d\nUrl: %s\nHeaders:%s" % (
-                        data.status_code, file_['url'], headers), eng)
+                    __halt_and_notify(
+                        "Error during acquiring files.\nHTTP status: %d\nUrl: %s\nHeaders:%s"
+                        % (data.status_code, file_["url"], headers),
+                        eng,
+                    )
 
                 f = StringIO(data.content)
             else:
-                f = open(file_['url'])
+                f = open(file_["url"])
 
-            existing_record.files[file_['name']] = f
-            existing_record.files[file_['name']]['filetype'] = file_['filetype']
+            existing_record.files[file_["name"]] = f
+            existing_record.files[file_["name"]]["filetype"] = file_["filetype"]
 
         obj.save()
         existing_record.commit()
         db.session.commit()
     else:
-        __halt_and_notify('No files found.', eng)
+        __halt_and_notify("No files found.", eng)
 
 
 def _get_oai_sets(record):
-    for phrase, set_name in current_app.config.get('JOURNAL_ABBREVIATIONS').iteritems():
-        if phrase in record['publication_info'][0]['journal_title']:
+    for phrase, set_name in current_app.config.get("JOURNAL_ABBREVIATIONS").iteritems():
+        if phrase in record["publication_info"][0]["journal_title"]:
             return [set_name]
     return []
 
@@ -355,28 +393,30 @@ def _get_oai_sets(record):
 def add_oai_information(obj, eng):
     """Adds OAI information like identifier"""
 
-    recid = obj.data['control_number']
-    pid = PersistentIdentifier.get('recid', recid)
+    recid = obj.data["control_number"]
+    pid = PersistentIdentifier.get("recid", recid)
     existing_record = Record.get_record(pid.object_uuid)
 
-    if '_oai' not in existing_record:
+    if "_oai" not in existing_record:
         try:
             oaiid_minter(pid.object_uuid, existing_record)
         except PIDAlreadyExists:
-            oai_prefix = current_app.config.get('OAISERVER_ID_PREFIX')
-            existing_record['_oai'] = {
-                'id': '%s:%s' % (oai_prefix, recid),
-                'sets': _get_oai_sets(existing_record)
+            oai_prefix = current_app.config.get("OAISERVER_ID_PREFIX")
+            existing_record["_oai"] = {
+                "id": "%s:%s" % (oai_prefix, recid),
+                "sets": _get_oai_sets(existing_record),
             }
 
-    if 'id' not in existing_record['_oai']:
-        current_app.logger.info('adding new oai id')
+    if "id" not in existing_record["_oai"]:
+        current_app.logger.info("adding new oai id")
         oaiid_minter(pid.object_uuid, existing_record)
 
-    if 'sets' not in existing_record['_oai'] or not existing_record['_oai']['sets']:
-        existing_record['_oai']['sets'] = _get_oai_sets(existing_record)
+    if "sets" not in existing_record["_oai"] or not existing_record["_oai"]["sets"]:
+        existing_record["_oai"]["sets"] = _get_oai_sets(existing_record)
 
-    existing_record['_oai']['updated'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+    existing_record["_oai"]["updated"] = datetime.utcnow().strftime(
+        "%Y-%m-%dT%H:%M:%SZ"
+    )
 
     existing_record.commit()
     obj.save()
@@ -390,19 +430,19 @@ def validate_record(obj, eng):
     If there is no schema or the record is invalid, the workflow will be halted.
     """
 
-    if '$schema' not in obj.data:
-        __halt_and_notify('No schema found!', eng)
+    if "$schema" not in obj.data:
+        __halt_and_notify("No schema found!", eng)
         return
 
-    schema_data = requests_retry_session().get(obj.data['$schema']).content
+    schema_data = requests_retry_session().get(obj.data["$schema"]).content
     schema_data = json.loads(schema_data)
 
     try:
         validate(obj.data, schema_data)
     except ValidationError as err:
-        __halt_and_notify('Invalid record: %s' % err, eng)
+        __halt_and_notify("Invalid record: %s" % err, eng)
     except SchemaError as err:
-        __halt_and_notify('SchemaError during record validation! %s' % err, eng)
+        __halt_and_notify("SchemaError during record validation! %s" % err, eng)
 
 
 STORE_REC = [
@@ -413,13 +453,14 @@ STORE_REC = [
         ],
         [
             store_record,
-        ]
+        ],
     ),
 ]
 
 
 class ArticlesUpload(object):
     """Article ingestion workflow for Records collection."""
+
     name = "HEP"
     data_type = "harvesting"
     workflow = [
