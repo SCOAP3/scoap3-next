@@ -5,11 +5,7 @@ set -o xtrace
 pip install -r requirements-test.txt -e .
 pip freeze | sort
 
-# sh scripts/recreate_records --no-populate
-# sh scripts/clean_assets
-
-# scoap3 fixdb init_default_location
 pytest
 
-flake8 .
+flake8 scoap3/
 radon cc --min B .

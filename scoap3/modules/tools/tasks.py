@@ -3,12 +3,10 @@ import csv
 import logging
 from StringIO import StringIO
 from datetime import datetime
-from gzip import GzipFile
 
 import boto3
 from celery import shared_task
 from flask import current_app
-from flask_mail import Attachment
 from invenio_mail.api import TemplatedMessage
 
 logger = logging.getLogger(__name__)
