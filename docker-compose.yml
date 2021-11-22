@@ -70,8 +70,9 @@ services:
       file: services.yml
       service: indexer
     environment:
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms1024m -Xmx1024m'
       - discovery.type=single-node
-      - TAKE_FILE_OWNERSHIP="true"
     ports:
       - '9200:9200'
       - '9300:9300'
