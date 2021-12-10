@@ -34,7 +34,7 @@ services:
     image: elasticsearch:7.10.1
 
   database:
-    image: postgres:9.4.5
+    image: postgres:9.5
     environment:
       - POSTGRES_PASSWORD=dbpass123
       - POSTGRES_USER=scoap3
