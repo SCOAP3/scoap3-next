@@ -148,7 +148,7 @@ kombu==3.0.37
 langdetect==1.0.7
 limits==1.2.0
 LinkHeader==0.4.3
-lxml==4.2.1
+lxml==4.6.3
 Mako==1.0.7
 MarkupSafe==1.0
 marshmallow==2.15.1
