@@ -240,4 +240,3 @@ WTForms==2.1
 WTForms-Alchemy==0.16.1
 WTForms-Components==0.10.0
 zope.interface==4.4.2
-flask-shell-ipython==0.4.1
