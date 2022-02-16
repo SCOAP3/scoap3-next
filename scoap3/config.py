@@ -568,6 +568,7 @@ JSONSCHEMAS_REPLACE_REFS = False
 
 MAIL_SUPPRESS_SEND = True  # only log email in local environment
 MAIL_DEFAULT_SENDER = 'repo.admin@scoap3.org'
+SECURITY_EMAIL_SENDER = 'repo.admin@scoap3.org'
 ADMIN_DEFAULT_EMAILS = ['scoap3repo.admin@cern.ch', ]
 OPERATIONS_EMAILS = ['scoap3repo.admin@cern.ch', ]
 CROSSREF_API_URL = 'https://api.crossref.org/works/'
