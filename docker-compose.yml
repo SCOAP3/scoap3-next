@@ -43,6 +43,8 @@ services:
       - APP_LAST_RUNS_PATH=.lastruns
       - APP_OAIHARVESTER_WORKDIR=/virtualenv/oaiharvest_workdir
       - SCRAPY_FEED_URI=/virtualenv/scrapy_feed.json
+      - APP_JSONSCHEMAS_HOST=web:5000
+      - APP_SCOAP_DEFAULT_LOCATION=/tmp/
 
   # Services using the inspirehep code.
   web:
@@ -53,8 +55,7 @@ services:
       - "5000:5000"
     environment:
       - APP_DEBUG=False
-      - APP_ASSETS_DEBUG=False
-      - APP_SERVER_NAME='0.0.0.0:5000'
+      - APP_ASSETS_DEBUG=False  
 
   worker:
     extends:
@@ -62,8 +63,10 @@ services:
     command: celery worker -E -A scoap3.celery --loglevel=INFO --queues celery,harvests --concurrency=1 --purge
 
   redis:
-    image: redis:3.2.3
-
+    platform: linux/x86_64
+    image: redis:5.0-alpine
+    ports:
+      - '6379:6379'
   indexer:
     extends:
       file: services.yml
@@ -78,8 +81,9 @@ services:
       - '9300:9300'
 
   rabbitmq:
-    image: rabbitmq
-
+    image: rabbitmq:3.8-management-alpine
+    ports:
+      - '5672:5672'
   database:
     extends:
       file: services.yml
