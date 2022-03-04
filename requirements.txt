@@ -119,7 +119,7 @@ invenio-oauth2server==1.0.3
 invenio-oauthclient==1.1.2
 invenio-pidstore==1.0.0
 invenio-query-parser==0.6.0
-invenio-records==1.0.1
+invenio-records==1.0.2
 invenio-records-files==1.0.0a11
 invenio-records-rest==1.5.0
 invenio-records-ui==1.0.0b2
