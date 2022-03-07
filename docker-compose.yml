@@ -97,9 +97,3 @@ services:
     command: bash -c "rm -f twistd.pid && exec scrapyd"
     environment:
       - HEPCRAWL_BASE_WORKING_DIR=/tmp/data/
-
-  # # Static volume config for service_base.
-  # static:
-  #   extends:
-  #     file: services.yml
-  #     service: static

@@ -31,10 +31,10 @@ services:
       - ".:/code"
 
   indexer:
-    image: webhippie/elasticsearch:6.4
+    image: elasticsearch:7.10.1
 
   database:
-    image: postgres:9.6.24
+    image: postgres:9.5
     environment:
       - POSTGRES_PASSWORD=dbpass123
       - POSTGRES_USER=scoap3

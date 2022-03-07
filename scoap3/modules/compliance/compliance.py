@@ -218,11 +218,11 @@ def _unique_arXiv(record, extra_data):
     # search through ES to find if it exists already
     if arxiv_id:
         result = current_search_client.search(
-            'scoap3-records-record',
+            index='scoap3-records-record',
             q='arxiv_eprints.value="{}"'.format(arxiv_id)
         )['hits']
 
-        if result['total'] == 0:
+        if result['total']['value'] == 0:
             return True, ('ArXiv ID not found. Unique ID.', ), None
         else:
             # return all the control numbers in order to check the error
@@ -230,7 +230,6 @@ def _unique_arXiv(record, extra_data):
                 hit['_source']['control_number']
                 for hit in result['hits']
             )
-
             return False, ('ArXiv ID already exists. Please check {}'.format(
                 record_control_numbers)), None
 
