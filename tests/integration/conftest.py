@@ -28,15 +28,39 @@ import sys
 import pytest
 import requests_mock
 from workflow.engine_db import WorkflowStatus
-
+from flask import current_app
 from scoap3.factory import create_app
 
 from tests.integration.utils import get_record_from_workflow, run_article_upload_with_file
 from tests.responses import read_response
 
+from invenio_files_rest.models import Location
+from invenio_db import db
+from invenio_search import current_search
+from flask_alembic import Alembic
+import sqlalchemy
+
 # Use the helpers folder to store test helpers.
 # See: http://stackoverflow.com/a/33515264/374865
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'helpers'))
+
+
+def _create_files_location():
+    try:
+        uri = '/tmp/test-workflows'
+        if uri.startswith('/') and not os.path.exists(uri):
+            os.makedirs(uri)
+        loc = Location(
+            name="test-workflows",
+            uri=uri,
+            default=True
+        )
+        db.session.add(loc)
+        db.session.commit()
+        return loc
+    except Exception:
+        db.session.rollback()
+        raise
 
 
 @pytest.fixture(autouse=True, scope='session')
@@ -58,9 +82,21 @@ def app():
         CELERY_TASK_EAGER_PROPAGATES=True,
         TESTING=True,
         PRODUCTION_MODE=True,
+        SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://scoap3:dbpass123@localhost:5432/scoap3"
     )
 
     with app.app_context():
+
+        db.session.close()
+        db.drop_all()
+        db.create_all()
+
+        list(current_search.delete(ignore=[404]))
+        list(current_search.create(ignore=[400]))
+        _create_files_location()
+
+        current_search.flush_and_refresh('*')
+
         yield app
 
 

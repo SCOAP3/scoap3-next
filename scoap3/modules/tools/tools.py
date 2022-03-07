@@ -47,7 +47,7 @@ def affiliations_export(country=None, year=None):
         q=query, index=search_index, _source=source_fields, size=size, from_=index
     )
 
-    total_hits = search_results['hits']['total']
+    total_hits = search_results['hits']['total']['value']
     logger.info('Searching for affiliations of country: {} and year: {}'.format(
         country if country else 'ALL',
         year if year else 'ALL'
@@ -139,7 +139,7 @@ def authors_export(country=None, year=None):
         q=query, index=search_index, _source=source_fields, size=size, from_=index
     )
 
-    total_hits = search_results['hits']['total']
+    total_hits = search_results['hits']['total']['value']
     logger.info('Searching for affiliations of country: {} and year: {}'.format(
         country if country else 'ALL',
         year if year else 'ALL'
@@ -217,7 +217,7 @@ def search_export(es_dict):
         search_results = current_search_client.search(
             body=es_dict, index=search_index, _source=source_fields, size=size, from_=index
         )
-        total_hits = search_results['hits']['total']
+        total_hits = search_results['hits']['total']['value']
         index += len(search_results['hits']['hits'])
 
         # extract and add data to result list

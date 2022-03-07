@@ -23,24 +23,16 @@
 version: '2.3'
 
 services:
-  travis:
+  tests:
     extends:
       file: docker-compose.yml
       service: service_base
-    command: bash travis.sh
+    command: bash run-tests.sh
     depends_on:
-      database:
-        condition: service_healthy
-      indexer:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      worker:
-        condition: service_healthy
-    volumes_from:
-      - static
+      - indexer
+      - database
+      - redis
+      - rabbitmq
 
   sftp:
     image: atmoz/sftp
