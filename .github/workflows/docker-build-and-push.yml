@@ -45,3 +45,12 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Deploy QA
+        uses: peter-evans/repository-dispatch@v1
+        if: ${{ github.event_name == 'push'}}
+        with:
+          token: ${{ secrets.INSPIRE_BOT_TOKEN }}
+          repository: inspirehep/kubernetes
+          event-type: deploy
+          client-payload: '{"environment":"scoap3-qa","image":"scoap3/scoap3","tag":"${{ github.sha }}"}'
