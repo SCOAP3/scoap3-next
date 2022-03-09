@@ -53,4 +53,4 @@ jobs:
           token: ${{ secrets.INSPIRE_BOT_TOKEN }}
           repository: inspirehep/kubernetes
           event-type: deploy
-          client-payload: '{"application": "scoap3", "namespace": "scoap3-qa","image":"scoap3/scoap3","tag":"${{ github.sha }}"}'
+          client-payload: '{"project": "scoap3", "application": "scoap3", "namespace": "scoap3-qa","image":"scoap3/scoap3","tag":"${{ github.sha }}"}'
