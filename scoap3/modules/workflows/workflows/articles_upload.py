@@ -72,7 +72,7 @@ def __halt_and_notify(msg, eng):
 
         template_msg = TemplatedMessage(
             template_html="scoap3_workflows/emails/halted_article_upload.html",
-            subject="SCOAP3 - Artcile upload halted",
+            subject="SCOAP3 - Article upload halted",
             sender=current_app.config.get("MAIL_DEFAULT_SENDER"),
             recipients=current_app.config.get("ADMIN_DEFAULT_EMAILS"),
             ctx=ctx,
