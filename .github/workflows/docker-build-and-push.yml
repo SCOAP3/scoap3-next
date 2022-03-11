@@ -3,6 +3,8 @@ name: test & docker build and push
 on:
   push:
     branches: [master]
+  release:
+    types: [published]
 
 jobs:
   tests:
@@ -54,3 +56,21 @@ jobs:
           repository: inspirehep/kubernetes
           event-type: deploy
           client-payload: '{"project": "scoap3", "application": "scoap3", "namespace": "scoap3-qa","image":"scoap3/scoap3","new_tag":"${{ github.sha }}"}'
+  
+      - name: Build and push PROD
+        id: docker_build_prod
+        if: ${{ github.event_name == 'release'}}
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: scoap3/scoap3:${{ github.ref_name }}
+
+      - name: Deploy PROD
+        uses: peter-evans/repository-dispatch@v1
+        if: ${{ github.event_name == 'release'}}
+        with:
+          token: ${{ secrets.INSPIRE_BOT_TOKEN }}
+          repository: inspirehep/kubernetes
+          event-type: deploy
+          client-payload: '{"project": "scoap3", "application": "scoap3", "namespace": "scoap3-prod","image":"scoap3/scoap3","new_tag":"${{ github.ref_name }}"}'
+
