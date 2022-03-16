@@ -53,10 +53,10 @@ jobs:
         if: ${{ github.event_name == 'push'}}
         with:
           token: ${{ secrets.INSPIRE_BOT_TOKEN }}
-          repository: inspirehep/kubernetes
+          repository: cern-sis/kubernetes
           event-type: deploy
           client-payload: '{"project": "scoap3", "application": "scoap3", "namespace": "scoap3-qa","image":"scoap3/scoap3","new_tag":"${{ github.sha }}"}'
-  
+
       - name: Build and push PROD
         id: docker_build_prod
         if: ${{ github.event_name == 'release'}}
@@ -70,7 +70,7 @@ jobs:
         if: ${{ github.event_name == 'release'}}
         with:
           token: ${{ secrets.INSPIRE_BOT_TOKEN }}
-          repository: inspirehep/kubernetes
+          repository: cern-sis/kubernetes
           event-type: deploy
           client-payload: '{"project": "scoap3", "application": "scoap3", "namespace": "scoap3-prod","image":"scoap3/scoap3","new_tag":"${{ github.ref_name }}"}'
 
