@@ -162,7 +162,7 @@ node-semver==0.1.1
 oauthlib==2.1.0
 ordereddict==1.1
 orderedmultidict==0.7.10
-paramiko==1.18.5
+paramiko==2.10.1
 parsel==1.2.0
 passlib==1.7.1
 pathlib2==2.3.0
