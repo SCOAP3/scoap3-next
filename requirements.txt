@@ -110,7 +110,7 @@ invenio-jsonschemas==1.0.1
 invenio-logging==1.1.1
 invenio-mail==1.0.2
 invenio-oaiharvester==1.0.0a4
-invenio-oaiserver==1.0.3
+invenio-oaiserver==1.1.0
 invenio-oauth2server==1.0.3
 invenio-oauthclient==1.1.2
 invenio-pidstore==1.0.0
