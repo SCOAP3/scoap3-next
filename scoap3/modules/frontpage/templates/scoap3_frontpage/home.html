@@ -1,79 +1,83 @@
 {%- extends "scoap3_theme/page.html" %}
 
 {%- block page_header %}
-  {%- block navbar %}
-  <header>
-    <nav class="navbar navbar-default navbar-static-top frontpage">
-      {% include 'scoap3_theme/_navbar.html' %}
-    </nav>
-  </header>
-  {%- endblock navbar %}
+{%- block navbar %}
+<header>
+  <nav class="navbar navbar-default navbar-static-top frontpage">
+    {% include 'scoap3_theme/_navbar.html' %}
+  </nav>
+</header>
+{%- endblock navbar %}
 {%- endblock page_header %}
 {%- block page_body %}
-  <div class="jumbotron scoap3-jumbotron-img">
-  </div>
-  <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <p class="text-center">Search <b>{{ articles_count }} Open Access</b> articles:</p>
-          <form action="{{ url_for('invenio_search_ui.search') }}">
-            <div class="input-group">
-              <input type="text" name="q" class="input-lg form-control" placeholder="{{ _('Type and press enter to search') }}">
-              <span class="input-group-btn">
-                <button class="btn btn-default input-lg" type="submit">
-                    <span class="icon-search">
-                      <i class="fa fa-search" aria-hidden="true"></i>
-                    </span>
-                </button>
+<div class="jumbotron scoap3-jumbotron-img">
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p class="text-center">Search <b>{{ articles_count }} Open Access</b> articles:</p>
+      <form action="{{ url_for('invenio_search_ui.search') }}">
+        <div class="input-group">
+          <input type="text" name="q" class="input-lg form-control"
+            placeholder="{{ _('Type and press enter to search') }}">
+          <span class="input-group-btn">
+            <button class="btn btn-default input-lg" type="submit">
+              <span class="icon-search">
+                <i class="fa fa-search" aria-hidden="true"></i>
               </span>
-            </div>
-          </form>
+            </button>
+          </span>
         </div>
-      </div>
-      <br>
-      <div class="row collections-list">
-        <div class="col-md-12">
-          <ul class="nav nav-tabs">
-            <li class="active"><a  href="#1" data-toggle="tab">Journals</a></li>
-            <li><a href="#2" data-toggle="tab">SCOAP3 partner countries</a></li>
-          </ul>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="row collections-list">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#1" data-toggle="tab">Journals</a></li>
+        <li><a href="#2" data-toggle="tab">SCOAP3 partner countries</a></li>
+      </ul>
 
-          <div class="tab-content ">
-            <div class="tab-pane active" id="1">
-              <h3 class="text-left">Browse by journal:</h3>
-              <ul class="list-unstyled">
+      <div class="tab-content ">
+        <div class="padding">
+          <div class="tab-pane active" id="1">
+            <ul class="list-unstyled">
               {%- for journal in journals %}
-                <li>
-                  <a style="display:inline-block; width:350px;" href="{{ url_for('invenio_search_ui.search', journal=journal['title']) }}">
-                    {{ journal.title }}
-                    <span class="badge pull-right">{{ journal.count }}</span>
-                  </a>
-                </li>
+              <li>
+                <a style="display:inline-block; width:350px;"
+                  href="{{ url_for('invenio_search_ui.search', journal=journal['title']) }}">
+                  {{ journal.title }}
+                  <span class="badge pull-right">{{ journal.count }}</span>
+                </a>
+              </li>
               {%- endfor %}
 
-              </ul>
-            </div>
-            <div class="tab-pane" id="2">
-              <h3>Participating countries:</h3>
-              <ul class="col-md-4 list-unstyled">
-                {%- for country in countries|dictsort %}
-                  <li>
-                    <a style="display:inline-block; width:170px;" href="{{ url_for('invenio_search_ui.search', q=country[1]['query']) }}">
-                      {{ country[0] }}
-                      <span class="badge pull-right">{{ country[1]['count'] }}</span>
-                    </a>
-                  </li>
-                  {% if loop.index is equalto 12 or loop.index is equalto 24 or loop.index is equalto 34 %}
-                    </ul>
-                    <ul class="col-md-4 list-unstyled">
-                  {% endif %}
-                {%- endfor %}
-              </ul>
-
-            </div>
+            </ul>
+          </div>
+        </div>
+        <div class="padding">
+          <div class="tab-pane" id="2">
+            <ul class="col-md-4 list-unstyled">
+              {%- for country in countries|dictsort %}
+              <li>
+                <a style="display:inline-block; width:170px;"
+                  href="{{ url_for('invenio_search_ui.search', q=country[1]['query']) }}">
+                  {{ country[0] }}
+                  <span class="badge pull-right">{{ country[1]['count'] }}</span>
+                </a>
+              </li>
+              {% if loop.index is equalto 12 or loop.index is equalto 24 or loop.index is equalto 34 %}
+            </ul>
+            <ul class="col-md-4 list-unstyled">
+              {% endif %}
+              {%- endfor %}
+            </ul>
           </div>
         </div>
       </div>
+    </div>
   </div>
+</div>
 
 {%- endblock page_body %}
