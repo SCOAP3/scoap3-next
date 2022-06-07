@@ -41,7 +41,7 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="1">
-          <ul class="list-unstyled">
+          <ul class="list-unstyled home-list">
             {%- for journal in journals %}
             <li>
               <a style="display:inline-block; width:350px;"
@@ -54,8 +54,8 @@
 
           </ul>
         </div>
-        <div class="tab-pane padding" id="2">
-          <ul class="col-md-4 list-unstyled">
+        <div class="tab-pane" id="2">
+          <ul class="col-md-4 list-unstyled home-list">
             {%- for country in countries|dictsort %}
             <li>
               <a style="display:inline-block; width:170px;"
