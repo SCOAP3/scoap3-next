@@ -36,44 +36,40 @@
     <div class="col-md-12">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#1" data-toggle="tab">Journals</a></li>
-        <li><a href="#2" data-toggle="tab">SCOAP3 partner countries</a></li>
+        <li><a href="#2" data-toggle="tab">SCOAP3 partners</a></li>
       </ul>
 
-      <div class="tab-content ">
-        <div class="padding">
-          <div class="tab-pane active" id="1">
-            <ul class="list-unstyled">
-              {%- for journal in journals %}
-              <li>
-                <a style="display:inline-block; width:350px;"
-                  href="{{ url_for('invenio_search_ui.search', journal=journal['title']) }}">
-                  {{ journal.title }}
-                  <span class="badge pull-right">{{ journal.count }}</span>
-                </a>
-              </li>
-              {%- endfor %}
+      <div class="tab-content">
+        <div class="tab-pane active" id="1">
+          <ul class="list-unstyled">
+            {%- for journal in journals %}
+            <li>
+              <a style="display:inline-block; width:350px;"
+                href="{{ url_for('invenio_search_ui.search', journal=journal['title']) }}">
+                {{ journal.title }}
+                <span class="badge pull-right">{{ journal.count }}</span>
+              </a>
+            </li>
+            {%- endfor %}
 
-            </ul>
-          </div>
+          </ul>
         </div>
-        <div class="padding">
-          <div class="tab-pane" id="2">
-            <ul class="col-md-4 list-unstyled">
-              {%- for country in countries|dictsort %}
-              <li>
-                <a style="display:inline-block; width:170px;"
-                  href="{{ url_for('invenio_search_ui.search', q=country[1]['query']) }}">
-                  {{ country[0] }}
-                  <span class="badge pull-right">{{ country[1]['count'] }}</span>
-                </a>
-              </li>
-              {% if loop.index is equalto 12 or loop.index is equalto 24 or loop.index is equalto 34 %}
-            </ul>
-            <ul class="col-md-4 list-unstyled">
-              {% endif %}
-              {%- endfor %}
-            </ul>
-          </div>
+        <div class="tab-pane padding" id="2">
+          <ul class="col-md-4 list-unstyled">
+            {%- for country in countries|dictsort %}
+            <li>
+              <a style="display:inline-block; width:170px;"
+                href="{{ url_for('invenio_search_ui.search', q=country[1]['query']) }}">
+                {{ country[0] }}
+                <span class="badge pull-right">{{ country[1]['count'] }}</span>
+              </a>
+            </li>
+            {% if loop.index is equalto 12 or loop.index is equalto 24 or loop.index is equalto 34 %}
+          </ul>
+          <ul class="col-md-4 list-unstyled">
+            {% endif %}
+            {%- endfor %}
+          </ul>
         </div>
       </div>
     </div>
