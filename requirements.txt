@@ -30,7 +30,7 @@ click==6.7
 configobj==5.0.6
 constantly==15.1.0
 contextlib2==0.5.4
-cookiecutter==1.4.0
+cookiecutter==2.1.1
 cryptography==2.3
 cssselect==1.0.1
 decorator==4.0.10
