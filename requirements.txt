@@ -3,7 +3,7 @@ amqp==1.4.9
 angular-gettext-babel==0.3
 aniso8601==1.1.0
 anyjson==0.3.3
-arrow==0.13.2
+arrow==0.15.1
 asciitree==0.3.3
 asn1crypto==0.24.0
 atomicwrites==1.2.1
