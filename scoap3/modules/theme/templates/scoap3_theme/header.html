@@ -3,10 +3,23 @@
   <nav class="navbar navbar-default navbar-static-top">
     {% include 'scoap3_theme/_navbar.html' %}
   </nav>
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function () {
+      var u = ["https://webanalytics.web.cern.ch/"](https://webanalytics.web.cern.ch/);
+        _paq.push(['setTrackerUrl', u + 'matomo.php']);
+      _paq.push(['setSiteId', '123']);
+      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+      g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+    })();
+  </script>
 </header>
 {%- endblock navbar %}
 
 {%- block flashmessages %}
-  {%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
-  {{ flashed_messages() }}
+{%- from "invenio_theme/macros/messages.html" import flashed_messages with context -%}
+{{ flashed_messages() }}
 {%- endblock %}
