@@ -184,8 +184,8 @@ def update_records(recids_dois_categories_arxiv):
                 "value": item['arxiv']['arxiv']
             }
         ]
-
         existing_record['arxiv_eprints'] = arxiv_eprints
+        existing_record.update(dict(existing_record))
         print('Updating record...', item)
         existing_record.commit()
         db.session.commit()
