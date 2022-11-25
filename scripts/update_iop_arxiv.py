@@ -170,11 +170,11 @@ def find_arxiv_and_categories(title, doi):
 
 
 useful_fields = get_useful_fields()
-arxiv_and_dois = check_files(useful_fields)
+recids_dois_categories_arxiv = check_files(useful_fields)
 
 
-def update_records(recids_dois_categories):
-    for item in recids_dois_categories:
+def update_records(recids_dois_categories_arxiv):
+    for item in recids_dois_categories_arxiv:
         pid = PersistentIdentifier.get("recid", item['recid'])
         existing_record = Record.get_record(pid.object_uuid)
         categories = item['arxiv']['categories']
