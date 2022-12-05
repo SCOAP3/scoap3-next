@@ -7,11 +7,12 @@ import xml.etree.ElementTree as ET
 from invenio_pidstore.models import PersistentIdentifier
 from invenio_records_files.api import Record
 from invenio_db import db
-import  tarfile
+import tarfile
 import os
-import csv  
+import csv
 from datetime import datetime
-import dateutil.parser as parser    
+import dateutil.parser as parser
+
 
 def get_recids_and_record_creation_dates():
     query = {
@@ -59,6 +60,7 @@ def parse_without_names_spaces(xml):
     root = it.root
     return root
 
+
 def get_record_creation_and_pdfa_dates(data_):
     path = '/data/harvesting/Elsevier/download/'
     pattern_doi = re.compile(r'.*<doi>(.*)<\/doi>.*')
@@ -70,21 +72,21 @@ def get_record_creation_and_pdfa_dates(data_):
             try:
                 name = os.path.basename(zip_file).split('.')[0]
                 data = ''.join(zip.read(name + '/dataset.xml').split())
-                doi_in_data = pattern_doi.search(data).group(1)
-                if doi_in_data in dois:
-                    element = parse_without_names_spaces(zip.read(name + '/dataset.xml'))
-                    one_article_data = element.findall('dataset-content/journal-item/[@cross-mark="true"]')
-                    for one_data in one_article_data:
-                        doi = one_data.find('journal-item-unique-ids/doi').text
-                        if doi in dois:
-                            # creation_date = parser.parse(data_[doi]['creation_date']).replace(tzinfo=None)
-                            # date = parser.parse(str(datetime.fromtimestamp(os.path.getmtime(zip_file))))
-                            creation_date = parser.parse(data_[doi]['creation_date']).replace(tzinfo=None).isoformat()
-                            date = parser.parse(str(datetime.fromtimestamp(os.path.getmtime(zip_file)))).isoformat()
-                            gap =  parser.parse(str(datetime.fromtimestamp(os.path.getmtime(zip_file)))) - parser.parse(data_[doi]['creation_date']).replace(tzinfo=None)
-                            all.append([data_[doi]['recid'], doi, creation_date, date, gap])
-                            # all[doi] = {'record_creation_date': creation_date, 'pdfa_receive_date': date, 'recid': data_[doi]['recid'], 'doi': doi}
-                            
+                # doi_in_data = pattern_doi.search(data).group(1)
+                # if doi_in_data in dois:
+                element = parse_without_names_spaces(zip.read(name + '/dataset.xml'))
+                one_article_data = element.findall('dataset-content/journal-item/[@cross-mark="true"]')
+                for one_data in one_article_data:
+                    doi = one_data.find('journal-item-unique-ids/doi').text
+                    if doi in dois:
+                        # creation_date = parser.parse(data_[doi]['creation_date']).replace(tzinfo=None)
+                        # date = parser.parse(str(datetime.fromtimestamp(os.path.getmtime(zip_file))))
+                        creation_date = parser.parse(data_[doi]['creation_date']).replace(tzinfo=None)
+                        date = parser.parse(str(datetime.fromtimestamp(os.path.getmtime(zip_file)))).isoformat()
+                        gap =(parser.parse(str(datetime.fromtimestamp(os.path.getmtime(zip_file)))) - parser.parse(data_[doi]['creation_date']).replace(tzinfo=None)).days
+                        all.append([data_[doi]['recid'], doi, creation_date, date, gap])
+                        # all[doi] = {'record_creation_date': creation_date, 'pdfa_receive_date': date, 'recid': data_[doi]['recid'], 'doi': doi}
+
             except:
                 pass
     # average = sum(finals)/len(finals)
@@ -93,8 +95,6 @@ def get_record_creation_and_pdfa_dates(data_):
         writer = csv.writer(f)
         writer.writerow(header)
         for one_record in all:
-             writer.writerow(one_record)
-
+            writer.writerow(one_record)
 
     return all
-
