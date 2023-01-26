@@ -1,46 +1,20 @@
-FROM centos:7
+FROM python:2.7.18
 
-RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
-    yum update -y && \
-    yum install -y \
-        ImageMagick \
-        transfig \
-        file \
-        firefox \
-        gcc \
-        gcc-c++ \
-        git \
-        kstart \
-        libffi-devel \
-        libxml2-devel \
-        libxslt-devel \
-        mailcap \
-        make \
-        openssl-devel \
-        poppler-utils \
-        postgresql \
-        postgresql-libs \
-        postgresql-devel \
-        python-pip \
-        python-devel \
-        python2-xrootd \
-        wget \
-        Xvfb \
-        && \
-    yum clean all
-
-ENV NODE_VERSION 6.17.1
-RUN mkdir /usr/local/nvm
 ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 6.17.1
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+RUN mkdir -p $NVM_DIR
 
-# install node and npm LTS
-RUN source $NVM_DIR/nvm.sh \
+# Install nvm with node and npm
+RUN curl --silent -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+# Install node and npm
+RUN . $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
     && nvm use default
 
+# add node and npm to path so the commands are available
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
@@ -62,7 +36,7 @@ COPY . .
 RUN pip install --ignore-installed --requirement requirements.txt && \
     pip install -e .
 
-WORKDIR /usr/var/scoap3-instance/static
+WORKDIR /usr/local/var/scoap3-instance/static
 
 RUN scoap3 npm && \
     npm install && \
