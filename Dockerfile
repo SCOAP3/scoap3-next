@@ -54,8 +54,8 @@ WORKDIR /code
 
 RUN pip install --no-cache-dir --upgrade pip==20.3.4 && \
     pip install --no-cache-dir --upgrade setuptools && \
-    pip install --no-cache-dir --upgrade typing==3.10.0.0 && \
-    pip install --no-cache-dir --upgrade wheel
+    pip install --no-cache-dir --upgrade wheel && \
+    pip install --no-cache-dir typing==3.7.4.1
 
 COPY . .
 
