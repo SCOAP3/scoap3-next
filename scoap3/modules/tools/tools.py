@@ -29,9 +29,8 @@ def affiliations_export(country=None, year=None):
     :param country: only affiliations for this country will be included. If None, all countries are included.
     :param year: only articles *published* in this year will be included. If None, all articles are included.
     """
-
-    size = current_app.config.get('TOOL_ELASTICSEARCH_PAGE_SIZE', 100)
     search_index = current_app.config.get('SEARCH_UI_SEARCH_INDEX')
+    size = current_app.config.get('TOOL_ELASTICSEARCH_PAGE_SIZE', 100)
     source_fields = [
         'publication_info.year', 'publication_info.journal_title', 'arxiv_eprints', 'dois', 'authors', 'control_number',
     ]
@@ -39,75 +38,69 @@ def affiliations_export(country=None, year=None):
     result_headers = ['year', 'journal', 'doi', 'arxiv number', 'primary arxiv category',
                       'country', 'affiliation', 'authors with affiliation', 'total number of authors']
     result_data = []
-    index = 0
 
-    # query ElasticSearch for result (and get total hits)
     query = get_query_string(country=country, year=year)
     search_results = current_search_client.search(
-        q=query, index=search_index, _source=source_fields, size=size, from_=index
-    )
+        q=query, index=search_index, _source=source_fields, size=size, scroll='5m')
 
-    total_hits = search_results['hits']['total']['value']
+    sid = search_results['_scroll_id']
+    scroll_size = len(search_results['hits']['hits'])
+
     logger.info('Searching for affiliations of country: {} and year: {}'.format(
         country if country else 'ALL',
         year if year else 'ALL'
     ))
-    logger.info('Total results from query: {}'.format(total_hits))
 
-    if total_hits == 0:
+    if scroll_size == 0:
         return {'header': result_headers, 'data': result_data}
 
-    while index < total_hits:
+    while scroll_size > 0:
+        for result in search_results["hits"]["hits"]:
         # query ElasticSearch for result
-        logger.warn('INDEX NUMBER {}'.format(index))
-        search_results = current_search_client.search(
-            q=query, index=search_index, _source=source_fields, size=size, from_=index
-        )
-        index += len(search_results['hits']['hits'])
+                record = result['_source']
+                year = record['publication_info'][0]['year']
+                journal = get_first_journal(record)
+                doi = get_first_doi(record)
+                arxiv = get_clean_arXiv_id(record)
+                arxiv_category = get_arxiv_primary_category(record)
 
-        # extract and add data to result list
-        for hit in search_results['hits']['hits']:
-            record = hit['_source']
+                authors = record.get('authors', ())
+                total_authors = len(authors)
+                missing_author_affiliations = 0
 
-            year = record['publication_info'][0]['year']
-            journal = get_first_journal(record)
-            doi = get_first_doi(record)
-            arxiv = get_clean_arXiv_id(record)
-            arxiv_category = get_arxiv_primary_category(record)
+                extracted_affiliations = Counter()
+                for author in authors:
+                    # if there are no affiliations, we cannot add this author
+                    # (this also means the record is not valid according to the schema)
+                    if 'affiliations' not in author:
+                        missing_author_affiliations += 1
+                        continue
 
-            authors = record.get('authors', ())
-            total_authors = len(authors)
-            missing_author_affiliations = 0
+                    # aggregate affiliations
+                    for aff in author['affiliations']:
+                        aff_country = aff.get('country', 'UNKNOWN')
+                        if country in (None, '') or aff_country == country:
+                            value = ((aff['value'], aff_country), )
+                            extracted_affiliations.update(value)
 
-            extracted_affiliations = Counter()
-            for author in authors:
-                # if there are no affiliations, we cannot add this author
-                # (this also means the record is not valid according to the schema)
-                if 'affiliations' not in author:
-                    missing_author_affiliations += 1
-                    continue
+                if not extracted_affiliations:
+                    logger.warn('Article with DOI: {} had no extracted affiliations'.format(doi))
 
-                # aggregate affiliations
-                for aff in author['affiliations']:
-                    aff_country = aff.get('country', 'UNKNOWN')
-                    if country in (None, '') or aff_country == country:
-                        value = ((aff['value'], aff_country), )
-                        extracted_affiliations.update(value)
+                if missing_author_affiliations:
+                    logger.warn('Article with DOI: {} had missing affiliations in {} / {} authors'
+                                .format(doi, missing_author_affiliations, total_authors))
 
-            if not extracted_affiliations:
-                logger.warn('Article with DOI: {} had no extracted affiliations'.format(doi))
-
-            if missing_author_affiliations:
-                logger.warn('Article with DOI: {} had missing affiliations in {} / {} authors'
-                            .format(doi, missing_author_affiliations, total_authors))
-
-            # add extracted information to result list
-            for meta, count in extracted_affiliations.items():
-                aff_value, aff_country = meta
-                result_data.append(
-                    [year, journal, doi, arxiv, arxiv_category, aff_country, aff_value, count, total_authors]
-                )
-
+                # add extracted information to result list
+                for meta, count in extracted_affiliations.items():
+                    aff_value, aff_country = meta
+                    result_data.append(
+                        [year, journal, doi, arxiv, arxiv_category, aff_country, aff_value, count, total_authors]
+                    )
+        search_results = current_search_client.scroll(scroll_id=sid, scroll='5m')
+        sid = search_results['_scroll_id']
+        scroll_size = len(search_results['hits']['hits'])
+    current_search_client.clear_scroll(scroll_id=sid)
+    
     return {
         'header': result_headers,
         'data': result_data
