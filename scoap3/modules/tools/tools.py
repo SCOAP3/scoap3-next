@@ -173,33 +173,26 @@ def authors_export(country=None, year=None):
         "total number of authors",
     ]
     result_data = []
-    index = 0
 
     # query ElasticSearch for result (and get total hits)
     query = get_query_string(country=country, year=year)
     search_results = current_search_client.search(
-        q=query, index=search_index, _source=source_fields, size=size, from_=index
+        q=query, index=search_index, _source=source_fields, size=size, scroll="5m"
     )
 
-    total_hits = search_results["hits"]["total"]["value"]
+    sid = search_results["_scroll_id"]
+    scroll_size = len(search_results["hits"]["hits"])
     logger.info(
         "Searching for affiliations of country: {} and year: {}".format(
             country if country else "ALL", year if year else "ALL"
         )
     )
-    logger.info("Total results from query: {}".format(total_hits))
+    logger.info("Total results from query: {}".format(scroll_size))
 
-    if total_hits == 0:
+    if scroll_size == 0:
         return {"header": result_headers, "data": result_data}
 
-    while index < total_hits:
-        # query ElasticSearch for result
-        search_results = current_search_client.search(
-            q=query, index=search_index, _source=source_fields, size=size, from_=index
-        )
-        index += len(search_results["hits"]["hits"])
-
-        # extract and add data to result list
+    while scroll_size > 0:
         for hit in search_results["hits"]["hits"]:
             record = hit["_source"]
 
@@ -245,6 +238,10 @@ def authors_export(country=None, year=None):
                         doi, missing_author_affiliations, total_authors
                     )
                 )
+        search_results = current_search_client.scroll(scroll_id=sid, scroll="5m")
+        sid = search_results["_scroll_id"]
+        scroll_size = len(search_results["hits"]["hits"])
+    current_search_client.clear_scroll(scroll_id=sid)
 
     return {"header": result_headers, "data": result_data}
 
