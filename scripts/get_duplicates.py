@@ -11,7 +11,7 @@ from invenio_records_files.api import Record
 
 def find_duplicates_dois():
     query = {
-        "size": 100,
+        "size": 1,
         "query": {
             "match_all": {}}
     }
