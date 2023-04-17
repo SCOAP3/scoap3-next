@@ -90,7 +90,7 @@ incremental==17.5.0
 infinity==1.4
 inspire-crawler==1.1.2
 inspire-dojson==61.1.11
-inspire-schemas==61.4.1
+inspire-schemas==61.5.5
 inspire-utils==3.0.4
 intbitset==2.3.0
 intervals==0.8.0
