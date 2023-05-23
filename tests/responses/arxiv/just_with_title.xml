@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Did%3AStatic%20properties%20and%20Semileptonic%20transitions%20of%20lowest-lying%20double%20heavy%20baryons%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=id:Static properties and Semileptonic transitions of lowest-lying double heavy baryons&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api//UYebriKEf9w7fHy72ShHp6kM7s</id>
+  <updated>2023-05-23T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">2257780</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/0907.0563v1</id>
+    <updated>2009-07-03T08:52:06Z</updated>
+    <published>2009-07-03T08:52:06Z</published>
+    <title>Semileptonic decays of double heavy baryons in a relativistic
+  constituent three-quark model</title>
+    <summary>  We study the semileptonic decays of double heavy baryons using a manifestly
+Lorentz covariant constituent three-quark model. We present complete results on
+transition form factors between double-heavy baryons for finite values of the
+heavy quark/baryon masses and in the heavy quark symmetry limit which is valid
+at and close to zero recoil. Decay rates are calculated and compared to each
+other in the full theory, keeping masses finite, and also in the heavy quark
+limit.
+</summary>
+    <author>
+      <name>Amand Faessler</name>
+    </author>
+    <author>
+      <name>Thomas Gutsche</name>
+    </author>
+    <author>
+      <name>Mikhail A. Ivanov</name>
+    </author>
+    <author>
+      <name>Jurgen G. Korner</name>
+    </author>
+    <author>
+      <name>Valery E. Lyubovitskij</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevD.80.034025</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.80.034025" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">20 pages, 2 figures</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys.Rev.D80:034025,2009</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/0907.0563v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/0907.0563v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2208.07625v3</id>
+    <updated>2022-12-16T09:15:48Z</updated>
+    <published>2022-08-16T09:23:20Z</published>
+    <title>Static properties and Semileptonic transitions of lowest-lying double
+  heavy baryons</title>
+    <summary>  The static properties and semileptonic decays of ground-state doubly heavy
+baryons are studied working in the framework of a non-relativistic quark model.
+Using a phenomenological potential model, we calculate the ground-state masses
+and magnetic moments of doubly heavy $ \Omega $ and $ \Xi $ baryons. In the
+heavy quark limit, we introduce a simple form of the universal Isgur-Wise
+function used as the transition form factor and then investigate the exclusive
+$ b \rightarrow c $ semileptonic decay widths and branching ratios for $
+\frac{1}{2}\rightarrow \frac{1}{2} $ baryon transitions. Our obtained results
+are in agreement with other theoretical predictions.
+</summary>
+    <author>
+      <name>Zahra Ghalenovi</name>
+    </author>
+    <author>
+      <name>Masoumeh Moazzen Sorkhi</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1088/1674-1137/acac6c</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1088/1674-1137/acac6c" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Accepted for publication in Chin. Phys. c</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Chin Phys C 47 (2023) 033105</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/2208.07625v3" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2208.07625v3" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ph/9805301v1</id>
+    <updated>1998-05-13T01:26:47Z</updated>
+    <published>1998-05-13T01:26:47Z</published>
+    <title>Weak Semileptonic Decays of Heavy Baryons Containing Two Heavy Quarks</title>
+    <summary>  In the heavy quark limit a heavy baryon which contains two heavy quarks is
+believed to be composed of a heavy diquark and a light quark. Based on this
+picture, we evaluate the weak semileptonic decay rates of such baryons. The
+transition form factors between two heavy baryons are associated with those
+between two heavy mesons by applying the superflavor symmetry. The effective
+vertices of the W-boson and two heavy diquarks are obtained in terms of the
+Bethe-Salpeter equation. Numerical predictions on these semileptonic decay
+widths are presented and they will be tested in the future experiments.
+</summary>
+    <author>
+      <name>Xin-Heng Guo</name>
+    </author>
+    <author>
+      <name>Hong-Ying Jin</name>
+    </author>
+    <author>
+      <name>Xue-Qian Li</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevD.58.114007</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.58.114007" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">28 pages, Latex</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys.Rev. D58 (1998) 114007</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ph/9805301v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ph/9805301v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2203.02965v1</id>
+    <updated>2022-03-06T13:52:22Z</updated>
+    <published>2022-03-06T13:52:22Z</published>
+    <title>Properties of doubly heavy baryons in QCD</title>
+    <summary>  The study of the properties of doubly heavy baryons represents a promising
+area in particle physics. It can provide us with information about
+Cabibbo-Kobayashi-Maskawa (CKM) matrix elements and the low energy dynamics of
+QCD. They have a very rich phenomenology. The investigation of weak,
+electromagnetic, and strong decays has vital importance for understanding the
+dynamics of doubly heavy baryons. The main ingredients of such studies are the
+spectroscopic parameters, the strong coupling constants, and the transition
+form factors. For calculations of these quantities, non-perturbative methods
+are needed. One of these methods is the QCD sum rules. In the present work, we
+review our studies on the properties of the doubly heavy baryons within the sum
+rules method, focusing mainly on the mass and strong coupling constants of the
+doubly heavy baryons. In addition, the radiative decays of doubly heavy baryons
+are estimated using the vector dominance model. We also make few remarks on the
+semileptonic decays of the doubly heavy baryons.
+</summary>
+    <author>
+      <name>T. M. Aliev</name>
+    </author>
+    <author>
+      <name>S. Bilmis</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.3906/fiz-2202-17</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.3906/fiz-2202-17" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Review, 31 pages</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Turk J Phys, 46, (2022), 1-26</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/2203.02965v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2203.02965v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ph/0404280v1</id>
+    <updated>2004-04-30T07:57:53Z</updated>
+    <published>2004-04-30T07:57:53Z</published>
+    <title>Semileptonic decays of doubly heavy baryons in the relativistic quark
+  model</title>
+    <summary>  Semileptonic decays of doubly heavy baryons are studied in the framework of
+the relativistic quark model. The doubly heavy baryons are treated in the
+quark-diquark approximation. The transition amplitudes of heavy diquarks bb and
+bc going respectively to bc and cc are explicitly expressed through the overlap
+integrals of the diquark wave functions in the whole accessible kinematic
+range. The relativistic baryon wave functions of the quark-diquark bound system
+are used for the calculation of the transition matrix elements, the Isgur-Wise
+function and decay rates in the heavy quark limit.
+</summary>
+    <author>
+      <name>D. Ebert</name>
+    </author>
+    <author>
+      <name>R. N. Faustov</name>
+    </author>
+    <author>
+      <name>V. O. Galkin</name>
+    </author>
+    <author>
+      <name>A. P. Martynenko</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevD.70.014018 10.1103/PhysRevD.77.079903</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.70.014018" rel="related"/>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.77.079903" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">20 pages, 5 figures</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys.Rev.D70:014018,2004; Erratum-ibid.D77:079903,2008</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ph/0404280v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ph/0404280v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ph/0107205v2</id>
+    <updated>2001-09-07T10:17:15Z</updated>
+    <published>2001-07-19T20:22:00Z</published>
+    <title>Semileptonic decays of double heavy baryons</title>
+    <summary>  We study the semileptonic decays of the lowest lying double heavy baryons
+using the relativistic three-quark model. We do not employ a heavy quark mass
+expansion but keep the masses of the heavy quarks and baryons finite. We
+calculate all relevant form factors and decay rates.
+</summary>
+    <author>
+      <name>Amand Faessler</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Tuebingen U.</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Th. Gutsche</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Tuebingen U.</arxiv:affiliation>
+    </author>
+    <author>
+      <name>M. A. Ivanov</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">JINR, Dubna</arxiv:affiliation>
+    </author>
+    <author>
+      <name>J. G. Korner</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Mainz U.</arxiv:affiliation>
+    </author>
+    <author>
+      <name>V. E. Lyubovitskij</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Tuebingen U.</arxiv:affiliation>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1016/S0370-2693(01)01024-3</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1016/S0370-2693(01)01024-3" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">13 pages, 1 figure</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys.Lett. B518 (2001) 55-62</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ph/0107205v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ph/0107205v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2007.14709v2</id>
+    <updated>2020-08-31T10:43:17Z</updated>
+    <published>2020-07-29T09:40:56Z</published>
+    <title>Semileptonic Transition of $Λ_{b}$ Baryon</title>
+    <summary>  The semileptonic transition of $\Lambda_b$ baryon is studied using the
+Hypercentral constituent quark model. The six-dimensional hyperradial
+$Schr\ddot{o}dinger$ equation is solved in the variational approach to get
+masses and wavefunctions of heavy baryons. The matrix elements of weak decay
+are written in terms of the overlap integrals of the baryon wave function. The
+Isgur-Wise function is determined to calculate exclusive semileptonic decay
+$\Lambda_b$ $\rightarrow$ $\Lambda_c$ $\ell$ $\bar{\nu}$. The calculated decay
+rate and the branching ratio of $\Lambda_b$ baryon are consistent with other
+theoretical predictions and with the available experimental observations.
+</summary>
+    <author>
+      <name>Kaushal Thakkar</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1140/epjc/s10052-020-08481-y</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1140/epjc/s10052-020-08481-y" rel="related"/>
+    <link href="http://arxiv.org/abs/2007.14709v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2007.14709v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/0905.3506v3</id>
+    <updated>2010-09-21T03:03:47Z</updated>
+    <published>2009-05-21T15:05:37Z</published>
+    <title>Chiral corrections to heavy quark-diquark symmetry predictions for
+  doubly heavy baryon zero-recoil semileptonic decay</title>
+    <summary>  This paper studies the leading chiral corrections to heavy quark-diquark
+symmetry predictions for doubly heavy baryon semileptonic decay form factors.
+We derive the coupling between heavy diquarks and weak current in the limit of
+heavy quark-diquark symmetry, and construct the chiral Lagrangian for doubly
+heavy baryons coupled to weak current. We evaluate chiral corrections to doubly
+heavy baryon zero-recoil semileptonic decay for both unquenched and partially
+quenched QCD. This theory is used to derive chiral extrapolation expressions
+for measurements of form factors of doubly heavy baryon zero-recoil
+semileptonic decay in lattice QCD simulations.
+</summary>
+    <author>
+      <name>Jie Hu</name>
+    </author>
+    <link href="http://arxiv.org/abs/0905.3506v3" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/0905.3506v3" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1911.10785v3</id>
+    <updated>2019-12-23T15:42:26Z</updated>
+    <published>2019-11-25T09:41:49Z</published>
+    <title>Analysis of the semileptonic and nonleptonic two-body decays of the
+  double heavy charm baryon states $Ξ_{cc}^{++},\,Ξ_{cc}^{+}$ and
+  $Ω_{cc}^+$</title>
+    <summary>  We calculate the semileptonic and a subclass of sixteen nonleptonic two-body
+decays of the double charm baryon ground states $\Xi_{cc}^{++},\,\Xi_{cc}^{+}$
+and $\Omega_{cc}^+$ where we concentrate on the nonleptonic decay modes. We
+identify those nonleptonic decay channels in which the decay proceeds solely
+via the factorizing contribution precluding a contamination from $W$-exchange.
+We use the covariant confined quark model previously developed by us to
+calculate the various helicity amplitudes which describe the dynamics of the
+$1/2^+ \to 1/2^+$ and $1/2^+ \to 3/2^+$ transitions induced by the Cabibbo
+favored effective $(c \to s)$ and $(d \to u)$ currents. We then proceed to
+calculate the rates of the decays as well as polarization effects and angular
+decay distributions of the prominent decay chains resulting from the
+nonleptonic decays of the double heavy charm baryon parent states.
+</summary>
+    <author>
+      <name>Thomas Gutsche</name>
+    </author>
+    <author>
+      <name>Mikhail A. Ivanov</name>
+    </author>
+    <author>
+      <name>Jürgen G. Körner</name>
+    </author>
+    <author>
+      <name>Valery E. Lyubovitskij</name>
+    </author>
+    <author>
+      <name>Zhomart Tyulemissov</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevD.100.114037</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.100.114037" rel="related"/>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys. Rev. D 100, 114037 (2019)</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/1911.10785v3" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/1911.10785v3" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ph/9502391v3</id>
+    <updated>1995-06-24T00:20:15Z</updated>
+    <published>1995-02-27T07:53:05Z</published>
+    <title>1/M Corrections to Baryonic Form Factors in the Quark Model</title>
+    <summary>  Weak current-induced baryonic form factors at zero recoil are evaluated in
+the rest frame of the heavy parent baryon using the nonrelativistic quark
+model. Contrary to previous similar work in the literature, our quark model
+results do satisfy the constraints imposed by heavy quark symmetry for
+heavy-heavy baryon transitions at the symmetric point $v\cdot v'=1$ and are in
+agreement with the predictions of the heavy quark effective theory for
+antitriplet-antitriplet heavy baryon form factors at zero recoil evaluated to
+order $1/m_Q$. Furthermore, the quark model approach has the merit that it is
+applicable to any heavy-heavy and heavy-light baryonic transitions at maximum
+$q^2$. Assuming a dipole $q^2$ behavior, we have applied the quark model form
+factors to nonleptonic, semileptonic and weak radiative decays of the heavy
+baryons. It is emphasized that the flavor suppression factor occurring in many
+heavy-light baryonic transitions, which is unfortunately overlooked in most
+literature, is very crucial towards an agreement between theory and experiment
+for the semileptonic decay $\Lambda_c\to\Lambda e^+\nu_e$. Predictions for the
+decay modes $\b,~\Lambda_c \to p\phi,~\Lambda_b\to\Lambda\gamma$,
+$\Xi_b\to\Xi\gamma$, and for the semileptonic decays of $\Lambda_b,~\Xi_{b,c}$
+and $\Omega_b$ are presented.
+  }
+</summary>
+    <author>
+      <name>Hai-Yang Cheng</name>
+    </author>
+    <author>
+      <name>B. Tseng</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevD.53.1457 10.1103/PhysRevD.55.1697</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.53.1457" rel="related"/>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.55.1697" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Latex, 20 pages. Ref.[4] is corrected and Ref.[19] is updated</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys.Rev.D53:1457,1996; Erratum-ibid.D55:1697,1997;
+  Phys.Rev.D55:1697,1997</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ph/9502391v3" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ph/9502391v3" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>

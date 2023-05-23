@@ -78,3 +78,43 @@ def test_extract_arxiv_additional_chars():
     """
     with raises(UnicodeEncodeError):
         clean_arxiv(u'"1808.01899\u201c')
+
+def test_categories_with_arxiv():
+    """Test extraction arXiv categories from arXiv api."""
+
+    file_data = read_response('arxiv', '2111.13053.xml')
+
+    with requests_mock.Mocker() as m:
+        m.get('http://export.arxiv.org/api/query?search_query=id:2111.13053', text=file_data)
+        categories = get_arxiv_categories(arxiv_id='2111.13053', title="Axial Chiral Vortical Effect in a Sphere with finite size effect", doi="10.1088/1674-1137/acac6d")
+        assert categories == ['hep-th']
+
+def test_categories_without_arxiv_just_title():
+    """Test extraction arXiv categories from arXiv api."""
+
+    file_data = read_response('arxiv', 'just_with_title.xml')
+
+    with requests_mock.Mocker() as m:
+        m.get('http://export.arxiv.org/api/query?search_query=ti:Static properties and Semileptonic transitions of lowest-lying double heavy baryons', text=file_data)
+        categories = get_arxiv_categories(title="Static properties and Semileptonic transitions of lowest-lying double heavy baryons")
+        assert categories == []
+
+def test_categories_without_arxiv_just_doi():
+    """Test extraction arXiv categories from arXiv api."""
+
+    file_data = read_response('arxiv', 'just_doi.xml')
+
+    with requests_mock.Mocker() as m:
+        m.get('http://export.arxiv.org/api/query?search_query=doi:10.1088/1674-1137/acac6c', text=file_data)
+        categories = get_arxiv_categories(doi="10.1088/1674-1137/acac6c")
+        assert categories == []
+
+def test_categories_without_arxiv_with_title_and_doi():
+    """Test extraction arXiv categories from arXiv api."""
+
+    file_data = read_response('arxiv', 'just_title_and_doi.xml')
+
+    with requests_mock.Mocker() as m:
+        m.get('http://export.arxiv.org/api/query?search_query=doi:10.1088/1674-1137/acac6c ti:Static properties and Semileptonic transitions of lowest-lying double heavy baryons', text=file_data)
+        categories = get_arxiv_categories(doi="10.1088/1674-1137/acac6c", title="Static properties and Semileptonic transitions of lowest-lying double heavy baryons'")
+        assert categories == []

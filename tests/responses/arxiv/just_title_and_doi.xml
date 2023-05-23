@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Ddoi%3A10.1088%2F1674-1137%2Facac6c%20ti%3AStatic%20properties%20and%20Semileptonic%20transitions%20of%20lowest-lying%20double%20heavy%20baryons%27%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=doi:10.1088/1674-1137/acac6c ti:Static properties and Semileptonic transitions of lowest-lying double heavy baryons'&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/OV3m9AzDUL9YTo40Gw0EaN44NC8</id>
+  <updated>2023-05-23T00:00:00-04:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">2257782</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/2208.07625v3</id>
+    <updated>2022-12-16T09:15:48Z</updated>
+    <published>2022-08-16T09:23:20Z</published>
+    <title>Static properties and Semileptonic transitions of lowest-lying double
+  heavy baryons</title>
+    <summary>  The static properties and semileptonic decays of ground-state doubly heavy
+baryons are studied working in the framework of a non-relativistic quark model.
+Using a phenomenological potential model, we calculate the ground-state masses
+and magnetic moments of doubly heavy $ \Omega $ and $ \Xi $ baryons. In the
+heavy quark limit, we introduce a simple form of the universal Isgur-Wise
+function used as the transition form factor and then investigate the exclusive
+$ b \rightarrow c $ semileptonic decay widths and branching ratios for $
+\frac{1}{2}\rightarrow \frac{1}{2} $ baryon transitions. Our obtained results
+are in agreement with other theoretical predictions.
+</summary>
+    <author>
+      <name>Zahra Ghalenovi</name>
+    </author>
+    <author>
+      <name>Masoumeh Moazzen Sorkhi</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1088/1674-1137/acac6c</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1088/1674-1137/acac6c" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Accepted for publication in Chin. Phys. c</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Chin Phys C 47 (2023) 033105</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/2208.07625v3" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2208.07625v3" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/0910.2824v1</id>
+    <updated>2009-10-15T09:59:08Z</updated>
+    <published>2009-10-15T09:59:08Z</published>
+    <title>Static-static-light baryonic potentials</title>
+    <summary>  We determine doubly heavy baryonic potentials as a function of the distance
+between the two static sources, coupled to a light relativistic quark, for
+different quantum numbers. We use the variational method to compute the ground
+state and the first two excitations. These can be used as an input to
+nonrelativistic models or to NRQCD calculations of properties of doubly heavy
+baryons. We compare our findings with a factorization model. We employ
+all-to-all propagator methods, improved by an additional hopping parameter
+expansion and Wuppertal smearing on QCDSF configurations with two sea quark
+flavors.
+</summary>
+    <author>
+      <name>Johannes Najjar</name>
+    </author>
+    <author>
+      <name>Gunnar Bali</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">7 pages, 5 figures, presented at The XXVII International Symposium on
+  Lattice Field Theory (Lattice 2009), July 26-31, 2009, Peking University,
+  Beijing, China</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">PoS LAT2009:089,2009</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/0910.2824v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/0910.2824v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ph/0610030v3</id>
+    <updated>2008-04-18T13:58:45Z</updated>
+    <published>2006-10-03T11:12:20Z</published>
+    <title>Static properties and semileptonic decays of doubly heavy baryons in a
+  nonrelativistic quark model</title>
+    <summary>  We evaluate static properties and semileptonic decays for the ground state of
+doubly heavy $\Xi, \Xi', \Xi^*$ and $\Omega, \Omega', \Omega^*$ baryons.
+Working in the framework of a nonrelativistic quark model, we solve the
+three--body problem by means of a variational ansazt made possible by heavy
+quark spin symmetry constraints. To check the dependence of our results on the
+inter-quark interaction we use five different quark-quark potentials that
+include a confining term plus Coulomb and hyperfine terms coming from
+one--gluon exchange. Our results for static properties (masses, charge and mass
+radii, magnetic moments...) are, with a few exceptions for the magnetic
+moments, in good agreement with a previous Faddeev calculation. Our much
+simpler wave functions are used to evaluate semileptonic decays of doubly heavy
+$\Xi,\Xi'(J=1/2)$ and $\Omega, \Omega'(J=1/2)$ baryons. Our results for the
+decay widths are in good agreement with calculations done within a relativistic
+quark model in the quark--diquark approximation.
+</summary>
+    <author>
+      <name>C. Albertus</name>
+    </author>
+    <author>
+      <name>E. Hernandez</name>
+    </author>
+    <author>
+      <name>J. Nieves</name>
+    </author>
+    <author>
+      <name>J. M. Verde-Velasco</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1140/epja/i2007-10364-y 10.1140/epja/i2008-10547-0</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1140/epja/i2007-10364-y" rel="related"/>
+    <link title="doi" href="http://dx.doi.org/10.1140/epja/i2008-10547-0" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">23 latex pages, 7 figures, 11 tables. Corrected version according to
+  the discussion in the erratum to be published in Eur. Phys. J. A. Eur. Phys.
+  J. A 32, 183 (2007); erratum Eur. Phys. J. A in press, available as online
+  first</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Eur.Phys.J.A32:183-199,2007; Erratum-ibid.A36:119,2008</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ph/0610030v3" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ph/0610030v3" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/0907.0563v1</id>
+    <updated>2009-07-03T08:52:06Z</updated>
+    <published>2009-07-03T08:52:06Z</published>
+    <title>Semileptonic decays of double heavy baryons in a relativistic
+  constituent three-quark model</title>
+    <summary>  We study the semileptonic decays of double heavy baryons using a manifestly
+Lorentz covariant constituent three-quark model. We present complete results on
+transition form factors between double-heavy baryons for finite values of the
+heavy quark/baryon masses and in the heavy quark symmetry limit which is valid
+at and close to zero recoil. Decay rates are calculated and compared to each
+other in the full theory, keeping masses finite, and also in the heavy quark
+limit.
+</summary>
+    <author>
+      <name>Amand Faessler</name>
+    </author>
+    <author>
+      <name>Thomas Gutsche</name>
+    </author>
+    <author>
+      <name>Mikhail A. Ivanov</name>
+    </author>
+    <author>
+      <name>Jurgen G. Korner</name>
+    </author>
+    <author>
+      <name>Valery E. Lyubovitskij</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevD.80.034025</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.80.034025" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">20 pages, 2 figures</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys.Rev.D80:034025,2009</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/0907.0563v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/0907.0563v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ph/9304217v1</id>
+    <updated>1993-04-05T22:05:53Z</updated>
+    <published>1993-04-05T22:05:53Z</published>
+    <title>Static Properties of Quark Solitons</title>
+    <summary>  It has been conjectured that at distances smaller than the confinement scale
+but large enough to allow for nonperturbative effects, QCD is described by an
+effective $SU(N_c {\times} N_f)_L\times SU(N_c {\times} N_f)_R$ chiral
+Lagrangian. The soliton solutions of such a Lagrangian are extended objects
+with spin ${1\over 2}$. For $N_c{=}3$, $N_f{=}3$ they are triplets of color and
+flavor and have baryon number ${1\over3}$, to be identified as constituent
+quarks. We investigate in detail the static properties of such
+constituent-quark solitons for the simplest case $N_f{=}1, N_c{=}3$. The mass
+of these objects comes from the energy of the static soliton and from quantum
+effects, described semiclassically by rotation of collective coordinates around
+the classical solution. The quantum corrections tend to be large, but can be
+controlled by exploring the Lagrangian's parameter space so as to maximize the
+inertia tensor. We comment on the acceptable parameter space and discuss the
+model's further predictive power.
+</summary>
+    <author>
+      <name>Gonen Gomelski</name>
+    </author>
+    <author>
+      <name>Marek Karliner</name>
+    </author>
+    <author>
+      <name>Stephen B. Selipsky</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1016/0370-2693(94)90289-5</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1016/0370-2693(94)90289-5" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">8 pages + 1 PostScript figure; plain LaTeX</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys. Lett. B323 (1994) 182-187</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ph/9304217v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ph/9304217v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2202.02033v4</id>
+    <updated>2022-06-08T13:50:11Z</updated>
+    <published>2022-02-04T09:17:02Z</published>
+    <title>Static and Dynamic Melvin Universes</title>
+    <summary>  We briefly review the known properties of Melvin's magnetic universe and
+study the propagation of test charged matter waves in this static spacetime.
+Moreover, the possible correspondence between the wave perturbations on the
+background Melvin universe and the motion of charged test particles is
+discussed. Next, we explore a simple scenario for turning Melvin's static
+universe into one that undergoes gravitational collapse. In the resulting
+dynamic gravitational field, the formation of cosmic double-jet configurations
+is emphasized.
+</summary>
+    <author>
+      <name>Donato Bini</name>
+    </author>
+    <author>
+      <name>Bahram Mashhoon</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevD.105.124012</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevD.105.124012" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">28 pages, 4 figures; v2: expanded version, references added; v3:
+  amended version to appear in Phys. Rev. D; v4: typos corrected, reference
+  [10] added</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys. Rev. D 105, 124012 (2022)</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/2202.02033v4" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2202.02033v4" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="gr-qc" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-ph/0302067v2</id>
+    <updated>2003-02-10T22:07:31Z</updated>
+    <published>2003-02-10T20:42:05Z</published>
+    <title>Static potential in baryon</title>
+    <summary>  The baryon static potential is calculated in the framework of field
+correlator method and is shown to match the recent lattice results. The effects
+of the nonzero value of the gluon correlation length are emphasized.
+</summary>
+    <author>
+      <name>D. S. Kuzmenko</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">ITEP, Moscow</arxiv:affiliation>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1134/1.1690063</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1134/1.1690063" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">7 pages, 4 figures, talk at the NPD-2002 Conference, December 2-6,
+  ITEP, Moscow</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys.Atom.Nucl. 67 (2004) 548-552; Yad.Fiz. 67 (2004) 566-570</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/hep-ph/0302067v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-ph/0302067v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/hep-lat/0408031v1</id>
+    <updated>2004-08-18T12:21:51Z</updated>
+    <published>2004-08-18T12:21:51Z</published>
+    <title>Free energies of static three quark systems</title>
+    <summary>  We study the behaviour of free energies of baryonic systems composed of three
+heavy quarks on the lattice in SU(3) pure gauge theory at finite temperature.
+For all temperatures above $T_c$ we find that the connected part of the singlet
+(decuplet) free energy of the three quark system is given by the sum of the
+connected parts of the free energies of $qq$-triplets (-sextets). Using
+renormalized free energies we can compare free energies in different colour
+channels as well as those of $qq$- and $qqq$-systems on an unique energy scale.
+</summary>
+    <author>
+      <name>K. Huebner</name>
+    </author>
+    <author>
+      <name>O. Kaczmarek</name>
+    </author>
+    <author>
+      <name>F. Karsch</name>
+    </author>
+    <author>
+      <name>O. Vogt</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1142/9789812702159_0057</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1142/9789812702159_0057" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">5 pages, 6 figures, Contribution to Strong and Electroweak Matter
+  2004 (SEWM04), Helsinki, Finland 16-19 June 2004</arxiv:comment>
+    <link href="http://arxiv.org/abs/hep-lat/0408031v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/hep-lat/0408031v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2103.14136v1</id>
+    <updated>2021-03-25T21:14:14Z</updated>
+    <published>2021-03-25T21:14:14Z</published>
+    <title>Variation of delta baryon mass and hybrid star properties in static and
+  rotating conditions</title>
+    <summary>  The possible conditions for hadron-quark phase transition in hybrid star
+cores are investigated in the present work. For the hadronic matter part the
+effective chiral model is adopted. Exotic baryonic degrees like hyperons and
+the delta baryons are also taken into account. As $\Delta$s posses Breit-Wigner
+mass distribution ($1232 \pm 120$ MeV), the hadronic equation of state is
+obtained by varying the mass of the delta baryons in this range. For the quark
+phase the MIT bag model is chosen with repulsive effects of the unpaired
+quarks. Phase transition is achieved using Gibbs construction and the gross
+properties of the resultant hybrid star are calculated in both static and
+rotating conditions and compared with the various constraints on them from
+different observational and empirical perspectives. The work presents a
+thorough study of the phase transition properties like the critical density of
+appearance of quarks, the density range for the persistence of the mixed phase
+and the population of different hadrons and quarks in hybrid star matter. The
+hybrid star properties, calculated in both static and rotating conditions, are
+found to be consistent with the bounds on them from different perspectives.
+</summary>
+    <author>
+      <name>Debashree Sen</name>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1103/PhysRevC.103.045804</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1103/PhysRevC.103.045804" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">20 pages, 18 figures.
+  https://journals.aps.org/prc/accepted/16078P4cI2f12401263622d5c0f78bfb1c6be1c4e</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Phys. Rev. C 103, 045804 (2021)</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/2103.14136v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2103.14136v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/nucl-th/0111046v2</id>
+    <updated>2001-11-19T07:05:19Z</updated>
+    <published>2001-11-15T16:59:17Z</published>
+    <title>The Static Baryon Potential</title>
+    <summary>  Using state of the art lattice techniques we investigate the static baryon
+potential. We employ the multi-hit procedure for the time links and a
+variational approach to determine the ground state with sufficient accuracy
+that, for distances up to $\sim 1.2$ fm, we can distinguish the $Y$- and
+$\Delta$- Ans\"atze for the baryonic Wilson area law. Our analysis shows that
+the $\Delta$-Ansatz is favoured. This result is also supported by the
+gauge-invariant nucleon wave function which we measure for the first time.
+</summary>
+    <author>
+      <name>C. Alexandrou</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Univ. of Cyprus</arxiv:affiliation>
+    </author>
+    <author>
+      <name>Ph. de Forcrand</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">CERN and ETH-Zurich</arxiv:affiliation>
+    </author>
+    <author>
+      <name>A. Tsapalis</name>
+      <arxiv:affiliation xmlns:arxiv="http://arxiv.org/schemas/atom">Univ. of Athens</arxiv:affiliation>
+    </author>
+    <arxiv:doi xmlns:arxiv="http://arxiv.org/schemas/atom">10.1016/S0920-5632(02)01407-X</arxiv:doi>
+    <link title="doi" href="http://dx.doi.org/10.1016/S0920-5632(02)01407-X" rel="related"/>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">Invited talk presented at the "Workshop on Lattice Hadron Physics
+  2001", July 9 - 18, 2001, Cairns, Australia; 5 pages, 8 figures</arxiv:comment>
+    <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Nucl.Phys.Proc.Suppl. 109A (2002) 153-157</arxiv:journal_ref>
+    <link href="http://arxiv.org/abs/nucl-th/0111046v2" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/nucl-th/0111046v2" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>
