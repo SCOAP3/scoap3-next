@@ -1,6 +1,8 @@
 name: test & docker build and push
 
 on:
+  pull_request:
+    branches: [master]
   push:
     branches: [master]
   release:
@@ -24,6 +26,7 @@ jobs:
 
       - name: Build and push
         id: build
+        if: ${{ github.event_name == 'push' || github.event_name == 'release' }}
         uses: cern-sis/gh-workflows/.github/actions/docker-build@v5.6.0
         with:
           image: scoap3/scoap3
