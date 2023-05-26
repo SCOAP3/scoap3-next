@@ -1,0 +1,33 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.20.0]
+    method: GET
+    uri: http://export.arxiv.org/api/query?search_query=doi%3A%2210.1088/1674-1137/acac6c%22
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA62TXWvbMBSG7/MrhMC7GbYku3VTz3YIlEKv1o2GdrsJinySqPWHKimJu18/WUmb
+        rKw3Y2DMOdJ7zvscCeWTvqnRFrSRXVtgFlGMoBVdJdtVgWd31+EYT8pRvgSokJO2psBra1VGyG63
+        i3ZJ1OkViSk9J1PbNbgcIZTXsn1Caw3LNy3Xvdx6KVeSPG9Av0wMcC3Wc58EyVXVySCZBnHMaMTo
+        eBzE1yy9OAsZSy5czAUXqXDbQZzKal5LY12RS4zlegipixvezzWYTW2NW2FuFg11gQ3US4zsi4IC
+        c6VqKbh14xLuiD+7oTDx2FbaGg6ytXXL5VQ/yC36NhBm6JS3cLQZPpCSN06yp8SfeKO+HCgLn3jK
+        gvr4hLJgNCfe1xPIqvzrgf1YmMXX9GHc36jpr0dDF8+z+0crfs4SkRNXNNRuVMUtVGVM4ySk52Gc
+        3lGa+S+kZ+6fk1fJIO8UtPuJMttZXn/fA+3vODvuHq/wMhJdQ0JiFAhyFBAWMYJL1/6Dlu/t/FHc
+        tBX0/8ns2PC9lbTQmFvQt3wF/2zG/nQ77ekeBhleRjn6DUmlTh5IAwAA
+    headers:
+      access-control-allow-origin: ['*']
+      connection: [Keep-Alive]
+      content-encoding: [gzip]
+      content-length: ['441']
+      content-type: [application/atom+xml; charset=UTF-8]
+      date: ['Fri, 26 May 2023 09:36:06 GMT']
+      keep-alive: ['timeout=5, max=100']
+      server: [Apache]
+      vary: ['Accept-Encoding,User-Agent']
+    status: {code: 200, message: OK}
+version: 1

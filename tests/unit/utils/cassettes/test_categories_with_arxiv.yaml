@@ -1,0 +1,47 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.20.0]
+    method: GET
+    uri: http://export.arxiv.org/api/query?search_query=id%3A2111.13053
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA51Wa2/bNhT9rl9xISDDhlWmZMdJ6tkOgrZBirZYH2m79EvASFcWW4lUScqP/fpd
+        UvIrczYkgOOY4rn3nPvgFcfny6qEOWojlJyESS8OAWWqMiFnk/Dz9WV0Fp5Pg3GOmAFBpZmEhbX1
+        iLHFYtFbDHpKz1g/jofswqoqnAYA41LIH1BozDdYrpdi7qG8Fuxng3p1bpDrtLj1i6PBS5EdDS76
+        SZL0kkE8HBz1T0R2WwpjaY8WxnLtfsb0u+LLW42mKa2hJwlJ1lhOQoNlHoJd1TgJeV2XIuWWomKc
+        hP1O2kPm1VlhS+xghaXH0wv9l5jDBydkBLuyJiIbbSX9wqv6j07UxC+8qEnsf++ImiTxmHkaTyiy
+        6cE02GXcvK2/v3rz5fRr862u3t78ePPuw8uKy89jRkbOtqkzbjGb9uP+IIqHUf/kOo5H/hPFx/Q9
+        ZmuIg6saZRvAyCrLy4+toLZyo+3utjDPe6mqWMRMjSnbAhjFzMJpMmYPuLxP51PxWma4fDJZvEe2
+        dXifSliszHvU7/kMnx7ZPtuuT8+H0uqV+/VQAe8M27bG/GRdsf2a9aOEPs+v4+FocDYaHH/bKxdh
+        6+aO2qlo0UmUJFF/eJ30R4NkNDwj9Ha/xbdddbEUvIQXhdD074vSllq9hFd5jqkFIYHDp7pAjbAQ
+        toBcSAoPjPgbAT1mpzvJp2mqilOwAF+RrOdorJiRRrAFAvdU8zUH7nA0UuRKV+UKNDWGpYkBxtMG
+        prn77mBW7ZL3nP/GILx7fQ13qpEZsUKqZCbcOXXoUlTCet7NvsoDt2499+BSaai4MSUaAznqiiwN
+        6TEiawW3wGewQFB3lpNS9xSXnPT4YII5SSMvaaM1VRlyriHXqtqntQW3RGTTAk3noabj7cZk55cG
+        opBBuqJpl2mfnFQpTYOTUucUeauSgtfcNk76n3Ir0OPXZF4sJSoL7hTVy9spORO2cd5K4DIDq7k0
+        bk7jr76opKXuUuzwbQVIG4Vofguo82slKTrTtkDFZ9K5Q8iQmt5Nd1CtnFSVZOn3uJyVOykWcwzW
+        GfYSM9I9dzCXDJLjc5HvtImrZZNaMRd2tZfXYJtXBbwsgRJFsThrxwSLQlFflMhbZW4TKHEV8JlG
+        7IJwPA5N0VHlUh+uxppa05fiX/mmbuOlUbttsM9w31mXkY3WRSHSAoQhr5LGxDNfCGM11cbpK3iL
+        /9nwjDhFGrTJpfcnHu6qHly3eJJJBpRLUW3eU6bjD6g/pKror1Qz1/9QIJ+vwCmkYtE48GCuXSth
+        2pRunPSCMVuf4/ZU88YWSrcLWkpe4fRT0UQ3jYQbqvSY+UctmO2iD5p+RBldUeBw+XjblxhdNnCl
+        mkfaXXERvSA6IPL/MnVDeZQp0b0M/PrA1cPQWaaS+/uAewH0kvjsjCUnp8c0dwenjKc8PcnGbOOv
+        8++vM35gTkJ6Gu5fbbJljx56godcdvcT+nKlaq8hG910VCs3hh6jfTCEml5UdCqPaW7MqNvNWnbn
+        blf6Qzexe2+wTiUv6QS5Gba+SllcWuYvSuxAQuosDx9ioL1DDOs8HLiqOW/76am1cE19SwCcKTqU
+        j8iTHyEEwjqyRQh+D//PaE2/IXyykzHrLhFj5q7P0+Af/bmUCW0LAAA=
+    headers:
+      access-control-allow-origin: ['*']
+      connection: [Keep-Alive]
+      content-encoding: [gzip]
+      content-length: ['1238']
+      content-type: [application/atom+xml; charset=UTF-8]
+      date: ['Fri, 26 May 2023 09:37:11 GMT']
+      keep-alive: ['timeout=5, max=100']
+      server: [Apache]
+      vary: ['Accept-Encoding,User-Agent']
+    status: {code: 200, message: OK}
+version: 1

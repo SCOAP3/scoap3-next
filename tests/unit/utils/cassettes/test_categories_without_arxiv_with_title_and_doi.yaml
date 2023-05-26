@@ -1,0 +1,47 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.20.0]
+    method: GET
+    uri: http://export.arxiv.org/api/query?search_query=ti%3A%22Static%20properties%20and%20Semileptonic%20transitions%20of%20lowest%3Flying%20double%20heavy%20baryons%22%20doi%3A%2210.1088/1674-1137/acac6c%22
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA51WbW/bNhD+7l9BCPWwYZMoyXlxPNlB1iJFPhRNlgTtigIBLZ0lrpKokpRtteh/
+        35GSbTlzNiSALPPleM/dc6c7RufrIidLkIqLcuoEnu8QKGOR8DKdOvd3l+7YOZ8NogVAQlC0VFMn
+        07qaULparbzVyBMypaHvH9MLLQpnNiAkynn5hWQSFltZJtd8aUVZxenXGmRzroDJOHuwk+HojebD
+        0cUwDG810zwehn4lRQVSc1A4YWWC71soeA6VFqWV0JKVimu03IiIBb5ysQKlh6PLvEEPcCER9TwH
+        HGTAlg3+z5ls7IHQ7naoge8F/ng8DC+Dk9MjNwhGpzhmMYtPYit6wpOHnBvVb3CiNJNm6OO4YOsH
+        CarOtcKVAAmUkE8dBfnCIbqpYOqwqsp5zIyllCFNvyKTDrVcaa5z6MQyjcuzC/mRL8mNoWVC+iRN
+        NZ84LT1kRw5BakifGNKjhYgFaSk5t4SQlg5iySAdFQ6uouaOArolgLbuOz+xovq9c39qJ9b9qW/H
+        PfengR9R65B1jSezg+Gv/jhiNzk985tVcE/v3lbial5eiw83zV8RxUPmbF0lTEMyC/1w5PrHbnhy
+        5/sT+7j+Eb4juhEx4khG2VI10UKz/M/WoDZjJ7vdXUKeebEoqEtVBTHdCdDAC6gzCyL6hMrHcJaK
+        qzKB9YvB/D2wncLHUFxDoa5BXrMUXu7ZPlpfp8WDUsvGjJ4K4FzRMPTHnn96Eh4vR5uI7ccsdAN8
+        MGZnk+B4cjT+tBculK0wDbnKNtL+uJMOR5PQR+ndfivfZtVLk9/tJz8q3Ev/XsoikKqLAtdnhNxl
+        QNRBQNUHTCBmjcVKpajLxDVnoMVqWqRBh0SYNCrrhGMxXQn5xRjFS6IRaSFZAWbNaGKkFKWLZQTR
+        l/jVIczXmuFeIRLIvcG9MicZqTIoRYG/XKRYX3JSCY0B5Diykr+RFRBcj+vc2GRw9owsmFKgBsan
+        gqUlGKDCKNTWob4P5BX5/L6AlOHAyOP0I8d355pHrqwfg1a4tTbnBdfWBo5ZJZI6BjRa8aLCErQQ
+        sjAgxqi65KYFodlXKq2l+4ErGCzqMjZxJLVCupiykrvwtgoWLNZCWotwu0SgJcabpxt3YR3ntULt
+        AzSVfJY8zfD7kmJFYjT+34EkK57orA3zHLHizDAtTelWBpG8GnzGUMXfgx/fwx99fb3lLS39bPTI
+        +1oSMdeMl+hPVzIHJiUwBVgqAQzxaIDOiEDbpXFASBMUE1kJCY9bTYOIbtK0TVpW60zIdoLTElNp
+        9ollkpG3GcsxP5Y8ona1laf9AwdPv2NK1AVk5J1g374hsbeYmtl/ajElYoKdpCtNdn7gAqDiDDDv
+        bB805ehw04noVl+n314q7Jc6dXDV2b9gJGsPFy3Ak32s7cv2q4Kkbb9bu7FkWvafY/tFHGPuYCxN
+        XtiC1bZ4E8/XmDceuc4ajPvWmQ5kD/hvUcuS5dhCF88CNwBWP3lNjk7Jz6ZR/kL80Sjwjzd4Pd19
+        Ep+6mT2q7B1fLNeAWjRsLjMa1praqwo9EJoqWThPIeDeIYRNRA5cloy2/UBVkpvEf0ABSIVsnkMa
+        QU8KFILKrTKH2D34v0Mb+C3gi5VEtGuuETXX6dngHziSiRR9CwAA
+    headers:
+      access-control-allow-origin: ['*']
+      connection: [Keep-Alive]
+      content-encoding: [gzip]
+      content-length: ['1236']
+      content-type: [application/atom+xml; charset=UTF-8]
+      date: ['Fri, 26 May 2023 09:36:07 GMT']
+      keep-alive: ['timeout=5, max=100']
+      server: [Apache]
+      vary: ['Accept-Encoding,User-Agent']
+    status: {code: 200, message: OK}
+version: 1
