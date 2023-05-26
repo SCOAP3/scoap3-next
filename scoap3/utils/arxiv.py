@@ -25,6 +25,7 @@
 from __future__ import absolute_import, division, print_function
 
 import logging
+from urllib import quote
 
 from inspire_utils.record import get_value
 from lxml import etree
@@ -49,12 +50,11 @@ def clean_arxiv(arxiv):
     if arxiv is None:
         return None
 
-    return arxiv.split(':')[-1].split('v')[0].split(' ')[0].encode('ascii').strip('"\'')
+    return arxiv.split(':')[-1].split('v')[0].split(' ')[0].strip('"\'')
 
 
 def get_arxiv_categories_from_response_xml(xml):
     entry_count = len(xml.xpath('//w3:entry', namespaces=xml_namespaces))
-
     # make sure we have exactly one result in the xml
     if entry_count != 1:
         return []
@@ -99,17 +99,15 @@ def get_arxiv_categories(arxiv_id=None, title=None, doi=None):
     query = []
     if arxiv_id:
         query.append('id:%s' % arxiv_id)
+    else:
+        if title:
+            query.append('ti:"%s"' % title.replace("-", "?"))
+        if doi:
+            query.append('doi:"%s"' % doi)
 
-    if title:
-        title = title.replace('-', '?').encode('ascii', 'replace')
-        query.append('ti:"%s"' % title)
-
-    if doi:
-        query.append('doi:"%s"' % doi)
-
-    request_url = url.format(' '.join(query))
+    encoded_quey_string = quote(' '.join(query))
+    request_url = url.format(encoded_quey_string)
     data = requests_retry_session().get(request_url)
-
     categories = []
     if data.status_code == 200:
         xml = etree.fromstring(data.content)

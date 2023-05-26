@@ -1,5 +1,6 @@
 import requests_mock
-from pytest import raises
+from pytest import raises, mark
+import requests
 
 from scoap3.utils.arxiv import get_arxiv_categories, clean_arxiv
 from tests.responses import read_response
@@ -70,11 +71,27 @@ def test_extract_arxiv_with_categ():
     """
     assert clean_arxiv('arXiv:1803.07217 [gr-qc]') == '1803.07217'
 
+@mark.vcr
+def test_categories_with_arxiv():
+    """Test extraction arXiv categories from arXiv api."""
+    categories =  get_arxiv_categories(arxiv_id='2111.13053', title="Axial Chiral Vortical Effect in a Sphere with finite size effect", doi="10.1088/1674-1137/acac6d")
+    assert categories == ['hep-th']
 
-def test_extract_arxiv_additional_chars():
-    """
-    Test getting clean arXiv identifier with additional chars.
-    Delivered for article: 10.1140/epjc/s10052-018-6500-y
-    """
-    with raises(UnicodeEncodeError):
-        clean_arxiv(u'"1808.01899\u201c')
+@mark.vcr
+def test_categories_without_arxiv_just_title():
+    """Test extraction arXiv categories from arXiv api."""
+    categories = get_arxiv_categories(title="Static properties and Semileptonic transitions of lowest-lying double heavy baryons")
+    assert categories == ['hep-ph']
+
+@mark.vcr
+def test_categories_without_arxiv_just_doi():
+    """Test extraction arXiv categories from arXiv api."""
+    categories = get_arxiv_categories(doi="10.1088/1674-1137/acac6c")
+    assert categories == []
+
+@mark.vcr
+def test_categories_without_arxiv_with_title_and_doi():
+    """Test extraction arXiv categories from arXiv api."""
+    categories = get_arxiv_categories(doi="10.1088/1674-1137/acac6c", title="Static properties and Semileptonic transitions of lowest-lying double heavy baryons")
+    assert categories == ['hep-ph']
+
