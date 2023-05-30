@@ -95,3 +95,8 @@ def test_categories_without_arxiv_with_title_and_doi():
     categories = get_arxiv_categories(doi="10.1088/1674-1137/acac6c", title="Static properties and Semileptonic transitions of lowest-lying double heavy baryons")
     assert categories == ['hep-ph']
 
+@mark.vcr
+def test_categories_with_arxiv_type_unicode():
+    """Test extraction arXiv categories from arXiv api."""
+    categories =  get_arxiv_categories(arxiv_id=u'2111.13053', title="Axial Chiral Vortical Effect in a Sphere with finite size effect", doi="10.1088/1674-1137/acac6d")
+    assert categories == ['hep-th']

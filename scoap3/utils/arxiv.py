@@ -50,7 +50,7 @@ def clean_arxiv(arxiv):
     if arxiv is None:
         return None
 
-    return arxiv.split(':')[-1].split('v')[0].split(' ')[0].strip('"\'')
+    return str(arxiv.split(':')[-1].split('v')[0].split(' ')[0].strip('"\''))
 
 
 def get_arxiv_categories_from_response_xml(xml):
