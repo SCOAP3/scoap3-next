@@ -828,6 +828,7 @@ COUNTRIES_DEFAULT_MAPPING = OrderedDict(
         ("England", "UK"),
         ("Scotland", "UK"),
         ("Wales", "UK"),
+        ("New South Wales", "Australia"),
         ("U.K", "UK"),
         ("United States of America", "USA"),
         ("United States", "USA"),
