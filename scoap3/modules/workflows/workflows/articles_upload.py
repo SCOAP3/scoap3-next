@@ -24,6 +24,7 @@
 
 from __future__ import absolute_import, division, print_function
 
+import re
 import json
 import logging
 from StringIO import StringIO
@@ -127,11 +128,22 @@ def add_nations(obj, eng):
     if "authors" not in obj.data:
         __halt_and_notify("No authors for article.", eng)
 
+    pattern_for_cern_cooperation_agreement = re.compile(
+        r'cooperation agreement with cern', re.IGNORECASE)
+
     for author_index, author in enumerate(obj.data["authors"]):
         if "affiliations" not in author:
             __halt_and_notify("No affiliations for author: %s." % author, eng)
-
         for affiliation_index, affiliation in enumerate(author["affiliations"]):
+            # hack to avoid populating country <https://github.com/cern-sis/issues-scoap3/issues/168>
+            match_pattern = pattern_for_cern_cooperation_agreement.search(affiliation['value'])
+            if match_pattern:
+                logger.warning(
+                    "The affiliation contains cooperation agreement: '%s'"
+                    % affiliation['value']
+                )
+                continue
+
             obj.data["authors"][author_index]["affiliations"][affiliation_index][
                 "country"
             ] = find_country(affiliation["value"])
