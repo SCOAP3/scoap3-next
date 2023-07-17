@@ -34,9 +34,9 @@ def get_cern_cooperation_agreement():
 
 def remove_country(record):
     for author in record["authors"]:
-        for affiliation in author["affiliations"]:
+        for affiliation in author.get('affiliations', []):
             pattern_for_cern_cooperation_agreement = re.compile(r'cooperation agreement with cern', re.IGNORECASE)
-            match_pattern = pattern_for_cern_cooperation_agreement.search(affiliation["value"])
+            match_pattern = pattern_for_cern_cooperation_agreement.search(affiliation.get("value", ""))
             if match_pattern is not None:
                 affiliation.pop('country', None)
     return record
@@ -53,4 +53,4 @@ def update_records(recids):
 
 
 records_with_wrong_aff = get_cern_cooperation_agreement()
-update_records(records_with_wrong_aff)
+updated_ = update_records(records_with_wrong_aff)
