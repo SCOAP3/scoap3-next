@@ -142,6 +142,7 @@ def add_nations(obj, eng):
                     "The affiliation contains cooperation agreement: '%s'"
                     % affiliation['value']
                 )
+                affiliation.pop('country', None)
                 continue
 
             obj.data["authors"][author_index]["affiliations"][affiliation_index][
