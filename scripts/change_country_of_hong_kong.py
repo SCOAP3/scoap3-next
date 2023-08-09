@@ -168,15 +168,14 @@ def find_articles_recid():
     return dois_and_recids
 
 def update_records(dois_and_recids):
-    recids = ["66342"]
+    recids = dois_and_recids.keys()
     for recid in recids:
         pid = PersistentIdentifier.get("recid", recid)
         existing_record = Record.get_record(pid.object_uuid)
         for index_auth, author in enumerate(existing_record['authors']):
             try:
                 for index_aff, affiliation in enumerate(existing_record['authors'][index_auth]['affiliations']):
-                    print("OKOOKOKKOKOKOKOKO", TYPE(dois_and_recids[recid]))
-                    if unidecode.unidecode(dois_and_recids[recid]) in unidecode.unidecode(affiliation['value']):
+                    if  unidecode.unidecode(dois_and_recids[recid].decode('utf-8')) in unidecode.unidecode(affiliation['value']):
                         print("Country is " + existing_record['authors'][index_auth]['affiliations'][index_aff]['country'])
                         existing_record['authors'][index_auth]['affiliations'][index_aff]['country'] = "China"
                         print("Country should be " + existing_record['authors'][index_auth]['affiliations'][index_aff]['country'])
@@ -185,9 +184,9 @@ def update_records(dois_and_recids):
             except:
                 print("No affiliations")
         print('Updating record...', recid)
-        # existing_record.update(dict(existing_record))
-        # existing_record.commit()
-        # db.session.commit()
+        existing_record.update(dict(existing_record))
+        existing_record.commit()
+        db.session.commit()
 
 data = find_articles_recid()
 update_records(data)
