@@ -19,7 +19,7 @@ def find_country(affiliation):
 
 def _find_country_no_cache(affiliation):
     for key, val in COUNTRIES_DEFAULT_MAPPING.iteritems():
-        if re.search(r'\b%s\b' % key, affiliation, flags=re.IGNORECASE):
+        if re.search(r'\b\s%s\b' % key, affiliation, flags=re.IGNORECASE):
             return val
 
     # if we can't figure out the country use the cache and Google API if needed
