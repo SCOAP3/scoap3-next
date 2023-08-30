@@ -231,7 +231,7 @@ validators==0.11.0
 vine==1.1.4
 w3lib==1.17.0
 wcwidth==0.1.7
-webargs==5.5.0
+webargs==6.0.0
 webassets==0.12.1
 webencodings==0.5.1
 Werkzeug==0.14.1
