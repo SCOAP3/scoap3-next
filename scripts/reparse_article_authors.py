@@ -325,17 +325,23 @@ def parse_authors(recids_and_paths):
             parsed_authors_list[recid] = result
     return parsed_authors_list
 
-dois = []
+dois = {}
+failed=[]
 def update_records(data):
     recids = data.keys()
     for recid in recids:
         pid = PersistentIdentifier.get("recid", recid)
         existing_record = Record.get_record(pid.object_uuid)
         existing_record['authors'] = data[recid]
-        existing_record.commit()
-        db.session.commit()
-        dois.append(existing_record['dois'][0]['value'])
-        print('Updated:', recid, " DOI:", existing_record['dois'][0]['value'])
+        try:
+            existing_record.commit()
+            db.session.commit()
+            dois[recid] = existing_record['dois'][0]['value']
+            print('Updated:', recid, " DOI:", existing_record['dois'][0]['value'])
+        except:
+            failed.append(recid)
+            print("Validation error", recid)
+
 
 records = gel_records_from_2020_artids()
 results = get_all_iop_xml_files(records)
