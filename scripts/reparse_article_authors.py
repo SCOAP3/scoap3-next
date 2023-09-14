@@ -288,10 +288,10 @@ class IOPParser():
         institution = self._get_institution(article, rid)
         country = self._get_country(article, rid)
         if country is not None:
-            institution_and_country["country"] = country.text.decode("ascii")
+            institution_and_country["country"] = country.text
         if institution is not None and country is not None:
             institution_and_country["institution"] = ", ".join(
-                [institution.text.decode("ascii"), country.text.decode("ascii")]
+                [institution.text, country.text]
             )
         else:
             return self._get_affiliation(article, rid)
@@ -339,5 +339,5 @@ def update_records(data):
 
 records = gel_records_from_2020_artids()
 results = get_all_iop_xml_files(records)
-data = parse_authors({"61271": results["61271"]})
+data = parse_authors(results)
 update_records(data)
