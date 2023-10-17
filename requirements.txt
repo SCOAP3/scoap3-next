@@ -226,7 +226,7 @@ Twisted==17.5.0
 ua-parser==0.8.0
 Unidecode==1.0.23
 uritools==2.2.0
-urllib3==1.24.3
+urllib3==1.26.18
 validators==0.11.0
 vine==1.1.4
 w3lib==1.17.0
