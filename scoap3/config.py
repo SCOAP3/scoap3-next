@@ -702,6 +702,7 @@ COUNTRIES_DEFAULT_MAPPING = OrderedDict(
         ("Northern Cyprus", "Turkey"),
         ("North Cyprus", "Turkey"),
         ("New Mexico", "USA"),
+        ("South China Normal University", "China"),
         ("Hong Kong China", "Hong Kong"),
         ("Hong-Kong China", "Hong Kong"),
         ("Hong Kong, China", "Hong Kong"),
