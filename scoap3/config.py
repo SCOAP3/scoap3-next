@@ -683,6 +683,22 @@ PARTNER_COUNTRIES = [
     "United States",
 ]
 
+INSTITUTIONS_AND_COUNTRIES_MAPPING = OrderedDict([
+    ("INFN", "Italy"),
+    ("European Organization for Nuclear Research", "CERN"),
+    ("Conseil Européen pour la Recherche Nucléaire", "CERN"),
+    ("CERN", "CERN"),
+    ("KEK", "Japan"),
+    ("DESY", "Germany"),
+    ("FERMILAB", "USA"),
+    ("FNAL", "USA"),
+    ("SLACK", "USA"),
+    ("Stanford Linear Accelerator Center", "USA"),
+    ("Joint Institute for Nuclear Research", "JINR"),
+    ("JINR", "JINR"),
+    ("ROC", "Taiwan"),
+    ("R.O.C", "Taiwan"),
+])
 
 COUNTRIES_DEFAULT_MAPPING = OrderedDict(
     [
