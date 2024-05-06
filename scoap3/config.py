@@ -655,6 +655,7 @@ PARTNER_COUNTRIES = [
     "CERN",
     "Czech Republic",
     "Denmark",
+    "Estonia",
     "Finland",
     "France",
     "Germany",
