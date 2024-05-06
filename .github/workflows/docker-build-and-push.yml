@@ -40,7 +40,7 @@ jobs:
         with:
           event-type: update
           images: ${{ steps.build.outputs.image-tags }}
-          token: ${{ secrets.PAT_FIRE_EVENTS_ON_CERN_SIS_KUBERNETES }}
+          token: ${{ secrets.PAT_FIRE_EVENTS_ON_CERN_SIS_KUBERNETES_SCOAP3 }}
 
       - name: Deploy PROD
         if: ${{ github.event_name == 'release'}}
@@ -48,4 +48,4 @@ jobs:
         with:
           event-type: release
           images: ${{ steps.build.outputs.image-tags }}
-          token: ${{ secrets.PAT_FIRE_EVENTS_ON_CERN_SIS_KUBERNETES }}
+          token: ${{ secrets.PAT_FIRE_EVENTS_ON_CERN_SIS_KUBERNETES_SCOAP3 }}
