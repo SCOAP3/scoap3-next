@@ -21,7 +21,6 @@ def get_date_str(time_unit):
     if time_unit == "y":
         return "years"
 
-
 time_unit = input("Enter time unit, one of possible options: h, d, w, m, y \n")
 if not time_unit:
     time_unit = "y"
