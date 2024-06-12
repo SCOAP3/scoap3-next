@@ -2,7 +2,7 @@
 
 import re
 
-from scoap3.config import COUNTRIES_DEFAULT_MAPPING
+from scoap3.config import COUNTRIES_DEFAULT_MAPPING, INSTITUTIONS_AND_COUNTRIES_MAPPING
 from scoap3.utils.google_maps import get_country
 
 
@@ -18,8 +18,12 @@ def find_country(affiliation):
 
 
 def _find_country_no_cache(affiliation):
-    for key, val in COUNTRIES_DEFAULT_MAPPING.iteritems():
+    for key, val in INSTITUTIONS_AND_COUNTRIES_MAPPING.iteritems():
         if re.search(r'\b%s\b' % key, affiliation, flags=re.IGNORECASE):
+            return val
+    value = affiliation.split(",")[-1].strip()
+    for key, val in COUNTRIES_DEFAULT_MAPPING.iteritems():
+        if re.search(r'\b%s\b' % key, value, flags=re.IGNORECASE):
             return val
 
     # if we can't figure out the country use the cache and Google API if needed
