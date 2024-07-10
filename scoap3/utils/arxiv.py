@@ -98,12 +98,12 @@ def get_arxiv_categories(arxiv_id=None, title=None, doi=None):
 
     query = []
     if arxiv_id:
-        query.append('id:%s' % arxiv_id)
+        query.append('id:%s' % arxiv_id.encode('utf-8'))
     else:
         if title:
-            query.append('ti:"%s"' % title.replace("-", "?"))
+            query.append('ti:"%s"' % title.replace("-", "?").encode('utf-8'))
         if doi:
-            query.append('doi:"%s"' % doi)
+            query.append('doi:"%s"' % doi.encode('utf-8'))
 
     encoded_quey_string = quote(' '.join(query))
     request_url = url.format(encoded_quey_string)
