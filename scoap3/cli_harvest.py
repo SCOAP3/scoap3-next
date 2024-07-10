@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 from os.path import isdir, abspath, isfile, getmtime
 from time import sleep
