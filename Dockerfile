@@ -1,8 +1,10 @@
 FROM centos:7
+COPY CentOS-Base.repo ./etc/yum.repos.d/CentOS-Base.repo
+RUN yum clean all && yum makecache
 
 RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
-    yum update -y && \
-    yum install -y \
+    yum update -y --nogpgcheck && \
+    yum install -y --nogpgcheck \
         ImageMagick \
         transfig \
         file \
@@ -52,7 +54,7 @@ RUN npm install -g \
 
 WORKDIR /code
 
-RUN pip install --no-cache-dir --upgrade pip==20.3.4 && \
+RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org  --trusted-host files.pythonhosted.org --ignore-installed --no-cache-dir --upgrade pip==20.3.4 && \
     pip install --no-cache-dir --upgrade setuptools && \
     pip install --no-cache-dir --upgrade wheel && \
     pip install --no-cache-dir typing==3.7.4.1
