@@ -184,7 +184,11 @@ def aps(**kwargs):
 @with_appcontext
 @click.option('--from_date', default=None)
 @click.option('--until_date', default=None)
-@click.option('--url', default='https://www.hindawi.com/oai-pmh/oai.aspx')
+# The Hindawi journals are migrating to Wiley Online Library, and they
+# won’t be able to support OAI-PMH there for some time.
+# temporary solution is provided bellow:
+# @click.option('--url', default='https://www.hindawi.com/oai-pmh/oai.aspx')
+@click.option('--url', default='https://oaipmh.hindawi.com/oai-pmh/oai.aspx')
 @click.option('--workflow', default='articles_upload')
 @click.option('--setspecs', default='HINDAWI.AHEP')
 @click.option('--metadata_prefix', default='marc21')
